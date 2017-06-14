@@ -1,0 +1,417 @@
+#ssl certKey
+
+The following operations can be performed on "ssl certKey":
+
+
+[add](#add-ssl-certkey) | [rm](#rm-ssl-certkey) | [set](#set-ssl-certkey) | [unset](#unset-ssl-certkey) | [bind](#bind-ssl-certkey) | [unbind](#unbind-ssl-certkey) | [link](#link-ssl-certkey) | [unlink](#unlink-ssl-certkey) | [show](#show-ssl-certkey) | [update](#update-ssl-certkey)
+
+##add ssl certKey
+
+Adds a certificate-key pair to memory. After it is bound to a virtual server or service, it is used for processing SSL transactions.In a high-availability configuration, the path to the certificate and the optional private key must be the same on the primary and the secondary appliance. For a server certificate, a private key is required.
+
+
+##Synopsys
+
+add ssl certKey &lt;certkeyName> -cert &lt;string> [(-key &lt;string>  [-password]) | -fipsKey &lt;string>] [-inform ( DER | PEM )] [-expiryMonitor ( ENABLED | DISABLED )  [-notificationPeriod &lt;positive_integer>]] [-bundle ( YES | NO )]
+
+
+##Arguments
+
+<b>certkeyName</b>
+Name for the certificate and private-key pair. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after the certificate-key pair is created.
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my cert" or 'my cert').
+
+<b>cert</b>
+Name of and, optionally, path to the X509 certificate file that is used to form the certificate-key pair. The certificate file should be present on the appliance's hard-disk drive or solid-state drive. Storing a certificate in any location other than the default might cause inconsistency in a high availability setup. /nsconfig/ssl/ is the default path.
+
+<b>key</b>
+Name of and, optionally, path to the private-key file that is used to form the certificate-key pair. The certificate file should be present on the appliance's hard-disk drive or solid-state drive. Storing a certificate in any location other than the default might cause inconsistency in a high availability setup. /nsconfig/ssl/ is the default path.
+
+<b>fipsKey</b>
+Name of the FIPS key that was created inside the Hardware Security Module (HSM) of a FIPS appliance, or a key that was imported into the HSM.
+
+<b>inform</b>
+Input format of the certificate and the private-key files. The two formats supported by the appliance are:
+PEM - Privacy Enhanced Mail
+DER - Distinguished Encoding Rule
+Possible values: DER, PEM
+Default value: FORMAT_PEM
+
+<b>passplain</b>
+Pass phrase used to encrypt the private-key. Required when adding an encrypted private-key in PEM format.
+
+<b>expiryMonitor</b>
+Issue an alert when the certificate is about to expire.
+Possible values: ENABLED, DISABLED
+
+<b>notificationPeriod</b>
+Time, in number of days, before certificate expiration, at which to generate an alert that the certificate is about to expire.
+Minimum value: 10
+Maximum value: 100
+
+<b>bundle</b>
+Parse the certificate chain as a single file after linking the server certificate to its issuer's certificate within the file.
+Possible values: YES, NO
+Default value: NO
+
+
+
+##Example
+
+1)	add ssl certkey siteAcertkey -cert /nsconfig/ssl/cert.pem -key /nsconfig/ssl/pkey.pemThe above command loads a certificate and private key file.2)	add ssl certkey siteAcertkey -cert /nsconfig/ssl/cert.pem -key /nsconfig/ssl/pkey.pem -passwordPassword: ********The above command loads a certificate and private key file. Here the private key file is an encrypted key.3)	add ssl certkey fipscert -cert /nsconfig/ssl/cert.pem -fipskey fips1024The above command loads a certificate and associates it with the corresponding FIPS key that resides within the HSM.
+
+##rm ssl certKey
+
+Removes all the certificate-key pairs, or the specified certificate-key pair, from the appliance. The certificate-key pair is removed only if it is not referenced by any other object. The reference count is updated when the certificate-key pair is bound to an SSL virtual server or linked to another certificate-key pair.
+
+
+##Synopsys
+
+rm ssl certKey &lt;certkeyName> ...
+
+
+##Arguments
+
+<b>certkeyName</b>
+Name of the certificate-key pair to remove.
+
+
+
+##Example
+
+1)	rm ssl certkey siteAcertkeyThe above command removes the certificate-key pair siteAcertkey from the system.
+
+##set ssl certKey
+
+Modifies the specified attributes of a certificate-key pair.
+
+
+##Synopsys
+
+set ssl certKey &lt;certkeyName> [-expiryMonitor ( ENABLED | DISABLED )  [-notificationPeriod &lt;positive_integer>]]
+
+
+##Arguments
+
+<b>certkeyName</b>
+Name of the certificate-key pair to modify.
+
+<b>expiryMonitor</b>
+Issue an alert when the certificate is about to expire.
+Possible values: ENABLED, DISABLED
+
+
+
+##unset ssl certKey
+
+Use this command to remove ssl certKey settings.Refer to the set ssl certKey command for meanings of the arguments.
+
+
+##Synopsys
+
+unset ssl certKey &lt;certkeyName> [-expiryMonitor] [-notificationPeriod]
+
+
+##bind ssl certKey
+
+Binds a certificate-key pair to an SSL virtual server or an SSL service.
+
+
+##Synopsys
+
+bind ssl certKey [&lt;certkeyName>] [-ocspResponder &lt;string>] [-priority &lt;positive_integer>]
+
+
+##Arguments
+
+<b>certkeyName</b>
+Name of the certificate-key pair.
+
+<b>ocspResponder</b>
+Name of the OCSP responder to be associated with the CA certificate.
+
+<b>vServerName</b>
+The name of the SSL virtual server name to which the certificate-key pair needs to be bound.
+
+<b>serviceName</b>
+The name of the SSL service to which the certificate-key pair needs to be bound. Use the ###add service### command to create this service.
+
+<b>serviceGroupName</b>
+The name of the SSL service group to which the certificate-key pair needs to be bound. Use the "add servicegroup" command to create this service.
+
+<b>CA</b>
+If this option is specified, it indicates that the certificate-key pair being bound to the SSL virtual server is a CA certificate. If this option is not specified, the certificate-key pair is bound as a normal server certificate.
+	Note: In case of a normal server certificate, the certificate-key pair should consist of both the certificate and the private-key.
+
+
+
+##Example
+
+1)	bind ssl certkey cacert -ocspResponder ocsp_ca -priority 1In the above example, the CA certificate cacert is bound with the OCSP responder ocsp_ca with priority 1, which is highest.
+
+##Related Commands
+
+<ul><li><a href="../../../w-ssl-vs/w-ssl-vs">show ssl vserver</a></li></ul>
+
+
+
+##unbind ssl certKey
+
+Unbinds the specified certificate-key pair from the SSL virtual server or service.
+
+
+##Synopsys
+
+unbind ssl certKey &lt;certkeyName> -ocspResponder &lt;string>
+
+
+##Arguments
+
+<b>certkeyName</b>
+Name of the certificate-key pair to unbind.
+
+<b>ocspResponder</b>
+Name of the OCSP responder.
+
+<b>vServerName</b>
+The name of the SSL virtual server.
+
+<b>serviceName</b>
+The name of the SSL service
+
+<b>serviceGroupName</b>
+The name of the service group.
+
+<b>CA</b>
+The certificate-key pair being unbound is a Certificate Authority (CA) certificate. If you choose this option, the certificate-key pair is unbound from the list of CA certificates that were bound to the specified SSL virtual server or SSL service.
+
+
+
+##Example
+
+1)	unbind ssl certkey sslvip siteAcertkeyIn the above example, the server certificate siteAcertkey is unbound from the SSL virtual server.2) 	unbind ssl certkey sslvip CAcertkey -CAIn the above example, the CA certificate CAcertkey is unbound from the SSL virtual server.
+
+##Related Commands
+
+<ul><li><a href="../../../w-ssl-vs/w-ssl-vs">show ssl vserver</a></li></ul>
+
+
+
+##link ssl certKey
+
+Links a certificate-key pair to its Certificate Authority (CA) certificate-key pair.
+
+
+##Synopsys
+
+link ssl certKey &lt;certkeyName> &lt;linkCertKeyName>
+
+
+##Arguments
+
+<b>certkeyName</b>
+Name of the certificate-key pair to link to its issuer's certificate-key pair in the chain.
+
+<b>linkCertKeyName</b>
+Name of the Certificate Authority certificate-key pair to which to link a certificate-key pair.
+
+
+
+##Example
+
+1)	link ssl certkey siteAcertkey CAcertkeyIn the above example, the certificate-key siteAcertkey is bound to its issuer certificate-key pair CAcertkey.
+
+##Related Commands
+
+<ul><li><a href="../../../ow-ssl-cer/ow-ssl-cer">show ssl certlink</a></li></ul>
+
+
+
+##unlink ssl certKey
+
+Unlinks the certificate-key pair from its Certificate-Authority (CA) certificate-key pair.
+
+
+##Synopsys
+
+unlink ssl certKey &lt;certkeyName>
+
+
+##Arguments
+
+<b>certkeyName</b>
+Name of the certificate-key pair to unlink.
+
+
+
+##Example
+
+1)	unlink ssl certkey siteAcertkeyThe above example unlinks the certificate 'siteAcertkey' from its Certificate-Authority (CA) certificate.
+
+##Related Commands
+
+<ul><li><a href="../../../ow-ssl-cer/ow-ssl-cer">show ssl certlink</a></li></ul>
+
+
+
+##show ssl certKey
+
+Displays information about all the certificate-key pairs configured on the appliance, or displays detailed information about the specified certificate-key pair.
+
+
+##Synopsys
+
+show ssl certKey [&lt;certkeyName>]
+
+
+##Arguments
+
+<b>certkeyName</b>
+Name of the certificate-key pair for which to show detailed information.
+
+<b>summary</b>
+
+<b>fullValues</b>
+
+<b>format</b>
+
+<b>level</b>
+
+
+
+##Outputs
+
+<b>cert</b>
+The name and location of the file containing the certificate.
+
+<b>key</b>
+The name and location of the file containing the key.
+
+<b>inform</b>
+The encoding format of the certificate and key (PEM or DER).
+
+<b>signatureAlg</b>
+Signature algorithm.
+
+<b>serial</b>
+Serial number.
+
+<b>issuer</b>
+Issuer name.
+
+<b>clientCertNotBefore</b>
+Not-Before date.
+
+<b>clientCertNotAfter</b>
+Not-After date.
+
+<b>daysToExpiration</b>
+Days remaining for the certificate to expire.
+
+<b>subject</b>
+Subject name.
+
+<b>publickey</b>
+Public key algorithm.
+
+<b>publickeysize</b>
+Size of the public key.
+
+<b>version</b>
+Version.
+
+<b>priority</b>
+ocsp priority
+
+<b>status</b>
+Status of the certificate.
+
+<b>fipsKey</b>
+FIPS key ID.
+
+<b>passcrypt</b>
+Passcrypt.
+
+<b>data</b>
+Vserver Id
+
+<b>serverName</b>
+Vserver name to which the certificate key pair is bound.
+
+<b>serviceName</b>
+Service name to which the certificate key pair is bound.
+
+<b>ocspResponder</b>
+OCSP responders bound to this certkey
+
+<b>expiryMonitor</b>
+Certificate expiry monitor
+
+<b>notificationPeriod</b>
+Certificate expiry notification period
+
+<b>linkCertKeyName</b>
+The name of the Certificate-Authority.
+
+<b>stateflag</b>
+
+<b>devno</b>
+
+<b>count</b>
+
+
+
+##Example
+
+1) An example of the output of the show ssl certkey command is shown below:	2 configured certkeys:1)	Name: siteAcertkey	Cert Path: /nsconfig/ssl/siteA-cert.pem	Key Path:  /nsconfig/ssl/siteA-key.pem	Format: PEM	Status: Valid2)	Name: cert1	Cert Path: /nsconfig/ssl/server_cert.pem	Key Path: /nsconfig/ssl/server_key.pem	Format: PEM	Status: Valid2) An example of the output of the show ssl certkey siteAcertkey command is shown below:Name: siteAcertkey		Status: ValidVersion: 3Serial Number: 02Signature Algorithm: md5WithRSAEncryptionIssuer: /C=US/ST=CA/L=Santa Clara/O=siteA/OU=TechValidity	Not Before: Nov 11 14:58:18 2001 GMT	Not After: Aug 7 14:58:18 2004 GMTSubject: /C=US/ST-CA/L=San Jose/O=CA/OU=SecurityPublic Key Algorithm: rsaEncryptionPublic Key size: 1024
+
+##update ssl certKey
+
+Updates the certificate or private key in a certificate-key pair. In a high availability configuration, the path to the certificate and the optional private key must be the same on the primary and secondary nodes.
+
+
+##Synopsys
+
+update ssl certKey &lt;certkeyName> [-cert &lt;string>] [(-key &lt;string>  [-password]) | -fipsKey &lt;string>] [-inform ( DER | PEM )] [-noDomainCheck]
+
+
+##Arguments
+
+<b>certkeyName</b>
+Name of the certificate-key pair to update.
+
+<b>cert</b>
+Name of and, optionally, path to the X509 certificate file that is used to form the certificate-key pair. The certificate file should be present on the appliance's hard-disk drive or solid-state drive. Storing a certificate in any location other than the default might cause inconsistency in a high availability setup. /nsconfig/ssl/ is the default path.
+
+<b>key</b>
+Name of and, optionally, path to the private-key file that is used to form the certificate-key pair. The certificate file should be present on the appliance's hard-disk drive or solid-state drive. Storing a certificate in any location other than the default might cause inconsistency in a high availability setup. /nsconfig/ssl/ is the default path.
+
+<b>fipsKey</b>
+Name of the FIPS key that was created inside the Hardware Security Module (HSM) of a FIPS appliance, or a key that was imported into the HSM.
+
+<b>inform</b>
+Input format of the certificate and the private-key files. The two formats supported by the appliance are:
+PEM - Privacy Enhanced Mail
+DER - Distinguished Encoding Rule
+Possible values: DER, PEM
+Default value: FORMAT_PEM
+
+<b>passplain</b>
+Pass phrase used to encrypt the private-key. Required when adding an encrypted private-key in PEM format.
+
+<b>noDomainCheck</b>
+Override the check for matching domain names during a certificate update operation.
+
+
+
+##Example
+
+1)     update ssl certkey siteAcertkey -cert /nsconfig/ssl/cert.pem -key /nsconfig/ssl/pkey.pemThe above command updates a certificate and private key file.2)      update ssl certkey siteAcertkey -cert /nsconfig/ssl/cert.pem -key /nsconfig/ssl/pkey.pem -passwordPassword: ********The above command updates a certificate and private key file. Here the private key file is an encrypted key.3)	 update ssl certkey mydomaincertThe above command updates the certificate using the same parameters (-cert path/-key path) that it was added with.
+
+##Related Commands
+
+<ul><li><a href="../../../-ssl-ce/-ssl-ce">add ssl certkey</a></li><li><a href="../../../ssl-ce/ssl-ce">rm ssl certkey</a></li></ul>
+
+
+
