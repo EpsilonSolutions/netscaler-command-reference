@@ -6,15 +6,50 @@ A detailed list of the commands that can be used to configure the NetScaler appl
 
 
 * [AAA Commands](./aaa/aaa-commands.md)
-
-
-<ul>
-  <li><a href="../../aaa/aaa-commands">AAA Commands</a></li>
-  <li><a href="../../app/application-commands">Application Commands</a></li>
-  <li><a href="../../appflow/appflow-commands">AppFlow Commands</a></li>
-  <li><a href="../../appfw/application-firewall-commands">Application Firewall Commands</a></li>
-  <li><a href="../../appqoe/appqoe-commands">AppQoE Commands</a></li>
-  <li><a href="../../audit/audit-commands">Audit Commands</a></li>
-  <li><a href="../../authentication/authentication-commands">Authentication Commands</a></li>
-  <li><a href="../../authorization/authorization-commands">Authorization Commands</a></li>
-  <li><a href="../../autoscale/autoscale-commands">AutoScale Commands</a></li><li><a href="../../basic/basic-commands">Basic Commands</a></li><li><a href="../../ca/content-accelerator-commands">Content Accelerator Commands</a></li><li><a href="../../cache/cache-commands">Cache Commands</a></li><li><a href="../../cli/cli-commands">CLI Commands</a></li><li><a href="../../cluster/cluster-commands">Cluster Commands</a></li><li><a href="../../cmp/compression-commands">Compression Commands</a></li><li><a href="../../cr/cache-redirection-commands">Cache Redirection Commands</a></li><li><a href="../../cs/content-switching-commands">Content Switching Commands</a></li><li><a href="../../db/db-commands">DB Commands</a></li><li><a href="../../dns/dns-commands">DNS Commands</a></li><li><a href="../../dos/dos-commands">DOS Commands</a></li><li><a href="../../feo/front-end-optimization-commands">Front End Optimization Commands</a></li><li><a href="../../filter/filter-commands">Filter Commands</a></li><li><a href="../../gslb/gslb-commands">GSLB Commands</a></li><li><a href="../../ha/high-availability-commands">High Availability Commands</a></li><li><a href="../../ipsec/ipsec-commands">IPSec Commands</a></li><li><a href="../../lb/load-balancing-commands">Load Balancing Commands</a></li><li><a href="../../lldp/lldp-commands">LLDP Commands</a></li><li><a href="../../network/networking-commands">Networking Commands</a></li><li><a href="../../ns/ns-commands">NS Commands</a></li><li><a href="../../ntp/ntp-commands">NTP Commands</a></li><li><a href="../../policy/policy-commands">Policy Commands</a></li><li><a href="../../pq/pq-commands">PQ Commands</a></li><li><a href="../../protocol/protocol-commands">Protocol Commands</a></li><li><a href="../../qos/qos-commands">QOS Commands</a></li><li><a href="../../responder/responder-commands">Responder Commands</a></li><li><a href="../../rewrite/rewrite-commands">Rewrite Commands</a></li><li><a href="../../rise/rise-commands">RISE Commands</a></li><li><a href="../../router/router-commands">Router Commands</a></li><li><a href="../../sc/router-commands">SureConnect Commands</a></li><li><a href="../../snmp/snmp-commands">SNMP Commands</a></li><li><a href="../../spillover/spillover-commands">Spillover Commands</a></li><li><a href="../../ssl/ssl-commands">SSL Commands</a></li><li><a href="../../stream/stream-commands">Stream Commands</a></li><li><a href="../../system/system-commands">System Commands</a></li><li><a href="../../tm/traffic-management-commands">Traffic Management Commands</a></li><li><a href="../../transform/transform-commands">Transform Commands</a></li><li><a href="../../tunnel/tunnel-commands">Tunnel Commands</a></li><li><a href="../../utility/utility-commands">Utility Commands</a></li><li><a href="../../vpn/vpn-commands">VPN Commands</a></li><li><a href="../../wi/webinterface-commands">WebInterface Commands</a></li></ul></div></div></body></html>
+* [Application Commands](./app/application-commands.md)
+* [Application Firewall Commands](./appfw/application-firewall-commands.md)
+* [AppQoE Commands](./appqoe/appqoe-commands.md)
+* [Audit Commands](./audit/audit-commands.md)
+* [Authentication Commands](./authentication/authentication-commands.md)
+* [Authorization Commands](./authorization/authorization-commands.md)
+* [AutoScale Commands](./autoscale/autoscale-commands.md)
+* [Basic Commands](./basic/basic-commands.md)
+* [Content Accelerator Commands](./ca/content-accelerator-commands.md)
+* [Cache Commands](./cache/cache-commands.md)
+* [CLI Commands](./cli/cli-commands.md)
+* [Compression Commands](./cmp/compression-commands.md)
+* [Cache Redirection Commands](./cr/cache-redirection-commands.md)
+* [Content Switching Commands](./cs/content-switching-commands.md)
+* [DB Commands](./db/db-commands.md)
+* [DNS Commands](./dns/dns-commands.md)
+* [DOS Commands](./dos/dos-commands.md)
+* [Front End Optimization Commands](./feo/front-end-optimization-commands.md)
+* [Filter Commands](./filter/filter-commands.md)
+* [GSLB Commands](./gslb/gslb-commands.md)
+* [High Availability Commands](./ha/high-availability-commands.md)
+* [IPSec Commands](./ipsec/ipsec-commands.md)
+* [Load Balancing Commands](./lb/load-balancing-commands.md)
+* [LLDP Commands](./lldp/lldp-commands.md)
+* [Networking Commands](./network/networking-commands.md)
+* [NS Commands](./ns/ns-commands.md)
+* [NTP Commands](./ntp/ntp-commands.md)
+* [Policy Commands](./policy/policy-commands.md)
+* [PQ Commands](./pq/pq-commands.md)
+* [Protocol Commands](./protocol/protocol-commands.md)
+* [QOS Commands](./qos/qos-commands.md)
+* [Responder Commands](./responder/responder-commands.md)
+* [Rewrite Commands](./rewrite/rewrite-commands.md)
+* [RISE Commands](./rise/rise-commands.md)
+* [Router Commands](./router/router-commands.md)
+* [SureConnect Commands](./sc/router-commands.md)
+* [SNMP Commands](./snmp/snmp-commands.md)
+* [Spillover Commands](./spillover/spillover-commands.md)
+* [SSL Commands](./ssl/ssl-commands.md)
+* [Stream Commands](./stream/stream-commands.md)
+* [System Commands](./system/system-commands.md)
+* [Traffic Management Commands](./tm/traffic-management-commands.md)
+* [Transform Commands](./transform/transform-commands.md)
+* [Tunnel Commands](./tunnel/tunnel-commands.md)
+* [Utility Commands](./utility/utility-commands.md)
+* [VPN Commands](./vpn/vpn-commands.md)
+* [WebInterface Commands](./wi/webinterface-commands.md)
