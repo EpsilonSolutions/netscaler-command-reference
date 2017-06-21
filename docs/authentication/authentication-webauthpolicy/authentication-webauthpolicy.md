@@ -21,7 +21,7 @@ add authentication webAuthPolicy &lt;name> -rule &lt;string> -action &lt;string>
 Name for the WebAuth policy. 
 Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after LDAP policy is created.
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, ?my authentication policy? or ?my authentication policy?).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication policy" or 'my authentication policy').
 
 <b>rule</b>
 Name of the NetScaler named rule, or a default syntax expression, that the policy uses to determine whether to attempt to authenticate the user with the Web server.
@@ -85,14 +85,6 @@ show authentication webAuthPolicy [&lt;name>]
 
 <b>name</b>
 Name of the WebAuth policy.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

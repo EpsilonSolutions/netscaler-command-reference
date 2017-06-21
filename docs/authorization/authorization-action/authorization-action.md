@@ -18,14 +18,6 @@ show authorization action [&lt;name>]
 <b>name</b>
 Name of authorization action
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

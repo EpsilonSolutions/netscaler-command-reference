@@ -62,20 +62,12 @@ show dns view [&lt;viewName>]
 <b>viewName</b>
 Name of the view to display.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
 
 <b>serviceName</b>
-Service name of the service using this view.NOTE: This attribute is deprecated.This attribute is deprecated. please use -gslbservicename
+Service name of the service using this view.
 
 <b>gslbServiceName</b>
 Service name of the service using this view.
@@ -87,7 +79,7 @@ dnspolicy name of this view.
 IP of the service corresponding to the given view.
 
 <b>flags</b>
-Flags controlling display.NOTE: This attribute is deprecated.This is deprecated attribute.
+Flags controlling display.
 
 <b>stateflag</b>
 flags controlling display

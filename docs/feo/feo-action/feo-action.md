@@ -12,7 +12,7 @@ Create a front end optimization action.
 
 ##Synopsys
 
-add feo action &lt;name> [-pageExtendCache] [-imgShrinkToAttrib] [-imgGifToPng] [-imgInline] [-cssImgInline] [-jpgOptimize] [-imgLazyLoad] [-cssMinify] [-cssInline] [-cssCombine] [-convertImportToLink] [-jsMinify] [-jsInline] [-htmlMinify] [-cssMoveToHead] [-jsMoveToEND] [-domainSharding &lt;string>  &lt;dnsShards> ...] [-clientSideMeasurements]
+add feo action &lt;name> [-pageExtendCache] [-imgShrinkToAttrib] [-imgGifToPng] [-imgToWebp] [-imgToJpegXR] [-imgInline] [-cssImgInline] [-jpgOptimize] [-imgLazyLoad] [-cssMinify] [-cssInline] [-cssCombine] [-convertImportToLink] [-jsMinify] [-jsInline] [-htmlMinify] [-cssMoveToHead] [-jsMoveToEND] [-domainSharding &lt;string>  &lt;dnsShards> ...] [-clientSideMeasurements]
 
 
 ##Arguments
@@ -28,6 +28,12 @@ Shrink image dimensions as per the height and width attributes specified in the 
 
 <b>imgGifToPng</b>
 Convert GIF image formats to PNG formats.
+
+<b>imgToWebp</b>
+Convert JPEG, GIF, PNG image formats to WEBP format.
+
+<b>imgToJpegXR</b>
+Convert JPEG, GIF, PNG image formats to JXR format.
 
 <b>imgInline</b>
 Inline images whose size is less than 2KB.
@@ -71,8 +77,11 @@ Move any JavaScript present in the body tag to the end of the body tag.
 <b>domainSharding</b>
 Domain name of the server
 
+<b>dnsShards</b>
+Set of domain names that replaces the parent domain.
+
 <b>clientSideMeasurements</b>
-Collect the amount of time required for the client to load and render the web page.
+Send AppFlow records about the web pages optimized by this action. The records provide FEO statistics, such as the number of HTTP requests that have been reduced for this page. You must enable the Appflow feature before enabling this parameter.
 
 
 
@@ -83,7 +92,7 @@ Modify a front end optimization action.
 
 ##Synopsys
 
-set feo action &lt;name> [-pageExtendCache] [-imgShrinkToAttrib] [-imgGifToPng] [-imgInline] [-cssImgInline] [-jpgOptimize] [-imgLazyLoad] [-cssMinify] [-cssInline] [-cssCombine] [-convertImportToLink] [-jsMinify] [-jsInline] [-htmlMinify] [-cssMoveToHead] [-jsMoveToEND] [-domainSharding &lt;string>  &lt;dnsShards> ...] [-clientSideMeasurements]
+set feo action &lt;name> [-pageExtendCache] [-imgShrinkToAttrib] [-imgGifToPng] [-imgToWebp] [-imgToJpegXR] [-imgInline] [-cssImgInline] [-jpgOptimize] [-imgLazyLoad] [-cssMinify] [-cssInline] [-cssCombine] [-convertImportToLink] [-jsMinify] [-jsInline] [-htmlMinify] [-cssMoveToHead] [-jsMoveToEND] [-domainSharding &lt;string>  &lt;dnsShards> ...] [-clientSideMeasurements]
 
 
 ##Arguments
@@ -99,6 +108,12 @@ Shrink image dimensions as per the height and width attributes specified in the 
 
 <b>imgGifToPng</b>
 Convert GIF image formats to PNG formats.
+
+<b>imgToWebp</b>
+Convert JPEG, GIF, PNG image formats to WEBP format.
+
+<b>imgToJpegXR</b>
+Convert JPEG, GIF, PNG image formats to JXR format.
 
 <b>imgInline</b>
 Inline images whose size is less than 2KB.
@@ -142,8 +157,11 @@ Move any JavaScript present in the body tag to the end of the body tag.
 <b>domainSharding</b>
 Domain name of the server
 
+<b>dnsShards</b>
+Set of domain names that replaces the parent domain.
+
 <b>clientSideMeasurements</b>
-Collect the amount of time required for the client to load and render the web page.
+Send AppFlow records about the web pages optimized by this action. The records provide FEO statistics, such as the number of HTTP requests that have been reduced for this page. You must enable the Appflow feature before enabling this parameter.
 
 
 
@@ -154,7 +172,7 @@ Modify a front end optimization action..Refer to the set feo action command for 
 
 ##Synopsys
 
-unset feo action &lt;name> [-pageExtendCache] [-imgShrinkToAttrib] [-imgGifToPng] [-imgInline] [-cssImgInline] [-jpgOptimize] [-imgLazyLoad] [-cssMinify] [-cssInline] [-cssCombine] [-convertImportToLink] [-jsMinify] [-jsInline] [-htmlMinify] [-cssMoveToHead] [-jsMoveToEND] [-clientSideMeasurements] [-domainSharding]
+unset feo action &lt;name> [-pageExtendCache] [-imgShrinkToAttrib] [-imgGifToPng] [-imgToWebp] [-imgToJpegXR] [-imgInline] [-cssImgInline] [-jpgOptimize] [-imgLazyLoad] [-cssMinify] [-cssInline] [-cssCombine] [-convertImportToLink] [-jsMinify] [-jsInline] [-htmlMinify] [-cssMoveToHead] [-jsMoveToEND] [-clientSideMeasurements] [-domainSharding]
 
 
 ##rm feo action
@@ -189,14 +207,6 @@ show feo action [&lt;name>]
 <b>name</b>
 The name of the front end optimization action.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -211,6 +221,12 @@ Shrink image dimensions as per the height and width attributes specified in the 
 
 <b>imgGifToPng</b>
 Convert GIF image formats to PNG formats.
+
+<b>imgToWebp</b>
+Convert JPEG, GIF, PNG image formats to WEBP format.
+
+<b>imgToJpegXR</b>
+Convert JPEG, GIF, PNG image formats to JXR format.
 
 <b>imgAddDimensions</b>
 Add dimension attributes to images, if not specified within the &lt;img> tag.
@@ -285,7 +301,7 @@ Domain name of the server
 Set of domain names that replaces the parent domain.
 
 <b>clientSideMeasurements</b>
-Collect the amount of time required for the client to load and render the web page.
+Send AppFlow records about the web pages optimized by this action. The records provide FEO statistics, such as the number of HTTP requests that have been reduced for this page. You must enable the Appflow feature before enabling this parameter.
 
 <b>hits</b>
 The number of times the action has been taken.

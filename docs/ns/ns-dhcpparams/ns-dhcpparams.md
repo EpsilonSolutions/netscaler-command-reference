@@ -49,14 +49,6 @@ Displays the parameters configured for the DHCP client.
 show ns dhcpParams
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>dhcpClient</b>

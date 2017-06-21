@@ -53,14 +53,6 @@ Displays the values of the session life and vsr filename parameters.
 show sc parameter
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>sessionLife</b>

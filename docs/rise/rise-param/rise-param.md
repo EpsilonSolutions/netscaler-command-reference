@@ -20,12 +20,12 @@ set rise param [-directMode ( ENABLED | DISABLED )] [-indirectMode ( ENABLED | D
 <b>directMode</b>
 RISE Direct attach mode
 Possible values: ENABLED, DISABLED
-Default value: GENENABLED
+Default value: ENABLED
 
 <b>indirectMode</b>
 RISE Indirect attach mode
 Possible values: ENABLED, DISABLED
-Default value: GENDISABLED
+Default value: DISABLED
 
 
 
@@ -51,14 +51,6 @@ Display the global parameters for RISE
 ##Synopsys
 
 show rise param
-
-
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

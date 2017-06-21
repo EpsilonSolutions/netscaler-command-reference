@@ -64,10 +64,34 @@ bind dns policylabel &lt;labelName> &lt;policyName> &lt;priority> [&lt;gotoPrior
 ##Arguments
 
 <b>labelName</b>
-Name of the dns policy label.
+Name of the label to invoke if the current policy rule evaluates to TRUE.
 
 <b>policyName</b>
 The dns policy name.
+
+<b>priority</b>
+Priority with which the policy is to be bound.
+Minimum value: 1
+Maximum value: 2147483647
+
+<b>gotoPriorityExpression</b>
+Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.
+	o	If gotoPriorityExpression is not present or if it is equal to END then the policy bank evaluation ends here
+	o	Else if the gotoPriorityExpression is equal to NEXT then the next policy in the priority order is evaluated.
+	o	Else gotoPriorityExpression is evaluated. The result of gotoPriorityExpression (which has to be a number) is processed as follows:
+		-	An UNDEF event is triggered if
+			.	gotoPriorityExpression cannot be evaluated
+			.	gotoPriorityExpression evaluates to number which is smaller than the maximum priority in the policy bank but is not same as any policy's priority
+			.	gotoPriorityExpression evaluates to a priority that is smaller than the current policy's priority
+		-	If the gotoPriorityExpression evaluates to the priority of the current policy then the next policy in the priority order is evaluated.
+		-	If the gotoPriorityExpression evaluates to the priority of a policy further ahead in the list then that policy will be evaluated next.
+
+<b>invoke</b>
+Invoke flag.
+
+<b>labelType</b>
+Type of policy label invocation.
+Possible values: policylabel
 
 
 
@@ -118,14 +142,6 @@ show dns policylabel [&lt;labelName>]
 
 <b>labelName</b>
 Name of the dns policy label.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -195,6 +211,20 @@ stat dns policylabel [&lt;labelName>] [-detail] [-fullValues] [-ntimes &lt;posit
 
 <b>labelName</b>
 The name of the dns policy label for which statistics will be displayed.  If not given statistics are shown for all dns policylabels.
+
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
 
 <b>clearstats</b>
 Clear the statsistics / counters

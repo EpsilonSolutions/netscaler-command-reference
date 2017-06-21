@@ -12,7 +12,7 @@ Removes unreviewed application firewall learning data for the specified applicat
 
 ##Synopsys
 
-rm appfw learningdata &lt;profileName> (-startURL &lt;expression> | -cookieConsistency &lt;string> | (-fieldConsistency &lt;string>  &lt;formActionURL>) | (-crossSiteScripting &lt;string>  &lt;formActionURL>  [&lt;location>]) | (-SQLInjection &lt;string>  &lt;formActionURL>  [&lt;location>]) | (-fieldFormat &lt;string>  &lt;formActionURL>) | (-CSRFTag &lt;expression>  &lt;CSRFFormOriginURL>) | -XMLDoSCheck &lt;expression> | -XMLWSICheck &lt;expression> | -XMLAttachmentCheck &lt;expression>) [-TotalXMLRequests]
+rm appfw learningdata &lt;profileName> (-startURL &lt;expression> | -cookieConsistency &lt;string> | (-fieldConsistency &lt;string>  &lt;formActionURL>) | -contentType &lt;string> | (-crossSiteScripting &lt;string>  &lt;formActionURL>  [&lt;location>]  [&lt;valueType>  &lt;valueExpression>]) | (-SQLInjection &lt;string>  &lt;formActionURL>  [&lt;location>]  [&lt;valueType>  &lt;valueExpression>]) | (-fieldFormat &lt;string>  &lt;formActionURL>) | (-CSRFTag &lt;expression>  &lt;CSRFFormOriginURL>) | (-CreditCardNumber &lt;expression>  &lt;CreditCardNumberUrl>) | -XMLDoSCheck &lt;expression> | -XMLWSICheck &lt;expression> | -XMLAttachmentCheck &lt;expression>) [-TotalXMLRequests]
 
 
 ##Arguments
@@ -29,8 +29,25 @@ Cookie Name.
 <b>fieldConsistency</b>
 Form field name.
 
+<b>formActionURL</b>
+Form action URL.
+
+<b>contentType</b>
+Content Type Name.
+
 <b>crossSiteScripting</b>
 Cross-site scripting.
+
+<b>location</b>
+Location of sql injection exception - form field, header or cookie.
+Possible values: FORMFIELD, HEADER, COOKIE
+
+<b>valueType</b>
+SQL value type. Keyword, SpecialString or Wildchar
+Possible values: Keyword, SpecialString, Wildchar
+
+<b>valueExpression</b>
+SQL value expressions consistituting expressions for Keyword, SpecialString or Wildchar.
 
 <b>SQLInjection</b>
 Form field name.
@@ -40,6 +57,15 @@ Field format name.
 
 <b>CSRFTag</b>
 CSRF Form Action URL
+
+<b>CSRFFormOriginURL</b>
+CSRF Form Origin URL.
+
+<b>CreditCardNumber</b>
+The object expression that is to be excluded from safe commerce check.
+
+<b>CreditCardNumberUrl</b>
+The url for which the list of credit card numbers are needed to be bypassed from inspection
 
 <b>XMLDoSCheck</b>
 XML Denial of Service check, one of
@@ -91,15 +117,38 @@ Name of the profile.
 
 <b>securityCheck</b>
 Name of the security check.
-Possible values: startURL, cookieConsistency, fieldConsistency, crossSiteScripting, SQLInjection, fieldFormat, CSRFtag, XMLDoSCheck, XMLWSICheck, XMLAttachmentCheck, TotalXMLRequests
-
-<b>summary</b>
-
-<b>fullValues</b>
+Possible values: startURL, cookieConsistency, fieldConsistency, crossSiteScripting, SQLInjection, fieldFormat, CSRFtag, XMLDoSCheck, XMLWSICheck, XMLAttachmentCheck, TotalXMLRequests, creditCardNumber, ContentType
 
 
 
 ##Outputs
+
+<b>url</b>
+Learnt url
+
+<b>name</b>
+Learnt field name
+
+<b>fieldType</b>
+Learnt field type
+
+<b>fieldFormatMinLength</b>
+The minimum allowed length for data in this form field.
+
+<b>fieldFormatMaxLength</b>
+The maximum allowed length for data in this form field.
+
+<b>fieldFormatCharMapPCRE</b>
+Form field value allowed character map.
+
+<b>valueType</b>
+Learnt field value type
+
+<b>value</b>
+Learnt field value
+
+<b>hits</b>
+Learnt entity hit count
 
 <b>data</b>
 Learned data.
@@ -139,7 +188,7 @@ Name of the profile.
 
 <b>securityCheck</b>
 Name of the security check.
-Possible values: startURL, cookieConsistency, fieldConsistency, crossSiteScripting, SQLInjection, fieldFormat, CSRFtag, XMLDoSCheck, XMLWSICheck, XMLAttachmentCheck, TotalXMLRequests
+Possible values: startURL, cookieConsistency, fieldConsistency, crossSiteScripting, SQLInjection, fieldFormat, CSRFtag, XMLDoSCheck, XMLWSICheck, XMLAttachmentCheck, TotalXMLRequests, creditCardNumber, ContentType
 
 <b>target</b>
 Target filename for data to be exported.

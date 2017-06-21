@@ -12,7 +12,7 @@ Creates an authentication virtual server.
 
 ##Synopsys
 
-add authentication vserver &lt;name> &lt;serviceType> (&lt;IPAddress>  [-range &lt;positive_integer>]) &lt;port> [-state ( ENABLED | DISABLED )] [-authentication ( ON | OFF )] [-AuthenticationDomain &lt;string>] [-comment &lt;string>] [-td &lt;positive_integer>] [-appflowLog ( ENABLED | DISABLED )] [-maxLoginAttempts &lt;positive_integer>  [-failedLoginTimeout &lt;mins>]]
+add authentication vserver &lt;name> &lt;serviceType> [&lt;IPAddress>  [-range &lt;positive_integer>]] [&lt;port>] [-state ( ENABLED | DISABLED )] [-authentication ( ON | OFF )] [-AuthenticationDomain &lt;string>] [-comment &lt;string>] [-td &lt;positive_integer>] [-appflowLog ( ENABLED | DISABLED )] [-maxLoginAttempts &lt;positive_integer>  [-failedLoginTimeout &lt;mins>]]
 
 
 ##Arguments
@@ -21,19 +21,24 @@ add authentication vserver &lt;name> &lt;serviceType> (&lt;IPAddress>  [-range &
 Name for the new authentication virtual server. 
 Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Can be changed after the authentication virtual server is added by using the rename authentication vserver command.
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, ?my authentication policy? or ?my authentication policy?).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication policy" or 'my authentication policy').
 
 <b>serviceType</b>
 Protocol type of the authentication virtual server. Always SSL.
 Possible values: SSL
-Default value: NSSVC_SSL
+Default value: SSL
 
 <b>IPAddress</b>
 IP address of the authentication virtual server, if a single IP address is assigned to the virtual server.
 
+<b>range</b>
+If you are creating a series of virtual servers with a range of IP addresses assigned to them, the length of the range. 
+The new range of authentication virtual servers will have IP addresses consecutively numbered, starting with the primary address specified with the IP Address parameter.
+Default value: 1
+Minimum value: 1
+
 <b>port</b>
 TCP port on which the virtual server accepts connections.
-Minimum value: 1
 
 <b>state</b>
 Initial state of the new virtual server.
@@ -65,6 +70,10 @@ Default value: ENABLED
 Maximum Number of login Attempts
 Minimum value: 1
 Maximum value: 255
+
+<b>failedLoginTimeout</b>
+Number of minutes an account will be locked if user exceeds maximum permissible attempts
+Minimum value: 1
 
 
 
@@ -166,6 +175,36 @@ Name of the authentication virtual server to which to bind the policy.
 <b>policy</b>
 Name of the policy to bind to the virtual server.
 
+<b>priority</b>
+Positive integer specifying the priority of the policy. A lower number specifies a higher priority. Policies are evaluated in the order of their priorities, and the first policy that matches the request is applied. Must be unique within the list of policies bound to the authentication virtual server.
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, 'my authentication policy' or "my authentication policy").
+Minimum value: 0
+
+<b>secondary</b>
+Applicable only while bindind classic authentication policy as advance authentication policy use nFactor
+
+<b>groupExtraction</b>
+Applicable only while bindind classic authentication policy as advance authentication policy use nFactor
+
+<b>nextFactor</b>
+Applicable only while binding advance authentication policy as classic authentication policy does not support nFactor
+
+<b>gotoPriorityExpression</b>
+Applicable only to advance authentication policy. Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE.  Specify one of the following values:
+* NEXT - Evaluate the policy with the next higher priority number.
+* END - End policy evaluation.
+* USE_INVOCATION_RESULT - Applicable if this policy invokes another policy label. If the final goto in the invoked policy label has a value of END, the evaluation stops. If the final goto is anything other than END, the current policy label performs a NEXT.
+* A default syntax expression that evaluates to a number.
+If you specify an expression, the number to which it evaluates determines the next policy to evaluate, as follows:
+* If the expression evaluates to a higher numbered priority, the policy with that priority is evaluated next.
+* If the expression evaluates to the priority of the current policy, the policy with the next higher numbered priority is evaluated next.
+* If the expression evaluates to a priority number that is numerically higher than the highest numbered priority, policy evaluation ends.
+An UNDEF event is triggered if:
+* The expression is invalid.
+* The expression evaluates to a priority number that is numerically lower than the current policy's priority.
+* The expression evaluates to a priority number that is between the current policy's priority number (say, 30) and the highest priority number (say, 100), but does not match any configured priority number (for example, the expression evaluates to the number 85). This example assumes that the priority number increments by 10 for every successive policy, and therefore a priority number of 85 does not exist in the policy label.
+
 
 
 ##unbind authentication vserver
@@ -185,6 +224,12 @@ Name of the virtual server.
 
 <b>policy</b>
 Name of the policy to be unbound.
+
+<b>secondary</b>
+Applicable only to classic authentication policy
+
+<b>groupExtraction</b>
+Applicable only to classic authentication policy
 
 
 
@@ -247,14 +292,6 @@ show authentication vserver [&lt;name>]show authentication vserver stats - alias
 
 <b>name</b>
 Name of the authentication virtual server.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -331,7 +368,7 @@ Fully-qualified domain name (FQDN) of the authentication virtual server.
 The name of the rule, or expression, if any, that policy for the authentication server is to use. Rules are combinations of Expressions. Expressions are simple conditions, such as a test for equality, applied to operands, such as a URL string or an IP address. Expression syntax is described in the Installation and Configuration Guide. The default rule is ns_true.
 
 <b>policyName</b>
-The name of the policy, if any, bound to the authentication vserver.NOTE: This attribute is deprecated.Replaced by Policy field
+The name of the policy, if any, bound to the authentication vserver.
 
 <b>policy</b>
 The name of the policy, if any, bound to the authentication vserver.
@@ -458,6 +495,20 @@ stat authentication vserver [&lt;name>] [-detail] [-fullValues] [-ntimes &lt;pos
 <b>name</b>
 Name of the authentication virtual server.
 
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
+
 <b>clearstats</b>
 Clear the statsistics / counters
 Possible values: basic, full
@@ -504,7 +555,7 @@ Number of response bytes received by this service or virtual server.
 
 ##Related Commands
 
-<ul><li><a href="../../../ation-policy.html#stat-authentication-p/ation-policy.html#stat-authentication-p">stat authentication Policy</a></li><li><a href="../../../ation-samlidppolicy.html#stat-authentication-samlidpp/ation-samlidppolicy.html#stat-authentication-samlidpp">stat authentication samlIdPPolicy</a></li><li><a href="../../../ation-policylabel.html#stat-authentication-policy/ation-policylabel.html#stat-authentication-policy">stat authentication policylabel</a></li></ul>
+<ul><li><a href="../../../ation-policy.html#stat-authentication-p/ation-policy.html#stat-authentication-p">stat authentication Policy</a></li><li><a href="../../../ation-samlidppolicy.html#stat-authentication-samlidpp/ation-samlidppolicy.html#stat-authentication-samlidpp">stat authentication samlIdPPolicy</a></li><li><a href="../../../ation-policylabel.html#stat-authentication-policy/ation-policylabel.html#stat-authentication-policy">stat authentication policylabel</a></li><li><a href="../../../ation-loginschemapolicy.html#stat-authentication-loginschemap/ation-loginschemapolicy.html#stat-authentication-loginschemap">stat authentication loginSchemaPolicy</a></li></ul>
 
 
 
@@ -527,7 +578,7 @@ Current name of the authentication virtual server.
 New name of the authentication virtual server. 
 Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters.
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, ?my authentication policy? or ?my authentication policy?).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, 'my authentication policy' or "my authentication policy").
 
 
 

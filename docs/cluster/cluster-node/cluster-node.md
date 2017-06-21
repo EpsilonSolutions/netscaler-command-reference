@@ -12,13 +12,14 @@ Adds a NetScaler appliance to a cluster.
 
 ##Synopsys
 
-add cluster node &lt;nodeId>@ &lt;IPAddress>@ [-state &lt;state>] [-backplane &lt;interface_name>@] [-priority &lt;positive_integer>]
+add cluster node &lt;nodeId>@ &lt;IPAddress>@ [-state &lt;state>] [-backplane &lt;interface_name>@] [-priority &lt;positive_integer>] [-nodegroup &lt;string>]
 
 
 ##Arguments
 
 <b>nodeId</b>
 Unique number that identifies the cluster node.
+Minimum value: 0
 Maximum value: 31
 
 <b>IPAddress</b>
@@ -30,7 +31,7 @@ ACTIVE - The node serves traffic.
 SPARE - The node does not serve traffic unless an ACTIVE node goes down.
 PASSIVE - The node does not serve traffic, unless you change its state. PASSIVE state is useful during temporary maintenance activities in which you want the node to take part in the consensus protocol but not to serve traffic.
 Possible values: ACTIVE, SPARE, PASSIVE
-Default value: NSACL_NODEST_PASSIVE
+Default value: PASSIVE
 
 <b>backplane</b>
 Interface through which the node communicates with the other nodes in the cluster. Must be specified in the three-tuple form n/c/u, where n represents the node ID and c/u refers to the interface on the appliance.
@@ -43,6 +44,10 @@ Note: When priority is not configured for any of the nodes or if multiple nodes 
 Default value: 31
 Minimum value: 0
 Maximum value: 31
+
+<b>nodegroup</b>
+The default node group in a Cluster system.
+Default value: DEFAULT_NG
 
 
 
@@ -64,6 +69,7 @@ set cluster node &lt;nodeId>@ [-state &lt;state>] [-backplane &lt;interface_name
 
 <b>nodeId</b>
 ID of the cluster node to be modified.
+Minimum value: 0
 Maximum value: 31
 
 <b>state</b>
@@ -72,7 +78,7 @@ ACTIVE - The node serves traffic.
 SPARE - The node does not serve traffic unless an ACTIVE node goes down.
 PASSIVE - The node does not serve traffic, unless you change its state. PASSIVE state is useful during temporary maintenance activities in which you want the node to take part in the consensus protocol but not to serve traffic.
 Possible values: ACTIVE, SPARE, PASSIVE
-Default value: NSACL_NODEST_PASSIVE
+Default value: PASSIVE
 
 <b>backplane</b>
 Interface through which the node communicates with the other nodes in the cluster. Must be specified in the three-tuple form n/c/u, where n represents the node ID and c/u refers to the interface on the appliance.
@@ -109,14 +115,20 @@ Removes a node from the cluster and removes the cluster instance from the node. 
 
 ##Synopsys
 
-rm cluster node &lt;nodeId>
+rm cluster node &lt;nodeId> [-clearNodegroupConfig ( YES | NO )]
 
 
 ##Arguments
 
 <b>nodeId</b>
 ID of the cluster node to be removed from the cluster.
+Minimum value: 0
 Maximum value: 31
+
+<b>clearNodegroupConfig</b>
+Option to remove nodegroup config
+Possible values: YES, NO
+Default value: YES
 
 
 
@@ -139,15 +151,8 @@ show cluster node [&lt;nodeId>@]
 <b>nodeId</b>
 ID of the cluster node for which to display information. If an ID is not provided, information about all nodes is shown.
 Default value: 255
+Minimum value: 0
 Maximum value: 31
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -223,6 +228,15 @@ Hamon Interfaces on a cluster node.
 <b>ifaces</b>
 Interfaces status on cluster node.
 
+<b>nodegroup</b>
+The default node group in a Cluster system.
+
+<b>name</b>
+Name of the state specific nodegroup.
+
+<b>cfgflags</b>
+Flag indicates whether the node is bound to cluster nodegroup
+
 <b>devno</b>
 
 <b>count</b>
@@ -231,7 +245,7 @@ Interfaces status on cluster node.
 
 ##Example
 
-An example of the command's output is as follows:       1 cluster node:1)Node ID: 1        IP:                  1.1.1.1*        Backplane:           1/1/1        Health:              UP        Admin State:         ACTIVE        Operational State:   ACTIVE(Configuration Coordinator)        Sync State:          DISABLED  Done  *: Local node		 
+An example of the command's output is as follows:       1 cluster node:1)Node ID: 1        IP:                  1.1.1.1*        Backplane:           1/1/1        Health:              UP        Admin State:         ACTIVE        Operational State:   ACTIVE(Configuration Coordinator)        Sync State:          DISABLED  Done  *: Local node                 
 
 ##stat cluster node
 
@@ -247,7 +261,22 @@ stat cluster node [&lt;nodeId>@] [-detail] [-fullValues] [-ntimes &lt;positive_i
 
 <b>nodeId</b>
 ID of the cluster node for which to display statistics. If an ID is not provided, statistics are shown for all nodes.
+Minimum value: 0
 Maximum value: 31
+
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
 
 <b>clearstats</b>
 Clear the statsistics / counters

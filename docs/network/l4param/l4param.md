@@ -20,7 +20,7 @@ set L4Param [-l2ConnMethod &lt;l2ConnMethod>] [-l4switch ( ENABLED | DISABLED )]
 <b>l2ConnMethod</b>
 Layer 2 connection method based on the combination of  channel number, MAC address and VLAN. It is tuned with l2conn param of lb vserver. If l2conn of lb vserver is ON then method specified here will be used to identify a connection in addition to the 4-tuple (&lt;source IP&gt;:&lt;source port&gt;::&lt;destination IP&gt;:&lt;destination port&gt;).
 Possible values: Channel, Vlan, VlanChannel, Mac, MacChannel, MacVlan, MacVlanChannel
-Default value: NS_L2CONN_MAC_VLAN_CHAN
+Default value: MacVlanChannel
 
 <b>l4switch</b>
 In L4 switch topology, always clients and servers are on the same side. Enable l4switch to allow such connections.
@@ -51,14 +51,6 @@ Displays the settings of global Layer 4 parameters.
 ##Synopsys
 
 show L4Param
-
-
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

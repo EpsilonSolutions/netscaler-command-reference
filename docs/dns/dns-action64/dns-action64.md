@@ -115,10 +115,6 @@ show dns action64 [&lt;actionName>]
 <b>actionName</b>
 Name of the dns64 action.
 
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

@@ -36,7 +36,7 @@ Minimum value: 1
 Maximum value: 4294967294
 
 <b>dosAttackThresh</b>
-When dosatck is manually decided , this will be used as an upper limit to queue length
+average number of client connection that can queue up on vserver level without triggering DoS mitigation module
 Default value: 2000
 Minimum value: 0
 Maximum value: 4294967294
@@ -67,14 +67,6 @@ Displays the values of the session life and filename parameters
 show appqoe parameter
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>sessionLife</b>
@@ -87,7 +79,7 @@ average number of client connections, that can sit in service waiting queue
 maximum bandwidth which will determine whether to send alternate content response
 
 <b>dosAttackThresh</b>
-When dosatck is manually decided , this will be used as an upper limit to queue length
+average number of client connection that can queue up on vserver level without triggering DoS mitigation module
 
 
 

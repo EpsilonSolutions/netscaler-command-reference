@@ -77,14 +77,6 @@ show cache selector [&lt;selectorName>]
 <b>selectorName</b>
 Name of the selector to display.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -94,6 +86,8 @@ Flags.
 
 <b>rule</b>
 Rule.
+
+<b>builtin</b>
 
 <b>devno</b>
 

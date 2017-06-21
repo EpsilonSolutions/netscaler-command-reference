@@ -64,14 +64,6 @@ The Interface pair id
 Minimum value: 1
 Maximum value: 255
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

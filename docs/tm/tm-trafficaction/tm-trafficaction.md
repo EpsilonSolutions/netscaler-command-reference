@@ -12,7 +12,7 @@ Creates a traffic action to set traffic characteristics at run time. You can cre
 
 ##Synopsys
 
-add tm trafficAction &lt;name> [-appTimeout &lt;mins>] [-SSO ( ON | OFF )  [-formSSOAction &lt;string>]] [-persistentCookie ( ON | OFF )] [-InitiateLogout ( ON | OFF )] [-kcdAccount &lt;string>] [-samlSSOProfile &lt;string>] [-forcedTimeout &lt;forcedTimeout>  -forcedTimeoutVal &lt;mins> ]
+add tm trafficAction &lt;name> [-appTimeout &lt;mins>] [-SSO ( ON | OFF )  [-formSSOAction &lt;string>]] [-persistentCookie ( ON | OFF )] [-InitiateLogout ( ON | OFF )] [-kcdAccount &lt;string>] [-samlSSOProfile &lt;string>] [-forcedTimeout &lt;forcedTimeout>  -forcedTimeoutVal &lt;mins> ] [-userExpression &lt;string>] [-passwdExpression &lt;string>]
 
 
 ##Arguments
@@ -53,6 +53,17 @@ Profile to be used for doing SAML SSO to remote relying party
 Setting to start, stop or reset TM session force timer
 Possible values: START, STOP, RESET
 
+<b>forcedTimeoutVal</b>
+Time interval, in minutes, for which force timer should be set.
+
+<b>userExpression</b>
+expression that will be evaluated to obtain username for SingleSignOn
+Maximum value: 256
+
+<b>passwdExpression</b>
+expression that will be evaluated to obtain password for SingleSignOn
+Maximum value: 256
+
 
 
 ##rm tm trafficAction
@@ -79,7 +90,7 @@ Modifies the specified parameters of an existing traffic action.
 
 ##Synopsys
 
-set tm trafficAction &lt;name> [-appTimeout &lt;mins>] [-SSO ( ON | OFF )] [-formSSOAction &lt;string>] [-persistentCookie ( ON | OFF )] [-InitiateLogout ( ON | OFF )] [-kcdAccount &lt;string>] [-samlSSOProfile &lt;string>] [-forcedTimeout &lt;forcedTimeout>] [-forcedTimeoutVal &lt;mins>]
+set tm trafficAction &lt;name> [-appTimeout &lt;mins>] [-SSO ( ON | OFF )] [-formSSOAction &lt;string>] [-persistentCookie ( ON | OFF )] [-InitiateLogout ( ON | OFF )] [-kcdAccount &lt;string>] [-samlSSOProfile &lt;string>] [-forcedTimeout &lt;forcedTimeout>] [-forcedTimeoutVal &lt;mins>] [-userExpression &lt;string>] [-passwdExpression &lt;string>]
 
 
 ##Arguments
@@ -121,6 +132,14 @@ Possible values: START, STOP, RESET
 <b>forcedTimeoutVal</b>
 Time interval, in minutes, for which force timer should be set.
 
+<b>userExpression</b>
+expression that will be evaluated to obtain username for SingleSignOn
+Maximum value: 256
+
+<b>passwdExpression</b>
+expression that will be evaluated to obtain password for SingleSignOn
+Maximum value: 256
+
 
 
 ##unset tm trafficAction
@@ -130,7 +149,7 @@ Use this command to remove tm trafficAction settings.Refer to the set tm traffic
 
 ##Synopsys
 
-unset tm trafficAction &lt;name> [-persistentCookie] [-kcdAccount] [-forcedTimeout]
+unset tm trafficAction &lt;name> [-persistentCookie] [-kcdAccount] [-forcedTimeout] [-userExpression] [-passwdExpression]
 
 
 ##show tm trafficAction
@@ -147,14 +166,6 @@ show tm trafficAction [&lt;name>]
 
 <b>name</b>
 Name of the traffic action for which to display detailed information.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -188,6 +199,12 @@ Setting to start, stop or reset TM session force timer
 
 <b>forcedTimeoutVal</b>
 Time interval, in minutes, for which force timer should be set.
+
+<b>userExpression</b>
+expression that will be evaluated to obtain username for SingleSignOn
+
+<b>passwdExpression</b>
+expression that will be evaluated to obtain password for SingleSignOn
 
 <b>devno</b>
 

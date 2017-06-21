@@ -30,7 +30,7 @@ Input format of the CRL file. The two formats supported on the appliance are:
 PEM - Privacy Enhanced Mail.
 DER - Distinguished Encoding Rule.
 Possible values: DER, PEM
-Default value: FORMAT_PEM
+Default value: PEM
 
 <b>refresh</b>
 Set CRL auto refresh.
@@ -61,7 +61,7 @@ Extent of the search operation on the LDAP server. Available settings function a
 One - One level below Base DN.
 Base - Exactly the same level as Base DN.
 Possible values: Base, One
-Default value: NSAPI_ONESCOPE
+Default value: One
 
 <b>interval</b>
 CRL refresh interval. Use the NONE setting to unset this parameter.
@@ -184,6 +184,9 @@ IP address of the LDAP server from which to fetch the CRLs.
 Method for CRL refresh. If LDAP is selected, specify the method, CA certificate, base DN, port, and LDAP server name. If HTTP is selected, specify the CA certificate, method, URL, and port. Cannot be changed after a CRL is added.
 Possible values: HTTP, LDAP
 
+<b>url</b>
+URL of the CRL distribution point.
+
 <b>port</b>
 Port for the LDAP server.
 Minimum value: 1
@@ -196,7 +199,7 @@ Extent of the search operation on the LDAP server. Available settings function a
 One - One level below Base DN.
 Base - Exactly the same level as Base DN.
 Possible values: Base, One
-Default value: NSAPI_ONESCOPE
+Default value: One
 
 <b>interval</b>
 CRL refresh interval. Use the NONE setting to unset this parameter.
@@ -250,14 +253,6 @@ show ssl crl [&lt;crlName>]
 
 <b>crlName</b>
 Name of the CRL for which to show detailed information.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

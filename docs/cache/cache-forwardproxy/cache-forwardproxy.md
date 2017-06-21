@@ -57,18 +57,6 @@ Displays the IP address and the corresponding ports for which the cache acted as
 show cache forwardProxy
 
 
-##Arguments
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>IPAddress</b>

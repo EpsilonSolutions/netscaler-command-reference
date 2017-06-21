@@ -93,10 +93,6 @@ show feo policy [&lt;name>]
 <b>name</b>
 The name of the front end optimization policy.
 
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

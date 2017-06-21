@@ -20,6 +20,39 @@ bind dns global &lt;policyName> &lt;priority> [-gotoPriorityExpression &lt;strin
 <b>policyName</b>
 Name of the DNS policy to bind globally.
 
+<b>priority</b>
+Integer specifying the policy's priority. The lower the number, the higher the priority.
+Minimum value: 1
+
+<b>gotoPriorityExpression</b>
+Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE.  Specify one of the following values:
+* NEXT - Evaluate the policy with the next higher priority number.
+* END - End policy evaluation.
+* USE_INVOCATION_RESULT - Applicable if this policy invokes another policy label. If the final goto in the invoked policy label has a value of END, the evaluation stops. If the final goto is anything other than END, the current policy label performs a NEXT.
+* A default syntax expression that evaluates to a number.
+If you specify an expression, the number to which it evaluates determines the next policy to evaluate, as follows:
+* If the expression evaluates to a higher numbered priority, the policy with that priority is evaluated next.
+* If the expression evaluates to the priority of the current policy, the policy with the next higher numbered priority is evaluated next.
+* If the expression evaluates to a priority number that is numerically higher than the highest numbered priority, policy evaluation ends.
+An UNDEF event is triggered if:
+* The expression is invalid.
+* The expression evaluates to a priority number that is numerically lower than the current policy's priority.
+* The expression evaluates to a priority number that is between the current policy's priority number (say, 30) and the highest priority number (say, 100), but does not match any configured priority number (for example, the expression evaluates to the number 85). This example assumes that the priority number increments by 10 for every successive policy, and therefore a priority number of 85 does not exist in the policy label.
+
+<b>type</b>
+Type of global bind point to which to bind the DNS policy.
+Possible values: REQ_OVERRIDE, REQ_DEFAULT, RES_OVERRIDE, RES_DEFAULT
+
+<b>invoke</b>
+Invoke flag.
+
+<b>labelType</b>
+Type of policy label invocation.
+Possible values: policylabel
+
+<b>labelName</b>
+Name of the label to invoke if the current policy rule evaluates to TRUE.
+
 
 
 ##Example
@@ -40,6 +73,10 @@ unbind dns global &lt;policyName> [-type &lt;type>]
 
 <b>policyName</b>
 Name of the DNS policy to unbind.
+
+<b>type</b>
+Type of global bind point to which to bind the DNS policy.
+Possible values: REQ_OVERRIDE, REQ_DEFAULT, RES_OVERRIDE, RES_DEFAULT
 
 
 
@@ -62,14 +99,6 @@ show dns global [-type &lt;type>]
 <b>type</b>
 Type of global bind point for which to show bound policies.
 Possible values: REQ_OVERRIDE, REQ_DEFAULT, RES_OVERRIDE, RES_DEFAULT
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -120,6 +149,8 @@ It is internally used to tell that the policy is a upgraded policy.
 
 <b>builtin</b>
 Flag to determine whether DNS policy binding is default or not
+
+<b>globalBindType</b>
 
 <b>devno</b>
 

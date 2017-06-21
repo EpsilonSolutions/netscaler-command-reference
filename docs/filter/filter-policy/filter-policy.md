@@ -102,14 +102,6 @@ show filter policy [&lt;name>]
 <b>name</b>
 Name of the filter policy to be displayed. If a name is not provided, information about all the filter policies is shown.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

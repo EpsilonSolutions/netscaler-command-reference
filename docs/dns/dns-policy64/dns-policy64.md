@@ -107,14 +107,6 @@ show dns policy64 [&lt;name>]
 <b>name</b>
 Name of the DNS64 policy.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

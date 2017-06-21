@@ -12,7 +12,7 @@ Creates a bookmark link to an external or internal resource that appears on the 
 
 ##Synopsys
 
-add vpn url &lt;urlName> &lt;linkName> &lt;actualURL> [-clientlessAccess ( ON | OFF )] [-comment &lt;string>]
+add vpn url &lt;urlName> &lt;linkName> &lt;actualURL> [-vServerName &lt;string>] [-clientlessAccess ( ON | OFF )] [-comment &lt;string>] [-iconURL &lt;URL>] [-ssotype &lt;ssotype>] [-applicationtype &lt;applicationtype>] [-samlSSOProfile &lt;string>]
 
 
 ##Arguments
@@ -26,6 +26,9 @@ Description of the bookmark link. The description appears in the Access Interfac
 <b>actualURL</b>
 Web address for the bookmark link.
 
+<b>vServerName</b>
+Name of the associated LB/CS vserver
+
 <b>clientlessAccess</b>
 If clientless access to the resource hosting the link is allowed, also use clientless access for the bookmarked web address in the Secure Client Access based session. Allows single sign-on and other HTTP processing on NetScaler Gateway for HTTPS resources.
 Possible values: ON, OFF
@@ -33,6 +36,20 @@ Default value: OFF
 
 <b>comment</b>
 Any comments associated with the bookmark link.
+
+<b>iconURL</b>
+URL to fetch icon file for displaying this resource.
+
+<b>ssotype</b>
+Single sign on type for unified gateway
+Possible values: unifiedgateway, selfauth, samlauth
+
+<b>applicationtype</b>
+The type of application this VPN URL represents. Possible values are CVPN/SaaS/VPN
+Possible values: CVPN, VPN, SaaS
+
+<b>samlSSOProfile</b>
+Profile to be used for doing SAML SSO
 
 
 
@@ -68,7 +85,7 @@ Modifies the specified parameters of a bookmark link to an internal resource tha
 
 ##Synopsys
 
-set vpn url &lt;urlName> [-linkName &lt;string>] [-actualURL &lt;string>] [-clientlessAccess ( ON | OFF )] [-comment &lt;string>]
+set vpn url &lt;urlName> [-linkName &lt;string>] [-actualURL &lt;string>] [-vServerName &lt;string>] [-clientlessAccess ( ON | OFF )] [-comment &lt;string>] [-iconURL &lt;URL>] [-ssotype &lt;ssotype>] [-applicationtype &lt;applicationtype>] [-samlSSOProfile &lt;string>]
 
 
 ##Arguments
@@ -82,6 +99,9 @@ Description of the bookmark link. The description appears in the Access Interfac
 <b>actualURL</b>
 Web address for the bookmark link.
 
+<b>vServerName</b>
+Name of the associated LB/CS vserver
+
 <b>clientlessAccess</b>
 If clientless access to the resource hosting the link is allowed, also use clientless access for the bookmarked web address in the Secure Client Access based session. Allows single sign-on and other HTTP processing on NetScaler Gateway for HTTPS resources.
 Possible values: ON, OFF
@@ -89,6 +109,20 @@ Default value: OFF
 
 <b>comment</b>
 Any comments associated with the bookmark link.
+
+<b>iconURL</b>
+URL to fetch icon file for displaying this resource.
+
+<b>ssotype</b>
+Single sign on type for unified gateway
+Possible values: unifiedgateway, selfauth, samlauth
+
+<b>applicationtype</b>
+The type of application this VPN URL represents. Possible values are CVPN/SaaS/VPN
+Possible values: CVPN, VPN, SaaS
+
+<b>samlSSOProfile</b>
+Profile to be used for doing SAML SSO
 
 
 
@@ -103,7 +137,7 @@ Use this command to remove vpn url settings.Refer to the set vpn url command for
 
 ##Synopsys
 
-unset vpn url &lt;urlName> [-clientlessAccess] [-comment]
+unset vpn url &lt;urlName> [-vServerName] [-clientlessAccess] [-comment] [-iconURL] [-ssotype] [-applicationtype] [-samlSSOProfile]
 
 
 ##show vpn url
@@ -121,20 +155,15 @@ show vpn url [&lt;urlName>]
 <b>urlName</b>
 Name of the bookmark link for which to display detailed information.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
 
 <b>linkName</b>
 Description of the bookmark link. The description appears in the Access Interface.
+
+<b>vServerName</b>
+Name of the associated LB/CS vserver
 
 <b>actualURL</b>
 Web address for the bookmark link.
@@ -144,6 +173,18 @@ Whether clientless access is enabled for the url in other modes or not.
 
 <b>comment</b>
 Comments associated with this virtual server.
+
+<b>iconURL</b>
+URL to fetch icon file for displaying this resource.
+
+<b>ssotype</b>
+Single sign on type for unified gateway
+
+<b>applicationtype</b>
+The type of application this VPN URL represents. Possible values are CVPN/SaaS/VPN
+
+<b>samlSSOProfile</b>
+Profile to be used for doing SAML SSO
 
 <b>devno</b>
 

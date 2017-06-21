@@ -29,7 +29,9 @@ Name of the FIPS key used to create the certificate signing request. FIPS keys a
 <b>keyform</b>
 Format in which the key is stored on the appliance.
 Possible values: DER, PEM
-Default value: FORMAT_PEM
+Default value: PEM
+
+<b>PEMPassPhrase</b>
 
 <b>countryName</b>
 Two letter ISO code for your country. For example, US for United States.

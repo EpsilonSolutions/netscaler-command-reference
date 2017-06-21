@@ -80,14 +80,6 @@ PROXY - If this is specified, all of the proxy address records will be displayed
 ALL  -  If this is specified, all of the address records will be displayed.
 Possible values: ALL, ADNS, PROXY
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

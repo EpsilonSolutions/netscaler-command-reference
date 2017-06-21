@@ -64,11 +64,6 @@ set HA node [-haStatus &lt;haStatus>] [-haSync ( ENABLED | DISABLED )] [-haProp 
 
 ##Arguments
 
-<b>id</b>
-Number that uniquely identifies the node. For self node, it will always be 0. Peer node values can range from 1-64.
-Minimum value: 0
-Maximum value: 64
-
 <b>haStatus</b>
 The HA status of the node. The HA status STAYSECONDARY is used to force the secondary device stay as secondary independent of the state of the Primary device. For example, in an existing HA setup, the Primary node has to be upgraded and this process would take few seconds. During the upgradation, it is possible that the Primary node may suffer from a downtime for a few seconds. However, the Secondary should not take over as the Primary node. Thus, the Secondary node should remain as Secondary even if there is a failure in the Primary node.
 	 STAYPRIMARY configuration keeps the node in primary state in case if it is healthy, even if the peer node was the primary node initially. If the node with STAYPRIMARY setting (and no peer node) is added to a primary node (which has this node as the peer) then this node takes over as the new primary and the older node becomes secondary. ENABLED state means normal HA operation without any constraints/preferences. DISABLED state disables the normal HA operation of the node.
@@ -109,10 +104,12 @@ Default value: OFF
 <b>maxFlips</b>
 Max number of flips allowed before becoming sticky primary
 Default value: 0
+Minimum value: 0
 
 <b>maxFlipTime</b>
 Interval after which flipping of node states can again start
 Default value: 0
+Minimum value: 0
 
 <b>syncvlan</b>
 Vlan on which HA related communication is sent. This include sync, propagation , connection mirroring , LB persistency config sync, persistent session sync and session state sync. However HA heartbeats can go all interfaces.
@@ -151,6 +148,9 @@ Maximum value: 64
 <b>routeMonitor</b>
 A route that you want the NetScaler appliance to monitor in its internal routing table. You can specify an IPv4 address or network, or an IPv6 address or network prefix. If you specify an IPv4 network address or IPv6 network prefix, the appliance monitors any route that matches the network or prefix.
 
+<b>netmask</b>
+Subnet mask associated with the IPv4 route specified by the routeMonitor parameter.
+
 
 
 ##unbind HA node
@@ -173,6 +173,9 @@ Maximum value: 64
 <b>routeMonitor</b>
 The route specified in the route monitor entry that you want to remove from the NetScaler appliance. Can be an IPv4 address or network, or an IPv6 address or network prefix.
 
+<b>netmask</b>
+Subnet mask associated with the IPv4 route specified by the routeMonitor parameter.
+
 
 
 ##show HA node
@@ -191,14 +194,6 @@ show HA node [&lt;id>]
 ID of the node whose HA settings you want to display. (The ID of the local node is always 0.)
 Minimum value: 0
 Maximum value: 64
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -308,6 +303,20 @@ stat HA node [-detail] [-fullValues] [-ntimes &lt;positive_integer>] [-logFile &
 
 
 ##Arguments
+
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
 
 <b>clearstats</b>
 Clear the statsistics / counters

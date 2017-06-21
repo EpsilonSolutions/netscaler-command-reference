@@ -37,6 +37,9 @@ Enable or disable NetScaler server header insertion for NetScaler generated HTTP
 Possible values: ON, OFF
 Default value: OFF
 
+<b>nsSrvrHdr</b>
+The server header value to be inserted. If no explicit header is specified then NSBUILD.RELEASE is used as default server header.
+
 <b>logErrResp</b>
 Server header value to be inserted.
 Possible values: ON, OFF
@@ -49,6 +52,7 @@ Default value: ENABLED
 
 <b>maxReusePool</b>
 Maximum limit on the number of connections, from the NetScaler to a particular server that are kept in the reuse pool. This setting is helpful for optimal memory utilization and for reducing the idle connections to the server just after the peak time.
+Minimum value: 0
 Maximum value: 360000
 
 
@@ -77,14 +81,6 @@ Displays the HTTP parameters configured on the NetScaler appliance.
 show ns httpParam
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>dropInvalReqs</b>
@@ -110,6 +106,9 @@ Reuse server connections for requests from more than one client connections.
 
 <b>maxReusePool</b>
 Maximum limit on the number of connections, from the NetScaler to a particular server that are kept in the reuse pool. This setting is helpful for optimal memory utilization and for reducing the idle connections to the server just after the peak time.
+
+<b>builtin</b>
+Flag to determine if the http param is built-in or not
 
 
 

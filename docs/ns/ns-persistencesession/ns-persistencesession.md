@@ -20,10 +20,6 @@ Get all Sessions corresponding to a Vserver NOTE: This command is deprecated.Mov
 <b>name</b>
 The name of the virtual server.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
 
 
 ##Outputs
@@ -59,7 +55,7 @@ Persistent Session timeout.
 Reference Count.
 
 <b>sipCallID</b>
-SIP CALLID.NOTE: This attribute is deprecated.Replaced by "persistenceParam" field
+SIP CALLID.
 
 <b>persistenceParam</b>
 Specific persistence information . Callid in case of SIP_CALLID persistence entry , RTSP session id in case of RTSP_SESSIONID persistence entry.

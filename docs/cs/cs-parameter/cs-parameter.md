@@ -48,14 +48,6 @@ Show CS parameters
 show cs parameter
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>stateupdate</b>

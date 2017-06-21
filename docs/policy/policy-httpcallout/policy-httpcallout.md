@@ -213,14 +213,6 @@ show policy httpCallout [&lt;name>]
 <b>name</b>
 Name of the HTTP callout to display. If a name is not provided, information about all configured HTTP callouts is shown.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -271,6 +263,9 @@ Total undefs
 
 <b>svrState</b>
 The state of the service
+
+<b>effectiveState</b>
+The effective state of the service
 
 <b>undefReason</b>
 Reason for last undef

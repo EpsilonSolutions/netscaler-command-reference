@@ -19,17 +19,21 @@ set ns rateControl [-tcpThreshold &lt;positive_integer>] [-udpThreshold &lt;posi
 
 <b>tcpThreshold</b>
 Number of SYNs permitted per 10 milliseconds.
+Minimum value: 0
 
 <b>udpThreshold</b>
 Number of UDP packets permitted per 10 milliseconds.
+Minimum value: 0
 
 <b>icmpThreshold</b>
 Number of ICMP packets permitted per 10 milliseconds.
 Default value: 100
+Minimum value: 0
 
 <b>tcprstThreshold</b>
 The number of TCP RST packets permitted per 10 milli second. zero means rate control is disabled and 0xffffffff means every thing is rate controlled
 Default value: 100
+Minimum value: 0
 
 
 
@@ -55,14 +59,6 @@ Displays the values configured for rate control on the appliance.
 ##Synopsys
 
 show ns rateControl
-
-
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

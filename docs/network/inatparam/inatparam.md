@@ -20,6 +20,11 @@ set inatparam [-nat46v6Prefix &lt;ipv6_addr|*>  [-td &lt;positive_integer>]] [-n
 <b>nat46v6Prefix</b>
 The prefix used for translating packets received from private IPv6 servers into IPv4 packets. This prefix has a length of 96 bits (128-32 = 96). The IPv6 servers embed the destination IP address of the IPv4 servers or hosts in the last 32 bits of the destination IP address field of the IPv6 packets. The first 96 bits of the destination IP address field are set as the IPv6 NAT prefix. IPv6 packets addressed to this prefix have to be routed to the NetScaler appliance to ensure that the IPv6-IPv4 translation is done by the appliance.
 
+<b>td</b>
+Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
+Minimum value: 0
+Maximum value: 4094
+
 <b>nat46IgnoreTOS</b>
 Ignore TOS.
 Possible values: YES, NO
@@ -77,10 +82,6 @@ show inatparam [-td &lt;positive_integer>]
 Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
 Minimum value: 0
 Maximum value: 4094
-
-<b>format</b>
-
-<b>level</b>
 
 
 

@@ -12,7 +12,7 @@ Creates a responder action, which specifies how to respond to a request.
 
 ##Synopsys
 
-add responder action &lt;name> &lt;type> (&lt;target> | &lt;htmlpage>) [-bypassSafetyCheck ( YES | NO )] [-comment &lt;string>]
+add responder action &lt;name> &lt;type> (&lt;target> | &lt;htmlpage>) [-comment &lt;string>] [-responseStatusCode &lt;positive_integer>] [-reasonPhrase &lt;string>]
 
 
 ##Arguments
@@ -46,19 +46,22 @@ Enclose the entire expression in single quotation marks. (NetScaler default expr
 <b>htmlpage</b>
 For respondwithhtmlpage policies, name of the HTML page object to use as the response. You must first import the page object.
 
-<b>bypassSafetyCheck</b>
-Bypass the safety check, allowing potentially unsafe expressions. An unsafe expression in a response is one that contains references to request elements that might not be present in all requests. If a response refers to a missing request element, an empty string is used instead.
-Possible values: YES, NO
-Default value: NO
-
 <b>comment</b>
 Comment. Any type of information about this responder action.
+
+<b>responseStatusCode</b>
+HTTP response status code, for example 200, 302, 404, etc. The default value for the redirect action type is 302 and for respondwithhtmlpage is 200
+Minimum value: 100
+Maximum value: 599
+
+<b>reasonPhrase</b>
+Expression specifying the reason phrase of the HTTP response. The reason phrase may be a string literal with quotes or a PI expression. For example: "Invalid URL: " + HTTP.REQ.URL
 
 
 
 ##Example
 
-1) add responder action act1 respondwith "\\\\"HTTP/1.1 200 OK\\\\r\\\\n\\\\r\\\\n\\\\""2) add responder action resp respondwithhtmlpage my-responder-page,3) add responder action redir_action redirect '"http://backupsite2.com" + HTTP.REQ.URL' -bypassSafetyCheck YES
+1) add responder action act1 respondwith "\\\\"HTTP/1.1 200 OK\\\\r\\\\n\\\\r\\\\n\\\\""2) add responder action resp respondwithhtmlpage my-responder-page,3) add responder action redir_action redirect '"http://backupsite2.com" + HTTP.REQ.URL'
 
 ##rm responder action
 
@@ -88,7 +91,7 @@ Modifies the specified parameters of a responder action.
 
 ##Synopsys
 
-set responder action &lt;name> [-target &lt;string>  [-bypassSafetyCheck ( YES | NO )]] [-htmlpage &lt;string>] [-comment &lt;string>]
+set responder action &lt;name> [-target &lt;string>] [-htmlpage &lt;string>] [-responseStatusCode &lt;positive_integer>] [-reasonPhrase &lt;string>] [-comment &lt;string>]
 
 
 ##Arguments
@@ -111,6 +114,14 @@ Enclose the entire expression in single quotation marks. (NetScaler default expr
 <b>htmlpage</b>
 For respondwithhtmlpage policies, name of the HTML page object to use as the response. You must first import the page object.
 
+<b>responseStatusCode</b>
+HTTP response status code, for example 200, 302, 404, etc. The default value for the redirect action type is 302 and for respondwithhtmlpage is 200
+Minimum value: 100
+Maximum value: 599
+
+<b>reasonPhrase</b>
+Expression specifying the reason phrase of the HTTP response. The reason phrase may be a string literal with quotes or a PI expression. For example: "Invalid URL: " + HTTP.REQ.URL
+
 <b>comment</b>
 Comment. Any type of information about this responder action.
 
@@ -118,7 +129,7 @@ Comment. Any type of information about this responder action.
 
 ##Example
 
-1. set responder action act_responder -target 'HTTP.REQ.HEADER(MYURL)' -bypassSafetyCheck YES/,2. set responder action act_responder -htmlpage my-local-file
+1. set responder action act_responder -target 'HTTP.REQ.HEADER(MYURL) -redirectresponsecode &lt;respcode&gt;'/,2. set responder action act_responder -htmlpage my-local-file 
 
 ##unset responder action
 
@@ -127,7 +138,7 @@ Use this command to remove responder action settings.Refer to the set responder 
 
 ##Synopsys
 
-unset responder action &lt;name> -comment
+unset responder action &lt;name> [-responseStatusCode] [-reasonPhrase] [-comment]
 
 
 ##show responder action
@@ -144,14 +155,6 @@ show responder action [&lt;name>]
 
 <b>name</b>
 Name of the responder action.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -185,6 +188,12 @@ Comment. Any type of information about this responder action.
 
 <b>builtin</b>
 Flag to determine whether responder action is built-in or not
+
+<b>responseStatusCode</b>
+HTTP response status code, for example 200, 302, 404, etc. The default value for the redirect action type is 302 and for respondwithhtmlpage is 200
+
+<b>reasonPhrase</b>
+Expression specifying the reason phrase of the HTTP response. The reason phrase may be a string literal with quotes or a PI expression. For example: "Invalid URL: " + HTTP.REQ.URL
 
 <b>devno</b>
 

@@ -43,10 +43,12 @@ Default value: NO
 <b>prefixValideLifeTime</b>
 Valide life time of the prefix, in seconds.
 Default value: 2592000
+Minimum value: 0
 
 <b>prefixPreferredLifeTime</b>
 Preferred life time of the prefix, in seconds.
 Default value: 604800
+Minimum value: 0
 
 
 
@@ -113,10 +115,12 @@ Default value: NO
 <b>prefixValideLifeTime</b>
 Valide life time of the prefix, in seconds.
 Default value: 2592000
+Minimum value: 0
 
 <b>prefixPreferredLifeTime</b>
 Preferred life time of the prefix, in seconds.
 Default value: 604800
+Minimum value: 0
 
 
 
@@ -148,10 +152,6 @@ show onLinkIPv6Prefix [&lt;ipv6Prefix>]
 
 <b>ipv6Prefix</b>
 Onlink prefixes for RA messages.
-
-<b>format</b>
-
-<b>level</b>
 
 
 

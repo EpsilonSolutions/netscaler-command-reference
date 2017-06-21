@@ -76,15 +76,7 @@ Type of records to display. Available settings function as follows:
 * PROXY - Display all proxy address records.
 * ALL - Display all address records.
 Possible values: ALL, ADNS, PROXY
-Default value: NSDNS_AUTH_HOST
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
+Default value: ADNS
 
 
 

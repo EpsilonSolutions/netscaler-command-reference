@@ -141,14 +141,6 @@ show db dbProfile [&lt;name>]
 <b>name</b>
 Name of the DB profile.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

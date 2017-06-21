@@ -22,10 +22,6 @@ Possible values: VSERVER, SERVICE, SERVICEGROUP
 <b>name</b>
 Name of the entity whose SNMP OID you want the NetScaler appliance to display.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
 
 
 ##Outputs

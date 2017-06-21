@@ -12,7 +12,7 @@ Add a dns action.
 
 ##Synopsys
 
-add dns action &lt;actionName> &lt;actionType> [-IPAddress &lt;ip_addr|ipv6_addr> ... | -viewName &lt;string> | -preferredLocList &lt;string> ...] [-TTL &lt;secs>]
+add dns action &lt;actionName> &lt;actionType> [-IPAddress &lt;ip_addr|ipv6_addr> ... | -viewName &lt;string> | -preferredLocList &lt;string> ...] [-TTL &lt;secs>] [-dnsProfileName &lt;string>]
 
 
 ##Arguments
@@ -38,6 +38,9 @@ The view name that must be used for the given action.
 
 <b>preferredLocList</b>
 The location list in priority order used for the given action.
+
+<b>dnsProfileName</b>
+Name of the DNS profile to be associated with the transaction for which the action is chosen
 
 
 
@@ -73,7 +76,7 @@ Set a dns Action. Use this command to set the values for Ip address and TTL, If 
 
 ##Synopsys
 
-set dns action &lt;actionName> [-IPAddress &lt;ip_addr|ipv6_addr> ...] [-TTL &lt;secs>] [-viewName &lt;string>] [-preferredLocList &lt;string> ...]
+set dns action &lt;actionName> [-IPAddress &lt;ip_addr|ipv6_addr> ...] [-TTL &lt;secs>] [-viewName &lt;string>] [-preferredLocList &lt;string> ...] [-dnsProfileName &lt;string>]
 
 
 ##Arguments
@@ -96,6 +99,9 @@ The view name that must be used for the given action.
 <b>preferredLocList</b>
 The location list in priority order used for the given action.
 
+<b>dnsProfileName</b>
+Name of the DNS profile to be associated with the transaction for which the action is chosen
+
 
 
 ##Example
@@ -109,7 +115,7 @@ Use this command to remove dns action settings.Refer to the set dns action comma
 
 ##Synopsys
 
-unset dns action &lt;actionName> -TTL
+unset dns action &lt;actionName> [-TTL] [-dnsProfileName]
 
 
 ##show dns action
@@ -126,10 +132,6 @@ show dns action [&lt;actionName>]
 
 <b>actionName</b>
 Name of the dns action.
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -156,6 +158,9 @@ The dns packet must be dropped.
 
 <b>cacheBypass</b>
 By pass dns cache for this.
+
+<b>dnsProfileName</b>
+Name of the DNS profile to be associated with the transaction for which the action is chosen
 
 <b>builtin</b>
 Flag to determine whether DNS action is default or not

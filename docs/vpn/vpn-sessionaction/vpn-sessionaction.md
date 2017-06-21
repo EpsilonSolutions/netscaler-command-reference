@@ -12,7 +12,7 @@ Adds a session profile (action) to bind to a session policy that is applied to a
 
 ##Synopsys
 
-add vpn sessionAction &lt;name> [-userAccounting &lt;string>] [-httpPort &lt;port> ...] [-winsIP &lt;ip_addr>] [-dnsVserverName &lt;string>] [-splitDns &lt;splitDns>] [-sessTimeout &lt;mins>] [-clientSecurity &lt;expression>  [-clientSecurityGroup &lt;string>]  [-clientSecurityMessage &lt;string>]] [-clientSecurityLog ( ON | OFF )] [-splitTunnel &lt;splitTunnel>] [-localLanAccess ( ON | OFF )] [-rfc1918 ( ON | OFF )] [-killConnections ( ON | OFF )] [-transparentInterception ( ON | OFF )] [-defaultAuthorizationAction ( ALLOW | DENY )] [-authorizationGroup &lt;string>] [-clientIdleTimeout &lt;mins>] [-proxy &lt;proxy>] [-allProtocolProxy &lt;string> | -httpProxy &lt;string> | -ftpProxy &lt;string> | -socksProxy &lt;string> | -gopherProxy &lt;string> | -sslProxy &lt;string>] [-proxyException &lt;string>] [-proxyLocalBypass ( ENABLED | DISABLED )] [-clientCleanupPrompt ( ON | OFF )] [-forceCleanup &lt;forceCleanup> ...] [-clientOptions &lt;clientOptions> ...] [-clientConfiguration &lt;clientConfiguration> ...] [-SSO ( ON | OFF )] [-ssoCredential ( PRIMARY | SECONDARY )] [-windowsAutoLogon ( ON | OFF )] [-useMIP ( NS | OFF )] [-useIIP &lt;useIIP>] [-clientDebug &lt;clientDebug>] [-loginScript &lt;input_filename>] [-logoutScript &lt;input_filename>] [-homePage &lt;URL>] [-icaProxy ( ON | OFF )] [-wihome &lt;URL>  [-wihomeAddressType ( IPV4 | IPV6 )]] [-citrixReceiverHome &lt;URL>] [-wiPortalMode ( NORMAL | COMPACT )] [-ClientChoices ( ON | OFF )] [-iipDnsSuffix &lt;string>] [-forcedTimeout &lt;mins>] [-forcedTimeoutWarning &lt;mins>] [-ntDomain &lt;string>] [-clientlessVpnMode &lt;clientlessVpnMode>] [-emailHome &lt;URL>] [-clientlessModeUrlEncoding &lt;clientlessModeUrlEncoding>] [-clientlessPersistentCookie &lt;clientlessPersistentCookie>] [-allowedLoginGroups &lt;string>] [-SecureBrowse ( ENABLED | DISABLED )] [-storefronturl &lt;string>] [-kcdAccount &lt;string>]
+add vpn sessionAction &lt;name> [-userAccounting &lt;string>] [-httpPort &lt;port> ...] [-winsIP &lt;ip_addr>] [-dnsVserverName &lt;string>] [-splitDns &lt;splitDns>] [-sessTimeout &lt;mins>] [-clientSecurity &lt;expression>  [-clientSecurityGroup &lt;string>]  [-clientSecurityMessage &lt;string>]] [-clientSecurityLog ( ON | OFF )] [-splitTunnel &lt;splitTunnel>] [-localLanAccess ( ON | OFF )] [-rfc1918 ( ON | OFF )] [-killConnections ( ON | OFF )] [-transparentInterception ( ON | OFF )] [-defaultAuthorizationAction ( ALLOW | DENY )] [-authorizationGroup &lt;string>] [-Smartgroup &lt;string>] [-clientIdleTimeout &lt;mins>] [-proxy &lt;proxy>] [-allProtocolProxy &lt;string> | -httpProxy &lt;string> | -ftpProxy &lt;string> | -socksProxy &lt;string> | -gopherProxy &lt;string> | -sslProxy &lt;string>] [-proxyException &lt;string>] [-proxyLocalBypass ( ENABLED | DISABLED )] [-clientCleanupPrompt ( ON | OFF )] [-forceCleanup &lt;forceCleanup> ...] [-clientOptions &lt;clientOptions> ...] [-clientConfiguration &lt;clientConfiguration> ...] [-SSO ( ON | OFF )] [-ssoCredential ( PRIMARY | SECONDARY )] [-windowsAutoLogon ( ON | OFF )] [-useMIP ( NS | OFF )] [-useIIP &lt;useIIP>] [-clientDebug &lt;clientDebug>] [-loginScript &lt;input_filename>] [-logoutScript &lt;input_filename>] [-homePage &lt;URL>] [-icaProxy ( ON | OFF )] [-wihome &lt;URL>  [-wihomeAddressType ( IPV4 | IPV6 )]] [-citrixReceiverHome &lt;URL>] [-wiPortalMode ( NORMAL | COMPACT )] [-ClientChoices ( ON | OFF )] [-iipDnsSuffix &lt;string>] [-forcedTimeout &lt;mins>] [-forcedTimeoutWarning &lt;mins>] [-ntDomain &lt;string>] [-clientlessVpnMode &lt;clientlessVpnMode>] [-emailHome &lt;URL>] [-clientlessModeUrlEncoding &lt;clientlessModeUrlEncoding>] [-clientlessPersistentCookie &lt;clientlessPersistentCookie>] [-allowedLoginGroups &lt;string>] [-SecureBrowse ( ENABLED | DISABLED )] [-storefronturl &lt;string>] [-kcdAccount &lt;string>] [-rdpClientProfileName &lt;string>] [-WindowsPluginUpgrade &lt;WindowsPluginUpgrade>] [-MacPluginUpgrade &lt;MacPluginUpgrade>] [-LinuxPluginUpgrade &lt;LinuxPluginUpgrade>] [-iconWithReceiver ( ON | OFF )]
 
 
 ##Arguments
@@ -46,6 +46,12 @@ Minimum value: 1
 <b>clientSecurity</b>
 Specify the client security check for the user device to permit a NetScaler Gateway session. The web address or IP address is not included in the expression for the client security check.
 
+<b>clientSecurityGroup</b>
+The client security group that will be assigned on failure of the client security check. Users can in general be organized into Groups. In this case, the Client Security Group may have a more restrictive security policy.
+
+<b>clientSecurityMessage</b>
+The client security message that will be displayed on failure of the client security check.
+
 <b>clientSecurityLog</b>
 Set the logging of client security checks.
 Possible values: ON, OFF
@@ -65,10 +71,6 @@ As defined in the local area network, allow only the following local area networ
 * 192.168.*.*
 Possible values: ON, OFF
 
-<b>spoofIIP</b>
-IP address that the intranet application uses to route the connection through the virtual adapter.
-Possible values: ON, OFF
-
 <b>killConnections</b>
 Specify whether the NetScaler Gateway Plug-in should disconnect all preexisting connections, such as the connections existing before the user logged on to NetScaler Gateway, and prevent new incoming connections on the NetScaler Gateway Plug-in for Windows and MAC when the user is connected to NetScaler Gateway and split tunneling is disabled.
 Possible values: ON, OFF
@@ -77,18 +79,16 @@ Possible values: ON, OFF
 Allow access to network resources by using a single IP address and subnet mask or a range of IP addresses. The OFF setting sets the mode to proxy, in which you configure destination and source IP addresses and port numbers. If you are using the NetScaler Gateway Plug-in for Windows, set this parameter to ON, in which the mode is set to transparent. If you are using the NetScaler Gateway Plug-in for Java, set this parameter to OFF.
 Possible values: ON, OFF
 
-<b>windowsClientType</b>
-Choose between two types of Windows Client\\
-a) Application Agent - which always runs in the task bar as a standalone application and also has a supporting service which runs permanently when installed\\
-b) Activex Control - ActiveX control run by Microsoft Internet Explorer.
-Possible values: AGENT, PLUGIN
-
 <b>defaultAuthorizationAction</b>
 Specify the network resources that users have access to when they log on to the internal network. The default setting for authorization is to deny access to all network resources. Citrix recommends using the default global setting and then creating authorization policies to define the network resources users can access. If you set the default authorization policy to DENY, you must explicitly authorize access to any network resource, which improves security.
 Possible values: ALLOW, DENY
 
 <b>authorizationGroup</b>
 Comma-separated list of groups in which the user is placed when none of the groups that the user is a part of is configured on NetScaler Gateway. The authorization policy can be bound to these groups to control access to the resources.
+
+<b>Smartgroup</b>
+This is the group in which the user is placed when the sessionpolicy associated with this sessionaction succeeds. The vpn session policy will do the post auth EPA check and if the check succeeds the user is placed in the group specified with smartgroup. The is_member_of (http.req.user.is_member_of) expression can then be used with policies to check if EPA has passed on the user belonging to this smartgroup
+Maximum value: 64
 
 <b>clientIdleTimeout</b>
 Time, in minutes, after which to time out the user session if NetScaler Gateway does not detect mouse or keyboard activity.
@@ -189,6 +189,10 @@ Possible values: ON, OFF
 Web address of the Web Interface server, such as http://&lt;ipAddress&gt;/Citrix/XenApp, or Receiver for Web, which enumerates the virtualized resources, such as XenApp, XenDesktop, and cloud applications. This web address is used as the home page in ICA proxy mode. 
 If Client Choices is ON, you must configure this setting. Because the user can choose between FullClient and ICAProxy, the user may see a different home page. An Internet web site may appear if the user gets the FullClient option, or a Web Interface site if the user gets the ICAProxy option. If the setting is not configured, the XenApp option does not appear as a client choice.
 
+<b>wihomeAddressType</b>
+Type of the wihome address(IPV4/V6)
+Possible values: IPV4, IPV6
+
 <b>citrixReceiverHome</b>
 Web address for the Citrix Receiver home page. Configure NetScaler Gateway so that when users log on to the appliance, the NetScaler Gateway Plug-in opens a web browser that allows single sign-on to the Citrix Receiver home page.
 
@@ -199,12 +203,6 @@ Possible values: NORMAL, COMPACT
 <b>ClientChoices</b>
 Provide users with multiple logon options. With client choices, users have the option of logging on by using the NetScaler Gateway Plug-in for Windows, NetScaler Gateway Plug-in for Java, the Web Interface, or clientless access from one location. Depending on how NetScaler Gateway is configured, users are presented with up to three icons for logon choices. The most common are the NetScaler Gateway Plug-in for Windows, Web Interface, and clientless access.
 Possible values: ON, OFF
-
-<b>epaClientType</b>
-Choose between two types of End point Windows Client
-a) Application Agent - which always runs in the task bar as a standalone application and also has a supporting service which runs permanently when installed
-b) Activex Control - ActiveX control run by Microsoft Internet Explorer.
-Possible values: AGENT, PLUGIN
 
 <b>iipDnsSuffix</b>
 An intranet IP DNS suffix. When a user logs on to NetScaler Gateway and is assigned an IP address, a DNS record for the user name and IP address combination is added to the NetScaler Gateway DNS cache. You can configure a DNS suffix to append to the user name when the DNS record is added to the cache. You can reach to the host from where the user is logged on by using the user's name, which can be easier to remember than an IP address. When the user logs off from NetScaler Gateway, the record is removed from the DNS cache.
@@ -259,6 +257,25 @@ Web address for StoreFront to be used in this session for enumeration of resourc
 <b>kcdAccount</b>
 The kcd account details to be used in SSO
 
+<b>rdpClientProfileName</b>
+Name of the RDP profile associated with the vserver.
+
+<b>WindowsPluginUpgrade</b>
+Option to set plugin upgrade behaviour for Win
+Possible values: Always, Essential, Never
+
+<b>MacPluginUpgrade</b>
+Option to set plugin upgrade behaviour for Mac
+Possible values: Always, Essential, Never
+
+<b>LinuxPluginUpgrade</b>
+Option to set plugin upgrade behaviour for Linux
+Possible values: Always, Essential, Never
+
+<b>iconWithReceiver</b>
+Option to decide whether to show plugin icon along with receiver
+Possible values: ON, OFF
+
 
 
 ##rm vpn sessionAction
@@ -285,7 +302,7 @@ Modifies an action that was previously added to a session policy that is applied
 
 ##Synopsys
 
-set vpn sessionAction &lt;name> [-userAccounting &lt;string>] [-httpPort &lt;port> ...] [-winsIP &lt;ip_addr>] [-dnsVserverName &lt;string>] [-splitDns &lt;splitDns>] [-sessTimeout &lt;mins>] [-clientSecurity &lt;expression>  [-clientSecurityGroup &lt;string>]  [-clientSecurityMessage &lt;string>]] [-clientSecurityLog ( ON | OFF )] [-splitTunnel &lt;splitTunnel>] [-localLanAccess ( ON | OFF )] [-rfc1918 ( ON | OFF )] [-killConnections ( ON | OFF )] [-transparentInterception ( ON | OFF )] [-defaultAuthorizationAction ( ALLOW | DENY )] [-authorizationGroup &lt;string>] [-clientIdleTimeout &lt;mins>] [-proxy &lt;proxy>] [-allProtocolProxy &lt;string> | -httpProxy &lt;string> | -ftpProxy &lt;string> | -socksProxy &lt;string> | -gopherProxy &lt;string> | -sslProxy &lt;string>] [-proxyException &lt;string>] [-proxyLocalBypass ( ENABLED | DISABLED )] [-clientCleanupPrompt ( ON | OFF )] [-forceCleanup &lt;forceCleanup> ...] [-clientOptions &lt;clientOptions> ...] [-clientConfiguration &lt;clientConfiguration> ...] [-SSO ( ON | OFF )] [-ssoCredential ( PRIMARY | SECONDARY )] [-windowsAutoLogon ( ON | OFF )] [-useMIP ( NS | OFF )] [-useIIP &lt;useIIP>] [-clientDebug &lt;clientDebug>] [-loginScript &lt;input_filename>] [-logoutScript &lt;input_filename>] [-homePage &lt;URL>] [-icaProxy ( ON | OFF )] [-wihome &lt;URL>  [-wihomeAddressType ( IPV4 | IPV6 )]] [-citrixReceiverHome &lt;URL>] [-wiPortalMode ( NORMAL | COMPACT )] [-ClientChoices ( ON | OFF )] [-iipDnsSuffix &lt;string>] [-forcedTimeout &lt;mins>] [-forcedTimeoutWarning &lt;mins>] [-ntDomain &lt;string>] [-clientlessVpnMode &lt;clientlessVpnMode>] [-emailHome &lt;URL>] [-clientlessModeUrlEncoding &lt;clientlessModeUrlEncoding>] [-clientlessPersistentCookie &lt;clientlessPersistentCookie>] [-allowedLoginGroups &lt;string>] [-SecureBrowse ( ENABLED | DISABLED )] [-storefronturl &lt;string>] [-kcdAccount &lt;string>]
+set vpn sessionAction &lt;name> [-userAccounting &lt;string>] [-httpPort &lt;port> ...] [-winsIP &lt;ip_addr>] [-dnsVserverName &lt;string>] [-splitDns &lt;splitDns>] [-sessTimeout &lt;mins>] [-clientSecurity &lt;expression>  [-clientSecurityGroup &lt;string>]  [-clientSecurityMessage &lt;string>]] [-clientSecurityLog ( ON | OFF )] [-splitTunnel &lt;splitTunnel>] [-localLanAccess ( ON | OFF )] [-rfc1918 ( ON | OFF )] [-killConnections ( ON | OFF )] [-transparentInterception ( ON | OFF )] [-defaultAuthorizationAction ( ALLOW | DENY )] [-authorizationGroup &lt;string>] [-Smartgroup &lt;string>] [-clientIdleTimeout &lt;mins>] [-proxy &lt;proxy>] [-allProtocolProxy &lt;string> | -httpProxy &lt;string> | -ftpProxy &lt;string> | -socksProxy &lt;string> | -gopherProxy &lt;string> | -sslProxy &lt;string>] [-proxyException &lt;string>] [-proxyLocalBypass ( ENABLED | DISABLED )] [-clientCleanupPrompt ( ON | OFF )] [-forceCleanup &lt;forceCleanup> ...] [-clientOptions &lt;clientOptions> ...] [-clientConfiguration &lt;clientConfiguration> ...] [-SSO ( ON | OFF )] [-ssoCredential ( PRIMARY | SECONDARY )] [-windowsAutoLogon ( ON | OFF )] [-useMIP ( NS | OFF )] [-useIIP &lt;useIIP>] [-clientDebug &lt;clientDebug>] [-loginScript &lt;input_filename>] [-logoutScript &lt;input_filename>] [-homePage &lt;URL>] [-icaProxy ( ON | OFF )] [-wihome &lt;URL>  [-wihomeAddressType ( IPV4 | IPV6 )]] [-citrixReceiverHome &lt;URL>] [-wiPortalMode ( NORMAL | COMPACT )] [-ClientChoices ( ON | OFF )] [-iipDnsSuffix &lt;string>] [-forcedTimeout &lt;mins>] [-forcedTimeoutWarning &lt;mins>] [-ntDomain &lt;string>] [-clientlessVpnMode &lt;clientlessVpnMode>] [-emailHome &lt;URL>] [-clientlessModeUrlEncoding &lt;clientlessModeUrlEncoding>] [-clientlessPersistentCookie &lt;clientlessPersistentCookie>] [-allowedLoginGroups &lt;string>] [-SecureBrowse ( ENABLED | DISABLED )] [-storefronturl &lt;string>] [-kcdAccount &lt;string>] [-rdpClientProfileName &lt;string>] [-WindowsPluginUpgrade &lt;WindowsPluginUpgrade>] [-MacPluginUpgrade &lt;MacPluginUpgrade>] [-LinuxPluginUpgrade &lt;LinuxPluginUpgrade>] [-iconWithReceiver ( ON | OFF )]
 
 
 ##Arguments
@@ -317,6 +334,12 @@ Minimum value: 1
 <b>clientSecurity</b>
 Specify the client security check for the user device to permit a NetScaler Gateway session. The web address or IP address is not included in the expression for the client security check.
 
+<b>clientSecurityGroup</b>
+The client security group that will be assigned on failure of the client security check. Users can in general be organized into Groups. In this case, the Client Security Group may have a more restrictive security policy.
+
+<b>clientSecurityMessage</b>
+The client security message that will be displayed on failure of the client security check.
+
 <b>clientSecurityLog</b>
 Set the logging of client security checks.
 Possible values: ON, OFF
@@ -336,10 +359,6 @@ As defined in the local area network, allow only the following local area networ
 * 192.168.*.*
 Possible values: ON, OFF
 
-<b>spoofIIP</b>
-IP address that the intranet application uses to route the connection through the virtual adapter.
-Possible values: ON, OFF
-
 <b>killConnections</b>
 Specify whether the NetScaler Gateway Plug-in should disconnect all preexisting connections, such as the connections existing before the user logged on to NetScaler Gateway, and prevent new incoming connections on the NetScaler Gateway Plug-in for Windows and MAC when the user is connected to NetScaler Gateway and split tunneling is disabled.
 Possible values: ON, OFF
@@ -348,18 +367,16 @@ Possible values: ON, OFF
 Allow access to network resources by using a single IP address and subnet mask or a range of IP addresses. The OFF setting sets the mode to proxy, in which you configure destination and source IP addresses and port numbers. If you are using the NetScaler Gateway Plug-in for Windows, set this parameter to ON, in which the mode is set to transparent. If you are using the NetScaler Gateway Plug-in for Java, set this parameter to OFF.
 Possible values: ON, OFF
 
-<b>windowsClientType</b>
-Choose between two types of Windows Client\\
-a) Application Agent - which always runs in the task bar as a standalone application and also has a supporting service which runs permanently when installed\\
-b) Activex Control - ActiveX control run by Microsoft Internet Explorer.
-Possible values: AGENT, PLUGIN
-
 <b>defaultAuthorizationAction</b>
 Specify the network resources that users have access to when they log on to the internal network. The default setting for authorization is to deny access to all network resources. Citrix recommends using the default global setting and then creating authorization policies to define the network resources users can access. If you set the default authorization policy to DENY, you must explicitly authorize access to any network resource, which improves security.
 Possible values: ALLOW, DENY
 
 <b>authorizationGroup</b>
 Comma-separated list of groups in which the user is placed when none of the groups that the user is a part of is configured on NetScaler Gateway. The authorization policy can be bound to these groups to control access to the resources.
+
+<b>Smartgroup</b>
+This is the group in which the user is placed when the sessionpolicy associated with this sessionaction succeeds. The vpn session policy will do the post auth EPA check and if the check succeeds the user is placed in the group specified with smartgroup. The is_member_of (http.req.user.is_member_of) expression can then be used with policies to check if EPA has passed on the user belonging to this smartgroup
+Maximum value: 64
 
 <b>clientIdleTimeout</b>
 Time, in minutes, after which to time out the user session if NetScaler Gateway does not detect mouse or keyboard activity.
@@ -461,6 +478,10 @@ Default value: OFF
 Web address of the Web Interface server, such as http://&lt;ipAddress&gt;/Citrix/XenApp, or Receiver for Web, which enumerates the virtualized resources, such as XenApp, XenDesktop, and cloud applications. This web address is used as the home page in ICA proxy mode. 
 If Client Choices is ON, you must configure this setting. Because the user can choose between FullClient and ICAProxy, the user may see a different home page. An Internet web site may appear if the user gets the FullClient option, or a Web Interface site if the user gets the ICAProxy option. If the setting is not configured, the XenApp option does not appear as a client choice.
 
+<b>wihomeAddressType</b>
+Type of the wihome address(IPV4/V6)
+Possible values: IPV4, IPV6
+
 <b>citrixReceiverHome</b>
 Web address for the Citrix Receiver home page. Configure NetScaler Gateway so that when users log on to the appliance, the NetScaler Gateway Plug-in opens a web browser that allows single sign-on to the Citrix Receiver home page.
 
@@ -471,12 +492,6 @@ Possible values: NORMAL, COMPACT
 <b>ClientChoices</b>
 Provide users with multiple logon options. With client choices, users have the option of logging on by using the NetScaler Gateway Plug-in for Windows, NetScaler Gateway Plug-in for Java, the Web Interface, or clientless access from one location. Depending on how NetScaler Gateway is configured, users are presented with up to three icons for logon choices. The most common are the NetScaler Gateway Plug-in for Windows, Web Interface, and clientless access.
 Possible values: ON, OFF
-
-<b>epaClientType</b>
-Choose between two types of End point Windows Client
-a) Application Agent - which always runs in the task bar as a standalone application and also has a supporting service which runs permanently when installed
-b) Activex Control - ActiveX control run by Microsoft Internet Explorer.
-Possible values: AGENT, PLUGIN
 
 <b>iipDnsSuffix</b>
 An intranet IP DNS suffix. When a user logs on to NetScaler Gateway and is assigned an IP address, a DNS record for the user name and IP address combination is added to the NetScaler Gateway DNS cache. You can configure a DNS suffix to append to the user name when the DNS record is added to the cache. You can reach to the host from where the user is logged on by using the user's name, which can be easier to remember than an IP address. When the user logs off from NetScaler Gateway, the record is removed from the DNS cache.
@@ -500,7 +515,7 @@ Enable clientless access for web, XenApp or XenDesktop, and FileShare resources 
 * OFF - Allow clientless access after users log on with the NetScaler Gateway Plug-in. 
 * DISABLED - Do not allow clientless access.
 Possible values: ON, OFF, DISABLED
-Default value: VPN_SESS_ACT_CVPNMODE_OFF
+Default value: OFF
 
 <b>emailHome</b>
 Web address for the web-based email, such as Outlook Web Access.
@@ -518,7 +533,7 @@ State of persistent cookies in clientless access mode. Persistent cookies are re
 * DENY - Disable persistent cookies. Users cannot open and edit Microsoft documents stored in SharePoint. 
 * PROMPT - Prompt users to allow or deny persistent cookies during the session. Persistent cookies are not required for clientless access if users do not connect to SharePoint.
 Possible values: ALLOW, DENY, PROMPT
-Default value: VPN_SESS_ACT_CVPN_PERSCOOKIE_DENY
+Default value: DENY
 
 <b>allowedLoginGroups</b>
 Specify groups that have permission to log on to NetScaler Gateway. Users who do not belong to this group or groups are denied access even if they have valid credentials.
@@ -533,6 +548,25 @@ Web address for StoreFront to be used in this session for enumeration of resourc
 <b>kcdAccount</b>
 The kcd account details to be used in SSO
 
+<b>rdpClientProfileName</b>
+Name of the RDP profile associated with the vserver.
+
+<b>WindowsPluginUpgrade</b>
+Option to set plugin upgrade behaviour for Win
+Possible values: Always, Essential, Never
+
+<b>MacPluginUpgrade</b>
+Option to set plugin upgrade behaviour for Mac
+Possible values: Always, Essential, Never
+
+<b>LinuxPluginUpgrade</b>
+Option to set plugin upgrade behaviour for Linux
+Possible values: Always, Essential, Never
+
+<b>iconWithReceiver</b>
+Option to decide whether to show plugin icon along with receiver
+Possible values: ON, OFF
+
 
 
 ##unset vpn sessionAction
@@ -542,7 +576,7 @@ Use this command to remove vpn sessionAction settings.Refer to the set vpn sessi
 
 ##Synopsys
 
-unset vpn sessionAction &lt;name> [-userAccounting] [-httpPort] [-winsIP] [-dnsVserverName] [-splitDns] [-sessTimeout] [-clientSecurity] [-clientSecurityGroup] [-clientSecurityMessage] [-clientSecurityLog] [-splitTunnel] [-localLanAccess] [-rfc1918] [-killConnections] [-transparentInterception] [-defaultAuthorizationAction] [-authorizationGroup] [-clientIdleTimeout] [-proxy] [-allProtocolProxy] [-httpProxy] [-ftpProxy] [-socksProxy] [-gopherProxy] [-sslProxy] [-proxyException] [-proxyLocalBypass] [-clientCleanupPrompt] [-forceCleanup] [-clientOptions] [-clientConfiguration] [-SSO] [-ssoCredential] [-windowsAutoLogon] [-useMIP] [-useIIP] [-clientDebug] [-loginScript] [-logoutScript] [-homePage] [-icaProxy] [-wihome] [-citrixReceiverHome] [-wiPortalMode] [-ClientChoices] [-iipDnsSuffix] [-forcedTimeout] [-forcedTimeoutWarning] [-ntDomain] [-clientlessVpnMode] [-emailHome] [-clientlessModeUrlEncoding] [-clientlessPersistentCookie] [-allowedLoginGroups] [-SecureBrowse] [-storefronturl] [-kcdAccount]
+unset vpn sessionAction &lt;name> [-userAccounting] [-httpPort] [-winsIP] [-dnsVserverName] [-splitDns] [-sessTimeout] [-clientSecurity] [-clientSecurityGroup] [-clientSecurityMessage] [-clientSecurityLog] [-splitTunnel] [-localLanAccess] [-rfc1918] [-killConnections] [-transparentInterception] [-defaultAuthorizationAction] [-authorizationGroup] [-Smartgroup] [-clientIdleTimeout] [-proxy] [-allProtocolProxy] [-httpProxy] [-ftpProxy] [-socksProxy] [-gopherProxy] [-sslProxy] [-proxyException] [-proxyLocalBypass] [-clientCleanupPrompt] [-forceCleanup] [-clientOptions] [-clientConfiguration] [-SSO] [-ssoCredential] [-windowsAutoLogon] [-useMIP] [-useIIP] [-clientDebug] [-loginScript] [-logoutScript] [-homePage] [-icaProxy] [-wihome] [-citrixReceiverHome] [-wiPortalMode] [-ClientChoices] [-iipDnsSuffix] [-forcedTimeout] [-forcedTimeoutWarning] [-ntDomain] [-clientlessVpnMode] [-emailHome] [-clientlessModeUrlEncoding] [-clientlessPersistentCookie] [-allowedLoginGroups] [-SecureBrowse] [-storefronturl] [-kcdAccount] [-rdpClientProfileName] [-WindowsPluginUpgrade] [-MacPluginUpgrade] [-LinuxPluginUpgrade] [-iconWithReceiver]
 
 
 ##show vpn sessionAction
@@ -559,14 +593,6 @@ show vpn sessionAction [&lt;name>]
 
 <b>name</b>
 Name of the session action to display.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -615,7 +641,7 @@ As defined in the local area network, allow only the following local area networ
 * 192.168.*.*
 
 <b>spoofIIP</b>
-IP address that the intranet application uses to route the connection through the virtual adapter.NOTE: This attribute is deprecated.This argument is deprecated since snoofip is no longer supported.
+IP address that the intranet application uses to route the connection through the virtual adapter.
 
 <b>killConnections</b>
 Specify whether the NetScaler Gateway Plug-in should disconnect all preexisting connections, such as the connections existing before the user logged on to NetScaler Gateway, and prevent new incoming connections on the NetScaler Gateway Plug-in for Windows and MAC when the user is connected to NetScaler Gateway and split tunneling is disabled.
@@ -624,13 +650,16 @@ Specify whether the NetScaler Gateway Plug-in should disconnect all preexisting 
 Allow access to network resources by using a single IP address and subnet mask or a range of IP addresses. The OFF setting sets the mode to proxy, in which you configure destination and source IP addresses and port numbers. If you are using the NetScaler Gateway Plug-in for Windows, set this parameter to ON, in which the mode is set to transparent. If you are using the NetScaler Gateway Plug-in for Java, set this parameter to OFF.
 
 <b>windowsClientType</b>
-Windows client type, e.g. Agent or ActiveXNOTE: This attribute is deprecated.This argument is deprecated since ActiveX is no longer supported.
+Windows client type, e.g. Agent or ActiveX
 
 <b>defaultAuthorizationAction</b>
 The Authorization Action, e.g. allow or deny
 
 <b>authorizationGroup</b>
 The authorization group applied to client sessions.
+
+<b>Smartgroup</b>
+The smartaccess group applied to client sessions used in ica (smartaccess2) policy expressions to check if user is a member of group that has any antivirus (this expression would be on the vpn session policy
 
 <b>clientIdleTimeout</b>
 The client idle timeout, in minutes.
@@ -729,7 +758,7 @@ Provide users with multiple logon options. With client choices, users have the o
 <b>epaClientType</b>
 Choose between two types of End point Windows Client
 a) Application Agent - which always runs in the task bar as a standalone application and also has a supporting service which runs permanently when installed
-b) Activex Control - ActiveX control run by Microsoft Internet Explorer.NOTE: This attribute is deprecated.This argument is not supported
+b) Activex Control - ActiveX control run by Microsoft Internet Explorer.
 
 <b>iipDnsSuffix</b>
 The IntranetIP DNS suffix.
@@ -772,8 +801,23 @@ Web address for StoreFront to be used in this session for enumeration of resourc
 <b>kcdAccount</b>
 The kcd account details to be used in SSO
 
+<b>rdpClientProfileName</b>
+Name of the RDP profile associated with the vserver.
+
 <b>builtin</b>
 Indicates that a variable is a built-in (SYSTEM INTERNAL) type.
+
+<b>WindowsPluginUpgrade</b>
+Option to set plugin upgrade behaviour for Win
+
+<b>MacPluginUpgrade</b>
+Option to set plugin upgrade behaviour for Mac
+
+<b>LinuxPluginUpgrade</b>
+Option to set plugin upgrade behaviour for Linux
+
+<b>iconWithReceiver</b>
+Option to decide whether to show plugin icon along with receiver
 
 <b>devno</b>
 

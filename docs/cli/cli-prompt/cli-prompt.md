@@ -53,14 +53,6 @@ Use this command to display the current CLI prompt, with special values like '%h
 show cli prompt
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>promptString</b>

@@ -12,7 +12,7 @@ Adds an SNMP trap listener. You can configure the NetScaler appliance to generat
 
 ##Synopsys
 
-add snmp trap &lt;trapClass> &lt;trapDestination> ... [-version &lt;version>] [-td &lt;positive_integer>] [-destPort &lt;port>] [-communityName &lt;string>] [-srcIP &lt;ip_addr|ipv6_addr>] [-severity &lt;severity>]
+add snmp trap &lt;trapClass> &lt;trapDestination> ... [-version &lt;version>] [-td &lt;positive_integer>] [-destPort &lt;port>] [-communityName &lt;string>] [-srcIP &lt;ip_addr|ipv6_addr>] [-severity &lt;severity>] [-allPartitions ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -54,7 +54,12 @@ IPv4 or IPv6 address that the NetScaler appliance inserts as the source IP addre
 Severity level at or above which the NetScaler appliance sends trap messages to this trap listener. The severity levels, in increasing order of severity, are Informational, Warning, Minor, Major, Critical. This parameter can be set for trap listeners of type SPECIFIC only. The default is to send all levels of trap messages. 
 Important: Trap messages are not assigned severity levels unless you specify severity levels when configuring SNMP alarms.
 Possible values: Critical, Major, Minor, Warning, Informational
-Default value: SNMP_SEV_UNKNOWN
+Default value: Unknown
+
+<b>allPartitions</b>
+Send traps of all partitions to this destination.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
 
 
 
@@ -96,7 +101,7 @@ Modifies the specified parameters in a trap-listener entry.
 
 ##Synopsys
 
-set snmp trap &lt;trapClass> &lt;trapDestination> [-version &lt;version>] [-td &lt;positive_integer>] [-destPort &lt;port>] [-communityName &lt;string>] [-srcIP &lt;ip_addr|ipv6_addr>] [-severity &lt;severity>]
+set snmp trap &lt;trapClass> &lt;trapDestination> [-version &lt;version>] [-td &lt;positive_integer>] [-destPort &lt;port>] [-communityName &lt;string>] [-srcIP &lt;ip_addr|ipv6_addr>] [-severity &lt;severity>] [-allPartitions ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -138,7 +143,12 @@ IPv4 or IPv6 address that the NetScaler appliance inserts as the source IP addre
 Severity level at or above which the NetScaler appliance sends trap messages to this trap listener. The severity levels, in increasing order of severity, are Informational, Warning, Minor, Major, Critical. This parameter can be set for trap listeners of type SPECIFIC only. The default is to send all levels of trap messages. 
 Important: Trap messages are not assigned severity levels unless you specify severity levels when configuring SNMP alarms.
 Possible values: Critical, Major, Minor, Warning, Informational
-Default value: SNMP_SEV_UNKNOWN
+Default value: Unknown
+
+<b>allPartitions</b>
+Send traps of all partitions to this destination.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
 
 
 
@@ -153,7 +163,7 @@ Resets the specified parameters to their default settings in a trap-listener ent
 
 ##Synopsys
 
-unset snmp trap &lt;trapClass> &lt;trapDestination> [-version &lt;version>] [-td &lt;positive_integer>] [-destPort] [-communityName] [-srcIP] [-severity]
+unset snmp trap &lt;trapClass> &lt;trapDestination> [-version &lt;version>] [-td &lt;positive_integer>] [-destPort] [-communityName] [-srcIP] [-severity] [-allPartitions]
 
 
 ##Example
@@ -176,13 +186,17 @@ show snmp trap [&lt;trapClass>  &lt;trapDestination>  [-version &lt;version>]  [
 Trap type specified in the trap listener entry.
 Possible values: generic, specific
 
-<b>summary</b>
+<b>trapDestination</b>
+IP address specified in the trap listener entry.
 
-<b>fullValues</b>
+<b>version</b>
+The SNMP version of the trap specified in the trap listener entry.
+Possible values: V1, V2, V3
 
-<b>format</b>
-
-<b>level</b>
+<b>td</b>
+Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
+Minimum value: 0
+Maximum value: 4094
 
 
 
@@ -202,6 +216,9 @@ The source IP of the SNMP trap to be sent.
 
 <b>severity</b>
 The minimum severity of traps to be sent to this destination.
+
+<b>allPartitions</b>
+Send traps of all partitions to this destination.
 
 <b>userName</b>
 Name of the SNMP user that will send the SNMPv3 traps.
@@ -253,6 +270,11 @@ Default value: V3
 
 <b>userName</b>
 Name of the SNMP user that will send the SNMPv3 traps.
+
+<b>securityLevel</b>
+Security level of the SNMPv3 trap.
+Possible values: noAuthNoPriv, authNoPriv, authPriv
+Default value: authNoPriv,
 
 
 

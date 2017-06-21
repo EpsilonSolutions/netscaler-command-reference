@@ -34,6 +34,7 @@ Maximum value: 1459
 <b>maxRetryTime</b>
 Wait for the specified time, in seconds, before resending the request.
 Default value: 3
+Minimum value: 0
 
 <b>helloVerifyRequest</b>
 Send a Hello Verify request to validate the client.
@@ -48,6 +49,7 @@ Default value: DISABLED
 <b>maxPacketSize</b>
 Maximum number of packets to reassemble. This value helps protect against a fragmented packet attack.
 Default value: 120
+Minimum value: 0
 Maximum value: 86400
 
 
@@ -106,6 +108,7 @@ Maximum value: 1459
 <b>maxRetryTime</b>
 Wait for the specified time, in seconds, before resending the request.
 Default value: 3
+Minimum value: 0
 
 <b>helloVerifyRequest</b>
 Send a Hello Verify request to validate the client.
@@ -120,6 +123,7 @@ Default value: DISABLED
 <b>maxPacketSize</b>
 Maximum number of packets to reassemble. This value helps protect against a fragmented packet attack.
 Default value: 120
+Minimum value: 0
 Maximum value: 86400
 
 
@@ -153,14 +157,6 @@ show ssl dtlsProfile [&lt;name>]
 <b>name</b>
 Name of the DTLS profile.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -182,6 +178,9 @@ Terminate Session
 
 <b>maxPacketSize</b>
 Maximum Packet Size
+
+<b>builtin</b>
+Flag to determine whether dtls profile is built-in or not
 
 <b>devno</b>
 

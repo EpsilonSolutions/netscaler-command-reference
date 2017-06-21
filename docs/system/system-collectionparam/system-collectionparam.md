@@ -17,9 +17,6 @@ set system collectionparam [-logLevel &lt;string>] [-dataPath &lt;string>]
 
 ##Arguments
 
-<b>communityName</b>
-SNMPv1 community name for authentication.
-
 <b>logLevel</b>
 specify the log level. Possible values CRITICAL,WARNING,INFO,DEBUG1,DEBUG2
 
@@ -48,18 +45,10 @@ Displays collection parameters for historical charting present in nscollect.ini 
 show system collectionparam
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>communityName</b>
-SNMPv1 community name for authentication.NOTE: This attribute is deprecated.This is deprecated argument.
+SNMPv1 community name for authentication.
 
 <b>logLevel</b>
 specify the log level. Possible values CRITICAL,WARNING,INFO,DEBUG1,DEBUG2

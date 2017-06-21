@@ -71,14 +71,6 @@ show policy map [&lt;mapPolicyName>]
 <b>mapPolicyName</b>
 Name of the policy map to display. If a name is not provided, information of all configured policy maps is shown.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

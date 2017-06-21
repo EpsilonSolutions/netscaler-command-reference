@@ -25,6 +25,7 @@ Host name of the mail exchange server.
 
 <b>pref</b>
 Priority number to assign to the mail exchange server. A domain name can have multiple mail servers, with a priority number assigned to each server. The lower the priority number, the higher the mail server's priority. When other mail servers have to deliver mail to the specified domain, they begin with the mail server with the lowest priority number, and use other configured mail servers, in priority order, as backups.
+Minimum value: 0
 Maximum value: 65535
 
 <b>TTL</b>
@@ -74,6 +75,7 @@ Host name of the mail exchange server to be modified.
 
 <b>pref</b>
 Priority number to assign to the mail exchange server. A domain name can have multiple mail servers, with a priority number assigned to each server. The lower the priority number, the higher the mail server's priority. When other mail servers have to deliver mail to the specified domain, they begin with the mail server with the lowest priority number, and use other configured mail servers, in priority order, as backups.
+Minimum value: 0
 Maximum value: 65535
 
 <b>TTL</b>
@@ -114,15 +116,7 @@ Type of records to display. Available settings function as follows:
 * PROXY - Display all proxy address records.
 * ALL - Display all address records.
 Possible values: ALL, ADNS, PROXY
-Default value: NSDNS_AUTH_HOST
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
+Default value: ADNS
 
 
 

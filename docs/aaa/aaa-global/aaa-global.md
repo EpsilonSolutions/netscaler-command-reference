@@ -12,13 +12,17 @@ Binds a policy globally.
 
 ##Synopsys
 
-bind aaa global [-policy &lt;string> [-priority &lt;positive_integer>]] [-windowsProfile &lt;string>]
+bind aaa global [-policy &lt;string>  [-priority &lt;positive_integer>]] [-windowsProfile &lt;string>]
 
 
 ##Arguments
 
 <b>policy</b>
 Name of the policy to bind globally.
+
+<b>priority</b>
+Priority to assign to the policy, as an integer. A lower number indicates a higher priority. Policies are evaluated in the order of their priority numbers.
+Minimum value: 0
 
 <b>windowsProfile</b>
 Name of the negotiate profile to bind globally.
@@ -27,7 +31,7 @@ Name of the negotiate profile to bind globally.
 
 ##Example
 
-bind aaa global -pol pol1
+ bind aaa global -pol pol1
 
 ##unbind aaa global
 
@@ -57,18 +61,6 @@ Displays a list of policies that are currently bound to Global on the NetScaler 
 ##Synopsys
 
 show aaa global
-
-
-##Arguments
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

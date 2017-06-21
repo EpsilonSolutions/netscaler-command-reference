@@ -12,7 +12,7 @@ Adds a VLAN to the NetScaler appliance.The newVLAN is not active unless interfac
 
 ##Synopsys
 
-add vlan &lt;id> [-aliasName &lt;string>] [-ipv6DynamicRouting ( ENABLED | DISABLED )] [-mtu &lt;positive_integer>]
+add vlan &lt;id> [-aliasName &lt;string>] [-dynamicRouting ( ENABLED | DISABLED )] [-ipv6DynamicRouting ( ENABLED | DISABLED )] [-mtu &lt;positive_integer>]
 
 
 ##Arguments
@@ -24,6 +24,11 @@ Maximum value: 4094
 
 <b>aliasName</b>
 A name for the VLAN. Must begin with a letter, a number, or the underscore symbol, and can consist of from 1 to 31 letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore (_) characters. You should choose a name that helps identify the VLAN. However, you cannot perform any VLAN operation by specifying this name instead of the VLAN ID.
+
+<b>dynamicRouting</b>
+Enable dynamic routing on this VLAN.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
 
 <b>ipv6DynamicRouting</b>
 Enable all IPv6 dynamic routing protocols on this VLAN. Note: For the ENABLED setting to work, you must configure IPv6 dynamic routing protocols from the VTYSH command line.
@@ -64,7 +69,7 @@ Modifies parameters of a VLAN on the NetScaler appliance.
 
 ##Synopsys
 
-set vlan &lt;id> [-aliasName &lt;string>] [-ipv6DynamicRouting ( ENABLED | DISABLED )] [-mtu &lt;positive_integer>]
+set vlan &lt;id> [-aliasName &lt;string>] [-dynamicRouting ( ENABLED | DISABLED )] [-ipv6DynamicRouting ( ENABLED | DISABLED )] [-mtu &lt;positive_integer>]
 
 
 ##Arguments
@@ -77,8 +82,13 @@ Maximum value: 4094
 <b>aliasName</b>
 A name for the VLAN. Must begin with a letter, a number, or the underscore symbol, and can consist of from 1 to 31 letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore (_) characters. You should choose a name that helps identify the VLAN. However, you cannot perform any VLAN operation by specifying this name instead of the VLAN ID.
 
+<b>dynamicRouting</b>
+Enable dynamic routing on this VLAN.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
 <b>ipv6DynamicRouting</b>
-Enable all IPv6 dynamic routing protocols on this bridge group. Note: For the ENABLED setting to work, you must configure IPv6 dynamic routing protocols from the VTYSH command line.
+Enable IPv6 dynamic routing on this vlan. Note: For the ENABLED setting to work, you must configure IPv6 dynamic routing protocols from the VTYSH command line.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
@@ -101,7 +111,7 @@ Use this command to remove  vlan settings.Refer to the set  vlan command for mea
 
 ##Synopsys
 
-unset vlan &lt;id> [-aliasName] [-ipv6DynamicRouting] [-mtu]
+unset vlan &lt;id> [-aliasName] [-dynamicRouting] [-ipv6DynamicRouting] [-mtu]
 
 
 ##bind vlan
@@ -111,7 +121,7 @@ Binds the specified interfaces or IP addresses to a VLAN. An interface can be bo
 
 ##Synopsys
 
-bind vlan &lt;id> [-ifnum &lt;interface_name> ...  [-tagged]] [-IPAddress &lt;ip_addr|ipv6_addr|*>  [&lt;netmask>]  [-td &lt;positive_integer>]]
+bind vlan &lt;id> [-ifnum &lt;interface_name> ...  [-tagged]] [-IPAddress &lt;ip_addr|ipv6_addr|*>  [&lt;netmask>]  [-td &lt;positive_integer>]  [-ownerGroup &lt;string>]]
 
 
 ##Arguments
@@ -125,8 +135,23 @@ Maximum value: 4094
 Interface to be bound to the VLAN, specified in slot/port notation (for example, 1/3).
 Minimum value: 1
 
+<b>tagged</b>
+Make the interface an 802.1q tagged interface. Packets leaving this interface have an additional 4-byte 802.1q tag, which identifies the VLAN. To use 802.1q tagging, you must also configure the switch connected to the interfaces on the appliance.
+
 <b>IPAddress</b>
 Network address to be associated with the VLAN. Should exist on the appliance before you associate it with the VLAN. To enable IP forwarding among VLANs, the specified address can be used as the default gateway by the hosts in the network.
+
+<b>netmask</b>
+Subnet mask for the network address defined for this VLAN.
+
+<b>td</b>
+Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
+Minimum value: 0
+Maximum value: 4094
+
+<b>ownerGroup</b>
+The owner node group in a Cluster for this vlan.
+Default value: DEFAULT_NG
 
 
 
@@ -137,7 +162,7 @@ Unbinds the specified interfaces or IP addresses from a VLAN. If any of the inte
 
 ##Synopsys
 
-unbind vlan &lt;id> [-ifnum &lt;interface_name> ...  [-tagged]] [-IPAddress &lt;ip_addr|ipv6_addr|*>  [&lt;netmask>]  [-td &lt;positive_integer>]]
+unbind vlan &lt;id> [-ifnum &lt;interface_name> ...  [-tagged]] [-IPAddress &lt;ip_addr|ipv6_addr|*>  [&lt;netmask>]  [-td &lt;positive_integer>]  [-ownerGroup &lt;string>]]
 
 
 ##Arguments
@@ -151,8 +176,23 @@ Maximum value: 4094
 Interface to unbind from the VLAN, specified in slot/port notation (for example, 1/3).
 Minimum value: 1
 
+<b>tagged</b>
+The 802.1q tagged interface.
+
 <b>IPAddress</b>
 The IP Address associated with the VLAN configuration.
+
+<b>netmask</b>
+Subnet mask for the network address defined for this VLAN.
+
+<b>td</b>
+Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
+Minimum value: 0
+Maximum value: 4094
+
+<b>ownerGroup</b>
+The owner node group in a Cluster for this vlan.
+Default value: DEFAULT_NG
 
 
 
@@ -172,14 +212,6 @@ show vlan [&lt;id>]show vlan stats - alias for 'stat vlan'
 Integer that uniquely identifies the VLAN for which the details are to be displayed.
 Minimum value: 1
 Maximum value: 4094
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -221,8 +253,11 @@ Names of all member interfaces of this vlan.
 <b>tagIfaces</b>
 Names of all tagged member interfaces of this vlan.
 
-<b>ipv6DynamicRouting</b>
+<b>dynamicRouting</b>
 Whether dynamic routing is enabled or disabled.
+
+<b>ipv6DynamicRouting</b>
+Whether ipv6 dynamic routing is enabled or disabled.
 
 <b>flag</b>
 
@@ -244,8 +279,14 @@ SDX vlan.
 <b>mtu</b>
 Specifies the maximum transmission unit (MTU), in bytes. The MTU is the largest packet size, excluding 14 bytes of ethernet header and 4 bytes of crc, that can be transmitted and received over this VLAN.
 
+<b>partitionName</b>
+Name of the Partition to which this vlan bound to.
+
 <b>vxlan</b>
 The VXLAN that extends this vlan.
+
+<b>ownerGroup</b>
+The owner node group in a Cluster for this vlan.
 
 <b>devno</b>
 
@@ -255,7 +296,7 @@ The VXLAN that extends this vlan.
 
 ##Example
 
-An example of the output of the show vlan command is as follows:1)      VLAN ID: 5      VLAN Alias Name:        Interfaces : 1/7        IPs : 		10.102.169.36       Mask: 255.255.255.02)      VLAN ID: 3      VLAN Alias Name:        Interfaces : 1/5(T)        Channels : LA/2 Done*(T) - Tagged
+An example of the output of the show vlan command is as follows:1)      VLAN ID: 5      VLAN Alias Name:        Interfaces : 1/7        IPs : 		10.102.169.36       Mask: 255.255.255.02)      VLAN ID: 3      VLAN Alias Name:        Interfaces : 1/5(T)        Channels : LA/2 LR/1 Done*(T) - Tagged
 
 ##stat vlan
 
@@ -273,6 +314,20 @@ stat vlan [&lt;id>] [-detail] [-fullValues] [-ntimes &lt;positive_integer>] [-lo
 An integer specifying the VLAN identification number (VID). Possible values: 1 through 4094.
 Minimum value: 1
 Maximum value: 4094
+
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
 
 <b>clearstats</b>
 Clear the statsistics / counters

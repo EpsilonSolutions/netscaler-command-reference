@@ -24,26 +24,17 @@ If the name includes one or more spaces, enclose the name in double or single qu
 
 <b>serviceType</b>
 Protocol used by services bound to the virtual server.
-Possible values: HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, NNTP, ANY, SIP_UDP, RADIUS, RDP, RTSP, MYSQL, MSSQL, ORACLE
-
-<b>ipType</b>
-The IP type for this GSLB vserver.
-Possible values: IPV4, IPV6
-Default value: NSGSLB_IPV4
+Possible values: HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, NNTP, ANY, SIP_UDP, SIP_TCP, SIP_SSL, RADIUS, RDP, RTSP, MYSQL, MSSQL, ORACLE
 
 <b>dnsRecordType</b>
 DNS record type to associate with the GSLB virtual server's domain name.
 Possible values: A, AAAA, CNAME
-Default value: NSGSLB_A
+Default value: A
 
 <b>lbMethod</b>
 Load balancing method for the GSLB virtual server.
 Possible values: ROUNDROBIN, LEASTCONNECTION, LEASTRESPONSETIME, SOURCEIPHASH, LEASTBANDWIDTH, LEASTPACKETS, STATICPROXIMITY, RTT, CUSTOMLOAD
-Default value: PEMGMT_LB_LEASTCONNS
-
-<b>backupSessionTimeout</b>
-A non zero value enables the feature whose minimum value is 2 minutes. The feature can be disabled by setting the value to zero. The created session is in effect for a specific client per domain.
-Maximum value: 1440
+Default value: LEASTCONNECTION
 
 <b>backupLBMethod</b>
 Backup load balancing method. Becomes operational if the primary load balancing method fails or cannot be used. Valid only if the primary method is based on either round-trip time (RTT) or static proximity.
@@ -61,6 +52,7 @@ Maximum value: 128
 
 <b>tolerance</b>
 Site selection tolerance, in milliseconds, for implementing the RTT load balancing method. If a site's RTT deviates from the lowest RTT by more than the specified tolerance, the site is not considered when the NetScaler appliance makes a GSLB decision. The appliance implements the round robin method of global server load balancing between sites whose RTT values are within the specified tolerance. If the tolerance is 0 (zero), the appliance always sends clients the IP address of the site with the lowest RTT.
+Minimum value: 0
 Maximum value: 100
 
 <b>persistenceType</b>
@@ -70,6 +62,7 @@ Possible values: SOURCEIP, NONE
 
 <b>persistenceId</b>
 The persistence ID for the GSLB virtual server. The ID is a positive integer that enables GSLB sites to identify the GSLB virtual server, and is required if source IP address based or spill over based persistence is enabled on the virtual server.
+Minimum value: 0
 Maximum value: 65535
 
 <b>persistMask</b>
@@ -117,7 +110,7 @@ Default value: ENABLED
 If the primary state of all bound GSLB services is DOWN, consider the effective states of all the GSLB services, obtained through the Metrics Exchange Protocol (MEP), when determining the state of the GSLB virtual server. To consider the effective state, set the parameter to STATE_ONLY. To disregard the effective state, set the parameter to NONE. 
 The effective state of a GSLB service is the ability of the corresponding virtual server to serve traffic. The effective state of the load balancing virtual server, which is transferred to the GSLB service, is UP even if only one virtual server in the backup chain of virtual servers is in the UP state.
 Possible values: NONE, STATE_ONLY
-Default value: NS_GSLB_DONOT_CONSIDER_BKPS
+Default value: NONE
 
 <b>comment</b>
 Any comments that you might want to associate with the GSLB virtual server.
@@ -198,27 +191,22 @@ set gslb vserver &lt;name> [-dnsRecordType &lt;dnsRecordType>] [-backupVServer &
 <b>name</b>
 Name of the GSLB virtual server.
 
-<b>ipType</b>
-The IP type for this GSLB vserver.
-Possible values: IPV4, IPV6
-Default value: NSGSLB_IPV4
-
 <b>dnsRecordType</b>
 DNS record type to associate with the GSLB virtual server's domain name.
 Possible values: A, AAAA, CNAME
-Default value: NSGSLB_A
+Default value: A
 
 <b>backupVServer</b>
 Name of the backup GSLB virtual server to which the appliance should to forward requests if the status of the primary GSLB virtual server is down or exceeds its spillover threshold.
 
-<b>backupSessionTimeout</b>
-A non zero value enables the feature whose minimum value is 2 minutes. The feature can be disabled by setting the value to zero. The created session is in effect for a specific client per domain.
-Maximum value: 1440
-
 <b>lbMethod</b>
 Load balancing method for the GSLB virtual server.
 Possible values: ROUNDROBIN, LEASTCONNECTION, LEASTRESPONSETIME, SOURCEIPHASH, LEASTBANDWIDTH, LEASTPACKETS, STATICPROXIMITY, RTT, CUSTOMLOAD
-Default value: PEMGMT_LB_LEASTCONNS
+Default value: LEASTCONNECTION
+
+<b>backupLBMethod</b>
+Backup load balancing method. Becomes operational if the primary load balancing method fails or cannot be used. Valid only if the primary method is based on either round-trip time (RTT) or static proximity.
+Possible values: ROUNDROBIN, LEASTCONNECTION, LEASTRESPONSETIME, SOURCEIPHASH, LEASTBANDWIDTH, LEASTPACKETS, STATICPROXIMITY, RTT, CUSTOMLOAD
 
 <b>netmask</b>
 IPv4 network mask for use in the SOURCEIPHASH load balancing method.
@@ -232,6 +220,7 @@ Maximum value: 128
 
 <b>tolerance</b>
 Site selection tolerance, in milliseconds, for implementing the RTT load balancing method. If a site's RTT deviates from the lowest RTT by more than the specified tolerance, the site is not considered when the NetScaler appliance makes a GSLB decision. The appliance implements the round robin method of global server load balancing between sites whose RTT values are within the specified tolerance. If the tolerance is 0 (zero), the appliance always sends clients the IP address of the site with the lowest RTT.
+Minimum value: 0
 Maximum value: 100
 
 <b>persistenceType</b>
@@ -240,6 +229,7 @@ Possible values: SOURCEIP, NONE
 
 <b>persistenceId</b>
 The persistence ID for the GSLB virtual server. The ID is a positive integer that enables GSLB sites to identify the GSLB virtual server, and is required if source IP address based or spill over based persistence is enabled on the virtual server.
+Minimum value: 0
 Maximum value: 65535
 
 <b>persistMask</b>
@@ -282,7 +272,7 @@ Default value: DISABLED
 If the primary state of all bound GSLB services is DOWN, consider the effective states of all the GSLB services, obtained through the Metrics Exchange Protocol (MEP), when determining the state of the GSLB virtual server. To consider the effective state, set the parameter to STATE_ONLY. To disregard the effective state, set the parameter to NONE. 
 The effective state of a GSLB service is the ability of the corresponding virtual server to serve traffic. The effective state of the load balancing virtual server, which is transferred to the GSLB service, is UP even if only one virtual server in the backup chain of virtual servers is in the UP state.
 Possible values: NONE, STATE_ONLY
-Default value: NS_GSLB_DONOT_CONSIDER_BKPS
+Default value: NONE
 
 <b>soMethod</b>
 Type of threshold that, when exceeded, triggers spillover. Available settings function as follows:
@@ -316,8 +306,31 @@ Possible values: DROP, ACCEPT, REDIRECT
 <b>serviceName</b>
 Name of the GSLB service for which to change the weight.
 
+<b>weight</b>
+Weight to assign to the GSLB service.
+Minimum value: 1
+Maximum value: 100
+
 <b>domainName</b>
 Domain name for which to change the time to live (TTL) and/or backup service IP address.
+
+<b>TTL</b>
+Time to live (TTL) for the domain.
+Minimum value: 1
+
+<b>backupIP</b>
+The IP address of the backup service for the specified domain name. Used when all the services bound to the domain are down, or when the backup chain of virtual servers is down.
+
+<b>cookieDomain</b>
+The cookie domain for the GSLB site. Used when inserting the GSLB site cookie in the HTTP response.
+
+<b>cookieTimeout</b>
+Timeout, in minutes, for the GSLB site cookie.
+Maximum value: 1440
+
+<b>sitedomainTTL</b>
+TTL, in seconds, for all internally created site domains (created when a site prefix is configured on a GSLB service) that are associated with this virtual server.
+Minimum value: 1
 
 <b>comment</b>
 Any comments that you might want to associate with the GSLB virtual server.
@@ -365,11 +378,57 @@ Name of the virtual server on which to perform the binding operation.
 <b>serviceName</b>
 Name of the GSLB service for which to change the weight.
 
+<b>weight</b>
+Weight to assign to the GSLB service.
+Default value: 1
+Minimum value: 1
+Maximum value: 100
+
 <b>domainName</b>
 Domain name for which to change the time to live (TTL) and/or backup service IP address.
 
+<b>TTL</b>
+Time to live (TTL) for the domain.
+Minimum value: 1
+
+<b>backupIP</b>
+The IP address of the backup service for the specified domain name. Used when all the services bound to the domain are down, or when the backup chain of virtual servers is down.
+
+<b>cookieDomain</b>
+The cookie domain for the GSLB site. Used when inserting the GSLB site cookie in the HTTP response.
+
+<b>cookieTimeout</b>
+Timeout, in minutes, for the GSLB site cookie.
+
+<b>sitedomainTTL</b>
+TTL, in seconds, for all internally created site domains (created when a site prefix is configured on a GSLB service) that are associated with this virtual server.
+Default value: 3600
+Minimum value: 1
+
 <b>policyName</b>
 Name of the policy bound to the GSLB vserver.
+
+<b>priority</b>
+Priority.
+Minimum value: 1
+Maximum value: 2147483647
+
+<b>gotoPriorityExpression</b>
+Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.
+	o	If gotoPriorityExpression is not present or if it is equal to END then the policy bank evaluation ends here
+	o	Else if the gotoPriorityExpression is equal to NEXT then the next policy in the priority order is evaluated.
+	o	Else gotoPriorityExpression is evaluated. The result of gotoPriorityExpression (which has to be a number) is processed as follows:
+		-	An UNDEF event is triggered if
+			.	gotoPriorityExpression cannot be evaluated
+			.	gotoPriorityExpression evaluates to number which is smaller than the maximum priority in the policy bank but is not same as any policy's priority
+			.	gotoPriorityExpression evaluates to a priority that is smaller than the current policy's priority
+		-	If the gotoPriorityExpression evaluates to the priority of the current policy then the next policy in the priority order is evaluated.
+		-	If the gotoPriorityExpression evaluates to the priority of a policy further ahead in the list then that policy will be evaluated next.
+		This field is applicable only to rewrite and responder policies.
+
+<b>type</b>
+Bind point to which to bind the policy.
+Possible values: REQUEST, RESPONSE
 
 
 
@@ -397,6 +456,12 @@ Name of the GSLB service for which to change the weight.
 
 <b>domainName</b>
 Domain name for which to change the time to live (TTL) and/or backup service IP address.
+
+<b>backupIP</b>
+The IP address of the backup service for the specified domain name. Used when all the services bound to the domain are down, or when the backup chain of virtual servers is down.
+
+<b>cookieDomain</b>
+The cookie domain for the GSLB site. Used when inserting the GSLB site cookie in the HTTP response.
 
 <b>policyName</b>
 The policy that has been bound to this load balancing virtual server, using the ###bind gslb vserver### command.
@@ -464,14 +529,6 @@ show gslb vserver [&lt;name>]show gslb vserver stats - alias for 'stat gslb vser
 <b>name</b>
 Name of the GSLB virtual server.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -483,7 +540,7 @@ Protocol used by services bound to the virtual server.
 State of the gslb vserver.
 
 <b>ipType</b>
-The IP type for this GSLB vserver.NOTE: This attribute is deprecated.
+The IP type for this GSLB vserver.
 
 <b>dnsRecordType</b>
 The IP type for this GSLB vserver.
@@ -574,7 +631,7 @@ The target site to be returned in the DNS response when a policy is successfully
 Backup vserver in case the primary fails
 
 <b>backupSessionTimeout</b>
-A non zero value enables the feature. The minimum value is 2 minutes. To disable the feature set the value to zero. The created session is in effect for a specific client per domain.NOTE: This attribute is deprecated.This is a deprecated attribute.
+A non zero value enables the feature. The minimum value is 2 minutes. To disable the feature set the value to zero. The created session is in effect for a specific client per domain.
 
 <b>EDR</b>
 Indicates if Empty Down Response is enabled/disabled
@@ -725,6 +782,20 @@ stat gslb vserver [&lt;name>] [-detail] [-fullValues] [-ntimes &lt;positive_inte
 <b>name</b>
 Name of the GSLB virtual server for which to display statistics. If you do not specify a name, statistics are displayed for all GSLB virtual servers.
 
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
+
 <b>clearstats</b>
 Clear the statsistics / counters
 Possible values: basic, full
@@ -775,6 +846,9 @@ Spill Over Threshold set on the VServer.
 
 <b>Spill Over Hits (NumSo )</b>
 Number of times vserver experienced spill over.
+
+<b>Vserver Down Backup Hits (VserverDownBackupHits )</b>
+Number of times traffic was diverted to backup vserver since primary vserver was DOWN.
 
 <b>Requests (Req)</b>
 Total number of requests received on this service or virtual server. (This applies to HTTP/SSL services and servers.)

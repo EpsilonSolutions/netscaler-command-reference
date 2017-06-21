@@ -22,10 +22,6 @@ Name for the user-defined cipher group. Must begin with an ASCII alphanumeric or
 The following requirement applies only to the NetScaler CLI:
 If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my ciphergroup" or 'my ciphergroup').
 
-<b>cipherAliasName/cipherName/cipherGroupName</b>
-The individual cipher name(s), a user-defined cipher group, or a system predefined cipher alias that will be added to the  predefined cipher alias that will be added to the group cipherGroupName.
-If a cipher alias or a cipher group is specified, all the individual ciphers in the cipher alias or group will be added to the user-defined cipher group.
-
 
 
 ##Example
@@ -46,27 +42,6 @@ bind ssl cipher [&lt;cipherGroupName>@] [-cipherName &lt;string>]
 
 <b>cipherGroupName</b>
 Name of the user-defined cipher group.
-
-<b>vServerName</b>
-The name of the SSL virtual server to which the cipher-suite is to be bound.
-
-<b>serviceName</b>
-The name of the SSL service name to which the cipher-suite is to be bound.
-
-<b>serviceGroupName</b>
-The name of the SSL service name to which the cipher-suite is to be bound.
-
-<b>cipherOperation</b>
-The operation that is performed when adding the cipher-suite.
-Possible cipher operations are:
-	ADD - Appends the given cipher-suite to the existing one configured for the virtual server.
-	REM - Removes the given cipher-suite from the existing one configured for the virtual server.
-	ORD - Overrides the current configured cipher-suite for the virtual server with the given cipher-suite.
-Possible values: ADD, REM, ORD
-Default value: 0
-
-<b>cipherAliasName/cipherName/cipherGroupName</b>
-A cipher-suite can consist of an individual cipher name, the system predefined cipher-alias name, or user defined cipher-group name.
 
 <b>cipherName</b>
 Name of the individual cipher, user-defined cipher group, or predefined (built-in) cipher alias to add to the cipher group.
@@ -97,14 +72,6 @@ show ssl cipher [&lt;cipherGroupName>]
 
 <b>cipherGroupName</b>
 Name of the cipher group for which to show detailed information.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -146,9 +113,6 @@ rm ssl cipher &lt;cipherGroupName>
 
 <b>cipherGroupName</b>
 Name of the user-defined cipher group to remove.
-
-<b>cipherName</b>
-The cipher(s) to be removed from the cipher group.
 
 
 

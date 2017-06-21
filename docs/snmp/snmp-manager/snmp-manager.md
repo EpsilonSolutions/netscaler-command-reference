@@ -116,13 +116,9 @@ show snmp manager [&lt;IPAddress>  [-netmask &lt;netmask>]]
 <b>IPAddress</b>
 IPv4 or IPv6 address (or IPv4 host name) of the SNMP manager, or the IPv4 network address or IPv6 network prefix of the SNMP managers, about which to display information.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
+<b>netmask</b>
+Subnet mask associated with an IPv4-address based SNMP manager entry. If the IP address specifies a specific host (either the IP address or the host name of the SNMP manager), the subnet mask is 255.255.255.255.
+Default value: 0
 
 
 

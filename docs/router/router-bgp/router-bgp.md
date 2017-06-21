@@ -30,17 +30,36 @@ The state of route learning from BGP.
 <b>staticRedistribute</b>
 The state of router in redistribution of static routes.
 
+<b>staticRouteMap</b>
+The route map to apply while redistributing static routes.
+
 <b>kernelRedistribute</b>
 The state of router in redistribution of kernel routes.
+
+<b>kernelRouteMap</b>
+The route map to apply while redistributing kernel routes.
 
 <b>conRedistribute</b>
 The state of router in redistribution of connected routes.
 
+<b>connectedRouteMap</b>
+The route map to apply while redistributing connected routes.
+
 <b>neighbor</b>
 Add a BGP neighbor.
 
+<b>remoteAS</b>
+The AS of the neighbor.
+Minimum value: 0
+
+<b>neighborRouteMap</b>
+The route map to apply to the neighbor.
+
 <b>network</b>
 The neighbor to be advertised.
+
+<b>netmask</b>
+The netmask of the neighbor to be advertised.
 
 
 
@@ -114,17 +133,36 @@ The state of the router in learning routes from BGP. Use this option to enable r
 <b>staticRedistribute</b>
 The state of the router in redistributing static routes. Use this option to enable the redistribution of static routes.
 
+<b>staticRouteMap</b>
+The route map to apply while redistributing static routes.
+
 <b>kernelRedistribute</b>
 The state of the router in redistribution of kernel routes.
+
+<b>kernelRouteMap</b>
+The state of the router in redistributing kernel routes. The route map to apply while redistributing kernel routes.
 
 <b>conRedistribute</b>
 The state of the router in redistributing connected routes. Use this option to enable the redistribution of connected routes into the BGP domain.
 
+<b>connectedRouteMap</b>
+The route map to apply while redistributing connected routes.
+
 <b>neighbor</b>
 The IP address of a BGP peer for the router.
 
+<b>remoteAS</b>
+The autonomous system of the peer.
+Minimum value: 0
+
+<b>neighborRouteMap</b>
+The route map to apply to the specified neighbor.
+
 <b>network</b>
 The network to be advertized.
+
+<b>netmask</b>
+The netmask of the advertised network.
 
 
 
@@ -160,14 +198,6 @@ Possible values: neighbors, summary
 
 <b>routeMap</b>
 The BGP route map.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

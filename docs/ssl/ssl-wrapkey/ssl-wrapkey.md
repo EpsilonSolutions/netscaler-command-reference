@@ -65,18 +65,6 @@ Display the wrap keys.
 show ssl wrapkey
 
 
-##Arguments
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>wrapKeyName</b>

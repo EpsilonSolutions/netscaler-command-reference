@@ -29,6 +29,16 @@ Disable if the appliance is authoritative for the zone, but make sure that you h
 Possible values: YES, NO
 Default value: ENABLED
 
+<b>dnssecOffload</b>
+Enable dnssec offload for this zone.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>nsec</b>
+Enable nsec generation for dnssec offload.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
 
 
 ##Example
@@ -58,6 +68,16 @@ In either scenario, do not create the zone's Start of Authority (SOA) and name s
 Disable if the appliance is authoritative for the zone, but make sure that you have created the SOA and NS records on the appliance before you create the zone.
 Possible values: YES, NO
 Default value: ENABLED
+
+<b>dnssecOffload</b>
+Enable dnssec offload for this zone.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>nsec</b>
+Enable nsec generation for dnssec offload.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
 
 
 
@@ -162,14 +182,6 @@ Type of zone to display. Mutually exclusive with the DNS Zone (zoneName) paramet
 * ALL - Display all the zones configured on the appliance.
 Possible values: ALL, ADNS, PROXY
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -185,7 +197,7 @@ Disable if the appliance is authoritative for the zone, but make sure that you h
 Flags controlling display.
 
 <b>nsecBitarray</b>
-Bit array representing the different record types configured for the domain nameNOTE: This attribute is deprecated.This is deprecated attribute.
+Bit array representing the different record types configured for the domain name
 
 <b>domain</b>
 Domain name that belongs to the given zone

@@ -25,6 +25,9 @@ If the name includes one or more spaces, enclose the name in double or single qu
 <b>network</b>
 An IPv4 network address or IPv6 prefix of a network from which the forwarded traffic originates or to which it is destined.
 
+<b>netmask</b>
+Subnet mask associated with the network.
+
 <b>acl6name</b>
 Name of any configured ACL6 whose action is ALLOW. The rule of the ACL6 is used as a forwarding session rule.
 
@@ -104,10 +107,6 @@ show forwardingSession [&lt;name>]
 
 <b>name</b>
 Name of the forwarding session rule whose details you want to display.
-
-<b>format</b>
-
-<b>level</b>
 
 
 

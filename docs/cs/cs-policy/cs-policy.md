@@ -20,7 +20,7 @@ add cs policy &lt;policyName> [-url &lt;string> | -rule &lt;expression> | -actio
 <b>policyName</b>
 Name for the content switching policy. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Cannot be changed after a policy is created.
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, ?my policy? or ?my policy?).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, my policy or my policy).
 
 <b>url</b>
 URL string that is matched with the URL of a request. Can contain a wildcard character. Specify the string value in the following format: [[prefix] [*]] [.suffix].
@@ -127,14 +127,6 @@ show cs policy [&lt;policyName>]
 <b>policyName</b>
 Name of the content switching policy to display. If this parameter is omitted, details of all the policies are displayed.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -173,7 +165,7 @@ Name of the label invoked.
 The invocation type.
 
 <b>target</b>
-Target flagNOTE: This attribute is deprecated.
+Target flag
 
 <b>priority</b>
 priority of bound policy

@@ -12,7 +12,7 @@ Modifies the syslog parameters.Changes the IP, the port, or the logging paramete
 
 ##Synopsys
 
-set audit syslogParams [-serverIP &lt;ip_addr|ipv6_addr|*>] [-serverPort &lt;port>] [-dateFormat &lt;dateFormat>] [-logLevel &lt;logLevel> ...] [-logFacility &lt;logFacility>] [-tcp ( NONE | ALL )] [-acl ( ENABLED | DISABLED )] [-timeZone ( GMT_TIME | LOCAL_TIME )] [-userDefinedAuditlog ( YES | NO )] [-appflowExport ( ENABLED | DISABLED )]
+set audit syslogParams [-serverIP &lt;ip_addr|ipv6_addr|*>] [-serverPort &lt;port>] [-dateFormat &lt;dateFormat>] [-logLevel &lt;logLevel> ...] [-logFacility &lt;logFacility>] [-tcp ( NONE | ALL )] [-acl ( ENABLED | DISABLED )] [-timeZone ( GMT_TIME | LOCAL_TIME )] [-userDefinedAuditlog ( YES | NO )] [-appflowExport ( ENABLED | DISABLED )] [-lsn ( ENABLED | DISABLED )] [-alg ( ENABLED | DISABLED )] [-dns ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -76,6 +76,18 @@ Export log messages to AppFlow collectors.
 Appflow collectors are entities to which log messages can be sent so that some action can be performed on them.
 Possible values: ENABLED, DISABLED
 
+<b>lsn</b>
+Log the LSN messages
+Possible values: ENABLED, DISABLED
+
+<b>alg</b>
+Log the ALG messages
+Possible values: ENABLED, DISABLED
+
+<b>dns</b>
+Log DNS related syslog messages
+Possible values: ENABLED, DISABLED
+
 
 
 ##unset audit syslogParams
@@ -85,7 +97,7 @@ Removes the existing syslog parameter settings. Attributes for which a default v
 
 ##Synopsys
 
-unset audit syslogParams [-serverIP] [-serverPort] [-logLevel] [-dateFormat] [-logFacility] [-tcp] [-acl] [-timeZone] [-userDefinedAuditlog] [-appflowExport]
+unset audit syslogParams [-serverIP] [-serverPort] [-logLevel] [-dateFormat] [-logFacility] [-tcp] [-acl] [-timeZone] [-userDefinedAuditlog] [-appflowExport] [-lsn] [-alg] [-dns]
 
 
 ##show audit syslogParams
@@ -98,18 +110,10 @@ Displays the current syslog parameter settings.
 show audit syslogParams
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>name</b>
-Name.NOTE: This attribute is deprecated.This argument is deprecated since for syslog and nslogparms there is no name.
+Name.
 
 <b>serverIP</b>
 IP address of the syslog server.
@@ -164,6 +168,15 @@ Appflow collectors are entities to which log messages can be sent so that some a
 
 <b>builtin</b>
 Indicates that a variable is a built-in (SYSTEM INTERNAL) type.
+
+<b>lsn</b>
+Log the LSN messages
+
+<b>alg</b>
+Log the ALG messages
+
+<b>dns</b>
+Log DNS related syslog messages
 
 
 

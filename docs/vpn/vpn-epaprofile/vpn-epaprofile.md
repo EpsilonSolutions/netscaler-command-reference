@@ -60,14 +60,6 @@ Displays information on device profile NOTE: This command is deprecated.Depricat
 <b>name</b>
 name of device profile.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

@@ -98,7 +98,7 @@ Global Server Load Balancing.
 DOS Protection.
 
 <b>Routing</b>
-Routing.NOTE: This attribute is deprecated.
+Routing.
 
 <b>CF</b>
 Content Filter.
@@ -168,6 +168,12 @@ RISE
 
 <b>FEO</b>
 Optimize Web content (HTML, CSS, JavaScript, images)
+
+<b>LSN</b>
+Large Scale NAT.
+
+<b>RDPProxy</b>
+RDPPROXY.
 
 
 

@@ -105,14 +105,6 @@ show tm sessionPolicy [&lt;name>]
 <b>name</b>
 Name of the session policy for which to display detailed information.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

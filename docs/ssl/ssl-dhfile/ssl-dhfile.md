@@ -61,14 +61,6 @@ Displays a list of all the imported DH file objects on the NetScaler ADC.
 show ssl dhFile
 
 
-##Arguments
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-
-
 ##Outputs
 
 <b>name</b>

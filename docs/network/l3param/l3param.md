@@ -12,7 +12,7 @@ Set Layer 3 related global settings on the NetScaler
 
 ##Synopsys
 
-set L3Param [-srcnat ( ENABLED | DISABLED )] [-icmpGenRateThreshold &lt;positive_integer>] [-overrideRnat ( ENABLED | DISABLED )] [-dropDFFlag ( ENABLED | DISABLED )] [-mipRoundRobin ( ENABLED | DISABLED )] [-externalLoopBack ( ENABLED | DISABLED )] [-tnlPmtuWoConn ( ENABLED | DISABLED )] [-usipServerStrayPkt ( ENABLED | DISABLED )] [-forwardICMPFragments ( ENABLED | DISABLED )] [-dropIPFragments ( ENABLED | DISABLED )] [-AclLogTime &lt;positive_integer>] [-icmpErrGenerate ( ENABLED | DISABLED )]
+set L3Param [-srcnat ( ENABLED | DISABLED )] [-icmpGenRateThreshold &lt;positive_integer>] [-overrideRnat ( ENABLED | DISABLED )] [-dropDFFlag ( ENABLED | DISABLED )] [-mipRoundRobin ( ENABLED | DISABLED )] [-externalLoopBack ( ENABLED | DISABLED )] [-tnlPmtuWoConn ( ENABLED | DISABLED )] [-usipServerStrayPkt ( ENABLED | DISABLED )] [-forwardICMPFragments ( ENABLED | DISABLED )] [-dropIPFragments ( ENABLED | DISABLED )] [-AclLogTime &lt;positive_integer>] [-icmpErrGenerate ( ENABLED | DISABLED )] [-overrideLsn ( ENABLED | DISABLED )] [-implicitACLAllow ( ENABLED | DISABLED )] [-dynamicRouting ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -25,6 +25,7 @@ Default value: ENABLED
 <b>icmpGenRateThreshold</b>
 NS generated ICMP pkts per 10ms rate threshold
 Default value: 100
+Minimum value: 0
 
 <b>overrideRnat</b>
 USNIP/USIP settings override RNAT settings for configured
@@ -70,11 +71,28 @@ Default value: DISABLED
 <b>AclLogTime</b>
 Parameter to tune acl logging time
 Default value: 5000
+Minimum value: 0
 
 <b>icmpErrGenerate</b>
 Enable/Disable fragmentation required icmp error generation, before encapsulating a packet with vPath header. This knob is only functional for vPath Environment
 Possible values: ENABLED, DISABLED
 Default value: ENABLED
+
+<b>overrideLsn</b>
+USNIP/USIP settings override LSN settings for configured
+              service/virtual server traffic.. 
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>implicitACLAllow</b>
+Do not apply ACLs for internal ports
+Possible values: ENABLED, DISABLED
+Default value: ENABLED
+
+<b>dynamicRouting</b>
+Enable/Disable Dynamic routing on partition
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
 
 
 
@@ -85,7 +103,7 @@ Use this command to remove  L3Param settings.Refer to the set  L3Param command f
 
 ##Synopsys
 
-unset L3Param [-srcnat] [-icmpGenRateThreshold] [-overrideRnat] [-dropDFFlag] [-mipRoundRobin] [-externalLoopBack] [-tnlPmtuWoConn] [-usipServerStrayPkt] [-forwardICMPFragments] [-dropIPFragments] [-AclLogTime] [-icmpErrGenerate]
+unset L3Param [-srcnat] [-icmpGenRateThreshold] [-overrideRnat] [-dropDFFlag] [-mipRoundRobin] [-externalLoopBack] [-tnlPmtuWoConn] [-usipServerStrayPkt] [-forwardICMPFragments] [-dropIPFragments] [-AclLogTime] [-icmpErrGenerate] [-overrideLsn] [-implicitACLAllow] [-dynamicRouting]
 
 
 ##show L3Param
@@ -96,14 +114,6 @@ Displays the settings of global Layer 3 parameters.
 ##Synopsys
 
 show L3Param
-
-
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -144,6 +154,16 @@ Parameter to tune acl logging time
 
 <b>icmpErrGenerate</b>
 Enable/Disable fragmentation required icmp error generation, before encapsulating a packet with vPath header. This knob is only functional for vPath Environment
+
+<b>overrideLsn</b>
+USNIP/USIP settings override LSN settings for configured
+              service/virtual server traffic..
+
+<b>implicitACLAllow</b>
+Do not apply ACLs for internal ports
+
+<b>dynamicRouting</b>
+Enable/Disable Dynamic routing on partition
 
 
 

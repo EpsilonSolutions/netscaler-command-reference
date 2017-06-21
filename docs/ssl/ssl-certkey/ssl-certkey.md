@@ -12,7 +12,7 @@ Adds a certificate-key pair to memory. After it is bound to a virtual server or 
 
 ##Synopsys
 
-add ssl certKey &lt;certkeyName> -cert &lt;string> [(-key &lt;string>  [-password]) | -fipsKey &lt;string>] [-inform ( DER | PEM )] [-expiryMonitor ( ENABLED | DISABLED )  [-notificationPeriod &lt;positive_integer>]] [-bundle ( YES | NO )]
+add ssl certKey &lt;certkeyName> (-cert &lt;string>  [-password]) [-key &lt;string> | -fipsKey &lt;string> | -hsmKey &lt;string>] [-inform &lt;inform>] [-expiryMonitor ( ENABLED | DISABLED )  [-notificationPeriod &lt;positive_integer>]] [-bundle ( YES | NO )]
 
 
 ##Arguments
@@ -28,15 +28,22 @@ Name of and, optionally, path to the X509 certificate file that is used to form 
 <b>key</b>
 Name of and, optionally, path to the private-key file that is used to form the certificate-key pair. The certificate file should be present on the appliance's hard-disk drive or solid-state drive. Storing a certificate in any location other than the default might cause inconsistency in a high availability setup. /nsconfig/ssl/ is the default path.
 
+<b>password</b>
+Passphrase that was used to encrypt the private-key. Use this option to load encrypted private-keys in PEM format.
+
 <b>fipsKey</b>
 Name of the FIPS key that was created inside the Hardware Security Module (HSM) of a FIPS appliance, or a key that was imported into the HSM.
 
+<b>hsmKey</b>
+Name of the HSM key that was created in the External Hardware Security Module (HSM) of a FIPS appliance.
+
 <b>inform</b>
-Input format of the certificate and the private-key files. The two formats supported by the appliance are:
+Input format of the certificate and the private-key files. The three formats supported by the appliance are:
 PEM - Privacy Enhanced Mail
 DER - Distinguished Encoding Rule
-Possible values: DER, PEM
-Default value: FORMAT_PEM
+PFX - Personal Information Exchange
+Possible values: DER, PEM, PFX
+Default value: PEM
 
 <b>passplain</b>
 Pass phrase used to encrypt the private-key. Required when adding an encrypted private-key in PEM format.
@@ -59,7 +66,7 @@ Default value: NO
 
 ##Example
 
-1)	add ssl certkey siteAcertkey -cert /nsconfig/ssl/cert.pem -key /nsconfig/ssl/pkey.pemThe above command loads a certificate and private key file.2)	add ssl certkey siteAcertkey -cert /nsconfig/ssl/cert.pem -key /nsconfig/ssl/pkey.pem -passwordPassword: ********The above command loads a certificate and private key file. Here the private key file is an encrypted key.3)	add ssl certkey fipscert -cert /nsconfig/ssl/cert.pem -fipskey fips1024The above command loads a certificate and associates it with the corresponding FIPS key that resides within the HSM.
+1)	add ssl certkey siteAcertkey -cert /nsconfig/ssl/cert.pem -key /nsconfig/ssl/pkey.pemThe above command loads a certificate and private key file.2)	add ssl certkey siteAcertkey -cert /nsconfig/ssl/cert.pem -key /nsconfig/ssl/pkey.pem -passwordPassword: ********The above command loads a certificate and private key file. Here the private key file is an encrypted key.3)	add ssl certkey fipscert -cert /nsconfig/ssl/cert.pem -fipskey fips1024The above command loads a certificate and associates it with the corresponding FIPS key that resides within the HSM.4)	add ssl certkey externalhsmcert -cert /nsconfig/ssl/hsmcert.pem -hsmkey key_simple_rsa1The above command loads a certificate and associates it with the corresponding HSM key that resides within the External HSM.
 
 ##rm ssl certKey
 
@@ -101,6 +108,11 @@ Name of the certificate-key pair to modify.
 Issue an alert when the certificate is about to expire.
 Possible values: ENABLED, DISABLED
 
+<b>notificationPeriod</b>
+Time, in number of days, before certificate expiration, at which to generate an alert that the certificate is about to expire.
+Minimum value: 10
+Maximum value: 100
+
 
 
 ##unset ssl certKey
@@ -131,18 +143,10 @@ Name of the certificate-key pair.
 <b>ocspResponder</b>
 Name of the OCSP responder to be associated with the CA certificate.
 
-<b>vServerName</b>
-The name of the SSL virtual server name to which the certificate-key pair needs to be bound.
-
-<b>serviceName</b>
-The name of the SSL service to which the certificate-key pair needs to be bound. Use the ###add service### command to create this service.
-
-<b>serviceGroupName</b>
-The name of the SSL service group to which the certificate-key pair needs to be bound. Use the "add servicegroup" command to create this service.
-
-<b>CA</b>
-If this option is specified, it indicates that the certificate-key pair being bound to the SSL virtual server is a CA certificate. If this option is not specified, the certificate-key pair is bound as a normal server certificate.
-	Note: In case of a normal server certificate, the certificate-key pair should consist of both the certificate and the private-key.
+<b>priority</b>
+Priority of the OCSP responder binding.
+Minimum value: 1
+Maximum value: 32
 
 
 
@@ -173,18 +177,6 @@ Name of the certificate-key pair to unbind.
 
 <b>ocspResponder</b>
 Name of the OCSP responder.
-
-<b>vServerName</b>
-The name of the SSL virtual server.
-
-<b>serviceName</b>
-The name of the SSL service
-
-<b>serviceGroupName</b>
-The name of the service group.
-
-<b>CA</b>
-The certificate-key pair being unbound is a Certificate Authority (CA) certificate. If you choose this option, the certificate-key pair is unbound from the list of CA certificates that were bound to the specified SSL virtual server or SSL service.
 
 
 
@@ -270,14 +262,6 @@ show ssl certKey [&lt;certkeyName>]
 <b>certkeyName</b>
 Name of the certificate-key pair for which to show detailed information.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -289,7 +273,7 @@ The name and location of the file containing the certificate.
 The name and location of the file containing the key.
 
 <b>inform</b>
-The encoding format of the certificate and key (PEM or DER).
+The encoding format of the certificate and key (PEM,DER or PFX).
 
 <b>signatureAlg</b>
 Signature algorithm.
@@ -330,6 +314,9 @@ Status of the certificate.
 <b>fipsKey</b>
 FIPS key ID.
 
+<b>hsmKey</b>
+External HSM key ID.
+
 <b>passcrypt</b>
 Passcrypt.
 
@@ -356,6 +343,9 @@ The name of the Certificate-Authority.
 
 <b>stateflag</b>
 
+<b>gslbServiceFlag</b>
+Indicates that this is a gslb service
+
 <b>devno</b>
 
 <b>count</b>
@@ -373,7 +363,7 @@ Updates the certificate or private key in a certificate-key pair. In a high avai
 
 ##Synopsys
 
-update ssl certKey &lt;certkeyName> [-cert &lt;string>] [(-key &lt;string>  [-password]) | -fipsKey &lt;string>] [-inform ( DER | PEM )] [-noDomainCheck]
+update ssl certKey &lt;certkeyName> [-cert &lt;string>  [-password]] [-key &lt;string> | -fipsKey &lt;string>] [-inform &lt;inform>] [-noDomainCheck]
 
 
 ##Arguments
@@ -387,15 +377,19 @@ Name of and, optionally, path to the X509 certificate file that is used to form 
 <b>key</b>
 Name of and, optionally, path to the private-key file that is used to form the certificate-key pair. The certificate file should be present on the appliance's hard-disk drive or solid-state drive. Storing a certificate in any location other than the default might cause inconsistency in a high availability setup. /nsconfig/ssl/ is the default path.
 
+<b>password</b>
+Passphrase that was used to encrypt the private-key. Use this option to load encrypted private-keys in PEM format.
+
 <b>fipsKey</b>
 Name of the FIPS key that was created inside the Hardware Security Module (HSM) of a FIPS appliance, or a key that was imported into the HSM.
 
 <b>inform</b>
-Input format of the certificate and the private-key files. The two formats supported by the appliance are:
+Input format of the certificate and the private-key files. The three formats supported by the appliance are:
 PEM - Privacy Enhanced Mail
 DER - Distinguished Encoding Rule
-Possible values: DER, PEM
-Default value: FORMAT_PEM
+PFX - Personal Information Exchange
+Possible values: DER, PEM, PFX
+Default value: PEM
 
 <b>passplain</b>
 Pass phrase used to encrypt the private-key. Required when adding an encrypted private-key in PEM format.

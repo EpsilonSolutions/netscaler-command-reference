@@ -26,7 +26,7 @@ If the name includes one or more spaces, enclose the name in double or single qu
 <b>policylabeltype</b>
 Type of traffic evaluated by the policies bound to the policy label.
 Possible values: HTTP, OTHERTCP
-Default value: NS_PLTMAP_APPFLOW_REQ
+Default value: HTTP
 
 
 
@@ -68,10 +68,37 @@ bind appflow policylabel &lt;labelName> -policyName &lt;string> -priority &lt;po
 ##Arguments
 
 <b>labelName</b>
-Name of the policy label to which to bind the policy.
+Name of the label to invoke if the current policy evaluates to TRUE.
 
 <b>policyName</b>
 Name of the policy to bind to the policy label.
+
+<b>priority</b>
+Priority assigned to the policy. The lower the number, the higher the priority.
+Minimum value: 1
+Maximum value: 2147483647
+
+<b>gotoPriorityExpression</b>
+Expression or other value specifying the priority of the next policy, within the policy label, to evaluate if the current policy evaluates to TRUE.  Specify one of the following values:
+* NEXT - Evaluate the policy with the next higher numbered priority.
+* END - Stop evaluation.
+* USE_INVOCATION_RESULT - Applicable if this policy invokes another policy label. If the final goto in the invoked policy label has a value of END, the evaluation stops. If the final goto is anything other than END, the current policy label performs a NEXT.
+* An expression that evaluates to a number.
+If you specify an expression, it's evaluation result determines the next policy to evaluate, as follows: 
+* If the expression evaluates to a higher numbered priority, that policy is evaluated next.
+* If the expression evaluates to the priority of the current policy, the policy with the next higher priority number is evaluated next.
+* If the expression evaluates to a priority number that is numerically higher than the highest priority number, policy evaluation ends.
+An UNDEF event is triggered if:
+* The expression is invalid.
+* The expression evaluates to a priority number that is numerically lower than the current policy's priority.
+* The expression evaluates to a priority number that is between the current policy's priority number (say, 30) and the highest priority number (say, 100), but does not match any configured priority number (for example, the expression evaluates to the number 85). This example assumes that the priority number increments by 10 for every successive policy, and therefore a priority number of 85 does not exist in the policy label.
+
+<b>invoke</b>
+Invoke policies bound to a virtual server or a user-defined policy label. After the invoked policies are evaluated, the flow returns to the policy with the next priority.
+
+<b>labelType</b>
+Type of policy label to be invoked.
+Possible values: vserver, policylabel
 
 
 
@@ -96,6 +123,11 @@ Name of the policy label from which to unbind a policy.
 
 <b>policyName</b>
 Name of the policy to unbind.
+
+<b>priority</b>
+Priority of the NOPOLICY to be unbound. Applicable only if a NOPOLICY has been bound to the policy label. 
+Minimum value: 1
+Maximum value: 2147483647
 
 
 
@@ -143,14 +175,6 @@ show appflow policylabel [&lt;labelName>]
 
 <b>labelName</b>
 Name of the policy label about which to display detailed information.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

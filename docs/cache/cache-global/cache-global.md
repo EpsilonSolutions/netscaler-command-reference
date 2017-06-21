@@ -20,6 +20,38 @@ bind cache global &lt;policy> -priority &lt;positive_integer> [-gotoPriorityExpr
 <b>policy</b>
 Name of the policy to bind. (A policy must be created before it can be bound.)
 
+<b>priority</b>
+Priority to assign to the policy. The appliance might disallow some priority values, depending on what you have already configured. For example, a response cache policy cannot have a higher priority than a request cache policy. Priority helps in dictating the order of policy evaluation.
+Minimum value: 1
+Maximum value: 2147483647
+
+<b>gotoPriorityExpression</b>
+Expression or other value specifying the priority of the next policy to evaluate if the current policy rule evaluates to TRUE. Specify one of the following values:
+* END. Terminate evaluation of this policy bank. This setting is equivalent to omitting the parameter. 
+* NEXT. Evaluate the policy with the next higher priority.
+* An expression whose evaluation results in a number.
+Evaluation of an expression determines the next action as follows:
+* If the expression evaluates to a priority number larger than the highest priority number in the policy bank, the next policy bank is evaluated. 
+* If the expression evaluates to the priority of a policy with a lower priority (higher number) within the same policy bank, that policy is evaluated next. 
+* If the expression evaluates to the priority of the current policy, the policy with the next-lower priority is evaluated next.
+Any of the following results trigger an UNDEF condition
+* The expression cannot be evaluated.
+* The expression evaluates to a number that is smaller than the current policy's priority number
+
+<b>type</b>
+Bind point, specifying where to bind the policy.
+Possible values: REQ_OVERRIDE, REQ_DEFAULT, RES_OVERRIDE, RES_DEFAULT
+
+<b>invoke</b>
+Invoke policies bound to a virtual server or a user-defined policy label. After the invoked policies are evaluated, the flow returns to the policy with the next priority. Applicable only to default-syntax policies.
+
+<b>labelType</b>
+Type of policy label to invoke.
+Possible values: reqvserver, resvserver, policylabel
+
+<b>labelName</b>
+Name of the label to invoke if the current policy rule evaluates to TRUE. (To invoke a label associated with a virtual server, specify the name of the virtual server.)
+
 
 
 ##unbind cache global
@@ -36,6 +68,10 @@ unbind cache global &lt;policy> [-type &lt;type>] [-priority &lt;positive_intege
 
 <b>policy</b>
 Name of the policy to unbind.
+
+<b>type</b>
+Bind point from which to unbind the policy.
+Possible values: REQ_OVERRIDE, REQ_DEFAULT, RES_OVERRIDE, RES_DEFAULT
 
 <b>priority</b>
 Priority of the NOPOLICY to be unbound. Required only you want to unbind a NOPOLICY that might have been bound to this policy label.
@@ -60,20 +96,12 @@ show cache global [-type &lt;type>]
 The bind point to which policy is bound. When you specify the type, detailed information about that bind point appears.
 Possible values: REQ_OVERRIDE, REQ_DEFAULT, RES_OVERRIDE, RES_DEFAULT
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
 
 <b>policyName</b>
-Name of the cache policy.NOTE: This attribute is deprecated.Replaced by Policy field
+Name of the cache policy.
 
 <b>policy</b>
 Name of the cache policy.
@@ -100,30 +128,32 @@ The number of policies bound to the bindpoint.
 flowtype of the bound cache policy.
 
 <b>rule</b>
-The request/response rule that will trigger the given action.NOTE: This attribute is deprecated.
+The request/response rule that will trigger the given action.
 
 <b>action</b>
-The integrated cache action to be applied when the system sees content that matches the rules.NOTE: This attribute is deprecated.
+The integrated cache action to be applied when the system sees content that matches the rules.
 
 <b>storeInGroup</b>
-The content group to store the object when the action directive is CACHE.NOTE: This attribute is deprecated.
+The content group to store the object when the action directive is CACHE.
 
 <b>invalGroups</b>
-The content group(s) to be invalidated when the action directive is INVAL.NOTE: This attribute is deprecated.
+The content group(s) to be invalidated when the action directive is INVAL.
 
 <b>invalObjects</b>
 The content group(s) whose objects will be invalidated when the action directive is INVAL.
 
 <b>hits</b>
-Hits.NOTE: This attribute is deprecated.
+Hits.
 
 <b>flags</b>
-Flags.NOTE: This attribute is deprecated.
+Flags.
 
 <b>precedeDefRules</b>
-Override the default request/response cacheability rules.NOTE: This attribute is deprecated.
+Override the default request/response cacheability rules.
 
 <b>stateflag</b>
+
+<b>globalBindType</b>
 
 <b>devno</b>
 

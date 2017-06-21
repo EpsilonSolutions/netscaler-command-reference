@@ -25,14 +25,17 @@ Target host for the specified service.
 
 <b>priority</b>
 Integer specifying the priority of the target host. The lower the number, the higher the priority. If multiple target hosts have the same priority, selection is based on the Weight parameter.
+Minimum value: 0
 Maximum value: 65535
 
 <b>weight</b>
 Weight for the target host. Aids host selection when two or more hosts have the same priority. A larger number indicates greater weight.
+Minimum value: 0
 Maximum value: 65535
 
 <b>port</b>
 Port on which the target host listens for client requests.
+Minimum value: 0
 Maximum value: 65535
 
 <b>TTL</b>
@@ -82,14 +85,17 @@ Target of the SRV record to be modified.
 
 <b>priority</b>
 Integer specifying the priority of the target host. The lower the number, the higher the priority. If multiple target hosts have the same priority, selection is based on the Weight parameter.
+Minimum value: 0
 Maximum value: 65535
 
 <b>weight</b>
 Weight for the target host. Aids host selection when two or more hosts have the same priority. A larger number indicates greater weight.
+Minimum value: 0
 Maximum value: 65535
 
 <b>port</b>
 Port on which the target host listens for client requests.
+Minimum value: 0
 Maximum value: 65535
 
 <b>TTL</b>
@@ -133,14 +139,6 @@ Type of records to display. Available settings function as follows:
 * PROXY - Display all proxy address records.
 * ALL - Display all address records.
 Possible values: ALL, ADNS, PROXY
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

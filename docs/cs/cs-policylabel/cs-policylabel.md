@@ -37,7 +37,7 @@ Protocol supported by the policy label. All policies bound to the policy label m
 * RADIUS - Supports policies that process Remote Authentication Dial In User Service (RADIUS) traffic. RADIUS supports combined authentication, authorization, and auditing services for network management.
 * MYSQL - Supports policies that process MYSQL traffic.
 * MSSQL - Supports policies that process Microsoft SQL traffic.
-Possible values: HTTP, TCP, RTSP, SSL, SSL_TCP, UDP, DNS, SIP_UDP, ANY, RADIUS, RDP, MYSQL, MSSQL, ORACLE, DIAMETER, SSL_DIAMETER, FTP, DNS_TCP
+Possible values: HTTP, TCP, RTSP, SSL, SSL_TCP, UDP, DNS, SIP_UDP, SIP_TCP, ANY, RADIUS, RDP, MYSQL, MSSQL, ORACLE, DIAMETER, SSL_DIAMETER, FTP, DNS_TCP, SMPP
 
 
 
@@ -79,7 +79,7 @@ bind cs policylabel &lt;labelName> &lt;policyName> &lt;priority> [-targetVserver
 ##Arguments
 
 <b>labelName</b>
-Name of the policy label to which to bind a content switching policy.
+Name of the label to invoke if the current policy rule evaluates to TRUE.
 
 <b>policyName</b>
 Name of the content switching policy to bind to the content switching policy label.
@@ -107,6 +107,10 @@ An UNDEF event is triggered if:
 
 <b>invoke</b>
 Invoke other policy labels. After evaluating the policies in the invoked policy label, the appliance continues to evaluate policies that are bound to the current policy label (the selected bind point).
+
+<b>labelType</b>
+Type of policy label invocation.
+Possible values: policylabel
 
 
 
@@ -152,14 +156,6 @@ show cs policylabel [&lt;labelName>]
 
 <b>labelName</b>
 Name of the content switching policy label to display.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

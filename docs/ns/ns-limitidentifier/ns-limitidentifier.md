@@ -47,7 +47,7 @@ set limitidentifier limit_req -mode request_rate -timeslice 1000 -Threshold 5 -l
 5. To permit 5000 requests in 1000 ms and 200 traps in 1000 ms:
 set limitidentifier limit_req  -mode request_rate -timeslice 1000 -Threshold 5000 -limitType BURSTY
 Possible values: CONNECTION, REQUEST_RATE, NONE
-Default value: PEMGMT_RLT_MODE_REQ_RATE
+Default value: REQUEST_RATE
 
 <b>limitType</b>
 Smooth or bursty request type.
@@ -55,17 +55,19 @@ Smooth or bursty request type.
 * BURSTY - When you want the permitted number of requests to exhaust the quota anytime within the timeslice.
 This argument is needed only when the mode is set to REQUEST_RATE.
 Possible values: BURSTY, SMOOTH
-Default value: PEMGMT_RLT_REQ_RATE_TYPE_BURSTY
+Default value: BURSTY
 
 <b>selectorName</b>
 Name of the rate limit selector. If this argument is NULL, rate limiting will be applied on all traffic received by the virtual server or the NetScaler (depending on whether the limit identifier is bound to a virtual server or globally) without any filtering.
 
 <b>maxBandwidth</b>
 Maximum bandwidth permitted, in kbps.
+Minimum value: 0
 Maximum value: 4294967287
 
 <b>trapsInTimeSlice</b>
 Number of traps to be sent in the timeslice configured. A value of 0 indicates that traps are disabled.
+Minimum value: 0
 Maximum value: 65535
 
 
@@ -137,17 +139,27 @@ set limitidentifier limit_req -mode request_rate -timeslice 1000 -Threshold 5 -l
 5. To permit 5000 requests in 1000 ms and 200 traps in 1000 ms:
 set limitidentifier limit_req  -mode request_rate -timeslice 1000 -Threshold 5000 -limitType BURSTY
 Possible values: CONNECTION, REQUEST_RATE, NONE
-Default value: PEMGMT_RLT_MODE_REQ_RATE
+Default value: REQUEST_RATE
+
+<b>limitType</b>
+Smooth or bursty request type.
+* SMOOTH - When you want the permitted number of requests in a given interval of time to be spread evenly across the timeslice
+* BURSTY - When you want the permitted number of requests to exhaust the quota anytime within the timeslice.
+This argument is needed only when the mode is set to REQUEST_RATE.
+Possible values: BURSTY, SMOOTH
+Default value: BURSTY
 
 <b>selectorName</b>
 Name of the rate limit selector. If this argument is NULL, rate limiting will be applied on all traffic received by the virtual server or the NetScaler (depending on whether the limit identifier is bound to a virtual server or globally) without any filtering.
 
 <b>maxBandwidth</b>
 Maximum bandwidth permitted, in kbps.
+Minimum value: 0
 Maximum value: 4294967287
 
 <b>trapsInTimeSlice</b>
 Number of traps to be sent in the timeslice configured. A value of 0 indicates that traps are disabled.
+Minimum value: 0
 Maximum value: 65535
 
 
@@ -180,14 +192,6 @@ show ns limitIdentifier [&lt;limitIdentifier>]
 
 <b>limitIdentifier</b>
 Name of the rate limit identifier about which to display information. If a name is not provided, information about all rate limit identifiers is shown.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -289,6 +293,20 @@ The name of the identifier.
 <b>pattern</b>
 Pattern for the selector field, ? means field is required, * means field value does not matter, anything else is a regular pattern
 
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
+
 <b>clearstats</b>
 Clear the statsistics / counters
 Possible values: basic, full
@@ -296,6 +314,11 @@ Possible values: basic, full
 <b>sortBy</b>
 use this argument to sort by specific key
 Possible values: Hits
+
+<b>sortOrder</b>
+use this argument to specify sort order
+Possible values: ascending, descending
+Default value: SORT_DESCENDING
 
 
 
@@ -324,7 +347,7 @@ Total hits.
 
 ##Related Commands
 
-<ul><li><a href="../../..//">stat ns</a></li><li><a href="../../..//">stat ns acl</a></li><li><a href="../../..//">stat ns acl6</a></li><li><a href="../../../t-ns-simp/t-ns-simp">stat ns simpleacl</a></li><li><a href="../../../at-ns-simpl/at-ns-simpl">stat ns simpleacl6</a></li><li><a href="../../..//">stat ns pbr</a></li><li><a href="../../../s-m/s-m">stat ns memory</a></li><li><a href="../../..//">stat ns pbr6</a></li><li><a href="../../../#stat-ns-trafficd/#stat-ns-trafficd">stat ns trafficDomain</a></li></ul>
+<ul><li><a href="../../..//">stat ns</a></li><li><a href="../../..//">stat ns acl</a></li><li><a href="../../..//">stat ns acl6</a></li><li><a href="../../../t-ns-simp/t-ns-simp">stat ns simpleacl</a></li><li><a href="../../../at-ns-simpl/at-ns-simpl">stat ns simpleacl6</a></li><li><a href="../../..//">stat ns pbr</a></li><li><a href="../../../s-m/s-m">stat ns memory</a></li><li><a href="../../..//">stat ns pbr6</a></li><li><a href="../../../#stat-ns-trafficd/#stat-ns-trafficd">stat ns trafficDomain</a></li><li><a href="../../../t-ns-part/t-ns-part">stat ns partition</a></li></ul>
 
 
 

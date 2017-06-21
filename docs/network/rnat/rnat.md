@@ -12,7 +12,7 @@ Removes an RNAT rule from the NetScaler appliance.
 
 ##Synopsys
 
-clear rnat ((&lt;network>  [&lt;netmask>]) | (&lt;aclname>  [-redirectPort])) [-natIP &lt;ip_addr|*>@ ...] [-td &lt;positive_integer>]
+clear rnat ((&lt;network>  [&lt;netmask>]) | (&lt;aclname>  [-redirectPort])) [-natIP &lt;ip_addr|*>@ ...] [-td &lt;positive_integer>] [-ownerGroup &lt;string>]
 
 
 ##Arguments
@@ -37,6 +37,10 @@ Integer value that uniquely identifies the traffic domain in which you want to c
 Minimum value: 0
 Maximum value: 4094
 
+<b>ownerGroup</b>
+The owner node group in a Cluster for this rnat rule.
+Default value: DEFAULT_NG
+
 
 
 ##set rnat
@@ -46,7 +50,7 @@ Modifies parameters of an RNAT rule.
 
 ##Synopsys
 
-set rnat ((&lt;network>  [&lt;netmask>]  [-natIP &lt;ip_addr|*>@ ...]) | (&lt;aclname>  [-redirectPort &lt;port>]  [-natIP &lt;ip_addr|*>@ ...])) [-td &lt;positive_integer>] [-srcippersistency ( ENABLED | DISABLED )]
+set rnat ((&lt;network>  [&lt;netmask>]  [-natIP &lt;ip_addr|*>@ ...]) | (&lt;aclname>  [-redirectPort &lt;port>]  [-natIP &lt;ip_addr|*>@ ...])) [-td &lt;positive_integer>] [-srcippersistency ( ENABLED | DISABLED )] [-useproxyport ( ENABLED | DISABLED )] [-ownerGroup &lt;string>]
 
 
 ##Arguments
@@ -54,13 +58,38 @@ set rnat ((&lt;network>  [&lt;netmask>]  [-natIP &lt;ip_addr|*>@ ...]) | (&lt;ac
 <b>network</b>
 IPv4 network address on whose traffic you want the NetScaler appliance to do RNAT processing.
 
+<b>netmask</b>
+Subnet mask associated with the network address.
+
+<b>natIP</b>
+The NAT IP(s) assigned to the RNAT.
+
+<b>td</b>
+Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
+Minimum value: 0
+Maximum value: 4094
+
 <b>aclname</b>
 Name of any configured extended ACL whose action is ALLOW. The condition specified in the extended ACL rule isused as the condition for the RNAT6 rule.
+
+<b>redirectPort</b>
+The port number to which the packets are redirected.
+Minimum value: 1
+Maximum value: 65535
 
 <b>srcippersistency</b>
 Enables the NetScaler appliance to use the same NAT IP address for all RNAT sessions initiated from a particular server.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
+
+<b>useproxyport</b>
+Enable source port proxying, which enables the NetScaler appliance to use the RNAT ips using proxied source port.
+Possible values: ENABLED, DISABLED
+Default value: ENABLED
+
+<b>ownerGroup</b>
+The owner node group in a Cluster for this rnat rule.
+Default value: DEFAULT_NG
 
 
 
@@ -71,7 +100,7 @@ Use this command to modify the parameters of  configured Reverse NAT on the syst
 
 ##Synopsys
 
-unset rnat ((&lt;network>  [&lt;netmask>]) | (&lt;aclname>  [-redirectPort])) [-td &lt;positive_integer>] [-natIP &lt;ip_addr|*>@ ...] [-srcippersistency]
+unset rnat ((&lt;network>  [&lt;netmask>]) | (&lt;aclname>  [-redirectPort])) [-td &lt;positive_integer>] [-natIP &lt;ip_addr|*>@ ...] [-srcippersistency] [-ownerGroup &lt;string>] [-useproxyport]
 
 
 ##stat rnat
@@ -85,6 +114,20 @@ stat rnat [-detail] [-fullValues] [-ntimes &lt;positive_integer>] [-logFile &lt;
 
 
 ##Arguments
+
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
 
 <b>clearstats</b>
 Clear the statsistics / counters
@@ -128,18 +171,6 @@ Display the Reverse NAT configuration.
 show rnat
 
 
-##Arguments
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>network</b>
@@ -163,8 +194,14 @@ The port number to which the packets are redirected.
 <b>srcippersistency</b>
 Enables the NetScaler appliance to use the same NAT IP address for all RNAT sessions initiated from a particular server.
 
+<b>useproxyport</b>
+Enable source port proxying, which enables the NetScaler appliance to use the RNAT ips using proxied source port.
+
 <b>cfgflags</b>
 This contains the flags for RNAT in DB
+
+<b>ownerGroup</b>
+The owner node group in a Cluster for this rnat rule.
 
 <b>devno</b>
 

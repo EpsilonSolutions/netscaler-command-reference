@@ -73,14 +73,6 @@ Displays the information on the FIPS card.
 show ssl fips
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>initHSM</b>
@@ -163,23 +155,22 @@ An example of the output for show ssl fips command is as follows:	FIPS HSM Info:
 
 ##update ssl fips
 
-Updates the FIPS firmware. Note: Only compatible firmware version upgrade is allowed. For example, 4.6.0 to 4.6.1
+Updates the FIPS firmware. Note: Upgrade with compatible firmware is required. You must specify a valid file path and name
 
 
 ##Synopsys
 
-update ssl fips -fipsFW 4.6.1
+update ssl fips -fipsFW &lt;string>
 
 
 ##Arguments
 
 <b>fipsFW</b>
-FIPS firmware update.
-Possible values: 4.6.1
+Path to the FIPS firmware file.
 
 
 
 ##Example
 
-update ssl fips -fipsFW 4.6.1
+update ssl fips -fipsFW /var/nsinstall/fips/CN16XX-NFBE-FW-2.2-130001
 

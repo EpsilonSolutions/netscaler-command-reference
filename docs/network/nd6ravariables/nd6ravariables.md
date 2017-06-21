@@ -85,6 +85,7 @@ Maximum value: 3600000
 <b>retransTime</b>
 Retransmission time, in milliseconds.
 Default value: 0
+Minimum value: 0
 
 <b>defaultLifeTime</b>
 Default life time, in seconds.
@@ -124,10 +125,6 @@ show nd6RAvariables [-vlan &lt;positive_integer>]
 The VLAN number.
 Minimum value: 0
 Maximum value: 4094
-
-<b>format</b>
-
-<b>level</b>
 
 
 

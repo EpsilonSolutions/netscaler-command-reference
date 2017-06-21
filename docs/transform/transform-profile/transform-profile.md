@@ -98,14 +98,6 @@ show transform profile [&lt;name>]
 <b>name</b>
 Name of the profile.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

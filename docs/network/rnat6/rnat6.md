@@ -26,6 +26,11 @@ IPv6 address of the network on whose traffic you want the NetScaler appliance to
 <b>acl6name</b>
 Name of any configured ACL6 whose action is ALLOW. The rule of the ACL6 is used as an RNAT6 rule.
 
+<b>redirectPort</b>
+Port number to which the IPv6 packets are redirected. Applicable to TCP and UDP protocols.
+Minimum value: 1
+Maximum value: 65535
+
 <b>td</b>
 Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
 Minimum value: 0
@@ -158,10 +163,6 @@ show rnat6 [&lt;name>]
 
 <b>name</b>
 Name of the RNAT6 rule whose details you want to display.
-
-<b>format</b>
-
-<b>level</b>
 
 
 

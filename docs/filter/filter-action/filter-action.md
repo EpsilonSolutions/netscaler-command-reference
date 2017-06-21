@@ -130,14 +130,6 @@ show filter action [&lt;name>]
 <b>name</b>
 Name of the content filtering action to be displayed. If a name is not provided, information about all filter actions is shown.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

@@ -54,14 +54,6 @@ Displays the default responder undefAction.
 show responder param
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>undefAction</b>

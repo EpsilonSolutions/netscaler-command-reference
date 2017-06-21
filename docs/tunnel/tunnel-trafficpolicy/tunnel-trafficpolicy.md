@@ -118,14 +118,6 @@ show tunnel trafficPolicy [&lt;name>]
 <b>name</b>
 Name of the tunnel traffic policy for which to show detailed information.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

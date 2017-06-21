@@ -12,7 +12,7 @@ Sets the advanced SSL configuration for an SSL service group.
 
 ##Synopsys
 
-set ssl serviceGroup &lt;serviceGroupName>@ [-sslProfile &lt;string>] [-sessReuse ( ENABLED | DISABLED )  [-sessTimeout &lt;positive_integer>]] [-nonFipsCiphers ( ENABLED | DISABLED )] [-ssl3 ( ENABLED | DISABLED )] [-tls1 ( ENABLED | DISABLED )] [-serverAuth ( ENABLED | DISABLED )  [-commonName &lt;string>]] [-sendCloseNotify ( YES | NO )]
+set ssl serviceGroup &lt;serviceGroupName>@ [-sslProfile &lt;string>] [-sessReuse ( ENABLED | DISABLED )  [-sessTimeout &lt;positive_integer>]] [-nonFipsCiphers ( ENABLED | DISABLED )] [-ssl3 ( ENABLED | DISABLED )] [-tls1 ( ENABLED | DISABLED )] [-tls11 ( ENABLED | DISABLED )] [-tls12 ( ENABLED | DISABLED )] [-serverAuth ( ENABLED | DISABLED )  [-commonName &lt;string>]] [-sendCloseNotify ( YES | NO )]
 
 
 ##Arguments
@@ -21,12 +21,18 @@ set ssl serviceGroup &lt;serviceGroupName>@ [-sslProfile &lt;string>] [-sessReus
 Name of the SSL service group for which to set advanced configuration.
 
 <b>sslProfile</b>
-SSL Profile associated to serviceGroup
+Name of the SSL profile that contains SSL settings for the Service Group.
 
 <b>sessReuse</b>
 State of session reuse. Establishing the initial handshake requires CPU-intensive public key encryption operations. With the ENABLED setting, session key exchange is avoided for session resumption requests received from the client.
 Possible values: ENABLED, DISABLED
 Default value: ENABLED
+
+<b>sessTimeout</b>
+Time, in seconds, for which to keep the session active. Any session resumption request received after the timeout period will require a fresh SSL handshake and establishment of a new SSL session.
+Default value: 300
+Minimum value: 0
+Maximum value: 4294967294
 
 <b>nonFipsCiphers</b>
 State of usage of ciphers that are not FIPS approved. Valid only for an SSL service bound with a FIPS key and certificate.
@@ -43,10 +49,23 @@ State of TLSv1.0 protocol support for the SSL service group.
 Possible values: ENABLED, DISABLED
 Default value: ENABLED
 
+<b>tls11</b>
+State of TLSv1.1 protocol support for the SSL service group.
+Possible values: ENABLED, DISABLED
+Default value: ENABLED
+
+<b>tls12</b>
+State of TLSv1.2 protocol support for the SSL service group.
+Possible values: ENABLED, DISABLED
+Default value: ENABLED
+
 <b>serverAuth</b>
 State of server authentication support for the SSL service group.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
+
+<b>commonName</b>
+Name to be checked against the CommonName (CN) field in the server certificate bound to the SSL server
 
 <b>sendCloseNotify</b>
 Enable sending SSL Close-Notify at the end of a transaction
@@ -66,7 +85,7 @@ Use this command to remove ssl serviceGroup settings.Refer to the set ssl servic
 
 ##Synopsys
 
-unset ssl serviceGroup &lt;serviceGroupName>@ [-sslProfile] [-sessReuse] [-sessTimeout] [-nonFipsCiphers] [-ssl3] [-tls1] [-serverAuth] [-commonName] [-sendCloseNotify]
+unset ssl serviceGroup &lt;serviceGroupName>@ [-sslProfile] [-sessReuse] [-sessTimeout] [-nonFipsCiphers] [-ssl3] [-tls1] [-tls11] [-tls12] [-serverAuth] [-commonName] [-sendCloseNotify]
 
 
 ##bind ssl serviceGroup
@@ -86,6 +105,20 @@ The name of the SSL service to which the SSL policy needs to be bound.
 
 <b>certkeyName</b>
 The name of the CertKey
+
+<b>CA</b>
+CA certificate.
+
+<b>crlCheck</b>
+The rule for use of CRL corresponding to this CA certificate during client authentication. If crlCheck is set to Mandatory, the system will deny all SSL clients if the CRL is missing, expired - NextUpdate date is in the past, or is incomplete with remote CRL refresh enabled. If crlCheck is set to optional, the system will allow SSL clients in the above error cases.However, in any case if the client certificate is revoked in the CRL, the SSL client will be denied access.
+Possible values: Mandatory, Optional
+
+<b>SNICert</b>
+The name of the CertKey. Use this option to bind Certkey(s) which will be used in SNI processing.
+
+<b>ocspCheck</b>
+The state of the OCSP check parameter. (Mandatory/Optional)
+Possible values: Mandatory, Optional
 
 <b>cipherName</b>
 A cipher-suite can consist of an individual cipher name, the system predefined cipher-alias name, or user defined cipher-group name.
@@ -114,6 +147,16 @@ The name of the SSL service from which the SSL policy needs to be unbound.
 <b>certkeyName</b>
 The name of the certificate bound to the SSL service group.
 
+<b>CA</b>
+CA certificate.
+
+<b>crlCheck</b>
+The rule for use of CRL corresponding to this CA certificate during client authentication. If crlCheck is set to Mandatory, the system will deny all SSL clients if the CRL is missing, expired - NextUpdate date is in the past, or is incomplete with remote CRL refresh enabled. If crlCheck is set to optional, the system will allow SSL clients in the above error cases.However, in any case if the client certificate is revoked in the CRL, the SSL client will be denied access.
+Possible values: Mandatory, Optional
+
+<b>SNICert</b>
+The name of the CertKey. Use this option to bind Certkey(s) which will be used in SNI processing.
+
 <b>cipherName</b>
 A cipher-suite can consist of an individual cipher name, the system predefined cipher-alias name, or user defined cipher-group name.
 
@@ -141,14 +184,6 @@ Name of the SSL service group for which to show detailed information.
 <b>cipherDetails</b>
 Display details of the individual ciphers bound to the SSL service group.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -161,6 +196,9 @@ The  file name and path for the DH parameter.
 
 <b>dhCount</b>
 The  refresh  count  for  the re-generation of DH public-key and private-key from the DH parameter.
+
+<b>dhKeyExpSizeLimit</b>
+This option enables the use of NIST recommended (NIST Special Publication 800-56A) bit size for private-key size. For example, for DH params of size 2048bit, the private-key size recommended is 224bits. This is rounded-up to 256bits.
 
 <b>eRSA</b>
 The state of Ephemeral RSA key exchange support for the SSL service group.Ephemeral RSA is used for export ciphers.
@@ -214,6 +252,12 @@ State of SSLv3 protocol support for the SSL service group.
 <b>tls1</b>
 State of TLSv1.0 protocol support for the SSL service group.
 
+<b>tls11</b>
+State of TLSv1.1 protocol support for the SSL service group.
+
+<b>tls12</b>
+State of TLSv1.2 protocol support for the SSL service group.
+
 <b>serverAuth</b>
 The state of the server authentication configuration for the SSL service group. For SSL deployments where data is encrypted end-to-end using SSL, you can authenticate the server.
 
@@ -256,7 +300,7 @@ The name of the CertKey. Use this option to bind Certkey(s) which will be used i
 Enable sending SSL Close-Notify at the end of a transaction
 
 <b>sslProfile</b>
-SSL Profile associated to serviceGroup
+Name of the SSL profile that contains SSL settings for the Service Group.
 
 <b>devno</b>
 

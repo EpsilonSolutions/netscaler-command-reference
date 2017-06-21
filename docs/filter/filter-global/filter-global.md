@@ -20,6 +20,16 @@ bind filter global (&lt;policyName>  [-priority &lt;positive_integer>]) [-state 
 <b>policyName</b>
 Name of the filtering policy to be bound.
 
+<b>priority</b>
+Priority assigned to the policy.
+Minimum value: 0
+Maximum value: 64000
+
+<b>state</b>
+State of the binding.
+Possible values: ENABLED, DISABLED
+Default value: ENABLED
+
 
 
 ##Example
@@ -55,18 +65,6 @@ Displays the globally activated filter policies.
 ##Synopsys
 
 show filter global
-
-
-##Arguments
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

@@ -21,6 +21,9 @@ Name of a virtual server, service or service group for which the SurgeQ must be 
 <b>serverName</b>
 Name of a service group member. This argument is needed when you want to flush the SurgeQ of a service group.
 
+<b>port</b>
+port on which server is bound to the entity(Servicegroup).
+
 
 
 ##Example

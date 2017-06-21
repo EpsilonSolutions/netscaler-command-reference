@@ -27,8 +27,15 @@ Possible values: TCP, UDP, ANY
 <b>destIP</b>
 Destination IP address, IP range, or host name of the intranet application. This address is the server IP address.
 
-<b>clientApplication</b>
-Names of the client applications, such as PuTTY and Xshell.
+<b>netmask</b>
+Destination subnet mask for the intranet application.
+Default value: 0xFFFFFFFF
+
+<b>IPRange</b>
+If you have multiple servers in your network, such as web, email, and file shares, configure an intranet application that includes the IP range for all the network applications. This allows users to access all the intranet applications contained in the IP address range.
+
+<b>hostName</b>
+Name of the host for which to configure interception. The names are resolved during interception when users log on with the NetScaler Gateway Plug-in.
 
 <b>destPort</b>
 Destination TCP or UDP port number for the intranet application. Use a hyphen to specify a range of port numbers, for example 90-95.
@@ -79,14 +86,6 @@ show vpn intranetApplication [&lt;intranetApplication>]
 <b>intranetApplication</b>
 Name of the intranet resource for which to display detailed information.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -110,10 +109,10 @@ Name based interception. Names should be valid dns or wins names and will be res
 The destination port.
 
 <b>clientApplication</b>
-Names of the client applications, such as PuTTY and Xshell.NOTE: This attribute is deprecated.This argument is deprecated since clientapplication is no longer supported.
+Names of the client applications, such as PuTTY and Xshell.
 
 <b>spoofIIP</b>
-This specifies whether to spoof this application on the client. NOTE: This attribute is deprecated.This argument is deprecated since snoofip is no longer supported.
+This specifies whether to spoof this application on the client.
 
 <b>interception</b>
 The interception type; for example, proxy or transparent.

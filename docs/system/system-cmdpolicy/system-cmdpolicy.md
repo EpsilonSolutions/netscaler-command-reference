@@ -86,14 +86,6 @@ show system cmdPolicy [&lt;policyName>]
 <b>policyName</b>
 Name of the system command policy about which to display information.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

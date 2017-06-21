@@ -12,7 +12,7 @@ Adds an nslog action. The action contains a reference to an nslog server and spe
 
 ##Synopsys
 
-add audit nslogAction &lt;name> &lt;serverIP> [-serverPort &lt;port>] -logLevel &lt;logLevel> ... [-dateFormat &lt;dateFormat>] [-logFacility &lt;logFacility>] [-tcp ( NONE | ALL )] [-acl ( ENABLED | DISABLED )] [-timeZone ( GMT_TIME | LOCAL_TIME )] [-userDefinedAuditlog ( YES | NO )] [-appflowExport ( ENABLED | DISABLED )]
+add audit nslogAction &lt;name> &lt;serverIP> [-serverPort &lt;port>] -logLevel &lt;logLevel> ... [-dateFormat &lt;dateFormat>] [-logFacility &lt;logFacility>] [-tcp ( NONE | ALL )] [-acl ( ENABLED | DISABLED )] [-timeZone ( GMT_TIME | LOCAL_TIME )] [-userDefinedAuditlog ( YES | NO )] [-appflowExport ( ENABLED | DISABLED )] [-lsn ( ENABLED | DISABLED )] [-alg ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -81,6 +81,14 @@ Export log messages to AppFlow collectors.
 Appflow collectors are entities to which log messages can be sent so that some action can be performed on them.
 Possible values: ENABLED, DISABLED
 
+<b>lsn</b>
+Log the LSN messages
+Possible values: ENABLED, DISABLED
+
+<b>alg</b>
+Log the ALG messages
+Possible values: ENABLED, DISABLED
+
 
 
 ##rm audit nslogAction
@@ -107,7 +115,7 @@ Modifies the specified settings of an existing nslog action.
 
 ##Synopsys
 
-set audit nslogAction &lt;name> [-serverIP &lt;ip_addr|ipv6_addr|*>] [-serverPort &lt;port>] [-logLevel &lt;logLevel> ...] [-dateFormat &lt;dateFormat>] [-logFacility &lt;logFacility>] [-tcp ( NONE | ALL )] [-acl ( ENABLED | DISABLED )] [-timeZone ( GMT_TIME | LOCAL_TIME )] [-userDefinedAuditlog ( YES | NO )] [-appflowExport ( ENABLED | DISABLED )]
+set audit nslogAction &lt;name> [-serverIP &lt;ip_addr|ipv6_addr|*>] [-serverPort &lt;port>] [-logLevel &lt;logLevel> ...] [-dateFormat &lt;dateFormat>] [-logFacility &lt;logFacility>] [-tcp ( NONE | ALL )] [-acl ( ENABLED | DISABLED )] [-timeZone ( GMT_TIME | LOCAL_TIME )] [-userDefinedAuditlog ( YES | NO )] [-appflowExport ( ENABLED | DISABLED )] [-lsn ( ENABLED | DISABLED )] [-alg ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -174,6 +182,14 @@ Export log messages to AppFlow collectors.
 Appflow collectors are entities to which log messages can be sent so that some action can be performed on them.
 Possible values: ENABLED, DISABLED
 
+<b>lsn</b>
+Log the LSN messages
+Possible values: ENABLED, DISABLED
+
+<b>alg</b>
+Log the ALG messages
+Possible values: ENABLED, DISABLED
+
 
 
 ##unset audit nslogAction
@@ -183,7 +199,7 @@ Removes the settings of an existing nslog action. Attributes for which a default
 
 ##Synopsys
 
-unset audit nslogAction &lt;name> [-serverPort] [-logLevel] [-dateFormat] [-logFacility] [-tcp] [-acl] [-timeZone] [-userDefinedAuditlog] [-appflowExport]
+unset audit nslogAction &lt;name> [-serverPort] [-logLevel] [-dateFormat] [-logFacility] [-tcp] [-acl] [-timeZone] [-userDefinedAuditlog] [-appflowExport] [-lsn] [-alg]
 
 
 ##show audit nslogAction
@@ -200,14 +216,6 @@ show audit nslogAction [&lt;name>]
 
 <b>name</b>
 Name of the nslog action.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -268,6 +276,12 @@ Appflow collectors are entities to which log messages can be sent so that some a
 
 <b>builtin</b>
 Indicates that a variable is a built-in (SYSTEM INTERNAL) type.
+
+<b>lsn</b>
+Log the LSN messages
+
+<b>alg</b>
+Log the ALG messages
 
 <b>devno</b>
 

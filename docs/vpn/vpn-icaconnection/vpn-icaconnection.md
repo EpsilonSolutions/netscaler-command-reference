@@ -3,6 +3,8 @@
 The following operations can be performed on "vpn icaConnection":
 
 
+[show](#show-vpn-icaconnection) | [kill](#kill-vpn-icaconnection)
+
 ##show vpn icaConnection
 
 Displays active connections that use the ICA proxy.
@@ -17,10 +19,6 @@ show vpn icaConnection [-userName &lt;string>]
 
 <b>userName</b>
 User name for which to display connections.
-
-<b>summary</b>
-
-<b>fullValues</b>
 
 
 
@@ -51,4 +49,28 @@ Core id of the session owner
 <b>count</b>
 
 
+
+##kill vpn icaConnection
+
+Terminates the specified ica connections.
+
+
+##Synopsys
+
+kill vpn icaConnection [-userName &lt;string>] [-all]
+
+
+##Arguments
+
+<b>userName</b>
+User name for which ica connections needs to be terminated.
+
+<b>all</b>
+Terminate all active icaconnections.
+
+
+
+##Example
+
+kill icaconnection -username joe
 

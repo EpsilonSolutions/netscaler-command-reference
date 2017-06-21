@@ -12,27 +12,19 @@ Creates a monitor that you can bind to load balancing services. The monitor peri
 
 ##Synopsys
 
-add lb monitor &lt;monitorName> &lt;type> [-action &lt;action>] [-respCode &lt;int[-int]> ...] [-httpRequest &lt;string>] [-rtspRequest &lt;string>] [-customHeaders &lt;string>] [-maxForwards &lt;positive_integer>] [-sipMethod &lt;sipMethod>] [-sipURI &lt;string>] [-sipregURI &lt;string>] [-send &lt;string>] [-recv &lt;string>] [-query &lt;string>] [-queryType &lt;queryType>] [-scriptName &lt;string>] [-scriptArgs &lt;string>] [-dispatcherIP &lt;ip_addr>] [-dispatcherPort &lt;port>] [-userName &lt;string>] {-password } {-secondaryPassword } [-logonpointName &lt;string>] [-lasVersion &lt;string>] {-radKey } [-radNASid &lt;string>] [-radNASip &lt;ip_addr>] [-radAccountType &lt;positive_integer>] [-radFramedIP &lt;ip_addr>] [-radAPN &lt;string>] [-radMSISDN &lt;string>] [-radAccountSession &lt;string>] [-LRTM ( ENABLED | DISABLED )] [-deviation &lt;positive_integer>  [&lt;units>]] [-interval &lt;integer>  [&lt;units>]] [-resptimeout &lt;integer>  [&lt;units>]] [-resptimeoutThresh &lt;positive_integer>] [-retries &lt;integer>] [-failureRetries &lt;integer>] [-alertRetries &lt;integer>] [-successRetries &lt;integer>] [-downTime &lt;integer>  [&lt;units>]] [-destIP &lt;ip_addr|ipv6_addr>] [-destPort &lt;port>] [-state ( ENABLED | DISABLED )] [-reverse ( YES | NO )] [-transparent ( YES | NO )] [-ipTunnel ( YES | NO )] [-tos ( YES | NO )] [-tosId &lt;positive_integer>] [-secure ( YES | NO )] [-validateCred ( YES | NO )] [-domain &lt;string>] [-IPAddress &lt;ip_addr|ipv6_addr|*> ...] [-group &lt;string>] [-fileName &lt;string>] [-baseDN &lt;string>] [-bindDN &lt;string>] [-filter &lt;string>] [-attribute &lt;string>] [-database &lt;string> | -oracleSid &lt;string>] [-sqlQuery &lt;text>] [-evalRule &lt;expression>] [-mssqlProtocolVersion &lt;mssqlProtocolVersion>] [-snmpOID &lt;string>] [-snmpCommunity &lt;string>] [-snmpThreshold &lt;string>] [-snmpVersion ( V1 | V2 )] [-metricTable &lt;string>] [-application &lt;string>] [-sitePath &lt;string>] [-storename &lt;string>] [-storefrontacctservice ( YES | NO )] [-netProfile &lt;string>] [-originHost &lt;string>] [-originRealm &lt;string>] [-hostIPAddress &lt;ip_addr|ipv6_addr|*>] [-vendorId &lt;positive_integer>] [-productName &lt;string>] [-firmwareRevision &lt;positive_integer>] [-authApplicationId &lt;positive_integer> ...] [-acctApplicationId &lt;positive_integer> ...] [-inbandSecurityId ( NO_INBAND_SECURITY | TLS )] [-supportedVendorIds &lt;positive_integer> ...] [-vendorSpecificVendorId &lt;positive_integer>  [-vendorSpecificAuthApplicationIds &lt;positive_integer> ...]  [-vendorSpecificAcctApplicationIds &lt;positive_integer> ...]] [-kcdAccount &lt;string>] [-storedb ( ENABLED | DISABLED )]
+add lb monitor &lt;monitorName> &lt;type> [-action &lt;action>] [-respCode &lt;int[-int]> ...] [-httpRequest &lt;string>] [-rtspRequest &lt;string>] [-customHeaders &lt;string>] [-maxForwards &lt;positive_integer>] [-sipMethod &lt;sipMethod>] [-sipURI &lt;string>] [-sipregURI &lt;string>] [-send &lt;string>] [-recv &lt;string>] [-query &lt;string>] [-queryType &lt;queryType>] [-scriptName &lt;string>] [-scriptArgs &lt;string>] [-dispatcherIP &lt;ip_addr>] [-dispatcherPort &lt;port>] [-userName &lt;string>] {-password } {-secondaryPassword } [-logonpointName &lt;string>] [-lasVersion &lt;string>] {-radKey } [-radNASid &lt;string>] [-radNASip &lt;ip_addr>] [-radAccountType &lt;positive_integer>] [-radFramedIP &lt;ip_addr>] [-radAPN &lt;string>] [-radMSISDN &lt;string>] [-radAccountSession &lt;string>] [-LRTM ( ENABLED | DISABLED )] [-deviation &lt;positive_integer> [&lt;units>]] [-interval &lt;integer> [&lt;units>]] [-resptimeout &lt;integer> [&lt;units>]] [-resptimeoutThresh &lt;positive_integer>] [-retries &lt;integer>] [-failureRetries &lt;integer>] [-alertRetries &lt;integer>] [-successRetries &lt;integer>] [-downTime &lt;integer> [&lt;units>]] [-destIP &lt;ip_addr|ipv6_addr>] [-destPort &lt;port>] [-state ( ENABLED | DISABLED )] [-reverse ( YES | NO )] [-transparent ( YES | NO )] [-ipTunnel ( YES | NO )] [-tos ( YES | NO )] [-tosId &lt;positive_integer>] [-secure ( YES | NO )] [-validateCred ( YES | NO )] [-domain &lt;string>] [-IPAddress &lt;ip_addr|ipv6_addr|*> ...] [-group &lt;string>] [-fileName &lt;string>] [-baseDN &lt;string>] [-bindDN &lt;string>] [-filter &lt;string>] [-attribute &lt;string>] [-database &lt;string> | -oracleSid &lt;string>] [-sqlQuery &lt;text>] [-evalRule &lt;expression>] [-mssqlProtocolVersion &lt;mssqlProtocolVersion>] [-snmpOID &lt;string>] [-snmpCommunity &lt;string>] [-snmpThreshold &lt;string>] [-snmpVersion ( V1 | V2 )] [-metricTable &lt;string>] [-application &lt;string>] [-sitePath &lt;string>] [-storename &lt;string>] [-storefrontacctservice ( YES | NO )] [-netProfile &lt;string>] [-originHost &lt;string>] [-originRealm &lt;string>] [-hostIPAddress &lt;ip_addr|ipv6_addr|*>] [-vendorId &lt;positive_integer>] [-productName &lt;string>] [-firmwareRevision &lt;positive_integer>] [-authApplicationId &lt;positive_integer> ...] [-acctApplicationId &lt;positive_integer> ...] [-inbandSecurityId ( NO_INBAND_SECURITY | TLS )] [-supportedVendorIds &lt;positive_integer> ...] [-vendorSpecificVendorId &lt;positive_integer> [-vendorSpecificAuthApplicationIds &lt;positive_integer> ...] [-vendorSpecificAcctApplicationIds &lt;positive_integer> ...]] [-kcdAccount &lt;string>] [-storedb ( ENABLED | DISABLED )] [-storefrontcheckbackendservices ( YES | NO )] [-trofscode &lt;positive_integer>] [-trofsstring &lt;string>]
 
 
 ##Arguments
 
 <b>monitorName</b>
-Name for the monitor. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters.
-CLI Users:  If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my monitor" or 'my monitor').
+Name for the monitor. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my monitor" or 'my monitor').
 
 <b>type</b>
-Type of monitor that you want to create.
-Possible values: PING, TCP, HTTP, TCP-ECV, HTTP-ECV, UDP-ECV, DNS, FTP, LDNS-PING, LDNS-TCP, LDNS-DNS, RADIUS, USER, HTTP-INLINE, SIP-UDP, LOAD, FTP-EXTENDED, SMTP, SNMP, NNTP, MYSQL, MYSQL-ECV, MSSQL-ECV, ORACLE-ECV, LDAP, POP3, CITRIX-XML-SERVICE, CITRIX-WEB-INTERFACE, DNS-TCP, RTSP, ARP, CITRIX-AG, CITRIX-AAC-LOGINPAGE, CITRIX-AAC-LAS, CITRIX-XD-DDC, ND6, CITRIX-WI-EXTENDED, DIAMETER, RADIUS_ACCOUNTING, STOREFRONT, APPC, CITRIX-XNC-ECV, CITRIX-XDM
+Type of monitor that you want to create. Possible values: PING, TCP, HTTP, TCP-ECV, HTTP-ECV, UDP-ECV, DNS, FTP, LDNS-PING, LDNS-TCP, LDNS-DNS, RADIUS, USER, HTTP-INLINE, SIP-UDP, SIP-TCP, LOAD, FTP-EXTENDED, SMTP, SNMP, NNTP, MYSQL, MYSQL-ECV, MSSQL-ECV, ORACLE-ECV, LDAP, POP3, CITRIX-XML-SERVICE, CITRIX-WEB-INTERFACE, DNS-TCP, RTSP, ARP, CITRIX-AG, CITRIX-AAC-LOGINPAGE, CITRIX-AAC-LAS, CITRIX-XD-DDC, ND6, CITRIX-WI-EXTENDED, DIAMETER, RADIUS_ACCOUNTING, STOREFRONT, APPC, SMPP, CITRIX-XNC-ECV, CITRIX-XDM
 
 <b>action</b>
-Action to perform when the response to an inline monitor (a monitor of type HTTP-INLINE) indicates that the service is down. A service monitored by an inline monitor is considered DOWN if the response code is not one of the codes that have been specified for the Response Code parameter. 
-Available settings function as follows: 
-* NONE - Do not take any action. However, the show service command and the show lb monitor command indicate the total number of responses that were checked and the number of consecutive error responses received after the last successful probe.
-* LOG - Log the event in NSLOG or SYSLOG. 
-* DOWN - Mark the service as being down, and then do not direct any traffic to the service until the configured down time has expired. Persistent connections to the service are terminated as soon as the service is marked as DOWN. Also, log the event in NSLOG or SYSLOG.
-Possible values: NONE, LOG, DOWN
-Default value: SM_DOWN
+Action to perform when the response to an inline monitor (a monitor of type HTTP-INLINE) indicates that the service is down. A service monitored by an inline monitor is considered DOWN if the response code is not one of the codes that have been specified for the Response Code parameter. Available settings function as follows: * NONE - Do not take any action. However, the show service command and the show lb monitor command indicate the total number of responses that were checked and the number of consecutive error responses received after the last successful probe. * LOG - Log the event in NSLOG or SYSLOG. * DOWN - Mark the service as being down, and then do not direct any traffic to the service until the configured down time has expired. Persistent connections to the service are terminated as soon as the service is marked as DOWN. Also, log the event in NSLOG or SYSLOG. Possible values: NONE, LOG, DOWN Default value: DOWN
 
 <b>respCode</b>
 Response codes for which to mark the service as UP. For any other response code, the action performed depends on the monitor type. HTTP monitors and RADIUS monitors mark the service as DOWN, while HTTP-INLINE monitors perform the action indicated by the Action parameter.
@@ -47,13 +39,10 @@ RTSP request to send to the server (for example, "OPTIONS *").
 Custom header string to include in the monitoring probes.
 
 <b>maxForwards</b>
-Maximum number of hops that the SIP request used for monitoring can traverse to reach the server. Applicable only to monitors of type SIP-UDP.
-Default value: 1
-Maximum value: 255
+Maximum number of hops that the SIP request used for monitoring can traverse to reach the server. Applicable only to monitors of type SIP-UDP. Default value: 1 Minimum value: 0 Maximum value: 255
 
 <b>sipMethod</b>
-SIP method to use for the query. Applicable only to monitors of type SIP-UDP.
-Possible values: OPTIONS, INVITE, REGISTER
+SIP method to use for the query. Applicable only to monitors of type SIP-UDP. Possible values: OPTIONS, INVITE, REGISTER
 
 <b>sipURI</b>
 SIP URI string to send to the service (for example, sip:sip.test). Applicable only to monitors of type SIP-UDP.
@@ -71,8 +60,7 @@ String expected from the server for the service to be marked as UP. Applicable t
 Domain name to resolve as part of monitoring the DNS service (for example, example.com).
 
 <b>queryType</b>
-Type of DNS record for which to send monitoring queries. Set to Address for querying A records, AAAA for querying AAAA records, and Zone for querying the SOA record.
-Possible values: Address, Zone, AAAA
+Type of DNS record for which to send monitoring queries. Set to Address for querying A records, AAAA for querying AAAA records, and Zone for querying the SOA record. Possible values: Address, Zone, AAAA
 
 <b>scriptName</b>
 Path and name of the script to execute. The script must be available on the NetScaler appliance, in the /nsconfig/monitors/ directory.
@@ -111,9 +99,7 @@ NAS-Identifier to send in the Access-Request packet. Applicable to monitors of t
 Network Access Server (NAS) IP address to use as the source IP address when monitoring a RADIUS server. Applicable to monitors of type RADIUS and RADIUS_ACCOUNTING.
 
 <b>radAccountType</b>
-Account Type to be used in Account Request Packet. Applicable to monitors of type RADIUS_ACCOUNTING.
-Default value: 1
-Maximum value: 15
+Account Type to be used in Account Request Packet. Applicable to monitors of type RADIUS_ACCOUNTING. Default value: 1 Minimum value: 0 Maximum value: 15
 
 <b>radFramedIP</b>
 Source ip with which the packet will go out . Applicable to monitors of type RADIUS_ACCOUNTING.
@@ -128,55 +114,37 @@ Calling Stations Id to be used in Account Request Packet. Applicable to monitors
 Account Session ID to be used in Account Request Packet. Applicable to monitors of type RADIUS_ACCOUNTING.
 
 <b>LRTM</b>
-Calculate the least response times for bound services. If this parameter is not enabled, the appliance does not learn the response times of the bound services. Also used for LRTM load balancing.
-Possible values: ENABLED, DISABLED
+Calculate the least response times for bound services. If this parameter is not enabled, the appliance does not learn the response times of the bound services. Also used for LRTM load balancing. Possible values: ENABLED, DISABLED
 
 <b>deviation</b>
-Time value added to the learned average response time in dynamic response time monitoring (DRTM). When a deviation is specified, the appliance learns the average response time of bound services and adds the deviation to the average. The final value is then continually adjusted to accommodate response time variations over time. Specified in milliseconds, seconds, or minutes.
-Maximum value: 20939000
+Time value added to the learned average response time in dynamic response time monitoring (DRTM). When a deviation is specified, the appliance learns the average response time of bound services and adds the deviation to the average. The final value is then continually adjusted to accommodate response time variations over time. Specified in milliseconds, seconds, or minutes. Minimum value: 0 Maximum value: 20939000
+
+<b>units</b>
+Unit of measurement for the Down Time parameter. Cannot be changed after the monitor is created. Possible values: SEC, MSEC, MIN Default value: SEC
 
 <b>interval</b>
-Time interval between two successive probes. Must be greater than the value of Response Time-out.
-Default value: 5
-Minimum value: 1
-Maximum value: 20940000
+Time interval between two successive probes. Must be greater than the value of Response Time-out. Default value: 5 Minimum value: 1 Maximum value: 20940000
 
 <b>resptimeout</b>
-Amount of time for which the appliance must wait before it marks a probe as FAILED.  Must be less than the value specified for the Interval parameter.
-Note: For UDP-ECV monitors for which a receive string is not configured, response timeout does not apply. For UDP-ECV monitors with no receive string, probe failure is indicated by an ICMP port unreachable error received from the service.
-Default value: 2
-Minimum value: 1
-Maximum value: 20939000
+Amount of time for which the appliance must wait before it marks a probe as FAILED. Must be less than the value specified for the Interval parameter. Note: For UDP-ECV monitors for which a receive string is not configured, response timeout does not apply. For UDP-ECV monitors with no receive string, probe failure is indicated by an ICMP port unreachable error received from the service. Default value: 2 Minimum value: 1 Maximum value: 20939000
 
 <b>resptimeoutThresh</b>
-Response time threshold, specified as a percentage of the Response Time-out parameter. If the response to a monitor probe has not arrived when the threshold is reached, the appliance generates an SNMP trap called monRespTimeoutAboveThresh. After the response time returns to a value below the threshold, the appliance generates a monRespTimeoutBelowThresh SNMP trap. For the traps to be generated, the "MONITOR-RTO-THRESHOLD" alarm must also be enabled.
-Maximum value: 100
+Response time threshold, specified as a percentage of the Response Time-out parameter. If the response to a monitor probe has not arrived when the threshold is reached, the appliance generates an SNMP trap called monRespTimeoutAboveThresh. After the response time returns to a value below the threshold, the appliance generates a monRespTimeoutBelowThresh SNMP trap. For the traps to be generated, the "MONITOR-RTO-THRESHOLD" alarm must also be enabled. Minimum value: 0 Maximum value: 100
 
 <b>retries</b>
-Maximum number of probes to send to establish the state of a service for which a monitoring probe failed.
-Default value: 3
-Minimum value: 1
-Maximum value: 127
+Maximum number of probes to send to establish the state of a service for which a monitoring probe failed. Default value: 3 Minimum value: 1 Maximum value: 127
 
 <b>failureRetries</b>
-Number of retries that must fail, out of the number specified for the Retries parameter, for a service to be marked as DOWN. For example, if the Retries parameter is set to 10 and the Failure Retries parameter is set to 6, out of the ten probes sent, at least six probes must fail if the service is to be marked as DOWN. The default value of 0 means that all the retries must fail if the service is to be marked as DOWN.
-Maximum value: 32
+Number of retries that must fail, out of the number specified for the Retries parameter, for a service to be marked as DOWN. For example, if the Retries parameter is set to 10 and the Failure Retries parameter is set to 6, out of the ten probes sent, at least six probes must fail if the service is to be marked as DOWN. The default value of 0 means that all the retries must fail if the service is to be marked as DOWN. Maximum value: 32
 
 <b>alertRetries</b>
-Number of consecutive probe failures after which the appliance generates an SNMP trap called monProbeFailed.
-Maximum value: 32
+Number of consecutive probe failures after which the appliance generates an SNMP trap called monProbeFailed. Maximum value: 32
 
 <b>successRetries</b>
-Number of consecutive successful probes required to transition a service's state from DOWN to UP.
-Default value: 1
-Minimum value: 1
-Maximum value: 32
+Number of consecutive successful probes required to transition a service's state from DOWN to UP. Default value: 1 Minimum value: 1 Maximum value: 32
 
 <b>downTime</b>
-Time duration for which to wait before probing a service that has been marked as DOWN. Expressed in milliseconds, seconds, or minutes.
-Default value: 30
-Minimum value: 1
-Maximum value: 20939000
+Time duration for which to wait before probing a service that has been marked as DOWN. Expressed in milliseconds, seconds, or minutes. Default value: 30 Minimum value: 1 Maximum value: 20939000
 
 <b>destIP</b>
 IP address of the service to which to send probes. If the parameter is set to 0, the IP address of the server to which the monitor is bound is considered the destination IP address.
@@ -185,43 +153,28 @@ IP address of the service to which to send probes. If the parameter is set to 0,
 TCP or UDP port to which to send the probe. If the parameter is set to 0, the port number of the service to which the monitor is bound is considered the destination port. For a monitor of type USER, however, the destination port is the port number that is included in the HTTP request sent to the dispatcher. Does not apply to monitors of type PING.
 
 <b>state</b>
-State of the monitor. The DISABLED setting disables not only the monitor being configured, but all monitors of the same type, until the parameter is set to ENABLED. If the monitor is bound to a service, the state of the monitor is not taken into account when the state of the service is determined.
-Possible values: ENABLED, DISABLED
-Default value: ENABLED
+State of the monitor. The DISABLED setting disables not only the monitor being configured, but all monitors of the same type, until the parameter is set to ENABLED. If the monitor is bound to a service, the state of the monitor is not taken into account when the state of the service is determined. Possible values: ENABLED, DISABLED Default value: ENABLED
 
 <b>reverse</b>
-Mark a service as DOWN, instead of UP, when probe criteria are satisfied, and as UP instead of DOWN when probe criteria are not satisfied.
-Possible values: YES, NO
-Default value: NO
+Mark a service as DOWN, instead of UP, when probe criteria are satisfied, and as UP instead of DOWN when probe criteria are not satisfied. Possible values: YES, NO Default value: NO
 
 <b>transparent</b>
-The monitor is bound to a transparent device such as a firewall or router. The state of a transparent device depends on the responsiveness of the services behind it. If a transparent device is being monitored, a destination IP address must be specified. The probe is sent to the specified IP address by using the MAC address of the transparent device.
-Possible values: YES, NO
-Default value: NO
+The monitor is bound to a transparent device such as a firewall or router. The state of a transparent device depends on the responsiveness of the services behind it. If a transparent device is being monitored, a destination IP address must be specified. The probe is sent to the specified IP address by using the MAC address of the transparent device. Possible values: YES, NO Default value: NO
 
 <b>ipTunnel</b>
-Send the monitoring probe to the service through an IP tunnel. A destination IP address must be specified.
-Possible values: YES, NO
-Default value: NO
+Send the monitoring probe to the service through an IP tunnel. A destination IP address must be specified. Possible values: YES, NO Default value: NO
 
 <b>tos</b>
-Probe the service by encoding the destination IP address in the IP TOS (6) bits.
-Possible values: YES, NO
+Probe the service by encoding the destination IP address in the IP TOS (6) bits. Possible values: YES, NO
 
 <b>tosId</b>
-The TOS ID of the specified destination IP. Applicable only when the TOS parameter is set.
-Minimum value: 1
-Maximum value: 63
+The TOS ID of the specified destination IP. Applicable only when the TOS parameter is set. Minimum value: 1 Maximum value: 63
 
 <b>secure</b>
-Use a secure SSL connection when monitoring a service. Applicable only to TCP based monitors. The secure option cannot be used with a CITRIX-AG monitor, because a CITRIX-AG monitor uses a secure connection by default.
-Possible values: YES, NO
-Default value: NO
+Use a secure SSL connection when monitoring a service. Applicable only to TCP based monitors. The secure option cannot be used with a CITRIX-AG monitor, because a CITRIX-AG monitor uses a secure connection by default. Possible values: YES, NO Default value: NO
 
 <b>validateCred</b>
-Validate the credentials of the Xen Desktop DDC server user. Applicable to monitors of type CITRIX-XD-DDC.
-Possible values: YES, NO
-Default value: NO
+Validate the credentials of the Xen Desktop DDC server user. Applicable to monitors of type CITRIX-XD-DDC. Possible values: YES, NO Default value: NO
 
 <b>domain</b>
 Domain in which the XenDesktop Desktop Delivery Controller (DDC) servers or Web Interface servers are present. Required by CITRIX-XD-DDC and CITRIX-WI-EXTENDED monitors for logging on to the DDC servers and Web Interface servers, respectively.
@@ -257,13 +210,10 @@ Name of the service identifier that is used to connect to the Oracle database du
 SQL query for a MYSQL-ECV or MSSQL-ECV monitor. Sent to the database server after the server authenticates the connection.
 
 <b>evalRule</b>
-Default syntax expression that evaluates the database server's response to a MYSQL-ECV or MSSQL-ECV monitoring query. Must produce a Boolean result. The result determines the state of the server. If the expression returns TRUE, the probe succeeds. 
-For example, if you want the appliance to evaluate the error message to determine the state of the server, use the rule MYSQL.RES.ROW(10) .TEXT_ELEM(2).EQ("MySQL").
+Default syntax expression that evaluates the database server's response to a MYSQL-ECV or MSSQL-ECV monitoring query. Must produce a Boolean result. The result determines the state of the server. If the expression returns TRUE, the probe succeeds. For example, if you want the appliance to evaluate the error message to determine the state of the server, use the rule MYSQL.RES.ROW(10) .TEXT_ELEM(2).EQ("MySQL").
 
 <b>mssqlProtocolVersion</b>
-Version of MSSQL server that is to be monitored.
-Possible values: 70, 2000, 2000SP1, 2005, 2008, 2008R2, 2012
-Default value: TDS_PROT_70
+Version of MSSQL server that is to be monitored. Possible values: 70, 2000, 2000SP1, 2005, 2008, 2008R2, 2012, 2014 Default value: 70
 
 <b>snmpOID</b>
 SNMP OID for SNMP monitors.
@@ -275,8 +225,7 @@ Community name for SNMP monitors.
 Threshold for SNMP monitors.
 
 <b>snmpVersion</b>
-SNMP version to be used for SNMP monitors.
-Possible values: V1, V2
+SNMP version to be used for SNMP monitors. Possible values: V1, V2
 
 <b>metricTable</b>
 Metric table to which to bind metrics.
@@ -291,12 +240,7 @@ URL of the logon page. For monitors of type CITRIX-WEB-INTERFACE, to monitor a d
 Store Name. For monitors of type STOREFRONT, STORENAME is an optional argument defining storefront service store name. Applicable to STOREFRONT monitors.
 
 <b>storefrontacctservice</b>
-Enable/Disable probing for Account Service. Applicable only to Store Front monitors. For multi-tenancy configuration users my skip account service
-Possible values: YES, NO
-Default value: YES
-
-<b>hostName</b>
-Hostname in the FQDN format (Example: porche.cars.org). Applicable to STOREFRONT monitors.
+Enable/Disable probing for Account Service. Applicable only to Store Front monitors. For multi-tenancy configuration users my skip account service Possible values: YES, NO Default value: YES
 
 <b>netProfile</b>
 Name of the network profile.
@@ -311,42 +255,49 @@ Origin-Realm value for the Capabilities-Exchange-Request (CER) message to use fo
 Host-IP-Address value for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers. If Host-IP-Address is not specified, the appliance inserts the mapped IP (MIP) address or subnet IP (SNIP) address from which the CER request (the monitoring probe) is sent.
 
 <b>vendorId</b>
-Vendor-Id value for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers.
+Vendor-Id value for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers. Minimum value: 0
 
 <b>productName</b>
 Product-Name value for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers.
 
 <b>firmwareRevision</b>
-Firmware-Revision value for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers.
+Firmware-Revision value for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers. Minimum value: 0
 
 <b>authApplicationId</b>
-List of Auth-Application-Id attribute value pairs (AVPs) for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers. A maximum of eight of these AVPs are supported in a monitoring CER message.
-Maximum value: 4294967295
+List of Auth-Application-Id attribute value pairs (AVPs) for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers. A maximum of eight of these AVPs are supported in a monitoring CER message. Minimum value: 0 Maximum value: 4294967295
 
 <b>acctApplicationId</b>
-List of Acct-Application-Id attribute value pairs (AVPs) for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers. A maximum of eight of these AVPs are supported in a monitoring message.
-Maximum value: 4294967295
+List of Acct-Application-Id attribute value pairs (AVPs) for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers. A maximum of eight of these AVPs are supported in a monitoring message. Minimum value: 0 Maximum value: 4294967295
 
 <b>inbandSecurityId</b>
-Inband-Security-Id for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers.
-Possible values: NO_INBAND_SECURITY, TLS
+Inband-Security-Id for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers. Possible values: NO_INBAND_SECURITY, TLS
 
 <b>supportedVendorIds</b>
-List of Supported-Vendor-Id attribute value pairs (AVPs) for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers. A maximum eight of these AVPs are supported in a monitoring message.
-Minimum value: 1
-Maximum value: 4294967295
+List of Supported-Vendor-Id attribute value pairs (AVPs) for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers. A maximum eight of these AVPs are supported in a monitoring message. Minimum value: 1 Maximum value: 4294967295
 
 <b>vendorSpecificVendorId</b>
-Vendor-Id to use in the Vendor-Specific-Application-Id grouped attribute-value pair (AVP) in the monitoring CER message. To specify Auth-Application-Id or Acct-Application-Id in Vendor-Specific-Application-Id, use vendorSpecificAuthApplicationIds or vendorSpecificAcctApplicationIds, respectively. Only one Vendor-Id is supported for all the Vendor-Specific-Application-Id AVPs in a CER monitoring message.
-Minimum value: 1
+Vendor-Id to use in the Vendor-Specific-Application-Id grouped attribute-value pair (AVP) in the monitoring CER message. To specify Auth-Application-Id or Acct-Application-Id in Vendor-Specific-Application-Id, use vendorSpecificAuthApplicationIds or vendorSpecificAcctApplicationIds, respectively. Only one Vendor-Id is supported for all the Vendor-Specific-Application-Id AVPs in a CER monitoring message. Minimum value: 1
+
+<b>vendorSpecificAuthApplicationIds</b>
+List of Vendor-Specific-Auth-Application-Id attribute value pairs (AVPs) for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers. A maximum of eight of these AVPs are supported in a monitoring message. The specified value is combined with the value of vendorSpecificVendorId to obtain the Vendor-Specific-Application-Id AVP in the CER monitoring message. Minimum value: 0 Maximum value: 4294967295
+
+<b>vendorSpecificAcctApplicationIds</b>
+List of Vendor-Specific-Acct-Application-Id attribute value pairs (AVPs) to use for monitoring Diameter servers. A maximum of eight of these AVPs are supported in a monitoring message. The specified value is combined with the value of vendorSpecificVendorId to obtain the Vendor-Specific-Application-Id AVP in the CER monitoring message. Minimum value: 0 Maximum value: 4294967295
 
 <b>kcdAccount</b>
 KCD Account used by MSSQL monitor
 
 <b>storedb</b>
-Store the database list populated with the responses to monitor probes. Used in database specific load balancing if MSSQL-ECV/MYSQL-ECV  monitor is configured.
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
+Store the database list populated with the responses to monitor probes. Used in database specific load balancing if MSSQL-ECV/MYSQL-ECV monitor is configured. Possible values: ENABLED, DISABLED Default value: DISABLED
+
+<b>storefrontcheckbackendservices</b>
+This option will enable monitoring of services running on storefront server. Storefront services are monitored by probing to a Windows service that runs on the Storefront server and exposes details of which storefront services are running. Possible values: YES, NO Default value: NO
+
+<b>trofscode</b>
+Code expected when the server is under maintenance Minimum value: 0
+
+<b>trofsstring</b>
+String expected from the server for the service to be marked as trofs. Applicable to HTTP-ECV/TCP-ECV monitors.
 
 
 
@@ -370,8 +321,7 @@ rm lb monitor &lt;monitorName> &lt;type> [-respCode &lt;int[-int]> ...]
 Name of the monitor.
 
 <b>type</b>
-Type of monitor that you want to create.
-Possible values: PING, TCP, HTTP, TCP-ECV, HTTP-ECV, UDP-ECV, DNS, FTP, LDNS-PING, LDNS-TCP, LDNS-DNS, RADIUS, USER, HTTP-INLINE, SIP-UDP, LOAD, FTP-EXTENDED, SMTP, SNMP, NNTP, MYSQL, MYSQL-ECV, MSSQL-ECV, ORACLE-ECV, LDAP, POP3, CITRIX-XML-SERVICE, CITRIX-WEB-INTERFACE, DNS-TCP, RTSP, ARP, CITRIX-AG, CITRIX-AAC-LOGINPAGE, CITRIX-AAC-LAS, CITRIX-XD-DDC, ND6, CITRIX-WI-EXTENDED, DIAMETER, RADIUS_ACCOUNTING, STOREFRONT, APPC, CITRIX-XNC-ECV, CITRIX-XDM
+Type of monitor that you want to create. Possible values: PING, TCP, HTTP, TCP-ECV, HTTP-ECV, UDP-ECV, DNS, FTP, LDNS-PING, LDNS-TCP, LDNS-DNS, RADIUS, USER, HTTP-INLINE, SIP-UDP, SIP-TCP, LOAD, FTP-EXTENDED, SMTP, SNMP, NNTP, MYSQL, MYSQL-ECV, MSSQL-ECV, ORACLE-ECV, LDAP, POP3, CITRIX-XML-SERVICE, CITRIX-WEB-INTERFACE, DNS-TCP, RTSP, ARP, CITRIX-AG, CITRIX-AAC-LOGINPAGE, CITRIX-AAC-LAS, CITRIX-XD-DDC, ND6, CITRIX-WI-EXTENDED, DIAMETER, RADIUS_ACCOUNTING, STOREFRONT, APPC, SMPP, CITRIX-XNC-ECV, CITRIX-XDM
 
 <b>respCode</b>
 Response codes to delete from the response code list configured for the HTTP monitor.
@@ -389,7 +339,7 @@ Modifies the specified parameters of a monitor.
 
 ##Synopsys
 
-set lb monitor &lt;monitorName> &lt;type> [-action &lt;action>] [-respCode &lt;int[-int]> ...] [-httpRequest &lt;string>] [-rtspRequest &lt;string>] [-customHeaders &lt;string>] [-maxForwards &lt;positive_integer>] [-sipMethod &lt;sipMethod>] [-sipregURI &lt;string>] [-sipURI &lt;string>] [-send &lt;string>] [-recv &lt;string>] [-query &lt;string>] [-queryType &lt;queryType>] [-userName &lt;string>] {-password } {-secondaryPassword } [-logonpointName &lt;string>] [-lasVersion &lt;string>] {-radKey } [-radNASid &lt;string>] [-radNASip &lt;ip_addr>] [-radAccountType &lt;positive_integer>] [-radFramedIP &lt;ip_addr>] [-radAPN &lt;string>] [-radMSISDN &lt;string>] [-radAccountSession &lt;string>] [-LRTM ( ENABLED | DISABLED )] [-deviation &lt;positive_integer>  [&lt;units>]] [-scriptName &lt;string>] [-scriptArgs &lt;string>] [-validateCred ( YES | NO )] [-domain &lt;string>] [-dispatcherIP &lt;ip_addr>] [-dispatcherPort &lt;port>] [-interval &lt;integer>  [&lt;units>]] [-resptimeout &lt;integer>  [&lt;units>]] [-resptimeoutThresh &lt;positive_integer>] [-retries &lt;integer>] [-failureRetries &lt;integer>] [-alertRetries &lt;integer>] [-successRetries &lt;integer>] [-downTime &lt;integer>  [&lt;units>]] [-destIP &lt;ip_addr|ipv6_addr>] [-destPort &lt;port>] [-state ( ENABLED | DISABLED )] [-reverse ( YES | NO )] [-transparent ( YES | NO )] [-ipTunnel ( YES | NO )] [-tos ( YES | NO )] [-tosId &lt;positive_integer>] [-secure ( YES | NO )] [-IPAddress &lt;ip_addr|ipv6_addr|*> ...] [-group &lt;string>] [-fileName &lt;string>] [-baseDN &lt;string>] [-bindDN &lt;string>] [-filter &lt;string>] [-attribute &lt;string>] [-database &lt;string> | -oracleSid &lt;string>] [-sqlQuery &lt;text>] [-evalRule &lt;expression>] [-snmpOID &lt;string>] [-snmpCommunity &lt;string>] [-snmpThreshold &lt;string>] [-snmpVersion ( V1 | V2 )] [-metricTable &lt;string>] [-metric &lt;string>  [-metricThreshold &lt;positive_integer>]  [-metricWeight &lt;positive_integer>]] [-application &lt;string>] [-sitePath &lt;string>] [-storename &lt;string>] [-storefrontacctservice ( YES | NO )] [-netProfile &lt;string>] [-mssqlProtocolVersion &lt;mssqlProtocolVersion>] [-originHost &lt;string>] [-originRealm &lt;string>] [-hostIPAddress &lt;ip_addr|ipv6_addr|*>] [-vendorId &lt;positive_integer>] [-productName &lt;string>] [-firmwareRevision &lt;positive_integer>] [-authApplicationId &lt;positive_integer> ...] [-acctApplicationId &lt;positive_integer> ...] [-inbandSecurityId ( NO_INBAND_SECURITY | TLS )] [-supportedVendorIds &lt;positive_integer> ...] [-vendorSpecificVendorId &lt;positive_integer>  [-vendorSpecificAuthApplicationIds &lt;positive_integer> ...]  [-vendorSpecificAcctApplicationIds &lt;positive_integer> ...]] [-kcdAccount &lt;string>]
+set lb monitor &lt;monitorName> &lt;type> [-action &lt;action>] [-respCode &lt;int[-int]> ...] [-httpRequest &lt;string>] [-rtspRequest &lt;string>] [-customHeaders &lt;string>] [-maxForwards &lt;positive_integer>] [-sipMethod &lt;sipMethod>] [-sipregURI &lt;string>] [-sipURI &lt;string>] [-send &lt;string>] [-recv &lt;string>] [-query &lt;string>] [-queryType &lt;queryType>] [-userName &lt;string>] {-password } {-secondaryPassword } [-logonpointName &lt;string>] [-lasVersion &lt;string>] {-radKey } [-radNASid &lt;string>] [-radNASip &lt;ip_addr>] [-radAccountType &lt;positive_integer>] [-radFramedIP &lt;ip_addr>] [-radAPN &lt;string>] [-radMSISDN &lt;string>] [-radAccountSession &lt;string>] [-LRTM ( ENABLED | DISABLED )] [-deviation &lt;positive_integer> [&lt;units>]] [-scriptName &lt;string>] [-scriptArgs &lt;string>] [-validateCred ( YES | NO )] [-domain &lt;string>] [-dispatcherIP &lt;ip_addr>] [-dispatcherPort &lt;port>] [-interval &lt;integer> [&lt;units>]] [-resptimeout &lt;integer> [&lt;units>]] [-resptimeoutThresh &lt;positive_integer>] [-retries &lt;integer>] [-failureRetries &lt;integer>] [-alertRetries &lt;integer>] [-successRetries &lt;integer>] [-downTime &lt;integer> [&lt;units>]] [-destIP &lt;ip_addr|ipv6_addr>] [-destPort &lt;port>] [-state ( ENABLED | DISABLED )] [-reverse ( YES | NO )] [-transparent ( YES | NO )] [-ipTunnel ( YES | NO )] [-tos ( YES | NO )] [-tosId &lt;positive_integer>] [-secure ( YES | NO )] [-IPAddress &lt;ip_addr|ipv6_addr|*> ...] [-group &lt;string>] [-fileName &lt;string>] [-baseDN &lt;string>] [-bindDN &lt;string>] [-filter &lt;string>] [-attribute &lt;string>] [-database &lt;string> | -oracleSid &lt;string>] [-sqlQuery &lt;text>] [-evalRule &lt;expression>] [-snmpOID &lt;string>] [-snmpCommunity &lt;string>] [-snmpThreshold &lt;string>] [-snmpVersion ( V1 | V2 )] [-metricTable &lt;string>] [-metric &lt;string> [-metricThreshold &lt;positive_integer>] [-metricWeight &lt;positive_integer>]] [-application &lt;string>] [-sitePath &lt;string>] [-storename &lt;string>] [-storefrontacctservice ( YES | NO )] [-storefrontcheckbackendservices ( YES | NO )] [-netProfile &lt;string>] [-mssqlProtocolVersion &lt;mssqlProtocolVersion>] [-originHost &lt;string>] [-originRealm &lt;string>] [-hostIPAddress &lt;ip_addr|ipv6_addr|*>] [-vendorId &lt;positive_integer>] [-productName &lt;string>] [-firmwareRevision &lt;positive_integer>] [-authApplicationId &lt;positive_integer> ...] [-acctApplicationId &lt;positive_integer> ...] [-inbandSecurityId ( NO_INBAND_SECURITY | TLS )] [-supportedVendorIds &lt;positive_integer> ...] [-vendorSpecificVendorId &lt;positive_integer> [-vendorSpecificAuthApplicationIds &lt;positive_integer> ...] [-vendorSpecificAcctApplicationIds &lt;positive_integer> ...]] [-kcdAccount &lt;string>] [-storedb ( ENABLED | DISABLED )] [-trofscode &lt;positive_integer>] [-trofsstring &lt;string>]
 
 
 ##Arguments
@@ -398,17 +348,10 @@ set lb monitor &lt;monitorName> &lt;type> [-action &lt;action>] [-respCode &lt;i
 Name of the monitor.
 
 <b>type</b>
-Type of monitor that you want to create.
-Possible values: PING, TCP, HTTP, TCP-ECV, HTTP-ECV, UDP-ECV, DNS, FTP, LDNS-PING, LDNS-TCP, LDNS-DNS, RADIUS, USER, HTTP-INLINE, SIP-UDP, LOAD, FTP-EXTENDED, SMTP, SNMP, NNTP, MYSQL, MYSQL-ECV, MSSQL-ECV, ORACLE-ECV, LDAP, POP3, CITRIX-XML-SERVICE, CITRIX-WEB-INTERFACE, DNS-TCP, RTSP, ARP, CITRIX-AG, CITRIX-AAC-LOGINPAGE, CITRIX-AAC-LAS, CITRIX-XD-DDC, ND6, CITRIX-WI-EXTENDED, DIAMETER, RADIUS_ACCOUNTING, STOREFRONT, APPC, CITRIX-XNC-ECV, CITRIX-XDM
+Type of monitor that you want to create. Possible values: PING, TCP, HTTP, TCP-ECV, HTTP-ECV, UDP-ECV, DNS, FTP, LDNS-PING, LDNS-TCP, LDNS-DNS, RADIUS, USER, HTTP-INLINE, SIP-UDP, SIP-TCP, LOAD, FTP-EXTENDED, SMTP, SNMP, NNTP, MYSQL, MYSQL-ECV, MSSQL-ECV, ORACLE-ECV, LDAP, POP3, CITRIX-XML-SERVICE, CITRIX-WEB-INTERFACE, DNS-TCP, RTSP, ARP, CITRIX-AG, CITRIX-AAC-LOGINPAGE, CITRIX-AAC-LAS, CITRIX-XD-DDC, ND6, CITRIX-WI-EXTENDED, DIAMETER, RADIUS_ACCOUNTING, STOREFRONT, APPC, SMPP, CITRIX-XNC-ECV, CITRIX-XDM
 
 <b>action</b>
-Action to perform when the response to an inline monitor (a monitor of type HTTP-INLINE) indicates that the service is down. A service monitored by an inline monitor is considered DOWN if the response code is not one of the codes that have been specified for the Response Code parameter. 
-Available settings function as follows: 
-* NONE - Do not take any action. However, the show service command and the show lb monitor command indicate the total number of responses that were checked and the number of consecutive error responses received after the last successful probe.
-* LOG - Log the event in NSLOG or SYSLOG. 
-* DOWN - Mark the service as being down, and then do not direct any traffic to the service until the configured down time has expired. Persistent connections to the service are terminated as soon as the service is marked as DOWN. Also, log the event in NSLOG or SYSLOG.
-Possible values: NONE, LOG, DOWN
-Default value: SM_DOWN
+Action to perform when the response to an inline monitor (a monitor of type HTTP-INLINE) indicates that the service is down. A service monitored by an inline monitor is considered DOWN if the response code is not one of the codes that have been specified for the Response Code parameter. Available settings function as follows: * NONE - Do not take any action. However, the show service command and the show lb monitor command indicate the total number of responses that were checked and the number of consecutive error responses received after the last successful probe. * LOG - Log the event in NSLOG or SYSLOG. * DOWN - Mark the service as being down, and then do not direct any traffic to the service until the configured down time has expired. Persistent connections to the service are terminated as soon as the service is marked as DOWN. Also, log the event in NSLOG or SYSLOG. Possible values: NONE, LOG, DOWN Default value: DOWN
 
 <b>respCode</b>
 Response codes for which to mark the service as UP. For any other response code, the action performed depends on the monitor type. HTTP monitors and RADIUS monitors mark the service as DOWN, while HTTP-INLINE monitors perform the action indicated by the Action parameter.
@@ -423,13 +366,13 @@ RTSP request to send to the server (for example, "OPTIONS *").
 Custom header string to include in the monitoring probes.
 
 <b>maxForwards</b>
-Maximum number of hops that the SIP request used for monitoring can traverse to reach the server. Applicable only to monitors of type SIP-UDP.
-Default value: 1
-Maximum value: 255
+Maximum number of hops that the SIP request used for monitoring can traverse to reach the server. Applicable only to monitors of type SIP-UDP. Default value: 1 Minimum value: 0 Maximum value: 255
 
 <b>sipMethod</b>
-SIP method to use for the query. Applicable only to monitors of type SIP-UDP.
-Possible values: OPTIONS, INVITE, REGISTER
+SIP method to use for the query. Applicable only to monitors of type SIP-UDP. Possible values: OPTIONS, INVITE, REGISTER
+
+<b>sipregURI</b>
+SIP user to be registered. Applicable only if the monitor is of type SIP-UDP and the SIP Method parameter is set to REGISTER.
 
 <b>sipURI</b>
 SIP URI string to send to the service (for example, sip:sip.test). Applicable only to monitors of type SIP-UDP.
@@ -444,8 +387,7 @@ String expected from the server for the service to be marked as UP. Applicable t
 Domain name to resolve as part of monitoring the DNS service (for example, example.com).
 
 <b>queryType</b>
-Type of DNS record for which to send monitoring queries. Set to Address for querying A records, AAAA for querying AAAA records, and Zone for querying the SOA record.
-Possible values: Address, Zone, AAAA
+Type of DNS record for which to send monitoring queries. Set to Address for querying A records, AAAA for querying AAAA records, and Zone for querying the SOA record. Possible values: Address, Zone, AAAA
 
 <b>userName</b>
 User name with which to probe the RADIUS, NNTP, FTP, FTP-EXTENDED, MYSQL, MSSQL, POP3, CITRIX-AG, CITRIX-XD-DDC, CITRIX-WI-EXTENDED, CITRIX-XNC or CITRIX-XDM server.
@@ -472,9 +414,7 @@ NAS-Identifier to send in the Access-Request packet. Applicable to monitors of t
 Network Access Server (NAS) IP address to use as the source IP address when monitoring a RADIUS server. Applicable to monitors of type RADIUS and RADIUS_ACCOUNTING.
 
 <b>radAccountType</b>
-Account Type to be used in Account Request Packet. Applicable to monitors of type RADIUS_ACCOUNTING.
-Default value: 1
-Maximum value: 15
+Account Type to be used in Account Request Packet. Applicable to monitors of type RADIUS_ACCOUNTING. Default value: 1 Minimum value: 0 Maximum value: 15
 
 <b>radFramedIP</b>
 Source ip with which the packet will go out . Applicable to monitors of type RADIUS_ACCOUNTING.
@@ -489,12 +429,13 @@ Calling Stations Id to be used in Account Request Packet. Applicable to monitors
 Account Session ID to be used in Account Request Packet. Applicable to monitors of type RADIUS_ACCOUNTING.
 
 <b>LRTM</b>
-Calculate the least response times for bound services. If this parameter is not enabled, the appliance does not learn the response times of the bound services. Also used for LRTM load balancing.
-Possible values: ENABLED, DISABLED
+Calculate the least response times for bound services. If this parameter is not enabled, the appliance does not learn the response times of the bound services. Also used for LRTM load balancing. Possible values: ENABLED, DISABLED
 
 <b>deviation</b>
-Time value added to the learned average response time in dynamic response time monitoring (DRTM). When a deviation is specified, the appliance learns the average response time of bound services and adds the deviation to the average. The final value is then continually adjusted to accommodate response time variations over time. Specified in milliseconds, seconds, or minutes.
-Maximum value: 20939000
+Time value added to the learned average response time in dynamic response time monitoring (DRTM). When a deviation is specified, the appliance learns the average response time of bound services and adds the deviation to the average. The final value is then continually adjusted to accommodate response time variations over time. Specified in milliseconds, seconds, or minutes. Minimum value: 0 Maximum value: 20939000
+
+<b>units</b>
+Unit of measurement for the Down Time parameter. Cannot be changed after the monitor is created. Possible values: SEC, MSEC, MIN Default value: SEC
 
 <b>scriptName</b>
 Path and name of the script to execute. The script must be available on the NetScaler appliance, in the /nsconfig/monitors/ directory.
@@ -503,9 +444,7 @@ Path and name of the script to execute. The script must be available on the NetS
 String of arguments for the script. The string is copied verbatim into the request.
 
 <b>validateCred</b>
-Validate the credentials of the Xen Desktop DDC server user. Applicable to monitors of type CITRIX-XD-DDC.
-Possible values: YES, NO
-Default value: NO
+Validate the credentials of the Xen Desktop DDC server user. Applicable to monitors of type CITRIX-XD-DDC. Possible values: YES, NO Default value: NO
 
 <b>domain</b>
 Domain in which the XenDesktop Desktop Delivery Controller (DDC) servers or Web Interface servers are present. Required by CITRIX-XD-DDC and CITRIX-WI-EXTENDED monitors for logging on to the DDC servers and Web Interface servers, respectively.
@@ -517,47 +456,28 @@ IP address of the dispatcher to which to send the probe.
 Port number on which the dispatcher listens for the monitoring probe.
 
 <b>interval</b>
-Time interval between two successive probes. Must be greater than the value of Response Time-out.
-Default value: 5
-Minimum value: 1
-Maximum value: 20940000
+Time interval between two successive probes. Must be greater than the value of Response Time-out. Default value: 5 Minimum value: 1 Maximum value: 20940000
 
 <b>resptimeout</b>
-Amount of time for which the appliance must wait before it marks a probe as FAILED.  Must be less than the value specified for the Interval parameter.
-Note: For UDP-ECV monitors for which a receive string is not configured, response timeout does not apply. For UDP-ECV monitors with no receive string, probe failure is indicated by an ICMP port unreachable error received from the service.
-Default value: 2
-Minimum value: 1
-Maximum value: 20939000
+Amount of time for which the appliance must wait before it marks a probe as FAILED. Must be less than the value specified for the Interval parameter. Note: For UDP-ECV monitors for which a receive string is not configured, response timeout does not apply. For UDP-ECV monitors with no receive string, probe failure is indicated by an ICMP port unreachable error received from the service. Default value: 2 Minimum value: 1 Maximum value: 20939000
 
 <b>resptimeoutThresh</b>
-Response time threshold, specified as a percentage of the Response Time-out parameter. If the response to a monitor probe has not arrived when the threshold is reached, the appliance generates an SNMP trap called monRespTimeoutAboveThresh. After the response time returns to a value below the threshold, the appliance generates a monRespTimeoutBelowThresh SNMP trap. For the traps to be generated, the "MONITOR-RTO-THRESHOLD" alarm must also be enabled.
-Maximum value: 100
+Response time threshold, specified as a percentage of the Response Time-out parameter. If the response to a monitor probe has not arrived when the threshold is reached, the appliance generates an SNMP trap called monRespTimeoutAboveThresh. After the response time returns to a value below the threshold, the appliance generates a monRespTimeoutBelowThresh SNMP trap. For the traps to be generated, the "MONITOR-RTO-THRESHOLD" alarm must also be enabled. Minimum value: 0 Maximum value: 100
 
 <b>retries</b>
-Maximum number of probes to send to establish the state of a service for which a monitoring probe failed.
-Default value: 3
-Minimum value: 1
-Maximum value: 127
+Maximum number of probes to send to establish the state of a service for which a monitoring probe failed. Default value: 3 Minimum value: 1 Maximum value: 127
 
 <b>failureRetries</b>
-Number of retries that must fail, out of the number specified for the Retries parameter, for a service to be marked as DOWN. For example, if the Retries parameter is set to 10 and the Failure Retries parameter is set to 6, out of the ten probes sent, at least six probes must fail if the service is to be marked as DOWN. The default value of 0 means that all the retries must fail if the service is to be marked as DOWN.
-Maximum value: 32
+Number of retries that must fail, out of the number specified for the Retries parameter, for a service to be marked as DOWN. For example, if the Retries parameter is set to 10 and the Failure Retries parameter is set to 6, out of the ten probes sent, at least six probes must fail if the service is to be marked as DOWN. The default value of 0 means that all the retries must fail if the service is to be marked as DOWN. Maximum value: 32
 
 <b>alertRetries</b>
-Number of consecutive probe failures after which the appliance generates an SNMP trap called monProbeFailed.
-Maximum value: 32
+Number of consecutive probe failures after which the appliance generates an SNMP trap called monProbeFailed. Maximum value: 32
 
 <b>successRetries</b>
-Number of consecutive successful probes required to transition a service's state from DOWN to UP.
-Default value: 1
-Minimum value: 1
-Maximum value: 32
+Number of consecutive successful probes required to transition a service's state from DOWN to UP. Default value: 1 Minimum value: 1 Maximum value: 32
 
 <b>downTime</b>
-Time duration for which to wait before probing a service that has been marked as DOWN. Expressed in milliseconds, seconds, or minutes.
-Default value: 30
-Minimum value: 1
-Maximum value: 20939000
+Time duration for which to wait before probing a service that has been marked as DOWN. Expressed in milliseconds, seconds, or minutes. Default value: 30 Minimum value: 1 Maximum value: 20939000
 
 <b>destIP</b>
 IP address of the service to which to send probes. If the parameter is set to 0, the IP address of the server to which the monitor is bound is considered the destination IP address.
@@ -566,38 +486,25 @@ IP address of the service to which to send probes. If the parameter is set to 0,
 TCP or UDP port to which to send the probe. If the parameter is set to 0, the port number of the service to which the monitor is bound is considered the destination port. For a monitor of type USER, however, the destination port is the port number that is included in the HTTP request sent to the dispatcher. Does not apply to monitors of type PING.
 
 <b>state</b>
-State of the monitor. The DISABLED setting disables not only the monitor being configured, but all monitors of the same type, until the parameter is set to ENABLED. If the monitor is bound to a service, the state of the monitor is not taken into account when the state of the service is determined.
-Possible values: ENABLED, DISABLED
-Default value: ENABLED
+State of the monitor. The DISABLED setting disables not only the monitor being configured, but all monitors of the same type, until the parameter is set to ENABLED. If the monitor is bound to a service, the state of the monitor is not taken into account when the state of the service is determined. Possible values: ENABLED, DISABLED Default value: ENABLED
 
 <b>reverse</b>
-Mark a service as DOWN, instead of UP, when probe criteria are satisfied, and as UP instead of DOWN when probe criteria are not satisfied.
-Possible values: YES, NO
-Default value: NO
+Mark a service as DOWN, instead of UP, when probe criteria are satisfied, and as UP instead of DOWN when probe criteria are not satisfied. Possible values: YES, NO Default value: NO
 
 <b>transparent</b>
-The monitor is bound to a transparent device such as a firewall or router. The state of a transparent device depends on the responsiveness of the services behind it. If a transparent device is being monitored, a destination IP address must be specified. The probe is sent to the specified IP address by using the MAC address of the transparent device.
-Possible values: YES, NO
-Default value: NO
+The monitor is bound to a transparent device such as a firewall or router. The state of a transparent device depends on the responsiveness of the services behind it. If a transparent device is being monitored, a destination IP address must be specified. The probe is sent to the specified IP address by using the MAC address of the transparent device. Possible values: YES, NO Default value: NO
 
 <b>ipTunnel</b>
-Send the monitoring probe to the service through an IP tunnel. A destination IP address must be specified.
-Possible values: YES, NO
-Default value: NO
+Send the monitoring probe to the service through an IP tunnel. A destination IP address must be specified. Possible values: YES, NO Default value: NO
 
 <b>tos</b>
-Probe the service by encoding the destination IP address in the IP TOS (6) bits.
-Possible values: YES, NO
+Probe the service by encoding the destination IP address in the IP TOS (6) bits. Possible values: YES, NO
 
 <b>tosId</b>
-The TOS ID of the specified destination IP. Applicable only when the TOS parameter is set.
-Minimum value: 1
-Maximum value: 63
+The TOS ID of the specified destination IP. Applicable only when the TOS parameter is set. Minimum value: 1 Maximum value: 63
 
 <b>secure</b>
-Use a secure SSL connection when monitoring a service. Applicable only to TCP based monitors. The secure option cannot be used with a CITRIX-AG monitor, because a CITRIX-AG monitor uses a secure connection by default.
-Possible values: YES, NO
-Default value: NO
+Use a secure SSL connection when monitoring a service. Applicable only to TCP based monitors. The secure option cannot be used with a CITRIX-AG monitor, because a CITRIX-AG monitor uses a secure connection by default. Possible values: YES, NO Default value: NO
 
 <b>IPAddress</b>
 Set of IP addresses expected in the monitoring response from the DNS server, if the record type is A or AAAA. Applicable to DNS monitors.
@@ -630,8 +537,7 @@ Name of the service identifier that is used to connect to the Oracle database du
 SQL query for a MYSQL-ECV or MSSQL-ECV monitor. Sent to the database server after the server authenticates the connection.
 
 <b>evalRule</b>
-Default syntax expression that evaluates the database server's response to a MYSQL-ECV or MSSQL-ECV monitoring query. Must produce a Boolean result. The result determines the state of the server. If the expression returns TRUE, the probe succeeds. 
-For example, if you want the appliance to evaluate the error message to determine the state of the server, use the rule MYSQL.RES.ROW(10) .TEXT_ELEM(2).EQ("MySQL").
+Default syntax expression that evaluates the database server's response to a MYSQL-ECV or MSSQL-ECV monitoring query. Must produce a Boolean result. The result determines the state of the server. If the expression returns TRUE, the probe succeeds. For example, if you want the appliance to evaluate the error message to determine the state of the server, use the rule MYSQL.RES.ROW(10) .TEXT_ELEM(2).EQ("MySQL").
 
 <b>snmpOID</b>
 SNMP OID for SNMP monitors.
@@ -643,14 +549,19 @@ Community name for SNMP monitors.
 Threshold for SNMP monitors.
 
 <b>snmpVersion</b>
-SNMP version to be used for SNMP monitors.
-Possible values: V1, V2
+SNMP version to be used for SNMP monitors. Possible values: V1, V2
 
 <b>metricTable</b>
 Metric table to which to bind metrics.
 
 <b>metric</b>
 Metric name in the metric table, whose setting is changed. A value zero disables the metric and it will not be used for load calculation
+
+<b>metricThreshold</b>
+Threshold to be used for that metric. Minimum value: 0
+
+<b>metricWeight</b>
+The weight for the specified service metric with respect to others. Minimum value: 1 Maximum value: 100
 
 <b>application</b>
 Name of the application used to determine the state of the service. Applicable to monitors of type CITRIX-XML-SERVICE.
@@ -662,20 +573,16 @@ URL of the logon page. For monitors of type CITRIX-WEB-INTERFACE, to monitor a d
 Store Name. For monitors of type STOREFRONT, STORENAME is an optional argument defining storefront service store name. Applicable to STOREFRONT monitors.
 
 <b>storefrontacctservice</b>
-Enable/Disable probing for Account Service. Applicable only to Store Front monitors. For multi-tenancy configuration users my skip account service
-Possible values: YES, NO
-Default value: YES
+Enable/Disable probing for Account Service. Applicable only to Store Front monitors. For multi-tenancy configuration users my skip account service Possible values: YES, NO Default value: YES
 
-<b>hostName</b>
-Hostname in the FQDN format (Example: porche.cars.org). Applicable to STOREFRONT monitors.
+<b>storefrontcheckbackendservices</b>
+This option will enable monitoring of services running on storefront server. Storefront services are monitored by probing to a Windows service that runs on the Storefront server and exposes details of which storefront services are running. Possible values: YES, NO Default value: NO
 
 <b>netProfile</b>
 Name of the network profile.
 
 <b>mssqlProtocolVersion</b>
-Version of MSSQL server that is to be monitored.
-Possible values: 70, 2000, 2000SP1, 2005, 2008, 2008R2, 2012
-Default value: TDS_PROT_70
+Version of MSSQL server that is to be monitored. Possible values: 70, 2000, 2000SP1, 2005, 2008, 2008R2, 2012, 2014 Default value: 70
 
 <b>originHost</b>
 Origin-Host value for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers.
@@ -687,37 +594,46 @@ Origin-Realm value for the Capabilities-Exchange-Request (CER) message to use fo
 Host-IP-Address value for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers. If Host-IP-Address is not specified, the appliance inserts the mapped IP (MIP) address or subnet IP (SNIP) address from which the CER request (the monitoring probe) is sent.
 
 <b>vendorId</b>
-Vendor-Id value for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers.
+Vendor-Id value for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers. Minimum value: 0
 
 <b>productName</b>
 Product-Name value for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers.
 
 <b>firmwareRevision</b>
-Firmware-Revision value for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers.
+Firmware-Revision value for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers. Minimum value: 0
 
 <b>authApplicationId</b>
-List of Auth-Application-Id attribute value pairs (AVPs) for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers. A maximum of eight of these AVPs are supported in a monitoring CER message.
-Maximum value: 4294967295
+List of Auth-Application-Id attribute value pairs (AVPs) for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers. A maximum of eight of these AVPs are supported in a monitoring CER message. Minimum value: 0 Maximum value: 4294967295
 
 <b>acctApplicationId</b>
-List of Acct-Application-Id attribute value pairs (AVPs) for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers. A maximum of eight of these AVPs are supported in a monitoring message.
-Maximum value: 4294967295
+List of Acct-Application-Id attribute value pairs (AVPs) for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers. A maximum of eight of these AVPs are supported in a monitoring message. Minimum value: 0 Maximum value: 4294967295
 
 <b>inbandSecurityId</b>
-Inband-Security-Id for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers.
-Possible values: NO_INBAND_SECURITY, TLS
+Inband-Security-Id for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers. Possible values: NO_INBAND_SECURITY, TLS
 
 <b>supportedVendorIds</b>
-List of Supported-Vendor-Id attribute value pairs (AVPs) for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers. A maximum eight of these AVPs are supported in a monitoring message.
-Minimum value: 1
-Maximum value: 4294967295
+List of Supported-Vendor-Id attribute value pairs (AVPs) for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers. A maximum eight of these AVPs are supported in a monitoring message. Minimum value: 1 Maximum value: 4294967295
 
 <b>vendorSpecificVendorId</b>
-Vendor-Id to use in the Vendor-Specific-Application-Id grouped attribute-value pair (AVP) in the monitoring CER message. To specify Auth-Application-Id or Acct-Application-Id in Vendor-Specific-Application-Id, use vendorSpecificAuthApplicationIds or vendorSpecificAcctApplicationIds, respectively. Only one Vendor-Id is supported for all the Vendor-Specific-Application-Id AVPs in a CER monitoring message.
-Minimum value: 1
+Vendor-Id to use in the Vendor-Specific-Application-Id grouped attribute-value pair (AVP) in the monitoring CER message. To specify Auth-Application-Id or Acct-Application-Id in Vendor-Specific-Application-Id, use vendorSpecificAuthApplicationIds or vendorSpecificAcctApplicationIds, respectively. Only one Vendor-Id is supported for all the Vendor-Specific-Application-Id AVPs in a CER monitoring message. Minimum value: 1
+
+<b>vendorSpecificAuthApplicationIds</b>
+List of Vendor-Specific-Auth-Application-Id attribute value pairs (AVPs) for the Capabilities-Exchange-Request (CER) message to use for monitoring Diameter servers. A maximum of eight of these AVPs are supported in a monitoring message. The specified value is combined with the value of vendorSpecificVendorId to obtain the Vendor-Specific-Application-Id AVP in the CER monitoring message. Minimum value: 0 Maximum value: 4294967295
+
+<b>vendorSpecificAcctApplicationIds</b>
+List of Vendor-Specific-Acct-Application-Id attribute value pairs (AVPs) to use for monitoring Diameter servers. A maximum of eight of these AVPs are supported in a monitoring message. The specified value is combined with the value of vendorSpecificVendorId to obtain the Vendor-Specific-Application-Id AVP in the CER monitoring message. Minimum value: 0 Maximum value: 4294967295
 
 <b>kcdAccount</b>
 KCD Account used by MSSQL monitor
+
+<b>storedb</b>
+Store the database list populated with the responses to monitor probes. Used in database specific load balancing if MSSQL-ECV/MYSQL-ECV monitor is configured. Possible values: ENABLED, DISABLED Default value: DISABLED
+
+<b>trofscode</b>
+Code expected when the server is under maintenance Minimum value: 0
+
+<b>trofsstring</b>
+String expected from the server for the service to be marked as trofs. Applicable to HTTP-ECV/TCP-ECV monitors.
 
 
 
@@ -732,7 +648,7 @@ Removes the specified parameter settings from the specified monitor. Attributes 
 
 ##Synopsys
 
-unset lb monitor &lt;monitorName> &lt;type> [-IPAddress &lt;ip_addr|ipv6_addr|*> ...] [-scriptName] [-destPort] [-netProfile] [-action] [-respCode] [-httpRequest] [-rtspRequest] [-customHeaders] [-maxForwards] [-sipMethod] [-sipregURI] [-send] [-recv] [-query] [-queryType] [-userName] [-password] [-secondaryPassword] [-logonpointName] [-lasVersion] [-radKey] [-radNASid] [-radNASip] [-radAccountType] [-radFramedIP] [-radAPN] [-radMSISDN] [-radAccountSession] [-LRTM] [-deviation] [-scriptArgs] [-validateCred] [-domain] [-dispatcherIP] [-dispatcherPort] [-interval] [-resptimeout] [-resptimeoutThresh] [-retries] [-failureRetries] [-alertRetries] [-successRetries] [-downTime] [-destIP] [-state] [-reverse] [-transparent] [-ipTunnel] [-tos] [-tosId] [-secure] [-group] [-fileName] [-baseDN] [-bindDN] [-filter] [-attribute] [-database] [-oracleSid] [-sqlQuery] [-snmpOID] [-snmpCommunity] [-snmpThreshold] [-snmpVersion] [-metricTable] [-mssqlProtocolVersion] [-originHost] [-originRealm] [-hostIPAddress] [-vendorId] [-productName] [-firmwareRevision] [-authApplicationId] [-acctApplicationId] [-inbandSecurityId] [-supportedVendorIds] [-vendorSpecificVendorId] [-vendorSpecificAuthApplicationIds] [-vendorSpecificAcctApplicationIds] [-kcdAccount]
+unset lb monitor &lt;monitorName> &lt;type> [-IPAddress &lt;ip_addr|ipv6_addr|*> ...] [-scriptName] [-destPort] [-netProfile] [-action] [-respCode] [-httpRequest] [-rtspRequest] [-customHeaders] [-maxForwards] [-sipMethod] [-sipregURI] [-send] [-recv] [-query] [-queryType] [-userName] [-password] [-secondaryPassword] [-logonpointName] [-lasVersion] [-radKey] [-radNASid] [-radNASip] [-radAccountType] [-radFramedIP] [-radAPN] [-radMSISDN] [-radAccountSession] [-LRTM] [-deviation] [-scriptArgs] [-validateCred] [-domain] [-dispatcherIP] [-dispatcherPort] [-interval] [-resptimeout] [-resptimeoutThresh] [-retries] [-failureRetries] [-alertRetries] [-successRetries] [-downTime] [-destIP] [-state] [-reverse] [-transparent] [-ipTunnel] [-tos] [-tosId] [-secure] [-group] [-fileName] [-baseDN] [-bindDN] [-filter] [-attribute] [-database] [-oracleSid] [-sqlQuery] [-snmpOID] [-snmpCommunity] [-snmpThreshold] [-snmpVersion] [-metricTable] [-mssqlProtocolVersion] [-originHost] [-originRealm] [-hostIPAddress] [-vendorId] [-productName] [-firmwareRevision] [-authApplicationId] [-acctApplicationId] [-inbandSecurityId] [-supportedVendorIds] [-vendorSpecificVendorId] [-vendorSpecificAuthApplicationIds] [-vendorSpecificAcctApplicationIds] [-kcdAccount] [-storedb] [-trofscode] [-trofsstring]
 
 
 ##Example
@@ -758,14 +674,13 @@ The name of the service to which the monitor is bound.
 The name of the service group to which the monitor is to be bound.
 
 <b>monitorName</b>
-Name for the monitor. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters.
-CLI Users:  If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my monitor" or 'my monitor').
+Name for the monitor. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my monitor" or 'my monitor').
 
 
 
 ##Example
 
-enable monitor http_svc http_mon	To enable monitor for multiple services use the following command:	enable monitor http_svc[1-3] http_mon
+enable monitor http_svc http_mon To enable monitor for multiple services use the following command: enable monitor http_svc[1-3] http_mon
 
 ##disable lb monitor
 
@@ -786,14 +701,13 @@ The name of the service being monitored.
 The name of the service group being monitored.
 
 <b>monitorName</b>
-Name for the monitor. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters.
-CLI Users:  If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my monitor" or 'my monitor').
+Name for the monitor. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my monitor" or 'my monitor').
 
 
 
 ##Example
 
-disable monitor http_svc http_mon	To disable a monitor on multiple services use the following command:	disable monitor http_svc[1-3] http_mon
+disable monitor http_svc http_mon To disable a monitor on multiple services use the following command: disable monitor http_svc[1-3] http_mon
 
 ##bind lb monitor
 
@@ -802,7 +716,7 @@ Binds a monitor to a service or service group. Multiple monitors can be bound to
 
 ##Synopsys
 
-bind lb monitor &lt;monitorName> [-state ( ENABLED | DISABLED )] [-weight &lt;positive_integer>] [-state ( ENABLED | DISABLED )] [-weight &lt;positive_integer>] [-metric &lt;string>  -metricThreshold &lt;positive_integer>  [-metricWeight &lt;positive_integer>] ]
+bind lb monitor &lt;monitorName> [-state ( ENABLED | DISABLED )] [-weight &lt;positive_integer>] [-state ( ENABLED | DISABLED )] [-weight &lt;positive_integer>] [-metric &lt;string> -metricThreshold &lt;positive_integer> [-metricWeight &lt;positive_integer>] ]
 
 
 ##Arguments
@@ -810,20 +724,20 @@ bind lb monitor &lt;monitorName> [-state ( ENABLED | DISABLED )] [-weight &lt;po
 <b>monitorName</b>
 Name of the monitor.
 
-<b>serviceName</b>
-Name of the service or service group.
-
-<b>serviceGroupName</b>
-Name of the service group.
-
 <b>metric</b>
 Name of the metric to be polled by the monitor.
+
+<b>metricThreshold</b>
+Threshold for the specified metric. A value of zero disables the metric (the metric will not be used in load calculations). Minimum value: 0
+
+<b>metricWeight</b>
+Weight to assign to the specified metric. A higher number specifies greater weight. Default value: 1 Minimum value: 1 Maximum value: 100
 
 
 
 ##Example
 
-bind monitor http_mon http_svc	To bind a monitor to multiple services use the following command:	bind monitor http_mon http_svc[1-3]
+bind monitor http_mon http_svc To bind a monitor to multiple services use the following command: bind monitor http_mon http_svc[1-3]
 
 ##unbind lb monitor
 
@@ -840,12 +754,6 @@ unbind lb monitor &lt;monitorName> -metric &lt;string>
 <b>monitorName</b>
 Name of the monitor.
 
-<b>serviceName</b>
-Name of the service or service group.
-
-<b>serviceGroupName</b>
-Name of the service group.
-
 <b>metric</b>
 Name of the metric to be polled by the monitor.
 
@@ -853,7 +761,7 @@ Name of the metric to be polled by the monitor.
 
 ##Example
 
-unbind monitor http_mon http_svc	To unbind a monitor to multiple services use the following command:	unbind monitor http_mon http_svc[1-3]
+unbind monitor http_mon http_svc To unbind a monitor to multiple services use the following command: unbind monitor http_mon http_svc[1-3]
 
 ##show lb monitor
 
@@ -862,7 +770,7 @@ Displays the parameters of all the monitors configured on the appliance, or the 
 
 ##Synopsys
 
-show lb monitor [&lt;monitorName>] [&lt;type>]show lb monitor bindings - alias for 'show lb monbindings'
+show lb monitor [&lt;monitorName>] [&lt;type>] show lb monitor bindings - alias for 'show lb monbindings'
 
 
 ##Arguments
@@ -871,16 +779,7 @@ show lb monitor [&lt;monitorName>] [&lt;type>]show lb monitor bindings - alias f
 Name of the monitor.
 
 <b>type</b>
-Type of monitor that you want to create.
-Possible values: PING, TCP, HTTP, TCP-ECV, HTTP-ECV, UDP-ECV, DNS, FTP, LDNS-PING, LDNS-TCP, LDNS-DNS, RADIUS, USER, HTTP-INLINE, SIP-UDP, LOAD, FTP-EXTENDED, SMTP, SNMP, NNTP, MYSQL, MYSQL-ECV, MSSQL-ECV, ORACLE-ECV, LDAP, POP3, CITRIX-XML-SERVICE, CITRIX-WEB-INTERFACE, DNS-TCP, RTSP, ARP, CITRIX-AG, CITRIX-AAC-LOGINPAGE, CITRIX-AAC-LAS, CITRIX-XD-DDC, ND6, CITRIX-WI-EXTENDED, DIAMETER, RADIUS_ACCOUNTING, STOREFRONT, APPC, CITRIX-XNC-ECV, CITRIX-XDM
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
+Type of monitor that you want to create. Possible values: PING, TCP, HTTP, TCP-ECV, HTTP-ECV, UDP-ECV, DNS, FTP, LDNS-PING, LDNS-TCP, LDNS-DNS, RADIUS, USER, HTTP-INLINE, SIP-UDP, SIP-TCP, LOAD, FTP-EXTENDED, SMTP, SNMP, NNTP, MYSQL, MYSQL-ECV, MSSQL-ECV, ORACLE-ECV, LDAP, POP3, CITRIX-XML-SERVICE, CITRIX-WEB-INTERFACE, DNS-TCP, RTSP, ARP, CITRIX-AG, CITRIX-AAC-LOGINPAGE, CITRIX-AAC-LAS, CITRIX-XD-DDC, ND6, CITRIX-WI-EXTENDED, DIAMETER, RADIUS_ACCOUNTING, STOREFRONT, APPC, SMPP, CITRIX-XNC-ECV, CITRIX-XDM
 
 
 
@@ -925,7 +824,7 @@ The TCP/UDP port to which the probe is sent.
 Mark a service as DOWN, instead of UP, when probe criteria are satisfied, and as UP instead of DOWN when probe criteria are not satisfied.
 
 <b>transparent</b>
-The state of  the monitor for transparent devices.
+The state of the monitor for transparent devices.
 
 <b>ipTunnel</b>
 The state of the monitor for tunneled devices.
@@ -937,14 +836,10 @@ TOS setting.
 TOS ID
 
 <b>secure</b>
-The state of  the secure monitoring of services.
+The state of the secure monitoring of services.
 
 <b>action</b>
-Action to perform when the response to an inline monitor (a monitor of type HTTP-INLINE) indicates that the service is down. A service monitored by an inline monitor is considered DOWN if the response code is not one of the codes that have been specified for the Response Code parameter. 
-Available settings function as follows: 
-* NONE - Do not take any action. However, the show service command and the show lb monitor command indicate the total number of responses that were checked and the number of consecutive error responses received after the last successful probe.
-* LOG - Log the event in NSLOG or SYSLOG. 
-* DOWN - Mark the service as being down, and then do not direct any traffic to the service until the configured down time has expired. Persistent connections to the service are terminated as soon as the service is marked as DOWN. Also, log the event in NSLOG or SYSLOG.
+Action to perform when the response to an inline monitor (a monitor of type HTTP-INLINE) indicates that the service is down. A service monitored by an inline monitor is considered DOWN if the response code is not one of the codes that have been specified for the Response Code parameter. Available settings function as follows: * NONE - Do not take any action. However, the show service command and the show lb monitor command indicate the total number of responses that were checked and the number of consecutive error responses received after the last successful probe. * LOG - Log the event in NSLOG or SYSLOG. * DOWN - Mark the service as being down, and then do not direct any traffic to the service until the configured down time has expired. Persistent connections to the service are terminated as soon as the service is marked as DOWN. Also, log the event in NSLOG or SYSLOG.
 
 <b>respCode</b>
 The response codes.
@@ -971,7 +866,7 @@ Type of DNS record for which to send monitoring queries. Set to Address for quer
 Username on the RADIUS/NNTP/FTP/FTP-EXTENDED/MYSQL/POP3/CITRIX-XD-DDC/CITRIX-WI-EXTENDED/CITRIX-XNC-ECV/CITRIX-XDM server. This user name is used in the probe.
 
 <b>password</b>
-Password used in  RADIUS/NNTP/FTP/FTP-EXTENDED/MYSQL/POP3/LDAP/CITRIX-XD-DDC/CITRIX-WI-EXTENDED/CITRIX-XNC-ECV/CITRIX-XDM server monitoring.
+Password used in RADIUS/NNTP/FTP/FTP-EXTENDED/MYSQL/POP3/LDAP/CITRIX-XD-DDC/CITRIX-WI-EXTENDED/CITRIX-XNC-ECV/CITRIX-XDM server monitoring.
 
 <b>secondaryPassword</b>
 Secondary password that users might have to provide to log on to the Access Gateway server. Applicable to CITRIX-AG monitors.
@@ -1088,8 +983,7 @@ Name of the service identifier that is used to connect to the Oracle database du
 SQL query for a MYSQL-ECV or MSSQL-ECV monitor. Sent to the database server after the server authenticates the connection.
 
 <b>evalRule</b>
-Default syntax expression that evaluates the database server's response to a MYSQL-ECV or MSSQL-ECV monitoring query. Must produce a Boolean result. The result determines the state of the server. If the expression returns TRUE, the probe succeeds. 
-For example, if you want the appliance to evaluate the error message to determine the state of the server, use the rule MYSQL.RES.ROW(10) .TEXT_ELEM(2).EQ("MySQL").
+Default syntax expression that evaluates the database server's response to a MYSQL-ECV or MSSQL-ECV monitoring query. Must produce a Boolean result. The result determines the state of the server. If the expression returns TRUE, the probe succeeds. For example, if you want the appliance to evaluate the error message to determine the state of the server, use the rule MYSQL.RES.ROW(10) .TEXT_ELEM(2).EQ("MySQL").
 
 <b>snmpOID</b>
 SNMP OID for SNMP monitors.
@@ -1136,8 +1030,11 @@ Store Name. For monitors of type STOREFRONT, STORENAME is an optional argument d
 <b>storefrontacctservice</b>
 Enable/Disable probing for Account Service. Applicable only to Store Front monitors. For multi-tenancy configuration users my skip account service
 
+<b>storefrontcheckbackendservices</b>
+This option will enable monitoring of services running on storefront server. Storefront services are monitored by probing to a Windows service that runs on the Storefront server and exposes details of which storefront services are running.
+
 <b>hostName</b>
-Hostname in the FQDN format (Example: porche.cars.org). Applicable to STOREFRONT monitors.NOTE: This attribute is deprecated.
+Hostname in the FQDN format (Example: porche.cars.org). Applicable to STOREFRONT monitors.
 
 <b>netProfile</b>
 Name of the network profile.
@@ -1194,7 +1091,13 @@ List of Vendor-Specific-Acct-Application-Id attribute value pairs (AVPs) to use 
 KCD Account used by MSSQL monitor
 
 <b>storedb</b>
-Store the database list populated with the responses to monitor probes. Used in database specific load balancing if MSSQL-ECV/MYSQL-ECV  monitor is configured.
+Store the database list populated with the responses to monitor probes. Used in database specific load balancing if MSSQL-ECV/MYSQL-ECV monitor is configured.
+
+<b>trofscode</b>
+Code expected when the server is under maintenance
+
+<b>trofsstring</b>
+String expected from the server for the service to be marked as trofs. Applicable to HTTP-ECV/TCP-ECV monitors.
 
 <b>devno</b>
 
@@ -1204,5 +1107,5 @@ Store the database list populated with the responses to monitor probes. Used in 
 
 ##Example
 
-An example of the show monitor command output is as follows:8 configured monitors:1)   Name.......:           ping  Type......:      PING   State....ENABLED2)   Name.......:            tcp  Type......:       TCP   State....ENABLED3)   Name.......:           http  Type......:      HTTP   State....ENABLED4)   Name.......:        tcp-ecv  Type......:   TCP-ECV   State....ENABLED5)   Name.......:       http-ecv  Type......:  HTTP-ECV   State....ENABLED6)   Name.......:        udp-ecv  Type......:   UDP-ECV   State....ENABLED7)   Name.......:            dns  Type......:       DNS   State....ENABLED8)   Name.......:            ftp  Type......:       FTP   State....ENABLED
+An example of the show monitor command output is as follows: 8 configured monitors: 1) Name.......: ping Type......: PING State....ENABLED 2) Name.......: tcp Type......: TCP State....ENABLED 3) Name.......: http Type......: HTTP State....ENABLED 4) Name.......: tcp-ecv Type......: TCP-ECV State....ENABLED 5) Name.......: http-ecv Type......: HTTP-ECV State....ENABLED 6) Name.......: udp-ecv Type......: UDP-ECV State....ENABLED 7) Name.......: dns Type......: DNS State....ENABLED 8) Name.......: ftp Type......: FTP State....ENABLED
 

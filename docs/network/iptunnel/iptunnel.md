@@ -12,7 +12,7 @@ Creates an IPv4 tunnel. An IP tunnel is a communication channel, using encapsula
 
 ##Synopsys
 
-add ipTunnel &lt;name> &lt;remote> &lt;remoteSubnetMask> &lt;local> [-protocol &lt;protocol>  [-vlan &lt;positive_integer>]] [-ipsecProfileName &lt;string>]
+add ipTunnel &lt;name> &lt;remote> &lt;remoteSubnetMask> &lt;local> [-protocol &lt;protocol>  [-vlan &lt;positive_integer>]] [-grepayload &lt;grepayload>] [-ipsecProfileName &lt;string>] [-ownerGroup &lt;string>]
 
 
 ##Arguments
@@ -32,7 +32,12 @@ Type ofNetScaler owned public IPv4 address, configured on the local NetScaler ap
 <b>protocol</b>
 Name of the protocol to be used on this tunnel.
 Possible values: IPIP, GRE, IPSEC, VXLAN
-Default value: TNL_IPIP
+Default value: IPIP
+
+<b>grepayload</b>
+The payload GRE will carry
+Possible values: ETHERNETwithDOT1Q, ETHERNET, IP
+Default value: ETHERNETwithDOT1Q
 
 <b>ipsecProfileName</b>
 Name of IPSec profile to be associated.
@@ -42,6 +47,10 @@ Default value: "ns_ipsec_default_profile"
 The vlan for mulicast packets
 Minimum value: 1
 Maximum value: 4094
+
+<b>ownerGroup</b>
+The owner node group in a Cluster for the iptunnel.
+Default value: DEFAULT_NG
 
 
 
@@ -85,16 +94,11 @@ show ipTunnel [(&lt;remote>  &lt;remoteSubnetMask>) | &lt;name>]
 <b>remote</b>
 Public IPv4 address, of the remote device, used to set up the tunnel. For this parameter, you can alternatively specify a network address.
 
+<b>remoteSubnetMask</b>
+Subnet mask of the remote IP address of the tunnel.
+
 <b>name</b>
 Name for the IP tunnel. Leading character must be a number or letter. Other characters allowed, after the first character, are @ _ - . (period) : (colon) # and space ( ).
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -108,6 +112,9 @@ Type ofNetScaler owned public IPv4 address, configured on the local NetScaler ap
 
 <b>protocol</b>
 Name of the protocol to be used on this tunnel.
+
+<b>grepayload</b>
+The payload GRE will carry
 
 <b>type</b>
 The type of this tunnel.
@@ -129,6 +136,9 @@ Indicates that a tunnel is User-Configured, Internal or DELETE-IN-PROGRESS.
 
 <b>ipsecTunnelStatus</b>
 Whether the ipsec on this tunnel is up or down.
+
+<b>ownerGroup</b>
+The owner node group in a Cluster for the iptunnel.
 
 <b>devno</b>
 

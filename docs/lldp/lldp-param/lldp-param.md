@@ -59,14 +59,6 @@ Display the global LLDP params
 show lldp param
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>holdtimeTxMult</b>

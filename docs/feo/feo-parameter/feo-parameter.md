@@ -26,6 +26,7 @@ Maximum value: 360
 <b>JpegQualityPercent</b>
 The percentage value of a JPEG image quality to be reduced. Range: 0 - 100
 Default value: 75
+Minimum value: 0
 Maximum value: 100
 
 <b>cssInlineThresSize</b>
@@ -72,14 +73,6 @@ Display front end optimization parameters
 show feo parameter
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>cacheMaxage</b>
@@ -96,6 +89,9 @@ Threshold value of the file size (in bytes), for converting external JavaScript 
 
 <b>imgInlineThresSize</b>
 Maximum file size of an image (in bytes), for coverting linked images to inline images.
+
+<b>builtin</b>
+Specify the builtin flags for - set feo param.
 
 
 

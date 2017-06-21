@@ -18,16 +18,20 @@ add aaa user &lt;userName> {-password }
 ##Arguments
 
 <b>userName</b>
-Name for the user. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after the user is added. The following requirement applies only to the NetScaler CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my aaa user" or "my aaa user").
+Name for the user. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after the user is added.
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or
+single quotation marks (for example, "my aaa user" or "my aaa user").
 
 <b>password</b>
-Password with which the user logs on. Required for any user account that does not exist on an external authentication server. If you are not using an external authentication server, all user accounts must have a password. If you are using an external authentication server, you must provide a password for local user accounts that do not exist on the authentication server.
+Password with which the user logs on. Required for any user account that does not exist on an external authentication server. 
+If you are not using an external authentication server, all user accounts must have a password. If you are using an external authentication server, you must provide a password for local user accounts that do not exist on the authentication server.
 
 
 
 ##Example
 
-add aaa user johndoe -password abcd add aaa user johndoe -password The above example adds user johndoe with password abcd for first case, password supplied on prompt for second case
+add aaa user johndoe -password abcdadd aaa user johndoe -passwordThe above example adds user johndoe with password abcd for first case, password supplied on promptfor second case
 
 ##rm aaa user
 
@@ -48,7 +52,7 @@ Name of the AAA user account to remove.
 
 ##set aaa user
 
-Configures the password for an existing local AAA user account. This command prompts you for a new password. NOTE: AAA does not request confirmation of the new password, so you might want to test the new password before sending it to the user.
+Configures the password for an existing local AAA user account. This command prompts you for a new password. NOTE: AAA does not request confirmation of the new password, so youmight want to test the new password before sending it to the user.
 
 
 ##Synopsys
@@ -62,13 +66,14 @@ set aaa user &lt;userName>
 Name of the local AAA user account.
 
 <b>password</b>
-Password with which the user logs on. Required for any user account that does not exist on an external authentication server. If you are not using an external authentication server, all user accounts must have a password. If you are using an external authentication server, you must provide a password for local user accounts that do not exist on the authentication server.
+Password with which the user logs on. Required for any user account that does not exist on an external authentication server. 
+If you are not using an external authentication server, all user accounts must have a password. If you are using an external authentication server, you must provide a password for local user accounts that do not exist on the authentication server.
 
 
 
 ##Example
 
-set aaa user johndoe password abcd The above command sets the password for johndoe to abcd
+set aaa user johndoe password abcdThe above command sets the password for johndoe to abcd
 
 ##bind aaa user
 
@@ -77,7 +82,7 @@ Binds a policy to the specified user account.
 
 ##Synopsys
 
-bind aaa user &lt;userName> [-policy &lt;string> [-priority &lt;positive_integer>]] [-intranetApplication &lt;string>] [-urlName &lt;string>] [-intranetIP &lt;ip_addr> [&lt;netmask>]]
+bind aaa user &lt;userName> [-policy &lt;string>  [-priority &lt;positive_integer>]] [-intranetApplication &lt;string>] [-urlName &lt;string>] [-intranetIP &lt;ip_addr>  [&lt;netmask>]] [-intranetIP6 &lt;ip_addr|ipv6_addr|*>  [&lt;numaddr>]]
 
 
 ##Arguments
@@ -86,7 +91,14 @@ bind aaa user &lt;userName> [-policy &lt;string> [-priority &lt;positive_integer
 User account to which to bind the policy.
 
 <b>policy</b>
-Name for the policy that you are creating. Must begin with a letter, number, or the underscore character (_), and must consist only of letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore characters. Cannot be changed after the policy is added. The following requirement applies only to the NetScaler CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my policy" or "my policy").
+Name for the policy that you are creating. Must begin with a letter, number, or the underscore character (_), and must consist only of letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore characters. Cannot be changed after the policy is added.
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or
+single quotation marks (for example, "my policy" or "my policy").
+
+<b>priority</b>
+Integer specifying the priority of the policy. A lower number indicates a higher priority. Policies are evaluated in the order of their priority numbers.
+Minimum value: 0
 
 <b>intranetApplication</b>
 Name of the intranet VPN application to which the policy applies.
@@ -97,11 +109,27 @@ URL of the intranet application to which you are binding the policy.
 <b>intranetIP</b>
 IP address of the intranet application to which you are binding the policy.
 
+<b>netmask</b>
+Subnet mask for the IP range in which the intranet application to which you are binding the policy resides. 
+Required if the intranet application has multiple IP addresses bound to
+it. Not needed if the intranet application resides on a single IP
+address.
+
+<b>intranetIP6</b>
+IP6 address of the intranet application to which you are binding the policy.
+
+<b>numaddr</b>
+Number of addresses for the IPv6 range in which the intranet application to which you are binding the policy resides. 
+Required if the intranet application has multiple IPv6 addresses bound to
+it. Not needed if the intranet application resides on a single IPv6
+address.
+Minimum value: 1
+
 
 
 ##Example
 
-To bind intranetip to the user joe: bind aaa user joe -intranetip 10.102.1.123
+To bind intranetip to the user joe:	bind aaa user joe -intranetip 10.102.1.123
 
 ##unbind aaa user
 
@@ -110,7 +138,7 @@ Unbinds a policy from the specified user account.
 
 ##Synopsys
 
-unbind aaa user &lt;userName> [-policy &lt;string>] [-intranetApplication &lt;string>] [-urlName &lt;string>] [-intranetIP &lt;ip_addr> [&lt;netmask>]]
+unbind aaa user &lt;userName> [-policy &lt;string>] [-intranetApplication &lt;string>] [-urlName &lt;string>] [-intranetIP &lt;ip_addr>  [&lt;netmask>]] [-intranetIP6 &lt;ip_addr|ipv6_addr|*>  [&lt;numaddr>]]
 
 
 ##Arguments
@@ -129,6 +157,22 @@ URL of the intranet application from which you are unbinding the policy.
 
 <b>intranetIP</b>
 Intranet IP address of the application from which you are unbinding the policy.
+
+<b>netmask</b>
+Subnet mask for the IP range in which the intranet application from which you are unbinding the policy resides. 
+Required if the intranet application has multiple IP addresses bound to
+it. Not needed if the intranet application resides on a single IP
+address.
+
+<b>intranetIP6</b>
+IP6 address of the intranet application to which you are binding the policy.
+
+<b>numaddr</b>
+Number of addresses for the IPv6 range in which the intranet application to which you are binding the policy resides. 
+Required if the intranet application has multiple IPv6 addresses bound to
+it. Not needed if the intranet application resides on a single IP
+address.
+Minimum value: 1
 
 
 
@@ -153,14 +197,6 @@ Name of the user who has the account.
 
 <b>loggedIn</b>
 Show whether the user is logged in or not.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -189,12 +225,19 @@ The Intranet IP bound to the user
 <b>netmask</b>
 The netmask for the Intranet IP
 
+<b>intranetIP6</b>
+The Intranet IP6 bound to the user
+
+<b>numaddr</b>
+Numbers of ipv6 address bound starting with intranetip6
+
 <b>policySubType</b>
 
 <b>stateflag</b>
 
 <b>password</b>
-Password with which the user logs on. Required for any user account that does not exist on an external authentication server. If you are not using an external authentication server, all user accounts must have a password. If you are using an external authentication server, you must provide a password for local user accounts that do not exist on the authentication server.
+Password with which the user logs on. Required for any user account that does not exist on an external authentication server. 
+If you are not using an external authentication server, all user accounts must have a password. If you are using an external authentication server, you must provide a password for local user accounts that do not exist on the authentication server.
 
 <b>devno</b>
 
@@ -204,7 +247,7 @@ Password with which the user logs on. Required for any user account that does no
 
 ##Example
 
-Example &gt; show aaa user joe UserName: joe IntranetIP: 10.102.1.123 Bound to groups: GroupName: engg Done &gt;
+Example&gt; show aaa user joe        UserName: joe           IntranetIP: 10.102.1.123       Bound to groups:                GroupName: engg Done&gt;
 
 ##unlock aaa user
 

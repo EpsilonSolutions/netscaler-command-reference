@@ -12,7 +12,7 @@ Adds a cluster instance to the appliance. Execute this command on only the first
 
 ##Synopsys
 
-add cluster instance &lt;clId> [-deadInterval &lt;secs>] [-helloInterval &lt;msecs>] [-preemption ( ENABLED | DISABLED )] [-quorumType ( MAJORITY | NONE )]
+add cluster instance &lt;clId> [-deadInterval &lt;secs>] [-helloInterval &lt;msecs>] [-preemption ( ENABLED | DISABLED )] [-quorumType ( MAJORITY | NONE )] [-inc ( ENABLED | DISABLED )] [-processLocal ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -42,7 +42,17 @@ Default value: DISABLED
 <b>quorumType</b>
 Quorum Configuration Choices  - "Majority" (recommended) requires majority of nodes to be online for the cluster to be UP. "None" relaxes this requirement.
 Possible values: MAJORITY, NONE
-Default value: _NSCL_QUORUMTYPE_MAJORITY
+Default value: MAJORITY
+
+<b>inc</b>
+This option is required if the cluster nodes reside on different networks.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>processLocal</b>
+By turning on this option packets destined to a service in a cluster will not under go any steering.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
 
 
 
@@ -80,7 +90,7 @@ Modifies the specified attributes of a cluster instance.
 
 ##Synopsys
 
-set cluster instance &lt;clId> [-deadInterval &lt;secs>] [-helloInterval &lt;msecs>] [-preemption ( ENABLED | DISABLED )] [-quorumType ( MAJORITY | NONE )]
+set cluster instance &lt;clId> [-deadInterval &lt;secs>] [-helloInterval &lt;msecs>] [-preemption ( ENABLED | DISABLED )] [-quorumType ( MAJORITY | NONE )] [-inc ( ENABLED | DISABLED )] [-processLocal ( ENABLED | DISABLED )] [-nodegroup &lt;string>]
 
 
 ##Arguments
@@ -110,7 +120,20 @@ Default value: DISABLED
 <b>quorumType</b>
 Quorum Configuration Choices  - "Majority" (recommended) requires majority of nodes to be online for the cluster to be UP. "None" relaxes this requirement.
 Possible values: MAJORITY, NONE
-Default value: _NSCL_QUORUMTYPE_MAJORITY
+Default value: MAJORITY
+
+<b>inc</b>
+This option is required if the cluster nodes reside on different networks.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>processLocal</b>
+By turning on this option packets destined to a service in a cluster will not under go any steering.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>nodegroup</b>
+The node group in a Cluster system used for transition from L2 to L3.
 
 
 
@@ -125,7 +148,7 @@ Use this command to remove cluster instance settings.Refer to the set cluster in
 
 ##Synopsys
 
-unset cluster instance &lt;clId> [-deadInterval] [-helloInterval] [-preemption] [-quorumType]
+unset cluster instance &lt;clId> [-deadInterval] [-helloInterval] [-preemption] [-quorumType] [-inc] [-processLocal] [-nodegroup]
 
 
 ##enable cluster instance
@@ -191,14 +214,6 @@ Unique number that identifies the cluster.
 Minimum value: 1
 Maximum value: 16
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -220,6 +235,15 @@ Quorum Configuration Choices  - "Majority" (recommended) requires majority of no
 
 <b>propState</b>
 Enable/Disable the execution of commands on the cluster. This will not impact the execution of commands on individual cluster nodes by using the NSIP.
+
+<b>inc</b>
+This option is required if the cluster nodes reside on different networks.
+
+<b>nodegroup</b>
+The node group in a Cluster system used for transition from L2 to L3.
+
+<b>processLocal</b>
+By turning on this option packets destined to a service in a cluster will not under go any steering.
 
 <b>nodeId</b>
 The unique number that identiies a cluster.
@@ -263,11 +287,23 @@ This argument is used to determine whether it is local node.
 <b>RSSKeyMismatch</b>
 This argument is used to determine if there is a RSS key mismatch at cluster instance level.
 
+<b>NodegroupStateWarning</b>
+This argumnt is used to determind whether all the cluster nodes are bound to nodegroup with state set.
+
 <b>LicenseMismatch</b>
 This argument is used to determine if there is a License mismatch at cluster instance level.
 
 <b>JumboNotSupported</b>
 This argument is used to determine if Jumbo framework is not supported at cluster instance level.
+
+<b>ClusterNoHeartbeatOnNode</b>
+HB is not seen on the backplane interface of member node
+
+<b>ClusterNoLinksetMBF</b>
+MBF is enabled but linkset is not configured
+
+<b>ClusterNoSpottedIp</b>
+There is no spotted SNIP or MIP
 
 <b>NodeRSSKeyMismatch</b>
 This argument is used to determine if there is a RSS key mismatch at cluster node level.
@@ -292,7 +328,7 @@ Cluster Operational Propagation State.
 
 ##Example
 
-An example of the command's output is as follows:1)Cluster ID: 1        Dead Interval: 3 secs        Hello Interval: 200 msecs        Preemption: DISABLED        Propagation: ENABLED        Cluster Status: ENABLED(admin), ENABLED(operational), UP        Member Nodes:        Node ID         Node IP              Health     Admin State       Operational State        -------         -------              ------     -----------       -----------------1)      1               1.1.1.1*             UP         ACTIVE            ACTIVE(Configuration Coordinator)2)      2               1.1.1.2              UP         ACTIVE            ACTIVE Done *: Local node		 
+An example of the command's output is as follows:1)Cluster ID: 1        Dead Interval: 3 secs        Hello Interval: 200 msecs        Preemption: DISABLED        Propagation: ENABLED        Cluster Status: ENABLED(admin), ENABLED(operational), UP        Member Nodes:        Node ID         Node IP              Health     Admin State       Operational State        -------         -------              ------     -----------       -----------------1)      1               1.1.1.1*             UP         ACTIVE            ACTIVE(Configuration Coordinator)2)      2               1.1.1.2              UP         ACTIVE            ACTIVE Done *: Local node                
 
 ##stat cluster instance
 
@@ -310,6 +346,20 @@ stat cluster instance [&lt;clId>] [-detail] [-fullValues] [-ntimes &lt;positive_
 ID of the cluster instance for which to display statistics.
 Minimum value: 1
 Maximum value: 16
+
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
 
 <b>clearstats</b>
 Clear the statsistics / counters

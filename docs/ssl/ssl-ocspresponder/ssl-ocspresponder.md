@@ -42,17 +42,23 @@ Maximum value: 8
 
 <b>batchingDelay</b>
 Maximum time, in milliseconds, to wait to accumulate OCSP requests to batch.  Does not apply if the Batching Depth is 1.
+Minimum value: 0
 Maximum value: 10000
 
 <b>resptimeout</b>
 Time, in milliseconds, to wait for an OCSP response. When this time elapses, an error message appears or the transaction is forwarded, depending on the settings on the virtual server. Includes Batching Delay time.
+Minimum value: 0
 Maximum value: 120000
 
 <b>responderCert</b>
 
+<b>trustResponder</b>
+A certificate to use to validate OCSP responses.  Alternatively, if -trustResponder is specified, no verification will be done on the reponse.  If both are omitted, only the response times (producedAt, lastUpdate, nextUpdate) will be verified.
+
 <b>producedAtTimeSkew</b>
 Time, in seconds, for which the NetScaler waits before considering the response as invalid. The response is considered invalid if the Produced At time stamp in the OCSP response exceeds or precedes the current NetScaler clock time by the amount of time specified.
 Default value: 300
+Minimum value: 0
 Maximum value: 86400
 
 <b>signingCert</b>
@@ -128,17 +134,23 @@ Maximum value: 8
 
 <b>batchingDelay</b>
 Maximum time, in milliseconds, to wait to accumulate OCSP requests to batch.  Does not apply if the Batching Depth is 1.
+Minimum value: 0
 Maximum value: 10000
 
 <b>resptimeout</b>
 Time, in milliseconds, to wait for an OCSP response. When this time elapses, an error message appears or the transaction is forwarded, depending on the settings on the virtual server. Includes Batching Delay time.
+Minimum value: 0
 Maximum value: 120000
 
 <b>responderCert</b>
 
+<b>trustResponder</b>
+A certificate to use to validate OCSP responses.  Alternatively, if -trustResponder is specified, no verification will be done on the reponse.  If both are omitted, only the response times (producedAt, lastUpdate, nextUpdate) will be verified.
+
 <b>producedAtTimeSkew</b>
 Time, in seconds, for which the NetScaler waits before considering the response as invalid. The response is considered invalid if the Produced At time stamp in the OCSP response exceeds or precedes the current NetScaler clock time by the amount of time specified.
 Default value: 300
+Minimum value: 0
 Maximum value: 86400
 
 <b>signingCert</b>
@@ -182,14 +194,6 @@ show ssl ocspResponder [&lt;name>]
 
 <b>name</b>
 Name of the OCSP responder for which to show detailed information.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

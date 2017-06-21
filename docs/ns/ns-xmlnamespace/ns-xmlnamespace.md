@@ -105,14 +105,6 @@ show ns xmlnamespace [&lt;prefix>]
 <b>prefix</b>
 Name of the prefix for which the mappings must be displayed.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

@@ -47,10 +47,6 @@ The owner node in a cluster for which we want to set the lacp priority. Owner no
 Default value: 255
 Minimum value: 0
 
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

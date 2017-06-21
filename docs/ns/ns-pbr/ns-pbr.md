@@ -12,13 +12,13 @@ Adds a policy based route (PBR) to the NetScaler appliance. To commit this opera
 
 ##Synopsys
 
-add ns pbr &lt;name> &lt;action> [-td &lt;positive_integer>] [-srcIP  [&lt;operator>]  &lt;srcIPVal>] [-srcPort  [&lt;operator>]  &lt;srcPortVal>] [-destIP  [&lt;operator>]  &lt;destIPVal>] [-destPort  [&lt;operator>]  &lt;destPortVal>] ((-nextHop  &lt;nextHopVal>) | (-ipTunnel  &lt;ipTunnelName>)) [-srcMac &lt;mac_addr>] [-protocol &lt;protocol> | -protocolNumber &lt;positive_integer>] [-vlan &lt;positive_integer> | -vxlan &lt;positive_integer>] [-interface &lt;interface_name>] [-priority &lt;positive_integer>] [-msr ( ENABLED | DISABLED )  [-monitor &lt;string>]] [-state ( ENABLED | DISABLED )]
+add ns pbr &lt;name> &lt;action> [-td &lt;positive_integer>] [-srcIP  [&lt;operator>]  &lt;srcIPVal>] [-srcPort  [&lt;operator>]  &lt;srcPortVal>] [-destIP  [&lt;operator>]  &lt;destIPVal>] [-destPort  [&lt;operator>]  &lt;destPortVal>] ((-nextHop  &lt;nextHopVal>) | (-ipTunnel  &lt;ipTunnelName>)) [-srcMac &lt;mac_addr>  [-srcMacMask &lt;string>]] [-protocol &lt;protocol> | -protocolNumber &lt;positive_integer>] [-vlan &lt;positive_integer> | -vxlan &lt;positive_integer>] [-interface &lt;interface_name>] [-priority &lt;positive_integer>] [-msr ( ENABLED | DISABLED )  [-monitor &lt;string>]] [-state ( ENABLED | DISABLED )]
 
 
 ##Arguments
 
 <b>name</b>
-Name for the PBR. Must begin with an ASCII alphabetic or underscore \\(_\\) character, and must contain only ASCII alphanumeric, underscore, hash \\(\\#\\), period \\(.\\), space, colon \\(:\\), at \\(@\\), equals \\(=\\), and hyphen \\(-\\) characters. Can be changed after the PBR is created.
+Name for the PBR. Must begin with an ASCII alphabetic or underscore \\(_\\) character, and must contain only ASCII alphanumeric, underscore, hash \\(\\#\\), period \\(.\\), space, colon \\(:\\), at \\(@\\), equals \\(=\\), and hyphen \\(-\\) characters. Cannot be changed after the PBR is created.
 
 <b>action</b>
 Action to perform on the outgoing IPv4 packets that match the PBR.
@@ -35,26 +35,56 @@ Maximum value: 4094
 <b>srcIP</b>
 IP address or range of IP addresses to match against the source IP address of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [10.102.29.30-10.102.29.189].
 
+<b>operator</b>
+Logical operator.
+Possible values: =, !=, EQ, NEQ
+
+<b>srcIPVal</b>
+IP address or range of IP addresses to match against the source IP address of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [10.102.29.30-10.102.29.189].
+
 <b>srcPort</b>
 Port number or range of port numbers to match against the source port number of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90].
 Note: The destination port can be specified only for TCP and UDP protocols.
 
+<b>srcPortVal</b>
+Port number or range of port numbers to match against the source port number of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90].
+Note: The destination port can be specified only for TCP and UDP protocols.
+Maximum value: 65535
+
 <b>destIP</b>
 IP address or range of IP addresses to match against the destination IP address of an outgoing IPv4 packet.  In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [10.102.29.30-10.102.29.189].
+
+<b>destIPVal</b>
+IP address or range of IP addresses to match against the destination IP address of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [10.102.29.30-10.102.29.189].
 
 <b>destPort</b>
 Port number or range of port numbers to match against the destination port number of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90].
 Note: The destination port can be specified only for TCP and UDP protocols.
 
+<b>destPortVal</b>
+Port number or range of port numbers to match against the destination port number of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90].
+Note: The destination port can be specified only for TCP and UDP protocols.
+Maximum value: 65535
+
 <b>nextHop</b>
 IP address of the next hop router or the name of the link load balancing virtual server to which to send matching packets if action is set to ALLOW.
 If you specify a link load balancing (LLB) virtual server, which can provide a backup if a next hop link fails, first make sure that the next hops bound to the LLB virtual server are actually next hops that are directly connected to the NetScaler appliance. Otherwise, the NetScaler throws an error when you attempt to create the PBR.
 
+<b>nextHopVal</b>
+The Next Hop IP address or gateway name.
+
 <b>ipTunnel</b>
 The Tunnel name.
 
+<b>ipTunnelName</b>
+The iptunnel name where packets need to be forwarded upon.
+
 <b>srcMac</b>
 MAC address to match against the source MAC address of an outgoing IPv4 packet.
+
+<b>srcMacMask</b>
+Used to define range of Source MAC address. It takes string of 0 and 1, 0s are for exact match and 1s for wildcard. For matching first 3 bytes of MAC address, srcMacMask value "000000111111". 
+Default value: "000000000000"
 
 <b>protocol</b>
 Protocol, identified by protocol name, to match against the protocol of an outgoing IPv4 packet.
@@ -88,10 +118,13 @@ Monitor the route specified byte Next Hop parameter. This parameter is not appli
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
+<b>monitor</b>
+The name of the monitor.(Can be only of type ping or ARP )
+
 <b>state</b>
 Enable or disable the PBR. After you apply the PBRs, the NetScaler appliance compares outgoing packets to the enabled PBRs.
 Possible values: ENABLED, DISABLED
-Default value: XACLENABLED
+Default value: ENABLED
 
 
 
@@ -127,7 +160,7 @@ Modifies the specified parameters of a PBR. To commit this operation, you must a
 
 ##Synopsys
 
-set ns pbr &lt;name> [-action ( ALLOW | DENY )] [-srcIP  [&lt;operator>]  &lt;srcIPVal>] [-srcPort  [&lt;operator>]  &lt;srcPortVal>] [-destIP  [&lt;operator>]  &lt;destIPVal>] [-destPort  [&lt;operator>]  &lt;destPortVal>] ((-nextHop  &lt;nextHopVal>) | (-ipTunnel  &lt;ipTunnelName>)) [-srcMac &lt;mac_addr>] [-protocol &lt;protocol> | -protocolNumber &lt;positive_integer>] [-vlan &lt;positive_integer> | -vxlan &lt;positive_integer>] [-interface &lt;interface_name>] [-priority &lt;positive_integer>] [-msr ( ENABLED | DISABLED )  [-monitor &lt;string>]]
+set ns pbr &lt;name> [-action ( ALLOW | DENY )] [-srcIP  [&lt;operator>]  &lt;srcIPVal>] [-srcPort  [&lt;operator>]  &lt;srcPortVal>] [-destIP  [&lt;operator>]  &lt;destIPVal>] [-destPort  [&lt;operator>]  &lt;destPortVal>] ((-nextHop  &lt;nextHopVal>) | (-ipTunnel  &lt;ipTunnelName>)) [-srcMac &lt;mac_addr>  [-srcMacMask &lt;string>]] [-protocol &lt;protocol> | -protocolNumber &lt;positive_integer>] [-vlan &lt;positive_integer> | -vxlan &lt;positive_integer>] [-interface &lt;interface_name>] [-priority &lt;positive_integer>] [-msr ( ENABLED | DISABLED )  [-monitor &lt;string>]]
 
 
 ##Arguments
@@ -145,26 +178,56 @@ Possible values: ALLOW, DENY
 <b>srcIP</b>
 IP address or range of IP addresses to match against the source IP address of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [10.102.29.30-10.102.29.189].
 
+<b>operator</b>
+Logical operator.
+Possible values: =, !=, EQ, NEQ
+
+<b>srcIPVal</b>
+IP address or range of IP addresses to match against the source IP address of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [10.102.29.30-10.102.29.189].
+
 <b>srcPort</b>
 Port number or range of port numbers to match against the source port number of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90].
 Note: The destination port can be specified only for TCP and UDP protocols.
 
+<b>srcPortVal</b>
+Port number or range of port numbers to match against the source port number of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90].
+Note: The destination port can be specified only for TCP and UDP protocols.
+Maximum value: 65535
+
 <b>destIP</b>
 IP address or range of IP addresses to match against the destination IP address of an outgoing IPv4 packet.  In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [10.102.29.30-10.102.29.189].
+
+<b>destIPVal</b>
+IP address or range of IP addresses to match against the destination IP address of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [10.102.29.30-10.102.29.189].
 
 <b>destPort</b>
 Port number or range of port numbers to match against the destination port number of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90].
 Note: The destination port can be specified only for TCP and UDP protocols.
 
+<b>destPortVal</b>
+Port number or range of port numbers to match against the destination port number of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90].
+Note: The destination port can be specified only for TCP and UDP protocols.
+Maximum value: 65535
+
 <b>nextHop</b>
 IP address of the next hop router or the name of the link load balancing virtual server to which to send matching packets if action is set to ALLOW.
 If you specify a link load balancing (LLB) virtual server, which can provide a backup if a next hop link fails, first make sure that the next hops bound to the LLB virtual server are actually next hops that are directly connected to the NetScaler appliance. Otherwise, the NetScaler throws an error when you attempt to create the PBR.
 
+<b>nextHopVal</b>
+The Next Hop IP address or gateway name.
+
 <b>ipTunnel</b>
 The Tunnel name.
 
+<b>ipTunnelName</b>
+The iptunnel name where packets need to be forwarded upon.
+
 <b>srcMac</b>
 MAC address to match against the source MAC address of an outgoing IPv4 packet.
+
+<b>srcMacMask</b>
+Used to define range of Source MAC address. It takes string of 0 and 1, 0s are for exact match and 1s for wildcard. For matching first 3 bytes of MAC address, srcMacMask value "000000111111". 
+Default value: "000000000000"
 
 <b>protocol</b>
 Protocol, identified by protocol name, to match against the protocol of an outgoing IPv4 packet.
@@ -198,6 +261,9 @@ Monitor the route specified byte Next Hop parameter. This parameter is not appli
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
+<b>monitor</b>
+Name of the monitor, of type PING or ARP, configured on the NetScaler appliance to monitor the route specified by the Next Hop parameter. You must enable the MSR parameter before setting this parameter.
+
 
 
 ##Example
@@ -211,7 +277,7 @@ Resets the attributes of the specified PBR. Attributes for which a default value
 
 ##Synopsys
 
-unset ns pbr &lt;name> [-srcIP] [-srcPort] [-destIP] [-destPort] [-nextHop] [-ipTunnel] [-srcMac] [-protocol] [-vlan] [-vxlan] [-interface] [-msr] [-monitor]
+unset ns pbr &lt;name> [-srcIP] [-srcPort] [-destIP] [-destPort] [-nextHop] [-ipTunnel] [-srcMac] [-srcMacMask] [-protocol] [-vlan] [-vxlan] [-interface] [-msr] [-monitor]
 
 
 ##Example
@@ -275,6 +341,20 @@ stat ns pbr [&lt;name>] [-detail] [-fullValues] [-ntimes &lt;positive_integer>] 
 <b>name</b>
 Name of the PBR whose statistics you want the NetScaler appliance to display.
 
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
+
 <b>clearstats</b>
 Clear the statsistics / counters
 Possible values: basic, full
@@ -316,7 +396,7 @@ stat pbr
 
 ##Related Commands
 
-<ul><li><a href="../../..//">stat ns</a></li><li><a href="../../../ml#stat-ns-limitident/ml#stat-ns-limitident">stat ns limitIdentifier</a></li><li><a href="../../..//">stat ns acl</a></li><li><a href="../../..//">stat ns acl6</a></li><li><a href="../../../t-ns-simp/t-ns-simp">stat ns simpleacl</a></li><li><a href="../../../at-ns-simpl/at-ns-simpl">stat ns simpleacl6</a></li><li><a href="../../../s-m/s-m">stat ns memory</a></li><li><a href="../../..//">stat ns pbr6</a></li><li><a href="../../../#stat-ns-trafficd/#stat-ns-trafficd">stat ns trafficDomain</a></li></ul>
+<ul><li><a href="../../..//">stat ns</a></li><li><a href="../../../ml#stat-ns-limitident/ml#stat-ns-limitident">stat ns limitIdentifier</a></li><li><a href="../../..//">stat ns acl</a></li><li><a href="../../..//">stat ns acl6</a></li><li><a href="../../../t-ns-simp/t-ns-simp">stat ns simpleacl</a></li><li><a href="../../../at-ns-simpl/at-ns-simpl">stat ns simpleacl6</a></li><li><a href="../../../s-m/s-m">stat ns memory</a></li><li><a href="../../..//">stat ns pbr6</a></li><li><a href="../../../#stat-ns-trafficd/#stat-ns-trafficd">stat ns trafficDomain</a></li><li><a href="../../../t-ns-part/t-ns-part">stat ns partition</a></li></ul>
 
 
 
@@ -338,14 +418,6 @@ Name of the PBR whose details you want the NetScaler appliance to display.
 <b>detail</b>
 To get a detailed view.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -358,6 +430,9 @@ Available settings function as follows:
 
 <b>srcMac</b>
 MAC address to match against the source MAC address of an outgoing IPv4 packet.
+
+<b>srcMacMask</b>
+Used to define range of Source MAC address. It takes string of 0 and 1, 0s are for exact match and 1s for wildcard. For matching first 3 bytes of MAC address, srcMacMask value "000000111111".
 
 <b>protocol</b>
 The protocol number in IP header or name.
@@ -452,5 +527,5 @@ Internal data of this route.
 
 ##Example
 
-show ns pbr a	Name: a                                Action: ALLOW    Hits: 0       srcIP = 10.102.37.252       destIP = 10.10.10.2       srcMac:                                Protocol:       Vlan:                                  Interface:       Active Status: ENABLED                 Applied Status: NOTAPPLIED       Priority: 10       NextHop: 11.11.11.2
+show ns pbr a	Name: a                                Action: ALLOW    Hits: 0       srcIP = 10.102.37.252       destIP = 10.10.10.2       srcMac:                                srcMacMask:       Protocol:       Vlan:                                  Interface:       Active Status: ENABLED                 Applied Status: NOTAPPLIED       Priority: 10       NextHop: 11.11.11.2
 

@@ -124,6 +124,12 @@ NS - Serve alternative content from the NetScaler appliance.
 NO ACTION - Serve no alternative content. However, delay statistics are still collected for the configured URLs, and, if the Maximum Client Connections parameter is set, the number of connections is limited to the value specified by that parameter. (However, alternative content is not served even if the maxConn threshold is met).
 Possible values: ACS, NS, NOACTION
 
+<b>altContentSvcName</b>
+Name of the alternative content service to be used in the ACS action.
+
+<b>altContentPath</b>
+Path to the alternative content service to be used in the ACS action.
+
 
 
 ##Example
@@ -154,14 +160,6 @@ show sc policy [&lt;name>]
 
 <b>name</b>
 Name of a policy about which to display detailed information. To display information about all the SureConnect policies, do not set this parameter.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -221,6 +219,20 @@ stat sc policy [&lt;name>] [-detail] [-fullValues] [-ntimes &lt;positive_integer
 
 <b>name</b>
 Name of the policy about which to display statistics. To display statistics about all SureConnect policies, do not set this parameter.
+
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
 
 <b>clearstats</b>
 Clear the statsistics / counters

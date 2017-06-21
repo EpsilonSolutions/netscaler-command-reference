@@ -43,14 +43,6 @@ Displays the encryption method configured on the NetScaler appliance.
 show ns encryptionParams
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>method</b>

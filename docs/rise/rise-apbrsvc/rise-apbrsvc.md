@@ -13,14 +13,6 @@ Retrieves configured APBR services
 show rise apbrSvc
 
 
-##Arguments
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-
-
 ##Outputs
 
 <b>name</b>

@@ -20,6 +20,10 @@ bind tm global [-policyName &lt;string>  [-priority &lt;positive_integer>]]
 <b>policyName</b>
 Name of the policy that you are binding.
 
+<b>priority</b>
+Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers.
+Minimum value: 0
+
 
 
 ##unbind tm global
@@ -49,18 +53,6 @@ Displays information about TM global bindings.
 show tm global
 
 
-##Arguments
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>policyName</b>
@@ -81,6 +73,8 @@ Indicates that a variable is a built-in (SYSTEM INTERNAL) type.
 
 <b>bindPolicyType</b>
 Bound policy type
+
+<b>globalBindType</b>
 
 <b>devno</b>
 

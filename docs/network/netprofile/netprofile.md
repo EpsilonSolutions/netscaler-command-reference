@@ -12,7 +12,7 @@ Creates a net profile. A net profile (or network profile) contains an IP address
 
 ##Synopsys
 
-add netProfile &lt;name> [-td &lt;positive_integer>] [-srcIP &lt;string>] [-srcippersistency ( ENABLED | DISABLED )]
+add netProfile &lt;name> [-td &lt;positive_integer>] [-srcIP &lt;string>] [-srcippersistency ( ENABLED | DISABLED )] [-overrideLsn ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -30,6 +30,12 @@ IP address or the name of an IP set.
 
 <b>srcippersistency</b>
 When the net profile is associated with a virtual server or its bound services, this option enables the NetScaler appliance to use the same  address, specified in the net profile, to communicate to servers for all sessions initiated from a particular client to the virtual server.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>overrideLsn</b>
+USNIP/USIP settings override LSN settings for configured
+              service/virtual server traffic.. 
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
@@ -67,7 +73,7 @@ Modifies the srcIP parameter of a net profile.
 
 ##Synopsys
 
-set netProfile &lt;name> [-srcIP &lt;string>] [-srcippersistency ( ENABLED | DISABLED )]
+set netProfile &lt;name> [-srcIP &lt;string>] [-srcippersistency ( ENABLED | DISABLED )] [-overrideLsn ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -80,6 +86,12 @@ IP address or the name of an IP set.
 
 <b>srcippersistency</b>
 When the net profile is associated with a virtual server or its bound services, this option enables the NetScaler appliance to use the same  address, specified in the net profile, to communicate to servers for all sessions initiated from a particular client to the virtual server.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>overrideLsn</b>
+USNIP/USIP settings override LSN settings for configured
+              service/virtual server traffic.. 
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
@@ -96,7 +108,7 @@ Removes the srcIP attribute of a net profile..Refer to the set  netProfile comma
 
 ##Synopsys
 
-unset netProfile &lt;name> [-srcIP] [-srcippersistency]
+unset netProfile &lt;name> [-srcIP] [-srcippersistency] [-overrideLsn]
 
 
 ##Example
@@ -118,14 +130,6 @@ show netProfile [&lt;name>]
 <b>name</b>
 Name of the net profile whose details you want to display.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -144,6 +148,10 @@ Used to keep reference count of IP
 
 <b>vpathEncap</b>
 enable/disable vPath Encapsulation
+
+<b>overrideLsn</b>
+USNIP/USIP settings override LSN settings for configured
+              service/virtual server traffic..
 
 <b>devno</b>
 

@@ -12,7 +12,7 @@ Creates an IPv6 address on the NetScaler appliance.
 
 ##Synopsys
 
-add ns ip6 &lt;IPv6Address>@ [-scope ( global | link-local )] [-type &lt;type>  [-hostRoute ( ENABLED | DISABLED )  [-ip6hostRtGw &lt;ipv6_addr|*>]  [-metric &lt;integer>]  [-vserverRHILevel &lt;vserverRHILevel>]  [-ospf6LSAType ( INTRA_AREA | EXTERNAL )  [-ospfArea &lt;positive_integer>]]] ] [-vlan &lt;positive_integer>] [-nd ( ENABLED | DISABLED )] [-icmp ( ENABLED | DISABLED )] [-vServer ( ENABLED | DISABLED )] [-telnet ( ENABLED | DISABLED )] [-ftp ( ENABLED | DISABLED )] [-gui &lt;gui>] [-ssh ( ENABLED | DISABLED )] [-snmp ( ENABLED | DISABLED )] [-mgmtAccess ( ENABLED | DISABLED )] [-restrictAccess ( ENABLED | DISABLED )] [-dynamicRouting ( ENABLED | DISABLED )] [-state ( DISABLED | ENABLED )] [-map &lt;ip_addr>] [-ownerNode &lt;positive_integer>] [-td &lt;positive_integer>]
+add ns ip6 &lt;IPv6Address>@ [-scope ( global | link-local )] [-type &lt;type>  [-hostRoute ( ENABLED | DISABLED )  [-ip6hostRtGw &lt;ipv6_addr|*>]  [-metric &lt;integer>]  [-vserverRHILevel &lt;vserverRHILevel>]  [-ospf6LSAType ( INTRA_AREA | EXTERNAL )  [-ospfArea &lt;positive_integer>]]]  ] [-vlan &lt;positive_integer>] [-nd ( ENABLED | DISABLED )] [-icmp ( ENABLED | DISABLED )] [-vServer ( ENABLED | DISABLED )] [-telnet ( ENABLED | DISABLED )] [-ftp ( ENABLED | DISABLED )] [-gui &lt;gui>] [-ssh ( ENABLED | DISABLED )] [-snmp ( ENABLED | DISABLED )] [-mgmtAccess ( ENABLED | DISABLED )] [-restrictAccess ( ENABLED | DISABLED )] [-dynamicRouting ( ENABLED | DISABLED )] [-state ( DISABLED | ENABLED )] [-map &lt;ip_addr>] [-ownerNode &lt;positive_integer>] [-td &lt;positive_integer>]
 
 
 ##Arguments
@@ -23,12 +23,12 @@ IPv6 address to create on the NetScaler appliance.
 <b>scope</b>
 Scope of the IPv6 address to be created. Cannot be changed after the IP address is created.
 Possible values: global, link-local
-Default value: NS_GLOBAL
+Default value: global
 
 <b>type</b>
 Type of IP address to be created on the NetScaler appliance. Cannot be changed after the IP address is created.
-Possible values: NSIP, VIP, SNIP, GSLBsiteIP, ADNSsvcIP, CLIP
-Default value: NS_IPV6_SNIP
+Possible values: NSIP, VIP, SNIP, GSLBsiteIP, ADNSsvcIP, RADIUSListenersvcIP, CLIP
+Default value: SNIP
 
 <b>vlan</b>
 The VLAN number.
@@ -110,20 +110,21 @@ Advertise or do not advertise the route for the Virtual IP (VIP6) address on the
 * ALL VSERVER - Advertise the route for the VIP6 address if all of the associated virtual servers are in UP state.
 * VSVR_CNTRLD.   Advertise the route for the VIP address according to the  RHIstate (RHI STATE) parameter setting on all the associated virtual servers of the VIP address along with their states.
 When Vserver RHI Level (RHI) parameter is set to VSVR_CNTRLD, the following are different RHI behaviors for the VIP address on the basis of RHIstate (RHI STATE) settings on the virtual servers associated with the VIP address:
-* If you set RHI STATE to PASSIVE on all virtual servers, the NetScaler ADC always advertises the route for the VIP address.
-* If you set RHI STATE to ACTIVE on all virtual servers, the NetScaler ADC advertises the route for the VIP address if at least one of the associated virtual servers is in UP state.
-*If you set RHI STATE to ACTIVE on some and PASSIVE on others, the NetScaler ADC advertises the route for the VIP address if at least one of the associated virtual servers, whose RHI STATE set to ACTIVE, is in UP state.
+ * If you set RHI STATE to PASSIVE on all virtual servers, the NetScaler ADC always advertises the route for the VIP address.
+ * If you set RHI STATE to ACTIVE on all virtual servers, the NetScaler ADC advertises the route for the VIP address if at least one of the associated virtual servers is in UP state.
+ *If you set RHI STATE to ACTIVE on some and PASSIVE on others, the NetScaler ADC advertises the route for the VIP address if at least one of the associated virtual servers, whose RHI STATE set to ACTIVE, is in UP state.
 Possible values: ONE_VSERVER, ALL_VSERVERS, NONE, VSVR_CNTRLD
-Default value: RHI_STATE_ONE
+Default value: ONE_VSERVER
 
 <b>ospf6LSAType</b>
 Type of LSAs to be used by the IPv6 OSPF protocol, running on the NetScaler appliance, for advertising the route for the VIP6 address.
 Possible values: INTRA_AREA, EXTERNAL
-Default value: DISABLED
+Default value: EXTERNAL
 
 <b>ospfArea</b>
 ID of the area in which the Intra-Area-Prefix LSAs are to be advertised for the VIP6 address by the IPv6 OSPF protocol running on the NetScaler appliance. When ospfArea is not set, VIP6 is advertised on all areas.
 Default value: -1
+Minimum value: 0
 Maximum value: 4294967294LU
 
 <b>state</b>
@@ -190,6 +191,11 @@ set ns ip6 (&lt;IPv6Address>@  [-td &lt;positive_integer>]) [-nd ( ENABLED | DIS
 
 <b>IPv6Address</b>
 IPv6 address whose parameters you want to modify.
+
+<b>td</b>
+Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
+Minimum value: 0
+Maximum value: 4094
 
 <b>nd</b>
 The state of ND responses for the entity.
@@ -258,6 +264,38 @@ Default value: DISABLED
 Advertise a route for the VIP6 address by using the dynamic routing protocols running on the NetScaler appliance.
 Possible values: ENABLED, DISABLED
 
+<b>ip6hostRtGw</b>
+IPv6 address of the gateway for the route. If Gateway is not set, VIP uses :: as the gateway.
+Default value: 0
+
+<b>metric</b>
+Integer value to add to or subtract from the cost of the route advertised for the VIP6 address.
+Minimum value: -16777215
+
+<b>vserverRHILevel</b>
+Advertise or do not advertise the route for the Virtual IP (VIP6) address on the basis of the state of the virtual servers associated with that VIP6.
+* NONE - Advertise the route for the VIP6 address, irrespective of the state of the virtual servers associated with the address.
+* ONE VSERVER - Advertise the route for the VIP6 address if at least one of the associated virtual servers is in UP state.
+* ALL VSERVER - Advertise the route for the VIP6 address if all of the associated virtual servers are in UP state.
+* VSVR_CNTRLD.   Advertise the route for the VIP address according to the  RHIstate (RHI STATE) parameter setting on all the associated virtual servers of the VIP address along with their states.
+When Vserver RHI Level (RHI) parameter is set to VSVR_CNTRLD, the following are different RHI behaviors for the VIP address on the basis of RHIstate (RHI STATE) settings on the virtual servers associated with the VIP address:
+ * If you set RHI STATE to PASSIVE on all virtual servers, the NetScaler ADC always advertises the route for the VIP address.
+ * If you set RHI STATE to ACTIVE on all virtual servers, the NetScaler ADC advertises the route for the VIP address if at least one of the associated virtual servers is in UP state.
+ *If you set RHI STATE to ACTIVE on some and PASSIVE on others, the NetScaler ADC advertises the route for the VIP address if at least one of the associated virtual servers, whose RHI STATE set to ACTIVE, is in UP state.
+Possible values: ONE_VSERVER, ALL_VSERVERS, NONE, VSVR_CNTRLD
+Default value: ONE_VSERVER
+
+<b>ospf6LSAType</b>
+The OSPF's route advertisement type.
+Possible values: INTRA_AREA, EXTERNAL
+Default value: EXTERNAL
+
+<b>ospfArea</b>
+ID of the area in which the Intra-Area-Prefix LSAs are to be advertised for the VIP6 address by the IPv6 OSPF protocol running on the NetScaler appliance. When ospfArea is not set, VIP6 is advertised on all areas.
+Default value: -1
+Minimum value: 0
+Maximum value: 4294967294LU
+
 
 
 ##Example
@@ -293,13 +331,10 @@ show ns ip6 [&lt;IPv6Address>  [-td &lt;positive_integer>]]
 <b>IPv6Address</b>
 IPv6 address whose settings you want the NetScaler appliance to display.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
+<b>td</b>
+Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
+Minimum value: 0
+Maximum value: 4094
 
 
 
@@ -309,7 +344,7 @@ IPv6 address whose settings you want the NetScaler appliance to display.
 Scope of the IPv6 address to be created. Cannot be changed after the IP address is created.
 
 <b>type</b>
-The type of the IPV6 addressNOTE: This attribute is deprecated.This option is deprecated in favour of ip6_type
+The type of the IPV6 address
 
 <b>ipType</b>
 The type of the IPv6 address
@@ -372,9 +407,9 @@ Advertise or do not advertise the route for the Virtual IP (VIP6) address on the
 * ALL VSERVER - Advertise the route for the VIP6 address if all of the associated virtual servers are in UP state.
 * VSVR_CNTRLD.   Advertise the route for the VIP address according to the  RHIstate (RHI STATE) parameter setting on all the associated virtual servers of the VIP address along with their states.
 When Vserver RHI Level (RHI) parameter is set to VSVR_CNTRLD, the following are different RHI behaviors for the VIP address on the basis of RHIstate (RHI STATE) settings on the virtual servers associated with the VIP address:
-* If you set RHI STATE to PASSIVE on all virtual servers, the NetScaler ADC always advertises the route for the VIP address.
-* If you set RHI STATE to ACTIVE on all virtual servers, the NetScaler ADC advertises the route for the VIP address if at least one of the associated virtual servers is in UP state.
-*If you set RHI STATE to ACTIVE on some and PASSIVE on others, the NetScaler ADC advertises the route for the VIP address if at least one of the associated virtual servers, whose RHI STATE set to ACTIVE, is in UP state.
+ * If you set RHI STATE to PASSIVE on all virtual servers, the NetScaler ADC always advertises the route for the VIP address.
+ * If you set RHI STATE to ACTIVE on all virtual servers, the NetScaler ADC advertises the route for the VIP address if at least one of the associated virtual servers is in UP state.
+ *If you set RHI STATE to ACTIVE on some and PASSIVE on others, the NetScaler ADC advertises the route for the VIP address if at least one of the associated virtual servers, whose RHI STATE set to ACTIVE, is in UP state.
 
 <b>VIPrtadv2BSD</b>
 Whether this route is advertised to FreeBSD

@@ -7,12 +7,12 @@ The following operations can be performed on "ssl keyFile":
 
 ##import ssl keyFile
 
-Imports a key file to the NetScaler appliance, assigns it a name, and stores it in the /nsconfig/ssl/keyfilefolder. The folder is created if it does not exist.
+Imports a key file to the NetScaler appliance, assigns it a name, and stores it in the /nsconfig/ssl/keyfile folder. The folder is created if it does not exist.
 
 
 ##Synopsys
 
-import ssl keyFile &lt;name> &lt;src>
+import ssl keyFile &lt;name> &lt;src> {-password }
 
 
 ##Arguments
@@ -23,6 +23,8 @@ Name to assign to the imported key file. Must begin with an ASCII alphanumeric o
 <b>src</b>
 URL specifying the protocol, host, and path, including file name, to the key file to be imported. For example, http://www.example.com/key_file.
 NOTE: The import fails if the object to be imported is on an HTTPS server that requires client certificate authentication for access.
+
+<b>password</b>
 
 
 
@@ -53,20 +55,12 @@ rm ssl keyfile &lt;name&gt;
 
 ##show ssl keyFile
 
-Displays lists of all the imported key file objects on the NetScaler ADC.
+Displays a list of all the imported key file objects on the NetScaler ADC.
 
 
 ##Synopsys
 
 show ssl keyFile
-
-
-##Arguments
-
-<b>summary</b>
-
-<b>fullValues</b>
-
 
 
 ##Outputs

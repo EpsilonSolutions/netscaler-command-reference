@@ -23,7 +23,7 @@ Name of the location file, with or without absolute path. If the path is not inc
 <b>format</b>
 Format of the location file. Required for the NetScaler appliance to identify how to read the location file.
 Possible values: netscaler, ip-country, ip-country-isp, ip-country-region-city, ip-country-region-city-isp, geoip-country, geoip-region, geoip-city, geoip-country-org, geoip-country-isp, geoip-city-isp-org
-Default value: NSMAP_FORMAT_NETSCALER
+Default value: netscaler
 
 
 
@@ -53,14 +53,6 @@ Displays the name, including the absolute path, and format of the location file 
 ##Synopsys
 
 show locationFile
-
-
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

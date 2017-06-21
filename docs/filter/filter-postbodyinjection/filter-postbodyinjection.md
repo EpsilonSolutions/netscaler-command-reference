@@ -50,14 +50,6 @@ Displays the name of the file used for postbody injection.
 show filter postbodyInjection
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>postbody</b>

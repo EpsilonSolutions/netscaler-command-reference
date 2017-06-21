@@ -143,14 +143,6 @@ show cache policy [&lt;policyName>]show cache policy stats - alias for 'stat cac
 <b>policyName</b>
 Name of the cache policy about which to display details.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -188,7 +180,7 @@ Number of Undef hits.
 Flag.
 
 <b>precedeDefRules</b>
-Override default request/response cacheability rules.NOTE: This attribute is deprecated.Since pre-builtin, built-in and post-built-in policies are in same policy bank, this is no longer needed
+Override default request/response cacheability rules.
 
 <b>activePolicy</b>
 Indicates whether policy is bound or not.
@@ -231,6 +223,20 @@ stat cache policy [&lt;policyName>] [-detail] [-fullValues] [-ntimes &lt;positiv
 
 <b>policyName</b>
 Name of the cache policy for which to display statistics. If you do not set this parameter, statistics are shown for all cache policies.
+
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
 
 <b>clearstats</b>
 Clear the statsistics / counters

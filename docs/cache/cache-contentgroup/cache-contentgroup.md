@@ -22,22 +22,23 @@ Name for the content group.  Must begin with an ASCII alphabetic or underscore (
 
 <b>weakPosRelExpiry</b>
 Relative expiry time, in seconds, for expiring positive responses with response codes between 200 and 399. Cannot be used in combination with other Expiry attributes. Similar to -relExpiry but has lower precedence.
-Default value: VAL_NOT_SET
+Default value: -1 
 Maximum value: 31536000
 
 <b>heurExpiryParam</b>
 Heuristic expiry time, in percent of the duration, since the object was last modified.
-Default value: VAL_NOT_SET
+Default value: -1 
+Minimum value: 0
 Maximum value: 100
 
 <b>relExpiry</b>
 Relative expiry time, in seconds, after which to expire an object cached in this content group.
-Default value: VAL_NOT_SET
+Default value: -1 
 Maximum value: 31536000
 
 <b>relExpiryMilliSec</b>
 Relative expiry time, in milliseconds, after which to expire an object cached in this content group.
-Default value: VAL_NOT_SET
+Default value: -1 
 Maximum value: 86400000
 
 <b>absExpiry</b>
@@ -51,7 +52,7 @@ Coordinated Universal Time (GMT), up to 4 times a day, when all objects in the c
 
 <b>weakNegRelExpiry</b>
 Relative expiry time, in seconds, for expiring negative responses. This value is used only if the expiry time cannot be determined from any other source. It is applicable only to the following status codes: 307, 403, 404, and 410.
-Default value: VAL_NOT_SET
+Default value: -1 
 Maximum value: 31536000
 
 <b>hitParams</b>
@@ -98,17 +99,18 @@ Default value: YES
 
 <b>prefetchPeriod</b>
 Time period, in seconds before an object's calculated expiry time, during which to attempt prefetch.
-Default value: VAL_NOT_SET
+Default value: -1 
 Maximum value: 4294967294
 
 <b>prefetchPeriodMilliSec</b>
 Time period, in milliseconds before an object's calculated expiry time, during which to attempt prefetch.
-Default value: VAL_NOT_SET
+Default value: -1 
 Maximum value: 4294967290
 
 <b>prefetchMaxPending</b>
 Maximum number of outstanding prefetches that can be queued for the content group.
-Default value: VAL_NOT_SET
+Default value: -1 
+Minimum value: 0
 Maximum value: 4294967294
 
 <b>flashCache</b>
@@ -196,7 +198,7 @@ Selector for invalidating objects in the content group. A selector is an abstrac
 <b>type</b>
 The type of the content group.
 Possible values: HTTP, MYSQL, MSSQL
-Default value: NSSVC_HTTP
+Default value: HTTP
 
 
 
@@ -238,16 +240,17 @@ Maximum value: 31536000
 
 <b>heurExpiryParam</b>
 Heuristic expiry time, in percent of the duration, since the object was last modified.
+Minimum value: 0
 Maximum value: 100
 
 <b>relExpiry</b>
 Relative expiry time, in seconds, after which to expire an object cached in this content group.
-Default value: VAL_NOT_SET
+Default value: -1 
 Maximum value: 31536000
 
 <b>relExpiryMilliSec</b>
 Relative expiry time, in milliseconds, after which to expire an object cached in this content group.
-Default value: VAL_NOT_SET
+Default value: -1 
 Maximum value: 86400000
 
 <b>absExpiry</b>
@@ -304,16 +307,17 @@ Default value: YES
 
 <b>prefetchPeriod</b>
 Time period, in seconds before an object's calculated expiry time, during which to attempt prefetch.
-Default value: VAL_NOT_SET
+Default value: -1 
 Maximum value: 4294967294
 
 <b>prefetchPeriodMilliSec</b>
 Time period, in milliseconds before an object's calculated expiry time, during which to attempt prefetch.
-Default value: VAL_NOT_SET
+Default value: -1 
 Maximum value: 4294967290
 
 <b>prefetchMaxPending</b>
 Maximum number of outstanding prefetches that can be queued for the content group.
+Minimum value: 0
 Maximum value: 4294967294
 
 <b>flashCache</b>
@@ -422,14 +426,6 @@ show cache contentGroup [&lt;name>]
 
 <b>name</b>
 Name of the content group about which to display information.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -660,6 +656,20 @@ stat cache contentGroup [&lt;name>] [-detail] [-fullValues] [-ntimes &lt;positiv
 
 <b>name</b>
 Name of the cache contentgroup for which to display statistics. If you do not set this parameter, statistics are shown for all cache contentgroups.
+
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
 
 <b>clearstats</b>
 Clear the statsistics / counters

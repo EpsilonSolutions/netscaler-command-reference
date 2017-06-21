@@ -20,6 +20,14 @@ bind ca global -policyName &lt;string> -priority &lt;positive_integer> [-gotoPri
 <b>policyName</b>
 Name of the content accelerator policy.
 
+<b>priority</b>
+Specifies the priority of the content accelerator policy.
+Minimum value: 0
+
+<b>gotoPriorityExpression</b>
+
+<b>type</b>
+
 
 
 ##Example
@@ -41,6 +49,15 @@ unbind ca global &lt;policyName> [-type &lt;type>] [-priority &lt;positive_integ
 <b>policyName</b>
 Name of the policy to unbind.
 
+<b>type</b>
+The bindpoint from which the policy is to be unbound.
+Possible values: REQ_OVERRIDE, REQ_DEFAULT, RES_OVERRIDE, RES_DEFAULT
+
+<b>priority</b>
+Priority of the NOPOLICY to be unbound.
+Minimum value: 1
+Maximum value: 2147483647
+
 
 
 ##Example
@@ -49,7 +66,7 @@ unbind ca global pol9
 
 ##show ca global
 
-Shows the content adaptation policies that are globally-bound to the NetScaler appliance.
+Shows the content accelerator policies that are globally-bound to the NetScaler appliance.
 
 
 ##Synopsys
@@ -60,14 +77,6 @@ show ca global [-type &lt;type>]
 ##Arguments
 
 <b>type</b>
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -90,6 +99,8 @@ flowtype of the bound content accelerator policy.
 Number of polices bound to label.
 
 <b>flags</b>
+
+<b>globalBindType</b>
 
 <b>devno</b>
 

@@ -41,40 +41,6 @@ Use this command to modify the parameters for an existing virtual server. NOTE: 
 <b>name</b>
 The name of the virtual server for which the parameters are to be set.
 
-<b>backupVServer</b>
-The name of the backup virtual server for this virtual server.
-
-<b>redirectURL</b>
-The URL where traffic is redirected if the virtual server in the system becomes unavailable.
-
-<b>cacheable</b>
-Use this option to specify whether a virtual server (used for load balancing or content switching) routes requests to the cache redirection virtual server before sending it to the configured servers.
-Possible values: YES, NO
-
-<b>cltTimeout</b>
-The timeout value in seconds for idle client connection
-Maximum value: 31536000
-
-<b>soMethod</b>
-The spillover factor. The system will use this value to determine if it should send traffic to the backupvserver when the main virtual server reaches the spillover threshold.
-Possible values: CONNECTION, DYNAMICCONNECTION, BANDWIDTH, HEALTH, NONE
-
-<b>soPersistence</b>
-The state of the spillover persistence.
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
-
-<b>soPersistenceTimeOut</b>
-The spillover persistence entry timeout.
-Default value: 2
-Minimum value: 2
-Maximum value: 1440
-
-<b>soThreshold</b>
-The spillver threshold value.
-Minimum value: 1
-Maximum value: 4294967294
-
 <b>pushVserver</b>
 The lb vserver of type PUSH/SSL_PUSH to which server pushes the updates received on the client facing non-push lb vserver.
 

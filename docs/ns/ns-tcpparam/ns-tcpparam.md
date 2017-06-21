@@ -12,7 +12,7 @@ Sets the TCP parameters for the NetScaler appliance.
 
 ##Synopsys
 
-set ns tcpParam [-WS ( ENABLED | DISABLED )] [-WSVal &lt;positive_integer>] [-SACK ( ENABLED | DISABLED )] [-learnVsvrMSS ( ENABLED | DISABLED )] [-maxBurst &lt;positive_integer>] [-initialCwnd &lt;positive_integer>] [-delayedAck &lt;positive_integer>] [-downStateRST ( ENABLED | DISABLED )] [-nagle ( ENABLED | DISABLED )] [-limitedPersist ( ENABLED | DISABLED )] [-oooQSize &lt;positive_integer>] [-ackOnPush ( ENABLED | DISABLED )] [-maxPktPerMss &lt;integer>] [-pktPerRetx &lt;integer>] [-minRTO &lt;integer>] [-slowStartIncr &lt;integer>] [-maxDynServerProbes &lt;positive_integer>] [-synHoldFastGiveup &lt;positive_integer>] [-maxSynholdPerprobe &lt;positive_integer>] [-maxSynhold &lt;positive_integer>] [-mssLearnInterval &lt;positive_integer>] [-mssLearnDelay &lt;positive_integer>] [-maxTimeWaitConn &lt;positive_integer>] [-maxSynAckRetx &lt;positive_integer>] [-synAttackDetection ( ENABLED | DISABLED )] [-connFlushIfNoMem &lt;connFlushIfNoMem>] [-connFlushThres &lt;positive_integer>] [-mptcpConCloseOnPassiveSF ( ENABLED | DISABLED )] [-mptcpChecksum ( ENABLED | DISABLED )] [-mptcpSFtimeout &lt;secs>] [-mptcpSFReplaceTimeout &lt;secs>] [-mptcpMaxSF &lt;positive_integer>] [-mptcpMaxPendingSF &lt;positive_integer>] [-mptcpPendingJoinThreshold &lt;positive_integer>] [-mptcpRTOsToSwitchSF &lt;positive_integer>] [-mptcpUseBackupOnDSS ( ENABLED | DISABLED )] [-TcpMaxRetries &lt;positive_integer>] [-mptcpImmediateSFCloseOnFIN ( ENABLED | DISABLED )]
+set ns tcpParam [-WS ( ENABLED | DISABLED )] [-WSVal &lt;positive_integer>] [-SACK ( ENABLED | DISABLED )] [-learnVsvrMSS ( ENABLED | DISABLED )] [-maxBurst &lt;positive_integer>] [-initialCwnd &lt;positive_integer>] [-delayedAck &lt;positive_integer>] [-downStateRST ( ENABLED | DISABLED )] [-nagle ( ENABLED | DISABLED )] [-limitedPersist ( ENABLED | DISABLED )] [-oooQSize &lt;positive_integer>] [-ackOnPush ( ENABLED | DISABLED )] [-maxPktPerMss &lt;integer>] [-pktPerRetx &lt;integer>] [-minRTO &lt;integer>] [-slowStartIncr &lt;integer>] [-maxDynServerProbes &lt;positive_integer>] [-synHoldFastGiveup &lt;positive_integer>] [-maxSynholdPerprobe &lt;positive_integer>] [-maxSynhold &lt;positive_integer>] [-mssLearnInterval &lt;positive_integer>] [-mssLearnDelay &lt;positive_integer>] [-maxTimeWaitConn &lt;positive_integer>] [-maxSynAckRetx &lt;positive_integer>] [-synAttackDetection ( ENABLED | DISABLED )] [-connFlushIfNoMem &lt;connFlushIfNoMem>] [-connFlushThres &lt;positive_integer>] [-mptcpConCloseOnPassiveSF ( ENABLED | DISABLED )] [-mptcpChecksum ( ENABLED | DISABLED )] [-mptcpSFtimeout &lt;secs>] [-mptcpSFReplaceTimeout &lt;secs>] [-mptcpMaxSF &lt;positive_integer>] [-mptcpMaxPendingSF &lt;positive_integer>] [-mptcpPendingJoinThreshold &lt;positive_integer>] [-mptcpRTOsToSwitchSF &lt;positive_integer>] [-mptcpUseBackupOnDSS ( ENABLED | DISABLED )] [-TcpMaxRetries &lt;positive_integer>] [-mptcpImmediateSFCloseOnFIN ( ENABLED | DISABLED )] [-mptcpCloseMptcpSessionOnLastSFClose ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -26,6 +26,7 @@ Default value: DISABLED
 Factor used to calculate the new window size.
 This argument is needed only when the window scaling is enabled.
 Default value: 4
+Minimum value: 0
 Maximum value: 14
 
 <b>SACK</b>
@@ -49,12 +50,6 @@ Initial maximum upper limit on the number of TCP packets that can be outstanding
 Default value: 4
 Minimum value: 1
 Maximum value: 44
-
-<b>recvBuffSize</b>
-TCP Receive buffer size
-Default value: 8190
-Minimum value: 8190
-Maximum value: 20971520
 
 <b>delayedAck</b>
 Timeout for TCP delayed ACK, in milliseconds.
@@ -80,10 +75,11 @@ Default value: ENABLED
 <b>oooQSize</b>
 Maximum size of out-of-order packets queue. A value of 0 means no limit.
 Default value: 64
+Minimum value: 0
 Maximum value: 65535
 
 <b>ackOnPush</b>
-Send immediate positive acknowledgement (ACK) on receipt of TCP packets when doing Web 2.0 PUSH.
+Send immediate positive acknowledgement (ACK) on receipt of TCP packets with PUSH flag.
 Possible values: ENABLED, DISABLED
 Default value: ENABLED
 
@@ -99,7 +95,7 @@ Minimum value: 1
 Maximum value: 100
 
 <b>minRTO</b>
-Minimum retransmission timeout, in milliseconds.
+Minimum retransmission timeout, in milliseconds, specified in 10-millisecond increments (value must yield a whole number if divided by 10).
 Default value: 1000
 Minimum value: 10
 Maximum value: 64000
@@ -151,11 +147,6 @@ Maximum number of connections to hold in the TCP TIME_WAIT state on a packet eng
 Default value: 7000
 Minimum value: 1
 
-<b>KAprobeUpdateLastactivity</b>
-Update last activity for KA probes
-Possible values: ENABLED, DISABLED
-Default value: ENABLED
-
 <b>maxSynAckRetx</b>
 When 'syncookie' is disabled in the TCP profile that is bound to the virtual server or service, and the number of TCP SYN+ACK retransmission by NetScaler for that virtual server or service crosses this threshold, the NetScaler appliance responds by using the TCP SYN-Cookie mechanism.
 Default value: 100
@@ -174,7 +165,7 @@ FIFO: If no half-closed or idle connection can be found, flush the oldest non-ma
 Note: If you enable this setting, you should also consider lowering the zombie timeout and half-close timeout, while setting the NetScaler timeout.
 See Also: connFlushThres argument below.
 Possible values: NONE, HALFCLOSED_AND_IDLE, FIFO
-Default value: NSA_CONNFLUSH_NONE
+Default value: 5
 
 <b>connFlushThres</b>
 Flush an existing connection (as configured through -connFlushIfNoMem FIFO) if the system has more than specified number of connections, and a new connection is to be established.  Note: This value may be rounded down to be a whole multiple of the number of packet engines running.
@@ -240,6 +231,11 @@ Allow subflows to close immediately on FIN before the DATA_FIN exchange is compl
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
+<b>mptcpCloseMptcpSessionOnLastSFClose</b>
+Allow to send DATA FIN or FAST CLOSE on mptcp connection while sending FIN or RST on the last subflow.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
 
 
 ##unset ns tcpParam
@@ -249,7 +245,7 @@ Use this command to remove ns tcpParam settings.Refer to the set ns tcpParam com
 
 ##Synopsys
 
-unset ns tcpParam [-WS] [-WSVal] [-SACK] [-learnVsvrMSS] [-maxBurst] [-initialCwnd] [-delayedAck] [-downStateRST] [-nagle] [-limitedPersist] [-oooQSize] [-ackOnPush] [-maxPktPerMss] [-pktPerRetx] [-minRTO] [-slowStartIncr] [-maxDynServerProbes] [-synHoldFastGiveup] [-maxSynholdPerprobe] [-maxSynhold] [-mssLearnInterval] [-mssLearnDelay] [-maxTimeWaitConn] [-maxSynAckRetx] [-synAttackDetection] [-connFlushIfNoMem] [-connFlushThres] [-mptcpConCloseOnPassiveSF] [-mptcpChecksum] [-mptcpSFtimeout] [-mptcpSFReplaceTimeout] [-mptcpMaxSF] [-mptcpMaxPendingSF] [-mptcpPendingJoinThreshold] [-mptcpRTOsToSwitchSF] [-mptcpUseBackupOnDSS] [-TcpMaxRetries] [-mptcpImmediateSFCloseOnFIN]
+unset ns tcpParam [-WS] [-WSVal] [-SACK] [-learnVsvrMSS] [-maxBurst] [-initialCwnd] [-delayedAck] [-downStateRST] [-nagle] [-limitedPersist] [-oooQSize] [-ackOnPush] [-maxPktPerMss] [-pktPerRetx] [-minRTO] [-slowStartIncr] [-maxDynServerProbes] [-synHoldFastGiveup] [-maxSynholdPerprobe] [-maxSynhold] [-mssLearnInterval] [-mssLearnDelay] [-maxTimeWaitConn] [-maxSynAckRetx] [-synAttackDetection] [-connFlushIfNoMem] [-connFlushThres] [-mptcpConCloseOnPassiveSF] [-mptcpChecksum] [-mptcpSFtimeout] [-mptcpSFReplaceTimeout] [-mptcpMaxSF] [-mptcpMaxPendingSF] [-mptcpPendingJoinThreshold] [-mptcpRTOsToSwitchSF] [-mptcpUseBackupOnDSS] [-TcpMaxRetries] [-mptcpImmediateSFCloseOnFIN] [-mptcpCloseMptcpSessionOnLastSFClose]
 
 
 ##show ns tcpParam
@@ -260,14 +256,6 @@ Displays the TCP parameters configured on the NetScaler appliance.
 ##Synopsys
 
 show ns tcpParam
-
-
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -292,7 +280,7 @@ Maximum number of TCP segments allowed in a burst.
 Initial maximum upper limit on the number of TCP packets that can be outstanding on the TCP link to the server.
 
 <b>recvBuffSize</b>
-TCP Receive buffer sizeNOTE: This attribute is deprecated.This option is deprecated in favour of -buffersize
+TCP Receive buffer size
 
 <b>delayedAck</b>
 Timeout for TCP delayed ACK, in milliseconds.
@@ -319,7 +307,7 @@ Maximum packets per MSS
 Maximum packets per retransmission
 
 <b>minRTO</b>
-Minimum retransmission timeout, in milliseconds.
+Minimum retransmission timeout, in milliseconds, specified in 10-millisecond increments (value must yield a whole number if divided by 10).
 
 <b>slowStartIncr</b>
 TCP slowstart increment factor
@@ -346,7 +334,7 @@ Frequency, in seconds, at which the virtual servers learn the Maximum segment si
 Maximum number of connections to hold in the TCP TIME_WAIT state on a packet engine. New connections entering TIME_WAIT state are proactively cleaned up.
 
 <b>KAprobeUpdateLastactivity</b>
-Update last activity for KA probesNOTE: This attribute is deprecated.This option has been moved tcpProfile
+Update last activity for KA probes
 
 <b>maxSynAckRetx</b>
 When 'syncookie' is disabled in the TCP profile that is bound to the virtual server or service, and the number of TCP SYN+ACK retransmission by NetScaler for that virtual server or service crosses this threshold, the NetScaler appliance responds by using the TCP SYN-Cookie mechanism.
@@ -396,6 +384,12 @@ Number of RTO's after which a connection should be freed.
 
 <b>mptcpImmediateSFCloseOnFIN</b>
 Allow subflows to close immediately on FIN before the DATA_FIN exchange is completed at mptcp level.
+
+<b>mptcpCloseMptcpSessionOnLastSFClose</b>
+Allow to send DATA FIN or FAST CLOSE on mptcp connection while sending FIN or RST on the last subflow.
+
+<b>builtin</b>
+Flag to determine if the tcp param is built-in or not
 
 
 

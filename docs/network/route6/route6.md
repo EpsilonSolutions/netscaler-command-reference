@@ -12,7 +12,7 @@ Adds an IPv6 static route to the routing table of the NetScaler appliance.
 
 ##Synopsys
 
-add route6 &lt;network> [&lt;gateway>] [-vlan &lt;positive_integer>] [-weight &lt;positive_integer>] [-distance &lt;positive_integer>] [-cost &lt;positive_integer>] [-advertise ( DISABLED | ENABLED )] [-msr ( ENABLED | DISABLED )  [-monitor &lt;string>]] [-td &lt;positive_integer>]
+add route6 &lt;network> [&lt;gateway>] [-vlan &lt;positive_integer> | -vxlan &lt;positive_integer>] [-weight &lt;positive_integer>] [-distance &lt;positive_integer>] [-cost &lt;positive_integer>] [-advertise ( DISABLED | ENABLED )] [-msr ( ENABLED | DISABLED )  [-monitor &lt;string>]] [-td &lt;positive_integer>] [-ownerGroup &lt;string>]
 
 
 ##Arguments
@@ -30,6 +30,11 @@ Default value: 0
 Minimum value: 0
 Maximum value: 4094
 
+<b>vxlan</b>
+Integer value that uniquely identifies a VXLAN through which the NetScaler appliance forwards the packets for this route.
+Minimum value: 1
+Maximum value: 16777215
+
 <b>weight</b>
 Positive integer used by the routing algorithms to determine preference for this route over others of equal cost. The lower the weight, the higher the preference.
 Default value: 1
@@ -45,6 +50,7 @@ Maximum value: 254
 <b>cost</b>
 Positive integer used by the routing algorithms to determine preference for this route. The lower the cost, the higher the preference.
 Default value: 1
+Minimum value: 0
 Maximum value: 65535
 
 <b>advertise</b>
@@ -52,14 +58,21 @@ Advertise this route.
 Possible values: DISABLED, ENABLED
 
 <b>msr</b>
-Monitor this route witha monitor of type ND6 or PING.
+Monitor this route with a monitor of type ND6 or PING.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
+
+<b>monitor</b>
+Name of the monitor, of type ND6 or PING, configured on the NetScaler appliance to monitor this route.
 
 <b>td</b>
 Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
 Minimum value: 0
 Maximum value: 4094
+
+<b>ownerGroup</b>
+The owner node group in a Cluster for this route6. If owner node group is not specified then the route is treated as Striped route.
+Default value: DEFAULT_NG
 
 
 
@@ -91,7 +104,7 @@ Removes a static IPv6 route from the NetScaler appliance.
 
 ##Synopsys
 
-rm route6 &lt;network> [&lt;gateway>] [-vlan &lt;positive_integer>] [-td &lt;positive_integer>]
+rm route6 &lt;network> [&lt;gateway>] [-vlan &lt;positive_integer> | -vxlan &lt;positive_integer>] [-td &lt;positive_integer>] [-ownerGroup &lt;string>]
 
 
 ##Arguments
@@ -109,10 +122,19 @@ Default value: 0
 Minimum value: 0
 Maximum value: 4094
 
+<b>vxlan</b>
+Integer value that uniquely identifies a VXLAN through which the NetScaler appliance forwards the packets for this route.
+Minimum value: 1
+Maximum value: 16777215
+
 <b>td</b>
 Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
 Minimum value: 0
 Maximum value: 4094
+
+<b>ownerGroup</b>
+The owner node group in a Cluster for this route6. If owner node group is not specified then the route is treated as Striped route.
+Default value: DEFAULT_NG
 
 
 
@@ -127,7 +149,7 @@ Modifies parameters of an IPv6 static route.
 
 ##Synopsys
 
-set route6 &lt;network> [&lt;gateway>] [-vlan &lt;positive_integer>] [-weight &lt;positive_integer>] [-distance &lt;positive_integer>] [-cost &lt;positive_integer>] [-advertise ( DISABLED | ENABLED )] [-msr ( ENABLED | DISABLED )  [-monitor &lt;string>]] [-td &lt;positive_integer>]
+set route6 &lt;network> [&lt;gateway>] [-vlan &lt;positive_integer> | -vxlan &lt;positive_integer>] [-weight &lt;positive_integer>] [-distance &lt;positive_integer>] [-cost &lt;positive_integer>] [-advertise ( DISABLED | ENABLED )] [-msr ( ENABLED | DISABLED )  [-monitor &lt;string>]] [-td &lt;positive_integer>]
 
 
 ##Arguments
@@ -145,6 +167,11 @@ Default value: 0
 Minimum value: 0
 Maximum value: 4094
 
+<b>vxlan</b>
+Integer value that uniquely identifies a VXLAN through which the NetScaler appliance forwards the packets for this route.
+Minimum value: 1
+Maximum value: 16777215
+
 <b>weight</b>
 Positive integer used by the routing algorithms to determine preference for this route over others of equal cost. The lower the weight, the higher the preference.
 Default value: 1
@@ -160,6 +187,7 @@ Maximum value: 254
 <b>cost</b>
 Positive integer used by the routing algorithms to determine preference for this route. The lower the cost, the higher the preference.
 Default value: 1
+Minimum value: 0
 Maximum value: 65535
 
 <b>advertise</b>
@@ -167,9 +195,12 @@ Advertise this route.
 Possible values: DISABLED, ENABLED
 
 <b>msr</b>
-Monitor this route witha monitor of type ND6 or PING.
+Monitor this route with a monitor of type ND6 or PING.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
+
+<b>monitor</b>
+Name of the monitor, of type ND6 or PING, configured on the NetScaler appliance to monitor this route.
 
 <b>td</b>
 Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
@@ -189,7 +220,7 @@ Unset the attributes of a route that were added by the add/set route command..Re
 
 ##Synopsys
 
-unset route6 &lt;network> [&lt;gateway>] [-vlan &lt;positive_integer>] [-td &lt;positive_integer>] [-weight] [-distance] [-cost] [-advertise] [-msr] [-monitor]
+unset route6 &lt;network> [&lt;gateway>] [-vlan &lt;positive_integer> | -vxlan &lt;positive_integer>] [-td &lt;positive_integer>] [-weight] [-distance] [-cost] [-advertise] [-msr] [-monitor]
 
 
 ##Example
@@ -203,7 +234,7 @@ Displays configuration and state information of all IPv6 routes in the NetScaler
 
 ##Synopsys
 
-show route6 [&lt;network>  [&lt;gateway>]  [-vlan &lt;positive_integer>]  [-td &lt;positive_integer>]] [&lt;routeType>] [-detail]
+show route6 [&lt;network>  [&lt;gateway>]  [-vlan &lt;positive_integer> | -vxlan &lt;positive_integer>]   [-td &lt;positive_integer>]] [&lt;routeType>] [-detail]
 
 
 ##Arguments
@@ -211,19 +242,31 @@ show route6 [&lt;network>  [&lt;gateway>]  [-vlan &lt;positive_integer>]  [-td &
 <b>network</b>
 IPv6 network address of the route entry for which to display details.
 
+<b>gateway</b>
+Any gateway of the route entry for which to display details.
+Default value: 0
+
+<b>vlan</b>
+Integer that uniquely identifies the VLAN defined for this route.
+Default value: 0
+Minimum value: 0
+Maximum value: 4094
+
+<b>vxlan</b>
+Integer value that uniquely identifies a VXLAN through which the NetScaler appliance forwards the packets for this route.
+Minimum value: 1
+Maximum value: 16777215
+
+<b>td</b>
+Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
+Minimum value: 0
+Maximum value: 4094
+
 <b>routeType</b>
 The type of IPv6 routes to be to be displayed.
 
 <b>detail</b>
 To get a detailed view.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -253,7 +296,7 @@ Administrative distance of this route from the appliance.
 Positive integer used by the routing algorithms to determine preference for this route. The lower the cost, the higher the preference.
 
 <b>data</b>
-Internal data of this route.NOTE: This attribute is deprecated.This option is deprecated in favour of NSA_DATA1
+Internal data of this route.
 
 <b>flags</b>
 For a dynamic route, the routing protocol from which the route was learned.
@@ -322,6 +365,12 @@ For a dynamic route, the routing protocol from which the route was learned.
 
 <b>raRoute</b>
 For a dynamic route, the routing protocol from which the route was learned.
+
+<b>ownerGroup</b>
+The owner node group in a Cluster for this route6. If owner node group is not specified then the route is treated as Striped route.
+
+<b>clusterFlags</b>
+Flags for cluster. Currently used to determine if it is a cluster system
 
 <b>devno</b>
 

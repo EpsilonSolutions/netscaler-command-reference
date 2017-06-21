@@ -36,6 +36,9 @@ ID of the VXLAN on which the IPv6 address of this ND6 entry is reachable.
 Minimum value: 1
 Maximum value: 16777215
 
+<b>vtep</b>
+IP address of the VXLAN tunnel endpoint (VTEP) through which the IPv6 address of this ND6 entry is reachable.
+
 <b>td</b>
 Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
 Minimum value: 0
@@ -108,13 +111,10 @@ show nd6 [&lt;neighbor>  [-td &lt;positive_integer>]]
 <b>neighbor</b>
 Link-local IPv6 address of the adjacent network device to add to the ND6 table.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
+<b>td</b>
+Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
+Minimum value: 0
+Maximum value: 4094
 
 
 

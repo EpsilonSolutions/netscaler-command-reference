@@ -31,6 +31,9 @@ Domain name of the server. For a domain based configuration, you must create the
 <b>translationIp</b>
 IP address used to transform the server's DNS-resolved IP address.
 
+<b>translationMask</b>
+The netmask of the translation ip
+
 <b>domainResolveRetry</b>
 Time, in seconds, for which the NetScaler appliance must wait, after DNS resolution fails, before sending the next DNS query to resolve the domain name.
 Default value: 5
@@ -201,14 +204,6 @@ Name of the server for which to display parameters.
 
 <b>internal</b>
 Display names of the servers that have been created for internal use.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

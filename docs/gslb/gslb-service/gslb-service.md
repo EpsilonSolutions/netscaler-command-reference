@@ -32,7 +32,7 @@ Name of the server hosting the GSLB service.
 
 <b>serviceType</b>
 Type of service to create.
-Possible values: HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, NNTP, ANY, SIP_UDP, RADIUS, RDP, RTSP, MYSQL, MSSQL, ORACLE
+Possible values: HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, NNTP, ANY, SIP_UDP, SIP_TCP, SIP_SSL, RADIUS, RDP, RTSP, MYSQL, MSSQL, ORACLE
 Default value: NSSVC_SERVICE_UNKNOWN
 
 <b>port</b>
@@ -47,6 +47,7 @@ The public port associated with the GSLB service's public IP address. The port i
 
 <b>maxClient</b>
 The maximum number of open connections that the service can support at any given time. A GSLB service whose connection count reaches the maximum is not considered when a GSLB decision is made, until the connection count drops below the maximum.
+Minimum value: 0
 Maximum value: 4294967294
 
 <b>healthMonitor</b>
@@ -91,6 +92,7 @@ Maximum value: 31536000
 
 <b>maxBandwidth</b>
 Integer specifying the maximum bandwidth allowed for the service. A GSLB service whose bandwidth reaches the maximum is not considered when a GSLB decision is made, until its bandwidth consumption drops below the maximum.
+Minimum value: 0
 
 <b>downStateFlush</b>
 Flush all active transactions associated with the GSLB service when its state transitions from UP to DOWN. Do not enable this option for services that must complete their transactions. Applicable if connection proxy based site persistence is used.
@@ -98,10 +100,12 @@ Possible values: ENABLED, DISABLED
 
 <b>maxAAAUsers</b>
 Maximum number of SSL VPN users that can be logged on concurrently to the VPN virtual server that is represented by this GSLB service. A GSLB service whose user count reaches the maximum is not considered when a GSLB decision is made, until the count drops below the maximum.
+Minimum value: 0
 Maximum value: 65535
 
 <b>monThreshold</b>
 Monitoring threshold value for the GSLB service. If the sum of the weights of the monitors that are bound to this GSLB service and are in the UP state is not equal to or greater than this threshold value, the service is marked as DOWN.
+Minimum value: 0
 Maximum value: 65535
 
 <b>hashId</b>
@@ -173,6 +177,9 @@ In the request that is forwarded to the GSLB service, insert a header that store
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
+<b>cipHeader</b>
+Name for the HTTP header that stores the client's IP address. Used with the Client IP option. If client IP header insertion is enabled on the service and a name is not specified for the header, the NetScaler appliance uses the name specified by the cipHeader parameter in the set ns param command or, in the GUI, the Client IP Header parameter in the Configure HTTP Parameters dialog box.
+
 <b>sitePersistence</b>
 Use cookie-based site persistence. Applicable only to HTTP and SSL GSLB services.
 Possible values: ConnectionProxy, HTTPRedirect, NONE
@@ -182,6 +189,7 @@ The site's prefix string. When the service is bound to a GSLB virtual server, a 
 
 <b>maxClient</b>
 The maximum number of open connections that the service can support at any given time. A GSLB service whose connection count reaches the maximum is not considered when a GSLB decision is made, until the connection count drops below the maximum.
+Minimum value: 0
 Maximum value: 4294967294
 
 <b>healthMonitor</b>
@@ -191,6 +199,7 @@ Default value: YES
 
 <b>maxBandwidth</b>
 Maximum bandwidth.
+Minimum value: 0
 
 <b>downStateFlush</b>
 Flush all active transactions associated with the GSLB service when its state transitions from UP to DOWN. Do not enable this option for services that must complete their transactions. Applicable if connection proxy based site persistence is used.
@@ -199,19 +208,27 @@ Default value: ENABLED
 
 <b>maxAAAUsers</b>
 Maximum number of SSL VPN users that can be logged on concurrently to the VPN virtual server that is represented by this GSLB service. A GSLB service whose user count reaches the maximum is not considered when a GSLB decision is made, until the count drops below the maximum.
+Minimum value: 0
 Maximum value: 65535
 
 <b>viewName</b>
 Name of the DNS view of the service. A DNS view is used in global server load balancing (GSLB) to return a predetermined IP address to a specific group of clients, which are identified by using a DNS policy.
 
+<b>viewIP</b>
+IP address to be used for the given view
+
 <b>monThreshold</b>
 Monitoring threshold value for the GSLB service. If the sum of the weights of the monitors that are bound to this GSLB service and are in the UP state is not equal to or greater than this threshold value, the service is marked as DOWN.
+Minimum value: 0
 Maximum value: 65535
 
 <b>weight</b>
 Weight to assign to the monitor-service binding. A larger number specifies a greater weight. Contributes to the monitoring threshold, which determines the state of the service.
 Minimum value: 1
 Maximum value: 100
+
+<b>monitorName</b>
+Name of the monitor to bind to the service.
 
 <b>hashId</b>
 Unique hash identifier for the GSLB service, used by hash based load balancing methods.
@@ -259,8 +276,22 @@ Name of the GSLB service.
 <b>viewName</b>
 Name of the DNS view of the service. A DNS view is used in global server load balancing (GSLB) to return a predetermined IP address to a specific group of clients, which are identified by using a DNS policy.
 
+<b>viewIP</b>
+IP address for the specified DNS view.
+
 <b>monitorName</b>
 Name of the monitor to bind to the GSLB service.
+
+<b>monState</b>
+Initial state of the GSLB monitor.
+Possible values: ENABLED, DISABLED
+Default value: ENABLED
+
+<b>weight</b>
+Weight to assign to the monitor-service binding. A larger number specifies a greater weight. Contributes to the monitoring threshold, which determines the state of the service.
+Default value: 1
+Minimum value: 1
+Maximum value: 100
 
 
 
@@ -309,14 +340,6 @@ show gslb service [&lt;serviceName>]show gslb service stats - alias for 'stat gs
 
 <b>serviceName</b>
 Name of the GSLB service.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -465,6 +488,12 @@ Total number of failed probes
 <b>monitorCurrentFailedProbes</b>
 Total number of currently failed probes
 
+<b>stateChangeTimeSec</b>
+Time when last state change happened. Seconds part.
+
+<b>ticksSinceLastStateChange</b>
+Time in 10 millisecond ticks since the last state change.
+
 <b>threshold</b>
 
 <b>ClMonOwner</b>
@@ -497,6 +526,20 @@ stat gslb service [&lt;serviceName>] [-detail] [-fullValues] [-ntimes &lt;positi
 
 <b>serviceName</b>
 Name of the GSLB service.
+
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
 
 <b>clearstats</b>
 Clear the statsistics / counters

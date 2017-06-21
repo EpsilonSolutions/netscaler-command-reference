@@ -24,7 +24,7 @@ If the name includes one or more spaces, enclose the name in double or single qu
 
 <b>modulus</b>
 Modulus, in multiples of 64, of the FIPS key to be created.
-Minimum value: 1024
+Minimum value: 0
 Maximum value: 4096
 
 <b>exponent</b>
@@ -75,14 +75,6 @@ show ssl fipsKey [&lt;fipsKeyName>]
 
 <b>fipsKeyName</b>
 Name of the FIPS key for which to show detailed information.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -135,7 +127,7 @@ Input format of the key file. Available formats are:
 SIM - Secure Information Management; select when importing a FIPS key. If the external FIPS key is encrypted, first decrypt it, and then import it.
 PEM - Privacy Enhanced Mail; select when importing a non-FIPS key.
 Possible values: SIM, DER, PEM
-Default value: FORMAT_SIM
+Default value: SIM
 
 <b>wrapKeyName</b>
 Name of the wrap key to use for importing the key. Required for importing a non-FIPS key.

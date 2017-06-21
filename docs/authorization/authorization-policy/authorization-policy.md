@@ -114,14 +114,6 @@ show authorization policy [&lt;name>]
 <b>name</b>
 Name of the authorization policy.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

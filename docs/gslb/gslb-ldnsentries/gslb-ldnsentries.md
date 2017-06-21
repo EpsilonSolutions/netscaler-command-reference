@@ -25,14 +25,6 @@ Displays the local DNS (LDNS) entries created on the NetScaler appliance. LDNS e
 show gslb ldnsentries
 
 
-##Arguments
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-
-
 ##Outputs
 
 <b>siteName</b>

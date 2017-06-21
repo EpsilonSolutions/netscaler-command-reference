@@ -102,6 +102,9 @@ Name of the string map to which to bind the key-value pair.
 <b>key</b>
 Character string constituting the key to be bound to the string map. The key is matched against the data processed by the operation that uses the string map. The default character set is ASCII. UTF-8 characters can be included if the character set is UTF-8.  UTF-8 characters can be entered directly (if the UI supports it) or can be encoded as a sequence of hexadecimal bytes '\\xNN'. For example, the UTF-8 character '?' can be encoded as '\\xC3\\xBC'.
 
+<b>value</b>
+Character string constituting the value associated with the key. This value is returned when processed data matches the associated key. Refer to the key parameter for details of the value character set.
+
 
 
 ##Example
@@ -146,14 +149,6 @@ show policy stringmap [&lt;name>]
 
 <b>name</b>
 Name of the string map to display. If a name is not provided, a list of all the configured string maps is shown.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

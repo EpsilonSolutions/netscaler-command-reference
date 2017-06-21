@@ -29,9 +29,19 @@ Name of the configured SNMPv3 group to which to bind this SNMPv3 user. The acces
 Authentication algorithm used by the NetScaler appliance and the SNMPv3 user for authenticating the communication between them. You must specify the same authentication algorithm when you configure the SNMPv3 user in the SNMP manager.
 Possible values: MD5, SHA
 
+<b>authPasswd</b>
+Plain-text pass phrase to be used by the authentication algorithm specified by the authType (Authentication Type) parameter. Can consist of 1 to 31 characters that include uppercase and lowercase letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore (_) characters.
+The following requirement applies only to the NetScaler CLI:
+If the pass phrase includes one or more spaces, enclose it in double or single quotation marks (for example, "my phrase" or 'my phrase').
+
 <b>privType</b>
 Encryption algorithm used by the NetScaler appliance and the SNMPv3 user for encrypting the communication between them. You must specify the same encryption algorithm when you configure the SNMPv3 user in the SNMP manager.
 Possible values: DES, AES
+
+<b>privPasswd</b>
+Encryption key to be used by the encryption algorithm specified by the privType (Encryption Type) parameter. Can consist of 1 to 31 characters that include uppercase and lowercase letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore (_) characters.
+The following requirement applies only to the NetScaler CLI:
+If the key includes one or more spaces, enclose it in double or single quotation marks (for example, "my key" or 'my key').
 
 
 
@@ -74,9 +84,19 @@ Name of the configured SNMPv3 group to which to bind this SNMPv3 user. The acces
 Authentication algorithm used by the NetScaler appliance and the SNMPv3 user for authenticating the communication between them. You must specify the same authentication algorithm when you configure the SNMPv3 user in the SNMP manager.
 Possible values: MD5, SHA
 
+<b>authPasswd</b>
+Plain-text pass phrase to be used by the authentication algorithm specified by the authType (Authentication Type) parameter. Can consist of 1 to 31 characters that include uppercase and lowercase letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore (_) characters.
+The following requirement applies only to the NetScaler CLI:
+If the pass phrase includes one or more spaces, enclose it in double or single quotation marks (for example, "my phrase" or 'my phrase').
+
 <b>privType</b>
 Encryption algorithm used by the NetScaler appliance and the SNMPv3 user for encrypting the communication between them. You must specify the same encryption algorithm when you configure the SNMPv3 user in the SNMP manager.
 Possible values: DES, AES
+
+<b>privPasswd</b>
+Encryption key to be used by the encryption algorithm specified by the privType (Encryption Type) parameter. Can consist of 1 to 31 characters that include uppercase and lowercase letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore (_) characters.
+The following requirement applies only to the NetScaler CLI:
+If the key includes one or more spaces, enclose it in double or single quotation marks (for example, "my key" or 'my key').
 
 
 
@@ -104,14 +124,6 @@ show snmp user [&lt;name>]
 
 <b>name</b>
 Name of the SNMPv3 user whose details you want the NetScaler appliance to display.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

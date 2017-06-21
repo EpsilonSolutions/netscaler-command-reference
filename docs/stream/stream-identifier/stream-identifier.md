@@ -12,7 +12,7 @@ Creates a stream identifier. A stream identifier specifies how data is collected
 
 ##Synopsys
 
-add stream identifier &lt;name> &lt;selectorName> [-interval &lt;positive_integer>] [-SampleCount &lt;positive_integer>] [-sort &lt;sort>]
+add stream identifier &lt;name> &lt;selectorName> [-interval &lt;positive_integer>] [-SampleCount &lt;positive_integer>] [-sort &lt;sort>] [-snmptrap ( ENABLED | DISABLED )] [-appflowLog ( ENABLED | DISABLED )] [-trackTransactions ( RESPTIME | NONE )  [-maxTransactionThreshold &lt;positive_integer>]  [-minTransactionThreshold &lt;positive_integer>]  [-acceptanceThreshold &lt;string>]  [-breachThreshold &lt;positive_integer>]]
 
 
 ##Arguments
@@ -36,8 +36,44 @@ Maximum value: 65535
 
 <b>sort</b>
 Sort stored records by the specified statistics column, in descending order. Performed during data collection, the sorting enables real-time data evaluation through NetScaler policies (for example, compression and caching policies) that use functions such as IS_TOP(n).
-Possible values: REQUESTS, CONNECTIONS, RESPTIME, BANDWIDTH, NONE
-Default value: STREAM_DIMENSION_REQUESTS
+Possible values: REQUESTS, CONNECTIONS, RESPTIME, BANDWIDTH, RESPTIME_BREACHES, NONE
+Default value: REQUESTS
+
+<b>snmptrap</b>
+Enable/disable SNMP trap for stream identifier
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>appflowLog</b>
+Enable/disable Appflow logging for stream identifier
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>trackTransactions</b>
+Track transactions exceeding configured threshold. Transaction tracking can be enabled for following metric: ResponseTime.
+By default transaction tracking is disabled
+Possible values: RESPTIME, NONE
+Default value: NONE
+
+<b>maxTransactionThreshold</b>
+Maximum per transcation value of metric. Metric to be tracked is specified by tracktransactions attribute.
+Default value: 0
+Minimum value: 0
+
+<b>minTransactionThreshold</b>
+Minimum per transcation value of metric. Metric to be tracked is specified by tracktransactions attribute.
+Default value: 0
+Minimum value: 0
+
+<b>acceptanceThreshold</b>
+Non-Breaching transactions to Total transactions threshold expressed in percent.
+Maximum of 6 decimal places is supported.
+Default value: 0.000000
+
+<b>breachThreshold</b>
+Breaching transactions threshold calculated over interval.
+Default value: 0
+Minimum value: 0
 
 
 
@@ -52,7 +88,7 @@ Modifies the specified parameters of a stream identifier. Parameters for which a
 
 ##Synopsys
 
-set stream identifier &lt;name> [-selectorName &lt;string>] [-interval &lt;positive_integer>] [-SampleCount &lt;positive_integer>] [-sort &lt;sort>]
+set stream identifier &lt;name> [-selectorName &lt;string>] [-interval &lt;positive_integer>] [-SampleCount &lt;positive_integer>] [-sort &lt;sort>] [-snmptrap ( ENABLED | DISABLED )] [-appflowLog ( ENABLED | DISABLED )] [-trackTransactions ( RESPTIME | NONE )] [-maxTransactionThreshold &lt;positive_integer>] [-minTransactionThreshold &lt;positive_integer>] [-acceptanceThreshold &lt;string>] [-breachThreshold &lt;positive_integer>]
 
 
 ##Arguments
@@ -76,8 +112,44 @@ Maximum value: 65535
 
 <b>sort</b>
 Sort stored records by the specified statistics column, in descending order. Performed during data collection, the sorting enables real-time data evaluation through NetScaler policies (for example, compression and caching policies) that use functions such as IS_TOP(n).
-Possible values: REQUESTS, CONNECTIONS, RESPTIME, BANDWIDTH, NONE
-Default value: STREAM_DIMENSION_REQUESTS
+Possible values: REQUESTS, CONNECTIONS, RESPTIME, BANDWIDTH, RESPTIME_BREACHES, NONE
+Default value: REQUESTS
+
+<b>snmptrap</b>
+Enable/disable SNMP trap for stream identifier
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>appflowLog</b>
+Enable/disable Appflow logging for stream identifier
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>trackTransactions</b>
+Track transactions exceeding configured threshold. Transaction tracking can be enabled for following metric: ResponseTime.
+By default transaction tracking is disabled
+Possible values: RESPTIME, NONE
+Default value: NONE
+
+<b>maxTransactionThreshold</b>
+Maximum per transcation value of metric. Metric to be tracked is specified by tracktransactions attribute.
+Default value: 0
+Minimum value: 0
+
+<b>minTransactionThreshold</b>
+Minimum per transcation value of metric. Metric to be tracked is specified by tracktransactions attribute.
+Default value: 0
+Minimum value: 0
+
+<b>acceptanceThreshold</b>
+Non-Breaching transactions to Total transactions threshold expressed in percent.
+Maximum of 6 decimal places is supported.
+Default value: 0.000000
+
+<b>breachThreshold</b>
+Breaching transactions threshold calculated over interval.
+Default value: 0
+Minimum value: 0
 
 
 
@@ -92,7 +164,7 @@ Use this command to remove stream identifier settings.Refer to the set stream id
 
 ##Synopsys
 
-unset stream identifier &lt;name> [-selectorName] [-interval] [-SampleCount] [-sort]
+unset stream identifier &lt;name> [-selectorName] [-interval] [-SampleCount] [-sort] [-snmptrap] [-appflowLog] [-trackTransactions] [-maxTransactionThreshold] [-minTransactionThreshold] [-acceptanceThreshold] [-breachThreshold]
 
 
 ##rm stream identifier
@@ -131,14 +203,6 @@ show stream identifier [&lt;name>]
 <b>name</b>
 The name of stream identifier.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -163,6 +227,29 @@ Size of the sample from which to select a request for evaluation. The smaller th
 
 <b>sort</b>
 Sort stored records by the specified statistics column, in descending order. Performed during data collection, the sorting enables real-time data evaluation through NetScaler policies (for example, compression and caching policies) that use functions such as IS_TOP(n).
+
+<b>snmptrap</b>
+Enable/disable SNMP trap for stream identifier
+
+<b>appflowLog</b>
+Enable/disable Appflow logging for stream identifier
+
+<b>trackTransactions</b>
+Track transactions exceeding configured threshold. Transaction tracking can be enabled for following metric: ResponseTime.
+By default transaction tracking is disabled
+
+<b>maxTransactionThreshold</b>
+Maximum per transcation value of metric. Metric to be tracked is specified by tracktransactions attribute.
+
+<b>minTransactionThreshold</b>
+Minimum per transcation value of metric. Metric to be tracked is specified by tracktransactions attribute.
+
+<b>acceptanceThreshold</b>
+Non-Breaching transactions to Total transactions threshold expressed in percent.
+Maximum of 6 decimal places is supported.
+
+<b>breachThreshold</b>
+Breaching transactions threshold calculated over interval.
 
 <b>log</b>
 Location where objects collected on the identifier will be logged.
@@ -223,13 +310,32 @@ With a pattern of * *, the appliance displays one set of collective statistics f
 With a pattern of example.com/abc.html ?, the appliance displays statistics for requests for example.com/abc.html from each unique client IP address.
 With a pattern of * 192.0.2.11, the appliance displays statistics for all requests from 192.0.2.11.
 
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
+
 <b>clearstats</b>
 Clear the statsistics / counters
 Possible values: basic, full
 
 <b>sortBy</b>
 use this argument to sort by specific key
-Possible values: Req, BandW, RspTime, Conn
+Possible values: Req, BandW, RspTime, Conn, breachcnt
+
+<b>sortOrder</b>
+use this argument to specify sort order
+Possible values: ascending, descending
+Default value: SORT_DESCENDING
 
 
 
@@ -256,6 +362,9 @@ Average response time of the stream session.
 
 <b>Stream Session Connections (Conn)</b>
 Current connections on the stream session.
+
+<b>Stream Session Breaching Transactions (breachcnt)</b>
+Total Breaching Transactions in configured interval.
 
 
 

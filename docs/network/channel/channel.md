@@ -18,7 +18,7 @@ add channel &lt;id> [-ifnum &lt;interface_name> ...] [-state ( ENABLED | DISABLE
 ##Arguments
 
 <b>id</b>
-ID for the LA channel or cluster LA channel to be created. Specify an LA channel in LA/x notation or cluster LA channel in CLA/x notation, where x can range from 1 to 4. Cannot be changed after the LA channel is created.
+ID for the LA channel or cluster LA channel or LR channel to be created. Specify an LA channel in LA/x notation, where x can range from 1 to 8 or cluster LA channel in CLA/x notation or Link redundant channel in LR/x notation, where x can range from 1 to 4. Cannot be changed after the LA channel is created.
 
 <b>ifnum</b>
 Interfaces to be bound to the LA channel of a NetScaler appliance or to the LA channel of a cluster configuration.
@@ -35,45 +35,29 @@ Use spaces to separate multiple entries.
 <b>state</b>
 Enable or disable the LA channel.
 Possible values: ENABLED, DISABLED
-Default value: NSA_DVC_ENABLE
-
-<b>Mode</b>
-The initital mode for the LA channel.
-Possible values: MANUAL, AUTO
-
-<b>connDistr</b>
-The 'connection' distribution mode for the LA channel.
-Possible values: DISABLED, ENABLED
-
-<b>macdistr</b>
-The  'MAC' distribution mode for the LA channel.
-Possible values: SOURCE, DESTINATION, BOTH
+Default value: ENABLED
 
 <b>lamac</b>
-Specifies a MAC address for the LA channels configured in NetScaler virtual appliances (VPX). This MAC address is persistent after each reboot. If you don't specify this parameter, a MAC address is generated randomly for each LA channel. These MAC addresses changes after each reboot.
+Specifies a MAC address for the LA channels configured in NetScaler virtual appliances (VPX). This MAC address is persistent after each reboot. 
+If you don't specify this parameter, a MAC address is generated randomly for each LA channel. These MAC addresses change after each reboot.
 
 <b>speed</b>
 Ethernet speed of the channel, in Mbps. If the speed of any bound interface is greater than or equal to the value set for this parameter, the state of the interface is UP. Otherwise, the state is INACTIVE. Bound Interfaces whose state is INACTIVE do not process any traffic.
-Possible values: AUTO, 10, 100, 1000, 10000
-Default value: NSA_DVC_SPEED_AUTO
+Possible values: AUTO, 10, 100, 1000, 10000, 40000
+Default value: AUTO
 
 <b>flowControl</b>
 Specifies the flow control type for this LA channel to manage the flow of frames. Flow control is a function as mentioned in clause 31 of the IEEE 802.3 standard. Flow control allows congested ports to pause traffic from the peer device. Flow control is achieved by sending PAUSE frames.
 Possible values: OFF, RX, TX, RXTX
-Default value: NSA_DVC_FC_OFF
+Default value: OFF
 
 <b>haMonitor</b>
 In a High Availability (HA) configuration, monitor the LA channel for failure events. Failure of any LA channel that has HA MON enabled triggers HA failover.
 Possible values: ON, OFF
-Default value: NSA_DVC_MONITOR_ON
+Default value: ON
 
 <b>tagall</b>
 Adds a four-byte 802.1q tag to every packet sent on this channel.  The ON setting applies tags for all VLANs that are bound to this channel. OFF applies the tag for all VLANs other than the native VLAN.
-Possible values: ON, OFF
-Default value: NSA_DVC_VTRUNK_OFF
-
-<b>trunk</b>
-This is deprecated by tagall
 Possible values: ON, OFF
 Default value: OFF
 
@@ -83,10 +67,17 @@ Default value: " "
 
 <b>throughput</b>
 Low threshold value for the throughput of the LA channel, in Mbps. In an high availability (HA) configuration, failover is triggered when the LA channel has HA MON enabled and the throughput is below the specified threshold.
+Minimum value: 0
 Maximum value: 160000
 
 <b>bandwidthHigh</b>
 High threshold value for the bandwidth usage of the LA channel, in Mbps. The NetScaler appliance generates an SNMP trap message when the bandwidth usage of the LA channel is greater than or equal to the specified high threshold value.
+Minimum value: 0
+Maximum value: 160000
+
+<b>bandwidthNormal</b>
+Normal threshold value for the bandwidth usage of the LA channel, in Mbps. When the bandwidth usage of the LA channel returns to less than or equal to the specified normal threshold after exceeding the high threshold, the NetScaler appliance generates an SNMP trap message to indicate that the bandwidth usage has returned to normal.
+Minimum value: 0
 Maximum value: 160000
 
 
@@ -104,7 +95,7 @@ rm channel &lt;id>
 ##Arguments
 
 <b>id</b>
-ID of the LA channel or cluster LA channel that you want to remove. Specify an LA channel in LA/x notation or a cluster LA channel in CLA/x notation, where x can range from 1 to 4.
+ID of the LA channel or cluster LA channel or Link Redundant channel that you want to remove. Specify an LA channel in LA/x notation, where x can range from 1 to 8 or a cluster LA channel in CLA/x notation or Link redundant channel in LR/x notation , where x can range from 1 to 4.
 
 
 
@@ -121,32 +112,20 @@ set channel &lt;id> [-state ( ENABLED | DISABLED )] [-lamac &lt;mac_addr>] [-spe
 ##Arguments
 
 <b>id</b>
-ID of the LA channel or the cluster LA channel whose parameters you want to modify. Specify an LA channel in LA/x notation or a cluster LA channel in CLA/x notation, where x can range from 1 to 4. Required for identifying the LA channel and cannot be modified.
+ID of the LA channel or the cluster LA channel whose parameters you want to modify. Specify an LA channel in LA/x notation, where x can range from 1 to 8 or a cluster LA channel in CLA/x notation or  Link redundant channel in LR/x notation , where x can range from 1 to 4. Required for identifying the LA channel and cannot be modified.
 
 <b>state</b>
 Enable or disable the LA channel.
 Possible values: ENABLED, DISABLED
-Default value: NSA_DVC_ENABLE
-
-<b>Mode</b>
-The mode for the LA channel.
-Possible values: MANUAL, AUTO
-
-<b>connDistr</b>
-The  'connection' distribution mode for the LA channel.
-Possible values: DISABLED, ENABLED
-
-<b>macdistr</b>
-The 'MAC' distribution mode for the LA channel.
-Possible values: SOURCE, DESTINATION, BOTH
+Default value: ENABLED
 
 <b>lamac</b>
 Allows User to set MAC address for LA channels on Hypervised platforms.
 
 <b>speed</b>
 The  speed for the LA channel.
-Possible values: AUTO, 10, 100, 1000, 10000
-Default value: NSA_DVC_SPEED_AUTO
+Possible values: AUTO, 10, 100, 1000, 10000, 40000
+Default value: AUTO
 
 <b>mtu</b>
 The maximum transmission unit (MTU) is the largest packet size, measured in bytes excluding 14 bytes ethernet header and 4 bytes crc, that can be transmitted and received by this interface. Default value of MTU is 1500 on all the interface of Netscaler appliance any value configured more than 1500 on the interface will make the interface as jumbo enabled. In case of cluster backplane interface MTU value will be changed to 1514 by default, user has to change the backplane interface value to maximum mtu configured on any of the interface in cluster system plus 14 bytes more for backplane interface if Jumbo is enabled on any of the interface in a cluster system. Changing the backplane will bring back the MTU of backplane interface to default value of 1500. If a channel is configured as backplane then the same holds true for channel as well as member interfaces. In case of channel if member interfaces is configured as different mtu then the highest MTU configured MTU is treated as the LA MTU if MTU is not specified on LA explicitly. Low MTU interfaces in channel will be taken out of LA distribution list.
@@ -157,20 +136,15 @@ Maximum value: 9216
 <b>flowControl</b>
 Required flow control for the LA channel.
 Possible values: OFF, RX, TX, RXTX
-Default value: NSA_DVC_FC_OFF
+Default value: OFF
 
 <b>haMonitor</b>
 The state of HA monitoring for the LA channel.
 Possible values: ON, OFF
-Default value: NSA_DVC_MONITOR_ON
+Default value: ON
 
 <b>tagall</b>
 The appliance adds  a four-byte 802.1q tag to every packet sent on this channel.  ON applies tags for all the VLANs that are bound to this channel. OFF, applies the tag for all VLANs other than the native VLAN.
-Possible values: ON, OFF
-Default value: NSA_DVC_VTRUNK_OFF
-
-<b>trunk</b>
-This is deprecated by tagall.
 Possible values: ON, OFF
 Default value: OFF
 
@@ -180,10 +154,12 @@ Default value: " "
 
 <b>throughput</b>
 Low threshold value for the throughput of the LA channel, in Mbps. In an high availability (HA) configuration, failover is triggered when the LA channel has HA MON enabled and the throughput is below the specified threshold.
+Minimum value: 0
 Maximum value: 160000
 
 <b>lrMinThroughput</b>
 Specifies the minimum throughput threshold (in Mbps) to be met by the active subchannel. Setting this parameter automatically divides an LACP channel into logical subchannels, with one subchannel active and the others in standby mode.  When the maximum supported throughput of the active channel falls below the lrMinThroughput value, link failover occurs and a standby subchannel becomes active.
+Minimum value: 0
 Maximum value: 80000
 
 <b>linkRedundancy</b>
@@ -193,6 +169,12 @@ Default value: OFF
 
 <b>bandwidthHigh</b>
 High threshold value for the bandwidth usage of the LA channel, in Mbps. The NetScaler appliance generates an SNMP trap message when the bandwidth usage of the LA channel is greater than or equal to the specified high threshold value.
+Minimum value: 0
+Maximum value: 160000
+
+<b>bandwidthNormal</b>
+Normal threshold value for the bandwidth usage of the LA channel, in Mbps. When the bandwidth usage of the LA channel returns to less than or equal to the specified normal threshold after exceeding the high threshold, the NetScaler appliance generates an SNMP trap message to indicate that the bandwidth usage has returned to normal.
+Minimum value: 0
 Maximum value: 160000
 
 
@@ -220,7 +202,7 @@ bind channel &lt;id> &lt;ifnum> ...
 ##Arguments
 
 <b>id</b>
-ID of the LA channel or the cluster LA channel to which you want to bind interfaces. Specify an LA channel in LA/x notation or a cluster LA channel in CLA/x notation, where x can range from 1 to 4.
+ID of the LA channel or the cluster LA channel to which you want to bind interfaces. Specify an LA channel in LA/x notation, where x can range from 1 to 8 or a cluster LA channel in CLA/x notation or  Link redundant channel in LR/x notation , where x can range from 1 to 4.
 
 <b>ifnum</b>
 Interfaces to be bound to the LA channel of a NetScaler appliance or to the LA channel of a cluster configuration.
@@ -249,7 +231,7 @@ unbind channel &lt;id> &lt;ifnum> ...
 ##Arguments
 
 <b>id</b>
-ID of the LA channel or cluster LA channel from which you want to unbind interfaces. Specify an LA channel in LA/x notation or a cluster LA channel in CLA/x notation, where x can range from 1 to 4.
+ID of the LA channel or cluster LA channel from which you want to unbind interfaces. Specify an LA channel in LA/x notation, where x can range from 1 to 8 or a cluster LA channel in CLA/x notation or  Link redundant channel in LR/x notation , where x can range from 1 to 4.
 
 <b>ifnum</b>
 Interfaces to be unbound from the LA channel of a NetScaler appliance or from the LA channel of a cluster configuration.
@@ -279,16 +261,8 @@ show channel [&lt;id>]
 
 <b>id</b>
 ID of an LA channel or LA channel in cluster configuration whose details you want the NetScaler appliance to display.
-Specify an LA channel in LA/x notation or a cluster LA channel in CLA/x notation, where x can range from 1 to 4.
+Specify an LA channel in LA/x notation, where x can range from 1 to 8 or a cluster LA channel in CLA/x notation or  Link redundant channel in LR/x notation , where x can range from 1 to 4.
 Minimum value: 1
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -297,7 +271,7 @@ Minimum value: 1
 <b>stateflag</b>
 
 <b>deviceName</b>
-LA channel name in form LA/x, where x is channel ID, which ranges from 1 to 4.
+LA channel name in form LA/x, where x is channel ID, which ranges from 1 to 8 or LR channel name in form LR/x, where x is channel ID, which ranges from 1 to 4
 
 <b>unit</b>
 Unit number of the channel. This is an internal reference number that the NetScaler uses to identify the channel.
@@ -321,7 +295,8 @@ Native VLAN of the channel.
 MAC address of the channel.
 
 <b>lamac</b>
-Specifies a MAC address for the LA channels configured in NetScaler virtual appliances (VPX). This MAC address is persistent after each reboot. If you don't specify this parameter, a MAC address is generated randomly for each LA channel. These MAC addresses changes after each reboot.
+Specifies a MAC address for the LA channels configured in NetScaler virtual appliances (VPX). This MAC address is persistent after each reboot. 
+If you don't specify this parameter, a MAC address is generated randomly for each LA channel. These MAC addresses change after each reboot.
 
 <b>uptime</b>
 Duration for which the channel is UP. (Example: 3 hours 1 minute 1 second). This value is reset when the channel state changes to DOWN.
@@ -381,7 +356,7 @@ VLAN tags setting on this channel.
 The appliance adds a four-byte 802.1q tag to every packet sent on this channel.  ON applies tags for all the VLANs that are bound to this channel. OFF, applies the tag for all VLANs other than the native VLAN.
 
 <b>trunk</b>
-This is deprecated by tagallNOTE: This attribute is deprecated.The "trunk" argument is confused with LA-trunk, renaming this to "tagall" instead.
+This is deprecated by tagall
 
 <b>taggedAny</b>
 Channel setting to accept/drop all tagged packets.
@@ -587,6 +562,9 @@ LACP Port SELECT state. The state of the SELECT state machine, It could be SELEC
 
 <b>lldpmode</b>
 Link Layer Discovery Protocol (LLDP) mode for an interface. The resultant LLDP mode of an interface depends on the LLDP mode configured at the global and the interface levels.
+
+<b>lrActiveIntf</b>
+LR set member interface state(active/inactive).
 
 <b>devno</b>
 

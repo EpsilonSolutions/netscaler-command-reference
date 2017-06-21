@@ -56,10 +56,6 @@ Default value: -1
 Minimum value: 0
 Maximum value: 31
 
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

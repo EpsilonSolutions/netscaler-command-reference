@@ -12,7 +12,7 @@ Add an ipsec profile.
 
 ##Synopsys
 
-add ipsec profile &lt;name> [-ikeVersion ( V1 | V2 )] [-encAlgo ( AES | 3DES ) ...] [-hashAlgo &lt;hashAlgo> ...] [-lifetime &lt;positive_integer>] (-psk  | (-publickey &lt;string>  -privatekey &lt;string>  -peerPublicKey &lt;string>)) [-livenessCheckInterval &lt;positive_integer>] [-replayWindowSize &lt;positive_integer>] [-ikeRetryInterval &lt;positive_integer>] [-retransmissiontime &lt;positive_integer>]
+add ipsec profile &lt;name> [-ikeVersion ( V1 | V2 )] [-encAlgo ( AES | 3DES ) ...] [-hashAlgo &lt;hashAlgo> ...] [-lifetime &lt;positive_integer>] (-psk  | (-publickey &lt;string>  -privatekey &lt;string>  -peerPublicKey &lt;string>)) [-livenessCheckInterval &lt;positive_integer>] [-replayWindowSize &lt;positive_integer>] [-ikeRetryInterval &lt;positive_integer>] [-retransmissiontime &lt;positive_integer>] [-perfectForwardSecrecy ( ENABLE | DISABLE )]
 
 
 ##Arguments
@@ -31,8 +31,8 @@ Type of encryption algorithm
 Type of hashing algorithm
 
 <b>lifetime</b>
-Lifetime of SA in seconds
-Minimum value: 60
+Lifetime of IKE SA in seconds. Lifetime of IPSec SA will be (lifetime of IKE SA/8)
+Minimum value: 480
 Maximum value: 31536000
 
 <b>psk</b>
@@ -40,6 +40,12 @@ Pre shared key value
 
 <b>publickey</b>
 Public key file path
+
+<b>privatekey</b>
+Private key file path
+
+<b>peerPublicKey</b>
+Peer public key file path
 
 <b>livenessCheckInterval</b>
 Number of seconds after which a notify payload is sent to check the liveliness of the peer. Additional retries are done as per retransmit interval setting. Zero value disables liveliness checks.
@@ -61,6 +67,10 @@ The interval in seconds to retry sending the IKE messages to peer, three consecu
 Minimum value: 1
 Maximum value: 99
 
+<b>perfectForwardSecrecy</b>
+Enable/Disable PFS.
+Possible values: ENABLE, DISABLE
+
 
 
 ##show ipsec profile
@@ -78,14 +88,6 @@ show ipsec profile [&lt;name>]
 <b>name</b>
 The name of the ipsec profile
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -100,7 +102,7 @@ Type of encryption algorithm.
 Type of hashing algorithm
 
 <b>lifetime</b>
-Lifetime of SA in seconds
+Lifetime of IKE SA in seconds. Lifetime of IPSec SA will be (lifetime of IKE SA/8)
 
 <b>livenessCheckInterval</b>
 Number of seconds after which a notify payload is sent to check the liveliness of the peer. Additional retries are done as per retransmit interval setting. Zero value disables liveliness checks.
@@ -125,6 +127,9 @@ Peer public key file path
 
 <b>ikeRetryInterval</b>
 IKE retry interval for bringing up the connection
+
+<b>perfectForwardSecrecy</b>
+Enable/Disable PFS.
 
 <b>builtin</b>
 Indicates that a variable is a built-in (SYSTEM INTERNAL) type.

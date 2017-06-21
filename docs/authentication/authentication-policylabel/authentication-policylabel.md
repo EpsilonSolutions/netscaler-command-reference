@@ -12,16 +12,22 @@ Creates a user-defined authentication policy label.
 
 ##Synopsys
 
-add authentication policylabel &lt;labelName>
+add authentication policylabel &lt;labelName> [-comment &lt;string>] -loginSchema &lt;string>
 
 
 ##Arguments
 
 <b>labelName</b>
-Name for the new authentication policy label. 
+Name for the new authentication policy label.
 Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters.
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, ?my authentication policy label? or ?authentication policy label?).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication policy label" or 'authentication policy label').
+
+<b>comment</b>
+Any comments to preserve information about this authentication policy label.
+
+<b>loginSchema</b>
+Login schema associated with authentication policy label.
 
 
 
@@ -68,6 +74,29 @@ Name of the authentication policy label to which to bind the policy.
 <b>policyName</b>
 Name of the authentication policy to bind to the policy label.
 
+<b>priority</b>
+Positive integer specifying the priority of the policy. The lower the number, the higher the priority. Policies within a label are evaluated in the order of their priority numbers.
+Minimum value: 1
+Maximum value: 2147483647
+
+<b>gotoPriorityExpression</b>
+Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE.  Specify one of the following values:
+*  NEXT ? Evaluate the policy with the next higher priority number.
+*  END ? End policy evaluation.
+*  USE_INVOCATION_RESULT ? Applicable if this policy invokes another policy label. If the final goto in the invoked policy label has a value of END, the evaluation stops. If the final goto is anything other than END, the current policy label performs a NEXT.
+* A default syntax or classic expression that evaluates to a number.
+If you specify an expression, the number to which it evaluates determines the next policy to evaluate, as follows:
+*  If the expression evaluates to a higher numbered priority, the policy with that priority is evaluated next.
+*  If the expression evaluates to the priority of the current policy, the policy with the next higher numbered priority is evaluated next.
+*  If the expression evaluates to a number that is larger than the largest numbered priority, policy evaluation ends.
+An UNDEF event is triggered if:
+*  The expression is invalid.
+*  The expression evaluates to a priority number that is smaller than the current policy's priority number.
+*  The expression evaluates to a priority number that is between the current policy's priority number (say, 30) and the highest priority number (say, 100), but does not match any configured priority number (for example, the expression evaluates to the number 85). This example assumes that the priority number increments by 10 for every successive policy, and therefore a priority number of 85 does not exist in the policy label.
+
+<b>nextFactor</b>
+On success invoke label.
+
 
 
 ##Example
@@ -87,10 +116,10 @@ unbind authentication policylabel &lt;labelName> -policyName &lt;string> [-prior
 ##Arguments
 
 <b>labelName</b>
-Name for the new authentication policy label. 
+Name for the new authentication policy label.
 Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters.
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, ?my authentication policy label? or ?authentication policy label?).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication policy label" or 'authentication policy label').
 
 <b>policyName</b>
 Name of the authentication policy to bind to the policy label.
@@ -145,14 +174,6 @@ show authentication policylabel [&lt;labelName>]
 <b>labelName</b>
 Name of the authorization policy label.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -185,6 +206,12 @@ Description of the policylabel
 <b>nextFactor</b>
 On success invoke label.
 
+<b>comment</b>
+Any comments to preserve information about this authentication policy label.
+
+<b>loginSchema</b>
+Login schema associated with authentication policy label.
+
 <b>devno</b>
 
 <b>count</b>
@@ -209,6 +236,20 @@ stat authentication policylabel [&lt;labelName>] [-detail] [-fullValues] [-ntime
 
 <b>labelName</b>
 Name of the authentication policy label.
+
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
 
 <b>clearstats</b>
 Clear the statsistics / counters
@@ -235,7 +276,7 @@ Number of times policy label was invoked.
 
 ##Related Commands
 
-<ul><li><a href="../../../ation-policy.html#stat-authentication-p/ation-policy.html#stat-authentication-p">stat authentication Policy</a></li><li><a href="../../../ation-vserver.html#stat-authentication-vs/ation-vserver.html#stat-authentication-vs">stat authentication vserver</a></li><li><a href="../../../ation-samlidppolicy.html#stat-authentication-samlidpp/ation-samlidppolicy.html#stat-authentication-samlidpp">stat authentication samlIdPPolicy</a></li></ul>
+<ul><li><a href="../../../ation-policy.html#stat-authentication-p/ation-policy.html#stat-authentication-p">stat authentication Policy</a></li><li><a href="../../../ation-vserver.html#stat-authentication-vs/ation-vserver.html#stat-authentication-vs">stat authentication vserver</a></li><li><a href="../../../ation-samlidppolicy.html#stat-authentication-samlidpp/ation-samlidppolicy.html#stat-authentication-samlidpp">stat authentication samlIdPPolicy</a></li><li><a href="../../../ation-loginschemapolicy.html#stat-authentication-loginschemap/ation-loginschemapolicy.html#stat-authentication-loginschemap">stat authentication loginSchemaPolicy</a></li></ul>
 
 
 

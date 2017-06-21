@@ -12,7 +12,7 @@ Creates an action that indicates the target load balancing virtual server. This 
 
 ##Synopsys
 
-add cs action &lt;name> (-targetLBVserver &lt;string> | -targetVserverExpr &lt;expression>) [-comment &lt;string>]
+add cs action &lt;name> [-targetLBVserver &lt;string> | -targetVserver &lt;string> | -targetVserverExpr &lt;expression>] [-comment &lt;string>]
 
 
 ##Arguments
@@ -24,6 +24,9 @@ If the name includes one or more spaces, enclose the name in double or single qu
 
 <b>targetLBVserver</b>
 Name of the load balancing virtual server to which the content is switched.
+
+<b>targetVserver</b>
+Name of the VPN virtual server to which the content is switched.
 
 <b>targetVserverExpr</b>
 Information about this content switching action.
@@ -65,7 +68,7 @@ Modifies the configuration settings of a content switching action.
 
 ##Synopsys
 
-set cs action &lt;name> (-targetLBVserver &lt;string> | -targetVserverExpr &lt;expression>) [-comment &lt;string>]
+set cs action &lt;name> [-targetLBVserver &lt;string> | -targetVserver &lt;string> | -targetVserverExpr &lt;expression>] [-comment &lt;string>]
 
 
 ##Arguments
@@ -77,6 +80,9 @@ If the name includes one or more spaces, enclose the name in double or single qu
 
 <b>targetLBVserver</b>
 Name of the load balancing virtual server to which the content is switched.
+
+<b>targetVserver</b>
+Name of the VPN virtual server to which the content is switched.
 
 <b>targetVserverExpr</b>
 Information about this content switching action.
@@ -115,14 +121,6 @@ show cs action [&lt;name>]
 <b>name</b>
 Name of the content switching action.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -131,6 +129,9 @@ Name of the content switching action.
 
 <b>targetLBVserver</b>
 Target LB vserver name.
+
+<b>targetVserver</b>
+Target VPN vserver name.
 
 <b>targetVserverExpr</b>
 Target LB vserver expression.
@@ -177,7 +178,7 @@ Existing name of the content switching action.
 <b>newName</b>
 New name for the content switching action. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. 
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, ?my name? or ?my name?).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, my name or my name).
 
 
 

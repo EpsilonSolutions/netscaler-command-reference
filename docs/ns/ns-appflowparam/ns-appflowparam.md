@@ -90,18 +90,6 @@ Display AppFlow parameters. NOTE: This command is deprecated.This command is dep
 
 
 
-##Arguments
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>templateRefresh</b>

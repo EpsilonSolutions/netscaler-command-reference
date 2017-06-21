@@ -63,14 +63,6 @@ Displays the information that has been configured on the SNMP agent for the purp
 show snmp mib
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>contact</b>

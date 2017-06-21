@@ -56,14 +56,6 @@ Displays the diameter parameters configured on the NetScaler appliance.
 show ns diameter
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>identity</b>

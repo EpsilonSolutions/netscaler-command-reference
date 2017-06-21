@@ -26,6 +26,11 @@ Default value: 5
 Minimum value: 1
 Maximum value: 20940000
 
+<b>unit</b>
+Timer interval unit
+Possible values: SEC, MIN
+Default value: SEC
+
 <b>comment</b>
 Comments associated with this timer.
 
@@ -80,7 +85,7 @@ Maximum value: 20940000
 <b>unit</b>
 Timer interval unit
 Possible values: SEC, MIN
-Default value: NSTMUNT_SEC
+Default value: SEC
 
 <b>comment</b>
 Comments associated with this timer.
@@ -122,6 +127,38 @@ Timer name.
 
 <b>policyName</b>
 The timer policy associated with the timer.
+
+<b>priority</b>
+Priority with which the policy is to be bound.
+Minimum value: 1
+Maximum value: 2147483647
+
+<b>gotoPriorityExpression</b>
+Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.
+	o	If gotoPriorityExpression is not present or if it is equal to END then the policy bank evaluation ends here
+	o	Else if the gotoPriorityExpression is equal to NEXT then the next policy in the priority order is evaluated.
+	o	Else gotoPriorityExpression is evaluated. The result of gotoPriorityExpression (which has to be a number) is processed as follows:
+		-	An UNDEF event is triggered if
+			.	gotoPriorityExpression cannot be evaluated
+			.	gotoPriorityExpression evaluates to number which is smaller than the maximum priority in the policy bank but is not same as any policy's priority
+			.	gotoPriorityExpression evaluates to a priority that is smaller than the current policy's priority
+		-	If the gotoPriorityExpression evaluates to the priority of the current policy then the next policy in the priority order is evaluated.
+		-	If the gotoPriorityExpression evaluates to the priority of a policy further ahead in the list then that policy will be evaluated next.
+
+<b>vServer</b>
+Name of the vserver which provides the context for the rule in timer policy. When not specified it is treated as a Global Default context.
+
+<b>sampleSize</b>
+Denotes the sample size. Sample size value of 'x' means that previous '(x - 1)' policy's rule evaluation results and the current evaluation result are present with the binding. For example, sample size of 10 means that there is a state of previous 9 policy evaluation results and also the current policy evaluation result.
+Default value: 3
+Minimum value: 1
+Maximum value: 32
+
+<b>threshold</b>
+Denotes the threshold. If the rule of the policy in the binding relation evaluates 'threshold size' number of times in 'sample size' to true, then the corresponding action is taken. Its value needs to be less than or equal to the sample size value.
+Default value: 3
+Minimum value: 1
+Maximum value: 32
 
 
 
@@ -167,14 +204,6 @@ show ns timer [&lt;name>]
 
 <b>name</b>
 Timer name.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

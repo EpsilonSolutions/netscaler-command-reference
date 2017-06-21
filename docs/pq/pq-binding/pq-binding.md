@@ -18,10 +18,6 @@ Displays the information about the priority queuing policy bound to the virtual 
 <b>vServerName</b>
 Name of the load balancing virtual server for which to display the priority queuing policy.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
 
 
 ##Outputs

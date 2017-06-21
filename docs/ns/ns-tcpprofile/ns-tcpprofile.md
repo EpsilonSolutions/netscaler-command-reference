@@ -12,13 +12,13 @@ Adds a TCP profile to the NetScaler appliance.
 
 ##Synopsys
 
-add ns tcpProfile &lt;name> [-WS ( ENABLED | DISABLED )] [-SACK ( ENABLED | DISABLED )] [-WSVal &lt;positive_integer>] [-nagle ( ENABLED | DISABLED )] [-ackOnPush ( ENABLED | DISABLED )] [-mss &lt;positive_integer>] [-maxBurst &lt;positive_integer>] [-initialCwnd &lt;positive_integer>] [-delayedAck &lt;positive_integer>] [-oooQSize &lt;positive_integer>] [-maxPktPerMss &lt;positive_integer>] [-pktPerRetx &lt;positive_integer>] [-minRTO &lt;positive_integer>] [-slowStartIncr &lt;positive_integer>] [-bufferSize &lt;positive_integer>] [-synCookie ( ENABLED | DISABLED )] [-KAprobeUpdateLastactivity ( ENABLED | DISABLED )] [-flavor &lt;flavor>] [-dynamicReceiveBuffering ( ENABLED | DISABLED )] [-KA ( ENABLED | DISABLED )] [-KAconnIdleTime &lt;positive_integer>] [-KAmaxProbes &lt;positive_integer>] [-KAprobeInterval &lt;positive_integer>] [-sendBuffsize &lt;positive_integer>] [-mptcp ( ENABLED | DISABLED )] [-EstablishClientConn &lt;EstablishClientConn>] [-tcpSegOffload ( AUTOMATIC | DISABLED )] [-rstWindowAttenuate ( ENABLED | DISABLED )] [-rstMaxAck ( ENABLED | DISABLED )] [-spoofSynDrop ( ENABLED | DISABLED )] [-ecn ( ENABLED | DISABLED )] [-mptcpDropDataOnPreEstSF ( ENABLED | DISABLED )] [-mptcpFastOpen ( ENABLED | DISABLED )] [-mptcpSessionTimeout &lt;positive_integer>] [-TimeStamp ( ENABLED | DISABLED )] [-dsack ( ENABLED | DISABLED )] [-ackAggregation ( ENABLED | DISABLED )] [-frto ( ENABLED | DISABLED )]
+add ns tcpProfile &lt;name> [-WS ( ENABLED | DISABLED )] [-SACK ( ENABLED | DISABLED )] [-WSVal &lt;positive_integer>] [-nagle ( ENABLED | DISABLED )] [-ackOnPush ( ENABLED | DISABLED )] [-mss &lt;positive_integer>] [-maxBurst &lt;positive_integer>] [-initialCwnd &lt;positive_integer>] [-delayedAck &lt;positive_integer>] [-oooQSize &lt;positive_integer>] [-maxPktPerMss &lt;positive_integer>] [-pktPerRetx &lt;positive_integer>] [-minRTO &lt;positive_integer>] [-slowStartIncr &lt;positive_integer>] [-bufferSize &lt;positive_integer>] [-synCookie ( ENABLED | DISABLED )] [-KAprobeUpdateLastactivity ( ENABLED | DISABLED )] [-flavor &lt;flavor>] [-dynamicReceiveBuffering ( ENABLED | DISABLED )] [-KA ( ENABLED | DISABLED )] [-KAconnIdleTime &lt;positive_integer>] [-KAmaxProbes &lt;positive_integer>] [-KAprobeInterval &lt;positive_integer>] [-sendBuffsize &lt;positive_integer>] [-mptcp ( ENABLED | DISABLED )] [-EstablishClientConn &lt;EstablishClientConn>] [-tcpSegOffload ( AUTOMATIC | DISABLED )] [-rstWindowAttenuate ( ENABLED | DISABLED )] [-rstMaxAck ( ENABLED | DISABLED )] [-spoofSynDrop ( ENABLED | DISABLED )] [-ecn ( ENABLED | DISABLED )] [-mptcpDropDataOnPreEstSF ( ENABLED | DISABLED )] [-mptcpFastOpen ( ENABLED | DISABLED )] [-mptcpSessionTimeout &lt;positive_integer>] [-TimeStamp ( ENABLED | DISABLED )] [-dsack ( ENABLED | DISABLED )] [-ackAggregation ( ENABLED | DISABLED )] [-frto ( ENABLED | DISABLED )] [-maxcwnd &lt;positive_integer>] [-fack ( ENABLED | DISABLED )]
 
 
 ##Arguments
 
 <b>name</b>
-Name for a TCP profile. Must begin with a letter, number, or the underscore \\(_\\) character. Other characters allowed, after the first character, are the hyphen \\(-\\), period \\(.\\), hash \\(\\#\\), space \\( \\), at \\(@\\), and equal \\(=\\) characters. The name of a TCP profile cannot be changed after it is created.
+Name for a TCP profile. Must begin with a letter, number, or the underscore \\(_\\) character. Other characters allowed, after the first character, are the hyphen \\(-\\), period \\(.\\), hash \\(\\#\\), space \\( \\), at \\(@\\), colon \\(:\\), and equal \\(=\\) characters. The name of a TCP profile cannot be changed after it is created.
 CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks \\(for example, "my tcp profile" or 'my tcp profile'\\).
 
 <b>WS</b>
@@ -35,6 +35,7 @@ Default value: DISABLED
 Factor used to calculate the new window size.
 This argument is needed only when window scaling is enabled.
 Default value: 4
+Minimum value: 0
 Maximum value: 14
 
 <b>nagle</b>
@@ -43,12 +44,13 @@ Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
 <b>ackOnPush</b>
-Send immediate positive acknowledgement (ACK) on receipt of TCP packets when doing Web 2.0 PUSH.
+Send immediate positive acknowledgement (ACK) on receipt of TCP packets with PUSH flag.
 Possible values: ENABLED, DISABLED
 Default value: ENABLED
 
 <b>mss</b>
 Maximum number of octets to allow in a TCP data segment.
+Minimum value: 0
 Maximum value: 9176
 
 <b>maxBurst</b>
@@ -72,10 +74,12 @@ Maximum value: 300
 <b>oooQSize</b>
 Maximum size of out-of-order packets queue. A value of 0 means no limit.
 Default value: 64
+Minimum value: 0
 Maximum value: 65535
 
 <b>maxPktPerMss</b>
 Maximum number of TCP packets allowed per maximum segment size (MSS).
+Minimum value: 0
 Maximum value: 1460
 
 <b>pktPerRetx</b>
@@ -85,7 +89,7 @@ Minimum value: 1
 Maximum value: 512
 
 <b>minRTO</b>
-Minimum retransmission timeout, in milliseconds.
+Minimum retransmission timeout, in milliseconds, specified in 10-millisecond increments (value must yield a whole number if divided by  10).
 Default value: 1000
 Minimum value: 10
 Maximum value: 64000
@@ -100,7 +104,7 @@ Maximum value: 100
 TCP buffering size, in bytes.
 Default value: 8190
 Minimum value: 8190
-Maximum value: 4194304
+Maximum value: 20971520
 
 <b>synCookie</b>
 Enable or disable the SYNCOOKIE mechanism for TCP handshake with clients. Disabling SYNCOOKIE prevents SYN attack protection on the NetScaler appliance.
@@ -114,8 +118,8 @@ Default value: ENABLED
 
 <b>flavor</b>
 Set TCP congestion control algorithm.
-Possible values: Default, Westwood, BIC, CUBIC
-Default value: NS_TCP_DEFAULT
+Possible values: Default, Westwood, BIC, CUBIC, Nile
+Default value: Default
 
 <b>dynamicReceiveBuffering</b>
 Enable or disable dynamic receive buffering. When enabled, allows the receive buffer to be adjusted dynamically based on memory and network conditions.
@@ -150,7 +154,7 @@ Maximum value: 4095
 TCP Send Buffer Size
 Default value: 8190
 Minimum value: 8190
-Maximum value: 4194304
+Maximum value: 20971520
 
 <b>mptcp</b>
 Enable or disable Multipath TCP.
@@ -160,12 +164,12 @@ Default value: DISABLED
 <b>EstablishClientConn</b>
 Establishing Client Client connection on First data/ Final-ACK / Automatic
 Possible values: AUTOMATIC, CONN_ESTABLISHED, ON_FIRST_DATA
-Default value: NS_CONN_AUTOMATIC
+Default value: AUTOMATIC
 
 <b>tcpSegOffload</b>
 Offload TCP segmentation to the NIC. If set to AUTOMATIC, TCP segmentation will be offloaded to the NIC, if the NIC supports it.
 Possible values: AUTOMATIC, DISABLED
-Default value: ENABLED
+Default value: AUTOMATIC
 
 <b>rstWindowAttenuate</b>
 Enable or disable RST window attenuation to protect against spoofing. When enabled, will reply with corrective ACK when a sequence number is invalid.
@@ -220,6 +224,17 @@ Default value: DISABLED
 
 <b>frto</b>
 Enable or disable FRTO (Forward RTO-Recovery).
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>maxcwnd</b>
+TCP Maximum Congestion Window.
+Default value: 524288
+Minimum value: 8190
+Maximum value: 20971520
+
+<b>fack</b>
+Enable or disable FACK (Forward ACK).
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
@@ -257,7 +272,7 @@ Modifies the attributes of a TCP profile.
 
 ##Synopsys
 
-set ns tcpProfile &lt;name> [-WS ( ENABLED | DISABLED )] [-SACK ( ENABLED | DISABLED )] [-WSVal &lt;positive_integer>] [-nagle ( ENABLED | DISABLED )] [-ackOnPush ( ENABLED | DISABLED )] [-mss &lt;positive_integer>] [-maxBurst &lt;positive_integer>] [-initialCwnd &lt;positive_integer>] [-delayedAck &lt;positive_integer>] [-oooQSize &lt;positive_integer>] [-maxPktPerMss &lt;positive_integer>] [-pktPerRetx &lt;positive_integer>] [-minRTO &lt;positive_integer>] [-slowStartIncr &lt;positive_integer>] [-bufferSize &lt;positive_integer>] [-synCookie ( ENABLED | DISABLED )] [-KAprobeUpdateLastactivity ( ENABLED | DISABLED )] [-flavor &lt;flavor>] [-dynamicReceiveBuffering ( ENABLED | DISABLED )] [-KA ( ENABLED | DISABLED )] [-KAconnIdleTime &lt;positive_integer>] [-KAmaxProbes &lt;positive_integer>] [-KAprobeInterval &lt;positive_integer>] [-sendBuffsize &lt;positive_integer>] [-mptcp ( ENABLED | DISABLED )] [-EstablishClientConn &lt;EstablishClientConn>] [-tcpSegOffload ( AUTOMATIC | DISABLED )] [-rstWindowAttenuate ( ENABLED | DISABLED )] [-rstMaxAck ( ENABLED | DISABLED )] [-spoofSynDrop ( ENABLED | DISABLED )] [-ecn ( ENABLED | DISABLED )] [-mptcpDropDataOnPreEstSF ( ENABLED | DISABLED )] [-mptcpFastOpen ( ENABLED | DISABLED )] [-mptcpSessionTimeout &lt;positive_integer>] [-TimeStamp ( ENABLED | DISABLED )] [-dsack ( ENABLED | DISABLED )] [-ackAggregation ( ENABLED | DISABLED )] [-frto ( ENABLED | DISABLED )]
+set ns tcpProfile &lt;name> [-WS ( ENABLED | DISABLED )] [-SACK ( ENABLED | DISABLED )] [-WSVal &lt;positive_integer>] [-nagle ( ENABLED | DISABLED )] [-ackOnPush ( ENABLED | DISABLED )] [-mss &lt;positive_integer>] [-maxBurst &lt;positive_integer>] [-initialCwnd &lt;positive_integer>] [-delayedAck &lt;positive_integer>] [-oooQSize &lt;positive_integer>] [-maxPktPerMss &lt;positive_integer>] [-pktPerRetx &lt;positive_integer>] [-minRTO &lt;positive_integer>] [-slowStartIncr &lt;positive_integer>] [-bufferSize &lt;positive_integer>] [-synCookie ( ENABLED | DISABLED )] [-KAprobeUpdateLastactivity ( ENABLED | DISABLED )] [-flavor &lt;flavor>] [-dynamicReceiveBuffering ( ENABLED | DISABLED )] [-KA ( ENABLED | DISABLED )] [-KAconnIdleTime &lt;positive_integer>] [-KAmaxProbes &lt;positive_integer>] [-KAprobeInterval &lt;positive_integer>] [-sendBuffsize &lt;positive_integer>] [-mptcp ( ENABLED | DISABLED )] [-EstablishClientConn &lt;EstablishClientConn>] [-tcpSegOffload ( AUTOMATIC | DISABLED )] [-rstWindowAttenuate ( ENABLED | DISABLED )] [-rstMaxAck ( ENABLED | DISABLED )] [-spoofSynDrop ( ENABLED | DISABLED )] [-ecn ( ENABLED | DISABLED )] [-mptcpDropDataOnPreEstSF ( ENABLED | DISABLED )] [-mptcpFastOpen ( ENABLED | DISABLED )] [-mptcpSessionTimeout &lt;positive_integer>] [-TimeStamp ( ENABLED | DISABLED )] [-dsack ( ENABLED | DISABLED )] [-ackAggregation ( ENABLED | DISABLED )] [-frto ( ENABLED | DISABLED )] [-maxcwnd &lt;positive_integer>] [-fack ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -279,6 +294,7 @@ Default value: DISABLED
 Factor used to calculate the new window size.
 This argument is needed only when window scaling is enabled.
 Default value: 4
+Minimum value: 0
 Maximum value: 14
 
 <b>nagle</b>
@@ -287,12 +303,13 @@ Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
 <b>ackOnPush</b>
-Send immediate positive acknowledgement (ACK) on receipt of TCP packets when doing Web 2.0 PUSH.
+Send immediate positive acknowledgement (ACK) on receipt of TCP packets with PUSH flag.
 Possible values: ENABLED, DISABLED
 Default value: ENABLED
 
 <b>mss</b>
 Set Maximum Segment Size(MSS) to use for TCP Connection(0 forces use of global setting)
+Minimum value: 0
 Maximum value: 9176
 
 <b>maxBurst</b>
@@ -316,10 +333,12 @@ Maximum value: 300
 <b>oooQSize</b>
 Maximum size of out-of-order packets queue. A value of 0 means no limit.
 Default value: 64
+Minimum value: 0
 Maximum value: 65535
 
 <b>maxPktPerMss</b>
 Maximum number of TCP packets allowed per maximum segment size (MSS).
+Minimum value: 0
 Maximum value: 1460
 
 <b>pktPerRetx</b>
@@ -329,7 +348,7 @@ Minimum value: 1
 Maximum value: 512
 
 <b>minRTO</b>
-Minimum retransmission timeout, in milliseconds.
+Minimum retransmission timeout, in milliseconds, specified in 10-millisecond increments (value must yield a whole number if divided by  10).
 Default value: 1000
 Minimum value: 10
 Maximum value: 64000
@@ -344,7 +363,7 @@ Maximum value: 100
 TCP buffering size, in bytes.
 Default value: 8190
 Minimum value: 8190
-Maximum value: 4194304
+Maximum value: 20971520
 
 <b>synCookie</b>
 Enable or disable the SYNCOOKIE mechanism for TCP handshake with clients. Disabling SYNCOOKIE prevents SYN attack protection on the NetScaler appliance.
@@ -358,8 +377,8 @@ Default value: ENABLED
 
 <b>flavor</b>
 Set TCP congestion control algorithm.
-Possible values: Default, Westwood, BIC, CUBIC
-Default value: NS_TCP_DEFAULT
+Possible values: Default, Westwood, BIC, CUBIC, Nile
+Default value: Default
 
 <b>dynamicReceiveBuffering</b>
 Enable or disable dynamic receive buffering. When enabled, allows the receive buffer to be adjusted dynamically based on memory and network conditions.
@@ -394,7 +413,7 @@ Maximum value: 4095
 TCP Send Buffer Size
 Default value: 8190
 Minimum value: 8190
-Maximum value: 4194304
+Maximum value: 20971520
 
 <b>mptcp</b>
 Enable or disable Multipath TCP.
@@ -404,12 +423,12 @@ Default value: DISABLED
 <b>EstablishClientConn</b>
 Establishing Client Client connection on First data/ Final-ACK / Automatic
 Possible values: AUTOMATIC, CONN_ESTABLISHED, ON_FIRST_DATA
-Default value: NS_CONN_AUTOMATIC
+Default value: AUTOMATIC
 
 <b>tcpSegOffload</b>
 Offload TCP segmentation to the NIC. If set to AUTOMATIC, TCP segmentation will be offloaded to the NIC, if the NIC supports it.
 Possible values: AUTOMATIC, DISABLED
-Default value: ENABLED
+Default value: AUTOMATIC
 
 <b>rstWindowAttenuate</b>
 Enable or disable RST window attenuation to protect against spoofing. When enabled, will reply with corrective ACK when a sequence number is invalid.
@@ -467,6 +486,17 @@ Enable or disable FRTO (Forward RTO-Recovery).
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
+<b>maxcwnd</b>
+TCP Maximum Congestion Window.
+Default value: 524288
+Minimum value: 8190
+Maximum value: 20971520
+
+<b>fack</b>
+Enable or disable FACK (Forward ACK).
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
 
 
 ##Example
@@ -480,7 +510,7 @@ Removes the attributes of the TCP profile. Attributes for which a default value 
 
 ##Synopsys
 
-unset ns tcpProfile &lt;name> [-WS] [-SACK] [-WSVal] [-nagle] [-ackOnPush] [-mss] [-maxBurst] [-initialCwnd] [-delayedAck] [-oooQSize] [-maxPktPerMss] [-pktPerRetx] [-minRTO] [-slowStartIncr] [-bufferSize] [-synCookie] [-KAprobeUpdateLastactivity] [-flavor] [-dynamicReceiveBuffering] [-KA] [-KAmaxProbes] [-KAconnIdleTime] [-KAprobeInterval] [-sendBuffsize] [-mptcp] [-EstablishClientConn] [-tcpSegOffload] [-rstWindowAttenuate] [-rstMaxAck] [-spoofSynDrop] [-ecn] [-mptcpDropDataOnPreEstSF] [-mptcpFastOpen] [-mptcpSessionTimeout] [-TimeStamp] [-dsack] [-ackAggregation] [-frto]
+unset ns tcpProfile &lt;name> [-WS] [-SACK] [-WSVal] [-nagle] [-ackOnPush] [-mss] [-maxBurst] [-initialCwnd] [-delayedAck] [-oooQSize] [-maxPktPerMss] [-pktPerRetx] [-minRTO] [-slowStartIncr] [-bufferSize] [-synCookie] [-KAprobeUpdateLastactivity] [-flavor] [-dynamicReceiveBuffering] [-KA] [-KAmaxProbes] [-KAconnIdleTime] [-KAprobeInterval] [-sendBuffsize] [-mptcp] [-EstablishClientConn] [-tcpSegOffload] [-rstWindowAttenuate] [-rstMaxAck] [-spoofSynDrop] [-ecn] [-mptcpDropDataOnPreEstSF] [-mptcpFastOpen] [-mptcpSessionTimeout] [-TimeStamp] [-dsack] [-ackAggregation] [-frto] [-maxcwnd] [-fack]
 
 
 ##show ns tcpProfile
@@ -497,14 +527,6 @@ show ns tcpProfile [&lt;name>]
 
 <b>name</b>
 Name of the TCP profile to be displayed. If a name is not provided, information about all TCP profiles is shown.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -524,7 +546,7 @@ This argument is needed only when window scaling is enabled.
 Enable or disable the Nagle algorithm on TCP connections.
 
 <b>ackOnPush</b>
-Send immediate positive acknowledgement (ACK) on receipt of TCP packets when doing Web 2.0 PUSH.
+Send immediate positive acknowledgement (ACK) on receipt of TCP packets with PUSH flag.
 
 <b>mss</b>
 Maximum Segment Size(MSS) to use for TCP Connection(0 forces use of global setting)
@@ -629,8 +651,17 @@ Enable or disable ACK Aggregation.
 <b>frto</b>
 Enable or disable FRTO (Forward RTO-Recovery).
 
+<b>maxcwnd</b>
+TCP Maximum Congestion Window.
+
+<b>fack</b>
+Forward Acknowlegement
+
 <b>stateflag</b>
 State flag
+
+<b>builtin</b>
+Flag to determine if tcp profile is built-in or not
 
 <b>devno</b>
 

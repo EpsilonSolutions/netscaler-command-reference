@@ -18,7 +18,22 @@ stat system cpu [&lt;id>] [-detail] [-fullValues] [-ntimes &lt;positive_integer>
 <b>id</b>
 ID of the CPU for which to display statistics.
 Default value: 65535
+Minimum value: 0
 Maximum value: 65534
+
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
 
 <b>clearstats</b>
 Clear the statsistics / counters

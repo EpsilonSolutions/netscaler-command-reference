@@ -40,8 +40,14 @@ Minimum value: 1
 <b>natprefix</b>
 Prefix used for translating packets from private IPv6 servers to IPv4 packets. This prefix has a length of 96 bits (128-32 = 96). The IPv6 servers embed the destination IP address of the IPv4 servers or hosts in the last 32 bits of the destination IP address field of the IPv6 packets. The first 96 bits of the destination IP address field are set as the IPv6 NAT prefix. IPv6 packets addressed to this prefix have to be routed to the NetScaler appliance to ensure that the IPv6-IPv4 translation is done by the appliance.
 
+<b>td</b>
+Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
+Minimum value: 0
+Maximum value: 4094
+
 <b>doDAD</b>
-Enable the NetScaler appliance to do Duplicate Address Detection (DAD) for all the NetScaler owned IPv6 addresses regardless of whether they are obtained through stateless auto configuration, DHCPv6, or manual configuration.
+Enable the NetScaler appliance to do Duplicate Address
+Detection (DAD) for all the NetScaler owned IPv6 addresses regardless of whether they are obtained through stateless auto configuration, DHCPv6, or manual configuration.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
@@ -82,10 +88,6 @@ Integer value that uniquely identifies the traffic domain in which you want to c
 Minimum value: 0
 Maximum value: 4094
 
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -97,19 +99,19 @@ Enable the NetScaler appliance to learn about various routes from Router Adverti
 Enable the NetScaler appliance to do Router Redirection.
 
 <b>basereachtime</b>
-ND6 base reachable time (ms)NOTE: This attribute is deprecated.depricating "basereachtime" in favor of "ndBasereachTime" to accommodate larger value set
+ND6 base reachable time (ms)
 
 <b>ndBasereachTime</b>
 Base reachable time of the Neighbor Discovery (ND6) protocol. The time, in milliseconds, that the NetScaler appliance assumes an adjacent device is reachable after receiving a reachability confirmation.
 
 <b>reachtime</b>
-ND6 computed reachable time (ms)NOTE: This attribute is deprecated.depricating V6REACHTIME in favor of ND6REACHTIME to accommodate larger value set
+ND6 computed reachable time (ms)
 
 <b>ndreachtime</b>
 ND6 computed reachable time (ms)
 
 <b>retransmissiontime</b>
-ND6 retransmission time (ms)NOTE: This attribute is deprecated.depricating "retransmissiontime" in favor of "ndRetransmissionTime" to accommodate larger value set
+ND6 retransmission time (ms)
 
 <b>ndRetransmissionTime</b>
 Retransmission time of the Neighbor Discovery (ND6) protocol. The time, in milliseconds, between retransmitted Neighbor Solicitation (NS) messages, to an adjacent device.
@@ -118,7 +120,8 @@ Retransmission time of the Neighbor Discovery (ND6) protocol. The time, in milli
 Prefix used for translating packets from private IPv6 servers to IPv4 packets. This prefix has a length of 96 bits (128-32 = 96). The IPv6 servers embed the destination IP address of the IPv4 servers or hosts in the last 32 bits of the destination IP address field of the IPv6 packets. The first 96 bits of the destination IP address field are set as the IPv6 NAT prefix. IPv6 packets addressed to this prefix have to be routed to the NetScaler appliance to ensure that the IPv6-IPv4 translation is done by the appliance.
 
 <b>doDAD</b>
-Enable the NetScaler appliance to do Duplicate Address Detection (DAD) for all the NetScaler owned IPv6 addresses regardless of whether they are obtained through stateless auto configuration, DHCPv6, or manual configuration.
+Enable the NetScaler appliance to do Duplicate Address
+Detection (DAD) for all the NetScaler owned IPv6 addresses regardless of whether they are obtained through stateless auto configuration, DHCPv6, or manual configuration.
 
 <b>devno</b>
 

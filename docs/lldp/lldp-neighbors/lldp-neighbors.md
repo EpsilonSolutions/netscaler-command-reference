@@ -20,10 +20,6 @@ show lldp neighbors [&lt;ifnum>]
 <b>ifnum</b>
 Interface Name
 
-<b>summary</b>
-
-<b>fullValues</b>
-
 
 
 ##Outputs

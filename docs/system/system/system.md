@@ -15,6 +15,20 @@ stat system [-detail] [-fullValues] [-ntimes &lt;positive_integer>] [-logFile &l
 
 ##Arguments
 
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
+
 <b>clearstats</b>
 Clear the statsistics / counters
 Possible values: basic, full
@@ -22,9 +36,6 @@ Possible values: basic, full
 
 
 ##Outputs
-
-<b>Maximum Memory Available (MB) (MemTotAvail)</b>
-Total system memory available for PE to grab from the system.
 
 <b>-12.0 V Supply Voltage (V12n)</b>
 Power supply -12V output. Acceptable range is -13.20 through -10.80 volts. 9800 and 9960 platforms display standard value of -12.0V.
@@ -167,6 +178,12 @@ Power supply 1 failure status.
 <b>Power supply 2 status (PS2FAIL)</b>
 Power supply 2 failure status.
 
+<b>Power supply 3 status (PS3FAIL)</b>
+Power supply 3 failure status.
+
+<b>Power supply 4 status (PS4FAIL)</b>
+Power supply 4 failure status.
+
 <b>/flash Size (MB) (disk0Size)</b>
 Size of /flash partition of the hard disk.
 
@@ -208,12 +225,6 @@ Temperature of a device connected to health monitoring chip through pin 2.
 
 <b>Temperature 3 (Celsius) (temp3)</b>
 Temperature of a device connected to health monitoring chip through pin 3.
-
-<b>Power supply 3 status (PS3FAIL)</b>
-Power supply 3 failure status.
-
-<b>Power supply 4 status (PS4FAIL)</b>
-Power supply 4 failure status.
 
 <b>Up time (UP)</b>
 Seconds since the NetScaler appliance started.

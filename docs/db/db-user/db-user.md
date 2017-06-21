@@ -88,14 +88,6 @@ Name of the database user.
 <b>loggedIn</b>
 Display the names of all database users currently logged on to the NetScaler appliance.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

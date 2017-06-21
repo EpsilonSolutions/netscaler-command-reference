@@ -12,7 +12,7 @@ Adds a nodegroup to the cluster. A nodegroup is a set of cluster nodes to which 
 
 ##Synopsys
 
-add cluster nodegroup &lt;name>@ [-strict ( YES | NO )] [-sticky ( YES | NO )]
+add cluster nodegroup &lt;name>@ [-strict ( YES | NO )] [-sticky ( YES | NO )] [-state &lt;state>] [-priority &lt;positive_integer>]
 
 
 ##Arguments
@@ -34,6 +34,17 @@ Only one node can be bound to nodegroup with this option enabled. It specifies w
 Possible values: YES, NO
 Default value: NO
 
+<b>state</b>
+State of the nodegroup. All the nodes binding to this nodegroup must have the same state. ACTIVE/SPARE/PASSIVE
+Possible values: ACTIVE, SPARE, PASSIVE
+Default value: VAL_NOT_SET
+
+<b>priority</b>
+Priority of Nodegroup. This priority is used for all the nodes bound to the nodegroup for Nodegroup selection
+Default value: -1 
+Minimum value: 0
+Maximum value: 31
+
 
 
 ##Example
@@ -54,10 +65,6 @@ show cluster nodegroup [&lt;name>]
 
 <b>name</b>
 Name of the nodegroup to be displayed. If a name is not provided, information about all nodegroups is displayed.
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -88,6 +95,9 @@ Bitmap of backup nodes in this nodegroup
 <b>boundedEntitiesCntFromPE</b>
 Count of bounded entities to this nodegroup accoding to PE
 
+<b>boundedConfigEntitiesCnt</b>
+Number of configs bound to this nodegroup
+
 <b>activeList</b>
 Active node list of this nodegroup
 
@@ -105,6 +115,15 @@ name of the service bound to this nodegroup.
 
 <b>stateflag</b>
 
+<b>cfgflags</b>
+This contains the flags for Cluster Nodegroup in DB
+
+<b>state</b>
+State of the nodegroup. All the nodes binding to this nodegroup must have the same state. ACTIVE/SPARE/PASSIVE
+
+<b>priority</b>
+Priority of Nodegroup. This priority is used for all the nodes bound to the nodegroup for Nodegroup selection
+
 <b>devno</b>
 
 <b>count</b>
@@ -118,7 +137,7 @@ Modifies the attributes of a cluster nodegroup.
 
 ##Synopsys
 
-set cluster nodegroup &lt;name>@ [-strict ( YES | NO )]
+set cluster nodegroup &lt;name>@ [-strict ( YES | NO )] [-state &lt;state>] [-priority &lt;positive_integer>]
 
 
 ##Arguments
@@ -132,6 +151,17 @@ Specifies whether cluster nodes, that are not part of the nodegroup, will be use
   * Disabled - When one of the nodes goes down, a non-nodegroup cluster node is picked up and acts as part of the nodegroup. When the original node of the nodegroup comes up, the backup node will be replaced.
 Possible values: YES, NO
 Default value: NO
+
+<b>state</b>
+State of the nodegroup. All the nodes binding to this nodegroup must have the same state. ACTIVE/SPARE/PASSIVE
+Possible values: ACTIVE, SPARE, PASSIVE
+Default value: VAL_NOT_SET
+
+<b>priority</b>
+Priority of Nodegroup. This priority is used for all the nodes bound to the nodegroup for Nodegroup selection
+Default value: -1 
+Minimum value: 0
+Maximum value: 31
 
 
 
@@ -170,7 +200,7 @@ Name of the nodegroup to which you want to bind a cluster node or an entity.
 
 <b>node</b>
 ID of the node to be bound to the nodegroup.
-Default value: VAL_NOT_SET
+Default value: -1 
 Minimum value: 0
 Maximum value: 31
 
@@ -181,10 +211,10 @@ Name of the virtual server to be bound to the nodegroup.
 Name of stream or limit identifier to be bound to the nodegroup.
 
 <b>gslbSite</b>
-Name of the GSLB site to be unbound from the nodegroup.
+Name of the GSLB site to be associated with the nodegroup.
 
 <b>service</b>
-Name of the service to be unbound from the nodegroup.
+Name of the ADNS or ADNS-TCP service to be associated with the nodegroup. This parameter is used to support GSLB in a cluster.
 
 
 
@@ -209,7 +239,7 @@ Name of the nodegroup from which you want to unbind a cluster node or an entity.
 
 <b>node</b>
 ID of the node to be unbound from the nodegroup.
-Default value: VAL_NOT_SET
+Default value: -1 
 Minimum value: 0
 Maximum value: 31
 

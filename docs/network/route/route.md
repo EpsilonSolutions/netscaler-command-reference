@@ -12,7 +12,7 @@ Adds an IPv4 static route to the routing table of the NetScaler appliance.
 
 ##Synopsys
 
-add route &lt;network> &lt;netmask> &lt;gateway> [-td &lt;positive_integer>] [-distance &lt;positive_integer>] [-cost &lt;positive_integer>] [-weight &lt;positive_integer>] [-advertise ( DISABLED | ENABLED )] [-protocol &lt;protocol> ...] [-msr ( ENABLED | DISABLED )  [-monitor &lt;string>]]
+add route &lt;network> &lt;netmask> &lt;gateway> [-td &lt;positive_integer>] [-distance &lt;positive_integer>] [-cost &lt;positive_integer>] [-weight &lt;positive_integer>] [-advertise ( DISABLED | ENABLED )] [-protocol &lt;protocol> ...] [-msr ( ENABLED | DISABLED )  [-monitor &lt;string>]] [-ownerGroup &lt;string>]
 
 
 ##Arguments
@@ -26,10 +26,6 @@ The subnet mask associated with the network address.
 <b>gateway</b>
 IP address of the gateway for this route. Can be either the IP address of the gateway, or can be null to specify a null interface route.
 
-<b>cost</b>
-The cost of a route is used to compare routes of the same type. The route having the lowest cost is the most preferred route. Possible values: 0 through 65535. Default: 0.
-Maximum value: 65535
-
 <b>td</b>
 Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
 Minimum value: 0
@@ -37,12 +33,18 @@ Maximum value: 4094
 
 <b>distance</b>
 Administrative distance of this route, which determines the preference of this route over other routes, with same destination, from different routing protocols. A lower value is preferred.
-Default value: STATIC_ROUTE_DEFAULT_DISTANCE
+Default value: 1 
+Minimum value: 0
 Maximum value: 255
+
+<b>cost</b>
+The cost of a route is used to compare routes of the same type. The route having the lowest cost is the most preferred route. Possible values: 0 through 65535. Default: 0.
+Minimum value: 0
+Maximum value: 65535
 
 <b>weight</b>
 Positive integer used by the routing algorithms to determine preference for this route over others of equal cost. The lower the weight, the higher the preference.
-Default value: ROUTE_DEFAULT_WEIGHT
+Default value: 1 
 Minimum value: 1
 Maximum value: 65535
 
@@ -58,6 +60,13 @@ Default value: ADV_ROUTE_FLAGS
 Monitor this route using a monitor of type ARP or PING.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
+
+<b>monitor</b>
+Name of the monitor, of type ARP or PING, configured on the NetScaler appliance to monitor this route.
+
+<b>ownerGroup</b>
+The owner node group in a Cluster for this route. If owner node group is not specified then the route is treated as Striped route.
+Default value: DEFAULT_NG
 
 
 
@@ -89,7 +98,7 @@ Removes a static route from the NetScaler appliance. Note: You cannot use this c
 
 ##Synopsys
 
-rm route &lt;network> &lt;netmask> &lt;gateway> [-td &lt;positive_integer>]
+rm route &lt;network> &lt;netmask> &lt;gateway> [-td &lt;positive_integer>] [-ownerGroup &lt;string>]
 
 
 ##Arguments
@@ -107,6 +116,10 @@ IP address of the gateway for this route.
 The Traffic Domain Id of the route to be removed.
 Minimum value: 0
 Maximum value: 4094
+
+<b>ownerGroup</b>
+The owner node group in a Cluster for this route. If owner node group is not specified then the route is treated as Striped route.
+Default value: DEFAULT_NG
 
 
 
@@ -138,16 +151,18 @@ Maximum value: 4094
 
 <b>distance</b>
 Administrative distance of this route, which determines the preference of this route over other routes, with same destination, from different routing protocols. A lower value is preferred.
-Default value: STATIC_ROUTE_DEFAULT_DISTANCE
+Default value: 1 
+Minimum value: 0
 Maximum value: 255
 
 <b>cost</b>
 The cost of a route is used to compare routes of the same type. The route having the lowest cost is the most preferred route. Possible values: 0 through 65535. Default: 0.
+Minimum value: 0
 Maximum value: 65535
 
 <b>weight</b>
 Positive integer used by the routing algorithms to determine preference for this route over others of equal cost. The lower the weight, the higher the preference.
-Default value: ROUTE_DEFAULT_WEIGHT
+Default value: 1 
 Minimum value: 1
 Maximum value: 65535
 
@@ -163,6 +178,9 @@ Default value: ADV_ROUTE_FLAGS
 Monitor this route using a monitor of type ARP or PING.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
+
+<b>monitor</b>
+Name of the monitor, of type ARP or PING, configured on the NetScaler appliance to monitor this route.
 
 
 
@@ -199,19 +217,22 @@ show route [&lt;network>  &lt;netmask>  [&lt;gateway>]  [-td &lt;positive_intege
 <b>network</b>
 The destination network or host.
 
+<b>netmask</b>
+The subnet mask associated with the network address.
+
+<b>gateway</b>
+The gateway for the route.
+
+<b>td</b>
+Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
+Minimum value: 0
+Maximum value: 4094
+
 <b>routeType</b>
 The type of routes to be shown.
 
 <b>detail</b>
 Display a detailed view.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -287,16 +308,16 @@ BGP protocol.
 <b>DHCP</b>
 
 <b>advOSPF</b>
-Advertised through OSPF protocol.NOTE: This attribute is deprecated.This argument is deprecated.Use protocol parameter to read advertise properties of route
+Advertised through OSPF protocol.
 
 <b>advISIS</b>
-Advertised through ISIS protocol.NOTE: This attribute is deprecated.This argument is deprecated.Use protocol parameter to read advertise properties of route
+Advertised through ISIS protocol.
 
 <b>advRIP</b>
-Advertised through RIP protocol.NOTE: This attribute is deprecated.This argument is deprecated.Use protocol parameter to read advertise properties of route
+Advertised through RIP protocol.
 
 <b>advBGP</b>
-Advertised through BGP protocol.NOTE: This attribute is deprecated.This argument is deprecated.Use protocol parameter to read advertise properties of route
+Advertised through BGP protocol.
 
 <b>msr</b>
 Whether MSR is enabled or disabled.
@@ -330,6 +351,12 @@ Second parameter used with the message code.
 
 <b>monStatParam3</b>
 Third parameter used with the message code.
+
+<b>ownerGroup</b>
+The owner node group in a Cluster for this route. If owner node group is not specified then the route is treated as Striped route.
+
+<b>clusterFlags</b>
+Flags for cluster. Currently used to determine if it is a cluster system
 
 <b>devno</b>
 

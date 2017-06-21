@@ -88,7 +88,7 @@ Session ID
 Bind type
 
 <b>countAvailable</b>
-Count
+The user can allocate one or more licenses. Ensure the value is less than (for partial allocation) or equal to the total number of available licenses
 
 <b>licenseDir</b>
 License Directory

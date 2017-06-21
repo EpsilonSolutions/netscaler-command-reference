@@ -21,31 +21,39 @@ set aaa tacacsParams [-serverIP &lt;ip_addr|ipv6_addr|*>] [-serverPort &lt;port>
 IP address of your TACACS+ server.
 
 <b>serverPort</b>
-Port number on which the TACACS+ server listens for connections. Default value: 49 Minimum value: 1
+Port number on which the TACACS+ server listens for connections.
+Default value: 49
+Minimum value: 1
 
 <b>authTimeout</b>
-Maximum number of seconds that the NetScaler appliance waits for a response from the TACACS+ server. Default value: 3 Minimum value: 1
+Maximum number of seconds that the NetScaler appliance waits for a response from the TACACS+ server.
+Default value: 3
+Minimum value: 1
 
 <b>tacacsSecret</b>
 Key shared between the TACACS+ server and clients. Required for allowing the NetScaler appliance to communicate with the TACACS+ server.
 
 <b>authorization</b>
-Use streaming authorization on the TACACS+ server. Possible values: ON, OFF
+Use streaming authorization on the TACACS+ server.
+Possible values: ON, OFF
 
 <b>accounting</b>
-Send accounting messages to the TACACS+ server. Possible values: ON, OFF
+Send accounting messages to the TACACS+ server.
+Possible values: ON, OFF
 
 <b>auditFailedCmds</b>
-The option for sending accounting messages to the TACACS+ server. Possible values: ON, OFF
+The option for sending accounting messages to the TACACS+ server.
+Possible values: ON, OFF
 
 <b>defaultAuthenticationGroup</b>
-This is the default group that is chosen when the authentication succeeds in addition to extracted groups. Maximum value: 64
+This is the default group that is chosen when the authentication succeeds in addition to extracted groups.
+Maximum value: 64
 
 
 
 ##Example
 
-To configure a TACACS+ server running at 192.168.1.20 set aaa tacacsparams -serverip 192.168.1.20 -tacacssecret secret
+To configure a TACACS+ server running at 192.168.1.20	set aaa tacacsparams -serverip 192.168.1.20 -tacacssecret secret
 
 ##Related Commands
 
@@ -71,14 +79,6 @@ Displays the NetScaler appliance?s current AAA TACACS+ configuration.
 ##Synopsys
 
 show aaa tacacsParams
-
-
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -111,5 +111,5 @@ This is the default group that is chosen when the authentication succeeds in add
 
 ##Example
 
-&gt; sh aaa tacacsparams Configured TACACS parameter Server IP: 192.168.1.20 Port: 49 Timeout: 1 secs Done
+&gt; sh aaa tacacsparamsConfigured TACACS parameter        Server IP: 192.168.1.20 Port: 49		Timeout: 1 secsDone
 

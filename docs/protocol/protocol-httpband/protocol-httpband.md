@@ -65,10 +65,6 @@ show protocol httpBand -type ( REQUEST | RESPONSE )
 Type of statistics to display.
 Possible values: REQUEST, RESPONSE
 
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -83,13 +79,13 @@ The total number of http bands.
 The total size of all HTTP requests/responses in this size range.
 
 <b>AvgBandSize</b>
-The average size of all HTTP requests/responses in this size range.NOTE: This attribute is deprecated.This is deprecated attribute
+The average size of all HTTP requests/responses in this size range.
 
 <b>AvgBandSizeNew</b>
 The average size of all HTTP requests/responses in this size range.
 
 <b>BandData</b>
-The total size of all HTTP requests/responses in this size range, expressed as a percentage of the total size of all HTTP requests/responses.NOTE: This attribute is deprecated.This is deprecated attribute
+The total size of all HTTP requests/responses in this size range, expressed as a percentage of the total size of all HTTP requests/responses.
 
 <b>BandDataNew</b>
 The total size of all HTTP requests/responses in this size range, expressed as a percentage of the total size of all HTTP requests/responses.
@@ -98,7 +94,7 @@ The total size of all HTTP requests/responses in this size range, expressed as a
 The number of HTTP requests/responses in this size range.
 
 <b>AccessRatio</b>
-The number of HTTP requests/responses in this size range, expressed as a percentage of the total number of HTTP requests/responses.NOTE: This attribute is deprecated.This is deprecated attribute
+The number of HTTP requests/responses in this size range, expressed as a percentage of the total number of HTTP requests/responses.
 
 <b>AccessRatioNew</b>
 The number of HTTP requests/responses in this size range, expressed as a percentage of the total number of HTTP requests/responses.

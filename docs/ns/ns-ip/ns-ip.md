@@ -12,7 +12,7 @@ Creates an IPv4 address on the NetScaler appliance.
 
 ##Synopsys
 
-add ns ip &lt;IPAddress>@ &lt;netmask> [-type &lt;type>  [-hostRoute ( ENABLED | DISABLED )  [-hostRtGw &lt;ip_addr>]  [-metric &lt;integer>]  [-vserverRHILevel &lt;vserverRHILevel>]  [-vserverRHIMode ( DYNAMIC_ROUTING | RISE )]  [-ospfLSAType ( TYPE1 | TYPE5 )  [-ospfArea &lt;positive_integer>]]] ] [-arp ( ENABLED | DISABLED )] [-icmp ( ENABLED | DISABLED )] [-vServer ( ENABLED | DISABLED )] [-telnet ( ENABLED | DISABLED )] [-ftp ( ENABLED | DISABLED )] [-gui &lt;gui>] [-ssh ( ENABLED | DISABLED )] [-snmp ( ENABLED | DISABLED )] [-mgmtAccess ( ENABLED | DISABLED )] [-restrictAccess ( ENABLED | DISABLED )] [-dynamicRouting ( ENABLED | DISABLED )] [-state ( ENABLED | DISABLED )] [-vrID &lt;positive_integer>] [-icmpResponse &lt;icmpResponse>] [-ownerNode &lt;positive_integer>] [-arpResponse &lt;arpResponse>] [-td &lt;positive_integer>]
+add ns ip &lt;IPAddress>@ &lt;netmask> [-type &lt;type>  [-hostRoute ( ENABLED | DISABLED )  [-hostRtGw &lt;ip_addr>]  [-metric &lt;integer>]  [-vserverRHILevel &lt;vserverRHILevel>]  [-vserverRHIMode ( DYNAMIC_ROUTING | RISE )]  [-ospfLSAType ( TYPE1 | TYPE5 )  [-ospfArea &lt;positive_integer>]]]   ] [-arp ( ENABLED | DISABLED )] [-icmp ( ENABLED | DISABLED )] [-vServer ( ENABLED | DISABLED )] [-telnet ( ENABLED | DISABLED )] [-ftp ( ENABLED | DISABLED )] [-gui &lt;gui>] [-ssh ( ENABLED | DISABLED )] [-snmp ( ENABLED | DISABLED )] [-mgmtAccess ( ENABLED | DISABLED )] [-restrictAccess ( ENABLED | DISABLED )] [-dynamicRouting ( ENABLED | DISABLED )] [-state ( ENABLED | DISABLED )] [-vrID &lt;positive_integer>] [-icmpResponse &lt;icmpResponse>] [-ownerNode &lt;positive_integer>] [-arpResponse &lt;arpResponse>] [-td &lt;positive_integer>]
 
 
 ##Arguments
@@ -30,7 +30,7 @@ Type of the IP address to create on the NetScaler appliance. Cannot be changed a
 * A GSLB site IP (GSLBIP) address is associated with a GSLB site. It is not mandatory to specify a GSLBIP address when you initially configure the NetScaler appliance. A GSLBIP address is used only when you create a GSLB site.
 * A Cluster IP (CLIP) address is the management address of the cluster. All cluster configurations must be performed by accessing the cluster through this IP address.
 Possible values: SNIP, VIP, NSIP, GSLBsiteIP, CLIP
-Default value: NSADDR_SNIP
+Default value: SNIP
 
 <b>arp</b>
 Respond to ARP requests for this IP address.
@@ -87,21 +87,6 @@ Allow dynamic routing on this IP address. Specific to Subnet IP (SNIP) address.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
-<b>ospf</b>
-Use this option to enable or disable OSPF on this IP address for the entity.
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
-
-<b>bgp</b>
-Use this option to enable or disable BGP on this IP address for the entity.
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
-
-<b>rip</b>
-Use this option to enable or disable RIP on this IP address for the entity.
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
-
 <b>hostRoute</b>
 Advertise a route for the VIP address using the dynamic routing protocols running on the NetScaler appliance.
 Possible values: ENABLED, DISABLED
@@ -121,27 +106,28 @@ Advertise the route for the Virtual IP (VIP) address on the basis of the state o
 * ALL VSERVER - Advertise the route for the VIP address if all of the associated virtual servers are in UP state.
 * VSVR_CNTRLD - Advertise the route for the VIP address according to the  RHIstate (RHI STATE) parameter setting on all the associated virtual servers of the VIP address along with their states.
 When Vserver RHI Level (RHI) parameter is set to VSVR_CNTRLD, the following are different RHI behaviors for the VIP address on the basis of RHIstate (RHI STATE) settings on the virtual servers associated with the VIP address:
-* If you set RHI STATE to PASSIVE on all virtual servers, the NetScaler ADC always advertises the route for the VIP address.
-* If you set RHI STATE to ACTIVE on all virtual servers, the NetScaler ADC advertises the route for the VIP address if at least one of the associated virtual servers is in UP state.
-*If you set RHI STATE to ACTIVE on some and PASSIVE on others, the NetScaler ADC advertises the route for the VIP address if at least one of the associated virtual servers, whose RHI STATE set to ACTIVE, is in UP state.
+ * If you set RHI STATE to PASSIVE on all virtual servers, the NetScaler ADC always advertises the route for the VIP address.
+ * If you set RHI STATE to ACTIVE on all virtual servers, the NetScaler ADC advertises the route for the VIP address if at least one of the associated virtual servers is in UP state.
+ *If you set RHI STATE to ACTIVE on some and PASSIVE on others, the NetScaler ADC advertises the route for the VIP address if at least one of the associated virtual servers, whose RHI STATE set to ACTIVE, is in UP state.
 Possible values: ONE_VSERVER, ALL_VSERVERS, NONE, VSVR_CNTRLD
-Default value: RHI_STATE_ONE
+Default value: ONE_VSERVER
 
 <b>vserverRHIMode</b>
 Advertise the route for the Virtual IP (VIP) address using dynamic routing protocols or using RISE
 * DYNMAIC_ROUTING - Advertise the route for the VIP address using dynamic routing protocols (default)
 * RISE - Advertise the route for the VIP address using RISE.
 Possible values: DYNAMIC_ROUTING, RISE
-Default value: RHI_MODE_DYNAMIC
+Default value: DYNAMIC_ROUTING
 
 <b>ospfLSAType</b>
 Type of LSAs to be used by the OSPF protocol, running on the NetScaler appliance, for advertising the route for this VIP address.
 Possible values: TYPE1, TYPE5
-Default value: DISABLED
+Default value: TYPE5
 
 <b>ospfArea</b>
 ID of the area in which the type1 link-state advertisements (LSAs) are to be advertised for this virtual IP (VIP)  address by the OSPF protocol running on the NetScaler appliance.  When this parameter is not set, the VIP is advertised on all areas.
 Default value: -1
+Minimum value: 0
 Maximum value: 4294967294LU
 
 <b>state</b>
@@ -165,7 +151,7 @@ The following settings can be made for the ICMP VSERVER RESPONSE parameter on a 
 * If you set ICMP VSERVER RESPONSE to ACTIVE on all virtual servers, NetScaler responds if even one virtual server is UP.
 * When you set ICMP VSERVER RESPONSE to ACTIVE on some and PASSIVE on others, NetScaler responds if even one virtual server set to ACTIVE is UP.
 Possible values: NONE, ONE_VSERVER, ALL_VSERVERS, VSVR_CNTRLD
-Default value: NS_IP_NONE
+Default value: 5
 
 <b>ownerNode</b>
 The owner node in a Cluster for this IP address. Owner node can vary from 0 to 31. If ownernode is not specified then the IP is treated as Striped IP.
@@ -178,7 +164,7 @@ Respond to ARP requests for a Virtual IP (VIP) address on the basis of the state
 * ONE VSERVER - The NetScaler appliance responds to any ARP request for the VIP address if at least one of the associated virtual servers is in UP state.
 * ALL VSERVER - The NetScaler appliance responds to any ARP request for the VIP address if all of the associated virtual servers are in UP state.
 Possible values: NONE, ONE_VSERVER, ALL_VSERVERS
-Default value: NS_IP_NONE
+Default value: 5
 
 <b>td</b>
 Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
@@ -232,6 +218,11 @@ set ns ip (&lt;IPAddress>@  [-td &lt;positive_integer>]) [-netmask &lt;netmask>]
 <b>IPAddress</b>
 IPv4 address whose parameters you want to modify.
 
+<b>td</b>
+Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
+Minimum value: 0
+Maximum value: 4094
+
 <b>netmask</b>
 Subnet mask associated with the IP address.
 
@@ -290,24 +281,48 @@ Allow dynamic routing on this IP address. Specific to Subnet IP (SNIP) address.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
-<b>ospf</b>
-The state of OSPF on this IP address for the entity.
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
-
-<b>bgp</b>
-The state of BGP on this IP address for the entity.
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
-
-<b>rip</b>
-The state of RIP on this IP address for the entity.
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
-
 <b>hostRoute</b>
 Advertise a route for the VIP address using the dynamic routing protocols running on the NetScaler appliance.
 Possible values: ENABLED, DISABLED
+
+<b>hostRtGw</b>
+IP address of the gateway of the route for this VIP address.
+Default value: -1
+
+<b>metric</b>
+Integer value to add to or subtract from the cost of the route advertised for the VIP address.
+Minimum value: -16777215
+
+<b>vserverRHILevel</b>
+Advertise the route for the Virtual IP (VIP) address on the basis of the state of the virtual servers associated with that VIP.
+* NONE - Advertise the route for the VIP address, regardless of the state of the virtual servers associated with the address.
+* ONE VSERVER - Advertise the route for the VIP address if at least one of the associated virtual servers is in UP state.
+* ALL VSERVER - Advertise the route for the VIP address if all of the associated virtual servers are in UP state.
+* VSVR_CNTRLD - Advertise the route for the VIP address according to the  RHIstate (RHI STATE) parameter setting on all the associated virtual servers of the VIP address along with their states.
+When Vserver RHI Level (RHI) parameter is set to VSVR_CNTRLD, the following are different RHI behaviors for the VIP address on the basis of RHIstate (RHI STATE) settings on the virtual servers associated with the VIP address:
+ * If you set RHI STATE to PASSIVE on all virtual servers, the NetScaler ADC always advertises the route for the VIP address.
+ * If you set RHI STATE to ACTIVE on all virtual servers, the NetScaler ADC advertises the route for the VIP address if at least one of the associated virtual servers is in UP state.
+ *If you set RHI STATE to ACTIVE on some and PASSIVE on others, the NetScaler ADC advertises the route for the VIP address if at least one of the associated virtual servers, whose RHI STATE set to ACTIVE, is in UP state.
+Possible values: ONE_VSERVER, ALL_VSERVERS, NONE, VSVR_CNTRLD
+Default value: ONE_VSERVER
+
+<b>vserverRHIMode</b>
+Advertise the route for the Virtual IP (VIP) address using dynamic routing protocols or using RISE
+* DYNMAIC_ROUTING - Advertise the route for the VIP address using dynamic routing protocols (default)
+* RISE - Advertise the route for the VIP address using RISE.
+Possible values: DYNAMIC_ROUTING, RISE
+Default value: DYNAMIC_ROUTING
+
+<b>ospfLSAType</b>
+Type of LSAs to be used by the OSPF protocol, running on the NetScaler appliance, for advertising the route for this VIP address.
+Possible values: TYPE1, TYPE5
+Default value: TYPE5
+
+<b>ospfArea</b>
+ID of the area in which the type1 link-state advertisements (LSAs) are to be advertised for this virtual IP (VIP)  address by the OSPF protocol running on the NetScaler appliance.  When this parameter is not set, the VIP is advertised on all areas.
+Default value: -1
+Minimum value: 0
+Maximum value: 4294967294LU
 
 <b>vrID</b>
 A positive integer that uniquely identifies a VMAC address for binding to this VIP address. This binding is used to set up NetScaler appliances in an active-active configuration using VRRP.
@@ -325,7 +340,7 @@ The following settings can be made for the ICMP VSERVER RESPONSE parameter on a 
 * If you set ICMP VSERVER RESPONSE to ACTIVE on all virtual servers, NetScaler responds if even one virtual server is UP.
 * When you set ICMP VSERVER RESPONSE to ACTIVE on some and PASSIVE on others, NetScaler responds if even one virtual server set to ACTIVE is UP.
 Possible values: NONE, ONE_VSERVER, ALL_VSERVERS, VSVR_CNTRLD
-Default value: NS_IP_NONE
+Default value: 5
 
 <b>arpResponse</b>
 Respond to ARP requests for a Virtual IP (VIP) address on the basis of the states of the virtual servers associated with that VIP. Available settings function as follows:
@@ -333,7 +348,7 @@ Respond to ARP requests for a Virtual IP (VIP) address on the basis of the state
 * ONE VSERVER - The NetScaler appliance responds to any ARP request for the VIP address if at least one of the associated virtual servers is in UP state.
 * ALL VSERVER - The NetScaler appliance responds to any ARP request for the VIP address if all of the associated virtual servers are in UP state.
 Possible values: NONE, ONE_VSERVER, ALL_VSERVERS
-Default value: NS_IP_NONE
+Default value: 5
 
 
 
@@ -357,7 +372,7 @@ unset ns ip 10.102.4.123 -ospfArea
 
 ##enable ns ip
 
-Enables the specified IP address configured on the NetScaler appliance.
+Enables the specified VIP address configured on the NetScaler appliance.
 
 
 ##Synopsys
@@ -370,6 +385,11 @@ enable ns ip (&lt;IPAddress>@  [-td &lt;positive_integer>])
 <b>IPAddress</b>
 IP address that you want to enable.
 
+<b>td</b>
+Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
+Minimum value: 0
+Maximum value: 4094
+
 
 
 ##Example
@@ -378,7 +398,7 @@ enable ns ip 10.10.10.10
 
 ##disable ns ip
 
-Disables the specified IP address configured on the NetScaler appliance.
+Disables the specified VIP address configured on the NetScaler appliance.
 
 
 ##Synopsys
@@ -390,6 +410,11 @@ disable ns ip (&lt;IPAddress>@  [-td &lt;positive_integer>])
 
 <b>IPAddress</b>
 IP address that you want to disable.
+
+<b>td</b>
+Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
+Minimum value: 0
+Maximum value: 4094
 
 
 
@@ -412,18 +437,15 @@ show ns ip [&lt;IPAddress>  [-td &lt;positive_integer>]] [-type &lt;type>]
 <b>IPAddress</b>
 IPv4 address whose details you want the NetScaler appliance to display.
 
+<b>td</b>
+Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
+Minimum value: 0
+Maximum value: 4094
+
 <b>type</b>
 Display the settings of all IPv4 addresses of a particular type.
 Possible values: SNIP, VIP, NSIP, GSLBsiteIP, CLIP
 Default value: 0
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -471,13 +493,13 @@ Blocking of all ports not used for management access enabled or disabled
 Whether dynamic routing is enabled or disabled.
 
 <b>bgp</b>
-Whether bgp is enabled or disabled.NOTE: This attribute is deprecated.
+Whether bgp is enabled or disabled.
 
 <b>ospf</b>
-Whether ospf is enabled or disabled.NOTE: This attribute is deprecated.
+Whether ospf is enabled or disabled.
 
 <b>rip</b>
-Whether rip is enabled or disabled.NOTE: This attribute is deprecated.
+Whether rip is enabled or disabled.
 
 <b>hostRoute</b>
 Whether host route is enabled or disabled.
@@ -492,7 +514,7 @@ Actual Gateway used for advertising host route.
 The metric value added or subtracted from the cost of the hostroute.
 
 <b>ospfArea</b>
-The area ID of the area in which OSPF Type1 LSAs are advertised. When ospfArea if not set, LSAs are advertised on all areas.NOTE: This attribute is deprecated.Replaced by ospfAreaval
+The area ID of the area in which OSPF Type1 LSAs are advertised. When ospfArea if not set, LSAs are advertised on all areas.
 
 <b>ospfAreaval</b>
 The area ID of the area in which OSPF Type1 LSAs are advertised.

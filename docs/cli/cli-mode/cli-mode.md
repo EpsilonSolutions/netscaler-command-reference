@@ -12,7 +12,7 @@ Use this command to specify how the CLI should display command output.
 
 ##Synopsys
 
-set cli mode [-page ( ON | OFF )] [-total ( ON | OFF )] [-color ( ON | OFF )] [-disabledFeatureAction &lt;disabledFeatureAction>] [-timeout &lt;secs>] [-timeoutKind &lt;timeoutKind>] [-regex ( ON | OFF )]
+set cli mode [-page ( ON | OFF )] [-total ( ON | OFF )] [-color ( ON | OFF )] [-disabledFeatureAction &lt;disabledFeatureAction>] [-timeout &lt;secs>] [-regex ( ON | OFF )]
 
 
 ##Arguments
@@ -36,18 +36,13 @@ Default value: OFF
 Specifies what will happen when a configuration command is issued for a disabled feature. The following values are allowed:
 	NONE - The action is allowed, and no warning message is issued.;
 	ALLOW - The action is allowed, but a warning message is issued.;
-	DENY - The action is not allowed.;
-	HIDE - Commands that configure disabled features are hidden, and the CLI behaves as if they did not exist.
-Possible values: NONE, ALLOW, DENY, HIDE
+	DENY - The action is not allowed.
+Possible values: NONE, ALLOW, DENY
 Default value: NS_ALLOW
 
 <b>timeout</b>
-CLI session inactivity timeout, in seconds. If Restrictedtimeout argument of system parameter is enabled, Timeout can have values in the range [300-86400] seconds. If Restrictedtimeout argument of system parameter is disabled, Timeout can have values in the range [0, 10-100000000] seconds. Default value is 900 seconds.
-Default value: VAL_NOT_SET
-
-<b>timeoutKind</b>
-From where the timeout has been inherited.
-Possible values: User, Group, Global, Climode
+CLI session inactivity timeout, in seconds. If Restrictedtimeout argument of system parameter is enabled, Timeout can have values in the range [300-86400] seconds and also climode timeout cannot be configured beyond admin configured value. If Restrictedtimeout argument of system parameter is disabled, Timeout can have values in the range [0, 10-100000000] seconds. Default value is 900 seconds.
+Default value: -1
 
 <b>regex</b>
 If ON, regular expressions can be used as argument values
@@ -63,7 +58,7 @@ Use this command to remove cli mode settings.Refer to the set cli mode command f
 
 ##Synopsys
 
-unset cli mode [-page] [-total] [-color] [-disabledFeatureAction] [-timeout] [-timeoutKind] [-regex]
+unset cli mode [-page] [-total] [-color] [-disabledFeatureAction] [-timeout] [-regex]
 
 
 ##show cli mode
@@ -74,14 +69,6 @@ Use this command to display the current settings of parameters that can be set w
 ##Synopsys
 
 show cli mode
-
-
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -99,8 +86,7 @@ Specifies whether output can be shown in color, if the terminal supports it.
 Specifies what will happen when a configuration command is issued for a disabled feature. The following values are allowed:
 	NONE - The action is allowed, and no warning message is issued.;
 	ALLOW - The action is allowed, but a warning message is issued.;
-	DENY - The action is not allowed.;
-	HIDE - Commands that configure disabled features are hidden, and the CLI behaves as if they did not exist.
+	DENY - The action is not allowed.
 
 <b>argMark</b>
 mark
@@ -112,7 +98,7 @@ no licence
 diagnostic level
 
 <b>timeout</b>
-CLI session inactivity timeout, in seconds. If Restrictedtimeout argument of system parameter is enabled, Timeout can have values in the range [300-86400] seconds. If Restrictedtimeout argument of system parameter is disabled, Timeout can have values in the range [0, 10-100000000] seconds. Default value is 900 seconds.
+CLI session inactivity timeout, in seconds. If Restrictedtimeout argument of system parameter is enabled, Timeout can have values in the range [300-86400] seconds and also climode timeout cannot be configured beyond admin configured value. If Restrictedtimeout argument of system parameter is disabled, Timeout can have values in the range [0, 10-100000000] seconds. Default value is 900 seconds.
 
 <b>timeoutKind</b>
 From where the timeout has been inherited.

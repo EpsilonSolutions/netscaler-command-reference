@@ -27,10 +27,7 @@ The netmask to which the route belongs.
 The name of the route.
 
 <b>td</b>
-Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
-Default value: 0
-Minimum value: 0
-Maximum value: 4094
+Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0. Default value: 0 Minimum value: 0 Maximum value: 4094
 
 
 
@@ -53,10 +50,7 @@ The IP address of the network to which the route VIP belongs.
 The netmask of the destination network.
 
 <b>td</b>
-Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
-Default value: 0
-Minimum value: 0
-Maximum value: 4094
+Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0. Default value: 0 Minimum value: 0 Maximum value: 4094
 
 
 
@@ -67,7 +61,7 @@ Display the names of the routes associated to the route structure using the ###a
 
 ##Synopsys
 
-show lb route [&lt;network>  &lt;netmask>  [-td &lt;positive_integer>]]
+show lb route [&lt;network> &lt;netmask> [-td &lt;positive_integer>]]
 
 
 ##Arguments
@@ -75,13 +69,11 @@ show lb route [&lt;network>  &lt;netmask>  [-td &lt;positive_integer>]]
 <b>network</b>
 The destination network or host.
 
-<b>summary</b>
+<b>netmask</b>
+The netmask of the destination network.
 
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
+<b>td</b>
+Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0. Default value: 0 Minimum value: 0 Maximum value: 4094
 
 
 

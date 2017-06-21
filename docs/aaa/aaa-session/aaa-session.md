@@ -12,7 +12,7 @@ Displays all AAA-TM/VPN connections that are bound to the specified user, group,
 
 ##Synopsys
 
-show aaa session [-userName &lt;string>] [-groupName &lt;string>] [-intranetIP &lt;ip_addr|*> [&lt;netmask>]]
+show aaa session [-userName &lt;string>] [-groupName &lt;string>] [-intranetIP &lt;ip_addr|*>  [&lt;netmask>]]
 
 
 ##Arguments
@@ -25,6 +25,9 @@ Name of the AAA group.
 
 <b>intranetIP</b>
 IP address or the first address in the intranet IP range.
+
+<b>netmask</b>
+Subnet mask for the intranet IP range.
 
 
 
@@ -57,6 +60,9 @@ Destination port
 <b>intranetIP</b>
 Specifies the Intranet IP
 
+<b>intranetIP6</b>
+Specifies the Intranet IP6
+
 <b>peId</b>
 Core id of the session owner
 
@@ -70,7 +76,7 @@ Core id of the session owner
 
 ##Example
 
-&gt; show aaa connection ClintIp (ClientPort) -&gt; ServerIp(ServerPort) ------------------------- ---------------------------- User Name: Joe 10.102.0.39 (2318 ) -&gt; 10.102.4.245 (443 ) 10.102.0.39 (2320 ) -&gt; 10.102.4.245 (443 ) 10.102.0.39 (2340 ) -&gt; 10.102.4.245 (443 ) Done &gt;
+&gt; show aaa connection        ClintIp (ClientPort)   -&gt;  ServerIp(ServerPort)        -------------------------   	  ----------------------------User Name: Joe        10.102.0.39     (2318 ) -&gt; 10.102.4.245    (443  )        10.102.0.39     (2320 ) -&gt; 10.102.4.245    (443  )        10.102.0.39     (2340 ) -&gt; 10.102.4.245    (443  ) Done&gt;
 
 ##kill aaa session
 
@@ -79,7 +85,7 @@ Terminates the specified AAA-TM/VPN session.
 
 ##Synopsys
 
-kill aaa session [-userName &lt;string>] [-groupName &lt;string>] [-intranetIP &lt;ip_addr|*> [&lt;netmask>]] [-all]
+kill aaa session [-userName &lt;string>] [-groupName &lt;string>] [-intranetIP &lt;ip_addr|*>  [&lt;netmask>]] [-all]
 
 
 ##Arguments
@@ -91,7 +97,10 @@ Terminate AAA-TM/VPN sessions that belong to the specified user.
 Terminate AAA-TM/VPN sessions that belong to any user that is a member of the specified group.
 
 <b>intranetIP</b>
-Terminate AAA-TM/VPN sessions that are associated with the specified intranet IP address or with an address in the range specified by the address and subnet mask.
+Terminate AAA-TM/VPN sessions that are associated with the specified intranet IP address or  with an address in the range specified by the address and subnet mask.
+
+<b>netmask</b>
+When terminating AAA-TM/VPN sessions that are associated with an IP address range, the subnet mask defining the range.
 
 <b>all</b>
 Terminate all active AAA-TM/VPN sessions.

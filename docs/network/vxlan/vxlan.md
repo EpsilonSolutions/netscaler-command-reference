@@ -12,7 +12,7 @@ Adds a VXLAN to the NetScaler appliance.
 
 ##Synopsys
 
-add vxlan &lt;id> [-vlan &lt;positive_integer>] [-port &lt;port>]
+add vxlan &lt;id> [-vlan &lt;positive_integer>] [-port &lt;port>] [-dynamicRouting ( ENABLED | DISABLED )] [-ipv6DynamicRouting ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -32,6 +32,16 @@ Specifies UDP destination port for VXLAN packets.
 Default value: 4789
 Minimum value: 1
 Maximum value: 65534
+
+<b>dynamicRouting</b>
+Enable dynamic routing on this VXLAN.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>ipv6DynamicRouting</b>
+Enable all IPv6 dynamic routing protocols on this VXLAN. Note: For the ENABLED setting to work, you must configure IPv6 dynamic routing protocols from the VTYSH command line.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
 
 
 
@@ -69,7 +79,7 @@ Modify VXLAN parameters
 
 ##Synopsys
 
-set vxlan &lt;id> [-vlan &lt;positive_integer>] [-port &lt;port>]
+set vxlan &lt;id> [-vlan &lt;positive_integer>] [-port &lt;port>] [-dynamicRouting ( ENABLED | DISABLED )] [-ipv6DynamicRouting ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -90,6 +100,16 @@ Default value: 4789
 Minimum value: 1
 Maximum value: 65534
 
+<b>dynamicRouting</b>
+Enable dynamic routing on this VXLAN.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>ipv6DynamicRouting</b>
+Enable all IPv6 dynamic routing protocols on this VXLAN. Note: For the ENABLED setting to work, you must configure IPv6 dynamic routing protocols from the VTYSH command line.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
 
 
 ##Example
@@ -103,7 +123,7 @@ Use this command to remove  vxlan settings.Refer to the set  vxlan command for m
 
 ##Synopsys
 
-unset vxlan &lt;id> [-vlan] [-port]
+unset vxlan &lt;id> [-vlan] [-port] [-dynamicRouting] [-ipv6DynamicRouting]
 
 
 ##bind vxlan
@@ -128,6 +148,9 @@ Specifies the name of the configured tunnel to be associated with this VXLAN.
 
 <b>IPAddress</b>
 Network address to be associated with the VXLAN. Should exist on the appliance before you associate it with the VXLAN.
+
+<b>netmask</b>
+Subnet mask for the network address defined for this VXLAN.
 
 
 
@@ -158,6 +181,9 @@ Specifies the name of the configured tunnel to be associated with this VXLAN.
 <b>IPAddress</b>
 The IP Address associated with the VXLAN configuration.
 
+<b>netmask</b>
+Subnet mask for the network address defined for this VXLAN.
+
 
 
 ##Example
@@ -181,14 +207,6 @@ A positive integer, which is also called VXLAN Network Identifier (VNI), that un
 Minimum value: 1
 Maximum value: 16777215
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -198,6 +216,12 @@ ID of VLANs whose traffic is allowed over this VXLAN. If you do not specify any 
 
 <b>port</b>
 Specifies UDP destination port for VXLAN packets.
+
+<b>dynamicRouting</b>
+Enable dynamic routing on this VXLAN.
+
+<b>ipv6DynamicRouting</b>
+Enable all IPv6 dynamic routing protocols on this VXLAN. Note: For the ENABLED setting to work, you must configure IPv6 dynamic routing protocols from the VTYSH command line.
 
 <b>tunnel</b>
 Specifies the name of the configured tunnel to be associated with this VXLAN.
@@ -236,6 +260,20 @@ stat vxlan [&lt;id>] [-detail] [-fullValues] [-ntimes &lt;positive_integer>] [-l
 An integer specifying the VXLAN identification number (VNID).
 Minimum value: 1
 Maximum value: 16777215
+
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
 
 <b>clearstats</b>
 Clear the statsistics / counters

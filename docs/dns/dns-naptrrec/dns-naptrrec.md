@@ -22,10 +22,12 @@ Name of the domain for the NAPTR record.
 
 <b>order</b>
 An integer specifying the order in which the NAPTR records MUST be processed in order to accurately represent the ordered list of Rules. The ordering is from lowest to highest
+Minimum value: 0
 Maximum value: 65535
 
 <b>preference</b>
 An integer specifying the preference of this NAPTR among NAPTR records having same order. lower the number, higher the preference.
+Minimum value: 0
 Maximum value: 65535
 
 <b>flags</b>
@@ -68,6 +70,7 @@ Name of the domain for the NAPTR record.
 
 <b>order</b>
 An integer specifying the order in which the NAPTR records MUST be processed in order to accurately represent the ordered list of Rules. The ordering is from lowest to highest
+Minimum value: 0
 Maximum value: 65535
 
 <b>recordId</b>
@@ -78,6 +81,7 @@ Maximum value: 65535
 
 <b>preference</b>
 An integer specifying the preference of this NAPTR among NAPTR records having same order. lower the number, higher the preference.
+Minimum value: 0
 Maximum value: 65535
 
 <b>flags</b>
@@ -119,15 +123,7 @@ Type of records to display. Available settings function as follows:
 * PROXY - Display all proxy address records.
 * ALL - Display all address records.
 Possible values: ALL, ADNS, PROXY
-Default value: NSDNS_AUTH_HOST
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
+Default value: ADNS
 
 
 

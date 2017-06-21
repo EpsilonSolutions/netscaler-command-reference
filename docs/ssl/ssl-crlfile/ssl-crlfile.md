@@ -53,20 +53,12 @@ rm ssl crlfile my-crlfile
 
 ##show ssl crlFile
 
-Displays lists of all the imported CRL file objects on the NetScaler ADC.
+Displays a list of all the imported CRL file objects on the NetScaler ADC.
 
 
 ##Synopsys
 
 show ssl crlFile
-
-
-##Arguments
-
-<b>summary</b>
-
-<b>fullValues</b>
-
 
 
 ##Outputs

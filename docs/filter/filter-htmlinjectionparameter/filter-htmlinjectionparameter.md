@@ -67,14 +67,6 @@ Displays the HTML injection parameters.
 show filter htmlinjectionparameter
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>rate</b>

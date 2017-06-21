@@ -22,7 +22,7 @@ Name of the service group. Must begin with an ASCII alphabetic or underscore (_)
 
 <b>serviceType</b>
 Protocol used to exchange data with the service.
-Possible values: HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, DTLS, NNTP, RPCSVR, DNS, ADNS, SNMP, RTSP, DHCPRA, ANY, SIP_UDP, DNS_TCP, ADNS_TCP, MYSQL, MSSQL, ORACLE, RADIUS, RDP, DIAMETER, SSL_DIAMETER, TFTP
+Possible values: HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, DTLS, NNTP, RPCSVR, DNS, ADNS, SNMP, RTSP, DHCPRA, ANY, SIP_UDP, SIP_TCP, SIP_SSL, DNS_TCP, ADNS_TCP, MYSQL, MSSQL, ORACLE, RADIUS, RADIUSListener, RDP, DIAMETER, SSL_DIAMETER, TFTP, SMPP, PPTP, GRE, SYSLOGTCP, SYSLOGUDP
 
 <b>cacheType</b>
 Cache type supported by the cache server.
@@ -35,11 +35,13 @@ Maximum value: 4094
 
 <b>maxClient</b>
 Maximum number of simultaneous open connections for the service group.
+Minimum value: 0
 Maximum value: 4294967294
 
 <b>maxReq</b>
 Maximum number of requests that can be sent on a persistent connection to the service group. 
 Note: Connection requests beyond this value are rejected.
+Minimum value: 0
 Maximum value: 65535
 
 <b>cacheable</b>
@@ -116,10 +118,12 @@ Possible values: YES, NO
 
 <b>maxBandwidth</b>
 Maximum bandwidth, in Kbps, allocated for all the services in the service group.
+Minimum value: 0
 Maximum value: 4294967287
 
 <b>monThreshold</b>
 Minimum sum of weights of the monitors that are bound to this service. Used to determine whether to mark a service as UP or DOWN.
+Minimum value: 0
 Maximum value: 65535
 
 <b>state</b>
@@ -152,7 +156,10 @@ Network profile for the service group.
 <b>autoScale</b>
 Auto scale option for a servicegroup
 Possible values: DISABLED, DNS, POLICY
-Default value: NSA_AS_DISABLED
+Default value: DISABLED
+
+<b>memberPort</b>
+member port
 
 
 
@@ -199,16 +206,33 @@ Name of the service group.
 <b>serverName</b>
 Name of the server to which to bind the service group.
 
+<b>port</b>
+Server port number.
+
+<b>weight</b>
+weight of the monitor that is bound to servicegroup.
+Minimum value: 1
+
+<b>CustomServerID</b>
+The identifier for this IP:Port pair. Used when the persistency type is set to Custom Server ID.
+Default value: "None"
+
+<b>hashId</b>
+The hash identifier for the service. This must be unique for each service. This parameter is used by hash based load balancing methods.
+Minimum value: 1
+
 <b>monitorName</b>
 Name of the monitor bound to the service group. Used to assign a weight to the monitor.
 
 <b>maxClient</b>
 Maximum number of simultaneous open connections for the service group.
+Minimum value: 0
 Maximum value: 4294967294
 
 <b>maxReq</b>
 Maximum number of requests that can be sent on a persistent connection to the service group. 
 Note: Connection requests beyond this value are rejected.
+Minimum value: 0
 Maximum value: 65535
 
 <b>healthMonitor</b>
@@ -227,6 +251,9 @@ Default value: NO
 <b>cip</b>
 Insert the Client IP header in requests forwarded to the service.
 Possible values: ENABLED, DISABLED
+
+<b>cipHeader</b>
+CIP Header.
 
 <b>usip</b>
 Use client's IP address as the source IP address when initiating connection to the server. With the NO setting, which is the default, a mapped IP (MIP) address or subnet IP (SNIP) address is used as the source IP address to initiate server side connections.
@@ -282,10 +309,12 @@ Possible values: YES, NO
 
 <b>maxBandwidth</b>
 Maximum bandwidth, in Kbps, allocated for all the services in the service group.
+Minimum value: 0
 Maximum value: 4294967287
 
 <b>monThreshold</b>
 Minimum sum of weights of the monitors that are bound to this service. Used to determine whether to mark a service as UP or DOWN.
+Minimum value: 0
 Maximum value: 65535
 
 <b>downStateFlush</b>
@@ -357,14 +386,19 @@ Port number of the service. Each service must have a unique port number.
 <b>monitorName</b>
 The name of the service or a service group to which the monitor is to be bound.
 
+<b>monState</b>
+Administrative state assigned to the monitor and service group binding. If set to disabled, the service group is not monitored.
+Possible values: ENABLED, DISABLED
+Default value: ENABLED
+
+<b>passive</b>
+Indicates if load monitor is passive. A passive load monitor does not remove service from LB decision when threshold is breached.
+
 <b>weight</b>
 
 <b>CustomServerID</b>
 Unique service identifier. Used when the persistency type for the virtual server is set to Custom Server ID.
 Default value: "None"
-
-<b>serverID</b>
-The  identifier for the service. This is used when the persistency type is set to Custom Server ID.
 
 <b>state</b>
 Initial state of the service after binding.
@@ -494,14 +528,6 @@ Name of the service group.
 <b>includeMembers</b>
 Display the members of the listed service groups in addition to their settings. Can be specified when no service group name is provided in the command. In that case, the details displayed for each service group are identical to the details displayed when a service group name is provided, except that bound monitors are not displayed.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -594,7 +620,7 @@ Monitor state.
 The state of the service
 
 <b>delay</b>
-The remaning time in seconds for the service to be disabledNOTE: This attribute is deprecated.Changed from positional to keyword to avoid confusion with serverName
+The remaning time in seconds for the service to be disabled
 
 <b>IP</b>
 IP Address.
@@ -618,7 +644,7 @@ weight of the monitor that is bound to servicegroup.
 The identifier for this IP:Port pair. Used when the persistency type is set to Custom Server ID.
 
 <b>serverID</b>
-The  identifier for the service. This is used when the persistency type is set to Custom Server ID.NOTE: This attribute is deprecated.Instead of integer now serverId will be a string and you can use -customserverid instead of -serverID.
+The  identifier for the service. This is used when the persistency type is set to Custom Server ID.
 
 <b>monStatCode</b>
 The code indicating the monitor response.
@@ -654,7 +680,7 @@ Time when last state change occurred. Seconds part.
 Time when last state change occurred. Milliseconds part.
 
 <b>timeSinceLastStateChange</b>
-Time in milliseconds since the last state change.NOTE: This attribute is deprecated.This will no longer show the correct information. Use the ticksSinceLastStateChange option instead.
+Time in milliseconds since the last state change.
 
 <b>ticksSinceLastStateChange</b>
 Time in 10 millisecond ticks since the last state change.
@@ -742,6 +768,20 @@ stat serviceGroup [&lt;serviceGroupName>] [-detail] [-fullValues] [-ntimes &lt;p
 
 <b>serviceGroupName</b>
 Name of the service group for which to display settings.
+
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
 
 <b>clearstats</b>
 Clear the statsistics / counters

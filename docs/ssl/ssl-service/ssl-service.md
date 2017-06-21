@@ -12,7 +12,7 @@ Sets the advanced SSL configuration for an SSL service.
 
 ##Synopsys
 
-set ssl service &lt;serviceName>@ [-dh ( ENABLED | DISABLED )  -dhFile &lt;string>] [-dhCount &lt;positive_integer>] [-eRSA ( ENABLED | DISABLED )  [-eRSACount &lt;positive_integer>]] [-sessReuse ( ENABLED | DISABLED )  [-sessTimeout &lt;positive_integer>]] [-cipherRedirect ( ENABLED | DISABLED )  [-cipherURL &lt;URL>]] [-sslv2Redirect ( ENABLED | DISABLED )  [-sslv2URL &lt;URL>]] [-clientAuth ( ENABLED | DISABLED )  [-clientCert ( Mandatory | Optional )]] [-sslRedirect ( ENABLED | DISABLED )] [-redirectPortRewrite ( ENABLED | DISABLED )] [-nonFipsCiphers ( ENABLED | DISABLED )] [-ssl2 ( ENABLED | DISABLED )] [-ssl3 ( ENABLED | DISABLED )] [-tls1 ( ENABLED | DISABLED )] [-tls11 ( ENABLED | DISABLED )] [-tls12 ( ENABLED | DISABLED )] [-SNIEnable ( ENABLED | DISABLED )] [-serverAuth ( ENABLED | DISABLED )  [-commonName &lt;string>]] [-pushEncTrigger &lt;pushEncTrigger>] [-sendCloseNotify ( YES | NO )] [-dtlsProfileName &lt;string>] [-sslProfile &lt;string>]
+set ssl service &lt;serviceName>@ [-dh ( ENABLED | DISABLED )  -dhFile &lt;string>] [-dhCount &lt;positive_integer>] [-dhKeyExpSizeLimit ( ENABLED | DISABLED )] [-eRSA ( ENABLED | DISABLED )  [-eRSACount &lt;positive_integer>]] [-sessReuse ( ENABLED | DISABLED )  [-sessTimeout &lt;positive_integer>]] [-cipherRedirect ( ENABLED | DISABLED )  [-cipherURL &lt;URL>]] [-sslv2Redirect ( ENABLED | DISABLED )  [-sslv2URL &lt;URL>]] [-clientAuth ( ENABLED | DISABLED )  [-clientCert ( Mandatory | Optional )]] [-sslRedirect ( ENABLED | DISABLED )] [-redirectPortRewrite ( ENABLED | DISABLED )] [-nonFipsCiphers ( ENABLED | DISABLED )] [-ssl2 ( ENABLED | DISABLED )] [-ssl3 ( ENABLED | DISABLED )] [-tls1 ( ENABLED | DISABLED )] [-tls11 ( ENABLED | DISABLED )] [-tls12 ( ENABLED | DISABLED )] [-SNIEnable ( ENABLED | DISABLED )] [-serverAuth ( ENABLED | DISABLED )  [-commonName &lt;string>]] [-pushEncTrigger &lt;pushEncTrigger>] [-sendCloseNotify ( YES | NO )] [-dtlsProfileName &lt;string>] [-sslProfile &lt;string>]
 
 
 ##Arguments
@@ -25,9 +25,18 @@ State of Diffie-Hellman (DH) key exchange. This parameter is not applicable when
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
+<b>dhFile</b>
+Name for and, optionally, path to the PEM-format DH parameter file to be installed. /nsconfig/ssl/ is the default path. This parameter is not applicable when configuring a backend service.
+
 <b>dhCount</b>
 Number of interactions, between the client and the NetScaler appliance, after which the DH private-public pair is regenerated. A value of zero (0) specifies infinite use (no refresh). This parameter is not applicable when configuring a backend service.
+Minimum value: 0
 Maximum value: 65534
+
+<b>dhKeyExpSizeLimit</b>
+This option enables the use of NIST recommended (NIST Special Publication 800-56A) bit size for private-key size. For example, for DH params of size 2048bit, the private-key size recommended is 224bits. This is rounded-up to 256bits.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
 
 <b>eRSA</b>
 State of Ephemeral RSA (eRSA) key exchange. Ephemeral RSA allows clients that support only export ciphers to communicate with the secure server even if the server certificate does not support export clients. The ephemeral RSA key is automatically generated when you bind an export cipher to an SSL or TCP-based SSL virtual server or service. When you remove the export cipher, the eRSA key is not deleted. It is reused at a later date when another export cipher is bound to an SSL or TCP-based SSL virtual server or service. The eRSA key is deleted when the appliance restarts.
@@ -35,10 +44,22 @@ This parameter is not applicable when configuring a backend service.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
+<b>eRSACount</b>
+Refresh count for regeneration of RSA public-key and private-key pair. Zero (0) specifies infinite usage (no refresh). 
+This parameter is not applicable when configuring a backend service.
+Minimum value: 0
+Maximum value: 65534
+
 <b>sessReuse</b>
 State of session reuse. Establishing the initial handshake requires CPU-intensive public key encryption operations. With the ENABLED setting, session key exchange is avoided for session resumption requests received from the client.
 Possible values: ENABLED, DISABLED
 Default value: ENABLED
+
+<b>sessTimeout</b>
+Time, in seconds, for which to keep the session active. Any session resumption request received after the timeout period will require a fresh SSL handshake and establishment of a new SSL session.
+Default value: 300
+Minimum value: 0
+Maximum value: 4294967294
 
 <b>cipherRedirect</b>
 State of Cipher Redirect. If this parameter is set to ENABLED, you can configure an SSL virtual server or service to display meaningful error messages if the SSL handshake fails because of a cipher mismatch between the virtual server or service and the client.
@@ -46,17 +67,31 @@ This parameter is not applicable when configuring a backend service.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
+<b>cipherURL</b>
+URL of the page to which to redirect the client in case of a cipher mismatch. Typically, this page has a clear explanation of the error or an alternative location that the transaction can continue from.
+This parameter is not applicable when configuring a backend service.
+
 <b>sslv2Redirect</b>
 State of SSLv2 Redirect. If this parameter is set to ENABLED, you can configure an SSL virtual server or service to display meaningful error messages if the SSL handshake fails because of a protocol version mismatch between the virtual server or service and the client.
 This parameter is not applicable when configuring a backend service.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
+<b>sslv2URL</b>
+URL of the page to which to redirect the client in case of a protocol version mismatch. Typically, this page has a clear explanation of the error or an alternative location that the transaction can continue from.
+This parameter is not applicable when configuring a backend service.
+
 <b>clientAuth</b>
 State of client authentication. In service-based SSL offload, the service terminates the SSL handshake if the SSL client does not provide a valid certificate. 
 This parameter is not applicable when configuring a backend service.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
+
+<b>clientCert</b>
+Type of client authentication. If this parameter is set to MANDATORY, the appliance terminates the SSL handshake if the SSL client does not provide a valid certificate. With the OPTIONAL setting, the appliance requests a certificate from the SSL clients but proceeds with the SSL transaction even if the client presents an invalid certificate.
+This parameter is not applicable when configuring a backend SSL service.
+Caution: Define proper access control policies before changing this setting to Optional.
+Possible values: Mandatory, Optional
 
 <b>sslRedirect</b>
 State of HTTPS redirects for the SSL service. 
@@ -93,17 +128,18 @@ Possible values: ENABLED, DISABLED
 Default value: ENABLED
 
 <b>tls11</b>
-State of TLSv1.1 protocol support for the SSL service.Enabled for Front-end service on MPX-CVM platform only.
+State of TLSv1.1 protocol support for the SSL service. Enabled for Front-end service on MPX-CVM platform only.
 Possible values: ENABLED, DISABLED
 Default value: ENABLED
 
 <b>tls12</b>
-State of TLSv1.2 protocol support for the SSL service.Enabled for Front-end service on MPX-CVM platform only.
+State of TLSv1.2 protocol support for the SSL service. Enabled for Front-end service on MPX-CVM platform only.
 Possible values: ENABLED, DISABLED
 Default value: ENABLED
 
 <b>SNIEnable</b>
 State of the Server Name Indication (SNI) feature on the virtual server and service-based offload. SNI helps to enable SSL encryption on multiple domains on a single virtual server or service if the domains are controlled by the same organization and share the same second-level domain name. For example, *.sports.net can be used to secure domains such as login.sports.net and help.sports.net.
+This parameter is not applicable when configuring a backend service.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
@@ -111,6 +147,9 @@ Default value: DISABLED
 State of server authentication support for the SSL service.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
+
+<b>commonName</b>
+Name to be checked against the CommonName (CN) field in the server certificate bound to the SSL server
 
 <b>pushEncTrigger</b>
 Trigger encryption on the basis of the PUSH flag value. Available settings function as follows:
@@ -126,10 +165,10 @@ Possible values: YES, NO
 Default value: YES
 
 <b>dtlsProfileName</b>
-Name of the DTLS profile whose settings are to be applied to the virtual server.
+Name of the DTLS profile that contains DTLS settings for the service.
 
 <b>sslProfile</b>
-SSL profile associated to service
+Name of the SSL profile that contains SSL settings for the service.
 
 
 
@@ -144,7 +183,7 @@ Use this command to remove ssl service settings.Refer to the set ssl service com
 
 ##Synopsys
 
-unset ssl service &lt;serviceName>@ [-dh] [-dhFile] [-dhCount] [-eRSA] [-eRSACount] [-sessReuse] [-sessTimeout] [-cipherRedirect] [-cipherURL] [-sslv2Redirect] [-sslv2URL] [-clientAuth] [-clientCert] [-sslRedirect] [-redirectPortRewrite] [-nonFipsCiphers] [-ssl2] [-ssl3] [-tls1] [-tls11] [-tls12] [-SNIEnable] [-serverAuth] [-commonName] [-sendCloseNotify] [-dtlsProfileName] [-sslProfile]
+unset ssl service &lt;serviceName>@ [-dh] [-dhFile] [-dhCount] [-dhKeyExpSizeLimit] [-eRSA] [-eRSACount] [-sessReuse] [-sessTimeout] [-cipherRedirect] [-cipherURL] [-sslv2Redirect] [-sslv2URL] [-clientAuth] [-clientCert] [-sslRedirect] [-redirectPortRewrite] [-nonFipsCiphers] [-ssl2] [-ssl3] [-tls1] [-tls11] [-tls12] [-SNIEnable] [-serverAuth] [-commonName] [-sendCloseNotify] [-dtlsProfileName] [-sslProfile]
 
 
 ##bind ssl service
@@ -165,8 +204,58 @@ Name of the SSL service for which to set advanced configuration.
 <b>policyName</b>
 Name of the SSL policy to bind to the service.
 
+<b>priority</b>
+Priority.
+Minimum value: 0
+Maximum value: 64000
+
+<b>gotoPriorityExpression</b>
+Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE.  Specify one of the following values:
+* NEXT - Evaluate the policy with the next higher priority number.
+* END - End policy evaluation.
+* USE_INVOCATION_RESULT - Applicable if this policy invokes another policy label. If the final goto in the invoked policy label has a value of END, the evaluation stops. If the final goto is anything other than END, the current policy label performs a NEXT.
+* A default syntax or classic expression that evaluates to a number.
+If you specify an expression, the number to which it evaluates determines the next policy to evaluate, as follows:
+* If the expression evaluates to a higher numbered priority, the policy with that priority is evaluated next.
+* If the expression evaluates to the priority of the current policy, the policy with the next higher numbered priority is evaluated next.
+* If the expression evaluates to a number that is larger than the largest numbered priority, policy evaluation ends.
+An UNDEF event is triggered if:
+* The expression is invalid.
+* The expression evaluates to a priority number that is numerically lower than the current policy's priority.
+* The expression evaluates to a priority number that is between the current policy's priority number (say, 30) and the highest priority number (say, 100), but does not match any configured priority number (for example, the expression evaluates to the number 85). This example assumes that the priority number increments by 10 for every successive policy, and therefore a priority number of 85 does not exist in the policy label.
+Default value: "END"
+
+<b>invoke</b>
+Invoke policies bound to a virtual server, service, or policy label. After the invoked policies are evaluated, the flow returns to the policy with the next-larger priority number.
+
+<b>labelType</b>
+Type of policy label invocation.
+Possible values: vserver, service, policylabel
+
+<b>labelName</b>
+Name of the policy label, virtual server, or service to invoke if the current policy rule evaluates to TRUE.
+
 <b>certkeyName</b>
 Name of the certificate-key pair.
+
+<b>CA</b>
+Name of the CA certificate that issues and signs the intermediate-CA certificate or the end-user client or server certificate.
+
+<b>crlCheck</b>
+Rule to use for the CRL corresponding to the CA certificate during client authentication. Available settings function as follows:
+* MANDATORY - Deny SSL clients if the CRL is missing or expired, or the Next Update date is in the past, or the CRL is incomplete. 
+* OPTIONAL - Allow SSL clients if the CRL is missing or expired, or the Next Update date is in the past, or the CRL is incomplete, but deny if the client certificate is revoked in the CRL.
+Possible values: Mandatory, Optional
+
+<b>skipCAName</b>
+The flag is used to indicate whether this particular CA certificate's CA_Name needs to be sent to the SSL client while requesting for client certificate in a SSL handshake
+
+<b>SNICert</b>
+Name of the certificate-key pair to bind for use in SNI processing.
+
+<b>ocspCheck</b>
+Rule to use for the OCSP responder associated with the CA certificate during client authentication. If MANDATORY is specified, deny all SSL clients if the OCSP check fails because of connectivity issues with the remote OCSP server, or any other reason that prevents the OCSP check. With the OPTIONAL setting, allow SSL clients even if the OCSP check fails except when the client certificate is revoked.
+Possible values: Mandatory, Optional
 
 <b>cipherName</b>
 Name of the individual cipher, user-defined cipher group, or predefined (built-in) cipher alias.
@@ -199,8 +288,26 @@ Name of the SSL service.
 <b>policyName</b>
 Name of the SSL policy to unbind from the SSL service.
 
+<b>priority</b>
+Priority of the NOPOLICY (built-in policy) to be unbound. Not required if you are unbinding a user-defined policy.
+Minimum value: 1
+Maximum value: 2147483647
+
 <b>certkeyName</b>
 The certificate key pair binding.
+
+<b>CA</b>
+CA certificate.
+
+<b>crlCheck</b>
+Rule to use for the CRL corresponding to the CA certificate during client authentication. Available settings function as follows:
+* MANDATORY - Deny SSL clients if the CRL is missing or expired, or the Next Update date is in the past, or the CRL is incomplete. 
+* OPTIONAL - Allow SSL clients if the CRL is missing or expired, or the Next Update date is in the past, or the CRL is incomplete, but deny if the client certificate is revoked in the CRL.
+Possible values: Mandatory, Optional
+Default value: CRLCHECK_OPTIONAL
+
+<b>SNICert</b>
+Name of the certificate-key pair to bind for use in SNI processing.
 
 <b>cipherName</b>
 Name of the individual cipher, user-defined cipher group, or predefined (built-in) cipher alias.
@@ -233,14 +340,6 @@ Name of the SSL service for which to show detailed information.
 <b>cipherDetails</b>
 Display details of the individual ciphers bound to the SSL service.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -256,6 +355,9 @@ The file name and path for the DH parameter.
 
 <b>dhCount</b>
 The refresh count for regeneration of DH public-key and private-key  from  the  DH  parameter.
+
+<b>dhKeyExpSizeLimit</b>
+This option enables the use of NIST recommended(NIST Special Publication 800-56A) bit size for private-key size. For example, for DH params of size 2048bit, the private-key size recommended is 224bits. This is rounded-up to 256bits.
 
 <b>eRSA</b>
 The state of Ephemeral RSA key exchange support. Ephemeral RSA is used for export ciphers
@@ -379,7 +481,7 @@ The flag is used to indicate whether this particular CA certificate's CA_Name ne
 Enable sending SSL Close-Notify at the end of a transaction
 
 <b>dtlsProfileName</b>
-Name of the DTLS profile whose settings are to be applied to the virtual server.
+Name of the DTLS profile that contains DTLS settings for the service.
 
 <b>dtlsFlag</b>
 The flag is used to indicate whether DTLS is set or not
@@ -388,7 +490,10 @@ The flag is used to indicate whether DTLS is set or not
 Named ECC curve bound to service/vserver.
 
 <b>sslProfile</b>
-SSL profile associated to service
+Name of the SSL profile that contains SSL settings for the service.
+
+<b>gslbServiceFlag</b>
+Indicates that this is a gslb service
 
 <b>devno</b>
 

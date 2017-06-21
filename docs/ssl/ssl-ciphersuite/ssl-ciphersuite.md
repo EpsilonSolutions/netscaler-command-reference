@@ -18,14 +18,6 @@ show ssl ciphersuite [&lt;cipherName>]
 <b>cipherName</b>
 Name of the cipher suite for which to show detailed information.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

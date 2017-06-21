@@ -12,31 +12,45 @@ Sets the global AAA configuration. Any configuration settings made at this level
 
 ##Synopsys
 
-set aaa parameter [-enableStaticPageCaching ( YES | NO )] [-enableEnhancedAuthFeedback ( YES | NO )] [-defaultAuthType &lt;defaultAuthType>] [-maxAAAUsers &lt;positive_integer>] [-maxLoginAttempts &lt;positive_integer> [-failedLoginTimeout &lt;mins>]] [-aaadnatIp &lt;ip_addr|*>] [-enableSessionStickiness ( YES | NO )]
+set aaa parameter [-enableStaticPageCaching ( YES | NO )] [-enableEnhancedAuthFeedback ( YES | NO )] [-defaultAuthType &lt;defaultAuthType>] [-maxAAAUsers &lt;positive_integer>] [-maxLoginAttempts &lt;positive_integer>  [-failedLoginTimeout &lt;mins>]] [-aaadnatIp &lt;ip_addr|*>] [-enableSessionStickiness ( YES | NO )]
 
 
 ##Arguments
 
 <b>enableStaticPageCaching</b>
-The default state of VPN Static Page caching. If nothing is specified, the default value is set to YES. Possible values: YES, NO Default value: STATIC_PAGE_CACHING_ENABLED
+The default state of VPN Static Page caching. If nothing is specified, the default value is set to YES.
+Possible values: YES, NO
+Default value: YES
 
 <b>enableEnhancedAuthFeedback</b>
-Enhanced auth feedback provides more information to the end user about the reason for an authentication failure. The default value is set to NO. Possible values: YES, NO Default value: ENHANCED_AUTH_FEEDBACK_DISABLED
+Enhanced auth feedback provides more information to the end user about the reason for an authentication failure.  The default value is set to NO.
+Possible values: YES, NO
+Default value: NO
 
 <b>defaultAuthType</b>
-The default authentication server type. Possible values: LOCAL, LDAP, RADIUS, TACACS, CERT Default value: LOCAL_AUTH
+The default authentication server type.
+Possible values: LOCAL, LDAP, RADIUS, TACACS, CERT
+Default value: LOCAL
 
 <b>maxAAAUsers</b>
-Maximum number of concurrent users allowed to log on to VPN simultaneously. Minimum value: 1
+Maximum number of concurrent users allowed to log on to VPN simultaneously.
+Minimum value: 1
 
 <b>maxLoginAttempts</b>
-Maximum Number of login Attempts Minimum value: 1
+Maximum Number of login Attempts
+Minimum value: 1
+
+<b>failedLoginTimeout</b>
+Number of minutes an account will be locked if user exceeds maximum permissible attempts
+Minimum value: 1
 
 <b>aaadnatIp</b>
 Source IP address to use for traffic that is sent to the authentication server.
 
 <b>enableSessionStickiness</b>
-Enables/Disables stickiness to authentication servers Possible values: YES, NO Default value: SESSION_STICKINESS_DISABLED
+Enables/Disables stickiness to authentication servers
+Possible values: YES, NO
+Default value: NO
 
 
 
@@ -62,14 +76,6 @@ Displays the current AAA global configuration.
 ##Synopsys
 
 show aaa parameter
-
-
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -102,5 +108,5 @@ Enables/Disables stickiness to authentication servers
 
 ##Example
 
-&gt; show aaa parameter Configured AAA parameters DefaultAuthType: LDAP MaxAAAUsers: 5 Done &gt;
+&gt; show aaa parameterConfigured AAA parameters        DefaultAuthType: LDAP   MaxAAAUsers: 5 Done&gt;
 

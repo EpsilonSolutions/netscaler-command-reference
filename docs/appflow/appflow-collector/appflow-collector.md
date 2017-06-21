@@ -103,14 +103,6 @@ show appflow collector [&lt;name>]
 <b>name</b>
 Name of the collector about which to display information.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

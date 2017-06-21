@@ -51,7 +51,7 @@ Service SPN. When specified, this will be used to fetch kerberos tickets. If not
 
 ##Example
 
-add aaa kcdaccount my_kcd_acct -keytab /var/mykcd.keytab add aaa kcdaccount my_kcd_acct -keytab The above example adds a Kerberos constrained delegation account my_kcd_acct, with the keytab file located at /var/mykcd.keytab
+add aaa kcdaccount my_kcd_acct -keytab /var/mykcd.keytabadd aaa kcdaccount my_kcd_acct -keytabThe above example adds a Kerberos constrained delegation account my_kcd_acct, with the keytab file located at /var/mykcd.keytab
 
 ##rm aaa kcdAccount
 
@@ -116,7 +116,7 @@ Service SPN. When specified, this will be used to fetch kerberos tickets. If not
 
 ##Example
 
-set aaa kcdaccount my_kcd_acct -keytab /var/hiskcd.keytab The above command sets the keytab location for KCD account my_kcd_acct to /var/hiskcd.keytab
+set aaa kcdaccount my_kcd_acct -keytab /var/hiskcd.keytabThe above command sets the keytab location for KCD account my_kcd_acct to /var/hiskcd.keytab
 
 ##unset aaa kcdAccount
 
@@ -143,14 +143,6 @@ show aaa kcdAccount [&lt;kcdAccount>]
 <b>kcdAccount</b>
 The KCD account name.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -159,7 +151,7 @@ The KCD account name.
 The path to the keytab file. If specified other parameters in this command need not be given
 
 <b>principle</b>
-SPN extracted from keytab file.NOTE: This attribute is deprecated.This attribute is deprecated. Please do not configure this
+SPN extracted from keytab file.
 
 <b>kcdSPN</b>
 Host SPN extracted from keytab file.
@@ -198,5 +190,5 @@ Service SPN. When specified, this will be used to fetch kerberos tickets. If not
 
 ##Example
 
-Example &gt; show aaa kcdaccount my_kcd_acct KcdAccount: my_kcd_acct Keytab: /var/mykcd.keytab Done &gt;
+Example&gt; show aaa kcdaccount my_kcd_acct        KcdAccount: my_kcd_acct           Keytab: /var/mykcd.keytab Done&gt;
 

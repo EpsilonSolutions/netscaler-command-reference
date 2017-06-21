@@ -65,14 +65,6 @@ Displays current values for the location parameters, which are used for static-p
 show locationParameter
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>context</b>
@@ -100,6 +92,7 @@ Label specifying the meaning of the sixth qualifier. Can be specified for custom
 Currently loaded location database file.
 
 <b>format</b>
+Location file format
 
 <b>custom</b>
 Number of configured custom locations.
@@ -117,6 +110,30 @@ Number of errros encountered while reading the database file.
 Number of warnings encountered while reading the database file.
 
 <b>entries</b>
+Number of successfully added entries.
+
+<b>locationFile6</b>
+Currently loaded location database file.
+
+<b>format6</b>
+Location file format
+
+<b>custom6</b>
+Number of configured custom locations.
+
+<b>static6</b>
+Number of configured locations in the database file (static locations).
+
+<b>lines6</b>
+Number of lines in the databse files
+
+<b>errors6</b>
+Number of errros encountered while reading the database file.
+
+<b>warnings6</b>
+Number of warnings encountered while reading the database file.
+
+<b>entries6</b>
 Number of successfully added entries.
 
 <b>flags</b>

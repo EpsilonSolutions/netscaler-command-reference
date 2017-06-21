@@ -12,13 +12,13 @@ Adds an ACL6 rule to the NetScaler appliance. To commit this operation, you must
 
 ##Synopsys
 
-add ns acl6 &lt;acl6name> &lt;acl6action> [-td &lt;positive_integer>] [-srcIPv6  [&lt;operator>]  &lt;srcIPv6Val>] [-srcPort  [&lt;operator>]  &lt;srcPortVal>] [-destIPv6  [&lt;operator>]  &lt;destIPv6Val>] [-destPort  [&lt;operator>]  &lt;destPortVal>] [-TTL &lt;positive_integer>] [-srcMac &lt;mac_addr>] [(-protocol &lt;protocol>  [-established]) | -protocolNumber &lt;positive_integer>] [-vlan &lt;positive_integer> | -vxlan &lt;positive_integer>] [-interface &lt;interface_name>] [-icmpType &lt;positive_integer>  [-icmpCode &lt;positive_integer>]] [-priority &lt;positive_integer>] [-state ( ENABLED | DISABLED )]
+add ns acl6 &lt;acl6name> &lt;acl6action> [-td &lt;positive_integer>] [-srcIPv6  [&lt;operator>]  &lt;srcIPv6Val>] [-srcPort  [&lt;operator>]  &lt;srcPortVal>] [-destIPv6  [&lt;operator>]  &lt;destIPv6Val>] [-destPort  [&lt;operator>]  &lt;destPortVal>] [-TTL &lt;positive_integer>] [-srcMac &lt;mac_addr>  [-srcMacMask &lt;string>]] [(-protocol &lt;protocol>  [-established]) | -protocolNumber &lt;positive_integer>] [-vlan &lt;positive_integer> | -vxlan &lt;positive_integer>] [-interface &lt;interface_name>] [-icmpType &lt;positive_integer>  [-icmpCode &lt;positive_integer>]] [-priority &lt;positive_integer>] [-state ( ENABLED | DISABLED )]
 
 
 ##Arguments
 
 <b>acl6name</b>
-Name for the ACL6 rule. Must begin with an ASCII alphabetic or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Can be changed after the ACL6 rule is created.
+Name for the ACL6 rule. Must begin with an ASCII alphabetic or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after the ACL6 rule is created.
 
 <b>acl6action</b>
 Action to perform on the incoming IPv6 packets that match the ACL6 rule.
@@ -36,16 +36,34 @@ Maximum value: 4094
 <b>srcIPv6</b>
 IP address or range of IP addresses to match against the source IP address of an incoming IPv6 packet. In the command line interface, separate the range with a hyphen and enclose within brackets.
 
+<b>operator</b>
+Logical operator.
+Possible values: =, !=, EQ, NEQ
+
+<b>srcIPv6Val</b>
+Source IPv6 address (range).
+
 <b>srcPort</b>
 Port number or range of port numbers to match against the source port number of an incoming IPv6 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90].
 Note: The destination port can be specified only for TCP and UDP protocols.
 
+<b>srcPortVal</b>
+Source port (range).
+Maximum value: 65535
+
 <b>destIPv6</b>
 IP address or range of IP addresses to match against the destination IP address of an incoming IPv6 packet.  In the command line interface, separate the range with a hyphen and enclose within brackets.
+
+<b>destIPv6Val</b>
+Destination IPv6 address (range).
 
 <b>destPort</b>
 Port number or range of port numbers to match against the destination port number of an incoming IPv6 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90].
 Note: The destination port can be specified only for TCP and UDP protocols.
+
+<b>destPortVal</b>
+Destination port (range).
+Maximum value: 65535
 
 <b>TTL</b>
 Time to expire this ACL6 (in seconds).
@@ -54,6 +72,10 @@ Maximum value: 2147483647
 
 <b>srcMac</b>
 MAC address to match against the source MAC address of an incoming IPv6 packet.
+
+<b>srcMacMask</b>
+Used to define range of Source MAC address. It takes string of 0 and 1, 0s are for exact match and 1s for wildcard. For matching first 3 bytes of MAC address, srcMacMask value "000000111111". 
+Default value: "000000000000"
 
 <b>protocol</b>
 Protocol, identified by protocol name, to match against the protocol of an incoming IPv6 packet.
@@ -83,11 +105,13 @@ Allow only incoming TCP packets that have the ACK or RST bit set if the action s
 <b>icmpType</b>
 ICMP Message type to match against the message type of an incoming IPv6 ICMP packet. For example, to block DESTINATION UNREACHABLE messages, you must specify 3 as the ICMP type.
 Note: This parameter can be specified only for the ICMP protocol.
+Minimum value: 0
 Maximum value: 65536
 
 <b>icmpCode</b>
 Code of a particular ICMP message type to match against the ICMP code of an incoming IPv6 ICMP packet.  For example, to block DESTINATION HOST UNREACHABLE messages, specify 3 as the ICMP type and 1 as the ICMP code.
 If you set this parameter, you must set the ICMP Type parameter.
+Minimum value: 0
 Maximum value: 65536
 
 <b>priority</b>
@@ -98,7 +122,7 @@ Maximum value: 80000
 <b>state</b>
 State of the ACL6.
 Possible values: ENABLED, DISABLED
-Default value: XACLENABLED
+Default value: ENABLED
 
 
 
@@ -146,7 +170,7 @@ Modifies the parameters of an ACL6 rule. To commit this operation, you must appl
 
 ##Synopsys
 
-set ns acl6 &lt;acl6name> [-aclaction &lt;aclaction>] [-srcIPv6  [&lt;operator>]  &lt;srcIPv6Val>] [-srcPort  [&lt;operator>]  &lt;srcPortVal>] [-destIPv6  [&lt;operator>]  &lt;destIPv6Val>] [-destPort  [&lt;operator>]  &lt;destPortVal>] [-srcMac &lt;mac_addr>] [-protocol &lt;protocol> | -protocolNumber &lt;positive_integer>] [-icmpType &lt;positive_integer>  [-icmpCode &lt;positive_integer>]] [-vlan &lt;positive_integer> | -vxlan &lt;positive_integer>] [-interface &lt;interface_name>] [-priority &lt;positive_integer>] [-established]
+set ns acl6 &lt;acl6name> [-aclaction &lt;aclaction>] [-srcIPv6  [&lt;operator>]  &lt;srcIPv6Val>] [-srcPort  [&lt;operator>]  &lt;srcPortVal>] [-destIPv6  [&lt;operator>]  &lt;destIPv6Val>] [-destPort  [&lt;operator>]  &lt;destPortVal>] [-srcMac &lt;mac_addr>  [-srcMacMask &lt;string>]] [-protocol &lt;protocol> | -protocolNumber &lt;positive_integer>] [-icmpType &lt;positive_integer>  [-icmpCode &lt;positive_integer>]] [-vlan &lt;positive_integer> | -vxlan &lt;positive_integer>] [-interface &lt;interface_name>] [-priority &lt;positive_integer>] [-established]
 
 
 ##Arguments
@@ -161,17 +185,39 @@ Possible values: BRIDGE, DENY, ALLOW
 <b>srcIPv6</b>
 IP address or range of IP addresses to match against the source IP address of an incoming IPv6 packet. In the command line interface, separate the range with a hyphen and enclose within brackets.
 
+<b>operator</b>
+Logical operator.
+Possible values: =, !=, EQ, NEQ
+
+<b>srcIPv6Val</b>
+Source IPv6 address (range).
+
 <b>srcPort</b>
 Source Port (range).
+
+<b>srcPortVal</b>
+Source port (range).
+Maximum value: 65535
 
 <b>destIPv6</b>
 IP address or range of IP addresses to match against the destination IP address of an incoming IPv6 packet.  In the command line interface, separate the range with a hyphen and enclose within brackets.
 
+<b>destIPv6Val</b>
+Destination IPv6 address (range).
+
 <b>destPort</b>
 Destination Port (range).
 
+<b>destPortVal</b>
+Destination port (range).
+Maximum value: 65535
+
 <b>srcMac</b>
 MAC address to match against the source MAC address of an incoming IPv6 packet.
+
+<b>srcMacMask</b>
+Used to define range of Source MAC address. It takes string of 0 and 1, 0s are for exact match and 1s for wildcard. For matching first 3 bytes of MAC address, srcMacMask value "000000111111". 
+Default value: "000000000000"
 
 <b>protocol</b>
 Protocol, identified by protocol name, to match against the protocol of an incoming IPv6 packet.
@@ -185,6 +231,13 @@ Maximum value: 255
 <b>icmpType</b>
 ICMP Message type to match against the message type of an incoming IPv6 ICMP packet. For example, to block DESTINATION UNREACHABLE messages, you must specify 3 as the ICMP type.
 Note: This parameter can be specified only for the ICMP protocol.
+Minimum value: 0
+Maximum value: 65536
+
+<b>icmpCode</b>
+Code of a particular ICMP message type to match against the ICMP code of an incoming IPv6 ICMP packet.  For example, to block DESTINATION HOST UNREACHABLE messages, specify 3 as the ICMP type and 1 as the ICMP code.
+If you set this parameter, you must set the ICMP Type parameter.
+Minimum value: 0
 Maximum value: 65536
 
 <b>vlan</b>
@@ -227,7 +280,7 @@ Resets the attributes of the specified ACL6 rule. To commit this operation, you 
 
 ##Synopsys
 
-unset ns acl6 &lt;acl6name> [-srcIPv6] [-srcPort] [-destIPv6] [-destPort] [-srcMac] [-protocol] [-icmpType] [-icmpCode] [-vlan] [-vxlan] [-interface] [-established]
+unset ns acl6 &lt;acl6name> [-srcIPv6] [-srcPort] [-destIPv6] [-destPort] [-srcMac] [-srcMacMask] [-protocol] [-icmpType] [-icmpCode] [-vlan] [-vxlan] [-interface] [-established]
 
 
 ##Example
@@ -309,6 +362,20 @@ stat ns acl6 [&lt;acl6name>] [-detail] [-fullValues] [-ntimes &lt;positive_integ
 <b>acl6name</b>
 Name of the ACL6 rule whose statistics you want the NetScaler appliance to display.
 
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
+
 <b>clearstats</b>
 Clear the statsistics / counters
 Possible values: basic, full
@@ -362,7 +429,7 @@ stat acl6
 
 ##Related Commands
 
-<ul><li><a href="../../..//">stat ns</a></li><li><a href="../../../ml#stat-ns-limitident/ml#stat-ns-limitident">stat ns limitIdentifier</a></li><li><a href="../../..//">stat ns acl</a></li><li><a href="../../../t-ns-simp/t-ns-simp">stat ns simpleacl</a></li><li><a href="../../../at-ns-simpl/at-ns-simpl">stat ns simpleacl6</a></li><li><a href="../../..//">stat ns pbr</a></li><li><a href="../../../s-m/s-m">stat ns memory</a></li><li><a href="../../..//">stat ns pbr6</a></li><li><a href="../../../#stat-ns-trafficd/#stat-ns-trafficd">stat ns trafficDomain</a></li></ul>
+<ul><li><a href="../../..//">stat ns</a></li><li><a href="../../../ml#stat-ns-limitident/ml#stat-ns-limitident">stat ns limitIdentifier</a></li><li><a href="../../..//">stat ns acl</a></li><li><a href="../../../t-ns-simp/t-ns-simp">stat ns simpleacl</a></li><li><a href="../../../at-ns-simpl/at-ns-simpl">stat ns simpleacl6</a></li><li><a href="../../..//">stat ns pbr</a></li><li><a href="../../../s-m/s-m">stat ns memory</a></li><li><a href="../../..//">stat ns pbr6</a></li><li><a href="../../../#stat-ns-trafficd/#stat-ns-trafficd">stat ns trafficDomain</a></li><li><a href="../../../t-ns-part/t-ns-part">stat ns partition</a></li></ul>
 
 
 
@@ -405,14 +472,6 @@ show ns acl6 [&lt;acl6name>]
 <b>acl6name</b>
 Name of the ACL6 rule whose details you want the NetScaler appliance to display.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -426,6 +485,9 @@ Available settings function as follows:
 
 <b>srcMac</b>
 MAC address to match against the source MAC address of an incoming IPv6 packet.
+
+<b>srcMacMask</b>
+Used to define range of Source MAC address. It takes string of 0 and 1, 0s are for exact match and 1s for wildcard. For matching first 3 bytes of MAC address, srcMacMask value "000000111111".
 
 <b>stateflag</b>
 ACL6 state flag.
@@ -500,5 +562,5 @@ Integer value that uniquely identifies the traffic domain in which you want to c
 
 ##Example
 
-show ns acl6 rule11)      Name: r1                           Action: DENY        srcIPv6 = 2001::1        destIPv6        srcMac:                            Protocol:        Vlan:                              Interface:        Active Status: ENABLED             Applied Status: NOTAPPLIED        Priority: 10                       Hits: 0        TTL:
+show ns acl6 rule11)      Name: r1                           Action: DENY        srcIPv6 = 2001::1        destIPv6        srcMac:                            srcMacMask:        Protocol:        Vlan:                              Interface:        Active Status: ENABLED             Applied Status: NOTAPPLIED        Priority: 10                       Hits: 0        TTL:
 

@@ -22,9 +22,11 @@ URL of the particular object whose details is required. Parameter "host" must be
 
 <b>locator</b>
 ID of the cached object.
+Minimum value: 0
 
 <b>httpStatus</b>
 HTTP status of the object.
+Minimum value: 0
 
 <b>host</b>
 Host name of the object. Parameter "url" must be specified.
@@ -40,7 +42,7 @@ Name of the content group to which the object belongs. It will display only the 
 <b>httpMethod</b>
 HTTP request method that caused the object to be stored.
 Possible values: GET, POST
-Default value: NS_HTTP_METHOD_GET
+Default value: GET
 
 <b>group</b>
 Name of the content group whose objects should be listed.
@@ -52,10 +54,6 @@ Possible values: ON, OFF
 <b>includeNotReadyObjects</b>
 Include responses that have not yet reached a minimum number of hits before being cached.
 Possible values: ON, OFF
-
-<b>summary</b>
-
-<b>fullValues</b>
 
 
 
@@ -86,7 +84,7 @@ Value of "Date" header
 Name of the contentgroup in which it is stored.
 
 <b>destIP</b>
-Destination IP.NOTE: This attribute is deprecated.This is no more in use.
+Destination IP.
 
 <b>destIPV46</b>
 Destination IP.
@@ -146,10 +144,10 @@ Cache cell misses.
 Cache cell disk hits.
 
 <b>cacheCellGzipCompressed</b>
-The state of the response being gzip-compressed.NOTE: This attribute is deprecated.we display compression format using nsace_contenc_name
+The state of the response being gzip-compressed.
 
 <b>cacheCellDeflateCompressed</b>
-The state of the response being deflate-compressed.NOTE: This attribute is deprecated.we display compression format using nsace_contenc_name
+The state of the response being deflate-compressed.
 
 <b>cacheCellCompressionFormat</b>
 Compression format of this object. Identity means not compressed
@@ -275,6 +273,7 @@ expire cache object (-locator &lt;positive_integer> | (-url &lt;URL>  (-host &lt
 
 <b>locator</b>
 ID of the cached object to be expired To view the locator ID of the cached objects, use the show cache object command.
+Minimum value: 0
 
 <b>url</b>
 The URL of the object to be expired.
@@ -293,7 +292,7 @@ Name of the content group to which the object belongs.
 <b>httpMethod</b>
 HTTP request method that caused the object to be stored.
 Possible values: GET, POST
-Default value: NS_HTTP_METHOD_GET
+Default value: GET
 
 
 
@@ -304,13 +303,14 @@ Removes a cached object from memory and from disk (if it has a disk copy). You h
 
 ##Synopsys
 
-flush cache object (-locator &lt;positive_integer> | (-url &lt;URL>  (-host &lt;string>  [-port &lt;port>]  [-groupName &lt;string>]  [-httpMethod ( GET | POST )]))) [-force]
+flush cache object (-locator &lt;positive_integer> | (-url &lt;URL>  (-host &lt;string>  [-port &lt;port>]  [-groupName &lt;string>]  [-httpMethod ( GET | POST )])))
 
 
 ##Arguments
 
 <b>locator</b>
 ID of the cached object. To view the locator ID of the cached objects, use the show cache object command.
+Minimum value: 0
 
 <b>url</b>
 URL of the object to be flushed. You must also set the Host parameter.
@@ -329,10 +329,7 @@ Name of the content group to which the object belongs. Must provide the \\"host\
 <b>httpMethod</b>
 HTTP request method that caused the object to be stored. All objects cached by that method will be flushed.
 Possible values: GET, POST
-Default value: NS_HTTP_METHOD_GET
-
-<b>force</b>
-Force all copies to be flushed including on disk.
+Default value: GET
 
 
 
@@ -350,6 +347,7 @@ save cache object [-locator &lt;positive_integer>] [-tosecondary ( YES | NO )]
 
 <b>locator</b>
 The ID of the cached object.
+Minimum value: 0
 
 <b>tosecondary</b>
 Object will be saved onto Secondary.

@@ -12,7 +12,7 @@ Creates a rewrite action, which specifies exactly what modifications to make to 
 
 ##Synopsys
 
-add rewrite action &lt;name> &lt;type> &lt;target> [&lt;stringBuilderExpr>] [-pattern &lt;expression> | -search &lt;expression>] [-bypassSafetyCheck ( YES | NO )] [-refineSearch &lt;string>] [-comment &lt;string>]
+add rewrite action &lt;name> &lt;type> &lt;target> [&lt;stringBuilderExpr>] [-pattern &lt;expression> | -search &lt;expression>] [-refineSearch &lt;string>] [-comment &lt;string>]
 
 
 ##Arguments
@@ -38,7 +38,9 @@ Type of user-defined rewrite action. The information that you provide for, and t
 * DELETE &lt;target&gt;. Finds and deletes the specified target.
 * DELETE_ALL &lt;target&gt; -(pattern|search) &lt;string_builder_expr&gt;. In the request or response specified by &lt;target&gt;, locates and deletes all occurrences of the string specified by &lt;string_builder_expr&gt;. You can use a PCRE-format pattern or the search facility to find the strings.
 * REPLACE_DIAMETER_HEADER_FIELD &lt;target&gt; &lt;field value&gt;. In the request or response modify the header field specified by &lt;target&gt;. Use Diameter.req.flags.SET(&lt;flag&gt;) or Diameter.req.flags.UNSET&lt;flag&gt; as 'stringbuilderexpression' to set or unset flags.
-Possible values: noop, delete, insert_http_header, delete_http_header, corrupt_http_header, insert_before, insert_after, replace, replace_http_res, delete_all, replace_all, insert_before_all, insert_after_all, clientless_vpn_encode, clientless_vpn_encode_all, clientless_vpn_decode, clientless_vpn_decode_all, insert_sip_header, delete_sip_header, corrupt_sip_header, replace_sip_res, replace_diameter_header_field
+* REPLACE_DNS_HEADER_FIELD &lt;target&gt;. In the request or response modify the header field specified by &lt;target&gt;. 
+* REPLACE_DNS_ANSWER_SECTION &lt;target&gt;. Replace the DNS answer section in the response. This is currently applicable for A and AAAA records only. Use DNS.NEW_RRSET_A & DNS.NEW_RRSET_AAAA expressions to configure the new answer section 
+Possible values: noop, delete, insert_http_header, delete_http_header, corrupt_http_header, insert_before, insert_after, replace, replace_http_res, delete_all, replace_all, insert_before_all, insert_after_all, clientless_vpn_encode, clientless_vpn_encode_all, clientless_vpn_decode, clientless_vpn_decode_all, insert_sip_header, delete_sip_header, corrupt_sip_header, replace_sip_res, replace_diameter_header_field, replace_dns_header_field, replace_dns_answer_section
 
 <b>target</b>
 Default syntax expression that specifies which part of the request or response to rewrite.
@@ -58,12 +60,7 @@ Search facility that is used to match multiple strings in the request or respons
 NOTE: JSON searches use the same syntax as XPath searches, but operate on JSON files instead of standard XML files.
 * Patset ("patset(patset)") - A predefined pattern set. Example: -search patset("patset1").
 * Datset ("dataset(dataset)") - A predefined dataset. Example: -search dataset("dataset1").
-* AVP ("avp(avp number)") - AVP number that is used to match multiple AVPs in a Diameter Message. Example: -search avp(999)
-
-<b>bypassSafetyCheck</b>
-Bypass the safety check and allow unsafe expressions. An unsafe expression is one that contains references to message elements that might not be present in all messages. If an expression refers to a missing request element, an empty string is used instead.
-Possible values: YES, NO
-Default value: NO
+* AVP ("avp(avp number)") - AVP number that is used to match multiple AVPs in a Diameter/Radius Message. Example: -search avp(999)
 
 <b>refineSearch</b>
 Specify additional criteria to refine the results of the search. 
@@ -77,7 +74,7 @@ Comment. Can be used to preserve information about this rewrite action.
 
 ##Example
 
-i)	add rewrite action act_insert INSERT_HTTP_HEADER change_req "\\\\"no change\\\\"".	This Adds to http headerwill add the header change_req: no change.ii)	add rewrite action act_replace REPLACE "HTTP.REQ.URL.PREFIX(1)" "HTTP.REQ.URL.PREFIX(1)+\\\\"citrix/\\\\"" -bypassSafetyCheck YES.	If HTTP.REQ.URL.PREFIX(1) is / the result would be /citrix/iii)	add rewrite action act_before INSERT_BEFORE "HTTP.REQ.HEADER(\\\\"host\\\\").VALUE(0)" "\\\\"india\\\\"".	If HTTP.REQ.HEADER(\\\\"host\\\\").VALUE(0) is netscaler.com the result would be indianetscaler.comiv)	add rewrite action act_after INSERT_AFTER "HTTP.REQ.HEADER(\\\\"host\\\\").TYPECAST_LIST_T('.').GET(0)" "\\\\"-india\\\\"".	If HTTP.REQ.HEADER(\\\\"host\\\\").VALUE(0) is support.netscaler.com then the result would be support-india.netscaler.comv)	add rewrite action act_delete DELETE "HTTP.REQ.HEADER(\\\\"host\\\\").VALUE(0)"will leave the Host header looking like "HOST: ".vi)	add rewrite action act_delete_header DELETE_HTTP_HEADER Hostwill delete the Host header. If Host header occurs more than once all occurrence of the header will be deleted.vii)	add rewrite action act_corrupt_header CORRUPT_HTTP_HEADER Hostwill corrupt the Host header. If Host header occurs more than once all occurrence of the header will be corrupted.
+i)	add rewrite action act_insert INSERT_HTTP_HEADER change_req "\\\\"no change\\\\"".	This Adds to http headerwill add the header change_req: no change.ii)	add rewrite action act_replace REPLACE "HTTP.REQ.URL.PREFIX(1)" "HTTP.REQ.URL.PREFIX(1)+\\\\"citrix/\\\\"".	If HTTP.REQ.URL.PREFIX(1) is / the result would be /citrix/iii)	add rewrite action act_before INSERT_BEFORE "HTTP.REQ.HEADER(\\\\"host\\\\").VALUE(0)" "\\\\"india\\\\"".	If HTTP.REQ.HEADER(\\\\"host\\\\").VALUE(0) is netscaler.com the result would be indianetscaler.comiv)	add rewrite action act_after INSERT_AFTER "HTTP.REQ.HEADER(\\\\"host\\\\").TYPECAST_LIST_T('.').GET(0)" "\\\\"-india\\\\"".	If HTTP.REQ.HEADER(\\\\"host\\\\").VALUE(0) is support.netscaler.com then the result would be support-india.netscaler.comv)	add rewrite action act_delete DELETE "HTTP.REQ.HEADER(\\\\"host\\\\").VALUE(0)"will leave the Host header looking like "HOST: ".vi)	add rewrite action act_delete_header DELETE_HTTP_HEADER Hostwill delete the Host header. If Host header occurs more than once all occurrence of the header will be deleted.vii)	add rewrite action act_corrupt_header CORRUPT_HTTP_HEADER Hostwill corrupt the Host header. If Host header occurs more than once all occurrence of the header will be corrupted.
 
 ##rm rewrite action
 
@@ -107,7 +104,7 @@ Modifies the specified parameters of a rewrite action.
 
 ##Synopsys
 
-set rewrite action &lt;name> [-target &lt;string>] [-stringBuilderExpr &lt;string>] [-pattern &lt;expression> | -search &lt;expression>] [-bypassSafetyCheck ( YES | NO )] [-refineSearch &lt;string>] [-comment &lt;string>]
+set rewrite action &lt;name> [-target &lt;string>] [-stringBuilderExpr &lt;string>] [-pattern &lt;expression> | -search &lt;expression>] [-refineSearch &lt;string>] [-comment &lt;string>]
 
 
 ##Arguments
@@ -133,12 +130,7 @@ Search facility that is used to match multiple strings in the request or respons
 NOTE: JSON searches use the same syntax as XPath searches, but operate on JSON files instead of standard XML files.
 * Patset ("patset(patset)") - A predefined pattern set. Example: -search patset("patset1").
 * Datset ("dataset(dataset)") - A predefined dataset. Example: -search dataset("dataset1").
-* AVP ("avp(avp number)") - AVP number that is used to match multiple AVPs in a Diameter Message. Example: -search avp(999)
-
-<b>bypassSafetyCheck</b>
-Bypass the safety check and allow unsafe expressions. An unsafe expression is one that contains references to message elements that might not be present in all messages. If an expression refers to a missing request element, an empty string is used instead.
-Possible values: YES, NO
-Default value: NO
+* AVP ("avp(avp number)") - AVP number that is used to match multiple AVPs in a Diameter/Radius Message. Example: -search avp(999)
 
 <b>refineSearch</b>
 Specify additional criteria to refine the results of the search. 
@@ -179,14 +171,6 @@ show rewrite action [&lt;name>]
 <b>name</b>
 Name of the rewrite action.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -214,7 +198,7 @@ Search facility that is used to match multiple strings in the request or respons
 NOTE: JSON searches use the same syntax as XPath searches, but operate on JSON files instead of standard XML files.
 * Patset ("patset(patset)") - A predefined pattern set. Example: -search patset("patset1").
 * Datset ("dataset(dataset)") - A predefined dataset. Example: -search dataset("dataset1").
-* AVP ("avp(avp number)") - AVP number that is used to match multiple AVPs in a Diameter Message. Example: -search avp(999)
+* AVP ("avp(avp number)") - AVP number that is used to match multiple AVPs in a Diameter/Radius Message. Example: -search avp(999)
 
 <b>bypassSafetyCheck</b>
 The safety check to allow unsafe expressions.

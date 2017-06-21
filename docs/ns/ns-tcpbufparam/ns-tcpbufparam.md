@@ -49,14 +49,6 @@ Displays the TCP buffering configuration on the appliance.
 show ns tcpbufParam
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>size</b>

@@ -12,7 +12,7 @@ Creates an action (profile) for a Security Assertion Markup Language (SAML) serv
 
 ##Synopsys
 
-add authentication samlAction &lt;name> {-samlIdPCertName &lt;string>} {-samlSigningCertName &lt;string>} {-samlRedirectUrl &lt;string>} {-samlACSIndex &lt;positive_integer>} {-samlUserField &lt;string>} {-samlRejectUnsignedAssertion &lt;samlRejectUnsignedAssertion>} {-samlIssuerName &lt;string>} {-samlTwoFactor ( ON | OFF )} [-defaultAuthenticationGroup &lt;string>] [-Attribute1 &lt;string>] [-Attribute2 &lt;string>] [-Attribute3 &lt;string>] [-Attribute4 &lt;string>] [-Attribute5 &lt;string>] [-Attribute6 &lt;string>] [-Attribute7 &lt;string>] [-Attribute8 &lt;string>] [-Attribute9 &lt;string>] [-Attribute10 &lt;string>] [-Attribute11 &lt;string>] [-Attribute12 &lt;string>] [-Attribute13 &lt;string>] [-Attribute14 &lt;string>] [-Attribute15 &lt;string>] [-Attribute16 &lt;string>] {-signatureAlg ( RSA-SHA1 | RSA-SHA256 )} {-digestMethod ( SHA1 | SHA256 )} [-requestedAuthnContext &lt;requestedAuthnContext>] [-authnCtxClassRef &lt;authnCtxClassRef> ...] [-samlBinding ( REDIRECT | POST )] [-attributeConsumingServiceIndex &lt;positive_integer>]
+add authentication samlAction &lt;name> {-samlIdPCertName &lt;string>} {-samlSigningCertName &lt;string>} {-samlRedirectUrl &lt;string>} {-samlACSIndex &lt;positive_integer>} {-samlUserField &lt;string>} {-samlRejectUnsignedAssertion &lt;samlRejectUnsignedAssertion>} {-samlIssuerName &lt;string>} {-samlTwoFactor ( ON | OFF )} [-defaultAuthenticationGroup &lt;string>] [-Attribute1 &lt;string>] [-Attribute2 &lt;string>] [-Attribute3 &lt;string>] [-Attribute4 &lt;string>] [-Attribute5 &lt;string>] [-Attribute6 &lt;string>] [-Attribute7 &lt;string>] [-Attribute8 &lt;string>] [-Attribute9 &lt;string>] [-Attribute10 &lt;string>] [-Attribute11 &lt;string>] [-Attribute12 &lt;string>] [-Attribute13 &lt;string>] [-Attribute14 &lt;string>] [-Attribute15 &lt;string>] [-Attribute16 &lt;string>] {-signatureAlg ( RSA-SHA1 | RSA-SHA256 )} {-digestMethod ( SHA1 | SHA256 )} [-requestedAuthnContext &lt;requestedAuthnContext>] [-authnCtxClassRef &lt;authnCtxClassRef> ...] [-samlBinding &lt;samlBinding>] [-attributeConsumingServiceIndex &lt;positive_integer>] [-sendThumbprint ( ON | OFF )] [-enforceUserName ( ON | OFF )] [-logoutURL &lt;string>] [-artifactResolutionServiceURL &lt;string>]
 
 
 ##Arguments
@@ -21,13 +21,13 @@ add authentication samlAction &lt;name> {-samlIdPCertName &lt;string>} {-samlSig
 Name for the SAML server profile (action). 
 Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after SAML profile is created.
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, ?my authentication action? or ?my authentication action?).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication action" or 'my authentication action').
 
 <b>samlIdPCertName</b>
-Name of the SAML server as given in that server?s SSL certificate.
+Name of the SAML server as given in that server's SSL certificate.
 
 <b>samlSigningCertName</b>
-Name of the signing authority as given in the SAML server?s SSL certificate.
+Name of the signing authority as given in the SAML server's SSL certificate.
 
 <b>samlRedirectUrl</b>
 URL to which users are redirected for authentication.
@@ -44,7 +44,7 @@ SAML user ID, as given in the SAML assertion.
 <b>samlRejectUnsignedAssertion</b>
 Reject unsigned SAML assertions.
 Possible values: ON, OFF, STRICT
-Default value: NS_ON
+Default value: ON
 
 <b>samlIssuerName</b>
 The name to be used in requests sent from	Netscaler to IdP to uniquely identify Netscaler.
@@ -52,90 +52,73 @@ The name to be used in requests sent from	Netscaler to IdP to uniquely identify 
 <b>samlTwoFactor</b>
 Option to enable second factor after SAML
 Possible values: ON, OFF
-Default value: NS_OFF
+Default value: OFF
 
 <b>defaultAuthenticationGroup</b>
 This is the default group that is chosen when the authentication succeeds in addition to extracted groups.
-Maximum value: 64
 
 <b>Attribute1</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute1
-Maximum value: 64
 
 <b>Attribute2</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute2
-Maximum value: 64
 
 <b>Attribute3</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute3
-Maximum value: 64
 
 <b>Attribute4</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute4
-Maximum value: 64
 
 <b>Attribute5</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute5
-Maximum value: 64
 
 <b>Attribute6</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute6
-Maximum value: 64
 
 <b>Attribute7</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute7
-Maximum value: 64
 
 <b>Attribute8</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute8
-Maximum value: 64
 
 <b>Attribute9</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute9
-Maximum value: 64
 
 <b>Attribute10</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute10
-Maximum value: 64
 
 <b>Attribute11</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute11
-Maximum value: 64
 
 <b>Attribute12</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute12
-Maximum value: 64
 
 <b>Attribute13</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute13
-Maximum value: 64
 
 <b>Attribute14</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute14
-Maximum value: 64
 
 <b>Attribute15</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute15
-Maximum value: 64
 
 <b>Attribute16</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute16
-Maximum value: 64
 
 <b>signatureAlg</b>
 Algorithm to be used to sign/verify SAML transactions
 Possible values: RSA-SHA1, RSA-SHA256
-Default value: SAML_RSA_SHA1
+Default value: RSA-SHA1
 
 <b>digestMethod</b>
 Algorithm to be used to compute/verify digest for SAML transactions
 Possible values: SHA1, SHA256
-Default value: SAML_SHA1
+Default value: SHA1
 
 <b>requestedAuthnContext</b>
 This element specifies the authentication context requirements of authentication statements returned in the response.
 Possible values: exact, minimum, maximum, better
-Default value: SAML_AUTHCTX_EXACT
+Default value: exact
 
 <b>authnCtxClassRef</b>
 This element specifies the authentication class types that are requested from IdP (IdentityProvider).
@@ -168,14 +151,30 @@ Windows: This indicates that Windows integrated authentication is utilized for a
 
 <b>samlBinding</b>
 This element specifies the transport mechanism of saml messages.
-Possible values: REDIRECT, POST
-Default value: SAML_POST
+Possible values: REDIRECT, POST, ARTIFACT
+Default value: POST
 
 <b>attributeConsumingServiceIndex</b>
 Index/ID of the attribute specification at Identity Provider (IdP). IdP will locate attributes requested by SP using this index and send those attributes in Assertion
 Default value: 255
 Minimum value: 0
 Maximum value: 255
+
+<b>sendThumbprint</b>
+Option to send thumbprint instead of x509 certificate in SAML request
+Possible values: ON, OFF
+Default value: OFF
+
+<b>enforceUserName</b>
+Option to choose whether the username that is extracted from SAML assertion can be edited in login page while doing second factor
+Possible values: ON, OFF
+Default value: ON
+
+<b>logoutURL</b>
+SingleLogout URL on IdP to which logoutRequest will be sent on Netscaler session cleanup.
+
+<b>artifactResolutionServiceURL</b>
+URL of the Artifact Resolution Service on IdP to which Netscaler will post artifact to get actual SAML token.
 
 
 
@@ -203,7 +202,7 @@ Modifies the specified parameters of a SAML server profile (action).
 
 ##Synopsys
 
-set authentication samlAction &lt;name> [-samlIdPCertName &lt;string>] [-samlSigningCertName &lt;string>] [-samlRedirectUrl &lt;string>] [-samlACSIndex &lt;positive_integer>] [-samlUserField &lt;string>] [-samlRejectUnsignedAssertion &lt;samlRejectUnsignedAssertion>] [-samlIssuerName &lt;string>] [-samlTwoFactor ( ON | OFF )] [-defaultAuthenticationGroup &lt;string>] [-Attribute1 &lt;string>] [-Attribute2 &lt;string>] [-Attribute3 &lt;string>] [-Attribute4 &lt;string>] [-Attribute5 &lt;string>] [-Attribute6 &lt;string>] [-Attribute7 &lt;string>] [-Attribute8 &lt;string>] [-Attribute9 &lt;string>] [-Attribute10 &lt;string>] [-Attribute11 &lt;string>] [-Attribute12 &lt;string>] [-Attribute13 &lt;string>] [-Attribute14 &lt;string>] [-Attribute15 &lt;string>] [-Attribute16 &lt;string>] [-signatureAlg ( RSA-SHA1 | RSA-SHA256 )] [-digestMethod ( SHA1 | SHA256 )] [-requestedAuthnContext &lt;requestedAuthnContext>] [-authnCtxClassRef &lt;authnCtxClassRef> ...] [-samlBinding ( REDIRECT | POST )] [-attributeConsumingServiceIndex &lt;positive_integer>]
+set authentication samlAction &lt;name> [-samlIdPCertName &lt;string>] [-samlSigningCertName &lt;string>] [-samlRedirectUrl &lt;string>] [-samlACSIndex &lt;positive_integer>] [-samlUserField &lt;string>] [-samlRejectUnsignedAssertion &lt;samlRejectUnsignedAssertion>] [-samlIssuerName &lt;string>] [-samlTwoFactor ( ON | OFF )] [-defaultAuthenticationGroup &lt;string>] [-Attribute1 &lt;string>] [-Attribute2 &lt;string>] [-Attribute3 &lt;string>] [-Attribute4 &lt;string>] [-Attribute5 &lt;string>] [-Attribute6 &lt;string>] [-Attribute7 &lt;string>] [-Attribute8 &lt;string>] [-Attribute9 &lt;string>] [-Attribute10 &lt;string>] [-Attribute11 &lt;string>] [-Attribute12 &lt;string>] [-Attribute13 &lt;string>] [-Attribute14 &lt;string>] [-Attribute15 &lt;string>] [-Attribute16 &lt;string>] [-signatureAlg ( RSA-SHA1 | RSA-SHA256 )] [-digestMethod ( SHA1 | SHA256 )] [-requestedAuthnContext &lt;requestedAuthnContext>] [-authnCtxClassRef &lt;authnCtxClassRef> ...] [-samlBinding &lt;samlBinding>] [-attributeConsumingServiceIndex &lt;positive_integer>] [-sendThumbprint ( ON | OFF )] [-enforceUserName ( ON | OFF )] [-logoutURL &lt;string>] [-artifactResolutionServiceURL &lt;string>]
 
 
 ##Arguments
@@ -212,10 +211,10 @@ set authentication samlAction &lt;name> [-samlIdPCertName &lt;string>] [-samlSig
 Name of the SAML profile (action) to modify.
 
 <b>samlIdPCertName</b>
-Name of the SAML server as given in that server?s SSL certificate.
+Name of the SAML server as given in that server's SSL certificate.
 
 <b>samlSigningCertName</b>
-Name of the signing authority as given in the SAML server?s SSL certificate.
+Name of the signing authority as given in the SAML server's SSL certificate.
 
 <b>samlRedirectUrl</b>
 URL to which users are redirected for authentication.
@@ -232,7 +231,7 @@ SAML user ID, as given in the SAML assertion.
 <b>samlRejectUnsignedAssertion</b>
 Reject unsigned SAML assertions.
 Possible values: ON, OFF, STRICT
-Default value: NS_ON
+Default value: ON
 
 <b>samlIssuerName</b>
 The name to be used in requests sent from	Netscaler to IdP to uniquely identify Netscaler.
@@ -240,90 +239,73 @@ The name to be used in requests sent from	Netscaler to IdP to uniquely identify 
 <b>samlTwoFactor</b>
 Option to enable second factor after SAML
 Possible values: ON, OFF
-Default value: NS_OFF
+Default value: OFF
 
 <b>defaultAuthenticationGroup</b>
 This is the default group that is chosen when the authentication succeeds in addition to extracted groups.
-Maximum value: 64
 
 <b>Attribute1</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute1
-Maximum value: 64
 
 <b>Attribute2</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute2
-Maximum value: 64
 
 <b>Attribute3</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute3
-Maximum value: 64
 
 <b>Attribute4</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute4
-Maximum value: 64
 
 <b>Attribute5</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute5
-Maximum value: 64
 
 <b>Attribute6</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute6
-Maximum value: 64
 
 <b>Attribute7</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute7
-Maximum value: 64
 
 <b>Attribute8</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute8
-Maximum value: 64
 
 <b>Attribute9</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute9
-Maximum value: 64
 
 <b>Attribute10</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute10
-Maximum value: 64
 
 <b>Attribute11</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute11
-Maximum value: 64
 
 <b>Attribute12</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute12
-Maximum value: 64
 
 <b>Attribute13</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute13
-Maximum value: 64
 
 <b>Attribute14</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute14
-Maximum value: 64
 
 <b>Attribute15</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute15
-Maximum value: 64
 
 <b>Attribute16</b>
 Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute16
-Maximum value: 64
 
 <b>signatureAlg</b>
 Algorithm to be used to sign/verify SAML transactions
 Possible values: RSA-SHA1, RSA-SHA256
-Default value: SAML_RSA_SHA1
+Default value: RSA-SHA1
 
 <b>digestMethod</b>
 Algorithm to be used to compute/verify digest for SAML transactions
 Possible values: SHA1, SHA256
-Default value: SAML_SHA1
+Default value: SHA1
 
 <b>requestedAuthnContext</b>
 This element specifies the authentication context requirements of authentication statements returned in the response.
 Possible values: exact, minimum, maximum, better
-Default value: SAML_AUTHCTX_EXACT
+Default value: exact
 
 <b>authnCtxClassRef</b>
 This element specifies the authentication class types that are requested from IdP (IdentityProvider).
@@ -356,14 +338,30 @@ Windows: This indicates that Windows integrated authentication is utilized for a
 
 <b>samlBinding</b>
 This element specifies the transport mechanism of saml messages.
-Possible values: REDIRECT, POST
-Default value: SAML_POST
+Possible values: REDIRECT, POST, ARTIFACT
+Default value: POST
 
 <b>attributeConsumingServiceIndex</b>
 Index/ID of the attribute specification at Identity Provider (IdP). IdP will locate attributes requested by SP using this index and send those attributes in Assertion
 Default value: 255
 Minimum value: 0
 Maximum value: 255
+
+<b>sendThumbprint</b>
+Option to send thumbprint instead of x509 certificate in SAML request
+Possible values: ON, OFF
+Default value: OFF
+
+<b>enforceUserName</b>
+Option to choose whether the username that is extracted from SAML assertion can be edited in login page while doing second factor
+Possible values: ON, OFF
+Default value: ON
+
+<b>logoutURL</b>
+SingleLogout URL on IdP to which logoutRequest will be sent on Netscaler session cleanup.
+
+<b>artifactResolutionServiceURL</b>
+URL of the Artifact Resolution Service on IdP to which Netscaler will post artifact to get actual SAML token.
 
 
 
@@ -374,7 +372,7 @@ Use this command to remove authentication samlAction settings.Refer to the set a
 
 ##Synopsys
 
-unset authentication samlAction &lt;name> [-samlIdPCertName] [-samlSigningCertName] [-samlRedirectUrl] [-samlACSIndex] [-samlUserField] [-samlRejectUnsignedAssertion] [-samlIssuerName] [-samlTwoFactor] [-defaultAuthenticationGroup] [-Attribute1] [-Attribute2] [-Attribute3] [-Attribute4] [-Attribute5] [-Attribute6] [-Attribute7] [-Attribute8] [-Attribute9] [-Attribute10] [-Attribute11] [-Attribute12] [-Attribute13] [-Attribute14] [-Attribute15] [-Attribute16] [-signatureAlg] [-digestMethod] [-requestedAuthnContext] [-authnCtxClassRef] [-samlBinding] [-attributeConsumingServiceIndex]
+unset authentication samlAction &lt;name> [-samlIdPCertName] [-samlSigningCertName] [-samlRedirectUrl] [-samlACSIndex] [-samlUserField] [-samlRejectUnsignedAssertion] [-samlIssuerName] [-samlTwoFactor] [-defaultAuthenticationGroup] [-Attribute1] [-Attribute2] [-Attribute3] [-Attribute4] [-Attribute5] [-Attribute6] [-Attribute7] [-Attribute8] [-Attribute9] [-Attribute10] [-Attribute11] [-Attribute12] [-Attribute13] [-Attribute14] [-Attribute15] [-Attribute16] [-signatureAlg] [-digestMethod] [-requestedAuthnContext] [-authnCtxClassRef] [-samlBinding] [-attributeConsumingServiceIndex] [-sendThumbprint] [-enforceUserName] [-logoutURL] [-artifactResolutionServiceURL]
 
 
 ##show authentication samlAction
@@ -392,23 +390,15 @@ show authentication samlAction [&lt;name>]
 <b>name</b>
 Name of the SAML server profile.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
 
 <b>samlIdPCertName</b>
-Name of the SAML server as given in that server?s SSL certificate.
+Name of the SAML server as given in that server's SSL certificate.
 
 <b>samlSigningCertName</b>
-Name of the signing authority as given in the SAML server?s SSL certificate.
+Name of the signing authority as given in the SAML server's SSL certificate.
 
 <b>samlRedirectUrl</b>
 URL to which users are redirected for authentication.
@@ -522,6 +512,18 @@ This element specifies the transport mechanism of saml messages.
 
 <b>attributeConsumingServiceIndex</b>
 Index/ID of the attribute specification at Identity Provider (IdP). IdP will locate attributes requested by SP using this index and send those attributes in Assertion
+
+<b>sendThumbprint</b>
+Option to send thumbprint instead of x509 certificate in SAML request
+
+<b>enforceUserName</b>
+Option to choose whether the username that is extracted from SAML assertion can be edited in login page while doing second factor
+
+<b>logoutURL</b>
+SingleLogout URL on IdP to which logoutRequest will be sent on Netscaler session cleanup.
+
+<b>artifactResolutionServiceURL</b>
+URL of the Artifact Resolution Service on IdP to which Netscaler will post artifact to get actual SAML token.
 
 <b>devno</b>
 

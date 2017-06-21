@@ -115,23 +115,15 @@ Integer value that uniquely identifies a VMAC6 address.
 Minimum value: 1
 Maximum value: 255
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
 
 <b>ifaces</b>
-Interfaces bound to this VRID.NOTE: This attribute is deprecated.This argument is deprecated and is replaced by the -ifnum argument.
+Interfaces bound to this VRID.
 
 <b>ifnum</b>
-Interfaces bound to this vrid.
+Interfaces bound to this VRID.
 
 <b>type</b>
 Type (static or dynamic) of this VRID.

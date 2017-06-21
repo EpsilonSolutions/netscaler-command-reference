@@ -12,7 +12,7 @@ Adds a policy dataset to the appliance.
 
 ##Synopsys
 
-add policy dataset &lt;name> &lt;type> [-indexType ( Auto-generated | User-defined )] [-comment &lt;string>]
+add policy dataset &lt;name> &lt;type> [-comment &lt;string>]
 
 
 ##Arguments
@@ -23,9 +23,6 @@ Name of the dataset. Must not exceed 127 characters.
 <b>type</b>
 Type of value to bind to the dataset.
 Possible values: ipv4, number, ipv6, ulong, double, mac
-
-<b>indexType</b>
-Index type.
 
 <b>comment</b>
 Any comments to preserve information about this dataset.
@@ -75,6 +72,11 @@ Name of the dataset to which to bind the value.
 <b>value</b>
 Value of the specified type that is associated with the dataset.
 
+<b>index</b>
+The Index of the value associated with set.
+Minimum value: 1
+Maximum value: 4294967290
+
 
 
 ##Example
@@ -119,14 +121,6 @@ show policy dataset [&lt;name>]
 
 <b>name</b>
 Name of the dataset. Must not exceed 127 characters.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

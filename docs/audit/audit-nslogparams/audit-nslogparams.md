@@ -12,7 +12,7 @@ Modifies the specified nslog parameters.Changes the IP address, the port, or the
 
 ##Synopsys
 
-set audit nslogParams [-serverIP &lt;ip_addr|ipv6_addr|*>] [-serverPort &lt;port>] [-dateFormat &lt;dateFormat>] [-logLevel &lt;logLevel> ...] [-logFacility &lt;logFacility>] [-tcp ( NONE | ALL )] [-acl ( ENABLED | DISABLED )] [-timeZone ( GMT_TIME | LOCAL_TIME )] [-userDefinedAuditlog ( YES | NO )] [-appflowExport ( ENABLED | DISABLED )]
+set audit nslogParams [-serverIP &lt;ip_addr|ipv6_addr|*>] [-serverPort &lt;port>] [-dateFormat &lt;dateFormat>] [-logLevel &lt;logLevel> ...] [-logFacility &lt;logFacility>] [-tcp ( NONE | ALL )] [-acl ( ENABLED | DISABLED )] [-timeZone ( GMT_TIME | LOCAL_TIME )] [-userDefinedAuditlog ( YES | NO )] [-appflowExport ( ENABLED | DISABLED )] [-lsn ( ENABLED | DISABLED )] [-alg ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -76,6 +76,14 @@ Export log messages to AppFlow collectors.
 Appflow collectors are entities to which log messages can be sent so that some action can be performed on them.
 Possible values: ENABLED, DISABLED
 
+<b>lsn</b>
+Log the LSN messages
+Possible values: ENABLED, DISABLED
+
+<b>alg</b>
+Log the ALG messages
+Possible values: ENABLED, DISABLED
+
 
 
 ##unset audit nslogParams
@@ -85,7 +93,7 @@ Removes the existing nslog parameter settings. Attributes for which a default va
 
 ##Synopsys
 
-unset audit nslogParams [-serverIP] [-serverPort] [-logLevel] [-dateFormat] [-logFacility] [-tcp] [-acl] [-timeZone] [-userDefinedAuditlog] [-appflowExport]
+unset audit nslogParams [-serverIP] [-serverPort] [-logLevel] [-dateFormat] [-logFacility] [-tcp] [-acl] [-timeZone] [-userDefinedAuditlog] [-appflowExport] [-lsn] [-alg]
 
 
 ##show audit nslogParams
@@ -98,18 +106,10 @@ Displays the current nslog parameter settings.
 show audit nslogParams
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>name</b>
-Name of the nslog param.NOTE: This attribute is deprecated.This argument is deprecated since for syslog and nslogparms there is no name.
+Name of the nslog param.
 
 <b>serverIP</b>
 IP address of the nslog server.
@@ -153,6 +153,12 @@ Appflow collectors are entities to which log messages can be sent so that some a
 
 <b>builtin</b>
 Indicates that a variable is a built-in (SYSTEM INTERNAL) type.
+
+<b>lsn</b>
+Log the LSN messages
+
+<b>alg</b>
+Log the ALG messages
 
 
 

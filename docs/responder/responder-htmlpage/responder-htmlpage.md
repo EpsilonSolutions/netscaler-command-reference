@@ -7,7 +7,7 @@ The following operations can be performed on "responder htmlpage":
 
 ##import responder htmlpage
 
-Imports the specified HTML page to the NetScaler appliance, assigns it the specified name, and stores it in the list of Responder HTML page objects.
+Imports the specified HTML page to the NetScaler appliance, assigns it the specified name, and stores it in the list of Responder HTML page objects. This page can be used as a HTTP response body using the responder respondwithhtmlpage action type.
 
 
 ##Synopsys

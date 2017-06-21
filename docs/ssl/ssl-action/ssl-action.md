@@ -30,37 +30,64 @@ Possible values: DOCLIENTAUTH, NOCLIENTAUTH
 Insert the entire client certificate into the HTTP header of the request being sent to the web server. The certificate is inserted in ASCII (PEM) format.
 Possible values: ENABLED, DISABLED
 
+<b>certHeader</b>
+Name of the header into which to insert the client certificate.
+
 <b>clientCertSerialNumber</b>
 Insert the entire client serial number into the HTTP header of the request being sent to the web server.
 Possible values: ENABLED, DISABLED
+
+<b>certSerialHeader</b>
+Name of the header into which to insert the client serial number.
 
 <b>clientCertSubject</b>
 Insert the client certificate subject, also known as the distinguished name (DN), into the HTTP header of the request being sent to the web server.
 Possible values: ENABLED, DISABLED
 
+<b>certSubjectHeader</b>
+Name of the header into which to insert the client certificate subject.
+
 <b>clientCertHash</b>
 Insert the certificate signature (hash) into the HTTP header of the request being sent to the web server.
 Possible values: ENABLED, DISABLED
+
+<b>certHashHeader</b>
+Name of the header into which to insert the client certificate signature (hash).
 
 <b>clientCertIssuer</b>
 Insert the certificate issuer details into the HTTP header of the request being sent to the web server.
 Possible values: ENABLED, DISABLED
 
+<b>certIssuerHeader</b>
+Name of the header into which to insert the client certificate issuer details.
+
 <b>sessionID</b>
 Insert the SSL session ID into the HTTP header of the request being sent to the web server. Every SSL connection that the client and the NetScaler share has a unique ID that identifies the specific connection.
 Possible values: ENABLED, DISABLED
+
+<b>sessionIDHeader</b>
+Name of the header into which to insert the Session ID.
 
 <b>cipher</b>
 Insert the cipher suite that the client and the NetScaler appliance negotiated for the SSL session into the HTTP header of the request being sent to the web server. The appliance inserts the cipher-suite name, SSL protocol, export or non-export string, and cipher strength bit, depending on the type of browser connecting to the SSL virtual server or service (for example, Cipher-Suite: RC4- MD5 SSLv3 Non-Export 128-bit).
 Possible values: ENABLED, DISABLED
 
+<b>cipherHeader</b>
+Name of the header into which to insert the name of the cipher suite.
+
 <b>clientCertNotBefore</b>
 Insert the date from which the certificate is valid into the HTTP header of the request being sent to the web server. Every certificate is configured with the date and time from which it is valid.
 Possible values: ENABLED, DISABLED
 
+<b>certNotBeforeHeader</b>
+Name of the header into which to insert the date and time from which the certificate is valid.
+
 <b>clientCertNotAfter</b>
 Insert the date of expiry of the certificate into the HTTP header of the request being sent to the web server. Every certificate is configured with the date and time at which the certificate expires.
 Possible values: ENABLED, DISABLED
+
+<b>certNotAfterHeader</b>
+Name of the header into which to insert the certificate's expiry date.
 
 <b>OWASupport</b>
 If the appliance is in front of an Outlook Web Access (OWA) server, insert a special header field, FRONT-END-HTTPS: ON, into the HTTP requests going to the OWA server. This header communicates to the server that the transaction is HTTPS and not HTTP.
@@ -107,14 +134,6 @@ show ssl action [&lt;name>]
 
 <b>name</b>
 Name of the SSL action for which to show detailed information.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

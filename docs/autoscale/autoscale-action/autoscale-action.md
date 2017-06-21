@@ -33,10 +33,12 @@ Parameters to use in the action
 <b>vmDestroyGracePeriod</b>
 Time in minutes a VM is kept in inactive state before destroying
 Default value: 10
+Minimum value: 0
 
 <b>quietTime</b>
 Time in seconds no other policy is evaluated or action is taken
 Default value: 300
+Minimum value: 0
 
 <b>vServer</b>
 Name of the vserver on which autoscale action has to be taken.
@@ -84,10 +86,12 @@ Parameters to use in the action
 <b>vmDestroyGracePeriod</b>
 Time in minutes a VM is kept in inactive state before destroying
 Default value: 10
+Minimum value: 0
 
 <b>quietTime</b>
 Time in seconds no other policy is evaluated or action is taken
 Default value: 300
+Minimum value: 0
 
 <b>vServer</b>
 Name of the vserver on which autoscale action has to be taken.
@@ -118,14 +122,6 @@ show autoscale action [&lt;name>]
 
 <b>name</b>
 ActionScale action name.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

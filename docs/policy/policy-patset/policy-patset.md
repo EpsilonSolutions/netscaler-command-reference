@@ -12,16 +12,13 @@ Adds a pattern set. A pattern set contains a name and one or more string pattern
 
 ##Synopsys
 
-add policy patset &lt;name> [-indexType ( Auto-generated | User-defined )] [-comment &lt;string>]
+add policy patset &lt;name> [-comment &lt;string>]
 
 
 ##Arguments
 
 <b>name</b>
 Unique name of the pattern set. Not case sensitive. Must begin with an ASCII letter or underscore (_) character and must contain only alphanumeric and underscore characters. Must not be the name of an existing named expression, pattern set, dataset, string map, or HTTP callout.
-
-<b>indexType</b>
-Index type.
 
 <b>comment</b>
 Any comments to preserve information about this patset.
@@ -72,6 +69,17 @@ Name of the pattern set to which to bind the string.
 String of characters that constitutes a pattern. For more information about the characters that can be used, refer to the character set parameter.
 Note: Minimum length for pattern sets used in rewrite actions of type REPLACE_ALL, DELETE_ALL, INSERT_AFTER_ALL, and INSERT_BEFORE_ALL, is three characters.
 
+<b>index</b>
+Integer that identifies the string pattern within the pattern set. You can assign index values or allow them to be assigned automatically. If you specify an index for the first pattern that you bind to the set, you must do so for each subsequent pattern. If you do not specify an index for the first pattern, the NetScaler generates an index. If you subsequently specify an index when binding a pattern to the set, an error message appears.
+The pattern index of a matching pattern can be used within default syntax expressions. For example, HTTP.REQ.URL.EQUALS_INDEX("test_url").EQ(5), returns true if the request URL matches the strings in the test_url pattern set with index 5.
+Minimum value: 1
+Maximum value: 4294967290
+
+<b>charset</b>
+Character set associated with the characters in the string.
+Note: UTF-8 characters can be entered directly (if the UI supports it) or can be encoded as a sequence of hexadecimal bytes '\\xNN'. For example, the UTF-8 character '?' can be encoded as '\\xC3\\xBC'.
+Possible values: ASCII, UTF_8
+
 
 
 ##Example
@@ -116,14 +124,6 @@ show policy patset [&lt;name>]
 
 <b>name</b>
 Name of the pattern set for which to display the detailed information. If a name is not provided, a list of all pattern sets configured on the appliance is shown.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

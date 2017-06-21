@@ -12,7 +12,7 @@ Enables or disables SNMP options for SNMP SET and SNMP trap logging.
 
 ##Synopsys
 
-set snmp option [-snmpset ( ENABLED | DISABLED )] [-snmpTrapLogging ( ENABLED | DISABLED )]
+set snmp option [-snmpset ( ENABLED | DISABLED )] [-snmpTrapLogging ( ENABLED | DISABLED )] [-partitionNameInTrap ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -24,6 +24,11 @@ Default value: DISABLED
 
 <b>snmpTrapLogging</b>
 Log any SNMP trap events (for SNMP alarms in which logging is enabled) even if no trap listeners are configured. With the default setting, SNMP trap events are logged if at least one trap listener is configured on the appliance.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>partitionNameInTrap</b>
+Send partition name as a varbind in traps. By default the partition names are not sent as a varbind.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
@@ -36,7 +41,7 @@ Use this command to remove snmp option settings.Refer to the set snmp option com
 
 ##Synopsys
 
-unset snmp option [-snmpset] [-snmpTrapLogging]
+unset snmp option [-snmpset] [-snmpTrapLogging] [-partitionNameInTrap]
 
 
 ##show snmp option
@@ -49,14 +54,6 @@ Displays the settings for the following SNMP options: SNMP SET and SNMP trap Log
 show snmp option
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>snmpset</b>
@@ -64,6 +61,9 @@ Accept SNMP SET requests sent to the NetScaler appliance, and allow SNMP manager
 
 <b>snmpTrapLogging</b>
 Log any SNMP trap events (for SNMP alarms in which logging is enabled) even if no trap listeners are configured. With the default setting, SNMP trap events are logged if at least one trap listener is configured on the appliance.
+
+<b>partitionNameInTrap</b>
+Send partition name as a varbind in traps. By default the partition names are not sent as a varbind.
 
 
 

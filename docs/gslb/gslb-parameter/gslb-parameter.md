@@ -42,7 +42,7 @@ Maximum value: 128
 <b>ldnsProbeOrder</b>
 Order in which monitors should be initiated to calculate RTT.
 Possible values: PING, DNS, TCP
-Default value: ARRAY(0x2acdbe38)
+Default value: ARRAY(0x2b118fdc)
 
 <b>dropLdnsReq</b>
 Drop LDNS requests if round-trip time (RTT) information is not available.
@@ -73,14 +73,6 @@ Displays the global GSLB parameters.
 ##Synopsys
 
 show gslb parameter
-
-
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

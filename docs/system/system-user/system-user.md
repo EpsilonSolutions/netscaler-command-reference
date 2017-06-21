@@ -121,12 +121,12 @@ unset system user &lt;userName> [-externalAuth] [-promptString] [-timeout] [-log
 
 ##bind system user
 
-Binds a command policy to a system user.
+Binds a command policy or partition to a system user.
 
 
 ##Synopsys
 
-bind system user &lt;userName> &lt;policyName> &lt;priority>
+bind system user &lt;userName> ((&lt;policyName>  &lt;priority>) | -partitionName &lt;string>)
 
 
 ##Arguments
@@ -137,16 +137,24 @@ Name of the system-user entry to which to bind the command policy.
 <b>policyName</b>
 Name of the command policy to bind to the system user.
 
+<b>priority</b>
+Integer specifying the priority of the command policy. A lower number specifies a higher priority. Policies are evaluated in the order of their priority numbers.
+Minimum value: 0
+Maximum value: 999999999
+
+<b>partitionName</b>
+Name of the Partition to bind to the system user.
+
 
 
 ##unbind system user
 
-Unbinds a command policy from the system user.
+Unbinds a command policy or partition from the system user.
 
 
 ##Synopsys
 
-unbind system user &lt;userName> &lt;policyName>
+unbind system user &lt;userName> (&lt;policyName> | -partitionName &lt;string>)
 
 
 ##Arguments
@@ -156,6 +164,9 @@ Name of the user entry from which to unbind the command policy.
 
 <b>policyName</b>
 Name of the command policy to unbind.
+
+<b>partitionName</b>
+Name of the Partition to unbind.
 
 
 
@@ -173,14 +184,6 @@ show system user [&lt;userName>]
 
 <b>userName</b>
 Name of a system user about whom to display information.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -221,6 +224,9 @@ CLI session inactivity timeout, in seconds. If Restrictedtimeout argument of sys
 
 <b>timeoutKind</b>
 From where the timeout has been inherited.
+
+<b>partitionName</b>
+Name of the Partition to bind to the system user.
 
 <b>logging</b>
 Users logging privilege

@@ -118,14 +118,6 @@ show vpn clientlessAccessProfile [&lt;profileName>]
 <b>profileName</b>
 Name of the clientless access profile for which to display detailed information.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

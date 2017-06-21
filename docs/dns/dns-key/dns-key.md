@@ -32,6 +32,11 @@ Default value: 120
 Minimum value: 1
 Maximum value: 32767
 
+<b>units</b>
+Units for the notification period.
+Possible values: MINUTES, HOURS, DAYS
+Default value: DAYS
+
 <b>notificationPeriod</b>
 Time at which to generate notification of key expiration, specified as number of days, hours, or minutes before expiry. Must be less than the expiry period. The notification is an SNMP trap sent to an SNMP manager. To enable the appliance to send the trap, enable the DNSKEY-EXPIRY SNMP alarm.
 Default value: 7
@@ -77,6 +82,7 @@ Default value: NS_DNSKEYALGO_RSASHA1
 <b>keySize</b>
 Size of the key, in bits.
 Default value: 512
+Minimum value: 0
 
 <b>fileNamePrefix</b>
 Common prefix for the names of the generated public and private key files and the Delegation Signer (DS) resource record. During key generation, the .key, .private, and .ds suffixes are appended automatically to the file name prefix to produce the names of the public key, the private key, and the DS record, respectively.
@@ -107,6 +113,11 @@ Time period for which to consider the key valid, after the key is used to sign a
 Default value: 120
 Minimum value: 1
 Maximum value: 32767
+
+<b>units</b>
+Units for the notification period.
+Possible values: MINUTES, HOURS, DAYS
+Default value: DAYS
 
 <b>notificationPeriod</b>
 Time at which to generate notification of key expiration, specified as number of days, hours, or minutes before expiry. Must be less than the expiry period. The notification is an SNMP trap sent to an SNMP manager. To enable the appliance to send the trap, enable the DNSKEY-EXPIRY SNMP alarm.
@@ -170,14 +181,6 @@ show dns key [&lt;keyName>]
 
 <b>keyName</b>
 Name of the public-private key pair.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

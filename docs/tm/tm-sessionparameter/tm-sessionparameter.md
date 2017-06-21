@@ -25,7 +25,7 @@ Minimum value: 1
 <b>defaultAuthorizationAction</b>
 Allow or deny access to content for which there is no specific authorization policy.
 Possible values: ALLOW, DENY
-Default value: NS_ALLOW
+Default value: ALLOW
 
 <b>SSO</b>
 Log users on to all web applications automatically after they authenticate, or pass users to the web application logon page to authenticate for each application.
@@ -35,7 +35,7 @@ Default value: OFF
 <b>ssoCredential</b>
 Use primary or secondary authentication credentials for single sign-on.
 Possible values: PRIMARY, SECONDARY
-Default value: VPN_SESS_ACT_USE_PRIMARY_CREDENTIALS
+Default value: PRIMARY
 
 <b>ssoDomain</b>
 Domain to use for single sign-on.
@@ -46,7 +46,7 @@ Kerberos constrained delegation account name
 <b>httpOnlyCookie</b>
 Allow only an HTTP session cookie, in which case the cookie cannot be accessed by scripts.
 Possible values: YES, NO
-Default value: VPN_SESS_ACT_HTTPONLYCOOKIE_ALLOW
+Default value: YES
 
 <b>persistentCookie</b>
 Use persistent SSO cookies for the traffic session. A persistent cookie remains on the user device and is sent with each HTTP request. The cookie becomes stale if the session ends.
@@ -81,14 +81,6 @@ Displays information about traffic session parameters.
 ##Synopsys
 
 show tm sessionParameter
-
-
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

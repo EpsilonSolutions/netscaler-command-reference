@@ -23,7 +23,7 @@ source-IP address used for all vPath L3 encapsulations. Must be a MIP or SNIP ad
 <b>offload</b>
 enable/disable vPath offload feature
 Possible values: ENABLED, DISABLED
-Default value: 2
+Default value: DISABLED
 
 
 
@@ -49,14 +49,6 @@ Display the global parameters for vPath
 ##Synopsys
 
 show vPathParam
-
-
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

@@ -12,7 +12,7 @@ Creates an IPv6 tunnel. An IP tunnel is a communication channel, using encapsula
 
 ##Synopsys
 
-add ip6Tunnel &lt;name> &lt;remote> &lt;local>
+add ip6Tunnel &lt;name> &lt;remote> &lt;local> [-ownerGroup &lt;string>]
 
 
 ##Arguments
@@ -25,6 +25,10 @@ An IPv6 address of the remote NetScaler appliance used to set up the tunnel.
 
 <b>local</b>
 An IPv6 address of the local NetScaler appliance used to set up the tunnel.
+
+<b>ownerGroup</b>
+The owner node group in a Cluster for the tunnel.
+Default value: DEFAULT_NG
 
 
 
@@ -71,14 +75,6 @@ Name of the IPv6 tunnel whose details you want to display.
 <b>remote</b>
 The IPv6 address at which the remote NetScaler appliance connects to the tunnel.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -94,6 +90,9 @@ The type of this tunnel.
 
 <b>encapIp</b>
 The effective local IP address of the tunnel. Used as the source of the encapsulated packets.
+
+<b>ownerGroup</b>
+The owner node group in a Cluster for the tunnel.
 
 <b>devno</b>
 

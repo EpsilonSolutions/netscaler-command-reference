@@ -67,11 +67,12 @@ The group separator delimits group names within a RADIUS attribute for RADIUS gr
 <b>passEncoding</b>
 Encoding type for passwords in RADIUS packets that the NetScaler appliance sends to the RADIUS server.
 Possible values: pap, chap, mschapv1, mschapv2
-Default value: AAA_PAP
+Default value: pap
 
 <b>ipVendorID</b>
 Vendor ID of the intranet IP attribute in the RADIUS response.
 NOTE: A value of 0 indicates that the attribute is not vendor encoded.
+Minimum value: 0
 
 <b>ipAttributeType</b>
 Remote IP address attribute type in a RADIUS response.
@@ -91,7 +92,6 @@ Minimum value: 1
 
 <b>defaultAuthenticationGroup</b>
 This is the default group that is chosen when the authentication succeeds in addition to extracted groups.
-Maximum value: 64
 
 <b>callingstationid</b>
 Send Calling-Station-ID of the client to the RADIUS server. IP Address of the client is sent as its Calling-Station-ID.
@@ -178,11 +178,12 @@ The group separator delimits group names within a RADIUS attribute for RADIUS gr
 <b>passEncoding</b>
 Encoding type for passwords in RADIUS packets that the NetScaler appliance sends to the RADIUS server.
 Possible values: pap, chap, mschapv1, mschapv2
-Default value: AAA_PAP
+Default value: pap
 
 <b>ipVendorID</b>
 Vendor ID of the intranet IP attribute in the RADIUS response.
 NOTE: A value of 0 indicates that the attribute is not vendor encoded.
+Minimum value: 0
 
 <b>ipAttributeType</b>
 Remote IP address attribute type in a RADIUS response.
@@ -196,9 +197,12 @@ Possible values: ON, OFF
 Vendor ID of the attribute, in the RADIUS response, used to extract the user password.
 Minimum value: 1
 
+<b>pwdAttributeType</b>
+Vendor-specific password attribute type in a RADIUS response.
+Minimum value: 1
+
 <b>defaultAuthenticationGroup</b>
 This is the default group that is chosen when the authentication succeeds in addition to extracted groups.
-Maximum value: 64
 
 <b>callingstationid</b>
 Send Calling-Station-ID of the client to the RADIUS server. IP Address of the client is sent as its Calling-Station-ID.
@@ -214,7 +218,7 @@ Use this command to remove authentication radiusAction settings.Refer to the set
 
 ##Synopsys
 
-unset authentication radiusAction &lt;name> [-serverIP] [-serverName] [-serverPort] [-authTimeout] [-radNASip] [-radNASid] [-radVendorID] [-radAttributeType] [-radGroupsPrefix] [-radGroupSeparator] [-passEncoding] [-ipVendorID] [-ipAttributeType] [-accounting] [-pwdVendorID] [-pwdAttributeType] [-defaultAuthenticationGroup] [-callingstationid]
+unset authentication radiusAction &lt;name> [-serverPort] [-authTimeout] [-radNASip] [-radNASid] [-radVendorID] [-radAttributeType] [-radGroupsPrefix] [-radGroupSeparator] [-passEncoding] [-ipVendorID] [-ipAttributeType] [-accounting] [-pwdVendorID] [-pwdAttributeType] [-defaultAuthenticationGroup] [-callingstationid]
 
 
 ##show authentication radiusAction
@@ -231,14 +235,6 @@ show authentication radiusAction [&lt;name>]
 
 <b>name</b>
 Name of the RADIUS profile.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

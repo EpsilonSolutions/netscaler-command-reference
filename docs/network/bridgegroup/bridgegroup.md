@@ -12,7 +12,7 @@ Create a Bridge group.
 
 ##Synopsys
 
-add bridgegroup &lt;id> [-ipv6DynamicRouting ( ENABLED | DISABLED )]
+add bridgegroup &lt;id> [-dynamicRouting ( ENABLED | DISABLED )] [-ipv6DynamicRouting ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -21,6 +21,11 @@ add bridgegroup &lt;id> [-ipv6DynamicRouting ( ENABLED | DISABLED )]
 An integer that uniquely identifies the bridge group.
 Minimum value: 1
 Maximum value: 1000
+
+<b>dynamicRouting</b>
+Enable dynamic routing for this bridgegroup.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
 
 <b>ipv6DynamicRouting</b>
 Enable all IPv6 dynamic routing protocols on all VLANs bound to this bridgegroup. Note: For the ENABLED setting to work, you must configure IPv6 dynamic routing protocols from the VTYSH command line.
@@ -31,7 +36,7 @@ Default value: DISABLED
 
 ##Example
 
-add bridgegroup bg1
+add bridgegroup 1
 
 ##rm bridgegroup
 
@@ -59,7 +64,7 @@ Set Bridge group parameters.
 
 ##Synopsys
 
-set bridgegroup &lt;id> -ipv6DynamicRouting ( ENABLED | DISABLED )
+set bridgegroup &lt;id> [-dynamicRouting ( ENABLED | DISABLED )] [-ipv6DynamicRouting ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -68,6 +73,11 @@ set bridgegroup &lt;id> -ipv6DynamicRouting ( ENABLED | DISABLED )
 An integer value that uniquely identifies the bridge group. Minimum value: 1. Maximum value: 1000.
 Minimum value: 1
 Maximum value: 1000
+
+<b>dynamicRouting</b>
+Enable dynamic routing for this bridgegroup.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
 
 <b>ipv6DynamicRouting</b>
 Enable all IPv6 dynamic routing protocols on this bridge group. For this setting to work, you must configure IPv6 dynamic routing protocols from the VTYSH command line. For more information about configuring IPv6 dynamic routing protocols on the NetScaler appliance, see the Dynamic Routing chapter of the Citrix NetScaler Networking Guide.
@@ -87,7 +97,7 @@ Use this command to remove  bridgegroup settings.Refer to the set  bridgegroup c
 
 ##Synopsys
 
-unset bridgegroup &lt;id> -ipv6DynamicRouting
+unset bridgegroup &lt;id> [-dynamicRouting] [-ipv6DynamicRouting]
 
 
 ##bind bridgegroup
@@ -114,6 +124,14 @@ Maximum value: 4094
 
 <b>IPAddress</b>
 A network address or addresses to be associated with the bridge group. You must add entries for these network addresses in the routing table before running this command.
+
+<b>netmask</b>
+A subnet mask associated with the network address.
+
+<b>td</b>
+Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
+Minimum value: 0
+Maximum value: 4094
 
 
 
@@ -146,6 +164,14 @@ Maximum value: 4094
 <b>IPAddress</b>
 Network address associated with the bridge group.
 
+<b>netmask</b>
+The network mask for the subnet defined for the bridge group.
+
+<b>td</b>
+Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
+Minimum value: 0
+Maximum value: 4094
+
 
 
 ##show bridgegroup
@@ -164,14 +190,6 @@ show bridgegroup [&lt;id>]
 The name of the bridge group.
 Minimum value: 1
 Maximum value: 1000
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -204,13 +222,19 @@ Names of all tagged member interfaces of this bridge group.
 <b>vlan</b>
 Names of all member VLANs.
 
-<b>ipv6DynamicRouting</b>
+<b>dynamicRouting</b>
 Whether dynamic routing is enabled or disabled.
+
+<b>ipv6DynamicRouting</b>
+Whether ipv6 dynamic routing is enabled or disabled.
 
 <b>rnat</b>
 Temporary flag used for internal purpose.
 
 <b>flag</b>
+
+<b>partitionName</b>
+Name of the Partition to which this vlan bound to.
 
 <b>devno</b>
 

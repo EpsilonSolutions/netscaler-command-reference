@@ -29,6 +29,7 @@ Email address of the contact to whom domain issues can be addressed. In the emai
 <b>serial</b>
 The secondary server uses this parameter to determine whether it requires a zone transfer from the primary server.
 Default value: 100
+Minimum value: 0
 Maximum value: 4294967294
 
 <b>refresh</b>
@@ -160,14 +161,6 @@ Type of records to display. Available settings function as follows:
 * PROXY - Display all proxy address records.
 * ALL - Display all address records.
 Possible values: ALL, ADNS, PROXY
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

@@ -150,14 +150,6 @@ show appflow policy [&lt;name>]
 <b>name</b>
 Name of the policy about which to display detailed information.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

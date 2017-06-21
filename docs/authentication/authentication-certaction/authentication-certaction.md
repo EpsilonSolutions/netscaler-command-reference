@@ -21,7 +21,7 @@ add authentication certAction &lt;name> [-twoFactor ( ON | OFF )] [-userNameFiel
 Name for the client cert authentication server profile (action). 
 Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after certifcate action is created.
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, ?my authentication action? or ?my authentication action?).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication action" or 'my authentication action').
 
 <b>twoFactor</b>
 Enables or disables two-factor authentication. 
@@ -39,7 +39,6 @@ Format: &lt;field&gt;:&lt;subfield&gt;
 
 <b>defaultAuthenticationGroup</b>
 This is the default group that is chosen when the authentication succeeds in addition to extracted groups.
-Maximum value: 64
 
 
 
@@ -101,7 +100,6 @@ Format: &lt;field&gt;:&lt;subfield&gt;
 
 <b>defaultAuthenticationGroup</b>
 This is the default group that is chosen when the authentication succeeds in addition to extracted groups.
-Maximum value: 64
 
 
 
@@ -139,14 +137,6 @@ show authentication certAction [&lt;name>]
 
 <b>name</b>
 Name of the client cert server profile (action).
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

@@ -23,7 +23,7 @@ Specify a compression level. Available settings function as follows:
  * Best speed - Corresponds to a gzip level of 1.
  * Best compression - Corresponds to a gzip level of 9.
 Possible values: optimal, bestspeed, bestcompression
-Default value: NSCMPLVL_OPTIMAL
+Default value: optimal
 
 <b>quantumSize</b>
 Minimum quantum of data to be filled before compression begins.
@@ -36,29 +36,14 @@ Allow the server to send compressed data to the NetScaler appliance. With the de
 Possible values: ON, OFF
 Default value: ON
 
-<b>heurExpiry</b>
-Heuristic basefile expiry.
-Possible values: ON, OFF
-Default value: OFF
-
-<b>heurExpiryThres</b>
-Threshold compression ratio for heuristic basefile expiry, multiplied by 100. For example, to set the threshold ratio to 1.25, specify 125.
-Default value: 100
-Minimum value: 1
-Maximum value: 1000
-
-<b>heurExpiryHistWt</b>
-For heuristic basefile expiry, weightage to be given to historical delta compression ratio, specified as percentage.  For example, to give 25% weightage to historical ratio (and therefore 75% weightage to the ratio for current delta compression transaction), specify 25.
-Default value: 50
-Minimum value: 1
-Maximum value: 100
-
 <b>minResSize</b>
 Smallest response size, in bytes, to be compressed.
+Minimum value: 0
 
 <b>cmpBypassPct</b>
 NetScaler CPU threshold after which compression is not performed. Range: 0 - 100
 Default value: 100
+Minimum value: 0
 Maximum value: 100
 
 <b>cmpOnPush</b>
@@ -71,12 +56,15 @@ Type of policy. Available settings function as follows:
  * Classic -  Classic policies evaluate basic characteristics of traffic and other data.
  * Advanced -  Advanced policies (which have been renamed as default syntax policies) can perform the same type of evaluations as classic policies. They also enable you to analyze more data (for example, the body of an HTTP request) and to configure more operations in the policy rule (for example, transforming data in the body of a request into an HTTP header).
 Possible values: CLASSIC, ADVANCED
-Default value: NS_EXPR_TYPE_CLASSIC
+Default value: CLASSIC
 
 <b>addVaryHeader</b>
 Control insertion of the Vary header in HTTP responses compressed by NetScaler. Intermediate caches store different versions of the response for different values of the headers present in the Vary response header.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
+
+<b>varyHeaderValue</b>
+The value of the HTTP Vary header for compressed responses. If this argument is not specified, a default value of "Accept-Encoding" will be used.
 
 <b>externalCache</b>
 Enable insertion of  Cache-Control: private response directive to indicate response message is intended for a single user and must not be cached by a shared or proxy cache.
@@ -109,14 +97,6 @@ Displays the values of the compression parameters. Example: > show cmp parameter
 show cmp parameter
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>cmpLevel</b>
@@ -132,13 +112,13 @@ Minimum quantum of data to be filled before compression begins.
 Compression enabled/disabled at back-end server.
 
 <b>heurExpiry</b>
-Heuristic basefile expiry.NOTE: This attribute is deprecated.Deprecating delta action in cmp policies
+Heuristic basefile expiry.
 
 <b>heurExpiryThres</b>
-Threshold compression ratio for heuristic basefile expiry, multiplied by 100. For example, to set the threshold ratio to 1.25, specify 125.NOTE: This attribute is deprecated.Deprecating delta action in cmp policies
+Threshold compression ratio for heuristic basefile expiry, multiplied by 100. For example, to set the threshold ratio to 1.25, specify 125.
 
 <b>heurExpiryHistWt</b>
-For heuristic basefile expiry, weightage to be given to historical delta compression ratio, specified as percentage.  For example, to give 25% weightage to historical ratio (and therefore 75% weightage to the ratio for current delta compression transaction), specify 25.NOTE: This attribute is deprecated.Deprecating delta action in cmp policies
+For heuristic basefile expiry, weightage to be given to historical delta compression ratio, specified as percentage.  For example, to give 25% weightage to historical ratio (and therefore 75% weightage to the ratio for current delta compression transaction), specify 25.
 
 <b>minResSize</b>
 Smallest response size, in bytes, to be compressed.
@@ -162,6 +142,9 @@ The value of the HTTP Vary header for compressed responses. If this argument is 
 
 <b>externalCache</b>
 Enable insertion of  Cache-Control: private response directive to indicate response message is intended for a single user and must not be cached by a shared or proxy cache.
+
+<b>builtin</b>
+Flag to determine whether compression is default or not
 
 
 

@@ -23,7 +23,7 @@ Content type to be classified as JSON
 <b>isRegex</b>
 Is json content type a regular expression?
 Possible values: REGEX, NOTREGEX
-Default value: NS_NOTREGEX
+Default value: NOTREGEX
 
 
 
@@ -58,14 +58,6 @@ show appfw JSONContentType [&lt;JSONContenttypevalue>]
 
 <b>JSONContenttypevalue</b>
 Content type to be classified as JSON
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

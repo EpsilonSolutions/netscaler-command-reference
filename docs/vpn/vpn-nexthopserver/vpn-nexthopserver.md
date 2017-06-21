@@ -78,14 +78,6 @@ show vpn nextHopServer [&lt;name>]
 Name of the NetScaler Gateway next hop server for which to display detailed information.
 Maximum value: 32
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

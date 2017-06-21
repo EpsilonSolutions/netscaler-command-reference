@@ -25,10 +25,6 @@ Type of records to display. Available settings function as follows:
 * ALL - Display all address records.
 Possible values: ALL, ADNS, PROXY
 
-<b>summary</b>
-
-<b>fullValues</b>
-
 
 
 ##Outputs
@@ -37,7 +33,7 @@ Possible values: ALL, ADNS, PROXY
 Next nsec record in the chain
 
 <b>nsecBitarray</b>
-Bit array representing the different record types configured for the domain nameNOTE: This attribute is deprecated.This is deprecated attribute.
+Bit array representing the different record types configured for the domain name
 
 <b>nextRecs</b>
 An array of record types associated with the nsec record.

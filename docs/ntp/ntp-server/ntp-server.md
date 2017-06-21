@@ -138,14 +138,6 @@ IP address of the NTP server about which to display information.
 <b>serverName</b>
 Name of the NTP server about which to display information.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

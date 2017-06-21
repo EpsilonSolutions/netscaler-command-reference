@@ -18,10 +18,6 @@ show ssl certChain [&lt;CertKeyName>]
 <b>CertKeyName</b>
 Name of the Certificate
 
-<b>summary</b>
-
-<b>fullValues</b>
-
 
 
 ##Outputs

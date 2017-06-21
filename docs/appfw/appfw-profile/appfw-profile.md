@@ -12,7 +12,7 @@ Creates an application firewall profile, which specifies how the application fir
 
 ##Synopsys
 
-add appfw profile &lt;name> [-defaults ( basic | advanced )] [-startURLAction &lt;startURLAction> ...] [-contentTypeAction &lt;contentTypeAction> ...] [-startURLClosure ( ON | OFF )] [-denyURLAction &lt;denyURLAction> ...] [-RefererHeaderCheck &lt;RefererHeaderCheck>] [-cookieConsistencyAction &lt;cookieConsistencyAction> ...] [-cookieTransforms ( ON | OFF )] [-cookieEncryption &lt;cookieEncryption>] [-cookieProxying ( none | sessionOnly )] [-addCookieFlags &lt;addCookieFlags>] [-fieldConsistencyAction &lt;fieldConsistencyAction> ...] [-CSRFtagAction &lt;CSRFtagAction> ...] [-crossSiteScriptingAction &lt;crossSiteScriptingAction> ...] [-crossSiteScriptingTransformUnsafeHTML ( ON | OFF )] [-crossSiteScriptingCheckCompleteURLs ( ON | OFF )] [-SQLInjectionAction &lt;SQLInjectionAction> ...] [-SQLInjectionTransformSpecialChars ( ON | OFF )] [-SQLInjectionType &lt;SQLInjectionType>] [-SQLInjectionCheckSQLWildChars ( ON | OFF )] [-fieldFormatAction &lt;fieldFormatAction> ...] [-defaultFieldFormatType &lt;string>] [-defaultFieldFormatMinLength &lt;positive_integer>] [-defaultFieldFormatMaxLength &lt;positive_integer>] [-bufferOverflowAction &lt;bufferOverflowAction> ...] [-bufferOverflowMaxURLLength &lt;positive_integer>] [-bufferOverflowMaxHeaderLength &lt;positive_integer>] [-bufferOverflowMaxCookieLength &lt;positive_integer>] [-creditCardAction &lt;creditCardAction> ...] [-creditCard &lt;creditCard> ...] [-creditCardMaxAllowed &lt;positive_integer>] [-creditCardXOut ( ON | OFF )] [-requestContentType &lt;string>] [-responseContentType &lt;string>] [-XMLDoSAction &lt;XMLDoSAction> ...] [-XMLFormatAction &lt;XMLFormatAction> ...] [-XMLSQLInjectionAction &lt;XMLSQLInjectionAction> ...] [-XMLSQLInjectionType &lt;XMLSQLInjectionType>] [-XMLSQLInjectionCheckSQLWildChars ( ON | OFF )] [-XMLSQLInjectionParseComments &lt;XMLSQLInjectionParseComments>] [-XMLXSSAction &lt;XMLXSSAction> ...] [-XMLWSIAction &lt;XMLWSIAction> ...] [-XMLAttachmentAction &lt;XMLAttachmentAction> ...] [-XMLValidationAction &lt;XMLValidationAction> ...] [-XMLErrorObject &lt;string>] [-signatures &lt;string>] [-XMLSOAPFaultAction &lt;XMLSOAPFaultAction> ...] [-useHTMLErrorObject ( ON | OFF )] [-errorURL &lt;expression>] [-HTMLErrorObject &lt;string>] [-logEveryPolicyHit ( ON | OFF )] [-stripHtmlComments &lt;stripHtmlComments>] [-stripXmlComments ( none | all )] [-exemptClosureURLsFromSecurityChecks ( ON | OFF )] [-defaultCharSet &lt;string>] [-postBodyLimit &lt;positive_integer>] [-fileUploadMaxNum &lt;positive_integer>] [-canonicalizeHTMLResponse ( ON | OFF )] [-enableFormTagging ( ON | OFF )] [-sessionlessFieldConsistency &lt;sessionlessFieldConsistency>] [-sessionlessURLClosure ( ON | OFF )] [-semicolonFieldSeparator ( ON | OFF )] [-excludeFileUploadFromChecks ( ON | OFF )] [-SQLInjectionParseComments &lt;SQLInjectionParseComments>] [-invalidPercentHandling &lt;invalidPercentHandling>] [-type ( HTML | XML ) ...] [-checkRequestHeaders ( ON | OFF )] [-optimizePartialReqs ( ON | OFF )] [-URLDecodeRequestCookies ( ON | OFF )] [-comment &lt;string>]
+add appfw profile &lt;name> [-defaults ( basic | advanced )] [-startURLAction &lt;startURLAction> ...] [-contentTypeAction &lt;contentTypeAction> ...] [-inspectContentTypes &lt;inspectContentTypes> ...] [-startURLClosure ( ON | OFF )] [-denyURLAction &lt;denyURLAction> ...] [-RefererHeaderCheck &lt;RefererHeaderCheck>] [-cookieConsistencyAction &lt;cookieConsistencyAction> ...] [-cookieTransforms ( ON | OFF )] [-cookieEncryption &lt;cookieEncryption>] [-cookieProxying ( none | sessionOnly )] [-addCookieFlags &lt;addCookieFlags>] [-fieldConsistencyAction &lt;fieldConsistencyAction> ...] [-CSRFtagAction &lt;CSRFtagAction> ...] [-crossSiteScriptingAction &lt;crossSiteScriptingAction> ...] [-crossSiteScriptingTransformUnsafeHTML ( ON | OFF )] [-crossSiteScriptingCheckCompleteURLs ( ON | OFF )] [-SQLInjectionAction &lt;SQLInjectionAction> ...] [-SQLInjectionTransformSpecialChars ( ON | OFF )] [-SQLInjectionType &lt;SQLInjectionType>] [-SQLInjectionCheckSQLWildChars ( ON | OFF )] [-fieldFormatAction &lt;fieldFormatAction> ...] [-defaultFieldFormatType &lt;string>] [-defaultFieldFormatMinLength &lt;positive_integer>] [-defaultFieldFormatMaxLength &lt;positive_integer>] [-bufferOverflowAction &lt;bufferOverflowAction> ...] [-bufferOverflowMaxURLLength &lt;positive_integer>] [-bufferOverflowMaxHeaderLength &lt;positive_integer>] [-bufferOverflowMaxCookieLength &lt;positive_integer>] [-creditCardAction &lt;creditCardAction> ...] [-creditCard &lt;creditCard> ...] [-creditCardMaxAllowed &lt;positive_integer>] [-creditCardXOut ( ON | OFF )] [-doSecureCreditCardLogging ( ON | OFF )] [-streaming ( ON | OFF )] [-trace ( ON | OFF )] [-requestContentType &lt;string>] [-responseContentType &lt;string>] [-XMLDoSAction &lt;XMLDoSAction> ...] [-XMLFormatAction &lt;XMLFormatAction> ...] [-XMLSQLInjectionAction &lt;XMLSQLInjectionAction> ...] [-XMLSQLInjectionType &lt;XMLSQLInjectionType>] [-XMLSQLInjectionCheckSQLWildChars ( ON | OFF )] [-XMLSQLInjectionParseComments &lt;XMLSQLInjectionParseComments>] [-XMLXSSAction &lt;XMLXSSAction> ...] [-XMLWSIAction &lt;XMLWSIAction> ...] [-XMLAttachmentAction &lt;XMLAttachmentAction> ...] [-XMLValidationAction &lt;XMLValidationAction> ...] [-XMLErrorObject &lt;string>] [-signatures &lt;string>] [-XMLSOAPFaultAction &lt;XMLSOAPFaultAction> ...] [-useHTMLErrorObject ( ON | OFF )] [-errorURL &lt;expression>] [-HTMLErrorObject &lt;string>] [-logEveryPolicyHit ( ON | OFF )] [-stripHtmlComments &lt;stripHtmlComments>] [-stripXmlComments ( none | all )] [-exemptClosureURLsFromSecurityChecks ( ON | OFF )] [-defaultCharSet &lt;string>] [-postBodyLimit &lt;positive_integer>] [-fileUploadMaxNum &lt;positive_integer>] [-canonicalizeHTMLResponse ( ON | OFF )] [-enableFormTagging ( ON | OFF )] [-sessionlessFieldConsistency &lt;sessionlessFieldConsistency>] [-sessionlessURLClosure ( ON | OFF )] [-semicolonFieldSeparator ( ON | OFF )] [-excludeFileUploadFromChecks ( ON | OFF )] [-SQLInjectionParseComments &lt;SQLInjectionParseComments>] [-invalidPercentHandling &lt;invalidPercentHandling>] [-type ( HTML | XML ) ...] [-checkRequestHeaders ( ON | OFF )] [-optimizePartialReqs ( ON | OFF )] [-URLDecodeRequestCookies ( ON | OFF )] [-comment &lt;string>]
 
 
 ##Arguments
@@ -26,11 +26,6 @@ If the name includes one or more spaces, enclose the name in double or single qu
 Default configuration to apply to the profile. Basic defaults are intended for standard content that requires little further configuration, such as static web site content. Advanced defaults are intended for specialized content that requires significant specialized configuration, such as heavily scripted or dynamic content.
 CLI users: When adding an application firewall profile, you can set either the defaults or the type, but not both. To set both options, create the profile by using the add appfw profile command, and then use the set appfw profile command to configure the other option.
 Possible values: basic, advanced
-
-<b>builtinType</b>
-Type of built-in profile. Determines which security checks and settings are used for the profile. (The type specified by the HTML XML setting is also called "Web 2.0.")
-CLI users: When adding an application firewall profile, you can set either the defaults or the type, but not both. To set both options, create the profile by using the add appfw profile command, and then use the set appfw profile command to configure the other option.
-Possible values: APPFW_NOT_BUILTIN, APPFW_BYPASS, APPFW_BLOCK, APPFW_RESET, APPFW_DROP
 
 <b>startURLAction</b>
 One or more Start URL actions. Available settings function as follows:
@@ -49,6 +44,14 @@ One or more Content-type actions. Available settings function as follows:
 * None - Disable all actions for this security check.
 CLI users: To enable one or more actions, type "set appfw profile -contentTypeaction" followed by the actions to be enabled. To turn off all actions, type "set appfw profile -contentTypeaction none".
 Default value: AS_DEFAULT_CONTENT_TYPE_DISPOSITION
+
+<b>inspectContentTypes</b>
+One or more InspectContentType lists. 
+* application/x-www-form-urlencoded
+* multipart/form-data
+* text/x-gwt-rpc
+CLI users: To enable, type "set appfw profile -InspectContentTypes" followed by the content types to be inspected.
+Default value: AS_DEFAULT_INSPECTION_CONTENT_TYPE
 
 <b>startURLClosure</b>
 Toggle  the state of Start URL Closure.
@@ -70,7 +73,7 @@ Enable validation of Referer headers.
 Referer validation ensures that a web form that a user sends to your web site originally came from your web site, not an outside attacker. 
 Although this parameter is part of the Start URL check, referer validation protects against cross-site request forgery (CSRF) attacks, not Start URL attacks.
 Possible values: OFF, if_present, AlwaysExceptStartURLs, AlwaysExceptFirstRequest
-Default value: AS_HEADER_CHECK_OFF
+Default value: OFF
 
 <b>cookieConsistencyAction</b>
 One or more Cookie Consistency actions. Available settings function as follows:
@@ -80,7 +83,7 @@ One or more Cookie Consistency actions. Available settings function as follows:
 * Stats - Generate statistics for this security check.
 * None - Disable all actions for this security check.
 CLI users: To enable one or more actions, type "set appfw profile -cookieConsistencyAction" followed by the actions to be enabled. To turn off all actions, type "set appfw profile -cookieConsistencyAction none".
-Default value: AS_NONE
+Default value: none
 
 <b>cookieTransforms</b>
 Perform the specified type of cookie transformation. 
@@ -99,14 +102,14 @@ Type of cookie encryption. Available settings function as follows:
 * Encrypt Session Only - Encrypt session cookies, but not permanent cookies.
 * Encrypt All - Encrypt all cookies.
 Possible values: none, decryptOnly, encryptSessionOnly, encryptAll
-Default value: AS_CKI_ENCRYPT_NONE
+Default value: none
 
 <b>cookieProxying</b>
 Cookie proxy setting. Available settings function as follows:
 * None - Do not proxy cookies.
 * Session Only - Proxy session cookies by using the NetScaler session ID, but do not proxy permanent cookies.
 Possible values: none, sessionOnly
-Default value: AS_CKI_PROXY_NONE
+Default value: none
 
 <b>addCookieFlags</b>
 Add the specified flags to cookies. Available settings function as follows:
@@ -115,7 +118,7 @@ Add the specified flags to cookies. Available settings function as follows:
 * Secure - Add Secure flag to cookies.
 * All - Add both HTTPOnly and Secure flags to cookies.
 Possible values: none, httpOnly, secure, all
-Default value: AS_ADD_CKI_FLAGS_NONE
+Default value: none
 
 <b>fieldConsistencyAction</b>
 One or more Form Field Consistency actions. Available settings function as follows:
@@ -125,7 +128,7 @@ One or more Form Field Consistency actions. Available settings function as follo
 * Stats - Generate statistics for this security check.
 * None - Disable all actions for this security check.
 CLI users: To enable one or more actions, type "set appfw profile -fieldConsistencyaction" followed by the actions to be enabled. To turn off all actions, type "set appfw profile -fieldConsistencyAction none".
-Default value: AS_NONE
+Default value: none
 
 <b>CSRFtagAction</b>
 One or more Cross-Site Request Forgery (CSRF) Tagging actions. Available settings function as follows:
@@ -135,7 +138,7 @@ One or more Cross-Site Request Forgery (CSRF) Tagging actions. Available setting
 * Stats - Generate statistics for this security check.
 * None - Disable all actions for this security check.
 CLI users: To enable one or more actions, type "set appfw profile -CSRFTagAction" followed by the actions to be enabled. To turn off all actions, type "set appfw profile -CSRFTagAction none".
-Default value: AS_NONE
+Default value: none
 
 <b>crossSiteScriptingAction</b>
 One or more Cross-Site Scripting (XSS) actions. Available settings function as follows:
@@ -174,12 +177,6 @@ CAUTION: Make sure that this parameter is set to ON if you are configuring any S
 Possible values: ON, OFF
 Default value: OFF
 
-<b>SQLInjectionOnlyCheckFieldsWithSQLChars</b>
-Check only form fields that contain SQL special strings (characters) for injected SQL code.
-Most SQL servers require a special string to activate an SQL request, so SQL code without a special string is harmless to most SQL servers.
-Possible values: ON, OFF
-Default value: ON
-
 <b>SQLInjectionType</b>
 Available SQL injection types. 
 -SQLSplChar              : Checks for SQL Special Chars
@@ -187,7 +184,7 @@ Available SQL injection types.
 -SQLSplCharANDKeyword    : Checks for both and blocks if both are found
 -SQLSplCharORKeyword     : Checks for both and blocks if anyone is found
 Possible values: SQLSplChar, SQLKeyword, SQLSplCharORKeyword, SQLSplCharANDKeyword
-Default value: AS_SQLINJECTION_TYPE_CHAR_AND_KEYWORD
+Default value: SQLSplCharANDKeyword
 
 <b>SQLInjectionCheckSQLWildChars</b>
 Check for form fields that contain SQL wild chars .
@@ -210,13 +207,13 @@ Designate a default field type to be applied to web form fields that do not have
 <b>defaultFieldFormatMinLength</b>
 Minimum length, in characters, for data entered into a field that is assigned the default field type. 
 To disable the minimum and maximum length settings and allow data of any length to be entered into the field, set this parameter to zero (0).
-Default value: AS_DEFAULTFIELDFORMAT_DEFAULT_MIN_LEN
+Default value: 0 
 Minimum value: 0
 Maximum value: 65535
 
 <b>defaultFieldFormatMaxLength</b>
 Maximum length, in characters, for data entered into a field that is assigned the default field type.
-Default value: AS_DEFAULTFIELDFORMAT_DEFAULT_MAX_LEN
+Default value: 65535 
 Minimum value: 1
 Maximum value: 65535
 
@@ -231,19 +228,19 @@ Default value: AS_DEFAULT_DISPOSITION
 
 <b>bufferOverflowMaxURLLength</b>
 Maximum length, in characters, for URLs on your protected web sites. Requests with longer URLs are blocked.
-Default value: AS_BUFFEROVERFLOW_DEFAULT_MAX_URL_LEN
+Default value: 1024 
 Minimum value: 0
 Maximum value: 65535
 
 <b>bufferOverflowMaxHeaderLength</b>
 Maximum length, in characters, for HTTP headers in requests sent to your protected web sites. Requests with longer headers are blocked.
-Default value: AS_BUFFEROVERFLOW_DEFAULT_MAX_HDR_LEN
+Default value: 4096 
 Minimum value: 0
 Maximum value: 65535
 
 <b>bufferOverflowMaxCookieLength</b>
 Maximum length, in characters, for cookies sent to your protected web sites. Requests with longer cookies are blocked.
-Default value: AS_BUFFEROVERFLOW_DEFAULT_MAX_COOKIE_LEN
+Default value: 4096 
 Minimum value: 0
 Maximum value: 65535
 
@@ -254,18 +251,34 @@ One or more Credit Card actions. Available settings function as follows:
 * Stats - Generate statistics for this security check.
 * None - Disable all actions for this security check.
 CLI users: To enable one or more actions, type "set appfw profile -creditCardAction" followed by the actions to be enabled. To turn off all actions, type "set appfw profile -creditCardAction none".
-Default value: AS_NONE
+Default value: none
 
 <b>creditCard</b>
 Credit card types that the application firewall should protect.
 Default value: AS_CCARD_DEFAULT_CARD_TYPE
 
 <b>creditCardMaxAllowed</b>
-Maximum number of credit card numbers that can appear on a web page served by your protected web sites. Pages that contain more credit card numbers are blocked, or the credit card numbers are masked.
+Maximum number of credit card numbers that can appear on a web page served by your protected web sites. Pages that contain more credit card numbers are blocked
+Minimum value: 0
 Maximum value: 255
 
 <b>creditCardXOut</b>
 Mask any credit card number detected in a response by replacing each digit, except the digits in the final group, with the letter "X."
+Possible values: ON, OFF
+Default value: OFF
+
+<b>doSecureCreditCardLogging</b>
+Setting this option logs credit card numbers in the response when the match is found.
+Possible values: ON, OFF
+Default value: ON
+
+<b>streaming</b>
+Setting this option converts content-length form submission requests (requests with content-type "application/x-www-form-urlencoded" or "multipart/form-data") to chunked requests when atleast one of the following protections : SQL injection protection, XSS protection, form field consistency protection, starturl closure, CSRF tagging is enabled. Please make sure that the backend server accepts chunked requests before enabling this option.
+Possible values: ON, OFF
+Default value: OFF
+
+<b>trace</b>
+Toggle  the state of trace
 Possible values: ON, OFF
 Default value: OFF
 
@@ -307,11 +320,6 @@ One or more XML SQL Injection actions. Available settings function as follows:
 CLI users: To enable one or more actions, type "set appfw profile -XMLSQLInjectionAction" followed by the actions to be enabled. To turn off all actions, type "set appfw profile -XMLSQLInjectionAction none".
 Default value: AS_DEFAULT_DISPOSITION
 
-<b>XMLSQLInjectionOnlyCheckFieldsWithSQLChars</b>
-Check only form fields that contain SQL special characters, which most SQL servers require before accepting an SQL command, for injected SQL.
-Possible values: ON, OFF
-Default value: ON
-
 <b>XMLSQLInjectionType</b>
 Available SQL injection types.
 -SQLSplChar              : Checks for SQL Special Chars
@@ -319,7 +327,7 @@ Available SQL injection types.
 -SQLSplCharANDKeyword    : Checks for both and blocks if both are found
 -SQLSplCharORKeyword     : Checks for both and blocks if anyone is found
 Possible values: SQLSplChar, SQLKeyword, SQLSplCharORKeyword, SQLSplCharANDKeyword
-Default value: AS_SQLINJECTION_TYPE_CHAR_AND_KEYWORD
+Default value: SQLSplCharANDKeyword
 
 <b>XMLSQLInjectionCheckSQLWildChars</b>
 Check for form fields that contain SQL wild chars .
@@ -333,7 +341,7 @@ Parse comments in XML Data and exempt those sections of the request that are fro
 * Nested - Exempt content that is part of a nested (Microsoft-style) comment.
 * ANSI Nested - Exempt content that is part of any type of comment.
 Possible values: checkall, ansi, nested, ansinested
-Default value: AS_CHECKALL
+Default value: checkall
 
 <b>XMLXSSAction</b>
 One or more XML Cross-Site Scripting actions. Available settings function as follows:
@@ -380,11 +388,6 @@ The following requirement applies only to the NetScaler CLI:
 If the name includes one or more spaces, enclose the name in double or single quotation marks \\(for example, "my XML error object" or 'my XML error object'\\).
 Default value: NS_S_AS_ERROR_OBJECT_DEFAULT
 
-<b>customSettings</b>
-Object name for custom settings.
-This check is applicable to Profile Type: HTML, XML. 
-Default value: NS_S_AS_CUSTOM_OBJECT_DEFAULT
-
 <b>signatures</b>
 Object name for signatures.
 This check is applicable to Profile Type: HTML, XML. 
@@ -421,24 +424,18 @@ Log every profile match, regardless of security checks results.
 Possible values: ON, OFF
 Default value: OFF
 
-<b>stripComments</b>
-Strip HTML comments.
-This check is applicable to Profile Type: HTML. 
-Possible values: ON, OFF
-Default value: OFF
-
 <b>stripHtmlComments</b>
 Strip HTML comments before forwarding a web page sent by a protected web site in response to a user request.
 Possible values: none, all, exclude_script_tag
-Default value: AS_STRIP_COMMENT_NONE
+Default value: none
 
 <b>stripXmlComments</b>
-Exempt URLs that pass the Start URL closure check from additional security checks.
+Strip XML comments before forwarding a web page sent by a protected web site in response to a user request.
 Possible values: none, all
-Default value: AS_STRIP_COMMENT_NONE
+Default value: none
 
 <b>exemptClosureURLsFromSecurityChecks</b>
-Exempt URLs that pass the Start URL closure check from additional security checks.
+Exempt URLs that pass the Start URL closure check from SQL injection, cross-site script, field format and field consistency security checks at locations other than headers.
 Possible values: ON, OFF
 Default value: ON
 
@@ -457,12 +454,14 @@ Maximum value: 31
 
 <b>postBodyLimit</b>
 Maximum allowed HTTP post body size, in bytes.
-Default value: AS_DEFAULT_POSTBODYLIMIT
+Default value: 20000000 
+Minimum value: 0
 Maximum value: 1000000000
 
 <b>fileUploadMaxNum</b>
 Maximum allowed number of file uploads per form-submission request. The maximum setting (65535) allows an unlimited number of uploads.
-Default value: AS_DEFAULT_MAX_FILE_UPLOADS
+Default value: 65535 
+Minimum value: 0
 Maximum value: 65535
 
 <b>canonicalizeHTMLResponse</b>
@@ -478,7 +477,7 @@ Default value: ON
 <b>sessionlessFieldConsistency</b>
 Perform sessionless Field Consistency Checks.
 Possible values: OFF, ON, postOnly
-Default value: AS_OFF
+Default value: OFF
 
 <b>sessionlessURLClosure</b>
 Enable session less URL Closure Checks.
@@ -511,14 +510,14 @@ Configure the method that the application firewall uses to handle percent-encode
 * asp_mode - Microsoft ASP format.
 * secure_mode - Secure format.
 Possible values: apache_mode, asp_mode, secure_mode
-Default value: AS_PERCENT_DECODE_SECURE_MODE
+Default value: secure_mode
 
 <b>type</b>
 Application firewall profile type, which controls which security checks and settings are applied to content that is filtered with the profile. Available settings function as follows:
 * HTML - HTML-based web sites.
 * XML - XML-based web sites and services.
 * HTML XML (Web 2.0) - Sites that contain both HTML and XML content, such as ATOM feeds, blogs, and RSS feeds.
-Default value: AF_PROFILE_TYPE_HTML
+Default value: HTML
 
 <b>checkRequestHeaders</b>
 Check request headers as well as web forms for injected SQL and cross-site scripts.
@@ -567,7 +566,7 @@ Modifies the specified parameters of the specified application firewall profile.
 
 ##Synopsys
 
-set appfw profile &lt;name> [-startURLAction &lt;startURLAction> ...] [-contentTypeAction &lt;contentTypeAction> ...] [-startURLClosure ( ON | OFF )] [-denyURLAction &lt;denyURLAction> ...] [-RefererHeaderCheck &lt;RefererHeaderCheck>] [-cookieConsistencyAction &lt;cookieConsistencyAction> ...] [-cookieTransforms ( ON | OFF )] [-cookieEncryption &lt;cookieEncryption>] [-cookieProxying ( none | sessionOnly )] [-addCookieFlags &lt;addCookieFlags>] [-fieldConsistencyAction &lt;fieldConsistencyAction> ...] [-CSRFtagAction &lt;CSRFtagAction> ...] [-crossSiteScriptingAction &lt;crossSiteScriptingAction> ...] [-crossSiteScriptingTransformUnsafeHTML ( ON | OFF )] [-crossSiteScriptingCheckCompleteURLs ( ON | OFF )] [-SQLInjectionAction &lt;SQLInjectionAction> ...] [-SQLInjectionTransformSpecialChars ( ON | OFF )] [-SQLInjectionType &lt;SQLInjectionType>] [-SQLInjectionCheckSQLWildChars ( ON | OFF )] [-fieldFormatAction &lt;fieldFormatAction> ...] [-defaultFieldFormatType &lt;string>] [-defaultFieldFormatMinLength &lt;positive_integer>] [-defaultFieldFormatMaxLength &lt;positive_integer>] [-bufferOverflowAction &lt;bufferOverflowAction> ...] [-bufferOverflowMaxURLLength &lt;positive_integer>] [-bufferOverflowMaxHeaderLength &lt;positive_integer>] [-bufferOverflowMaxCookieLength &lt;positive_integer>] [-creditCardAction &lt;creditCardAction> ...] [-creditCard &lt;creditCard> ...] [-creditCardMaxAllowed &lt;positive_integer>] [-creditCardXOut ( ON | OFF )] [-requestContentType &lt;string>] [-responseContentType &lt;string>] [-XMLDoSAction &lt;XMLDoSAction> ...] [-XMLFormatAction &lt;XMLFormatAction> ...] [-XMLSQLInjectionAction &lt;XMLSQLInjectionAction> ...] [-XMLSQLInjectionType &lt;XMLSQLInjectionType>] [-XMLSQLInjectionCheckSQLWildChars ( ON | OFF )] [-XMLSQLInjectionParseComments &lt;XMLSQLInjectionParseComments>] [-XMLXSSAction &lt;XMLXSSAction> ...] [-XMLWSIAction &lt;XMLWSIAction> ...] [-XMLAttachmentAction &lt;XMLAttachmentAction> ...] [-XMLValidationAction &lt;XMLValidationAction> ...] [-XMLErrorObject &lt;string>] [-signatures &lt;string>] [-XMLSOAPFaultAction &lt;XMLSOAPFaultAction> ...] [-useHTMLErrorObject ( ON | OFF )] [-errorURL &lt;expression>] [-HTMLErrorObject &lt;string>] [-logEveryPolicyHit ( ON | OFF )] [-stripHtmlComments &lt;stripHtmlComments>] [-stripXmlComments ( none | all )] [-exemptClosureURLsFromSecurityChecks ( ON | OFF )] [-defaultCharSet &lt;string>] [-postBodyLimit &lt;positive_integer>] [-fileUploadMaxNum &lt;positive_integer>] [-canonicalizeHTMLResponse ( ON | OFF )] [-enableFormTagging ( ON | OFF )] [-sessionlessFieldConsistency &lt;sessionlessFieldConsistency>] [-sessionlessURLClosure ( ON | OFF )] [-semicolonFieldSeparator ( ON | OFF )] [-excludeFileUploadFromChecks ( ON | OFF )] [-SQLInjectionParseComments &lt;SQLInjectionParseComments>] [-invalidPercentHandling &lt;invalidPercentHandling>] [-type ( HTML | XML ) ...] [-checkRequestHeaders ( ON | OFF )] [-optimizePartialReqs ( ON | OFF )] [-URLDecodeRequestCookies ( ON | OFF )] [-comment &lt;string>]
+set appfw profile &lt;name> [-startURLAction &lt;startURLAction> ...] [-contentTypeAction &lt;contentTypeAction> ...] [-inspectContentTypes &lt;inspectContentTypes> ...] [-startURLClosure ( ON | OFF )] [-denyURLAction &lt;denyURLAction> ...] [-RefererHeaderCheck &lt;RefererHeaderCheck>] [-cookieConsistencyAction &lt;cookieConsistencyAction> ...] [-cookieTransforms ( ON | OFF )] [-cookieEncryption &lt;cookieEncryption>] [-cookieProxying ( none | sessionOnly )] [-addCookieFlags &lt;addCookieFlags>] [-fieldConsistencyAction &lt;fieldConsistencyAction> ...] [-CSRFtagAction &lt;CSRFtagAction> ...] [-crossSiteScriptingAction &lt;crossSiteScriptingAction> ...] [-crossSiteScriptingTransformUnsafeHTML ( ON | OFF )] [-crossSiteScriptingCheckCompleteURLs ( ON | OFF )] [-SQLInjectionAction &lt;SQLInjectionAction> ...] [-SQLInjectionTransformSpecialChars ( ON | OFF )] [-SQLInjectionType &lt;SQLInjectionType>] [-SQLInjectionCheckSQLWildChars ( ON | OFF )] [-fieldFormatAction &lt;fieldFormatAction> ...] [-defaultFieldFormatType &lt;string>] [-defaultFieldFormatMinLength &lt;positive_integer>] [-defaultFieldFormatMaxLength &lt;positive_integer>] [-bufferOverflowAction &lt;bufferOverflowAction> ...] [-bufferOverflowMaxURLLength &lt;positive_integer>] [-bufferOverflowMaxHeaderLength &lt;positive_integer>] [-bufferOverflowMaxCookieLength &lt;positive_integer>] [-creditCardAction &lt;creditCardAction> ...] [-creditCard &lt;creditCard> ...] [-creditCardMaxAllowed &lt;positive_integer>] [-creditCardXOut ( ON | OFF )] [-doSecureCreditCardLogging ( ON | OFF )] [-streaming ( ON | OFF )] [-trace ( ON | OFF )] [-requestContentType &lt;string>] [-responseContentType &lt;string>] [-XMLDoSAction &lt;XMLDoSAction> ...] [-XMLFormatAction &lt;XMLFormatAction> ...] [-XMLSQLInjectionAction &lt;XMLSQLInjectionAction> ...] [-XMLSQLInjectionType &lt;XMLSQLInjectionType>] [-XMLSQLInjectionCheckSQLWildChars ( ON | OFF )] [-XMLSQLInjectionParseComments &lt;XMLSQLInjectionParseComments>] [-XMLXSSAction &lt;XMLXSSAction> ...] [-XMLWSIAction &lt;XMLWSIAction> ...] [-XMLAttachmentAction &lt;XMLAttachmentAction> ...] [-XMLValidationAction &lt;XMLValidationAction> ...] [-XMLErrorObject &lt;string>] [-signatures &lt;string>] [-XMLSOAPFaultAction &lt;XMLSOAPFaultAction> ...] [-useHTMLErrorObject ( ON | OFF )] [-errorURL &lt;expression>] [-HTMLErrorObject &lt;string>] [-logEveryPolicyHit ( ON | OFF )] [-stripHtmlComments &lt;stripHtmlComments>] [-stripXmlComments ( none | all )] [-exemptClosureURLsFromSecurityChecks ( ON | OFF )] [-defaultCharSet &lt;string>] [-postBodyLimit &lt;positive_integer>] [-fileUploadMaxNum &lt;positive_integer>] [-canonicalizeHTMLResponse ( ON | OFF )] [-enableFormTagging ( ON | OFF )] [-sessionlessFieldConsistency &lt;sessionlessFieldConsistency>] [-sessionlessURLClosure ( ON | OFF )] [-semicolonFieldSeparator ( ON | OFF )] [-excludeFileUploadFromChecks ( ON | OFF )] [-SQLInjectionParseComments &lt;SQLInjectionParseComments>] [-invalidPercentHandling &lt;invalidPercentHandling>] [-type ( HTML | XML ) ...] [-checkRequestHeaders ( ON | OFF )] [-optimizePartialReqs ( ON | OFF )] [-URLDecodeRequestCookies ( ON | OFF )] [-comment &lt;string>]
 
 
 ##Arguments
@@ -593,6 +592,14 @@ One or more Content-type actions. Available settings function as follows:
 CLI users: To enable one or more actions, type "set appfw profile -contentTypeaction" followed by the actions to be enabled. To turn off all actions, type "set appfw profile -contentTypeaction none".
 Default value: AS_DEFAULT_CONTENT_TYPE_DISPOSITION
 
+<b>inspectContentTypes</b>
+One or more InspectContentType lists. 
+* application/x-www-form-urlencoded
+* multipart/form-data
+* text/x-gwt-rpc
+CLI users: To enable, type "set appfw profile -InspectContentTypes" followed by the content types to be inspected.
+Default value: AS_DEFAULT_INSPECTION_CONTENT_TYPE
+
 <b>startURLClosure</b>
 Toggle  the state of Start URL Closure.
 Possible values: ON, OFF
@@ -613,7 +620,7 @@ Enable validation of Referer headers.
 Referer validation ensures that a web form that a user sends to your web site originally came from your web site, not an outside attacker. 
 Although this parameter is part of the Start URL check, referer validation protects against cross-site request forgery (CSRF) attacks, not Start URL attacks.
 Possible values: OFF, if_present, AlwaysExceptStartURLs, AlwaysExceptFirstRequest
-Default value: AS_HEADER_CHECK_OFF
+Default value: OFF
 
 <b>cookieConsistencyAction</b>
 One or more Cookie Consistency actions. Available settings function as follows:
@@ -623,7 +630,7 @@ One or more Cookie Consistency actions. Available settings function as follows:
 * Stats - Generate statistics for this security check.
 * None - Disable all actions for this security check.
 CLI users: To enable one or more actions, type "set appfw profile -cookieConsistencyAction" followed by the actions to be enabled. To turn off all actions, type "set appfw profile -cookieConsistencyAction none".
-Default value: AS_NONE
+Default value: none
 
 <b>cookieTransforms</b>
 Perform the specified type of cookie transformation. 
@@ -641,19 +648,19 @@ Type of cookie encryption. Available settings function as follows:
 * Encrypt Session Only - Encrypt session cookies, but not permanent cookies.
 * Encrypt All - Encrypt all cookies.
 Possible values: none, decryptOnly, encryptSessionOnly, encryptAll
-Default value: AS_CKI_ENCRYPT_NONE
+Default value: none
 
 <b>cookieProxying</b>
 Cookie proxy setting. Available settings function as follows:
 * None - Do not proxy cookies.
 * Session Only - Proxy session cookies by using the NetScaler session ID, but do not proxy permanent cookies.
 Possible values: none, sessionOnly
-Default value: AS_CKI_PROXY_NONE
+Default value: none
 
 <b>addCookieFlags</b>
 Add HttpOnly and Secure flags to cookies
 Possible values: none, httpOnly, secure, all
-Default value: AS_ADD_CKI_FLAGS_NONE
+Default value: none
 
 <b>fieldConsistencyAction</b>
 One or more Form Field Consistency actions. Available settings function as follows:
@@ -663,7 +670,7 @@ One or more Form Field Consistency actions. Available settings function as follo
 * Stats - Generate statistics for this security check.
 * None - Disable all actions for this security check.
 CLI users: To enable one or more actions, type "set appfw profile -fieldConsistencyaction" followed by the actions to be enabled. To turn off all actions, type "set appfw profile -fieldConsistencyAction none".
-Default value: AS_NONE
+Default value: none
 
 <b>CSRFtagAction</b>
 One or more Cross-Site Request Forgery (CSRF) Tagging actions. Available settings function as follows:
@@ -673,7 +680,7 @@ One or more Cross-Site Request Forgery (CSRF) Tagging actions. Available setting
 * Stats - Generate statistics for this security check.
 * None - Disable all actions for this security check.
 CLI users: To enable one or more actions, type "set appfw profile -CSRFTagAction" followed by the actions to be enabled. To turn off all actions, type "set appfw profile -CSRFTagAction none".
-Default value: AS_NONE
+Default value: none
 
 <b>crossSiteScriptingAction</b>
 One or more Cross-Site Scripting (XSS) actions. Available settings function as follows:
@@ -709,11 +716,6 @@ Transform injected SQL code. This setting configures the application firewall to
 CAUTION: Make sure that this parameter is set to ON if you are configuring any SQL injection transformations. If it is set to OFF, no SQL injection transformations are performed regardless of any other settings.
 Possible values: ON, OFF
 
-<b>SQLInjectionOnlyCheckFieldsWithSQLChars</b>
-Check only form fields that contain SQL special strings (characters) for injected SQL code.
-Most SQL servers require a special string to activate an SQL request, so SQL code without a special string is harmless to most SQL servers.
-Possible values: ON, OFF
-
 <b>SQLInjectionType</b>
 Available SQL injection types. 
 -SQLSplChar              : Checks for SQL Special Chars
@@ -742,13 +744,13 @@ Designate a default field type to be applied to web form fields that do not have
 <b>defaultFieldFormatMinLength</b>
 Minimum length, in characters, for data entered into a field that is assigned the default field type. 
 To disable the minimum and maximum length settings and allow data of any length to be entered into the field, set this parameter to zero (0).
-Default value: AS_DEFAULTFIELDFORMAT_DEFAULT_MIN_LEN
+Default value: 0 
 Minimum value: 0
 Maximum value: 65535
 
 <b>defaultFieldFormatMaxLength</b>
 Maximum length, in characters, for data entered into a field that is assigned the default field type.
-Default value: AS_DEFAULTFIELDFORMAT_DEFAULT_MAX_LEN
+Default value: 65535 
 Minimum value: 1
 Maximum value: 65535
 
@@ -763,19 +765,19 @@ Default value: AS_DEFAULT_DISPOSITION
 
 <b>bufferOverflowMaxURLLength</b>
 Maximum length, in characters, for URLs on your protected web sites. Requests with longer URLs are blocked.
-Default value: AS_BUFFEROVERFLOW_DEFAULT_MAX_URL_LEN
+Default value: 1024 
 Minimum value: 0
 Maximum value: 65535
 
 <b>bufferOverflowMaxHeaderLength</b>
 Maximum length, in characters, for HTTP headers in requests sent to your protected web sites. Requests with longer headers are blocked.
-Default value: AS_BUFFEROVERFLOW_DEFAULT_MAX_HDR_LEN
+Default value: 4096 
 Minimum value: 0
 Maximum value: 65535
 
 <b>bufferOverflowMaxCookieLength</b>
 Maximum length, in characters, for cookies sent to your protected web sites. Requests with longer cookies are blocked.
-Default value: AS_BUFFEROVERFLOW_DEFAULT_MAX_COOKIE_LEN
+Default value: 4096 
 Minimum value: 0
 Maximum value: 65535
 
@@ -786,18 +788,31 @@ One or more Credit Card actions. Available settings function as follows:
 * Stats - Generate statistics for this security check.
 * None - Disable all actions for this security check.
 CLI users: To enable one or more actions, type "set appfw profile -creditCardAction" followed by the actions to be enabled. To turn off all actions, type "set appfw profile -creditCardAction none".
-Default value: AS_NONE
+Default value: none
 
 <b>creditCard</b>
 Credit card types that the application firewall should protect.
 Default value: AS_CCARD_DEFAULT_CARD_TYPE
 
 <b>creditCardMaxAllowed</b>
-Maximum number of credit card numbers that can appear on a web page served by your protected web sites. Pages that contain more credit card numbers are blocked, or the credit card numbers are masked.
+Maximum number of credit card numbers that can appear on a web page served by your protected web sites. Pages that contain more credit card numbers are blocked
+Minimum value: 0
 Maximum value: 255
 
 <b>creditCardXOut</b>
 Mask any credit card number detected in a response by replacing each digit, except the digits in the final group, with the letter "X."
+Possible values: ON, OFF
+
+<b>doSecureCreditCardLogging</b>
+Setting this option logs credit card numbers in the response when the match is found.
+Possible values: ON, OFF
+
+<b>streaming</b>
+Setting this option converts content-length form submission requests (requests with content-type "application/x-www-form-urlencoded" or "multipart/form-data") to chunked requests when atleast one of the following protections : SQL injection protection, XSS protection, form field consistency protection, starturl closure, CSRF tagging is enabled. Please make sure that the backend server accepts chunked requests before enabling this option.
+Possible values: ON, OFF
+
+<b>trace</b>
+Toggle  the state of trace
 Possible values: ON, OFF
 
 <b>requestContentType</b>
@@ -838,10 +853,6 @@ One or more XML SQL Injection actions. Available settings function as follows:
 CLI users: To enable one or more actions, type "set appfw profile -XMLSQLInjectionAction" followed by the actions to be enabled. To turn off all actions, type "set appfw profile -XMLSQLInjectionAction none".
 Default value: AS_DEFAULT_DISPOSITION
 
-<b>XMLSQLInjectionOnlyCheckFieldsWithSQLChars</b>
-Check only form fields that contain SQL special characters, which most SQL servers require before accepting an SQL command, for injected SQL.
-Possible values: ON, OFF
-
 <b>XMLSQLInjectionType</b>
 Available SQL injection types.
 -SQLSplChar              : Checks for SQL Special Chars
@@ -861,7 +872,7 @@ Parse comments in XML Data and exempt those sections of the request that are fro
 * Nested - Exempt content that is part of a nested (Microsoft-style) comment.
 * ANSI Nested - Exempt content that is part of any type of comment.
 Possible values: checkall, ansi, nested, ansinested
-Default value: AS_CHECKALL
+Default value: checkall
 
 <b>XMLXSSAction</b>
 One or more XML Cross-Site Scripting actions. Available settings function as follows:
@@ -908,11 +919,6 @@ The following requirement applies only to the NetScaler CLI:
 If the name includes one or more spaces, enclose the name in double or single quotation marks \\(for example, "my XML error object" or 'my XML error object'\\).
 Default value: NS_S_AS_ERROR_OBJECT_DEFAULT
 
-<b>customSettings</b>
-Object name for custom settings.
-This check is applicable to Profile Type: HTML, XML. 
-Default value: NS_S_AS_CUSTOM_OBJECT_DEFAULT
-
 <b>signatures</b>
 Object name for signatures.
 This check is applicable to Profile Type: HTML, XML. 
@@ -947,21 +953,16 @@ Default value: NS_S_AS_ERROR_OBJECT_DEFAULT
 Log every profile match, regardless of security checks results.
 Possible values: ON, OFF
 
-<b>stripComments</b>
-Strip HTML comments.
-This check is applicable to Profile Type: HTML. 
-Possible values: ON, OFF
-
 <b>stripHtmlComments</b>
 Strip HTML comments before forwarding a web page sent by a protected web site in response to a user request.
 Possible values: none, all, exclude_script_tag
 
 <b>stripXmlComments</b>
-Exempt URLs that pass the Start URL closure check from additional security checks.
+Strip XML comments before forwarding a web page sent by a protected web site in response to a user request.
 Possible values: none, all
 
 <b>exemptClosureURLsFromSecurityChecks</b>
-Exempt URLs that pass the Start URL closure check from additional security checks.
+Exempt URLs that pass the Start URL closure check from SQL injection, cross-site script, field format and field consistency security checks at locations other than headers.
 Possible values: ON, OFF
 
 <b>defaultCharSet</b>
@@ -979,12 +980,14 @@ Maximum value: 31
 
 <b>postBodyLimit</b>
 Maximum allowed HTTP post body size, in bytes.
-Default value: AS_DEFAULT_POSTBODYLIMIT
+Default value: 20000000 
+Minimum value: 0
 Maximum value: 1000000000
 
 <b>fileUploadMaxNum</b>
 Maximum allowed number of file uploads per form-submission request. The maximum setting (65535) allows an unlimited number of uploads.
-Default value: AS_DEFAULT_MAX_FILE_UPLOADS
+Default value: 65535 
+Minimum value: 0
 Maximum value: 65535
 
 <b>canonicalizeHTMLResponse</b>
@@ -1000,7 +1003,7 @@ Default value: ON
 <b>sessionlessFieldConsistency</b>
 Perform sessionless Field Consistency Checks.
 Possible values: OFF, ON, postOnly
-Default value: AS_OFF
+Default value: OFF
 
 <b>sessionlessURLClosure</b>
 Enable session less URL Closure Checks.
@@ -1033,14 +1036,14 @@ Configure the method that the application firewall uses to handle percent-encode
 * asp_mode - Microsoft ASP format.
 * secure_mode - Secure format.
 Possible values: apache_mode, asp_mode, secure_mode
-Default value: AS_PERCENT_DECODE_SECURE_MODE
+Default value: secure_mode
 
 <b>type</b>
 Application firewall profile type, which controls which security checks and settings are applied to content that is filtered with the profile. Available settings function as follows:
 * HTML - HTML-based web sites.
 * XML - XML-based web sites and services.
 * HTML XML (Web 2.0) - Sites that contain both HTML and XML content, such as ATOM feeds, blogs, and RSS feeds.
-Default value: AF_PROFILE_TYPE_HTML
+Default value: HTML
 
 <b>checkRequestHeaders</b>
 Check request headers as well as web forms for injected SQL and cross-site scripts.
@@ -1071,7 +1074,7 @@ Use this command to remove appfw profile settings.Refer to the set appfw profile
 
 ##Synopsys
 
-unset appfw profile &lt;name> [-startURLAction] [-contentTypeAction] [-startURLClosure] [-denyURLAction] [-RefererHeaderCheck] [-cookieConsistencyAction] [-cookieTransforms] [-cookieEncryption] [-cookieProxying] [-addCookieFlags] [-fieldConsistencyAction] [-CSRFtagAction] [-crossSiteScriptingAction] [-crossSiteScriptingTransformUnsafeHTML] [-crossSiteScriptingCheckCompleteURLs] [-SQLInjectionAction] [-SQLInjectionTransformSpecialChars] [-SQLInjectionType] [-SQLInjectionCheckSQLWildChars] [-fieldFormatAction] [-defaultFieldFormatType] [-defaultFieldFormatMinLength] [-defaultFieldFormatMaxLength] [-bufferOverflowAction] [-bufferOverflowMaxURLLength] [-bufferOverflowMaxHeaderLength] [-bufferOverflowMaxCookieLength] [-creditCardAction] [-creditCard] [-creditCardMaxAllowed] [-creditCardXOut] [-requestContentType] [-responseContentType] [-XMLDoSAction] [-XMLFormatAction] [-XMLSQLInjectionAction] [-XMLSQLInjectionType] [-XMLSQLInjectionCheckSQLWildChars] [-XMLSQLInjectionParseComments] [-XMLXSSAction] [-XMLWSIAction] [-XMLAttachmentAction] [-XMLValidationAction] [-XMLErrorObject] [-signatures] [-XMLSOAPFaultAction] [-useHTMLErrorObject] [-errorURL] [-HTMLErrorObject] [-logEveryPolicyHit] [-stripHtmlComments] [-stripXmlComments] [-exemptClosureURLsFromSecurityChecks] [-defaultCharSet] [-postBodyLimit] [-fileUploadMaxNum] [-canonicalizeHTMLResponse] [-enableFormTagging] [-sessionlessFieldConsistency] [-sessionlessURLClosure] [-semicolonFieldSeparator] [-excludeFileUploadFromChecks] [-SQLInjectionParseComments] [-invalidPercentHandling] [-type] [-checkRequestHeaders] [-optimizePartialReqs] [-URLDecodeRequestCookies] [-comment]
+unset appfw profile &lt;name> [-startURLAction] [-contentTypeAction] [-inspectContentTypes] [-startURLClosure] [-denyURLAction] [-RefererHeaderCheck] [-cookieConsistencyAction] [-cookieTransforms] [-cookieEncryption] [-cookieProxying] [-addCookieFlags] [-fieldConsistencyAction] [-CSRFtagAction] [-crossSiteScriptingAction] [-crossSiteScriptingTransformUnsafeHTML] [-crossSiteScriptingCheckCompleteURLs] [-SQLInjectionAction] [-SQLInjectionTransformSpecialChars] [-SQLInjectionType] [-SQLInjectionCheckSQLWildChars] [-fieldFormatAction] [-defaultFieldFormatType] [-defaultFieldFormatMinLength] [-defaultFieldFormatMaxLength] [-bufferOverflowAction] [-bufferOverflowMaxURLLength] [-bufferOverflowMaxHeaderLength] [-bufferOverflowMaxCookieLength] [-creditCardAction] [-creditCard] [-creditCardMaxAllowed] [-creditCardXOut] [-doSecureCreditCardLogging] [-streaming] [-trace] [-requestContentType] [-responseContentType] [-XMLDoSAction] [-XMLFormatAction] [-XMLSQLInjectionAction] [-XMLSQLInjectionType] [-XMLSQLInjectionCheckSQLWildChars] [-XMLSQLInjectionParseComments] [-XMLXSSAction] [-XMLWSIAction] [-XMLAttachmentAction] [-XMLValidationAction] [-XMLErrorObject] [-signatures] [-XMLSOAPFaultAction] [-useHTMLErrorObject] [-errorURL] [-HTMLErrorObject] [-logEveryPolicyHit] [-stripHtmlComments] [-stripXmlComments] [-exemptClosureURLsFromSecurityChecks] [-defaultCharSet] [-postBodyLimit] [-fileUploadMaxNum] [-canonicalizeHTMLResponse] [-enableFormTagging] [-sessionlessFieldConsistency] [-sessionlessURLClosure] [-semicolonFieldSeparator] [-excludeFileUploadFromChecks] [-SQLInjectionParseComments] [-invalidPercentHandling] [-type] [-checkRequestHeaders] [-optimizePartialReqs] [-URLDecodeRequestCookies] [-comment]
 
 
 ##bind appfw profile
@@ -1081,7 +1084,7 @@ Binds the specified exemption (relaxation) or rule to the specified application 
 
 ##Synopsys
 
-bind appfw profile &lt;name> (-startURL &lt;expression> | -denyURL &lt;expression> | (-fieldConsistency &lt;string>  &lt;formActionURL>  [-isRegex ( REGEX | NOTREGEX )]) | (-cookieConsistency &lt;string>  [-isRegex ( REGEX | NOTREGEX )]) | (-SQLInjection &lt;string>  &lt;formActionURL>  [-isRegex ( REGEX | NOTREGEX )]  [-location &lt;location>]) | (-CSRFTag &lt;expression>  &lt;CSRFFormActionURL>) | (-crossSiteScripting &lt;string>  &lt;formActionURL>  [-isRegex ( REGEX | NOTREGEX )]  [-location &lt;location>]) | (-fieldFormat &lt;string>  &lt;formActionURL>  &lt;fieldType>  [-fieldFormatMinLength &lt;positive_integer>]  [-fieldFormatMaxLength &lt;positive_integer>]  [-isRegex ( REGEX | NOTREGEX )]) | (-safeObject &lt;string>  &lt;expression>  &lt;maxMatchLength>  [-action &lt;action> ...]) | -trustedLearningClients &lt;ip_addr[/prefix]|ipv6_addr[/prefix]|*> | (-XMLDoSURL &lt;expression>  [-XMLMaxElementDepthCheck ( ON | OFF )  [-XMLMaxElementDepth &lt;positive_integer>]]  [-XMLMaxElementNameLengthCheck ( ON | OFF )  [-XMLMaxElementNameLength &lt;positive_integer>]]  [-XMLMaxElementsCheck ( ON | OFF )  [-XMLMaxElements &lt;positive_integer>]]  [-XMLMaxElementChildrenCheck ( ON | OFF )  [-XMLMaxElementChildren &lt;positive_integer>]]  [-XMLMaxAttributesCheck ( ON | OFF )  [-XMLMaxAttributes &lt;positive_integer>]]  [-XMLMaxAttributeNameLengthCheck ( ON | OFF )  [-XMLMaxAttributeNameLength &lt;positive_integer>]]  [-XMLMaxAttributeValueLengthCheck ( ON | OFF )  [-XMLMaxAttributeValueLength &lt;positive_integer>]]  [-XMLMaxCharDATALengthCheck ( ON | OFF )  [-XMLMaxCharDATALength &lt;positive_integer>]]  [-XMLMaxFileSizeCheck ( ON | OFF )  [-XMLMaxFileSize &lt;positive_integer>]]  [-XMLMinFileSizeCheck ( ON | OFF )  [-XMLMinFileSize &lt;positive_integer>]]  [-XMLBlockPI ( ON | OFF )]  [-XMLBlockDTD ( ON | OFF )]  [-XMLBlockExternalEntities ( ON | OFF )]  [-XMLMaxEntityExpansionsCheck ( ON | OFF )  [-XMLMaxEntityExpansions &lt;positive_integer>]]  [-XMLMaxEntityExpansionDepthCheck ( ON | OFF )  [-XMLMaxEntityExpansionDepth &lt;positive_integer>]]  [-XMLMaxNamespacesCheck ( ON | OFF )  [-XMLMaxNamespaces &lt;positive_integer>]]  [-XMLMaxNamespaceUriLengthCheck ( ON | OFF )  [-XMLMaxNamespaceUriLength &lt;positive_integer>]]  [-XMLSOAPArrayCheck ( ON | OFF )  [-XMLMaxSOAPArraySize &lt;positive_integer>]  [-XMLMaxSOAPArrayRank &lt;positive_integer>]]) | (-XMLWSIURL &lt;expression>  [-XMLWSIChecks &lt;string>]) | (-XMLValidationURL &lt;expression>  (-XMLRequestSchema &lt;string> | (-XMLWSDL &lt;string>  [-XMLAdditionalSOAPHeaders ( ON | OFF )]  [-XMLEndPointCheck ( ABSOLUTE | RELATIVE )]) | -XMLValidateSOAPEnvelope ( ON | OFF ))  [-XMLResponseSchema &lt;string>]    [-XMLValidateResponse ( ON | OFF )]) | (-XMLAttachmentURL &lt;expression>  [-XMLMaxAttachmentSizeCheck ( ON | OFF )  [-XMLMaxAttachmentSize &lt;positive_integer>]]  [-XMLAttachmentContentTypeCheck ( ON | OFF )  [-XMLAttachmentContentType &lt;expression>]]) | (-XMLSQLInjection &lt;string>  [-isRegex ( REGEX | NOTREGEX )]  [-location ( ELEMENT | ATTRIBUTE )]) | (-XMLXSS &lt;string>  [-isRegex ( REGEX | NOTREGEX )]  [-location ( ELEMENT | ATTRIBUTE )]) | -contentType &lt;expression> | -excludeResContentType &lt;expression>) [-comment &lt;string>] [-state ( ENABLED | DISABLED )]
+bind appfw profile &lt;name> (-startURL &lt;expression> | -denyURL &lt;expression> | (-fieldConsistency &lt;string>  &lt;formActionURL>  [-isRegex ( REGEX | NOTREGEX )]) | (-cookieConsistency &lt;string>  [-isRegex ( REGEX | NOTREGEX )]) | (-SQLInjection &lt;string>  &lt;formActionURL>  [-isRegex ( REGEX | NOTREGEX )]  [-location &lt;location>]  [-valueType &lt;valueType>  &lt;valueExpression>  [-isValueRegex ( REGEX | NOTREGEX )]]) | (-CSRFTag &lt;expression>  &lt;CSRFFormActionURL>) | (-crossSiteScripting &lt;string>  &lt;formActionURL>  [-isRegex ( REGEX | NOTREGEX )]  [-location &lt;location>]  [-valueType &lt;valueType>  &lt;valueExpression>  [-isValueRegex ( REGEX | NOTREGEX )]]) | (-fieldFormat &lt;string>  &lt;formActionURL>  &lt;fieldType>  [-fieldFormatMinLength &lt;positive_integer>]  [-fieldFormatMaxLength &lt;positive_integer>]  [-isRegex ( REGEX | NOTREGEX )]) | (-safeObject &lt;string>  &lt;expression>  &lt;maxMatchLength>  [-action &lt;action> ...]) | -trustedLearningClients &lt;ip_addr[/prefix]|ipv6_addr[/prefix]|*> | (-XMLDoSURL &lt;expression>  [-XMLMaxElementDepthCheck ( ON | OFF )  [-XMLMaxElementDepth &lt;positive_integer>]]  [-XMLMaxElementNameLengthCheck ( ON | OFF )  [-XMLMaxElementNameLength &lt;positive_integer>]]  [-XMLMaxElementsCheck ( ON | OFF )  [-XMLMaxElements &lt;positive_integer>]]  [-XMLMaxElementChildrenCheck ( ON | OFF )  [-XMLMaxElementChildren &lt;positive_integer>]]  [-XMLMaxAttributesCheck ( ON | OFF )  [-XMLMaxAttributes &lt;positive_integer>]]  [-XMLMaxAttributeNameLengthCheck ( ON | OFF )  [-XMLMaxAttributeNameLength &lt;positive_integer>]]  [-XMLMaxAttributeValueLengthCheck ( ON | OFF )  [-XMLMaxAttributeValueLength &lt;positive_integer>]]  [-XMLMaxCharDATALengthCheck ( ON | OFF )  [-XMLMaxCharDATALength &lt;positive_integer>]]  [-XMLMaxFileSizeCheck ( ON | OFF )  [-XMLMaxFileSize &lt;positive_integer>]]  [-XMLMinFileSizeCheck ( ON | OFF )  [-XMLMinFileSize &lt;positive_integer>]]  [-XMLBlockPI ( ON | OFF )]  [-XMLBlockDTD ( ON | OFF )]  [-XMLBlockExternalEntities ( ON | OFF )]  [-XMLMaxEntityExpansionsCheck ( ON | OFF )  [-XMLMaxEntityExpansions &lt;positive_integer>]]  [-XMLMaxEntityExpansionDepthCheck ( ON | OFF )  [-XMLMaxEntityExpansionDepth &lt;positive_integer>]]  [-XMLMaxNamespacesCheck ( ON | OFF )  [-XMLMaxNamespaces &lt;positive_integer>]]  [-XMLMaxNamespaceUriLengthCheck ( ON | OFF )  [-XMLMaxNamespaceUriLength &lt;positive_integer>]]  [-XMLSOAPArrayCheck ( ON | OFF )  [-XMLMaxSOAPArraySize &lt;positive_integer>]  [-XMLMaxSOAPArrayRank &lt;positive_integer>]]) | (-XMLWSIURL &lt;expression>  [-XMLWSIChecks &lt;string>]) | (-XMLValidationURL &lt;expression>  (-XMLRequestSchema &lt;string> | (-XMLWSDL &lt;string>  [-XMLAdditionalSOAPHeaders ( ON | OFF )]  [-XMLEndPointCheck ( ABSOLUTE | RELATIVE )]) | -XMLValidateSOAPEnvelope ( ON | OFF ))  [-XMLResponseSchema &lt;string>]    [-XMLValidateResponse ( ON | OFF )]) | (-XMLAttachmentURL &lt;expression>  [-XMLMaxAttachmentSizeCheck ( ON | OFF )  [-XMLMaxAttachmentSize &lt;positive_integer>]]  [-XMLAttachmentContentTypeCheck ( ON | OFF )  [-XMLAttachmentContentType &lt;expression>]]) | (-XMLSQLInjection &lt;string>  [-isRegex ( REGEX | NOTREGEX )]  [-location ( ELEMENT | ATTRIBUTE )]) | (-XMLXSS &lt;string>  [-isRegex ( REGEX | NOTREGEX )]  [-location ( ELEMENT | ATTRIBUTE )]) | -contentType &lt;expression> | -excludeResContentType &lt;expression> | (-CreditCardNumber &lt;expression>  &lt;CreditCardNumberUrl>)) [-comment &lt;string>] [-state ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -1104,6 +1107,13 @@ A form field consistency exemption (relaxation) consists of the following items:
 * Form action URL. Action URL for the web form.
 * IsRegex flag. The IsRegex flag, followed by YES if the form action URL is a regular expression, or NO if it is a literal string.
 
+<b>formActionURL</b>
+Form action URL.
+
+<b>isRegex</b>
+Is a regular expression?
+Possible values: REGEX, NOTREGEX
+
 <b>cookieConsistency</b>
 A cookie consistency exemption (relaxation) consists of the following items:
 * Cookie name. Name of the cookie to exempt from this check.
@@ -1117,11 +1127,30 @@ An SQL injection exemption (relaxation) consists of the following items:
 * IsRegex flag. The IsRegex flag, followed by YES if the name or form action URL is a regular expression, or NO if it is a literal string.
 * Location. Location that should be examined by the SQL injection check, either FORMFIELD for web form field, HEADER for HTTP header, or COOKIE for cookie.
 
+<b>location</b>
+Location of XSS injection exception - XML Element or Attribute. Default location is 'ELEMENT'
+Possible values: ELEMENT, ATTRIBUTE
+Default value: AS_XMLLOCATION_ELEMENT
+
+<b>valueType</b>
+XSS value type. (Tag | Attribute | Pattern)
+Possible values: Tag, Attribute, Pattern
+
+<b>valueExpression</b>
+XSS value expressions consistituting expressions for Tag, Attribute and Pattern.
+
+<b>isValueRegex</b>
+Is a regular expression?
+Possible values: REGEX, NOTREGEX
+
 <b>CSRFTag</b>
 Exempt the specified form field and web form from the cross-site request forgery (CSRF tagging) check.
 A CSRF tagging exemption (relaxation) consists of the following items:
 * Web form field name. Regular expression that describes the web form field to exempt from this check.
 * Form action URL. The action URL for the web form.
+
+<b>CSRFFormActionURL</b>
+CSRF form action URL.
 
 <b>crossSiteScripting</b>
 Exempt the specified string, found in the specified HTTP header, cookie, or web form, from the cross-site scripting check.  
@@ -1141,6 +1170,21 @@ A field format rule consists of the following items:
 * Field format maximum length. The maximum length allowed for data in the specified field.
 * IsRegex flag. The IsRegex flag, followed by YES if the URL is a regular expression, or NO if it is a literal string.
 
+<b>fieldType</b>
+Field type.
+
+<b>fieldFormatMinLength</b>
+Field format minimum length.
+Default value: 0 
+Minimum value: 0
+Maximum value: 65535
+
+<b>fieldFormatMaxLength</b>
+Field format maximum length.
+Default value: 65535 
+Minimum value: 1
+Maximum value: 65535
+
 <b>safeObject</b>
 Protect web sites from exposing sensitive private information such as social security numbers, credit card numbers, driver's license numbers, passport numbers, and any other type of private information that can be described by a regular expression.
 A safe object consists of the following items:
@@ -1148,6 +1192,18 @@ A safe object consists of the following items:
 * Expression. PCRE-format regular expression that describes the information to be protected.
 * Maximum match length. Maximum length of a matched string.
 * Action. "X-Out" to mask blocked information with the letter X, or "Remove" to remove the information.
+
+<b>expression</b>
+Safe Object regular expression.
+
+<b>maxMatchLength</b>
+Maximum match length for a Safe Object expression.
+Default value: 1
+Minimum value: 1
+Maximum value: 65535
+
+<b>action</b>
+Safe Object action types. (BLOCK | LEARN | LOG | STATS | NONE)
 
 <b>trustedLearningClients</b>
 Trusted host/network learning IP.
@@ -1199,8 +1255,197 @@ An XDoS exemption (relaxation) consists of the following items:
 * Maximum SOAP-array size. Positive integer representing the maximum allowed size of XML SOAP arrays.
 * Maximum SOAP-array rank. Positive integer representing the maximum rank (dimensions) of any single XML SOAP array.
 
+<b>XMLMaxElementDepthCheck</b>
+State if XML Max Element Depth Check is ON or OFF.
+Possible values: ON, OFF
+Default value: OFF
+
+<b>XMLMaxElementDepth</b>
+Maximum nesting (depth) of XML elements. This check protects against documents that have excessive depth of hierarchy.
+Default value: 256
+Minimum value: 1
+Maximum value: 65535
+
+<b>XMLMaxElementNameLengthCheck</b>
+State if XML Max Element Name Length Check is ON or OFF.
+Possible values: ON, OFF
+Default value: OFF
+
+<b>XMLMaxElementNameLength</b>
+Specify the longest name of any element (including the prefix for qualified element name) to protect against overflow attacks.
+Default value: 128
+Minimum value: 1
+Maximum value: 65535
+
+<b>XMLMaxElementsCheck</b>
+State if XML Max Elements Check is ON or OFF.
+Possible values: ON, OFF
+Default value: OFF
+
+<b>XMLMaxElements</b>
+Specifying maximum number of elements protects against overflow attacks.
+Default value: 65535
+Minimum value: 1
+Maximum value: 65535
+
+<b>XMLMaxElementChildrenCheck</b>
+State if XML Max Element Children Check is ON or OFF.
+Possible values: ON, OFF
+Default value: OFF
+
+<b>XMLMaxElementChildren</b>
+Specifying maximum number of children allowed per element protects against overflow attacks.
+Default value: 65535
+Minimum value: 0
+Maximum value: 65535
+
+<b>XMLMaxAttributesCheck</b>
+State if XML Max Attributes Check is ON or OFF.
+Possible values: ON, OFF
+Default value: OFF
+
+<b>XMLMaxAttributes</b>
+Specify maximum number of attributes per element. Protects against overflow attacks.
+Default value: 256
+Minimum value: 0
+Maximum value: 65535
+
+<b>XMLMaxAttributeNameLengthCheck</b>
+State if XML Max Attribute Name Length Check is ON or OFF.
+Possible values: ON, OFF
+Default value: OFF
+
+<b>XMLMaxAttributeNameLength</b>
+Specify the longest name of any attribute (including the prefix for qualified attribute name). Protects against overflow attacks.
+Default value: 128
+Minimum value: 1
+Maximum value: 65535
+
+<b>XMLMaxAttributeValueLengthCheck</b>
+State if XML Max Atribute Value Length is ON or OFF.
+Possible values: ON, OFF
+Default value: OFF
+
+<b>XMLMaxAttributeValueLength</b>
+Specify the longest value of any attribute. Protects against overflow attacks.
+Default value: 2048
+Minimum value: 0
+Maximum value: 65535
+
+<b>XMLMaxCharDATALengthCheck</b>
+State if XML Max CDATA Length Check is ON or OFF.
+Possible values: ON, OFF
+Default value: OFF
+
+<b>XMLMaxCharDATALength</b>
+Maximum size of CDATA protects against overflow attacks and large unparsed data within XML messages.
+Default value: 65535
+Minimum value: 0
+Maximum value: 1000000000
+
+<b>XMLMaxFileSizeCheck</b>
+State if XML Max File Size Check is ON or OFF.
+Possible values: ON, OFF
+Default value: OFF
+
+<b>XMLMaxFileSize</b>
+Maximum size of the XML messages protects against overflow attacks.
+Default value: 20000000 
+Minimum value: 4
+Maximum value: 1000000000
+
+<b>XMLMinFileSizeCheck</b>
+State if XML Min File Size Check is ON or OFF.
+Possible values: ON, OFF
+Default value: OFF
+
+<b>XMLMinFileSize</b>
+Enforces minimum message size.
+Default value: 9
+Minimum value: 4
+Maximum value: 1000000000
+
+<b>XMLBlockPI</b>
+State if XML Block PI is ON or OFF. Protects resources from denial of service attacks as SOAP messages can not have Processing Instruction (PI) in the message.
+Possible values: ON, OFF
+Default value: OFF
+
+<b>XMLBlockDTD</b>
+State if XML DTD is ON or OFF. Protects against recursive Document Type Declaration (DTD) entity expansion attacks. Also, SOAP messages can not have DTD in the message. 
+Possible values: ON, OFF
+Default value: OFF
+
+<b>XMLBlockExternalEntities</b>
+State if XML Block External Entities Check is ON or OFF. Protects against XML External Entity (XXE) attacks that force applications to parse untrusted external entities (sources) in XML documents.
+Possible values: ON, OFF
+Default value: OFF
+
+<b>XMLMaxEntityExpansionsCheck</b>
+State if XML Max Entity Expansions Check is ON or OFF.
+Possible values: ON, OFF
+Default value: OFF
+
+<b>XMLMaxEntityExpansions</b>
+Specify maximum allowed number of entity expansions. Protects aganist Entity Expansion Attack.
+Default value: 512
+Minimum value: 0
+Maximum value: 1024
+
+<b>XMLMaxEntityExpansionDepthCheck</b>
+State if XML Max Entity Expansions Depth Check is ON or OFF.
+Possible values: ON, OFF
+Default value: OFF
+
+<b>XMLMaxEntityExpansionDepth</b>
+Specify maximum entity expansion depth. Protects aganist Entity Expansion Attack.
+Default value: 8
+Minimum value: 0
+Maximum value: 24
+
+<b>XMLMaxNamespacesCheck</b>
+State if XML Max Namespaces Check is ON or OFF.
+Possible values: ON, OFF
+Default value: OFF
+
+<b>XMLMaxNamespaces</b>
+Specify maximum number of active namespaces. Protects against overflow attacks.
+Default value: 16
+Minimum value: 0
+Maximum value: 512
+
+<b>XMLMaxNamespaceUriLengthCheck</b>
+State if XML Max Namspace URI Length Check is ON or OFF.
+Possible values: ON, OFF
+Default value: OFF
+
+<b>XMLMaxNamespaceUriLength</b>
+Specify the longest URI of any XML namespace. Protects against overflow attacks.
+Default value: 256
+Minimum value: 0
+Maximum value: 65535
+
+<b>XMLSOAPArrayCheck</b>
+State if XML SOAP Array check is ON or OFF.
+Possible values: ON, OFF
+Default value: OFF
+
+<b>XMLMaxSOAPArraySize</b>
+XML Max Total SOAP Array Size. Protects against SOAP Array Abuse attack.
+Default value: 20000000 
+Minimum value: 0
+Maximum value: 1000000000
+
+<b>XMLMaxSOAPArrayRank</b>
+XML Max Total SOAP Array Rank. Protects against SOAP Array Abuse attack.
+Default value: 16
+Minimum value: 0
+Maximum value: 32
+
 <b>XMLWSIURL</b>
 Exempt the specified URL from the web services interoperability (WS-I) check. The URL is specified as a PCRE-format regular expression, which can match one or more URLs.
+
+<b>XMLWSIChecks</b>
+Synonym for XMLWISURL, but takes a literal URL instead of a PCRE-format regular expression.
 
 <b>XMLValidationURL</b>
 Exempt the specified URL from the XML message validation check.
@@ -1216,6 +1461,36 @@ An XML message validation exemption (relaxation) consists of the following items
 * Additional-SOAP-headers toggle. Validate against the extended list of SOAP headers. ON to enable, OFF to disable.
 * XML-end-point check. ABSOLUTE to use an absolute end point, RELATIVE to use a relative end point.
 
+<b>XMLRequestSchema</b>
+XML Schema object for request validation .
+
+<b>XMLResponseSchema</b>
+XML Schema object for response validation .
+
+<b>XMLWSDL</b>
+WSDL object for soap request validation .
+
+<b>XMLAdditionalSOAPHeaders</b>
+Allow addtional soap headers.
+Possible values: ON, OFF
+
+<b>XMLEndPointCheck</b>
+Modifies the behaviour of the Request URL validation w.r.t. the Service URL.
+	If set to ABSOLUTE, the entire request URL is validated with the entire URL mentioned in Service of the associated WSDL.
+		eg: Service URL: http://example.org/ExampleService, Request URL: http//example.com/ExampleService would FAIL the validation.
+	If set to RELATIVE, only the non-hostname part of the request URL is validated against the non-hostname part of the Service URL.
+		eg: Service URL: http://example.org/ExampleService, Request URL: http//example.com/ExampleService would PASS the validation.
+Possible values: ABSOLUTE, RELATIVE
+Default value: ABSOLUTE
+
+<b>XMLValidateSOAPEnvelope</b>
+Validate SOAP Evelope only.
+Possible values: ON, OFF
+
+<b>XMLValidateResponse</b>
+Validate response message.
+Possible values: ON, OFF
+
 <b>XMLAttachmentURL</b>
 Exempt the specified URL from the XML attachment check. 
 An XML attachment exemption (relaxation) consists of the following items:
@@ -1225,12 +1500,30 @@ An XML attachment exemption (relaxation) consists of the following items:
 * Attachment-content-type-check toggle. ON to enable, OFF to disable.
 * Attachment content type. PCRE-format regular expression that specifies the list of MIME content types allowed for XML attachments.
 
+<b>XMLMaxAttachmentSizeCheck</b>
+State if XML max attachment size check is ON or OFF. Protects against XML requests with large attachment data.
+Possible values: ON, OFF
+Default value: OFF
+
+<b>XMLMaxAttachmentSize</b>
+Specify maximum attachment size.
+Minimum value: 0
+Maximum value: 1000000000
+
+<b>XMLAttachmentContentTypeCheck</b>
+State if XML attachment content-type check is ON or OFF. Protects against XML requests with illegal attachments.
+Possible values: ON, OFF
+Default value: OFF
+
+<b>XMLAttachmentContentType</b>
+Specify content-type regular expression.
+
 <b>XMLSQLInjection</b>
 Exempt the specified URL from the XML SQL injection check. 
-An XML attachment exemption (relaxation) consists of the following items:
+An XML SQL injection exemption (relaxation) consists of the following items:
 * URL. URL to exempt, as a string or a PCRE-format regular expression.
 * ISREGEX flag. REGEX if URL is a regular expression, NOTREGEX if URL is a fixed string.
-* Location. ELEMENT if the attachment is located in an XML element, ATTRIBUTE if located in an XML attribute.
+* Location. ELEMENT if the injection is located in an XML element, ATTRIBUTE if located in an XML attribute.
 
 <b>XMLXSS</b>
 Exempt the specified URL from the XML cross-site scripting (XSS) check.
@@ -1246,6 +1539,12 @@ Add the specified content-type to the content-type list.Enclose content-type in 
 Add the specified content-type to the response content-type list that are to be excluded from inspection. Enclose content-type in double quotes to ensure preservation 
 of any embedded spaces or non-alphanumeric characters.
 
+<b>CreditCardNumber</b>
+Add expression to the list of object expression which are to be bypassed from safe commerce checks.
+
+<b>CreditCardNumberUrl</b>
+The url for which the list of credit card numbers are needed to be bypassed from inspection
+
 
 
 ##unbind appfw profile
@@ -1255,7 +1554,7 @@ Unbinds the specified exemption (relaxation) or rule from the specified applicat
 
 ##Synopsys
 
-unbind appfw profile &lt;name> (-startURL &lt;expression> | -denyURL &lt;expression> | (-fieldConsistency &lt;string>  &lt;formActionURL>) | -cookieConsistency &lt;string> | (-SQLInjection &lt;string>  &lt;formActionURL>  [-location &lt;location>]) | (-CSRFTag &lt;string>  &lt;CSRFFormActionURL>) | (-crossSiteScripting &lt;string>  &lt;formActionURL>  [-location &lt;location>]) | (-fieldFormat &lt;string>  &lt;formActionURL>) | -safeObject &lt;string> | -trustedLearningClients &lt;ip_addr[/prefix]|ipv6_addr[/prefix]|*> | -XMLDoSURL &lt;expression> | -XMLWSIURL &lt;expression> | -XMLValidationURL &lt;expression> | -XMLAttachmentURL &lt;expression> | (-XMLSQLInjection &lt;string>  [-location ( ELEMENT | ATTRIBUTE )]) | (-XMLXSS &lt;string>  [-location ( ELEMENT | ATTRIBUTE )]) | -contentType &lt;expression> | -excludeResContentType &lt;expression>)
+unbind appfw profile &lt;name> (-startURL &lt;expression> | -denyURL &lt;expression> | (-fieldConsistency &lt;string>  &lt;formActionURL>) | -cookieConsistency &lt;string> | (-SQLInjection &lt;string>  &lt;formActionURL>  [-location &lt;location>]  [-valueType &lt;valueType>  [&lt;valueExpression>]]) | (-CSRFTag &lt;string>  &lt;CSRFFormActionURL>) | (-crossSiteScripting &lt;string>  &lt;formActionURL>  [-location &lt;location>]  [-valueType &lt;valueType>  [&lt;valueExpression>]]) | (-fieldFormat &lt;string>  &lt;formActionURL>) | -safeObject &lt;string> | -trustedLearningClients &lt;ip_addr[/prefix]|ipv6_addr[/prefix]|*> | -XMLDoSURL &lt;expression> | -XMLWSIURL &lt;expression> | -XMLValidationURL &lt;expression> | -XMLAttachmentURL &lt;expression> | (-XMLSQLInjection &lt;string>  [-location ( ELEMENT | ATTRIBUTE )]) | (-XMLXSS &lt;string>  [-location ( ELEMENT | ATTRIBUTE )]) | -contentType &lt;expression> | -excludeResContentType &lt;expression> | (-CreditCardNumber &lt;expression>  &lt;CreditCardNumberUrl>))
 
 
 ##Arguments
@@ -1272,15 +1571,33 @@ Deny URL regular expression.
 <b>fieldConsistency</b>
 Form field name.
 
+<b>formActionURL</b>
+Form action URL.
+
 <b>cookieConsistency</b>
 Cookie name.
 
 <b>SQLInjection</b>
 Form field, header or cookie name.
 
+<b>location</b>
+Location of XSS injection exception - XML Element or Attribute. Default location is 'ELEMENT'
+Possible values: ELEMENT, ATTRIBUTE
+Default value: AS_XMLLOCATION_ELEMENT
+
+<b>valueType</b>
+The web form value type.
+Possible values: Tag, Attribute, Pattern
+
+<b>valueExpression</b>
+The web form value expression.
+
 <b>CSRFTag</b>
 CSRF Form origin URL.
 This binding is applicable to Profile Type: HTML.
+
+<b>CSRFFormActionURL</b>
+CSRF form action URL.
 
 <b>crossSiteScripting</b>
 Form field, header or cookie name.
@@ -1308,10 +1625,10 @@ XML Attachment URL regular expression.
 
 <b>XMLSQLInjection</b>
 Exempt the specified URL from the XML SQL injection check. 
-An XML attachment exemption (relaxation) consists of the following items:
+An XML SQL injection exemption (relaxation) consists of the following items:
 * URL. URL to exempt, as a string or a PCRE-format regular expression.
 * ISREGEX flag. REGEX if URL is a regular expression, NOTREGEX if URL is a fixed string.
-* Location. ELEMENT if the attachment is located in an XML element, ATTRIBUTE if located in an XML attribute.
+* Location. ELEMENT if the injection is located in an XML element, ATTRIBUTE if located in an XML attribute.
 
 <b>XMLXSS</b>
 Exempt the specified URL from the XML cross-site scripting (XSS) check.
@@ -1325,6 +1642,12 @@ content-type  regular expression.
 
 <b>excludeResContentType</b>
 Response content type regular expression that are to be excluded from inspection.
+
+<b>CreditCardNumber</b>
+The object expression that is to be excluded from safe commerce check.
+
+<b>CreditCardNumberUrl</b>
+The url for which the list of credit card numbers are needed to be bypassed from inspection
 
 
 
@@ -1342,14 +1665,6 @@ show appfw profile [&lt;name>]
 
 <b>name</b>
 Name of the application firewall profile.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -1380,7 +1695,7 @@ If the name includes one or more spaces, enclose the name in double or single qu
 Log every profile match, regardless of security checks results.
 
 <b>stripComments</b>
-Tells the Application Firewall to strip HTML comments from responses before sending them to the user.NOTE: This attribute is deprecated.Replaced by a new command that provides an option to exclude comments inside &lt;script> tag from getting stripped.
+Tells the Application Firewall to strip HTML comments from responses before sending them to the user.
 
 <b>stripHtmlComments</b>
 Tells the Application Firewall to strip HTML comments from responses before sending them to the user.
@@ -1439,6 +1754,9 @@ Start URL action types. (BLOCK | LEARN | LOG | STATS | NONE)
 <b>contentTypeAction</b>
 Content-type action types. (BLOCK | LOG | NONE)
 
+<b>inspectContentTypes</b>
+Inspection content types associated with this profile
+
 <b>startURL</b>
 A regular expression that designates a URL on the Start URL list.
 
@@ -1489,6 +1807,15 @@ Tells the Application Firewall to exempt closure URLs from security checks.
 <b>location</b>
 Location of XSS injection exception - XML Element or Attribute.
 
+<b>valueType</b>
+The web form value type.
+
+<b>valueExpression</b>
+The web form value expression.
+
+<b>isValueRegex</b>
+Is the web form field value a regular expression?
+
 <b>SQLInjectionAction</b>
 SQL injection action types. (BLOCK | LEARN | LOG | STATS | NONE)
 
@@ -1496,7 +1823,7 @@ SQL injection action types. (BLOCK | LEARN | LOG | STATS | NONE)
 Enables transformation of SQL special characters found in web forms into safe equivalents.
 
 <b>SQLInjectionOnlyCheckFieldsWithSQLChars</b>
-Tells the Application Firewall to check form fields that contain SQL special characters only, rather than all form fields, for SQL injection violations.NOTE: This attribute is deprecated.The same functionality is added to SQLInjectionType . Set SQLInjectionType to "SQLSplCharANDKeyword" to get the same result
+Tells the Application Firewall to check form fields that contain SQL special characters only, rather than all form fields, for SQL injection violations.
 
 <b>SQLInjectionType</b>
 Available SQL Injection types.
@@ -1598,6 +1925,15 @@ Maximum number of times a credit card number may be seen before action is taken.
 <b>creditCardXOut</b>
 X-out credit card numbers.
 
+<b>doSecureCreditCardLogging</b>
+Setting this option logs credit card numbers in the response when the match is found.
+
+<b>streaming</b>
+Setting this option converts content-length form submission requests (requests with content-type "application/x-www-form-urlencoded" or "multipart/form-data") to chunked requests when atleast one of the following protections : SQL injection protection, XSS protection, form field consistency protection, starturl closure, CSRF tagging is enabled. Please make sure that the backend server accepts chunked requests before enabling this option.
+
+<b>trace</b>
+Toggle  the state of trace
+
 <b>safeObject</b>
 Name of the Safe Object.
 
@@ -1632,7 +1968,7 @@ XML DOS action types. (BLOCK | LEARN | LOG | STATS | NONE)
 XML SQL Injection action types. (BLOCK | LOG | STATS | NONE)
 
 <b>XMLSQLInjectionOnlyCheckFieldsWithSQLChars</b>
-XML flag to check only fields with SQL characters.NOTE: This attribute is deprecated.The same functionality is added to SQLInjectionType. Set XMLSQLInjectionType to "SQLSplCharANDKeyword" to get the same result
+XML flag to check only fields with SQL characters.
 
 <b>XMLSQLInjectionType</b>
 Available XML SQL Injection types.
@@ -1672,10 +2008,10 @@ XML attachment URL regular expression length.
 
 <b>XMLSQLInjection</b>
 Exempt the specified URL from the XML SQL injection check. 
-An XML attachment exemption (relaxation) consists of the following items:
+An XML SQL injection exemption (relaxation) consists of the following items:
 * URL. URL to exempt, as a string or a PCRE-format regular expression.
 * ISREGEX flag. REGEX if URL is a regular expression, NOTREGEX if URL is a fixed string.
-* Location. ELEMENT if the attachment is located in an XML element, ATTRIBUTE if located in an XML attribute.
+* Location. ELEMENT if the injection is located in an XML element, ATTRIBUTE if located in an XML attribute.
 
 <b>XMLXSS</b>
 Exempt the specified URL from the XML cross-site scripting (XSS) check.
@@ -1850,6 +2186,12 @@ A regular expression that designates a content-type on the content-types list.
 <b>excludeResContentType</b>
 A regular expression that represents the content type of the response that are to be excluded from inspection.
 
+<b>CreditCardNumber</b>
+The object expression that is to be excluded from safe commerce check
+
+<b>CreditCardNumberUrl</b>
+The url for which the list of credit card numbers are needed to be bypassed from inspection
+
 <b>devno</b>
 
 <b>count</b>
@@ -1870,6 +2212,20 @@ stat appfw profile [&lt;name>] [-detail] [-fullValues] [-ntimes &lt;positive_int
 
 <b>name</b>
 Name of the application firewall profile.
+
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
 
 <b>clearstats</b>
 Clear the statsistics / counters
@@ -1952,6 +2308,9 @@ Number of Safe Object security check violations seen by the Application Firewall
 <b>Signature Violations (sigs)</b>
 Number of Signature violations seen by the Application Firewall.
 
+<b>content Type (contentType)</b>
+Number of Content Type security check violations seen by the Application Firewall.
+
 <b>XML Format (wfcViolations)</b>
 Number of XML Format security check violations seen by the Application Firewall.
 
@@ -1981,6 +2340,87 @@ Number of requests returning XML generic violation from the backend server
 
 <b>Total Violations (totperpr)</b>
 Number of violations seen by the application firewall on per profile basis
+
+<b>start URL logs (startURLLog)</b>
+Number of Start URL security check log messages generated by the Application Firewall.
+
+<b>deny URL logs (denyURLLog)</b>
+Number of Deny URL security check log messages generated by the Application Firewall.
+
+<b>referer header logs (refererHdrLog)</b>
+Number of Referer Header security check log messages generated by the Application Firewall.
+
+<b>buffer overflow logs (bufovflLog)</b>
+Number of Buffer Overflow security check log messages generated by the Application Firewall.
+
+<b>cookie consistency logs (cookieLog)</b>
+Number of Cookie Consistency security check log messages generated by the Application Firewall.
+
+<b>CSRF form tag logs (csrf_tagLog)</b>
+Number of Cross Site Request Forgery form tag security check log messages generated by the Application Firewall.
+
+<b>HTML XSS logs (xssLog)</b>
+Number of HTML Cross-Site Scripting security check log messages generated by the Application Firewall.
+
+<b>HTML XSS transform logs (xssXformLog)</b>
+Number of HTML Cross-Site Scripting security check transform log messages generated by the Application Firewall.
+
+<b>HTML SQL Injection logs (sqlLog)</b>
+Number of HTML SQL Injection security check log messages generated by the Application Firewall.
+
+<b>HTML SQL transform logs (sqlXformLog)</b>
+Number of HTML SQL Injection security check transform log messages generated by the Application Firewall.
+
+<b>field format logs (fieldfmtLog)</b>
+Number of Field Format security check log messages generated by the Application Firewall.
+
+<b>field consistency logs (fieldconLog)</b>
+Number of Field Consistency security check log messages generated by the Application Firewall.
+
+<b>credit cards (ccardLog)</b>
+Number of Credit Card security check log messages generated by the Application Firewall.
+
+<b>credit card transform logs (ccardXformLog)</b>
+Number of Credit Card security check transform log messages generated by the Application Firewall.
+
+<b>safe object logs (safeobjLog)</b>
+Number of Safe Object security check log messages generated by the Application Firewall.
+
+<b>Signature logs (sigs)</b>
+Number of Signature log messages generated by the Application Firewall.
+
+<b>content Type logs (contenttypeLog)</b>
+Number of Content type security check log messages generated by the Application Firewall.
+
+<b>XML Format logs (wfcLogs)</b>
+Number of XML Format security check log messages generated by the Application Firewall.
+
+<b>XML Denial of Service(XDoS) logs (xdosLogs)</b>
+Number of XML Denial-of-Service security check log messages generated by the Application Firewall.
+
+<b>XML Message Validation logs (msgvalLogs)</b>
+Number of XML Message Validation security check log messages generated by the Application Firewall.
+
+<b>WSI logs (wsILogs)</b>
+Number of Web Services Interoperability (WS-I) security check log messages generated by the Application Firewall.
+
+<b>XML SQL Injection logs (xmlSqlLogs)</b>
+Number of XML SQL Injection security check log messages generated by the Application Firewall.
+
+<b>XML XSS logs (xmlXssLogs)</b>
+Number of XML Cross-Site Scripting (XSS) security check log messages generated by the Application Firewall.
+
+<b>XML Attachment logs (xmlAttachmentLogs)</b>
+Number of XML Attachment security check log messages generated by the Application Firewall.
+
+<b>SOAP Fault logs (soapfltLogs)</b>
+Number of requests generating soap:fault log messages
+
+<b>XML Generic logs (genfltLog)</b>
+Number of requests generating XML Generic log messages
+
+<b>Total log messages (totlogperpr)</b>
+Number of log messages generated by the application firewall on per profile basis
 
 <b>HTTP Client Errors (4xx Resp) (4xxResps)</b>
 Number of requests returning HTTP 4xx from the backend server

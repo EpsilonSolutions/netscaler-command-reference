@@ -18,7 +18,8 @@ set aaa preauthenticationparameter [-preauthenticationaction ( ALLOW | DENY )] [
 ##Arguments
 
 <b>preauthenticationaction</b>
-Deny or allow login on the basis of end point analysis results. Possible values: ALLOW, DENY
+Deny or allow login on the basis of end point analysis results.
+Possible values: ALLOW, DENY
 
 <b>rule</b>
 Name of the NetScaler named rule, or a default syntax expression, to be evaluated by the EPA tool.
@@ -33,7 +34,7 @@ String specifying the path(s) to and name(s) of the files to be deleted by the E
 
 ##unset aaa preauthenticationparameter
 
-Resets the default end point analysis(EPA) configuration settings on the NetScaler appliance. Attributes for which a default value is available revert to their default values. See the set aaa preauthenticationparameter command for descriptions of the parameters..Refer to the set aaa preauthenticationparameter command for meanings of the arguments.
+Resets the default end point analysis(EPA) configuration settings on the NetScaler appliance.Attributes for which a default value is available revert to their default values. See the set aaa preauthenticationparameter command for descriptions of the parameters..Refer to the set aaa preauthenticationparameter command for meanings of the arguments.
 
 
 ##Synopsys
@@ -49,14 +50,6 @@ Displays the current preauthentication configuration.
 ##Synopsys
 
 show aaa preauthenticationparameter
-
-
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

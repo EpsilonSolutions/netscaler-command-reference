@@ -12,7 +12,7 @@ Adds a syslog action. The action contains a reference to a syslog server, and sp
 
 ##Synopsys
 
-add audit syslogAction &lt;name> &lt;serverIP> [-serverPort &lt;port>] -logLevel &lt;logLevel> ... [-dateFormat &lt;dateFormat>] [-logFacility &lt;logFacility>] [-tcp ( NONE | ALL )] [-acl ( ENABLED | DISABLED )] [-timeZone ( GMT_TIME | LOCAL_TIME )] [-userDefinedAuditlog ( YES | NO )] [-appflowExport ( ENABLED | DISABLED )]
+add audit syslogAction &lt;name> (&lt;serverIP> | -lbVserverName &lt;string>) [-serverPort &lt;port>] -logLevel &lt;logLevel> ... [-dateFormat &lt;dateFormat>] [-logFacility &lt;logFacility>] [-tcp ( NONE | ALL )] [-acl ( ENABLED | DISABLED )] [-timeZone ( GMT_TIME | LOCAL_TIME )] [-userDefinedAuditlog ( YES | NO )] [-appflowExport ( ENABLED | DISABLED )] [-lsn ( ENABLED | DISABLED )] [-alg ( ENABLED | DISABLED )] [-transport ( TCP | UDP )] [-tcpProfileName &lt;string>] [-maxLogDataSizeToHold &lt;positive_integer>] [-dns ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -81,6 +81,34 @@ Export log messages to AppFlow collectors.
 Appflow collectors are entities to which log messages can be sent so that some action can be performed on them.
 Possible values: ENABLED, DISABLED
 
+<b>lsn</b>
+Log lsn info
+Possible values: ENABLED, DISABLED
+
+<b>alg</b>
+Log alg info
+Possible values: ENABLED, DISABLED
+
+<b>transport</b>
+Transport type used to send auditlogs to syslog server. Default type is UDP.
+Possible values: TCP, UDP
+
+<b>tcpProfileName</b>
+Name of the TCP profile whose settings are to be applied to the audit server info to tune the TCP connection parameters.
+
+<b>maxLogDataSizeToHold</b>
+Max size of log data that can be held in NSB chain of server info.
+Default value: 500
+Minimum value: 50
+Maximum value: 25600
+
+<b>dns</b>
+Log DNS related syslog messages
+Possible values: ENABLED, DISABLED
+
+<b>lbVserverName</b>
+Name of the LB vserver. Mutually exclusive with syslog server IP address
+
 
 
 ##rm audit syslogAction
@@ -107,7 +135,7 @@ Modifies the specified parameters of an existing syslog action.
 
 ##Synopsys
 
-set audit syslogAction &lt;name> [-serverIP &lt;ip_addr|ipv6_addr|*>] [-serverPort &lt;port>] [-logLevel &lt;logLevel> ...] [-dateFormat &lt;dateFormat>] [-logFacility &lt;logFacility>] [-tcp ( NONE | ALL )] [-acl ( ENABLED | DISABLED )] [-timeZone ( GMT_TIME | LOCAL_TIME )] [-userDefinedAuditlog ( YES | NO )] [-appflowExport ( ENABLED | DISABLED )]
+set audit syslogAction &lt;name> [-serverIP &lt;ip_addr|ipv6_addr|*>] [-serverPort &lt;port>] [-logLevel &lt;logLevel> ...] [-dateFormat &lt;dateFormat>] [-logFacility &lt;logFacility>] [-tcp ( NONE | ALL )] [-acl ( ENABLED | DISABLED )] [-timeZone ( GMT_TIME | LOCAL_TIME )] [-userDefinedAuditlog ( YES | NO )] [-appflowExport ( ENABLED | DISABLED )] [-lsn ( ENABLED | DISABLED )] [-alg ( ENABLED | DISABLED )] [-transport ( TCP | UDP )] [-tcpProfileName &lt;string>] [-maxLogDataSizeToHold &lt;positive_integer>] [-dns ( ENABLED | DISABLED )] [-lbVserverName &lt;string>]
 
 
 ##Arguments
@@ -174,6 +202,34 @@ Export log messages to AppFlow collectors.
 Appflow collectors are entities to which log messages can be sent so that some action can be performed on them.
 Possible values: ENABLED, DISABLED
 
+<b>lsn</b>
+Log lsn info
+Possible values: ENABLED, DISABLED
+
+<b>alg</b>
+Log alg info
+Possible values: ENABLED, DISABLED
+
+<b>transport</b>
+Transport type used to send auditlogs to syslog server. Default type is UDP.
+Possible values: TCP, UDP
+
+<b>tcpProfileName</b>
+Name of the TCP profile whose settings are to be applied to the audit server info to tune the TCP connection parameters.
+
+<b>maxLogDataSizeToHold</b>
+Max size of log data that can be held in NSB chain of server info.
+Default value: 500
+Minimum value: 50
+Maximum value: 25600
+
+<b>dns</b>
+Log DNS related syslog messages
+Possible values: ENABLED, DISABLED
+
+<b>lbVserverName</b>
+Name of the LB vserver. Mutually exclusive with syslog server IP address
+
 
 
 ##unset audit syslogAction
@@ -183,7 +239,7 @@ Removes the settings of an existing syslog action. Attributes for which a defaul
 
 ##Synopsys
 
-unset audit syslogAction &lt;name> [-serverPort] [-logLevel] [-dateFormat] [-logFacility] [-tcp] [-acl] [-timeZone] [-userDefinedAuditlog] [-appflowExport] [-serverIP]
+unset audit syslogAction &lt;name> [-serverPort] [-logLevel] [-dateFormat] [-logFacility] [-tcp] [-acl] [-timeZone] [-userDefinedAuditlog] [-appflowExport] [-lsn] [-alg] [-transport] [-tcpProfileName] [-maxLogDataSizeToHold] [-dns]
 
 
 ##show audit syslogAction
@@ -200,14 +256,6 @@ show audit syslogAction [&lt;name>]
 
 <b>name</b>
 Name of the syslog action.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -267,6 +315,27 @@ Disable export of log messages to AppFlow collectors.
 
 <b>builtin</b>
 Indicates that a variable is a built-in (SYSTEM INTERNAL) type.
+
+<b>lsn</b>
+Log lsn info
+
+<b>alg</b>
+Log alg info
+
+<b>transport</b>
+Transport type used to send auditlogs to syslog server. Default type is UDP.
+
+<b>tcpProfileName</b>
+Name of the TCP profile whose settings are to be applied to the audit server info to tune the TCP connection parameters.
+
+<b>maxLogDataSizeToHold</b>
+Max size of log data that can be held in NSB chain of server info.
+
+<b>dns</b>
+Log DNS related syslog messages
+
+<b>lbVserverName</b>
+Name of the LB vserver. Mutually exclusive with syslog server IP address
 
 <b>devno</b>
 

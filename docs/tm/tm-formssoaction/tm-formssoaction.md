@@ -40,16 +40,17 @@ Name-value pair attributes to send to the server in addition to sending the user
 <b>responsesize</b>
 Number of bytes, in the response, to parse for extracting the forms.
 Default value: 8096
+Minimum value: 0
 
 <b>nvtype</b>
 Type of processing of the name-value pair. If you specify STATIC, the values configured by the administrator are used. For DYNAMIC, the response is parsed, and the form is extracted and then submitted.
 Possible values: STATIC, DYNAMIC
-Default value: NS_ACT_FSSO_NV_DYNAMIC
+Default value: DYNAMIC
 
 <b>submitMethod</b>
 HTTP method used by the single sign-on form to send the logon credentials to the logon server. Applies only to STATIC name-value type.
 Possible values: GET, POST
-Default value: NS_ACT_FSSO_SUBMIT_GET
+Default value: GET
 
 
 
@@ -100,6 +101,7 @@ Expression, that checks to see if single sign-on is successful.
 <b>responsesize</b>
 Number of bytes, in the response, to parse for extracting the forms.
 Default value: 8096
+Minimum value: 0
 
 <b>nameValuePair</b>
 Name-value pair attributes to send to the server in addition to sending the username and password. Value names are separated by an ampersand (&) (for example, name1=value1=value2).
@@ -107,12 +109,12 @@ Name-value pair attributes to send to the server in addition to sending the user
 <b>nvtype</b>
 Type of processing of the name-value pair. If you specify STATIC, the values configured by the administrator are used. For DYNAMIC, the response is parsed, and the form is extracted and then submitted.
 Possible values: STATIC, DYNAMIC
-Default value: NS_ACT_FSSO_NV_DYNAMIC
+Default value: DYNAMIC
 
 <b>submitMethod</b>
 HTTP method used by the single sign-on form to send the logon credentials to the logon server. Applies only to STATIC name-value type.
 Possible values: GET, POST
-Default value: NS_ACT_FSSO_SUBMIT_GET
+Default value: GET
 
 
 
@@ -140,14 +142,6 @@ show tm formSSOAction [&lt;name>]
 
 <b>name</b>
 Name of the SSO action for which to display detailed information.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

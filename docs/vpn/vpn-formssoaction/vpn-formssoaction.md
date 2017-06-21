@@ -38,18 +38,19 @@ Other name-value pair attributes to send to the server, in addition to sending t
 <b>responsesize</b>
 Maximum number of bytes to allow in the response size. Specifies the number of bytes in the response to be parsed for extracting the forms.
 Default value: 8096
+Minimum value: 0
 
 <b>nvtype</b>
 How to process the name-value pair. Available settings function as follows:
 * STATIC - The administrator-configured values are used.
 * DYNAMIC - The response is parsed, the form is extracted, and then submitted.
 Possible values: STATIC, DYNAMIC
-Default value: NS_ACT_FSSO_NV_DYNAMIC
+Default value: DYNAMIC
 
 <b>submitMethod</b>
 HTTP method (GET or POST) used by the single sign-on form to send the logon credentials to the logon server.
 Possible values: GET, POST
-Default value: NS_ACT_FSSO_SUBMIT_GET
+Default value: GET
 
 
 
@@ -100,6 +101,7 @@ Use a frequently used expression or create a custom expression describing the ac
 <b>responsesize</b>
 Maximum number of bytes to allow in the response size. Specifies the number of bytes in the response to be parsed for extracting the forms.
 Default value: 8096
+Minimum value: 0
 
 <b>nameValuePair</b>
 Other name-value pair attributes to send to the server, in addition to sending the user name and password. Value names are separated by an ampersand (&), such as in name1=value1=value2.
@@ -109,12 +111,12 @@ How to process the name-value pair. Available settings function as follows:
 * STATIC - The administrator-configured values are used.
 * DYNAMIC - The response is parsed, the form is extracted, and then submitted.
 Possible values: STATIC, DYNAMIC
-Default value: NS_ACT_FSSO_NV_DYNAMIC
+Default value: DYNAMIC
 
 <b>submitMethod</b>
 HTTP method (GET or POST) used by the single sign-on form to send the logon credentials to the logon server.
 Possible values: GET, POST
-Default value: NS_ACT_FSSO_SUBMIT_GET
+Default value: GET
 
 
 
@@ -142,14 +144,6 @@ show vpn formSSOAction [&lt;name>]
 
 <b>name</b>
 Name of the form-based single sign-on profile.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

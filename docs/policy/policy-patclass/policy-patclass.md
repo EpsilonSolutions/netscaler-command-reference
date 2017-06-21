@@ -113,14 +113,6 @@ Displays the configured pattern class(es).NOTE: This command is deprecated in fa
 <b>name</b>
 Name of the pattern class.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

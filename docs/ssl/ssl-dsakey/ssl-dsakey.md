@@ -27,7 +27,7 @@ Maximum value: 2048
 <b>keyform</b>
 Format in which the DSA key file is stored on the appliance.
 Possible values: DER, PEM
-Default value: FORMAT_PEM
+Default value: PEM
 
 <b>des</b>
 Encrypt the generated DSA key by using the DES algorithm. On the command line, you are prompted to enter the pass phrase (password) that will be used to encrypt the key.

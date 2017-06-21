@@ -12,7 +12,7 @@ Adds a VMAC address to the NetScaler appliance.A Virtual MAC address (VMAC) is a
 
 ##Synopsys
 
-add vrID &lt;id> [-priority &lt;positive_integer>] [-preemption ( ENABLED | DISABLED )] [-sharing ( ENABLED | DISABLED )] [-tracking &lt;tracking>] [-ownerNode &lt;positive_integer>]
+add vrID &lt;id> [-priority &lt;positive_integer>] [-preemption ( ENABLED | DISABLED )] [-sharing ( ENABLED | DISABLED )] [-tracking &lt;tracking>] [-ownerNode &lt;positive_integer>] [-trackifNumPriority &lt;positive_integer>]
 
 
 ##Arguments
@@ -48,12 +48,19 @@ Available settings function as follows:
 * PROGRESSIVE - If the status of all virtual servers is UP, EP = BP. If the status of all virtual servers is DOWN, EP = 0. Otherwise EP = BP (1 - K/N), where N is the total number of virtual servers associated with the VIP address and K is the number of virtual servers for which the status is DOWN.
 Default: NONE.
 Possible values: NONE, ONE, ALL, PROGRESSIVE
-Default value: TRACK_NONE
+Default value: NONE
 
 <b>ownerNode</b>
 Assign a cluster node as the owner of this VMAC address. If no owner is configured, owner node is displayed as ALL and one node is dynamically elected as the owner.
-Default value: VAL_NOT_SET
+Default value: -1 
+Minimum value: 0
 Maximum value: 31
+
+<b>trackifNumPriority</b>
+Priority by which the Effective priority will be reduced if any of the tracked interfaces goes down.
+Default value: 0
+Minimum value: 1
+Maximum value: 255
 
 
 
@@ -90,7 +97,7 @@ Modifies parameters related to a VMAC address on the NetScaler appliance.
 
 ##Synopsys
 
-set vrID &lt;id> [-priority &lt;positive_integer>] [-preemption ( ENABLED | DISABLED )] [-sharing ( ENABLED | DISABLED )] [-tracking &lt;tracking>] [-ownerNode &lt;positive_integer>]
+set vrID &lt;id> [-priority &lt;positive_integer>] [-preemption ( ENABLED | DISABLED )] [-sharing ( ENABLED | DISABLED )] [-tracking &lt;tracking>] [-ownerNode &lt;positive_integer>] [-trackifNumPriority &lt;positive_integer>]
 
 
 ##Arguments
@@ -126,12 +133,19 @@ Available settings function as follows:
 * PROGRESSIVE - If the status of all virtual servers is UP, EP = BP. If the status of all virtual servers is DOWN, EP = 0. Otherwise EP = BP (1 - K/N), where N is the total number of virtual servers associated with the VIP address and K is the number of virtual servers for which the status is DOWN.
 Default: NONE.
 Possible values: NONE, ONE, ALL, PROGRESSIVE
-Default value: TRACK_NONE
+Default value: NONE
 
 <b>ownerNode</b>
 Assign a cluster node as the owner of this VMAC address. If no owner is configured, owner node is displayed as ALL and one node is dynamically elected as the owner.
-Default value: VAL_NOT_SET
+Default value: -1 
+Minimum value: 0
 Maximum value: 31
+
+<b>trackifNumPriority</b>
+Priority by which the Effective priority will be reduced if any of the tracked interfaces goes down.
+Default value: 0
+Minimum value: 1
+Maximum value: 255
 
 
 
@@ -146,7 +160,7 @@ Use this command to remove  vrID settings.Refer to the set  vrID command for mea
 
 ##Synopsys
 
-unset vrID &lt;id> [-priority] [-preemption] [-sharing] [-tracking] [-ownerNode]
+unset vrID &lt;id> [-priority] [-preemption] [-sharing] [-tracking] [-ownerNode] [-trackifNumPriority]
 
 
 ##bind vrID
@@ -156,7 +170,7 @@ Binds the specified interfaces to a VMAC configuration.
 
 ##Synopsys
 
-bind vrID &lt;id> -ifnum &lt;interface_name> ...
+bind vrID &lt;id> (-ifnum &lt;interface_name> ... | -trackifNum &lt;interface_name> ...)
 
 
 ##Arguments
@@ -168,6 +182,9 @@ Maximum value: 255
 
 <b>ifnum</b>
 Interfaces to bind to the VMAC, specified in (slot/port) notation (for example, 1/2).Use spaces to separate multiple entries.
+
+<b>trackifNum</b>
+Interfaces which need to be tracked for this vrID.
 
 
 
@@ -182,7 +199,7 @@ Unbinds specified interfaces from a VMAC configuration.
 
 ##Synopsys
 
-unbind vrID &lt;id> -ifnum &lt;interface_name> ...
+unbind vrID &lt;id> (-ifnum &lt;interface_name> ... | -trackifNum &lt;interface_name> ...)
 
 
 ##Arguments
@@ -194,6 +211,9 @@ Maximum value: 255
 
 <b>ifnum</b>
 Interfaces to unbind from the VMAC, specified in (slot/port) notation (for example, 1/2). Use spaces to separate multiple entries.
+
+<b>trackifNum</b>
+Interfaces which need to be tracked for this vrID.
 
 
 
@@ -213,14 +233,6 @@ show vrID [&lt;id>]
 Integer value that uniquely identifies the VMAC address.
 Minimum value: 1
 Maximum value: 255
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -273,6 +285,12 @@ Run time owner node of the vrid.
 
 <b>ownerNode</b>
 Assign a cluster node as the owner of this VMAC address. If no owner is configured, owner node is displayed as ALL and one node is dynamically elected as the owner.
+
+<b>trackifNum</b>
+Interfaces which need to be tracked for this vrID.
+
+<b>trackifNumPriority</b>
+Priority by which the Effective priority will be reduced if any of the tracked interfaces goes down.
 
 <b>devno</b>
 

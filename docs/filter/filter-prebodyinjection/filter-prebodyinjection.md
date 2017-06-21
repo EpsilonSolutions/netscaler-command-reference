@@ -50,14 +50,6 @@ Displays the name of the file used for prebody injection.
 show filter prebodyInjection
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>prebody</b>

@@ -24,7 +24,7 @@ CLI Users: If the name includes one or more spaces, enclose the name in double o
 <b>siteType</b>
 Type of site to create. If the type is not specified, the appliance automatically detects and sets the type on the basis of the IP address being assigned to the site. If the specified site IP address is owned by the appliance (for example, a MIP address or SNIP address), the site is a local site. Otherwise, it is a remote site.
 Possible values: REMOTE, LOCAL
-Default value: NS_NORMAL
+Default value: NONE
 
 <b>siteIPAddress</b>
 IP address for the GSLB site. The GSLB site uses this IP address to communicate with other GSLB sites. For a local site, use any IP address that is owned by the appliance (for example, a SNIP or MIP address, or the IP address of the ADNS service).
@@ -56,13 +56,16 @@ MEPDOWN_SVCDOWN - Monitor the service in either of the following situations:
 * The exchange of metrics through MEP is disabled.
 * The exchange of metrics through MEP is enabled but the status of the service, learned through metrics exchange, is DOWN.
 Possible values: ALWAYS, MEPDOWN, MEPDOWN_SVCDOWN
-Default value: NSGSLB_TRIGMON_ALWAYS
+Default value: ALWAYS
 
 <b>parentSite</b>
 Parent site of the GSLB site, in a parent-child topology.
 
 <b>clip</b>
-Cluster IP used to connect to remote cluster site for GSLB autosync
+Cluster IP address. Specify this parameter to connect to the remote cluster site for GSLB auto-sync. Note: The cluster IP address is defined when creating the cluster.
+
+<b>publicCLIP</b>
+IP address to be used to globally access the remote cluster when it is deployed behind a NAT. It can be same as the normal cluster IP address.
 
 
 
@@ -130,7 +133,7 @@ MEPDOWN_SVCDOWN - Monitor the service in either of the following situations:
 * The exchange of metrics through MEP is disabled.
 * The exchange of metrics through MEP is enabled but the status of the service, learned through metrics exchange, is DOWN.
 Possible values: ALWAYS, MEPDOWN, MEPDOWN_SVCDOWN
-Default value: NSGSLB_TRIGMON_ALWAYS
+Default value: ALWAYS
 
 
 
@@ -162,14 +165,6 @@ show gslb site [&lt;siteName>]show gslb site stats - alias for 'stat gslb site'
 
 <b>siteName</b>
 Name of the GSLB site. If you specify a site name, details of all the site's constituent services are also displayed.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -236,10 +231,10 @@ stateflag
 will be true if the remote site's version is ncore compatible with the local site.(>= 9.2)
 
 <b>clip</b>
-Cluster IP used to connect to remote cluster site for GSLB autosync
+Cluster IP address. Specify this parameter to connect to the remote cluster site for GSLB auto-sync. Note: The cluster IP address is defined when creating the cluster.
 
 <b>publicCLIP</b>
-Public cluster IP used to connect to remote cluster site for GSLB autosync if the remote cluster is behind a NAT
+IP address to be used to globally access the remote cluster when it is deployed behind a NAT. It can be same as the normal cluster IP address.
 
 <b>devno</b>
 
@@ -265,6 +260,20 @@ stat gslb site [&lt;siteName>] [-detail] [-fullValues] [-ntimes &lt;positive_int
 
 <b>siteName</b>
 Name of the GSLB site for which to display detailed statistics. If a name is not specified, basic information about all GSLB sites is displayed.
+
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
 
 <b>clearstats</b>
 Clear the statsistics / counters

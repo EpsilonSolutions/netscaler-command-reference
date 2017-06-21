@@ -12,7 +12,7 @@ Creates a content switching virtual server.
 
 ##Synopsys
 
-add cs vserver &lt;name> [-td &lt;positive_integer>] &lt;serviceType> ((&lt;IPAddress>  [-range &lt;positive_integer>]) | (-IPPattern &lt;ippat>  -IPMask &lt;ipmask>)) &lt;port> [-state ( ENABLED | DISABLED )] [-stateupdate ( ENABLED | DISABLED )] [-cacheable ( YES | NO )] [-redirectURL &lt;URL>] [-cltTimeout &lt;secs>] [-precedence ( RULE | URL )] [-caseSensitive ( ON | OFF )] [-soMethod &lt;soMethod>] [-soPersistence ( ENABLED | DISABLED )] [-soPersistenceTimeOut &lt;positive_integer>] [-soThreshold &lt;positive_integer>] [-soBackupAction &lt;soBackupAction>] [-redirectPortRewrite ( ENABLED | DISABLED )] [-downStateFlush ( ENABLED | DISABLED )] [-backupVServer &lt;string>] [-disablePrimaryOnDown ( ENABLED | DISABLED )] [-insertVserverIPPort &lt;insertVserverIPPort>  [&lt;vipHeader>] ] [-rtspNat ( ON | OFF )] [-AuthenticationHost &lt;string>] [-Authentication ( ON | OFF )] [-Listenpolicy &lt;expression>  [-Listenpriority &lt;positive_integer>]] [-authn401 ( ON | OFF )] [-authnVsName &lt;string>] [-push ( ENABLED | DISABLED )] [-pushVserver &lt;string>] [-pushLabel &lt;expression>] [-pushMultiClients ( YES | NO )] [-tcpProfileName &lt;string>] [-httpProfileName &lt;string>] [-dbProfileName &lt;string>] [-oracleServerVersion ( 10G | 11G )] [-comment &lt;string>] [-mssqlServerVersion &lt;mssqlServerVersion>] [-l2Conn ( ON | OFF )] [-mysqlProtocolVersion &lt;positive_integer>] [-mysqlServerVersion &lt;string>] [-mysqlCharacterSet &lt;positive_integer>] [-mysqlServerCapabilities &lt;positive_integer>] [-appflowLog ( ENABLED | DISABLED )] [-netProfile &lt;string>] [-icmpVsrResponse ( PASSIVE | ACTIVE )] [-RHIstate ( PASSIVE | ACTIVE )] [-authnProfile &lt;string>]
+add cs vserver &lt;name> [-td &lt;positive_integer>] &lt;serviceType> ((&lt;IPAddress>  [-range &lt;positive_integer>]) | (-IPPattern &lt;ippat>  -IPMask &lt;ipmask>)) &lt;port> [-state ( ENABLED | DISABLED )] [-stateupdate ( ENABLED | DISABLED )] [-cacheable ( YES | NO )] [-redirectURL &lt;URL>] [-cltTimeout &lt;secs>] [-precedence ( RULE | URL )] [-caseSensitive ( ON | OFF )] [-soMethod &lt;soMethod>] [-soPersistence ( ENABLED | DISABLED )] [-soPersistenceTimeOut &lt;positive_integer>] [-soThreshold &lt;positive_integer>] [-soBackupAction &lt;soBackupAction>] [-redirectPortRewrite ( ENABLED | DISABLED )] [-downStateFlush ( ENABLED | DISABLED )] [-backupVServer &lt;string>] [-disablePrimaryOnDown ( ENABLED | DISABLED )] [-insertVserverIPPort &lt;insertVserverIPPort>  [&lt;vipHeader>] ] [-rtspNat ( ON | OFF )] [-AuthenticationHost &lt;string>] [-Authentication ( ON | OFF )] [-Listenpolicy &lt;expression>  [-Listenpriority &lt;positive_integer>]] [-authn401 ( ON | OFF )] [-authnVsName &lt;string>] [-push ( ENABLED | DISABLED )] [-pushVserver &lt;string>] [-pushLabel &lt;expression>] [-pushMultiClients ( YES | NO )] [-tcpProfileName &lt;string>] [-httpProfileName &lt;string>] [-dbProfileName &lt;string>] [-oracleServerVersion ( 10G | 11G )] [-comment &lt;string>] [-mssqlServerVersion &lt;mssqlServerVersion>] [-l2Conn ( ON | OFF )] [-mysqlProtocolVersion &lt;positive_integer>] [-mysqlServerVersion &lt;string>] [-mysqlCharacterSet &lt;positive_integer>] [-mysqlServerCapabilities &lt;positive_integer>] [-appflowLog ( ENABLED | DISABLED )] [-netProfile &lt;string>] [-icmpVsrResponse ( PASSIVE | ACTIVE )] [-RHIstate ( PASSIVE | ACTIVE )] [-authnProfile &lt;string>] [-dnsProfileName &lt;string>]
 
 
 ##Arguments
@@ -21,7 +21,7 @@ add cs vserver &lt;name> [-td &lt;positive_integer>] &lt;serviceType> ((&lt;IPAd
 Name for the content switching virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. 
 Cannot be changed after the CS virtual server is created.
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, \\?my server\\? or \\?my server\\?).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, my server or my server).
 
 <b>td</b>
 Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
@@ -30,7 +30,7 @@ Maximum value: 4094
 
 <b>serviceType</b>
 Protocol used by the virtual server.
-Possible values: HTTP, SSL, TCP, FTP, RTSP, SSL_TCP, UDP, DNS, SIP_UDP, ANY, RADIUS, RDP, MYSQL, MSSQL, DIAMETER, SSL_DIAMETER, DNS_TCP, ORACLE
+Possible values: HTTP, SSL, TCP, FTP, RTSP, SSL_TCP, UDP, DNS, SIP_UDP, SIP_TCP, SIP_SSL, ANY, RADIUS, RDP, MYSQL, MSSQL, DIAMETER, SSL_DIAMETER, DNS_TCP, ORACLE, SMPP
 
 <b>IPAddress</b>
 IP address of the content switching virtual server.
@@ -39,6 +39,9 @@ IP address of the content switching virtual server.
 IP address pattern, in dotted decimal notation, for identifying packets to be accepted by the virtual server. The IP Mask parameter specifies which part of the destination IP address is matched against the pattern. Mutually exclusive with the IP Address parameter. 
 For example, if the IP pattern assigned to the virtual server is 198.51.100.0 and the IP mask is 255.255.240.0 (a forward mask), the first 20 bits in the destination IP addresses are matched with the first 20 bits in the pattern. The virtual server accepts requests with IP addresses that range from 198.51.96.1 to 198.51.111.254. You can also use a pattern such as 0.0.2.2 and a mask such as 0.0.255.255 (a reverse mask).
 If a destination IP address matches more than one IP pattern, the pattern with the longest match is selected, and the associated virtual server processes the request. For example, if the virtual servers, vs1 and vs2, have the same IP pattern, 0.0.100.128, but different IP masks of 0.0.255.255 and 0.0.224.255, a destination IP address of 198.51.100.128 has the longest match with the IP pattern of vs1. If a destination IP address matches two or more virtual servers to the same extent, the request is processed by the virtual server whose port number matches the port number in the request.
+
+<b>IPMask</b>
+IP mask, in dotted decimal notation, for the IP Pattern parameter. Can have leading or trailing non-zero octets (for example, 255.255.240.0 or 0.0.255.255). Accordingly, the mask specifies whether the first n bits or the last n bits of the destination IP address in a client request are to be matched with the corresponding bits in the IP pattern. The former is called a forward mask. The latter is called a reverse mask.
 
 <b>range</b>
 Number of consecutive IP addresses, starting with the address specified by the IP Address parameter, to include in a range of addresses assigned to this virtual server.
@@ -81,13 +84,13 @@ Idle time, in seconds, after which the client connection is terminated. The defa
 9000 seconds for other TCP-based services.
 120 seconds for DNS-based services.
 120 seconds for other UDP-based services.
-Default value: VAL_NOT_SET
+Default value: -1 
 Maximum value: 31536000
 
 <b>precedence</b>
 Type of precedence to use for both RULE-based and URL-based policies on the content switching virtual server. With the default (RULE) setting, incoming requests are evaluated against the rule-based content switching policies. If none of the rules match, the URL in the request is evaluated against the URL-based content switching policies.
 Possible values: RULE, URL
-Default value: CS_PRIORITY_RULE
+Default value: RULE
 
 <b>caseSensitive</b>
 Consider case in URLs (for policies that use URLs instead of RULES). For example, with the ON setting, the URLs /a/1.html and /A/1.HTML are treated differently and can have different targets (set by content switching policies). With the OFF setting, /a/1.html and /A/1.HTML are switched to the same target.
@@ -145,6 +148,9 @@ Insert the virtual server's VIP address and port number in the request header. A
         V6TOV4MAPPING - Header contains the mapped IPv4 address corresponding to the IPv6 address of the vserver and the port number. An IPv6 address can be mapped to a user-specified IPv4 address using the set ns ip6 command.
 Possible values: OFF, VIPADDR, V6TOV4MAPPING
 
+<b>vipHeader</b>
+Name of virtual server IP and port header, for use with the VServer IP Port Insertion parameter.
+
 <b>rtspNat</b>
 Enable network address translation (NAT) for real-time streaming protocol (RTSP) connections.
 Possible values: ON, OFF
@@ -160,7 +166,7 @@ Default value: OFF
 
 <b>Listenpolicy</b>
 String specifying the listen policy for the content switching virtual server. Can be either the name of an existing expression or an in-line expression.
-Default value: "none"
+Default value: "NONE"
 
 <b>Listenpriority</b>
 Integer specifying the priority of the listen policy. A higher number specifies a lower priority. If a request matches the listen policies of more than one virtual server the virtual server whose listen policy has the highest priority (the lowest priority number) accepts the request.
@@ -205,15 +211,15 @@ Name of the DB profile.
 <b>oracleServerVersion</b>
 Oracle server version
 Possible values: 10G, 11G
-Default value: ORACLE_SERVER_10G
+Default value: 10G
 
 <b>comment</b>
 Information about this virtual server.
 
 <b>mssqlServerVersion</b>
 The version of the MSSQL server
-Possible values: 70, 2000, 2000SP1, 2005, 2008, 2008R2, 2012
-Default value: TDS_PROT_2008B
+Possible values: 70, 2000, 2000SP1, 2005, 2008, 2008R2, 2012, 2014
+Default value: 2008R2
 
 <b>l2Conn</b>
 Use L2 Parameters to identify a connection
@@ -222,6 +228,7 @@ Possible values: ON, OFF
 <b>mysqlProtocolVersion</b>
 The protocol version returned by the mysql vserver.
 Default value: 10
+Minimum value: 0
 
 <b>mysqlServerVersion</b>
 The server version string returned by the mysql vserver.
@@ -230,10 +237,12 @@ Default value: NSA_MYSQL_SERVER_VER_DEFAULT
 <b>mysqlCharacterSet</b>
 The character set returned by the mysql vserver.
 Default value: 8
+Minimum value: 0
 
 <b>mysqlServerCapabilities</b>
 The server capabilities returned by the mysql vserver.
 Default value: 41613
+Minimum value: 0
 
 <b>appflowLog</b>
 Enable logging appflow flow information
@@ -246,7 +255,7 @@ The name of the network profile.
 <b>icmpVsrResponse</b>
 Can be active or passive
 Possible values: PASSIVE, ACTIVE
-Default value: NS_VSR_PASSIVE
+Default value: PASSIVE
 
 <b>RHIstate</b>
 A host route is injected according to the setting on the virtual servers
@@ -254,10 +263,13 @@ A host route is injected according to the setting on the virtual servers
             * If set to ACTIVE on all the virtual servers that share the IP address, the appliance injects even if one virtual server is UP.
             * If set to ACTIVE on some virtual servers and PASSIVE on the others, the appliance, injects even if one virtual server set to ACTIVE is UP.
 Possible values: PASSIVE, ACTIVE
-Default value: NS_VSR_PASSIVE
+Default value: PASSIVE
 
 <b>authnProfile</b>
 Name of the authentication profile to be used when authentication is turned on.
+
+<b>dnsProfileName</b>
+Name of the DNS profile to be associated with the VServer. DNS profile properties will applied to the transactions processed by a VServer. This parameter is valid only for DNS and DNS-TCP VServers.
 
 
 
@@ -299,7 +311,7 @@ Modifies the configuration of a content switching virtual server.
 
 ##Synopsys
 
-set cs vserver &lt;name> [-IPAddress &lt;ip_addr|ipv6_addr|*>] [-IPPattern &lt;ippat>] [-IPMask &lt;ipmask>] [-stateupdate ( ENABLED | DISABLED )] [-precedence ( RULE | URL )] [-caseSensitive ( ON | OFF )] [-backupVServer &lt;string>] [-redirectURL &lt;URL>] [-cacheable ( YES | NO )] [-cltTimeout &lt;secs>] [-soMethod &lt;soMethod>] [-soPersistence ( ENABLED | DISABLED )] [-soPersistenceTimeOut &lt;positive_integer>] [-soThreshold &lt;positive_integer>] [-soBackupAction &lt;soBackupAction>] [-redirectPortRewrite ( ENABLED | DISABLED )] [-downStateFlush ( ENABLED | DISABLED )] [-disablePrimaryOnDown ( ENABLED | DISABLED )] [-insertVserverIPPort &lt;insertVserverIPPort>  [&lt;vipHeader>] ] [-rtspNat ( ON | OFF )] [-AuthenticationHost &lt;string>] [-Authentication ( ON | OFF )] [-Listenpolicy &lt;expression>] [-Listenpriority &lt;positive_integer>] [-authn401 ( ON | OFF )] [-authnVsName &lt;string>] [-push ( ENABLED | DISABLED )] [-pushVserver &lt;string>] [-pushLabel &lt;expression>] [-pushMultiClients ( YES | NO )] [-tcpProfileName &lt;string>] [-httpProfileName &lt;string>] [-dbProfileName &lt;string>] [-comment &lt;string>] [-l2Conn ( ON | OFF )] [-mssqlServerVersion &lt;mssqlServerVersion>] [-mysqlProtocolVersion &lt;positive_integer>] [-oracleServerVersion ( 10G | 11G )] [-mysqlServerVersion &lt;string>] [-mysqlCharacterSet &lt;positive_integer>] [-mysqlServerCapabilities &lt;positive_integer>] [-appflowLog ( ENABLED | DISABLED )] [-netProfile &lt;string>] [-authnProfile &lt;string>] [-icmpVsrResponse ( PASSIVE | ACTIVE )] [-RHIstate ( PASSIVE | ACTIVE )]
+set cs vserver &lt;name> [-IPAddress &lt;ip_addr|ipv6_addr|*>] [-IPPattern &lt;ippat>] [-IPMask &lt;ipmask>] [-stateupdate ( ENABLED | DISABLED )] [-precedence ( RULE | URL )] [-caseSensitive ( ON | OFF )] [-backupVServer &lt;string>] [-redirectURL &lt;URL>] [-cacheable ( YES | NO )] [-cltTimeout &lt;secs>] [-soMethod &lt;soMethod>] [-soPersistence ( ENABLED | DISABLED )] [-soPersistenceTimeOut &lt;positive_integer>] [-soThreshold &lt;positive_integer>] [-soBackupAction &lt;soBackupAction>] [-redirectPortRewrite ( ENABLED | DISABLED )] [-downStateFlush ( ENABLED | DISABLED )] [-disablePrimaryOnDown ( ENABLED | DISABLED )] [-insertVserverIPPort &lt;insertVserverIPPort>  [&lt;vipHeader>] ] [-rtspNat ( ON | OFF )] [-AuthenticationHost &lt;string>] [-Authentication ( ON | OFF )] [-Listenpolicy &lt;expression>] [-Listenpriority &lt;positive_integer>] [-authn401 ( ON | OFF )] [-authnVsName &lt;string>] [-push ( ENABLED | DISABLED )] [-pushVserver &lt;string>] [-pushLabel &lt;expression>] [-pushMultiClients ( YES | NO )] [-tcpProfileName &lt;string>] [-httpProfileName &lt;string>] [-dbProfileName &lt;string>] [-comment &lt;string>] [-l2Conn ( ON | OFF )] [-mssqlServerVersion &lt;mssqlServerVersion>] [-mysqlProtocolVersion &lt;positive_integer>] [-oracleServerVersion ( 10G | 11G )] [-mysqlServerVersion &lt;string>] [-mysqlCharacterSet &lt;positive_integer>] [-mysqlServerCapabilities &lt;positive_integer>] [-appflowLog ( ENABLED | DISABLED )] [-netProfile &lt;string>] [-authnProfile &lt;string>] [-icmpVsrResponse ( PASSIVE | ACTIVE )] [-RHIstate ( PASSIVE | ACTIVE )] [-dnsProfileName &lt;string>]
 
 
 ##Arguments
@@ -336,7 +348,7 @@ For example, this precedence can be used if certain client attributes (such as a
 If the precedence is configured as URL, the incoming request URL is applied against the content switching policies created with the -url option. If none of the policies match, then the request is applied against the content switching policies created with the -rule option.
 Also, this precedence can be used if some content (such as images) is the same for all clients, but other content (such as text) is different for different clients. In this case, the images will be served to all clients, but the text will be served to specific clients based on specific attributes, such as Accept-Language.
 Possible values: RULE, URL
-Default value: CS_PRIORITY_RULE
+Default value: RULE
 
 <b>caseSensitive</b>
 The URL lookup case option on the content switching vserver.
@@ -360,7 +372,7 @@ Default value: NO
 
 <b>cltTimeout</b>
 Client timeout in seconds.
-Default value: VAL_NOT_SET
+Default value: -1 
 Maximum value: 31536000
 
 <b>soMethod</b>
@@ -409,6 +421,9 @@ The virtual IP and port header insertion option for the vserver.
 * V6TOV4MAPPING - Header contains the mapped IPv4 address that corresponds to the IPv6 address of the vserver and the port number. An IPv6 address can be mapped to a user-specified IPv4 address using the set ns ip6 command.
 Possible values: OFF, VIPADDR, V6TOV4MAPPING
 
+<b>vipHeader</b>
+The name of virtual IP and port header.
+
 <b>rtspNat</b>
 Enable network address translation (NAT) for real-time streaming protocol (RTSP) connections.
 Possible values: ON, OFF
@@ -424,7 +439,7 @@ Default value: OFF
 
 <b>Listenpolicy</b>
 String specifying the listen policy for the content switching virtual server. Can be either the name of an existing expression or an in-line expression.
-Default value: "none"
+Default value: "NONE"
 
 <b>Listenpriority</b>
 Integer specifying the priority of the listen policy. A higher number specifies a lower priority. If a request matches the listen policies of more than one virtual server the virtual server whose listen policy has the highest priority (the lowest priority number) accepts the request.
@@ -475,17 +490,18 @@ Possible values: ON, OFF
 
 <b>mssqlServerVersion</b>
 The version of the MSSQL server
-Possible values: 70, 2000, 2000SP1, 2005, 2008, 2008R2, 2012
-Default value: TDS_PROT_2008B
+Possible values: 70, 2000, 2000SP1, 2005, 2008, 2008R2, 2012, 2014
+Default value: 2008R2
 
 <b>mysqlProtocolVersion</b>
 The protocol version returned by the mysql vserver.
 Default value: 10
+Minimum value: 0
 
 <b>oracleServerVersion</b>
 Oracle server version
 Possible values: 10G, 11G
-Default value: ORACLE_SERVER_10G
+Default value: 10G
 
 <b>mysqlServerVersion</b>
 The server version string returned by the mysql vserver.
@@ -494,10 +510,12 @@ Default value: NSA_MYSQL_SERVER_VER_DEFAULT
 <b>mysqlCharacterSet</b>
 The character set returned by the mysql vserver.
 Default value: 8
+Minimum value: 0
 
 <b>mysqlServerCapabilities</b>
 The server capabilities returned by the mysql vserver.
 Default value: 41613
+Minimum value: 0
 
 <b>appflowLog</b>
 Enable logging appflow flow information
@@ -513,7 +531,7 @@ Name of the authentication profile to be used when authentication is turned on.
 <b>icmpVsrResponse</b>
 Can be active or passive
 Possible values: PASSIVE, ACTIVE
-Default value: NS_VSR_PASSIVE
+Default value: PASSIVE
 
 <b>RHIstate</b>
 A host route is injected according to the setting on the virtual servers
@@ -521,7 +539,10 @@ A host route is injected according to the setting on the virtual servers
             * If set to ACTIVE on all the virtual servers that share the IP address, the appliance injects even if one virtual server is UP.
             * If set to ACTIVE on some virtual servers and PASSIVE on the others, the appliance, injects even if one virtual server set to ACTIVE is UP.
 Possible values: PASSIVE, ACTIVE
-Default value: NS_VSR_PASSIVE
+Default value: PASSIVE
+
+<b>dnsProfileName</b>
+Name of the DNS profile to be associated with the VServer. DNS profile properties will applied to the transactions processed by a VServer. This parameter is valid only for DNS and DNS-TCP VServers.
 
 
 
@@ -538,7 +559,7 @@ Unset the parameters of a content switching virtual server..Refer to the set cs 
 
 ##Synopsys
 
-unset cs vserver &lt;name> [-caseSensitive] [-backupVServer] [-cltTimeout] [-redirectURL] [-authn401] [-Authentication] [-AuthenticationHost] [-authnVsName] [-pushVserver] [-pushLabel] [-tcpProfileName] [-httpProfileName] [-dbProfileName] [-l2Conn] [-mysqlProtocolVersion] [-mysqlServerVersion] [-mysqlCharacterSet] [-mysqlServerCapabilities] [-appflowLog] [-netProfile] [-icmpVsrResponse] [-authnProfile] [-stateupdate] [-precedence] [-cacheable] [-soMethod] [-soPersistence] [-soPersistenceTimeOut] [-soThreshold] [-soBackupAction] [-redirectPortRewrite] [-downStateFlush] [-disablePrimaryOnDown] [-insertVserverIPPort] [-vipHeader] [-rtspNat] [-Listenpolicy] [-Listenpriority] [-push] [-pushMultiClients] [-comment] [-mssqlServerVersion] [-oracleServerVersion] [-RHIstate]
+unset cs vserver &lt;name> [-caseSensitive] [-backupVServer] [-cltTimeout] [-redirectURL] [-authn401] [-Authentication] [-AuthenticationHost] [-authnVsName] [-pushVserver] [-pushLabel] [-tcpProfileName] [-httpProfileName] [-dbProfileName] [-l2Conn] [-mysqlProtocolVersion] [-mysqlServerVersion] [-mysqlCharacterSet] [-mysqlServerCapabilities] [-appflowLog] [-netProfile] [-icmpVsrResponse] [-authnProfile] [-dnsProfileName] [-stateupdate] [-precedence] [-cacheable] [-soMethod] [-soPersistence] [-soPersistenceTimeOut] [-soBackupAction] [-redirectPortRewrite] [-downStateFlush] [-disablePrimaryOnDown] [-insertVserverIPPort] [-vipHeader] [-rtspNat] [-Listenpolicy] [-Listenpriority] [-push] [-pushMultiClients] [-comment] [-mssqlServerVersion] [-oracleServerVersion] [-RHIstate]
 
 
 ##Related Commands
@@ -574,8 +595,43 @@ Note: When binding a CS virtual server to a default LB virtual server, the Polic
 The following requirement applies only to the NetScaler CLI:
 If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, ?my policy? or ?my policy?).
 
-<b>targetVserver</b>
-The virtual server name (created with the add lb vserver command) to which content will be switched.
+<b>targetLBVserver</b>
+Name of the Load Balancing virtual server to which the content is switched, if policy rule is evaluated to be TRUE.
+Example: bind cs vs cs1 -policyname pol1 -priority 101 -targetLBVserver lb1
+Note: Use this parameter only in case of Content Switching policy bind operations to a CS vserver
+
+<b>priority</b>
+Unsigned integer that determines the priority of the policy relative to other policies in this policy label (bound to the same bind point). A lower number specifies a higher priority. Priority cannot be specified if the Content Switching policy is URL based. Priority is mandatory for Advanced Content Switching Policies. The maximum value of priority for a default-syntax content switching policy is 2147483647. The maximum value for a classic content switching policy is 4294967295.
+Minimum value: 0
+
+<b>gotoPriorityExpression</b>
+Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE.  Specify one of the following values:
+* NEXT ? Evaluate the policy with the next higher priority number.
+* END ? End policy evaluation.
+* USE_INVOCATION_RESULT ? Applicable if this policy invokes another policy label. If the final goto in the invoked policy label has a value of END, the evaluation stops. If the final goto is anything other than END, the current policy label performs a NEXT.
+* A default syntax expression that evaluates to a number.
+If you specify an expression, the number to which it evaluates determines the next policy to evaluate, as follows:
+* If the expression evaluates to a higher numbered priority, the policy with that priority is evaluated next.
+* If the expression evaluates to the priority of the current policy, the policy with the next higher numbered priority is evaluated next.
+* If the expression evaluates to a priority number that is numerically higher than the highest numbered priority, policy evaluation ends.
+An UNDEF event is triggered if:
+* The expression is invalid.
+* The expression evaluates to a priority number that is numerically lower than the current policy?s priority.
+* The expression evaluates to a priority number that is between the current policy?s priority number (say, 30) and the highest priority number (say, 100), but does not match any configured priority number (for example, the expression evaluates to the number 85). This example assumes that the priority number increments by 10 for every successive policy, and therefore a priority number of 85 does not exist in the policy label.
+
+<b>type</b>
+For a rewrite policy, the bind point to which to bind the policy. Note: This parameter applies only to rewrite policies, because content switching policies are evaluated only at request time.
+Possible values: REQUEST, RESPONSE
+
+<b>invoke</b>
+Invoke a policy label if this policy's rule evaluates to TRUE (valid only for default-syntax policies such as application firewall, transform, integrated cache, rewrite, responder, and content switching).
+
+<b>labelType</b>
+Type of label to be invoked.
+Possible values: reqvserver, resvserver, policylabel
+
+<b>labelName</b>
+Name of the label to be invoked.
 
 
 
@@ -606,6 +662,14 @@ Name of the virtual server to unbind from the policy.
 
 <b>policyName</b>
 Name of the policy from which to unbind the content switching virtual server. Note: To unbind the content switching virtual server from the default policy, do not specify a value for this parameter.
+
+<b>type</b>
+For rewrite policies, the traffic flow to which the policy applies. Note: This parameter applies only to rewrite policies, because content switching policies are evaluated only at request time.
+Possible values: REQUEST, RESPONSE
+
+<b>priority</b>
+Priority number of the policy from which to unbind the content switching virtual server.
+Minimum value: 1
 
 <b>lbvserver</b>
 The virtual server name (created with the add lb vserver command) to which content will be switched.
@@ -670,14 +734,6 @@ show cs vserver [&lt;name>]show cs vserver stats - alias for 'stat cs vserver'
 
 <b>name</b>
 Name of a content switching virtual server for which to display information, including the policies bound to the virtual server. To display a list of all configured Content Switching virtual servers, do not specify a value for this parameter.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -919,6 +975,9 @@ The version of the MSSQL server
 <b>l2Conn</b>
 Use L2 Parameters to identify a connection
 
+<b>ruleType</b>
+Rule type.
+
 <b>mysqlProtocolVersion</b>
 The protocol version returned by the mysql vserver.
 
@@ -957,6 +1016,9 @@ target vserver name.
 <b>authnProfile</b>
 Name of the authentication profile to be used when authentication is turned on.
 
+<b>dnsProfileName</b>
+Name of the DNS profile to be associated with the VServer. DNS profile properties will applied to the transactions processed by a VServer. This parameter is valid only for DNS and DNS-TCP VServers.
+
 <b>devno</b>
 
 <b>count</b>
@@ -983,6 +1045,20 @@ stat cs vserver [&lt;name>] [-detail] [-fullValues] [-ntimes &lt;positive_intege
 
 <b>name</b>
 Name of the content switching virtual server for which to display statistics. To display statistics for all configured Content Switching virtual servers, do not specify a value for this parameter.
+
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
 
 <b>clearstats</b>
 Clear the statsistics / counters
@@ -1065,6 +1141,9 @@ Number invalid requests/responses on this vserver
 <b>Invalid Request/Response Dropped (IvldReqRspDrp)</b>
 Number invalid requests/responses dropped on this vserver
 
+<b>Vserver Down Backup Hits (VserverDownBackupHits )</b>
+Number of times traffic was diverted to backup vserver since primary vserver was DOWN.
+
 <b>Current Server Est connections (SvrEstConn)</b>
 Number of server connections in ESTABLISHED state.
 
@@ -1088,7 +1167,7 @@ Existing name of the content switching virtual server.
 <b>newName</b>
 New name for the virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. 
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, ?my name? or ?my name?).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, my name or my name).
 
 
 

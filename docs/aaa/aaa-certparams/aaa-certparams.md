@@ -24,13 +24,14 @@ Client certificate field that contains the username, in the format &lt;field&gt;
 Client certificate field that specifies the group, in the format &lt;field&gt;:&lt;subfield&gt;.
 
 <b>defaultAuthenticationGroup</b>
-This is the default group that is chosen when the authentication succeeds in addition to extracted groups. Maximum value: 64
+This is the default group that is chosen when the authentication succeeds in addition to extracted groups.
+Maximum value: 64
 
 
 
 ##Example
 
-To configure the default certificate parameters: set aaa certparams -userNameField "Subject:CN" -groupNameField "Subject:OU"
+To configure the default certificate parameters:	set aaa certparams -userNameField "Subject:CN" -groupNameField "Subject:OU"
 
 ##Related Commands
 
@@ -56,14 +57,6 @@ Displays the current client certificate configuration on the NetScaler appliance
 ##Synopsys
 
 show aaa certParams
-
-
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

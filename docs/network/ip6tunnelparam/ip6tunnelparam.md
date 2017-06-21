@@ -65,14 +65,6 @@ Displays the global settings of IPv6 tunnels on the NetScaler appliance.
 show ip6TunnelParam
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>srcIP</b>

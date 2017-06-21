@@ -51,14 +51,6 @@ Displays the Weblog parameters.
 show ns weblogparam
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>bufferSizeMB</b>

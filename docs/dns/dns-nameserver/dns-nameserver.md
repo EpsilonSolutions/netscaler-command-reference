@@ -3,7 +3,7 @@
 The following operations can be performed on "dns nameServer":
 
 
-[add](#add-dns-nameserver) | [rm](#rm-dns-nameserver) | [enable](#enable-dns-nameserver) | [disable](#disable-dns-nameserver) | [show](#show-dns-nameserver)
+[add](#add-dns-nameserver) | [set](#set-dns-nameserver) | [unset](#unset-dns-nameserver) | [rm](#rm-dns-nameserver) | [enable](#enable-dns-nameserver) | [disable](#disable-dns-nameserver) | [show](#show-dns-nameserver)
 
 ##add dns nameServer
 
@@ -12,7 +12,7 @@ Adds a name server to the appliance. Following are the two types of name servers
 
 ##Synopsys
 
-add dns nameServer ((&lt;IP>  [-local]) | &lt;dnsVserverName>) [-state ( ENABLED | DISABLED )] [-type &lt;type>]
+add dns nameServer ((&lt;IP>  [-local]) | &lt;dnsVserverName>) [-state ( ENABLED | DISABLED )] [-type &lt;type>] [-dnsProfileName &lt;string>]
 
 
 ##Arguments
@@ -35,13 +35,50 @@ Default value: ENABLED
 <b>type</b>
 Protocol used by the name server. UDP_TCP is not valid if the name server is a DNS virtual server configured on the appliance.
 Possible values: UDP, TCP, UDP_TCP
-Default value: NSA_UDP
+Default value: UDP
+
+<b>dnsProfileName</b>
+Name of the DNS profile to be associated with the name server
 
 
 
 ##Example
 
 Adding an-IP based nameserver IP:	add nameserver 10.102.4.1,Adding a vserver-based name server:	add nameserver dns_vsvrwhere dns_vsvr is the name of a DNS vserver created in the system.
+
+##set dns nameServer
+
+Modifies the attributes of a DNS name server. Only IP based name server entities can be modified using this command. If the DNS name server is an LB VServer, modification to any of the attributes should be done using set lb vserver command
+
+
+##Synopsys
+
+set dns nameServer &lt;IP> [-dnsProfileName &lt;string>]
+
+
+##Arguments
+
+<b>IP</b>
+IP address of an external name server or, if the Local parameter is set, IP address of a local DNS server (LDNS).
+
+<b>dnsProfileName</b>
+Name of the DNS profile to be associated with the name server
+
+
+
+##Example
+
+set dns nameserver 1.1.1.1 -dnsprofilename test2
+
+##unset dns nameServer
+
+Use this command to remove dns nameServer settings.Refer to the set dns nameServer command for meanings of the arguments.
+
+
+##Synopsys
+
+unset dns nameServer &lt;IP> [-dnsProfileName]
+
 
 ##rm dns nameServer
 
@@ -133,14 +170,6 @@ IP address of the name server.
 <b>dnsVserverName</b>
 Name of the DNS virtual server.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -170,6 +199,9 @@ Tells the mon owner of the service.
 
 <b>ClMonView</b>
 Tells the view id by which state of the service is updated.
+
+<b>dnsProfileName</b>
+Name of the DNS profile to be associated with the name server
 
 <b>devno</b>
 

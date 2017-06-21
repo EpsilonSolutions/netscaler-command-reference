@@ -84,17 +84,11 @@ show location [&lt;IPfrom>]
 <b>IPfrom</b>
 The qualifiers in dotted notation for the ipaddress. If this value is not specified, all custom entries are displayed.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
+
+<b>stateflag</b>
 
 <b>IPto</b>
 The end of the IP address range.
@@ -131,8 +125,6 @@ Note: Longitude and latitude parameters are used for selecting a service with th
 <b>devno</b>
 
 <b>count</b>
-
-<b>stateflag</b>
 
 
 

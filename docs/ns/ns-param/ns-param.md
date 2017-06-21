@@ -12,7 +12,7 @@ Sets the parameters of the NetScaler appliance.
 
 ##Synopsys
 
-set ns param [-httpPort &lt;port> ...] [-maxConn &lt;positive_integer>] [-maxReq &lt;positive_integer>] [-cip ( ENABLED | DISABLED )  &lt;cipHeader>] [-cookieversion ( 0 | 1 )] [-secureCookie ( ENABLED | DISABLED )] [-pmtuMin &lt;positive_integer>] [-pmtuTimeout &lt;mins>] [-ftpPortRange &lt;int[-int]>] [-crPortRange &lt;int[-int]>] [-timezone &lt;timezone>] [-grantQuotaMaxClient &lt;positive_integer>] [-exclusiveQuotaMaxClient &lt;positive_integer>] [-grantQuotaSpillOver &lt;positive_integer>] [-exclusiveQuotaSpillOver &lt;positive_integer>] [-useproxyport ( ENABLED | DISABLED )] [-internaluserlogin ( ENABLED | DISABLED )] [-aftpAllowRandomSourcePort ( ENABLED | DISABLED )] [-icaPorts &lt;port> ...] [-tcpCIP ( ENABLED | DISABLED )]
+set ns param [-httpPort &lt;port> ...] [-maxConn &lt;positive_integer>] [-maxReq &lt;positive_integer>] [-cip ( ENABLED | DISABLED )  &lt;cipHeader>] [-cookieversion ( 0 | 1 )] [-secureCookie ( ENABLED | DISABLED )] [-pmtuMin &lt;positive_integer>] [-pmtuTimeout &lt;mins>] [-ftpPortRange &lt;int[-int]>] [-crPortRange &lt;int[-int]>] [-timezone &lt;timezone>] [-grantQuotaMaxClient &lt;positive_integer>] [-exclusiveQuotaMaxClient &lt;positive_integer>] [-grantQuotaSpillOver &lt;positive_integer>] [-exclusiveQuotaSpillOver &lt;positive_integer>] [-useproxyport ( ENABLED | DISABLED )] [-internaluserlogin ( ENABLED | DISABLED )] [-aftpAllowRandomSourcePort ( ENABLED | DISABLED )] [-icaPorts &lt;port> ...] [-tcpCIP ( ENABLED | DISABLED )] [-servicePathIngressVLAN &lt;positive_integer>]
 
 
 ##Arguments
@@ -30,6 +30,7 @@ Maximum value: 4294967294
 
 <b>maxReq</b>
 Maximum number of requests that the system can pass on a particular connection between the appliance and a server attached to it. Setting this value to 0 allows an unlimited number of requests to be passed. This value is overridden by the maximum number of requests configured on the individual service.
+Minimum value: 0
 Maximum value: 65535
 
 <b>cip</b>
@@ -37,6 +38,9 @@ Enable or disable the insertion of the actual client IP address into the HTTP he
 * If the CIP header is specified, it will be used as the client IP header.
 * If the CIP header is not specified, the value that has been set will be used as the client IP header.
 Possible values: ENABLED, DISABLED
+
+<b>cipHeader</b>
+Text that will be used as the client IP address header.
 
 <b>cookieversion</b>
 Version of the cookie inserted by the system.
@@ -122,6 +126,10 @@ Enable or disable the insertion of the client TCP/IP header in TCP payload passe
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
+<b>servicePathIngressVLAN</b>
+VLAN on which the subscriber traffic arrives on the appliance.
+Minimum value: 1
+
 
 
 ##unset ns param
@@ -131,7 +139,7 @@ Removes the attributes of the NetScaler parameters. Attributes for which a defau
 
 ##Synopsys
 
-unset ns param [-ftpPortRange] [-crPortRange] [-timezone] [-aftpAllowRandomSourcePort] [-httpPort] [-maxConn] [-maxReq] [-cip] [-cipHeader] [-cookieversion] [-secureCookie] [-pmtuMin] [-pmtuTimeout] [-grantQuotaMaxClient] [-exclusiveQuotaMaxClient] [-grantQuotaSpillOver] [-exclusiveQuotaSpillOver] [-useproxyport] [-internaluserlogin] [-icaPorts] [-tcpCIP]
+unset ns param [-ftpPortRange] [-crPortRange] [-timezone] [-aftpAllowRandomSourcePort] [-httpPort] [-maxConn] [-maxReq] [-cip] [-cipHeader] [-cookieversion] [-secureCookie] [-pmtuMin] [-pmtuTimeout] [-grantQuotaMaxClient] [-exclusiveQuotaMaxClient] [-grantQuotaSpillOver] [-exclusiveQuotaSpillOver] [-useproxyport] [-internaluserlogin] [-icaPorts] [-tcpCIP] [-servicePathIngressVLAN]
 
 
 ##show ns param
@@ -142,14 +150,6 @@ Displays the information of the parameters of the NetScaler appliance that were 
 ##Synopsys
 
 show ns param
-
-
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -217,6 +217,9 @@ The ICA ports on the Web server. This allows the system to perform connection of
 
 <b>tcpCIP</b>
 Enable or disable the insertion of the client TCP/IP header in TCP payload passed from the client to one, some, or all servers attached to the system. The passed address can then be accessed through a minor modification to the server.
+
+<b>servicePathIngressVLAN</b>
+VLAN on which the subscriber traffic arrives on the appliance.
 
 
 

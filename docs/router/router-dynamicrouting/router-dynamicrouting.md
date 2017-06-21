@@ -20,10 +20,6 @@ show router dynamicRouting [-commandString &lt;string>]
 <b>commandString</b>
 command to be executed
 
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

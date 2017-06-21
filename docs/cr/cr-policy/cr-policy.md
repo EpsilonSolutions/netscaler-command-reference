@@ -3,7 +3,7 @@
 The following operations can be performed on "cr policy":
 
 
-[add](#add-cr-policy) | [rm](#rm-cr-policy) | [set](#set-cr-policy) | [show](#show-cr-policy)
+[add](#add-cr-policy) | [rm](#rm-cr-policy) | [set](#set-cr-policy) | [unset](#unset-cr-policy) | [show](#show-cr-policy) | [rename](#rename-cr-policy)
 
 ##add cr policy
 
@@ -12,7 +12,7 @@ Creates a cache redirection policy. To associate the new policy with a cache red
 
 ##Synopsys
 
-add cr policy &lt;policyName> -rule &lt;expression>
+add cr policy &lt;policyName> -rule &lt;expression> [-action &lt;string>] [-logAction &lt;string>]
 
 
 ##Arguments
@@ -30,7 +30,11 @@ The following requirements apply only to the NetScaler CLI:
 *  If the expression itself includes double quotation marks, escape the quotations by using the \\ character. 
 *  Alternatively, you can use single quotation marks to enclose the rule, in which case you do not have to escape the double quotation marks.
 
-<b>builtin</b>
+<b>action</b>
+Name of the built-in cache redirection action: CACHE/ORIGIN.
+
+<b>logAction</b>
+The log action associated with the cache redirection policy
 
 
 
@@ -70,7 +74,7 @@ Changes the specified parameters of an existing cache redirection policy.
 
 ##Synopsys
 
-set cr policy &lt;policyName> -rule &lt;expression>
+set cr policy &lt;policyName> [-rule &lt;expression>] [-action &lt;string>] [-logAction &lt;string>]
 
 
 ##Arguments
@@ -88,7 +92,27 @@ The following requirements apply only to the NetScaler CLI:
 *  If the expression itself includes double quotation marks, escape the quotations by using the  character. 
 *  Alternatively, you can use single quotation marks to enclose the rule, in which case you do not have to escape the double quotation marks.
 
+<b>action</b>
+The cache redirection action name.
 
+<b>logAction</b>
+The log action associated with the cache redirection policy
+
+
+
+##unset cr policy
+
+Unset logaction for existing cache redirection policy..Refer to the set cr policy command for meanings of the arguments.
+
+
+##Synopsys
+
+unset cr policy &lt;policyName> -logAction
+
+
+##Example
+
+unset cr policy pol -logAction
 
 ##show cr policy
 
@@ -105,14 +129,6 @@ show cr policy [&lt;policyName>]
 <b>policyName</b>
 Name of the cache redirection policy to display. If this parameter is omitted, details of all the policies are displayed.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -128,19 +144,57 @@ The following requirements apply only to the NetScaler CLI:
 <b>domain</b>
 Domain name.
 
+<b>action</b>
+The CR action name.
+
 <b>vstype</b>
 Virtual server type.
+
+<b>hits</b>
+Total number of hits.
+
+<b>piHits</b>
+Total number of hits.
+
+<b>bindHits</b>
+Total number of hits.
+
+<b>piPolicyhits</b>
+bind hits for PI CR Policy.
+
+<b>priority</b>
+priority of bound policy
+
+<b>flag</b>
+
+<b>stateflag</b>
+
+<b>activePolicy</b>
+Indicates whether policy is bound or not.
 
 <b>csPolicyType</b>
 Indicates whether policy is PI or not.(used only during display)
 
+<b>logAction</b>
+The log action associated with the cache redirection policy
+
+<b>labelName</b>
+Name of the label invoked.
+
+<b>labelType</b>
+The invocation type.
+
 <b>builtin</b>
+
+<b>gotoPriorityExpression</b>
+Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.
+
+<b>isDefault</b>
+A value of true is returned if it is a default cr policy.
 
 <b>devno</b>
 
 <b>count</b>
-
-<b>stateflag</b>
 
 
 
@@ -149,4 +203,28 @@ Indicates whether policy is PI or not.(used only during display)
 <ul><li><a href="../../../r-vs/r-vs">add cr vserver</a></li><li><a href="../../../cr-vs/cr-vs">bind cr vserver</a></li><li><a href="../../../r-vs/r-vs">set cr vserver</a></li><li><a href="../../../cr-vs/cr-vs">show cr vserver</a></li><li><a href="../../../d-cr-vs/d-cr-vs">unbind cr vserver</a></li><li><a href="../../../-cr-vs/-cr-vs">unset cr vserver</a></li></ul>
 
 
+
+##rename cr policy
+
+Rename a cache redirection policy.
+
+
+##Synopsys
+
+rename cr policy &lt;policyName>@ &lt;newName>@
+
+
+##Arguments
+
+<b>policyName</b>
+The name of the content switching policy.
+
+<b>newName</b>
+The new name of the content switching policy.
+
+
+
+##Example
+
+rename cr policy oldname newname
 

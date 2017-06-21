@@ -34,6 +34,9 @@ Domain for which TM cookie must to be set. If unspecified, cookie will be set fo
 Maximum value: 256
 
 <b>AuthenticationLevel</b>
+Authentication weight or level of the vserver to which this will bound. This is used to order TM vservers based on the protection required. A session that is created by authenticating against TM vserver at given level cannot be used to access TM vserver at a higher level.
+Minimum value: 0
+Maximum value: 255
 
 
 
@@ -82,6 +85,9 @@ Domain for which TM cookie must to be set. If unspecified, cookie will be set fo
 Maximum value: 256
 
 <b>AuthenticationLevel</b>
+Authentication weight or level of the vserver to which this will bound. This is used to order TM vservers based on the protection required. A session that is created by authenticating against TM vserver at given level cannot be used to access TM vserver at a higher level.
+Minimum value: 0
+Maximum value: 255
 
 
 
@@ -110,14 +116,6 @@ show authentication authnProfile [&lt;name>]
 <b>name</b>
 Name of the authentication profile.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -132,6 +130,7 @@ Hostname of the authentication vserver.
 Domain for which TM cookie must to be set. If unspecified, cookie will be set for FQDN.
 
 <b>AuthenticationLevel</b>
+Authentication weight or level of the vserver to which this will bound. This is used to order TM vservers based on the protection required. A session that is created by authenticating against TM vserver at given level cannot be used to access TM vserver at a higher level.
 
 <b>devno</b>
 

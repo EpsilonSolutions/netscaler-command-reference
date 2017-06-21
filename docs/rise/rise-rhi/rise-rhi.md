@@ -13,14 +13,6 @@ Retrieves RISE RHI rules programmed
 show rise rhi
 
 
-##Arguments
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-
-
 ##Outputs
 
 <b>IPAddress</b>

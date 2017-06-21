@@ -20,10 +20,12 @@ set L2Param [-mbfPeermacUpdate &lt;positive_integer>] [-maxBridgeCollision &lt;p
 <b>mbfPeermacUpdate</b>
 When mbf_instant_learning is enabled, learn any changes in peer's MAC after this time interval, which is in 10ms ticks.
 Default value: 10
+Minimum value: 0
 
 <b>maxBridgeCollision</b>
 Maximum bridge collision for loop detection 
 Default value: 20
+Minimum value: 0
 
 <b>bdggrpProxyArp</b>
 Set/reset proxy ARP in bridge group deployment
@@ -100,14 +102,6 @@ Displays the settings of global Layer 2 parameters on the NetScaler appliance.
 ##Synopsys
 
 show L2Param
-
-
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

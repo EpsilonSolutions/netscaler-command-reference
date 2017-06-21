@@ -22,7 +22,7 @@ Name for the FIS to be created. Leading character must be a number or letter. Ot
 
 <b>ownerNode</b>
 ID of the cluster node for which you are creating the FIS. Can be configured only through the cluster IP address.
-Default value: VAL_NOT_SET
+Default value: -1 
 Minimum value: 0
 Maximum value: 31
 
@@ -99,14 +99,6 @@ show fis [&lt;name>]
 
 <b>name</b>
 The name of the FIS configured on the appliance.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

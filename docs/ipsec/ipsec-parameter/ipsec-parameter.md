@@ -12,7 +12,7 @@ Set global parameters for IPSEC
 
 ##Synopsys
 
-set ipsec parameter [-ikeVersion ( V1 | V2 )] [-encAlgo ( AES | 3DES ) ...] [-hashAlgo &lt;hashAlgo> ...] [-lifetime &lt;positive_integer>] [-livenessCheckInterval &lt;positive_integer>] [-replayWindowSize &lt;positive_integer>] [-ikeRetryInterval &lt;positive_integer>] [-retransmissiontime &lt;positive_integer>]
+set ipsec parameter [-ikeVersion ( V1 | V2 )] [-encAlgo ( AES | 3DES ) ...] [-hashAlgo &lt;hashAlgo> ...] [-lifetime &lt;positive_integer>] [-livenessCheckInterval &lt;positive_integer>] [-replayWindowSize &lt;positive_integer>] [-ikeRetryInterval &lt;positive_integer>] [-perfectForwardSecrecy ( ENABLE | DISABLE )] [-retransmissiontime &lt;positive_integer>]
 
 
 ##Arguments
@@ -20,19 +20,19 @@ set ipsec parameter [-ikeVersion ( V1 | V2 )] [-encAlgo ( AES | 3DES ) ...] [-ha
 <b>ikeVersion</b>
 IKE Protocol Version
 Possible values: V1, V2
-Default value: KMP_IKEV2
+Default value: V2
 
 <b>encAlgo</b>
 Type of encryption algorithm
-Default value: ENC_AES
+Default value: AES
 
 <b>hashAlgo</b>
 Type of hashing algorithm
 Default value: HMAC_SHA256
 
 <b>lifetime</b>
-Lifetime of SA in seconds
-Minimum value: 60
+Lifetime of IKE SA in seconds. Lifetime of IPSec SA will be (lifetime of IKE SA/8)
+Minimum value: 480
 Maximum value: 31536000
 
 <b>livenessCheckInterval</b>
@@ -50,9 +50,14 @@ IKE retry interval for bringing up the connection
 Minimum value: 60
 Maximum value: 3600
 
+<b>perfectForwardSecrecy</b>
+Enable/Disable PFS.
+Possible values: ENABLE, DISABLE
+Default value: DISABLE
+
 <b>retransmissiontime</b>
-The interval in seconds to retry sending the IKE messages to peer, three consecutive attempts are done with doubled interval after every failure.,
-increases for every retransmit till 6 retransmits. 
+The interval in seconds to retry sending the IKE messages to peer, three consecutive attempts are done with doubled interval after every failure,
+increases for every retransmit till 6 retransmits.
 Minimum value: 1
 Maximum value: 99
 
@@ -65,7 +70,7 @@ Set global parameters for IPSEC.Refer to the set ipsec parameter command for mea
 
 ##Synopsys
 
-unset ipsec parameter [-ikeVersion] [-encAlgo] [-hashAlgo] [-lifetime] [-livenessCheckInterval] [-replayWindowSize] [-ikeRetryInterval] [-retransmissiontime]
+unset ipsec parameter [-ikeVersion] [-encAlgo] [-hashAlgo] [-lifetime] [-livenessCheckInterval] [-replayWindowSize] [-ikeRetryInterval] [-perfectForwardSecrecy] [-retransmissiontime]
 
 
 ##show ipsec parameter
@@ -76,18 +81,6 @@ Show global parameters for IPSEC
 ##Synopsys
 
 show ipsec parameter
-
-
-##Arguments
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -102,7 +95,7 @@ Type of encryption algorithm
 Type of hashing algorithm
 
 <b>lifetime</b>
-Lifetime of SA in seconds
+Lifetime of IKE SA in seconds. Lifetime of IPSec SA will be (lifetime of IKE SA/8)
 
 <b>livenessCheckInterval</b>
 Number of seconds after which a notify payload is sent to check the liveliness of the peer. Additional retries are done as per retransmit interval setting. Zero value disables liveliness checks.
@@ -113,8 +106,11 @@ IPSec Replay window size for the data traffic
 <b>ikeRetryInterval</b>
 IKE retry interval for bringing up the connection
 
+<b>perfectForwardSecrecy</b>
+Enable/Disable PFS.
+
 <b>retransmissiontime</b>
-The interval in seconds to retry sending the IKE messages to peer, three consecutive attempts are done with doubled interval after every failure.,
+The interval in seconds to retry sending the IKE messages to peer, three consecutive attempts are done with doubled interval after every failure,
 increases for every retransmit till 6 retransmits.
 
 

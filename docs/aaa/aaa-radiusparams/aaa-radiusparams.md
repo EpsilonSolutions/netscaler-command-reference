@@ -21,25 +21,33 @@ set aaa radiusParams [-serverIP &lt;ip_addr|ipv6_addr|*>] [-serverPort &lt;port>
 IP address of your RADIUS server.
 
 <b>serverPort</b>
-Port number on which the RADIUS server listens for connections. Default value: 1812 Minimum value: 1
+Port number on which the RADIUS server listens for connections.
+Default value: 1812
+Minimum value: 1
 
 <b>authTimeout</b>
-Maximum number of seconds that the NetScaler appliance waits for a response from the RADIUS server. Default value: 3 Minimum value: 1
+Maximum number of seconds that the NetScaler appliance waits for a response from the RADIUS server.
+Default value: 3
+Minimum value: 1
 
 <b>radKey</b>
-The key shared between the RADIUS server and clients. Required for allowing the NetScaler appliance to communicate with the RADIUS server.
+The key shared between the RADIUS server and clients. 
+Required for allowing the NetScaler appliance to communicate with the RADIUS server.
 
 <b>radNASip</b>
-Send the NetScaler IP (NSIP) address to the RADIUS server as the Network Access Server IP (NASIP) part of the Radius protocol. Possible values: ENABLED, DISABLED
+Send the NetScaler IP (NSIP) address to the RADIUS server as the Network Access Server IP (NASIP) part of the Radius protocol.
+Possible values: ENABLED, DISABLED
 
 <b>radNASid</b>
 Send the Network Access Server ID (NASID) for your NetScaler appliance to the RADIUS server as the nasid part of the Radius protocol.
 
 <b>radVendorID</b>
-Vendor ID for RADIUS group extraction. Minimum value: 1
+Vendor ID for RADIUS group extraction.
+Minimum value: 1
 
 <b>radAttributeType</b>
-Attribute type for RADIUS group extraction. Minimum value: 1
+Attribute type for RADIUS group extraction.
+Minimum value: 1
 
 <b>radGroupsPrefix</b>
 Prefix string that precedes group names within a RADIUS attribute for RADIUS group extraction.
@@ -48,31 +56,45 @@ Prefix string that precedes group names within a RADIUS attribute for RADIUS gro
 Group separator string that delimits group names within a RADIUS attribute for RADIUS group extraction.
 
 <b>passEncoding</b>
-Enable password encoding in RADIUS packets that the NetScaler appliance sends to the RADIUS server. Possible values: pap, chap, mschapv1, mschapv2 Default value: AAA_PAP
+Enable password encoding in RADIUS packets that the NetScaler appliance sends to the RADIUS server.
+Possible values: pap, chap, mschapv1, mschapv2
+Default value: pap
 
 <b>ipVendorID</b>
-Vendor ID attribute in the RADIUS response. If the attribute is not vendor-encoded, it is set to 0.
+Vendor ID attribute in the RADIUS response. 
+If the attribute is not vendor-encoded, it is set to 0.
+Minimum value: 0
 
 <b>ipAttributeType</b>
-IP attribute type in the RADIUS response. Minimum value: 1
+IP attribute type in the RADIUS response.
+Minimum value: 1
 
 <b>accounting</b>
-Configure the RADIUS server state to accept or refuse accounting messages. Possible values: ON, OFF
+Configure the RADIUS server state to accept or refuse accounting messages.
+Possible values: ON, OFF
 
 <b>pwdVendorID</b>
-Vendor ID of the password in the RADIUS response. Used to extract the user password. Minimum value: 1
+Vendor ID of the password in the RADIUS response. Used to extract the user password.
+Minimum value: 1
+
+<b>pwdAttributeType</b>
+Attribute type of the Vendor ID in the RADIUS response.
+Minimum value: 1
 
 <b>defaultAuthenticationGroup</b>
-This is the default group that is chosen when the authentication succeeds in addition to extracted groups. Maximum value: 64
+This is the default group that is chosen when the authentication succeeds in addition to extracted groups.
+Maximum value: 64
 
 <b>callingstationid</b>
-Send Calling-Station-ID of the client to the RADIUS server. IP Address of the client is sent as its Calling-Station-ID. Possible values: ENABLED, DISABLED Default value: DISABLED
+Send Calling-Station-ID of the client to the RADIUS server. IP Address of the client is sent as its Calling-Station-ID.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
 
 
 
 ##Example
 
-To configure the default RADIUS parameters: set aaa radiusparams -serverip 192.30.1.2 -radkey sslvpn
+To configure the default RADIUS parameters:set aaa radiusparams -serverip 192.30.1.2  -radkey sslvpn
 
 ##Related Commands
 
@@ -100,14 +122,6 @@ Displays the current RADIUS configuration on the NetScaler appliance.
 show aaa radiusParams
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>serverIP</b>
@@ -120,7 +134,10 @@ Port number on which the RADIUS server listens for connections.
 The key shared between the client and the server.
 
 <b>groupAuthName</b>
-To associate AAA users with an AAA group, use the command "bind AAA group ... -username ...". You can bind different policies to each AAA group. Use the command "bind AAA group ... -policy ..."
+To associate AAA users with an AAA group, use the command
+    "bind AAA group ... -username ...".
+You can bind different policies to each AAA group. Use the command
+    "bind AAA group ... -policy ..."
 
 <b>authTimeout</b>
 Maximum number of seconds that the NetScaler appliance waits for a response from the RADIUS server.
@@ -150,7 +167,8 @@ Group separator string that delimits group names within a RADIUS attribute for R
 Enable password encoding in RADIUS packets that the NetScaler appliance sends to the RADIUS server.
 
 <b>ipVendorID</b>
-Vendor ID attribute in the RADIUS response. If the attribute is not vendor-encoded, it is set to 0.
+Vendor ID attribute in the RADIUS response. 
+If the attribute is not vendor-encoded, it is set to 0.
 
 <b>ipAttributeType</b>
 IP attribute type in the RADIUS response.
@@ -174,5 +192,5 @@ Send Calling-Station-ID of the client to the RADIUS server. IP Address of the cl
 
 ##Example
 
-&gt; show aaa radiusparams Configured RADIUS parameters Server IP: 127.0.0.2 Port: 1812 key: secret Timeout: 10 Done &gt;
+&gt; show aaa radiusparamsConfigured RADIUS parameters        Server IP: 127.0.0.2      Port: 1812        key: secret     Timeout: 10 Done&gt;
 

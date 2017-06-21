@@ -21,10 +21,6 @@ show system session [&lt;sid>]
 ID of the system session about which to display information.
 Minimum value: 1
 
-<b>summary</b>
-
-<b>fullValues</b>
-
 
 
 ##Outputs
@@ -46,6 +42,9 @@ number of connection using this token
 
 <b>currentconn</b>
 True if the token is used for current session
+
+<b>clientType</b>
+client type of the session
 
 <b>devno</b>
 

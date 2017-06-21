@@ -83,14 +83,6 @@ Type of records to display. Available settings function as follows:
 * ALL - Display all address records.
 Possible values: ALL, ADNS, PROXY
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

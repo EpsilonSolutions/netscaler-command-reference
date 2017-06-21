@@ -18,9 +18,9 @@ set rsskeytype -rsstype ( ASYMMETRIC | SYMMETRIC )
 ##Arguments
 
 <b>rsstype</b>
-Type of RSS key, possible values ASYMMETRIC and SYMMETRIC. 
+Type of RSS key, possible values are SYMMETRIC and SYMMETRIC.
 Possible values: ASYMMETRIC, SYMMETRIC
-Default value: NSA_RSSKEY_ASYM
+Default value: SYMMETRIC
 
 
 
@@ -34,18 +34,10 @@ Default value: NSA_RSSKEY_ASYM
 show rsskeytype
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>rsstype</b>
-Type of RSS key, possible values ASYMMETRIC and SYMMETRIC.
+Type of RSS key, possible values are SYMMETRIC and SYMMETRIC.
 
 
 

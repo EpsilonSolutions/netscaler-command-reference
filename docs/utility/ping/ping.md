@@ -22,6 +22,7 @@ Maximum value: 65535
 
 <b>i</b>
 Waiting time, in seconds. The default value is 1 second.
+Minimum value: 0
 Maximum value: 65535
 
 <b>I</b>
@@ -38,6 +39,7 @@ Quiet output. Only the summary is printed.
 
 <b>s</b>
 Data size, in bytes. The default value is 56.
+Minimum value: 0
 Maximum value: 65507
 
 <b>S</b>

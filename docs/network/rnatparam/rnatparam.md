@@ -53,14 +53,6 @@ Show the rnat parameter.
 show rnatparam
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>tcpproxy</b>

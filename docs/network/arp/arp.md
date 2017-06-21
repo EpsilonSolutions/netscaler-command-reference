@@ -12,7 +12,7 @@ Adds a static ARP entry to the ARP table of the NetScaler appliance.
 
 ##Synopsys
 
-add arp -IPAddress &lt;ip_addr> [-td &lt;positive_integer>] -mac &lt;mac_addr> (-ifnum &lt;interface_name> | (-vxlan &lt;positive_integer>  -vtep &lt;ip_addr>)) [-ownerNode &lt;positive_integer>]
+add arp -IPAddress &lt;ip_addr> [-td &lt;positive_integer>] -mac &lt;mac_addr> (-ifnum &lt;interface_name> | (-vxlan &lt;positive_integer>  -vtep &lt;ip_addr>)) [-vlan &lt;positive_integer>] [-ownerNode &lt;positive_integer>]
 
 
 ##Arguments
@@ -36,9 +36,16 @@ ID of the VXLAN on which the IP address of this ARP entry is reachable.
 Minimum value: 1
 Maximum value: 16777215
 
+<b>vtep</b>
+IP address of the VXLAN tunnel endpoint (VTEP) through which the IP address of this ARP entry is reachable.
+
+<b>vlan</b>
+The VLAN ID through which packets are to be sent after matching the ARP entry. This is a numeric value.
+Minimum value: 0
+
 <b>ownerNode</b>
 The owner node for the Arp entry.
-Default value: VAL_NOT_SET
+Default value: -1 
 Minimum value: 0
 Maximum value: 31
 
@@ -73,7 +80,7 @@ Remove all ARP entries from the ARP table of the NetScaler appliance.
 
 <b>ownerNode</b>
 The owner node for the Arp entry.
-Default value: VAL_NOT_SET
+Default value: -1 
 Minimum value: 0
 Maximum value: 31
 
@@ -93,6 +100,11 @@ send arp ((-IPAddress &lt;ip_addr>  [-td &lt;positive_integer>]) | -all)
 
 <b>IPAddress</b>
 NetScaler owned IP address for which the NetScaler appliance sends Gratuitous Address Resolution Protocol (GARP) messages.
+
+<b>td</b>
+Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
+Minimum value: 0
+Maximum value: 4094
 
 <b>all</b>
 Send GARP messages for all NetScaler owned IP addresses on which the ARP option is enabled. In a secondary node of an high availability configuration, this option sends GARP messages for the node's NSIP address only.
@@ -118,19 +130,16 @@ show arp [&lt;IPAddress>  [-td &lt;positive_integer>]  [-ownerNode &lt;positive_
 <b>IPAddress</b>
 The IP address corresponding to an ARP entry.
 
+<b>td</b>
+Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
+Minimum value: 0
+Maximum value: 4094
+
 <b>ownerNode</b>
 The cluster node which owns the ARP entry.
-Default value: VAL_NOT_SET
+Default value: -1 
 Minimum value: 0
 Maximum value: 31
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

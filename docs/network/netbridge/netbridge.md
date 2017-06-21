@@ -62,10 +62,6 @@ show netbridge [&lt;name>]
 <b>name</b>
 The name of the network bridge.
 
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -117,6 +113,9 @@ Maximum value: 4094
 <b>IPAddress</b>
 The subnet that needs to be extended.
 
+<b>netmask</b>
+Subnet mask in dotted-decimal format. For example: 255.255.255.0. This parameter is required for IPv4.
+
 
 
 ##Example
@@ -148,6 +147,9 @@ Maximum value: 4094
 
 <b>IPAddress</b>
 The subnet that is part of this network bridge.
+
+<b>netmask</b>
+Subnet mask in dotted-decimal format. For example: 255.255.255.0. This parameter is required for IPv4.
 
 
 

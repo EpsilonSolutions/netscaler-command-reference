@@ -12,7 +12,7 @@ Creates an action (profile) for an Active Directory (AD) server that is used as 
 
 ##Synopsys
 
-add authentication negotiateAction &lt;name> {-domain &lt;string>} {-domainUser &lt;string>} {-domainUserPasswd } {-OU &lt;string>} [-defaultAuthenticationGroup &lt;string>] [-keytab &lt;string>]
+add authentication negotiateAction &lt;name> {-domain &lt;string>} {-domainUser &lt;string>} {-domainUserPasswd } [-defaultAuthenticationGroup &lt;string>] [-keytab &lt;string>]
 
 
 ##Arguments
@@ -21,7 +21,7 @@ add authentication negotiateAction &lt;name> {-domain &lt;string>} {-domainUser 
 Name for the AD KDC server profile (negotiate action). 
 Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after AD KDC server profile is created.
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, ?my authentication action? or ?my authentication action?).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication action" or 'my authentication action').
 
 <b>domain</b>
 Domain name of the AD KDC server.
@@ -33,12 +33,8 @@ The NetScaler appliance uses the domain user name to check the health of the AD 
 <b>domainUserPasswd</b>
 Password that the NetScaler appliance uses to join the AD KDC server domain.
 
-<b>OU</b>
-Active Directory organizational units (OU) attribute.
-
 <b>defaultAuthenticationGroup</b>
 This is the default group that is chosen when the authentication succeeds in addition to extracted groups.
-Maximum value: 64
 
 <b>keytab</b>
 The path to the keytab file
@@ -69,7 +65,7 @@ Configures an AD KDC server profile (negotiate action).
 
 ##Synopsys
 
-set authentication negotiateAction &lt;name> [-domain &lt;string>] [-domainUser &lt;string>] [-domainUserPasswd ] [-OU &lt;string>] [-defaultAuthenticationGroup &lt;string>] [-keytab &lt;string>]
+set authentication negotiateAction &lt;name> [-domain &lt;string>] [-domainUser &lt;string>] [-domainUserPasswd ] [-defaultAuthenticationGroup &lt;string>] [-keytab &lt;string>]
 
 
 ##Arguments
@@ -87,12 +83,8 @@ The NetScaler appliance uses the domain user name to check the health of the AD 
 <b>domainUserPasswd</b>
 Password that the NetScaler appliance uses to join the AD KDC server domain.
 
-<b>OU</b>
-Active Directory organizational units (OU) attribute.
-
 <b>defaultAuthenticationGroup</b>
 This is the default group that is chosen when the authentication succeeds in addition to extracted groups.
-Maximum value: 64
 
 <b>keytab</b>
 The path to the keytab file
@@ -106,7 +98,7 @@ Use this command to remove authentication negotiateAction settings.Refer to the 
 
 ##Synopsys
 
-unset authentication negotiateAction &lt;name> [-domain] [-domainUser] [-domainUserPasswd] [-OU] [-defaultAuthenticationGroup]
+unset authentication negotiateAction &lt;name> [-domain] [-domainUser] [-domainUserPasswd] [-defaultAuthenticationGroup]
 
 
 ##show authentication negotiateAction
@@ -123,14 +115,6 @@ show authentication negotiateAction [&lt;name>]
 
 <b>name</b>
 Name of the AD KDC server profile.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

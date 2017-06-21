@@ -71,14 +71,6 @@ Display the IP Tunnel global settings on the NetScaler
 show ipTunnelParam
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>srcIP</b>

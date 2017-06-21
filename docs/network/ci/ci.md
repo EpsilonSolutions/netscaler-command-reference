@@ -13,14 +13,6 @@ Displays all the critical interfaces of the NetScaler appliance. In a High Avail
 show ci
 
 
-##Arguments
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-
-
 ##Outputs
 
 <b>ifaces</b>

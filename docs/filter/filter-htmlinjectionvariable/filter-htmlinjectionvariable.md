@@ -23,10 +23,6 @@ Name for the HTML injection variable to be added.
 <b>value</b>
 Value to be assigned to the new variable.
 
-<b>varId</b>
-ID of the system variable. Used only in builtins.
-Possible values: IID, UTIME, XID, PAGEID, REQRTBEG, REQRTEND, REQSTBEG, REQSTEND, RESRTBEG, RESRTEND, RESSTBEG, RESSTEND, CLTRTT, CTYPE, TRANSID, SYSVSVR, SYSSERV
-
 
 
 ##Example
@@ -102,14 +98,6 @@ show filter htmlinjectionvariable [&lt;variable>]
 
 <b>variable</b>
 Name of the HTML injection variable to be displayed. If a name is not provided, information about all the HTML injection variables is shown.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

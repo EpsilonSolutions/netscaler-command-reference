@@ -69,14 +69,6 @@ Display details of all the AppFlow collectors configured on the system. Alternat
 <b>name</b>
 Name of the AppFlow collector.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

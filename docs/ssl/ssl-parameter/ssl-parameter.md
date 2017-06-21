@@ -58,16 +58,17 @@ Deny renegotiation in specified circumstances. Available settings function as fo
 * ALL - Deny all secure and nonsecure SSL renegotiation.
 * NONSECURE - Deny nonsecure SSL renegotiation. Allows only clients that support RFC 5746.
 Possible values: NO, FRONTEND_CLIENT, FRONTEND_CLIENTSERVER, ALL, NONSECURE
-Default value: NORENEG_FE_BE
+Default value: ALL
 
 <b>insertionEncoding</b>
 Encoding method used to insert the subject or issuer's name in HTTP requests to servers.
 Possible values: Unicode, UTF-8
-Default value: UNICODE_INSERTION
+Default value: Unicode
 
 <b>ocspCacheSize</b>
 Size, per packet engine, in megabytes, of the OCSP cache. A maximum of 10% of the packet engine memory can be assigned. Because the maximum allowed packet engine memory is 4GB, the maximum value that can be assigned to the OCSP cache is approximately 410 MB.
 Default value: 10
+Minimum value: 0
 Maximum value: 512
 
 <b>pushFlag</b>
@@ -76,6 +77,7 @@ Insert PUSH flag into decrypted, encrypted, or all records. If the PUSH flag is 
 1 - Insert PUSH flag into every decrypted record.
 2 -Insert PUSH flag into every encrypted record.
 3 - Insert PUSH flag into every decrypted and encrypted record.
+Minimum value: 0
 Maximum value: 3
 
 <b>dropReqWithNoHostHeader</b>
@@ -90,8 +92,9 @@ Minimum value: 1
 Maximum value: 200
 
 <b>cryptodevDisableLimit</b>
-Disabled Crypto Device Limit reboots the system once reached.  A value of zero(0) implies no reboot. 
+Limit to the number of disabled SSL chips after which the ADC restarts. A value of zero implies that the ADC does not automatically restart.
 Default value: 0
+Minimum value: 0
 
 <b>undefActionControl</b>
 Name of the undefined built-in control action: CLIENTAUTH, NOCLIENTAUTH, NOOP, RESET, or DROP.
@@ -121,14 +124,6 @@ Displays information about advanced SSL parameters.
 ##Synopsys
 
 show ssl parameter
-
-
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -174,7 +169,7 @@ Host header check for SNI enabled sessions. If this check is enabled and the HTT
 PUSH encryption trigger timeout value. The timeout value is applied only if you set the Push Encryption Trigger parameter to Timer in the SSL virtual server settings.
 
 <b>cryptodevDisableLimit</b>
-Disabled Crypto Device Limit reboots the system once reached.  A value of zero(0) implies no reboot
+Limit to the number of disabled SSL chips after which the ADC restarts. A value of zero implies that the ADC does not automatically restart.
 
 <b>undefActionControl</b>
 Global undef action for SSL control policies

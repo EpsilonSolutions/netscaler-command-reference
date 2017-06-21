@@ -38,6 +38,9 @@ The state of redistributing kernel routes.
 <b>network</b>
 The broadcast network on which RIP must run.
 
+<b>netmask</b>
+The netmask for the network on which RIP must run.
+
 
 
 ##Example
@@ -73,10 +76,6 @@ Display the RIP configuration. NOTE: This command is deprecated.All routing conf
 <b>ripOptions</b>
 RIP option in show command, one of database or interface.
 Possible values: database, interface
-
-<b>format</b>
-
-<b>level</b>
 
 
 

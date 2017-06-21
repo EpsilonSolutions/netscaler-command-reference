@@ -13,18 +13,6 @@ Displays information about all the linked certificate-key pairs on the appliance
 show ssl certLink
 
 
-##Arguments
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>certkeyName</b>

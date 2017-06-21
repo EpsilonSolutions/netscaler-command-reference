@@ -29,11 +29,23 @@ Maximum value: 4094
 
 <b>serviceType</b>
 Protocol (type of service) handled by the virtual server.
-Possible values: HTTP, SSL, NNTP
+Possible values: HTTP, SSL, NNTP, HDX
 
 <b>IPAddress</b>
 IPv4 or IPv6 address of the cache redirection virtual server. Usually a public IP address. Clients send connection requests to this IP address.
 Note: For a transparent cache redirection virtual server, use an asterisk (*) to specify a wildcard virtual server address.
+
+<b>port</b>
+Port number of the virtual server.
+Default value: 80
+Minimum value: 1
+Maximum value: 65534
+
+<b>range</b>
+Number of consecutive IP addresses, starting with the address specified by the IPAddress parameter, to include in a range of addresses assigned to this virtual server.
+Default value: 1
+Minimum value: 1
+Maximum value: 254
 
 <b>cacheType</b>
 Mode of operation for the cache redirection virtual server. Available settings function as follows:
@@ -41,7 +53,7 @@ Mode of operation for the cache redirection virtual server. Available settings f
 * FORWARD - Resolve the hostname of the incoming request, by using a DNS server, and forward requests for non-cacheable content to the resolved origin servers. Cacheable requests are sent to the configured cache servers.
 * REVERSE - Configure reverse proxy caches for specific origin servers. Incoming traffic directed to the reverse proxy can either be served from a cache server or be sent to the origin server with or without modification to the URL.
 Possible values: TRANSPARENT, REVERSE, FORWARD
-Default value: CRD_TRANSPARENT
+Default value: TRANSPARENT
 
 <b>redirect</b>
 Type of cache server to which to redirect HTTP requests. Available settings function as follows:
@@ -49,13 +61,13 @@ Type of cache server to which to redirect HTTP requests. Available settings func
 * POLICY - Apply the cache redirection policy to determine whether the request should be directed to the cache or to the origin.
 * ORIGIN - Direct all requests to the origin server.
 Possible values: CACHE, POLICY, ORIGIN
-Default value: CRD_POLICY
+Default value: POLICY
 
 <b>onPolicyMatch</b>
 Redirect requests that match the policy to either the cache or the origin server, as specified.
 Note: For this option to work, you must set the cache redirection type to POLICY.
 Possible values: CACHE, ORIGIN
-Default value: CRD_ORIGIN
+Default value: ORIGIN
 
 <b>redirectURL</b>
 URL of the server to which to redirect traffic if the cache redirection virtual server configured on the NetScaler appliance becomes unavailable.
@@ -78,13 +90,11 @@ Type of policy (URL or RULE) that takes precedence on the cache redirection virt
 10.  Default
 If you specify RULE, the rule based policies are applied before URL based policies are applied.
 Possible values: RULE, URL
-Default value: CS_PRIORITY_RULE
+Default value: RULE
 
 <b>arp</b>
 Use ARP to determine the destination MAC address.
 Possible values: ON, OFF
-
-<b>ghost</b>
 
 <b>map</b>
 Obsolete.
@@ -96,9 +106,6 @@ Possible values: ON, OFF
 Insert a via header in each HTTP request. In the case of a cache miss, the request is redirected from the cache server to the origin server. This header indicates whether the request is being sent from a cache server.
 Possible values: ON, OFF
 Default value: ON
-
-<b>cacheVserver</b>
-Name of the default cache virtual server to which to redirect requests (the default target of the cache redirection virtual server).
 
 <b>dnsVserverName</b>
 Name of the DNS virtual server that resolves domain names arriving at the forward proxy virtual server.
@@ -157,11 +164,12 @@ Default value: DISABLED
 
 <b>Listenpolicy</b>
 String specifying the listen policy for the cache redirection virtual server. Can be either an in-line expression or the name of a named expression.
-Default value: "none"
+Default value: "NONE"
 
 <b>Listenpriority</b>
 Priority of the listen policy specified by the Listen Policy parameter. The lower the number, higher the priority.
 Default value: 101
+Minimum value: 0
 Maximum value: 100
 
 <b>tcpProfileName</b>
@@ -198,7 +206,7 @@ Name of the network profile containing network configurations for the cache redi
 <b>icmpVsrResponse</b>
 Criterion for responding to PING requests sent to this virtual server. If ACTIVE, respond only if the virtual server is available. If PASSIVE, respond even if the virtual server is not available.
 Possible values: PASSIVE, ACTIVE
-Default value: NS_VSR_PASSIVE
+Default value: PASSIVE
 
 <b>RHIstate</b>
 A host route is injected according to the setting on the virtual servers
@@ -206,7 +214,7 @@ A host route is injected according to the setting on the virtual servers
             * If set to ACTIVE on all the virtual servers that share the IP address, the appliance injects even if one virtual server is UP.
             * If set to ACTIVE on some virtual servers and PASSIVE on the others, the appliance, injects even if one virtual server set to ACTIVE is UP.
 Possible values: PASSIVE, ACTIVE
-Default value: NS_VSR_PASSIVE
+Default value: PASSIVE
 
 
 
@@ -252,13 +260,13 @@ New IPv4 or IPv6 address of the cache redirection virtual server. Usually a publ
 <b>redirect</b>
 Type of server to which to redirect HTTP requests. Available settings function as follows: *	CACHE - Direct all requests to the cache.*	POLICY - Apply the cache redirection policy to determine whether the request should be directed to the cache or to the origin.*	ORIGIN - Direct all requests to the origin server.
 Possible values: CACHE, POLICY, ORIGIN
-Default value: CRD_POLICY
+Default value: POLICY
 
 <b>onPolicyMatch</b>
 Redirect requests that match the policy to either the cache or the origin server, as specified.
 Note: For this option to work, you must set the cache redirection type to POLICY.
 Possible values: CACHE, ORIGIN
-Default value: CRD_ORIGIN
+Default value: ORIGIN
 
 <b>precedence</b>
 Type of policy (URL or RULE) that takes precedence on the cache redirection virtual server. You can use this argument only when configuring cache redirection on the specified virtual server. It applies only if both URL and RULE based policies have been configured on the same virtual server. Available settings function as follows:URL - The incoming request is matched against the URL-based policies before it is matched against the rule-based policies.
@@ -275,7 +283,7 @@ For URL based policies, the precedence hierarchy is:
 10.  Default
 RULE - The incoming request is matched against the rule-based policies before it is matched against the URL-based policies.
 Possible values: RULE, URL
-Default value: CS_PRIORITY_RULE
+Default value: RULE
 
 <b>arp</b>
 Use ARP to determine the destination MAC address. Specify OFF to use the incoming destination MAC address, or ON to use ARP to determine the destination MAC address.
@@ -285,9 +293,6 @@ Possible values: ON, OFF
 Insert a via header in each HTTP request. In the case of a cache miss, the request is redirected from the cache server to the origin server. This header indicates whether the request is being sent from a cache server.
 Possible values: ON, OFF
 Default value: ON
-
-<b>cacheVserver</b>
-Name of the default target cache virtual server to which to redirect requests.
 
 <b>dnsVserverName</b>
 Name of the DNS virtual server that resolves domain names arriving at the forward proxy virtual server.
@@ -335,11 +340,12 @@ Default value: DISABLED
 
 <b>Listenpolicy</b>
 String specifying the listen policy for the cache redirection virtual server. Can be either an in-line expression or the name of a named expression.
-Default value: "none"
+Default value: "NONE"
 
 <b>Listenpriority</b>
 Priority of the listen policy specified by the Listen Policy parameter. The lower the number, higher the priority.
 Default value: 101
+Minimum value: 0
 Maximum value: 100
 
 <b>tcpProfileName</b>
@@ -376,7 +382,7 @@ Default value: ENABLED
 <b>icmpVsrResponse</b>
 Criterion for responding to PING requests sent to this virtual server. If ACTIVE, respond only if the virtual server is available. If PASSIVE, respond even if the virtual server is not available.
 Possible values: PASSIVE, ACTIVE
-Default value: NS_VSR_PASSIVE
+Default value: PASSIVE
 
 <b>RHIstate</b>
 A host route is injected according to the setting on the virtual servers
@@ -384,7 +390,7 @@ A host route is injected according to the setting on the virtual servers
             * If set to ACTIVE on all the virtual servers that share the IP address, the appliance injects even if one virtual server is UP.
             * If set to ACTIVE on some virtual servers and PASSIVE on the others, the appliance, injects even if one virtual server set to ACTIVE is UP.
 Possible values: PASSIVE, ACTIVE
-Default value: NS_VSR_PASSIVE
+Default value: PASSIVE
 
 
 
@@ -411,7 +417,7 @@ Binds a cache redirection policy to a cache redirection virtual server.
 
 ##Synopsys
 
-bind cr vserver &lt;name> [-lbvserver &lt;string> | (-policyName &lt;string>  [-priority &lt;positive_integer>]) | &lt;targetVserver>]
+bind cr vserver &lt;name> [-lbvserver &lt;string> | (-policyName &lt;string>  [-priority &lt;positive_integer>]  [-gotoPriorityExpression &lt;expression>]  [-type &lt;type>]  [-invoke  (&lt;labelType>  &lt;labelName>) ]  ) | &lt;targetVserver>]
 
 
 ##Arguments
@@ -425,6 +431,47 @@ Name of the virtual server to which content is forwarded. Applicable only if the
 <b>policyName</b>
 Name of the cache redirection policy that you are binding.
 
+<b>targetVserver</b>
+Name of the virtual server to which content is forwarded. Applicable only if the policy is a map policy and the cache redirection virtual server is of type REVERSE.
+
+<b>priority</b>
+An unsigned integer that determines the priority of the policy relative to other policies bound to this cache redirection virtual server. The lower the value, higher the priority. Note: This option is available only when binding content switching, filtering, and compression policies to a cache redirection virtual server.
+Minimum value: 0
+
+<b>gotoPriorityExpression</b>
+Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE.  Specify one of the following values:
+* NEXT ~V Evaluate the policy with the next higher priority number.
+* END ~V End policy evaluation.
+* USE_INVOCATION_RESULT ~V Applicable if this policy invokes another policy label. If the final goto in the invoked policy label has a value of END, the eval* USE_INVOCATION_RESULT ~V Applicable if this policy invokes another policy label. If the final goto in the invoked policy label has a value of END, the eval
+uation stops. If the final goto is anything other than END, the current policy label performs a NEXT.
+* A default syntax expression that evaluates to a number.
+If you specify an expression, the number to which it evaluates determines the next policy to evaluate, as follows:
+* If the expression evaluates to a higher numbered priority, the policy with that priority is evaluated next.
+* If the expression evaluates to the priority of the current policy, the policy with the next higher numbered priority is evaluated next.
+* If the expression evaluates to a priority number that is numerically higher than the highest numbered priority, policy evaluation ends.
+An UNDEF event is triggered if:
+* The expression is invalid.
+* The expression evaluates to a priority number that is numerically lower than the current policy~Rs priority.
+* The expression evaluates to a priority number that is between the current policy~Rs priority number (say, 30) and the highest priority number (say, 100), b
+ut does not match any configured priority number (for example, the expression evaluates to the number 85). This example assumes that the priority number incr
+ements by 10 for every successive policy, and therefore a priority number of 85 does not exist in the policy label.
+
+<b>type</b>
+For a rewrite policy, the bind point to which to bind the policy. Note: This parameter applies only to rewrite
+policies, because content switching policies are evaluated only at request time.
+Possible values: REQUEST, RESPONSE, ICA_REQUEST
+
+<b>invoke</b>
+Invoke a policy label if this policy's rule evaluates to TRUE (valid only for default-syntax policies such as
+application firewall, transform, integrated cache, rewrite, responder, and content switching).
+
+<b>labelType</b>
+Type of label to be invoked.
+Possible values: reqvserver, resvserver, policylabel
+
+<b>labelName</b>
+Name of the label to be invoked.
+
 
 
 ##unbind cr vserver
@@ -434,7 +481,7 @@ Unbinds a cache redirection policy from a cache redirection virtual server.
 
 ##Synopsys
 
-unbind cr vserver &lt;name> [-policyName &lt;string> | -lbvserver &lt;string>]
+unbind cr vserver &lt;name> [(-policyName &lt;string>  [-type &lt;type>]) | -lbvserver &lt;string>] [-priority &lt;positive_integer>]
 
 
 ##Arguments
@@ -444,6 +491,14 @@ Name of the cache redirection virtual server from which to unbind the policy.
 
 <b>policyName</b>
 Name of the cache redirection policy that you are unbinding.
+
+<b>type</b>
+For rewrite policies, the traffic flow to which the policy applies. Note: This parameter applies only to rewrite policies, because cache redirection policies are evaluated only at request time.
+Possible values: REQUEST, RESPONSE, ICA_REQUEST
+
+<b>priority</b>
+Priority number of the policy from which to unbind the content switching virtual server.
+Minimum value: 1
 
 <b>lbvserver</b>
 The virtual server name (created with the add lb vserver command) to which content will be switched.
@@ -515,14 +570,6 @@ show cr vserver [&lt;name>]
 <b>name</b>
 Name of a cache redirection virtual server about which to display detailed information.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -551,7 +598,7 @@ Protocol (type of service) handled by the virtual server.
 Nodegroup devno to which this crvserver belongs to
 
 <b>type</b>
-Virtual server type.
+The bindpoint to which the policy is bound
 
 <b>vsvrcfgflags</b>
 Contains the config info of vserver to be used at validation
@@ -561,6 +608,9 @@ Initial state of the cache redirection virtual server.
 
 <b>status</b>
 Status.
+
+<b>sc</b>
+The state of SureConnect the specified virtual server.
 
 <b>cacheType</b>
 Mode of operation for the cache redirection virtual server. Available settings function as follows:
@@ -614,6 +664,9 @@ Rule.
 <b>policyName</b>
 Policies bound to this vserver.
 
+<b>piPolicyhits</b>
+Number of hits.
+
 <b>hits</b>
 Number of hits.
 
@@ -624,7 +677,7 @@ Service name.
 Weight for this service.
 
 <b>cacheVserver</b>
-Name of the default cache virtual server to which to redirect requests (the default target of the cache redirection virtual server).NOTE: This attribute is deprecated.The functionality is intact, but we advise to use bind command to do default binding for CR
+Name of the default cache virtual server to which to redirect requests (the default target of the cache redirection virtual server).
 
 <b>targetVserver</b>
 The CSW target server names.
@@ -723,6 +776,18 @@ The Default target server name.
 <b>inherited</b>
 On State describes that policy bound is inherited from global binding.
 
+<b>invoke</b>
+Invoke flag.
+
+<b>labelType</b>
+The invocation type.
+
+<b>labelName</b>
+Name of the label invoked.
+
+<b>gotoPriorityExpression</b>
+Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.
+
 <b>devno</b>
 
 <b>count</b>
@@ -743,6 +808,20 @@ stat cr vserver [&lt;name>] [-detail] [-fullValues] [-ntimes &lt;positive_intege
 
 <b>name</b>
 Name of a specific cache redirection virtual server.
+
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
 
 <b>clearstats</b>
 Clear the statsistics / counters
@@ -774,6 +853,9 @@ Protocol associated with the vserver
 <b>State</b>
 Current state of the server. Possible values are UP, DOWN, UNKNOWN, OFS(Out of Service), TROFS(Transition Out of Service), TROFS_DOWN(Down When going Out of Service)
 
+<b>Vserver hits (Hits)</b>
+Total vserver hits
+
 <b>Requests (Req)</b>
 Total number of requests received on this service or virtual server. (This applies to HTTP/SSL services and servers.)
 
@@ -785,6 +867,18 @@ Total number of request bytes received on this service or virtual server.
 
 <b>Response bytes (Rspb)</b>
 Number of response bytes received by this service or virtual server.
+
+<b>Total Packets rcvd (PktRx)</b>
+Total number of packets received by this service or virtual server.
+
+<b>Total Packets sent (PktTx)</b>
+Total number of packets sent.
+
+<b>Invalid Request/Response (IvldReqRsp)</b>
+Number invalid requests/responses on this vserver
+
+<b>Invalid Request/Response Dropped (IvldReqRspDrp)</b>
+Number invalid requests/responses dropped on this vserver
 
 
 

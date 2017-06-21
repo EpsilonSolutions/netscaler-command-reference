@@ -36,7 +36,11 @@ Types of transformations allowed by the policies bound to the label. For Rewrite
 * sipudp_res - SIP responses
 * diameter_req - DIAMETER requests
 * diameter_res - DIAMETER responses
-Possible values: http_req, http_res, othertcp_req, othertcp_res, url, text, clientless_vpn_req, clientless_vpn_res, sipudp_req, sipudp_res, diameter_req, diameter_res
+* radius_req - RADIUS requests
+* radius_res - RADIUS responses
+* dns_req - DNS requests
+* dns_res - DNS responses
+Possible values: http_req, http_res, othertcp_req, othertcp_res, url, text, clientless_vpn_req, clientless_vpn_res, sipudp_req, sipudp_res, siptcp_req, siptcp_res, diameter_req, diameter_res, radius_req, radius_res, dns_req, dns_res
 
 <b>comment</b>
 Any comments to preserve information about this rewrite policy label.
@@ -81,10 +85,41 @@ bind rewrite policylabel &lt;labelName> &lt;policyName> &lt;priority> [&lt;gotoP
 ##Arguments
 
 <b>labelName</b>
-Name of the rewrite policy label to which to bind the policy.
+* If labelType is policylabel, name of the policy label to invoke. 
+* If labelType is reqvserver or resvserver, name of the virtual server to which to forward the request or response.
 
 <b>policyName</b>
 Name of the rewrite policy to bind to the policy label.
+
+<b>priority</b>
+Positive integer specifying the priority of the policy. A lower number specifies a higher priority. Must be unique within the label. Policies are evaluated in the order of their priorities, and the first policy that matches the request or response is applied.
+Minimum value: 1
+Maximum value: 2147483647
+
+<b>gotoPriorityExpression</b>
+Expression or other value specifying the next policy to evaluate if the current policy evaluates to TRUE.  Specify one of the following values:
+*  NEXT - Evaluate the policy with the next higher priority number.
+*  END - End policy evaluation.
+*  USE_INVOCATION_RESULT - Applicable if this policy invokes another policy label. If the final goto in the invoked policy label has a value of END, the evaluation stops. If the final goto is anything other than END, the current policy label performs a NEXT.
+* A default syntax or classic expression that evaluates to a number.
+If you specify an expression, the number to which it evaluates determines the next policy to evaluate, as follows:
+*  If the expression evaluates to a higher numbered priority, the policy with that priority is evaluated next.
+*  If the expression evaluates to the priority of the current policy, the policy with the next higher numbered priority is evaluated next.
+*  If the expression evaluates to a number that is larger than the largest numbered priority, policy evaluation ends.
+An UNDEF event is triggered if:
+*  The expression is invalid.
+*  The expression evaluates to a priority number that is smaller than the current policy?s priority number.
+*  The expression evaluates to a priority number that is between the current policy?s priority number (say, 30) and the highest priority number (say, 100), but does not match any configured priority number (for example, the expression evaluates to the number 85). This example assumes that the priority number increments by 10 for every successive policy, and therefore a priority number of 85 does not exist in the policy label.
+
+<b>invoke</b>
+Suspend evaluation of policies bound to the current policy label, and then forward the request to the specified virtual server or evaluate the specified policy label.
+
+<b>labelType</b>
+Type of invocation. Available settings function as follows:
+* reqvserver - Forward the request to the specified request virtual server.
+* resvserver - Forward the response to the specified response virtual server.
+* policylabel - Invoke the specified policy label.
+Possible values: reqvserver, resvserver, policylabel
 
 
 
@@ -138,14 +173,6 @@ show rewrite policylabel [&lt;labelName>]
 <b>labelName</b>
 Name of the rewrite policy label.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -166,6 +193,10 @@ Types of transformations allowed by the policies bound to the label. For Rewrite
 * sipudp_res - SIP responses
 * diameter_req - DIAMETER requests
 * diameter_res - DIAMETER responses
+* radius_req - RADIUS requests
+* radius_res - RADIUS responses
+* dns_req - DNS requests
+* dns_res - DNS responses
 
 <b>numpol</b>
 Number of polices bound to label.
@@ -236,6 +267,20 @@ stat rewrite policylabel [&lt;labelName>] [-detail] [-fullValues] [-ntimes &lt;p
 
 <b>labelName</b>
 Name of the rewrite policy label.
+
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
 
 <b>clearstats</b>
 Clear the statsistics / counters

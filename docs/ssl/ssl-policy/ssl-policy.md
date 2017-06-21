@@ -32,9 +32,6 @@ The following requirements apply only to the NetScaler CLI:
 * If the expression itself includes double quotation marks, escape the quotations by using the  character. 
 * Alternatively, you can use single quotation marks to enclose the rule, in which case you do not have to escape the double quotation marks.
 
-<b>reqAction</b>
-The name of the action to be performed on the request. Refer to 'add ssl action' command to add a new action. Builtin actions like NOOP, RESET, DROP, CLIENTAUTH and NOCLIENTAUTH are also allowed.
-
 <b>action</b>
 Name of the built-in or user-defined action to perform on the request. Available built-in actions are NOOP, RESET, DROP, CLIENTAUTH, and NOCLIENTAUTH.
 
@@ -139,14 +136,6 @@ show ssl policy [&lt;name>]
 
 <b>name</b>
 Name of the SSL policy for which to display detailed information.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

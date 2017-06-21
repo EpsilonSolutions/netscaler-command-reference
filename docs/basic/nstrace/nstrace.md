@@ -12,7 +12,7 @@ Start NetScaler packet capture tool.
 
 ##Synopsys
 
-start nstrace [-nf &lt;positive_integer>] [-time &lt;positive_integer>] [-size &lt;positive_integer>] [-mode &lt;mode> ...] [-tcpdump ( ENABLED | DISABLED )] [-perNIC ( ENABLED | DISABLED )] [-fileName &lt;string>] [-fileId &lt;string>] [-filter &lt;expression>] [-link ( ENABLED | DISABLED )] [-nodes &lt;positive_integer> ...] [-doruntimemerge ( ENABLED | DISABLED )] [-doruntimecleanup ( ENABLED | DISABLED )] [-traceBuffers &lt;positive_integer>] [-skipRPC ( ENABLED | DISABLED )] [-inMemoryTrace ( ENABLED | DISABLED )]
+start nstrace [-nf &lt;positive_integer>] [-time &lt;positive_integer> | -filesize &lt;positive_integer>] [-size &lt;positive_integer>] [-mode &lt;mode> ...] [-perNIC ( ENABLED | DISABLED )] [-fileName &lt;string>] [-fileId &lt;string>] [-filter &lt;expression>] [-link ( ENABLED | DISABLED )] [-nodes &lt;positive_integer> ...] [-traceformat ( NSCAP | PCAP )] [-merge &lt;merge>] [-doruntimecleanup ( ENABLED | DISABLED )] [-traceBuffers &lt;positive_integer>] [-skipRPC ( ENABLED | DISABLED )] [-inMemoryTrace ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -31,6 +31,7 @@ Minimum value: 1
 <b>size</b>
 Size of the captured data. Set 0 for full packet trace.
 Default value: 164
+Minimum value: 0
 Maximum value: 1514
 
 <b>mode</b>
@@ -42,13 +43,10 @@ Capturing mode for trace. Mode can be any of the following values or combination
       IPV6        Translated IPv6 packets
       C2C         Capture C2C message
       NS_FR_TX    TX/TXB packets are not captured in flow receiver.
+      SSLPLAIN    Decrypted SSL packets
+      MPTCP       MPTCP master flow
       Default mode: NEW_RX TXB 
 Default value: DEFAULT_MODE
-
-<b>tcpdump</b>
-Trace is captured in TCPDUMP(.pcap) format. Default capture format is NSTRACE(.cap).
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
 
 <b>perNIC</b>
 Use separate trace files for each interface. Works only with tcpdump format.
@@ -67,6 +65,7 @@ Filter expression for nstrace. Maximum length of filter is 255 and it can be of 
      &lt;relop&gt; = ( && | || )
      nstrace supports two types of filter expressions:
      Classic Expressions:
+     [Note: Classic Expressions are not supported in non-default partitions]
      &lt;expression&gt; = the expression string in the format:
      &lt;qualifier&gt; &lt;operator&gt; &lt;qualifier-value&gt;
      &lt;qualifier&gt; = SOURCEIP.
@@ -209,12 +208,24 @@ Default value: DISABLED
 
 <b>nodes</b>
 Nodes on which tracing is started.
+Minimum value: 0
 Maximum value: 32
 
-<b>doruntimemerge</b>
-Enable or disable runtime merge.
-Possible values: ENABLED, DISABLED
-Default value: ENABLED
+<b>filesize</b>
+File size, in MB, treshold for rollover.
+Default value: 0
+Minimum value: 0
+Maximum value: 65536
+
+<b>traceformat</b>
+Format in which trace will be generated
+Possible values: NSCAP, PCAP
+Default value: 0
+
+<b>merge</b>
+Specify how traces across PE's are merged
+Possible values: ONSTOP, ONTHEFLY, NOMERGE
+Default value: 0
 
 <b>doruntimecleanup</b>
 Enable or disable runtime temp file cleanup
@@ -316,10 +327,12 @@ Capturing mode for trace. Mode can be any of the following values or combination
       IPV6        Translated IPv6 packets
       C2C         Capture C2C message
       NS_FR_TX    TX/TXB packets are not captured in flow receiver.
+      SSLPLAIN    Decrypted SSL packets
+      MPTCP       MPTCP master flow
       Default mode: NEW_RX TXB
 
-<b>tcpdump</b>
-Trace is captured in TCPDUMP(.pcap) format. Default capture format is NSTRACE(.cap).
+<b>traceformat</b>
+Format in which trace will be generated
 
 <b>perNIC</b>
 Use separate trace files for each interface. Works only with tcpdump format.
@@ -336,6 +349,7 @@ Filter expression for nstrace. Maximum length of filter is 255 and it can be of 
      &lt;relop> = ( && | || )
      nstrace supports two types of filter expressions:
      Classic Expressions:
+     [Note: Classic Expressions are not supported in non-default partitions]
      &lt;expression> = the expression string in the format:
      &lt;qualifier> &lt;operator> &lt;qualifier-value>
      &lt;qualifier> = SOURCEIP.
@@ -477,8 +491,8 @@ Includes filtered connection's peer traffic.
 <b>nodes</b>
 Nodes on which tracing is started.
 
-<b>doruntimemerge</b>
-Enable or disable runtime merge.
+<b>merge</b>
+Specify how traces across PE's are merged
 
 <b>doruntimecleanup</b>
 Enable or disable runtime temp file cleanup

@@ -18,14 +18,6 @@ show rise profile [&lt;profileName>]
 <b>profileName</b>
 Name of the RISE profile
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

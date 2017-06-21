@@ -58,14 +58,6 @@ show spillover action [&lt;name>]
 <b>name</b>
 Name of the spillover action.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

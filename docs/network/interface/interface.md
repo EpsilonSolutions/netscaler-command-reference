@@ -35,7 +35,7 @@ Modifies the parameters of an interface.
 
 ##Synopsys
 
-set interface &lt;id>@ [-speed &lt;speed>] [-duplex &lt;duplex>] [-flowControl &lt;flowControl>] [-autoneg ( DISABLED | ENABLED )] [-haMonitor ( ON | OFF )] [-mtu &lt;positive_integer>] [-tagall ( ON | OFF )] [-lacpMode &lt;lacpMode>] [-lacpKey &lt;positive_integer>] [-lagtype ( NODE | CLUSTER )] [-lacpPriority &lt;positive_integer>] [-lacpTimeout ( LONG | SHORT )] [-ifAlias &lt;string>] [-throughput &lt;positive_integer>] [-linkRedundancy ( ON | OFF )] [-bandwidthHigh &lt;positive_integer>  [-bandwidthNormal &lt;positive_integer>]] [-lldpmode &lt;lldpmode>]
+set interface &lt;id>@ [-speed &lt;speed>] [-duplex &lt;duplex>] [-flowControl &lt;flowControl>] [-autoneg ( DISABLED | ENABLED )] [-haMonitor ( ON | OFF )] [-mtu &lt;positive_integer>] [-tagall ( ON | OFF )] [-lacpMode &lt;lacpMode>] [-lacpKey &lt;positive_integer>] [-lagtype ( NODE | CLUSTER )] [-lacpPriority &lt;positive_integer>] [-lacpTimeout ( LONG | SHORT )] [-ifAlias &lt;string>] [-throughput &lt;positive_integer>] [-linkRedundancy ( ON | OFF )] [-bandwidthHigh &lt;positive_integer>  [-bandwidthNormal &lt;positive_integer>]] [-lldpmode &lt;lldpmode>] [-lrsetPriority &lt;positive_integer>]
 
 
 ##Arguments
@@ -58,18 +58,18 @@ Notes:
 * If you set the speed as AUTO, the NetScaler appliance attempts to auto-negotiate or auto-sense the link speed of the interface when it is UP. You must enable auto negotiation on the interface.
 * If you set a speed other than AUTO, you must specify the same speed for the peer network device. Mismatched speed and duplex settings between the peer devices of a link lead to link errors, packet loss, and other errors. 
 Some interfaces do not support certain speeds. If you specify an unsupported speed, an error message appears.
-Possible values: AUTO, 10, 100, 1000, 10000
-Default value: NSA_DVC_SPEED_AUTO
+Possible values: AUTO, 10, 100, 1000, 10000, 40000
+Default value: AUTO
 
 <b>duplex</b>
-Duplex mode for the interface. If you set the duplex mode to AUTO, the NetScaler appliance attempts to auto-negotiate the duplex mode of the interface when it is UP. You must enable auto negotiation on the interface. If you set a duplex mode other than AUTO, you must specify the same duplex mode for the peer network device. Mismatched speed and duplex settings between the peer devices of a link lead to link errors, packet loss, and other errors.
+The duplex mode for the interface. Notes:* If you set the duplex mode to AUTO, the NetScaler appliance attempts to auto-negotiate the duplex mode of the interface when it is UP. You must enable auto negotiation on the interface. If you set a duplex mode other than AUTO, you must specify the same duplex mode for the peer network device. Mismatched speed and duplex settings between the peer devices of a link lead to link errors, packet loss, and other errors.
 Possible values: AUTO, HALF, FULL
-Default value: NSA_DVC_DUPLEX_AUTO
+Default value: AUTO
 
 <b>flowControl</b>
 802.3x flow control setting for the interface.  The 802.3x specification does not define flow control for 10 Mbps and 100 Mbps speeds, but if a Gigabit Ethernet interface operates at those speeds, the flow control settings can be applied. The flow control setting that is finally applied to an interface depends on auto-negotiation. With the ON option, the peer negotiates the flow control, but the appliance then forces two-way flow control for the interface.
 Possible values: OFF, RX, TX, RXTX
-Default value: NSA_DVC_FC_OFF
+Default value: OFF
 
 <b>autoneg</b>
 Auto-negotiation state of the interface. With the ENABLED setting, the NetScaler appliance auto-negotiates the speed and duplex settings with the peer network device on the link. The NetScaler appliance auto-negotiates the settings of only those parameters (speed or duplex mode) for which the value is set as AUTO.
@@ -79,7 +79,7 @@ Default value: NSA_DVC_AUTONEG_ON
 <b>haMonitor</b>
 In a High Availability (HA) configuration, monitor the interface for failure events. In an HA configuration, an interface that has HA MON enabled and is not bound to any Failover Interface Set (FIS), is a critical interface. Failure or disabling of any critical interface triggers HA failover.
 Possible values: ON, OFF
-Default value: NSA_DVC_MONITOR_ON
+Default value: ON
 
 <b>mtu</b>
 The maximum transmission unit (MTU) is the largest packet size, measured in bytes excluding 14 bytes ethernet header and 4 bytes crc, that can be transmitted and received by this interface. Default value of MTU is 1500 on all the interface of Netscaler appliance any value configured more than 1500 on the interface will make the interface as jumbo enabled. In case of cluster backplane interface MTU value will be changed to 1514 by default, user has to change the backplane interface value to maximum mtu configured on any of the interface in cluster system plus 14 bytes more for backplane interface if Jumbo is enabled on any of the interface in a cluster system. Changing the backplane will bring back the MTU of backplane interface to default value of 1500. If a channel is configured as backplane then the same holds true for channel as well as member interfaces. In case of channel if member interfaces is configured as different mtu then the highest MTU configured MTU is treated as the LA MTU if MTU is not specified on LA explicitly. Low MTU interfaces in channel will be taken out of LA distribution list.
@@ -90,12 +90,7 @@ Maximum value: 9216
 <b>tagall</b>
 Add a four-byte 802.1q tag to every packet sent on this interface.  The ON setting applies the tag for this interface's native VLAN. OFF applies the tag for all VLANs other than the native VLAN.
 Possible values: ON, OFF
-Default value: NSA_DVC_VTRUNK_OFF
-
-<b>trunk</b>
-This argument is deprecated by tagall.
-Possible values: ON, OFF
-Default value: NSA_DVC_VTRUNK_OFF
+Default value: OFF
 
 <b>lacpMode</b>
 Bind the interface to a LA channel created by the Link Aggregation control protocol (LACP).  
@@ -104,11 +99,11 @@ Available settings function as follows:
 * Passive - The LA channel port of the NetScaler appliance does not transmit LACPDU messages unless the peer device port is in the active mode. That is, the port does not speak unless spoken to.
 * Disabled - Unbinds the interface from the LA channel. If this is the only interface in the LA channel, the LA channel is removed.
 Possible values: DISABLED, ACTIVE, PASSIVE
-Default value: NSA_LACP_DISABLE
+Default value: DISABLED
 
 <b>lacpKey</b>
 Integer identifying the LACP LA channel to which the interface is to be bound. 
-For an LA channel of the NetScaler appliance, this digit specifies the variable x of an LA channel in LA/x notation, where x can range from 1 to 4. For example, if you specify 3 as the LACP key for an LA channel, the interface is bound to the LA channel LA/3.
+For an LA channel of the NetScaler appliance, this digit specifies the variable x of an LA channel in LA/x notation, where x can range from 1 to 8. For example, if you specify 3 as the LACP key for an LA channel, the interface is bound to the LA channel LA/3.
 For an LA channel of a cluster configuration, this digit specifies the variable y of a cluster LA channel in CLA/(y-4) notation, where y can range from 5 to 8. For example, if you specify 6 as the LACP key for a cluster LA channel, the interface is bound to the cluster LA channel CLA/2.
 Minimum value: 1
 Maximum value: 8
@@ -116,10 +111,10 @@ Maximum value: 8
 <b>lagtype</b>
 Type of entity (NetScaler appliance or cluster configuration) for which to create the channel.
 Possible values: NODE, CLUSTER
-Default value: NSA_LAG_NODE
+Default value: NODE
 
 <b>lacpPriority</b>
-LACP port priority, expressed as an integer. The lower the number, the higher the priority. The NetScaler appliance limits the number of interfaces in an LA channel to eight. If LACP is enabled on more than eight interfaces, the appliance selects eight interfaces, in descending order of port priority, to form a channel.
+LACP port priority, expressed as an integer. The lower the number, the higher the priority. The NetScaler appliance limits the number of interfaces in an LA channel to sixteen.
 Default value: 32768
 Minimum value: 1
 Maximum value: 65535
@@ -138,6 +133,7 @@ Default value: " "
 
 <b>throughput</b>
 Low threshold value for the throughput of the interface, in Mbps. In an HA configuration, failover is triggered if the interface has HA MON enabled and the throughput is below the specified the threshold.
+Minimum value: 0
 Maximum value: 160000
 
 <b>linkRedundancy</b>
@@ -147,11 +143,23 @@ Default value: OFF
 
 <b>bandwidthHigh</b>
 High threshold value for the bandwidth usage of the interface, in Mbps. The NetScaler appliance generates an SNMP trap message when the bandwidth usage of the interface is greater than or equal to the specified high threshold value.
+Minimum value: 0
+Maximum value: 160000
+
+<b>bandwidthNormal</b>
+Normal threshold value for the bandwidth usage of the interface, in Mbps. When the bandwidth usage of the interface becomes less than or equal to the specified normal threshold after exceeding the high threshold, the NetScaler appliance generates an SNMP trap message to indicate that the bandwidth usage has returned to normal.
+Minimum value: 0
 Maximum value: 160000
 
 <b>lldpmode</b>
 Link Layer Discovery Protocol (LLDP) mode for an interface. The resultant LLDP mode of an interface depends on the LLDP mode configured at the global and the interface levels.
 Possible values: NONE, TRANSMITTER, RECEIVER, TRANSCEIVER
+
+<b>lrsetPriority</b>
+LRSET port priority, expressed as an integer ranging from 1 to 1024. The highest priority is 1. The NetScaler limits the number of interfaces in an LRSET to 8. Within a LRSET the highest LR Priority Interface is considered as the first candidate for the Active interface, if the interface is UP.
+Default value: 1024
+Minimum value: 1
+Maximum value: 1024
 
 
 
@@ -162,7 +170,7 @@ Use this command to remove  interface settings.Refer to the set  interface comma
 
 ##Synopsys
 
-unset interface &lt;id>@ [-speed] [-duplex] [-flowControl] [-autoneg] [-haMonitor] [-mtu] [-tagall] [-lacpMode] [-lacpKey] [-lacpPriority] [-lacpTimeout] [-ifAlias] [-throughput] [-linkRedundancy] [-bandwidthHigh] [-bandwidthNormal] [-lldpmode]
+unset interface &lt;id>@ [-speed] [-duplex] [-flowControl] [-autoneg] [-haMonitor] [-mtu] [-tagall] [-lacpMode] [-lacpKey] [-lacpPriority] [-lacpTimeout] [-ifAlias] [-throughput] [-linkRedundancy] [-bandwidthHigh] [-bandwidthNormal] [-lldpmode] [-lrsetPriority]
 
 
 ##enable interface
@@ -255,14 +263,6 @@ Interface number, in C/U format, where C can take one of the following values:
 * LO - Indicates a loop back port.
 U is a unique integer for representing an interface in a particular port group.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -351,7 +351,7 @@ VLAN tags setting on this channel.
 VLAN tagging behavior on this interface. With the ON setting,, packets are tagged with all the VLANs that are bound to this interface. With the OFF setting, packets are tagged with the native VLAN.
 
 <b>trunk</b>
-This argument is deprecated by tagall.NOTE: This attribute is deprecated.The "trunk" argument is confused with LA-trunk, renaming this to "tagall" instead.
+This argument is deprecated by tagall.
 
 <b>taggedAny</b>
 Interface setting to accept/drop all tagged packets.
@@ -448,7 +448,7 @@ The LACP mode of the specified interface. The possible values are:
 Identifies the channel to which the interface is bound. The possible values are 1, 2, 3, and 4.
 
 <b>lacpPriority</b>
-LACP port priority, expressed as an integer. The lower the number, the higher the priority. The NetScaler appliance limits the number of interfaces in an LA channel to eight. If LACP is enabled on more than eight interfaces, the appliance selects eight interfaces, in descending order of port priority, to form a channel.
+LACP port priority, expressed as an integer. The lower the number, the higher the priority. The NetScaler appliance limits the number of interfaces in an LA channel to sixteen.
 
 <b>lacpTimeout</b>
 Time to wait for the LACPDU. If an LACPDU is not received within this interval, the NetScaler markes the link partner port as DOWN. Possible values; Long, Short. Long lacptimeout is 90 sec and Short LACP timeout is 3 sec.
@@ -506,6 +506,17 @@ UP time of the member interfaces.
 
 <b>intftype</b>
 Interface Type, this field will have the interface type either it is virtual, physical or loopback.
+
+<b>lacpActorMode</b>
+* Active - The LA channel port of the NetScaler appliance generates LACPDU messages on a regular basis, regardless of any need expressed by its peer device to receive them.
+* Passive - The LA channel port of the NetScaler appliance does not transmit LACPDU messages unless the peer device port is in the active mode. That is, the port does not speak unless spoken to.
+* Disabled - Unbinds the interface from the LA channel. If this is the only interface in the LA channel, the LA channel is removed.
+
+<b>lacpActorTimeout</b>
+Interval at which the NetScaler appliance sends LACPDU messages to the peer device on the LA channel.
+Available settings function as follows:
+LONG - 30 seconds.
+SHORT - 1 second.
 
 <b>lacpActorPriority</b>
 LACP Actor Priority. A LACP port priority is configured on each port using LACP. LACP uses the port priority with the port number to form the port identifier. The port priority determines which ports should be put in standby mode when there is a hardware limitation that prevents all compatible ports from aggregating.
@@ -577,6 +588,12 @@ LACP Port SELECT state. The state of the SELECT state machine, It could be SELEC
 <b>lldpmode</b>
 Link Layer Discovery Protocol (LLDP) mode for an interface. The resultant LLDP mode of an interface depends on the LLDP mode configured at the global and the interface levels.
 
+<b>lrsetPriority</b>
+LRSET port priority, expressed as an integer ranging from 1 to 1024. The highest priority is 1. The NetScaler limits the number of interfaces in an LRSET to 8. Within a LRSET the highest LR Priority Interface is considered as the first candidate for the Active interface, if the interface is UP.
+
+<b>lrActiveIntf</b>
+LR set member interface state(active/inactive).
+
 <b>devno</b>
 
 <b>count</b>
@@ -607,6 +624,20 @@ Interface number, in C/U format, where C can take one of the following values:
 * LA - Indicates a link aggregation port.
 * LO - Indicates a loop back port.
 U is a unique integer for representing an interface in a particular port group.
+
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
 
 <b>clearstats</b>
 Clear the statsistics / counters

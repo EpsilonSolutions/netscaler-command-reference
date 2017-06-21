@@ -23,7 +23,7 @@ Content type to be classified as XML
 <b>isRegex</b>
 Is field name a regular expression?
 Possible values: REGEX, NOTREGEX
-Default value: NS_NOTREGEX
+Default value: NOTREGEX
 
 
 
@@ -58,14 +58,6 @@ show appfw XMLContentType [&lt;XMLContenttypevalue>]
 
 <b>XMLContenttypevalue</b>
 Content type to be classified as XML
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

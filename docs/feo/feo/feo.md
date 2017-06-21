@@ -15,6 +15,20 @@ stat feo [-detail] [-fullValues] [-ntimes &lt;positive_integer>] [-logFile &lt;i
 
 ##Arguments
 
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
+
 <b>clearstats</b>
 Clear the statsistics / counters
 Possible values: basic, full
@@ -76,6 +90,12 @@ The total number of JS files minified.
 
 <b>CSS Minifed (CssMin)</b>
 The total number of CSS files minified.
+
+<b>Images to Jpegxr (ImgToJxr)</b>
+The total number of images converted to JPEGXR format.
+
+<b>Images to WebP (ImgToWebP)</b>
+The total number of images converted to WEBP format.
 
 <b>JPEGs Optimized (JpegsOpt)</b>
 The total number of JPEG format images optimized.

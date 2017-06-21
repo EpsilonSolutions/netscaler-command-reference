@@ -23,6 +23,12 @@ Name for the vPath. Must begin with a letter, number, or the underscore characte
 <b>destIP</b>
 This is the destination ip, where vPath encapsulated packets needs to be sent
 
+<b>netmask</b>
+Subnet mask associated with the destination network.
+
+<b>gateway</b>
+Next hop gateway to reach the destination address.
+
 
 
 ##Example
@@ -65,14 +71,6 @@ show vpath [&lt;name>]
 <b>name</b>
 Name of the vPath whose details you want to display.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -109,6 +107,20 @@ stat vpath [-detail] [-fullValues] [-ntimes &lt;positive_integer>] [-logFile &lt
 
 
 ##Arguments
+
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
 
 <b>clearstats</b>
 Clear the statsistics / counters

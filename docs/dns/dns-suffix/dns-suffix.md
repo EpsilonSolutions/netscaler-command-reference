@@ -58,14 +58,6 @@ show dns suffix [&lt;dnsSuffix>]
 <b>dnsSuffix</b>
 DNS suffix to display.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

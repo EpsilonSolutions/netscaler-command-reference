@@ -26,7 +26,7 @@ Maximum value: 63
 <b>keyform</b>
 Format in which the key file is stored on the appliance.
 Possible values: DER, PEM
-Default value: FORMAT_PEM
+Default value: PEM
 
 <b>password</b>
 Password to assign to the file if the key is encrypted. Applies only for PEM format files.

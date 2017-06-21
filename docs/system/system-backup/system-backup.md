@@ -23,7 +23,7 @@ Name of the backup file(*.tgz) to be restored.
 <b>level</b>
 Level of data to be backed up.
 Possible values: basic, full
-Default value: CLEARCONF1
+Default value: basic
 
 <b>comment</b>
 Comment specified at the time of creation of the backup file(*.tgz).

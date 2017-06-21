@@ -93,14 +93,6 @@ show autoscale profile [&lt;name>]
 <b>name</b>
 AutoScale profile name.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

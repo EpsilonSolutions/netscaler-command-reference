@@ -28,7 +28,7 @@ Method of specifying the form field name. Available settings function as follows
 * REGEX. Form field is a regular expression.
 * NOTREGEX. Form field is a literal string.
 Possible values: REGEX, NOTREGEX
-Default value: NS_NOTREGEX
+Default value: NOTREGEX
 
 <b>comment</b>
 Any comments to preserve information about the form field designation.
@@ -86,7 +86,7 @@ Method of specifying the form field name. Available settings function as follows
 * REGEX. Form field is a regular expression.
 * NOTREGEX. Form field is a literal string.
 Possible values: REGEX, NOTREGEX
-Default value: NS_NOTREGEX
+Default value: NOTREGEX
 
 <b>state</b>
 Enable or disable the confidential field designation.
@@ -122,14 +122,6 @@ Name of the web form field.
 
 <b>url</b>
 URL of the web page that contains the web form with the form field.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

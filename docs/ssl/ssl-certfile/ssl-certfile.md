@@ -53,20 +53,12 @@ rm ssl certfile my-certfile
 
 ##show ssl certFile
 
-Displays lists of all the imported certificate file objects on the NetScaler ADC.
+Displays a list of all the imported certificate file objects on the NetScaler ADC.
 
 
 ##Synopsys
 
 show ssl certFile
-
-
-##Arguments
-
-<b>summary</b>
-
-<b>fullValues</b>
-
 
 
 ##Outputs

@@ -27,6 +27,7 @@ Maximum value: 65535
 
 <b>i</b>
 Waiting time, in seconds. The default value is 1 second.
+Minimum value: 0
 Maximum value: 65535
 
 <b>I</b>
@@ -46,6 +47,7 @@ Quiet output. Only summary is printed.
 
 <b>s</b>
 Data size, in bytes. The default value is 32.
+Minimum value: 0
 Maximum value: 65527
 
 <b>V</b>
@@ -60,9 +62,6 @@ Source IP address to be used in the outgoing query packets.
 Traffic Domain Id
 Minimum value: 1
 Maximum value: 4094
-
-<b>t</b>
-Timeout in seconds before ping6 exits
 
 <b>hostName</b>
 Address of host to ping.

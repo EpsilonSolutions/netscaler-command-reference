@@ -10,7 +10,7 @@ Displays the current TCP/IP connection table.
 
 ##Synopsys
 
-show ns connectiontable [&lt;filterexpression>] [-detail &lt;detail> ...]
+show ns connectiontable [&lt;filterexpression>] [-detail &lt;detail> ...] [-Listen]
 
 
 ##Arguments
@@ -21,6 +21,7 @@ The maximum length of filter expression is 255 and it can be of following format
     &lt;relop&gt; = ( && | || )
     connectiontable supports two types of filter expressions:
     Classic Expressions:
+    [Note: Classic Expressions are not supported in non-default partitions]
     &lt;expression&gt; = the expression string in the format:
     &lt;qualifier&gt; &lt;operator&gt; &lt;qualifier-value&gt;
     &lt;qualifier&gt; = SOURCEIP.
@@ -183,12 +184,6 @@ The maximum length of filter expression is 255 and it can be of following format
     show connectiontable "CONNECTION.INTF.EQ("1/1") &&
     CONNECTION.VLANID.EQ(1)"
 
-<b>link</b>
-Display link information if available
-
-<b>name</b>
-Display name instead of IP for local entities
-
 <b>detail</b>
 Specify display options for the connection table.
 * LINK - Displays the linked PCB (Protocol Control Block).
@@ -196,9 +191,8 @@ Specify display options for the connection table.
 * CONNFAILOVER - Displays PCB with connection failover.
 * FULL - Displays all available details.
 
-<b>summary</b>
-
-<b>fullValues</b>
+<b>Listen</b>
+Display listening services only
 
 
 
@@ -253,10 +247,10 @@ NetScaler entity name for the connection.
 NetScaler entity name for link connection.
 
 <b>connectionNumber</b>
-Connection numberNOTE: This attribute is deprecated.Deprecated in favour of NSA_CONNID.
+Connection number
 
 <b>linkConnectionNumber</b>
-Link connection numberNOTE: This attribute is deprecated.Deprecated in favour of NSA_LINK_CONNID.
+Link connection number
 
 <b>connid</b>
 Unique transaction number for the connection.

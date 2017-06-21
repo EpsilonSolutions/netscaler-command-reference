@@ -7,7 +7,7 @@ The following operations can be performed on "ca policy":
 
 ##add ca policy
 
-Creates a content adaptation policy. This policy must later be invoked globally or at a content switching or load balancing virtual server.
+Creates a content accelerator policy. This policy must later be invoked globally or at a content switching or load balancing virtual server.
 
 
 ##Synopsys
@@ -18,18 +18,18 @@ add ca policy &lt;name> -rule &lt;expression> -action &lt;string> [-undefAction 
 ##Arguments
 
 <b>name</b>
-Name for the content adaptation policy. Must begin with an ASCII alphabetic or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Can be changed after the policy is created.
+Name for the content accelerator policy. Must begin with an ASCII alphabetic or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Can be changed after the policy is created.
 
 <b>rule</b>
-Expression that determines which requests or responses match the content adaptation policy. When specifying the rule in the CLI, the description must be enclosed within double quotes.
+Expression that determines which requests or responses match the content accelerator policy. When specifying the rule in the CLI, the description must be enclosed within double quotes.
 
 <b>action</b>
-Name of content adaptation action to be executed when the rule is evaluated to true.
+Name of content accelerator action to be executed when the rule is evaluated to true.
 
 <b>undefAction</b>
 
 <b>comment</b>
-Information about the content adaptation policy.
+Information about the content accelerator policy.
 
 <b>logAction</b>
 Name of messagelog action to use when a request matches this policy.
@@ -38,7 +38,7 @@ Name of messagelog action to use when a request matches this policy.
 
 ##show ca policy
 
-Displays information about a content adaptation policy. If no name is specified, this command displays information of all available content adaptation policies.
+Displays information about a content accelerator policy. If no name is specified, this command displays information of all available content accelerator policies.
 
 
 ##Synopsys
@@ -49,15 +49,7 @@ show ca policy [&lt;name>]
 ##Arguments
 
 <b>name</b>
-Name of the content adaptation policy to be displayed.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
+Name of the content accelerator policy to be displayed.
 
 
 
@@ -80,7 +72,7 @@ Expression specifying the priority of the next policy which will get evaluated i
 <b>vserverType</b>
 
 <b>action</b>
-Content adaptation action associated with the policy.
+Content accelerator action associated with the policy.
 
 <b>rule</b>
 Rule of the policy.
@@ -92,7 +84,7 @@ Number of hits.
 Number of Undef hits.
 
 <b>isDefault</b>
-A value of true is returned if it is a default ContentAdaptationpolicy.
+A value of true is returned if it is a default content accelerator policy.
 
 <b>priority</b>
 Specifies the priority of the policy.
@@ -100,7 +92,7 @@ Specifies the priority of the policy.
 <b>bindPolicyType</b>
 
 <b>comment</b>
-Information about the content adaptation policy.
+Information about the content accelerator policy.
 
 <b>logAction</b>
 Name of messagelog action to use when a request matches this policy.
@@ -117,7 +109,7 @@ show ca policy
 
 ##rm ca policy
 
-Removes a content adaptation policy.
+Removes a content accelerator policy.
 
 
 ##Synopsys
@@ -128,7 +120,7 @@ rm ca policy &lt;name>
 ##Arguments
 
 <b>name</b>
-Name of the content adaptation policy to be removed.
+Name of the content accelerator policy to be removed.
 
 
 
@@ -138,7 +130,7 @@ rm ca policy pol9
 
 ##set ca policy
 
-Modifies the parameters of a content adaptation policy.
+Modifies the parameters of a content accelerator policy.
 
 
 ##Synopsys
@@ -152,13 +144,13 @@ set ca policy &lt;name> [-rule &lt;expression>] [-action &lt;string>] [-comment 
 Name of the content accelerator policy to be modified.
 
 <b>rule</b>
-Expression that determines which requests or responses match the content adaptation policy. When specifying the rule in the CLI, the description must be enclosed within double quotes.
+Expression that determines which requests or responses match the content accelerator policy. When specifying the rule in the CLI, the description must be enclosed within double quotes.
 
 <b>action</b>
-Name of content adaptation action to be executed when the rule is evaluated to true.
+Name of content accelerator action to be executed when the rule is evaluated to true.
 
 <b>comment</b>
-Information about the content adaptation policy.
+Information about the content accelerator policy.
 
 <b>logAction</b>
 Name of messagelog action to use when a request matches this policy.

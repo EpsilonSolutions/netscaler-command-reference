@@ -55,14 +55,6 @@ Displays the default rewrite undefAction.
 show rewrite param
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>undefAction</b>

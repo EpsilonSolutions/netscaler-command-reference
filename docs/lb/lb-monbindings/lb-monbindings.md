@@ -18,10 +18,6 @@ show lb monbindings &lt;monitorName>
 <b>monitorName</b>
 The name of the monitor.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
 
 
 ##Outputs

@@ -3,7 +3,7 @@
 The following operations can be performed on "ns assignment":
 
 
-[add](#add-ns-assignment) | [rm](#rm-ns-assignment) | [show](#show-ns-assignment) | [rename](#rename-ns-assignment)
+[add](#add-ns-assignment) | [set](#set-ns-assignment) | [unset](#unset-ns-assignment) | [rm](#rm-ns-assignment) | [show](#show-ns-assignment) | [rename](#rename-ns-assignment)
 
 ##add ns assignment
 
@@ -49,6 +49,60 @@ Comment. Can be used to preserve information about this rewrite action.
 
 add ns assignment set_user_privilege -var $user_privilege_map[client.ip.src.typecast_text_t]   -set sys.http.callout(get_user_privilege)
 
+##set ns assignment
+
+Sets an assignment of a value to a variable.
+
+
+##Synopsys
+
+set ns assignment &lt;name> [-variable &lt;expression>] [-set &lt;expression>] [-add &lt;expression>] [-sub &lt;expression>] [-append &lt;expression>] [-clear] [-comment &lt;string>]
+
+
+##Arguments
+
+<b>name</b>
+Name for the assignment. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) hash (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Can be changed after the assignment is added.
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my assignment" or ?my assignment?).
+
+<b>variable</b>
+Left hand side of the assigment, of the form $variable-name (for a singleton variabled) or $variable-name[key-expression], where key-expression is a default syntax expression that evaluates to a text string and provides the key to select a map entry
+
+<b>set</b>
+Right hand side of the assignment. The default syntax expression is evaluated and assigned to theleft hand variable.
+
+<b>add</b>
+Right hand side of the assignment. The default syntax expression is evaluated and added to the left hand variable.
+
+<b>sub</b>
+Right hand side of the assignment. The default syntax expression is evaluated and subtracted from the left hand variable.
+
+<b>append</b>
+Right hand side of the assignment. The default syntax expression is evaluated and appended to the left hand variable.
+
+<b>clear</b>
+Clear the variable value. Deallocates a text value, and for a map, the text key.
+
+<b>comment</b>
+Comment. Can be used to preserve information about this rewrite action.
+
+
+
+##Example
+
+set ns assignment set_user_privilege -var $user_privilege_map[client.ip.src.typecast_text_t]   -set sys.http.callout(get_user_privilege)
+
+##unset ns assignment
+
+Use this command to remove ns assignment settings.Refer to the set ns assignment command for meanings of the arguments.
+
+
+##Synopsys
+
+unset ns assignment &lt;name> -comment
+
+
 ##rm ns assignment
 
 Removes a rewrite action.
@@ -86,10 +140,6 @@ show ns assignment [&lt;name>]
 
 <b>name</b>
 Name of the assignment
-
-<b>format</b>
-
-<b>level</b>
 
 
 

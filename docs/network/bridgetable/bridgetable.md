@@ -49,18 +49,6 @@ Displays the bridge table entries and the configured time-out values for these e
 show bridgetable
 
 
-##Arguments
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>bridgeAge</b>

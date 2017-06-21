@@ -3,7 +3,7 @@
 The following operations can be performed on "wi package":
 
 
-[install](#install-wi-package) | [uninstall](#uninstall-wi-package)
+[install](#install-wi-package) | [uninstall](#uninstall-wi-package) | [show](#show-wi-package)
 
 ##install wi package
 
@@ -18,9 +18,8 @@ install wi package [-jre &lt;URL>] [-wi &lt;URL>] [-maxSites &lt;maxSites>]
 ##Arguments
 
 <b>jre</b>
-Complete path to the JRE tar file. 
-You can use the Diablo Latte JRE version 1.6.0-7 for 64-bit FreeBSD 6.x/amd64 platform available on the FreeBSD Foundation web site.
-Alternatively, you can use OpenJDK6 package for FreeBSD 6.x/amd63.The Java package can be downloaded from http://ftp.riken.jp/pub/FreeBSD/ports/amd64/packages-6-stable/java/openjdk6-b17_2.tbz or http://www.freebsdfoundation.org/cgi-bin/download?download=diablo-jdk-freebsd6.amd64.1.6.0.07.02.tbz
+Complete path to the JRE tar file.
+You can use OpenJDK7 package for FreeBSD 8.x/amd64.The Java package can be downloaded from http://ftp.freebsd.org/pub/FreeBSD/releases/amd64/amd64/8.4-RELEASE/packages/java/openjdk-7.17.02_2.tbz
 Default value: "file://tmp/diablo-jdk-freebsd6.amd64.1.6.0.07.02.tbz"
 
 <b>wi</b>
@@ -50,4 +49,32 @@ uninstall wi package
 ##Example
 
 uninstall wi package
+
+##show wi package
+
+Show the installed wi package
+
+
+##Synopsys
+
+show wi package
+
+
+##Outputs
+
+<b>jre</b>
+Complete path to the JRE tar file.
+You can use OpenJDK7 package for FreeBSD 8.x/amd64.The Java package can be downloaded from http://ftp.freebsd.org/pub/FreeBSD/releases/amd64/amd64/8.4-RELEASE/packages/java/openjdk-7.17.02_2.tbz
+
+<b>wi</b>
+Complete path to the Web Interface tar file for installing the Web Interface on the NetScaler appliance. This file includes Apache Tomcat Web server. The file name has the following format: nswi-&lt;version number>.tgz (for example, nswi-1.5.tgz).
+
+<b>maxSites</b>
+Maximum number of Web Interface sites that can be created on the NetScaler appliance; changes the amount of RAM reserved for Web Interface usage; changing its value results in restart of Tomcat server and invalidates any existing Web Interface sessions.
+
+
+
+##Example
+
+show wi package
 

@@ -133,14 +133,6 @@ show audit messageaction [&lt;name>]
 <b>name</b>
 Name of the audit message action.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

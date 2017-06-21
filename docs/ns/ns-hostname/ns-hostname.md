@@ -42,14 +42,6 @@ Displays the host name of the system.
 show ns hostName
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>hostName</b>

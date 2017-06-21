@@ -110,14 +110,6 @@ show linkset [&lt;id>]
 <b>id</b>
 ID of the linkset for which to display information. If an ID is not provided, the display includes information about all linksets that are available in the cluster.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

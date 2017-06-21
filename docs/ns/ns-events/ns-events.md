@@ -17,6 +17,7 @@ show ns events [&lt;eventNo>]
 
 <b>eventNo</b>
 Event number starting from which events must be shown.
+Minimum value: 0
 
 
 

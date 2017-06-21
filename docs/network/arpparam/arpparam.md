@@ -54,14 +54,6 @@ Display the global setting of dynamically learned ARP entries.
 show arpparam
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>timeout</b>

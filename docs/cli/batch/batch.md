@@ -24,6 +24,7 @@ The name of the file where the executed batch file will write its output. The de
 <b>ntimes</b>
 The number of times the batch file will be executed.
 Default value: 1
+Minimum value: 0
 
 
 

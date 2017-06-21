@@ -20,6 +20,16 @@ bind tunnel global (&lt;policyName>  [-priority &lt;positive_integer>]) [-state 
 <b>policyName</b>
 Name of the tunnel traffic policy to activate or bind.
 
+<b>priority</b>
+Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers.
+Minimum value: 0
+Maximum value: 64000
+
+<b>state</b>
+Current state of the binding. If the binding is enabled, the policy is active.
+Possible values: ENABLED, DISABLED
+Default value: ENABLED
+
 
 
 ##Example
@@ -55,18 +65,6 @@ Displays globally active tunnel policies.
 ##Synopsys
 
 show tunnel global
-
-
-##Arguments
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

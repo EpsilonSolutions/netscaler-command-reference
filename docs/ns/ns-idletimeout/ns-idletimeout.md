@@ -54,14 +54,6 @@ Display the global setting of pcb/natpcb idletimeout. NOTE: This command is depr
 
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>tcpsvr</b>

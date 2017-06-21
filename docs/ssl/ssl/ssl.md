@@ -15,6 +15,20 @@ stat ssl [-detail] [-fullValues] [-ntimes &lt;positive_integer>] [-logFile &lt;i
 
 ##Arguments
 
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
+
 <b>clearstats</b>
 Clear the statsistics / counters
 Possible values: basic, full
@@ -50,6 +64,12 @@ Total number of SSLv3 transactions on the NetScaler appliance.
 <b>TLSv1 transactions (TLS1Trn)</b>
 Number of TLSv1 transactions on the NetScaler appliance.
 
+<b>TLSv1.1 transactions (TLS11Trn)</b>
+Number of TLSv1.1 transactions on the NetScaler appliance.
+
+<b>TLSv1.2 transactions (TLS12Trn)</b>
+Number of TLSv1.2 transactions on the NetScaler appliance.
+
 <b>SSLv2 sessions (SSL2Se)</b>
 Number of SSLv2 sessions on the NetScaler appliance.
 
@@ -58,6 +78,12 @@ Number of SSLv3 sessions on the NetScaler appliance.
 
 <b>TLSv1 sessions (TLS1Se)</b>
 Number of TLSv1 sessions on the NetScaler appliance.
+
+<b>TLSv1.1 sessions (TLS11Se)</b>
+Number of TLSv1.1 sessions on the NetScaler appliance.
+
+<b>TLSv1.2 sessions (TLS12Se)</b>
+Number of TLSv1.2 sessions on the NetScaler appliance.
 
 <b>new SSL sessions (NewSe)</b>
 Number of new SSL sessions created on the NetScaler appliance.
@@ -76,6 +102,12 @@ Number of back-end SSLv3 sessions on the NetScaler appliance.
 
 <b>TLSv1 sessions (BTLS1Se)</b>
 Number of back-end TLSv1 sessions on the NetScaler appliance.
+
+<b>TLSv1.1 sessions (BTLS1Se)</b>
+Number of back-end TLSv1.1 sessions on the NetScaler appliance.
+
+<b>TLSv1.2 sessions (BTLS1Se)</b>
+Number of back-end TLSv1.2 sessions on the NetScaler appliance.
 
 <b>Session multiplex attempts (BSeMx)</b>
 Number of back-end SSL session multiplex attempts on the NetScaler appliance.
@@ -100,6 +132,12 @@ Number of session renegotiations done on SSLv3.
 
 <b>TLSv1 session renegotiations (TLS1Rn)</b>
 Number of SSL session renegotiations done on TLSv1.
+
+<b>TLSv1.1 session renegotiations (TLS11Rn)</b>
+Number of SSL session renegotiations done on TLSv1.1.
+
+<b>TLSv1.2 session renegotiations (TLS12Rn)</b>
+Number of SSL session renegotiations done on TLSv1.2.
 
 <b>RSA 512-bit key exchanges (RSAKx5)</b>
 Number of RSA 512-bit key exchanges on the NetScaler appliance.
@@ -170,6 +208,12 @@ Number of RC2 56-bit cipher encryptions on the NetScaler appliance.
 <b>RC2 128-bit encryptions (RC2En1)</b>
 Number of RC2 128-bit cipher encryptions on the NetScaler appliance.
 
+<b>AES-GCM 128-bit encryptions (AESGCMEn1)</b>
+Number of AEC-GCM 128-bit cipher encryptions on the NetScaler appliance.
+
+<b>AES-GCM 256-bit encryptions (AESGCMEn2)</b>
+Number of AEC-GCM 256-bit cipher encryptions on the NetScaler appliance.
+
 <b>Null cipher encryptions (NullEn)</b>
 Number of Null cipher encryptions on the NetScaler appliance.
 
@@ -188,6 +232,12 @@ Number of handshakes on SSLv3 on the NetScaler appliance.
 <b>TLSv1 SSL handshakes (TLS1Hs)</b>
 Number of SSL handshakes on TLSv1 on the NetScaler appliance.
 
+<b>TLSv1.1 SSL handshakes (TLS11Hs)</b>
+Number of SSL handshakes on TLSv1.1 on the NetScaler appliance.
+
+<b>TLSv1.2 SSL handshakes (TLS12Hs)</b>
+Number of SSL handshakes on TLSv1.2 on the NetScaler appliance.
+
 <b>SSLv2 client authentications (SSL2CAt)</b>
 Number of client authentications done on SSLv2.
 
@@ -196,6 +246,12 @@ Number of client authentications done on SSLv3.
 
 <b>TLSv1 client authentications (TLS1CAt)</b>
 Number of client authentications done on TLSv1.
+
+<b>TLSv1.1 client authentications (TLS11CAt)</b>
+Number of client authentications done on TLSv1.1.
+
+<b>TLSv1.2 client authentications (TLS12CAt)</b>
+Number of client authentications done on TLSv1.2.
 
 <b>RSA authentications (RSAAt)</b>
 Number of RSA authentications on the NetScaler appliance.
@@ -218,6 +274,12 @@ Number of back-end SSLv3 session renegotiations on the NetScaler appliance.
 <b>TLSv1 session renegotiations (BTLS1Rn)</b>
 Number of back-end TLSv1 session renegotiations on the NetScaler appliance.
 
+<b>TLSv1.1 back-end session renegotiations (BTLS1aRn)</b>
+Number of back-end TLSv1.1 session renegotiations on the NetScaler appliance.
+
+<b>TLSv1.2 back-end session renegotiations (BTLS12Rn)</b>
+Number of back-end TLSv1.2 session renegotiations on the NetScaler appliance.
+
 <b>RSA 512-bit key exchanges (BRSAKx5)</b>
 Number of back-end RSA 512-bit key exchanges on the NetScaler appliance.
 
@@ -235,6 +297,18 @@ Number of back-end DH 1024-bit key exchanges on the NetScaler appliance.
 
 <b>DH 2048-bit key exchanges (BDHKx2)</b>
 Number of back-end DH 2048-bit key exchanges on the NetScaler appliance.
+
+<b>ECDHE 521 curve key exchanges (BECDHECx1)</b>
+Number of back-end ECDHE 521 curve Key exchanges  on the NetScaler appliance.
+
+<b>ECDHE 384 curve key exchanges (BECDHECx2)</b>
+Number of back-end ECDHE 384 curve Key exchanges  on the NetScaler appliance.
+
+<b>ECDHE 256 curve key exchanges (BECDHECx3)</b>
+Number of back-end ECDHE 256 curve Key exchanges  on the NetScaler appliance.
+
+<b>ECDHE 224 curve key exchanges (BECDHECx4)</b>
+Number of back-end ECDHE 224 curve Key exchanges  on the NetScaler appliance.
 
 <b>RC4 40-bit encryptions (BRC4En4)</b>
 Number of back-end RC4 40-bit cipher encryptions on the NetScaler appliance.
@@ -322,6 +396,12 @@ Number of DES encryptions offloaded to the cryptography card.
 
 <b>AES encryptions offloaded (AESEnOf)</b>
 Number of AES encryptions offloaded to the cryptography card.
+
+<b>AES-GCM 128-bit encryptions offloaded (AESGCMEnOf1)</b>
+Number of AES-GCM 128-bit encryptions offloaded to the cryptography card.
+
+<b>AES-GCM 256-bit encryptions offloaded (AESGCMEnOf2)</b>
+Number of AES-GCM 256-bit encryptions offloaded to the cryptography card.
 
 <b>Bytes encrypted in hardware (EncHw)</b>
 Number of bytes encrypted in hardware.

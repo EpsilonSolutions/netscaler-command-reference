@@ -12,7 +12,7 @@ Creates a service on the NetScaler appliance. If the service is domain based, be
 
 ##Synopsys
 
-add service &lt;name>@ (&lt;IP>@ | &lt;serverName>@) &lt;serviceType> &lt;port> [-clearTextPort &lt;port>] [-cacheType &lt;cacheType>] [-maxClient &lt;positive_integer>] [-healthMonitor ( YES | NO )] [-maxReq &lt;positive_integer>] [-cacheable ( YES | NO )] [-cip ( ENABLED | DISABLED )  [&lt;cipHeader>]] [-usip ( YES | NO )] [-pathMonitor ( YES | NO )] [-pathMonitorIndv ( YES | NO )] [-useproxyport ( YES | NO )] [-sc ( ON | OFF )] [-sp ( ON | OFF )] [-rtspSessionidRemap ( ON | OFF )] [-cltTimeout &lt;secs>] [-svrTimeout &lt;secs>] [-CustomServerID &lt;string>] [-CKA ( YES | NO )] [-TCPB ( YES | NO )] [-CMP ( YES | NO )] [-maxBandwidth &lt;positive_integer>] [-accessDown ( YES | NO )] [-monThreshold &lt;positive_integer>] [-state ( ENABLED | DISABLED )] [-downStateFlush ( ENABLED | DISABLED )] [-tcpProfileName &lt;string>] [-httpProfileName &lt;string>] [-hashId &lt;positive_integer>] [-comment &lt;string>] [-appflowLog ( ENABLED | DISABLED )] [-netProfile &lt;string>] [-td &lt;positive_integer>] [-processLocal ( ENABLED | DISABLED )]
+add service &lt;name>@ (&lt;IP>@ | &lt;serverName>@) &lt;serviceType> &lt;port> [-clearTextPort &lt;port>] [-cacheType &lt;cacheType>] [-maxClient &lt;positive_integer>] [-healthMonitor ( YES | NO )] [-maxReq &lt;positive_integer>] [-cacheable ( YES | NO )] [-cip ( ENABLED | DISABLED )  [&lt;cipHeader>]] [-usip ( YES | NO )] [-pathMonitor ( YES | NO )] [-pathMonitorIndv ( YES | NO )] [-useproxyport ( YES | NO )] [-sc ( ON | OFF )] [-sp ( ON | OFF )] [-rtspSessionidRemap ( ON | OFF )] [-cltTimeout &lt;secs>] [-svrTimeout &lt;secs>] [-CustomServerID &lt;string>] [-CKA ( YES | NO )] [-TCPB ( YES | NO )] [-CMP ( YES | NO )] [-maxBandwidth &lt;positive_integer>] [-accessDown ( YES | NO )] [-monThreshold &lt;positive_integer>] [-state ( ENABLED | DISABLED )] [-downStateFlush ( ENABLED | DISABLED )] [-tcpProfileName &lt;string>] [-httpProfileName &lt;string>] [-hashId &lt;positive_integer>] [-comment &lt;string>] [-appflowLog ( ENABLED | DISABLED )] [-netProfile &lt;string>] [-td &lt;positive_integer>] [-processLocal ( ENABLED | DISABLED )] [-dnsProfileName &lt;string>]
 
 
 ##Arguments
@@ -28,7 +28,7 @@ Name of the server that hosts the service.
 
 <b>serviceType</b>
 Protocol in which data is exchanged with the service.
-Possible values: HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, DTLS, NNTP, RPCSVR, DNS, ADNS, SNMP, RTSP, DHCPRA, ANY, SIP_UDP, DNS_TCP, ADNS_TCP, MYSQL, MSSQL, ORACLE, RADIUS, RDP, DIAMETER, SSL_DIAMETER, TFTP
+Possible values: HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, DTLS, NNTP, RPCSVR, DNS, ADNS, SNMP, RTSP, DHCPRA, ANY, SIP_UDP, SIP_TCP, SIP_SSL, DNS_TCP, ADNS_TCP, MYSQL, MSSQL, ORACLE, RADIUS, RADIUSListener, RDP, DIAMETER, SSL_DIAMETER, TFTP, SMPP, PPTP, GRE, SYSLOGTCP, SYSLOGUDP
 
 <b>port</b>
 Port number of the service.
@@ -43,6 +43,7 @@ Possible values: TRANSPARENT, REVERSE, FORWARD
 
 <b>maxClient</b>
 Maximum number of simultaneous open connections to the service.
+Minimum value: 0
 Maximum value: 4294967294
 
 <b>healthMonitor</b>
@@ -55,6 +56,7 @@ Default value: YES
 <b>maxReq</b>
 Maximum number of requests that can be sent on a persistent connection to the service. 
 Note: Connection requests beyond this value are rejected.
+Minimum value: 0
 Maximum value: 65535
 
 <b>cacheable</b>
@@ -113,9 +115,6 @@ Maximum value: 31536000
 Unique identifier for the service. Used when the persistency type for the virtual server is set to Custom Server ID.
 Default value: "None"
 
-<b>serverID</b>
-The  identifier for the service. This is used when the persistency type is set to Custom Server ID.
-
 <b>CKA</b>
 Enable client keep-alive for the service.
 Possible values: YES, NO
@@ -130,6 +129,7 @@ Possible values: YES, NO
 
 <b>maxBandwidth</b>
 Maximum bandwidth, in Kbps, allocated to the service.
+Minimum value: 0
 Maximum value: 4294967287
 
 <b>accessDown</b>
@@ -139,6 +139,7 @@ Default value: NO
 
 <b>monThreshold</b>
 Minimum sum of weights of the monitors that are bound to this service. Used to determine whether to mark a service as UP or DOWN.
+Minimum value: 0
 Maximum value: 65535
 
 <b>state</b>
@@ -182,6 +183,9 @@ By turning on this option packets destined to a service in a cluster will not un
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
+<b>dnsProfileName</b>
+Name of the DNS profile to be associated with the service. DNS profile properties will applied to the transactions processed by a service. This parameter is valid only for ADNS and ADNS-TCP services.
+
 
 
 ##Example
@@ -216,7 +220,7 @@ Modifies the parameters of an existing service.
 
 ##Synopsys
 
-set service &lt;name>@ [-IPAddress &lt;ip_addr|ipv6_addr|*>@] [-maxClient &lt;positive_integer>] [-maxReq &lt;positive_integer>] [-cacheable ( YES | NO )] [-cip ( ENABLED | DISABLED )  [&lt;cipHeader>]] [-usip ( YES | NO )] [-pathMonitor ( YES | NO )] [-pathMonitorIndv ( YES | NO )] [-useproxyport ( YES | NO )] [-sc ( ON | OFF )] [-sp ( ON | OFF )] [-rtspSessionidRemap ( ON | OFF )] [-healthMonitor ( YES | NO )] [-cltTimeout &lt;secs>] [-svrTimeout &lt;secs>] [-CustomServerID &lt;string>] [-CKA ( YES | NO )] [-TCPB ( YES | NO )] [-CMP ( YES | NO )] [-maxBandwidth &lt;positive_integer>] [-accessDown ( YES | NO )] [-monThreshold &lt;positive_integer>] [-weight &lt;positive_integer>  &lt;monitorName>] [-downStateFlush ( ENABLED | DISABLED )] [-tcpProfileName &lt;string>] [-httpProfileName &lt;string>] [-hashId &lt;positive_integer>] [-comment &lt;string>] [-appflowLog ( ENABLED | DISABLED )] [-netProfile &lt;string>] [-processLocal ( ENABLED | DISABLED )]
+set service &lt;name>@ [-IPAddress &lt;ip_addr|ipv6_addr|*>@] [-maxClient &lt;positive_integer>] [-maxReq &lt;positive_integer>] [-cacheable ( YES | NO )] [-cip ( ENABLED | DISABLED )  [&lt;cipHeader>]] [-usip ( YES | NO )] [-pathMonitor ( YES | NO )] [-pathMonitorIndv ( YES | NO )] [-useproxyport ( YES | NO )] [-sc ( ON | OFF )] [-sp ( ON | OFF )] [-rtspSessionidRemap ( ON | OFF )] [-healthMonitor ( YES | NO )] [-cltTimeout &lt;secs>] [-svrTimeout &lt;secs>] [-CustomServerID &lt;string>] [-CKA ( YES | NO )] [-TCPB ( YES | NO )] [-CMP ( YES | NO )] [-maxBandwidth &lt;positive_integer>] [-accessDown ( YES | NO )] [-monThreshold &lt;positive_integer>] [-weight &lt;positive_integer>  &lt;monitorName>] [-downStateFlush ( ENABLED | DISABLED )] [-tcpProfileName &lt;string>] [-httpProfileName &lt;string>] [-hashId &lt;positive_integer>] [-comment &lt;string>] [-appflowLog ( ENABLED | DISABLED )] [-netProfile &lt;string>] [-processLocal ( ENABLED | DISABLED )] [-dnsProfileName &lt;string>]
 
 
 ##Arguments
@@ -229,11 +233,13 @@ The new IP address of the service.
 
 <b>maxClient</b>
 Maximum number of simultaneous open connections to the service.
+Minimum value: 0
 Maximum value: 4294967294
 
 <b>maxReq</b>
 Maximum number of requests that can be sent on a persistent connection to the service. 
 Note: Connection requests beyond this value are rejected.
+Minimum value: 0
 Maximum value: 65535
 
 <b>cacheable</b>
@@ -245,6 +251,9 @@ Default value: NO
 <b>cip</b>
 Before forwarding a request to the service, insert an HTTP header with the client's IPv4 or IPv6 address as its value. Used if the server needs the client's IP address for security, accounting, or other purposes, and setting the Use Source IP parameter is not a viable option.
 Possible values: ENABLED, DISABLED
+
+<b>cipHeader</b>
+Name for the HTTP header whose value must be set to the IP address of the client. Used with the Client IP parameter. If you set the Client IP parameter, and you do not specify a name for the header, the appliance uses the header name specified for the global Client IP Header parameter (the cipHeader parameter in the set ns param CLI command or the Client IP Header parameter in the Configure HTTP Parameters dialog box at System &gt; Settings &gt; Change HTTP parameters). If the global Client IP Header parameter is not specified, the appliance inserts a header with the name "client-ip."
 
 <b>usip</b>
 Use the client's IP address as the source IP address when initiating a connection to the server. When creating a service, if you do not set this parameter, the service inherits the global Use Source IP setting (available in the enable ns mode and disable ns mode CLI commands, or in the System &gt; Settings &gt; Configure modes &gt; Configure Modes dialog box). However, you can override this setting after you create the service.
@@ -296,9 +305,6 @@ Maximum value: 31536000
 Unique identifier for the service. Used when the persistency type for the virtual server is set to Custom Server ID.
 Default value: "None"
 
-<b>serverID</b>
-The  identifier for the service. This is used when the persistency type is set to Custom Server ID.
-
 <b>CKA</b>
 Enable client keep-alive for the service.
 Possible values: YES, NO
@@ -313,6 +319,7 @@ Possible values: YES, NO
 
 <b>maxBandwidth</b>
 Maximum bandwidth, in Kbps, allocated to the service.
+Minimum value: 0
 Maximum value: 4294967287
 
 <b>accessDown</b>
@@ -322,12 +329,16 @@ Default value: NO
 
 <b>monThreshold</b>
 Minimum sum of weights of the monitors that are bound to this service. Used to determine whether to mark a service as UP or DOWN.
+Minimum value: 0
 Maximum value: 65535
 
 <b>weight</b>
 Weight to assign to the monitor-service binding. When a monitor is UP, the weight assigned to its binding with the service determines how much the monitor contributes toward keeping the health of the service above the value configured for the Monitor Threshold parameter.
 Minimum value: 1
 Maximum value: 100
+
+<b>monitorName</b>
+Name of the monitor bound to the specified service.
 
 <b>downStateFlush</b>
 Flush all active transactions associated with a service whose state transitions from UP to DOWN. Do not enable this option for applications that must complete their transactions.
@@ -360,6 +371,9 @@ By turning on this option packets destined to a service in a cluster will not un
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
+<b>dnsProfileName</b>
+Name of the DNS profile to be associated with the service. DNS profile properties will applied to the transactions processed by a service. This parameter is valid only for ADNS and ADNS-TCP services.
+
 
 
 ##Example
@@ -373,7 +387,7 @@ Removes the parameter settings of the specified service. Attributes for which a 
 
 ##Synopsys
 
-unset service &lt;name>@ [-maxClient] [-maxReq] [-cacheable] [-cip] [-usip] [-pathMonitor] [-pathMonitorIndv] [-useproxyport] [-sc] [-sp] [-rtspSessionidRemap] [-CustomServerID] [-CKA] [-TCPB] [-CMP] [-maxBandwidth] [-accessDown] [-monThreshold] [-cltTimeout] [-riseApbrStatsMsgCode] [-svrTimeout] [-tcpProfileName] [-httpProfileName] [-hashId] [-appflowLog] [-netProfile] [-processLocal] [-cipHeader] [-healthMonitor] [-downStateFlush] [-comment]
+unset service &lt;name>@ [-maxClient] [-maxReq] [-cacheable] [-cip] [-usip] [-pathMonitor] [-pathMonitorIndv] [-useproxyport] [-sc] [-sp] [-rtspSessionidRemap] [-CustomServerID] [-CKA] [-TCPB] [-CMP] [-maxBandwidth] [-accessDown] [-monThreshold] [-cltTimeout] [-riseApbrStatsMsgCode] [-svrTimeout] [-tcpProfileName] [-httpProfileName] [-hashId] [-appflowLog] [-netProfile] [-processLocal] [-dnsProfileName] [-cipHeader] [-healthMonitor] [-downStateFlush] [-comment]
 
 
 ##Example
@@ -400,6 +414,20 @@ Name of the policy to bind to the service.
 
 <b>monitorName</b>
 Name of the monitor to bind to the service.
+
+<b>monState</b>
+Initial state of the service.
+Possible values: ENABLED, DISABLED
+Default value: ENABLED
+
+<b>weight</b>
+Weight to assign to the monitor-service binding. When a monitor is UP, the weight assigned to its binding with the service determines how much the monitor contributes toward keeping the health of the service above the value configured for the Monitor Threshold parameter.
+Default value: 1
+Minimum value: 1
+Maximum value: 100
+
+<b>passive</b>
+Indicates if load monitor is passive. A passive load monitor does not remove service from LB decision when threshold is breached.
 
 
 
@@ -505,14 +533,6 @@ Display both user-configured and dynamically learned services.
 <b>internal</b>
 Display only dynamically learned services.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -530,10 +550,10 @@ The name of the policyname for which this service is bound
 The type of service
 
 <b>serviceConfTpye</b>
-The configuration type of the serviceNOTE: This attribute is deprecated.This will no longer show the correct information. Use the serviceConfType option instead.
+The configuration type of the service
 
 <b>serviceConfType</b>
-The configuration type of the serviceNOTE: This attribute is deprecated.This will no longer show the correct information. Use the serviceConfType2 option instead.
+The configuration type of the service
 
 <b>serviceConfType2</b>
 The configuration type of the service (Internal/Dynamic/Configured).
@@ -622,7 +642,7 @@ public port
 The  identifier for the service. Used when the persistency type is set to Custom Server ID.
 
 <b>serverID</b>
-The  identifier for the service. This is used when the persistency type is set to Custom Server ID.NOTE: This attribute is deprecated.Instead of integer now serverId will be a string and you can use -customserverid instead of -serverID.
+The  identifier for the service. This is used when the persistency type is set to Custom Server ID.
 
 <b>CKA</b>
 Enable client keep-alive for the service.
@@ -694,7 +714,7 @@ Time when last state change happened. Seconds part.
 Time at which last state change happened. Milliseconds part.
 
 <b>timeSinceLastStateChange</b>
-Time in milliseconds since the last state change.NOTE: This attribute is deprecated.This will no longer show the correct information. Use the ticksSinceLastStateChange option instead.
+Time in milliseconds since the last state change.
 
 <b>ticksSinceLastStateChange</b>
 Time in 10 millisecond ticks since the last state change.
@@ -764,6 +784,9 @@ Indicates if load monitor is passive. A passive load monitor does not remove ser
 <b>oracleServerVersion</b>
 Oracle server version
 
+<b>dnsProfileName</b>
+Name of the DNS profile to be associated with the service. DNS profile properties will applied to the transactions processed by a service. This parameter is valid only for ADNS and ADNS-TCP services.
+
 <b>devno</b>
 
 <b>count</b>
@@ -812,6 +835,20 @@ stat service [&lt;name>] [-detail] [-fullValues] [-ntimes &lt;positive_integer>]
 
 <b>name</b>
 Name of the service.
+
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
 
 <b>clearstats</b>
 Clear the statsistics / counters

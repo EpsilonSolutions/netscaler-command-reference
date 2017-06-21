@@ -39,7 +39,7 @@ Maximum value: 63
 <b>keyform</b>
 Format in which the key is stored on the appliance.
 Possible values: DER, PEM
-Default value: FORMAT_PEM
+Default value: PEM
 
 <b>PEMPassPhrase</b>
 
@@ -52,7 +52,7 @@ Maximum value: 3650
 <b>certForm</b>
 Format in which the certificate is stored on the appliance.
 Possible values: DER, PEM
-Default value: FORMAT_PEM
+Default value: PEM
 
 <b>CAcert</b>
 Name of the CA certificate file that issues and signs the Intermediate-CA certificate or the end-user client and server certificates.
@@ -61,7 +61,7 @@ Maximum value: 63
 <b>CAcertForm</b>
 Format of the CA certificate.
 Possible values: DER, PEM
-Default value: FORMAT_PEM
+Default value: PEM
 
 <b>CAkey</b>
 Private key, associated with the CA certificate that is used to sign the Intermediate-CA certificate or the end-user client and server certificate. If the CA key file is password protected, the user is prompted to enter the pass phrase that was used to encrypt the key.
@@ -70,7 +70,7 @@ Maximum value: 63
 <b>CAkeyForm</b>
 Format for the CA certificate.
 Possible values: DER, PEM
-Default value: FORMAT_PEM
+Default value: PEM
 
 <b>CAserial</b>
 Serial number file maintained for the CA certificate. This file contains the serial number of the next certificate to be issued or signed by the CA. If the specified file does not exist, a new file is created, with /nsconfig/ssl/ as the default path. If you do not specify a proper path for the existing serial file, a new serial file is created. This might change the certificate serial numbers assigned by the CA certificate to each of the certificates it signs.

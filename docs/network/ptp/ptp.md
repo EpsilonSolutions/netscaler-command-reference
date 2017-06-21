@@ -20,7 +20,7 @@ set ptp -state ( DISABLE | ENABLE )
 <b>state</b>
 Enables or disables Precision Time Protocol (PTP) on the appliance. If you disable PTP, make sure you enable Network Time Protocol (NTP) on the cluster.
 Possible values: DISABLE, ENABLE
-Default value: NSA_PTP_ENABLE
+Default value: ENABLE
 
 
 
@@ -32,14 +32,6 @@ Displays the status of Precision Time Protocol (PTP) on the appliance.
 ##Synopsys
 
 show ptp
-
-
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

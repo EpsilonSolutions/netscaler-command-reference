@@ -59,14 +59,6 @@ Displays lists all HTML page objects on the NetScaler appliance.
 show appqoe CustomResp
 
 
-##Arguments
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-
-
 ##Outputs
 
 <b>name</b>

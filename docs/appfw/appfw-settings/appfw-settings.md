@@ -12,35 +12,36 @@ Modifies the global application firewall settings. The global settings apply to 
 
 ##Synopsys
 
-set appfw settings [-defaultProfile &lt;string>] [-undefAction &lt;string>] [-sessionTimeout &lt;positive_integer>] [-learnRateLimit &lt;positive_integer>] [-sessionLifetime &lt;positive_integer>] [-sessionCookieName &lt;string>] [-clientIPLoggingHeader &lt;string>] [-importSizeLimit &lt;positive_integer>] [-signatureAutoUpdate ( ON | OFF )] [-signatureUrl &lt;expression>] [-cookiePostEncryptPrefix &lt;string>] [-logMalformedReq ( ON | OFF )] [-CEFLogging ( ON | OFF )] [-entityDecoding ( ON | OFF )] [-useConfigurableSecretKey ( ON | OFF )]
+set appfw settings [-defaultProfile &lt;string>] [-undefAction &lt;string>] [-sessionTimeout &lt;positive_integer>] [-learnRateLimit &lt;positive_integer>] [-sessionLifetime &lt;positive_integer>] [-sessionCookieName &lt;string>] [-clientIPLoggingHeader &lt;string>] [-importSizeLimit &lt;positive_integer>] [-signatureAutoUpdate ( ON | OFF )] [-signatureUrl &lt;expression>] [-cookiePostEncryptPrefix &lt;string>] [-logMalformedReq ( ON | OFF )] [-GeoLocationLogging ( ON | OFF )] [-CEFLogging ( ON | OFF )] [-entityDecoding ( ON | OFF )] [-useConfigurableSecretKey ( ON | OFF )]
 
 
 ##Arguments
 
 <b>defaultProfile</b>
 Profile to use when a connection does not match any policy. Default setting is APPFW_BYPASS, which sends unmatched connections back to the NetScaler appliance without attempting to filter them further.
-Default value: AS_ENGINESETTINGS_DEFAULT_PROF_DEFAULT
+Default value: APPFW_BYPASS
 
 <b>undefAction</b>
 Profile to use when an application firewall policy evaluates to undefined (UNDEF). 
 An UNDEF event indicates an internal error condition. The APPFW_BLOCK built-in profile is the default setting. You can specify a different built-in or user-created profile as the UNDEF profile.
-Default value: AS_ENGINESETTINGS_UNDEF_PROF_DEFAULT
+Default value: APPFW_BLOCK
 
 <b>sessionTimeout</b>
 Timeout, in seconds, after which a user session is terminated. Before continuing to use the protected web site, the user must establish a new session by opening a designated start URL.
-Default value: AS_ENGINESETTINGS_SESSIONTIMEOUT_DEFAULT
+Default value: 900 
 Minimum value: 1
 Maximum value: 65535
 
 <b>learnRateLimit</b>
 Maximum number of connections per second that the application firewall learning engine examines to generate new relaxations for learning-enabled security checks. The application firewall drops any connections above this limit from the list of connections used by the learning engine.
-Default value: AS_ENGINESETTINGS_LEARN_RATE_LIMIT_DEFAULT
+Default value: 400 
 Minimum value: 1
 Maximum value: 1000
 
 <b>sessionLifetime</b>
 Maximum amount of time (in seconds) that the application firewall allows a user session to remain active, regardless of user activity. After this time, the user session is terminated. Before continuing to use the protected web site, the user must establish a new session by opening a designated start URL.
-Default value: AS_ENGINESETTINGS_SESSIONLIFETIME_DEFAULT
+Default value: 0 
+Minimum value: 0
 Maximum value: 2147483647
 
 <b>sessionCookieName</b>
@@ -55,7 +56,7 @@ Name of an HTTP header that contains the IP address that the client used to conn
 
 <b>importSizeLimit</b>
 Cumulative total maximum number of bytes in web forms imported to a protected web site. If a user attempts to upload files with a total byte count higher than the specified limit, the application firewall blocks the request.
-Default value: AS_ENGINESETTINGS_IMPORTSIZELIMIT_DEFAULT
+Default value: 134217728 
 Minimum value: 1
 Maximum value: 134217728
 
@@ -66,7 +67,7 @@ Default value: OFF
 
 <b>signatureUrl</b>
 URL to download the mapping file from server
-Default value: AS_ENGINESETTINGS_SIGNATURES_UPDATE_URL
+Default value: https://s3.amazonaws.com/NSAppFwSignatures/SignaturesMapping.xml
 
 <b>cookiePostEncryptPrefix</b>
 String that is prepended to all encrypted cookie values.
@@ -76,6 +77,11 @@ Default value: NS_S_AS_DEFAULT_CKI_POST_ENCRYPT_PREFIX
 Log requests that are so malformed that application firewall parsing doesn't occur.
 Possible values: ON, OFF
 Default value: ON
+
+<b>GeoLocationLogging</b>
+Enable Geo-Location Logging in CEF format logs.
+Possible values: ON, OFF
+Default value: OFF
 
 <b>CEFLogging</b>
 Enable CEF format logs.
@@ -101,7 +107,7 @@ Use this command to remove appfw settings settings.Refer to the set appfw settin
 
 ##Synopsys
 
-unset appfw settings [-defaultProfile] [-undefAction] [-sessionTimeout] [-learnRateLimit] [-sessionLifetime] [-sessionCookieName] [-clientIPLoggingHeader] [-importSizeLimit] [-signatureAutoUpdate] [-signatureUrl] [-cookiePostEncryptPrefix] [-logMalformedReq] [-CEFLogging] [-entityDecoding] [-useConfigurableSecretKey]
+unset appfw settings [-defaultProfile] [-undefAction] [-sessionTimeout] [-learnRateLimit] [-sessionLifetime] [-sessionCookieName] [-clientIPLoggingHeader] [-importSizeLimit] [-signatureAutoUpdate] [-signatureUrl] [-cookiePostEncryptPrefix] [-logMalformedReq] [-GeoLocationLogging] [-CEFLogging] [-entityDecoding] [-useConfigurableSecretKey]
 
 
 ##show appfw settings
@@ -112,14 +118,6 @@ Displays the current application firewall global settings.
 ##Synopsys
 
 show appfw settings
-
-
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -163,6 +161,9 @@ String that is prepended to all encrypted cookie values.
 
 <b>logMalformedReq</b>
 Log requests that are so malformed that application firewall parsing doesn't occur.
+
+<b>GeoLocationLogging</b>
+Enable Geo-Location Logging in CEF format logs.
 
 <b>CEFLogging</b>
 Enable CEF format logs.

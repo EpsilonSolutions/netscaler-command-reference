@@ -15,14 +15,6 @@ Displays the trigger events configured and the time when these events were trigg
 show callhome 
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>emailAddress</b>
@@ -92,6 +84,13 @@ The contact person's E-mail address.
 Deploy the callhome proxy mode
 Possible values: YES, NO
 Default value: NO
+
+<b>IPAddress</b>
+Proxy Server IP address
+
+<b>port</b>
+Proxy Server Port
+Minimum value: 1
 
 
 

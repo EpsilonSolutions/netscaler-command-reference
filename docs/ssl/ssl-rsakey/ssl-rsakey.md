@@ -27,12 +27,12 @@ Maximum value: 4096
 <b>exponent</b>
 Public exponent for the RSA key. The exponent is part of the cipher algorithm and is required for creating the RSA key.
 Possible values: 3, F4
-Default value: FIPSEXP_F4
+Default value: F4
 
 <b>keyform</b>
 Format in which the RSA key file is stored on the appliance.
 Possible values: DER, PEM
-Default value: FORMAT_PEM
+Default value: PEM
 
 <b>des</b>
 Encrypt the generated RSA key by using the DES algorithm. On the command line, you are prompted to enter the pass phrase (password) that is used to encrypt the key.

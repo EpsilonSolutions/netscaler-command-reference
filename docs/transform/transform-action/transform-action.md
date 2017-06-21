@@ -34,7 +34,7 @@ Maximum value: 2147483647
 <b>state</b>
 Enable or disable this action.
 Possible values: ENABLED, DISABLED
-Default value: GENENABLED
+Default value: ENABLED
 
 
 
@@ -97,7 +97,7 @@ NOTE: The cookie domain to be transformed is extracted from the request.
 <b>state</b>
 Enable or disable this action.
 Possible values: ENABLED, DISABLED
-Default value: GENENABLED
+Default value: ENABLED
 
 <b>comment</b>
 Any comments to preserve information about this URL Transformation action.
@@ -128,14 +128,6 @@ show transform action [&lt;name>]
 
 <b>name</b>
 Name of the profile.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 

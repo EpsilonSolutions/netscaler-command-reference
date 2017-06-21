@@ -23,9 +23,6 @@ Unique name for the expression. Not case sensitive. Must begin with an ASCII let
 <b>value</b>
 Expression string. For example: http.req.body(100).contains("this").
 
-<b>description</b>
-Description for the expression.
-
 <b>comment</b>
 Any comments associated with the expression. Displayed upon viewing the policy expression.
 
@@ -69,9 +66,6 @@ Name of the policy expression to be modified.
 <b>value</b>
 The expression string.
 
-<b>description</b>
-Description for the expression.
-
 <b>comment</b>
 Any comments associated with the expression. Displayed upon viewing the policy expression.
 
@@ -109,14 +103,6 @@ Name of the policy expression to display. If a name is not provided, information
 Type of expression. Can be a classic or default syntax (advanced) expression.
 Possible values: CLASSIC, ADVANCED
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -137,7 +123,7 @@ The type of expression. This is for output only.
 The client security message that will be displayed on failure of the client security check.
 
 <b>description</b>
-Description for the expression.NOTE: This attribute is deprecated.
+Description for the expression.
 
 <b>comment</b>
 Any comments associated with the expression. Displayed upon viewing the policy expression.

@@ -18,7 +18,7 @@ add ca action &lt;name> [-accumResSize &lt;KBytes>] [-lbvserver &lt;string>] [-c
 ##Arguments
 
 <b>name</b>
-Name of the content adaptation action. Must begin with an ASCII alphabetic or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters.
+Name of the content accelerator action. Must begin with an ASCII alphabetic or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters.
 
 <b>accumResSize</b>
 Size of the data, in KB, that the server must respond with. The NetScaler uses this data to compute a hash which is then used to lookup within the T2100 appliance.
@@ -27,7 +27,7 @@ Size of the data, in KB, that the server must respond with. The NetScaler uses t
 Name of the load balancing virtual server that has the T2100 appliances as services.
 
 <b>comment</b>
-Information about the content adaptation action.
+Information about the content accelerator action.
 
 <b>type</b>
 Specifies whether the NetScaler must lookup for the response on the T2100 appliance or serve the response directly from the server.
@@ -37,7 +37,7 @@ Possible values: nolookup, lookup, noop
 
 ##show ca action
 
-Displays information about a content adaptation action. If no name is specified, this command displays information of all available content adaptation actions.
+Displays information about a content accelerator action. If no name is specified, this command displays information of all available content accelerator actions.
 
 
 ##Synopsys
@@ -49,14 +49,6 @@ show ca action [&lt;name>]
 
 <b>name</b>
 Name of the content accelerator action.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -85,7 +77,7 @@ Flag to determine whether content accelerator action is built-in or not
 <b>flags</b>
 
 <b>comment</b>
-Information about the content adaptation action.
+Information about the content accelerator action.
 
 <b>devno</b>
 
@@ -123,7 +115,7 @@ Possible values: nolookup, lookup, noop
 Name of the load balancing virtual server that has the T2100 appliances as services.
 
 <b>comment</b>
-Information about the content adaptation action.
+Information about the content accelerator action.
 
 
 
@@ -178,10 +170,10 @@ rename ca action &lt;name>@ &lt;newName>@
 Existing name of the Content Accelerator action.
 
 <b>newName</b>
-New name for the ContentAdaptation action. 
-Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) hash (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Can be changed after the ContentAdaptation policy is added.
+New name for the content accelerator action. 
+Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) hash (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Can be changed after the content accelerator policy is added.
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my ContentAdaptation action" or ?my ContentAdaptation action?).!,
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my content accelerator action" or ?my content accelerator action?).!,
 
 
 

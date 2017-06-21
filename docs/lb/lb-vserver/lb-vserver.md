@@ -12,291 +12,175 @@ Creates a load balancing virtual server.
 
 ##Synopsys
 
-add lb vserver &lt;name>@ &lt;serviceType> [(&lt;IPAddress>@  &lt;port>  [-range &lt;positive_integer>]) | (-IPPattern &lt;ippat>  -IPMask &lt;ipmask>)] [-persistenceType &lt;persistenceType>] [-timeout &lt;mins>] [-persistenceBackup ( SOURCEIP | NONE )] [-backupPersistenceTimeout &lt;mins>] [-lbMethod &lt;lbMethod>  [-hashLength &lt;positive_integer>]   [-netmask &lt;netmask>]    [-v6netmasklen &lt;positive_integer>]    [-dataLength &lt;positive_integer>]  [-dataOffset &lt;positive_integer>]] [-cookieName &lt;string>] [-rule &lt;expression>] [-Listenpolicy &lt;expression>  [-Listenpriority &lt;positive_integer>]] [-resRule &lt;expression>] [-persistMask &lt;netmask>] [-v6persistmasklen &lt;positive_integer>] [-pq ( ON | OFF )] [-sc ( ON | OFF )] [-rtspNat ( ON | OFF )] [-m &lt;m>] [-tosId &lt;positive_integer>] [-sessionless ( ENABLED | DISABLED )] [-state ( ENABLED | DISABLED )] [-connfailover &lt;connfailover>] [-redirectURL &lt;URL>] [-cacheable ( YES | NO )] [-cltTimeout &lt;secs>] [-soMethod &lt;soMethod>] [-soPersistence ( ENABLED | DISABLED )] [-soPersistenceTimeOut &lt;positive_integer>] [-healthThreshold &lt;positive_integer>] [-soThreshold &lt;positive_integer>] [-soBackupAction &lt;soBackupAction>] [-redirectPortRewrite ( ENABLED | DISABLED )] [-downStateFlush ( ENABLED | DISABLED )] [-backupVServer &lt;string>] [-disablePrimaryOnDown ( ENABLED | DISABLED )] [-insertVserverIPPort &lt;insertVserverIPPort>  [&lt;vipHeader>] ] [-AuthenticationHost &lt;string>] [-Authentication ( ON | OFF )] [-authn401 ( ON | OFF )] [-authnVsName &lt;string>] [-push ( ENABLED | DISABLED )] [-pushVserver &lt;string>] [-pushLabel &lt;expression>] [-pushMultiClients ( YES | NO )] [-tcpProfileName &lt;string>] [-httpProfileName &lt;string>] [-dbProfileName &lt;string>] [-comment &lt;string>] [-l2Conn ( ON | OFF )] [-oracleServerVersion ( 10G | 11G )] [-mssqlServerVersion &lt;mssqlServerVersion>] [-mysqlProtocolVersion &lt;positive_integer>] [-mysqlServerVersion &lt;string>] [-mysqlCharacterSet &lt;positive_integer>] [-mysqlServerCapabilities &lt;positive_integer>] [-appflowLog ( ENABLED | DISABLED )] [-netProfile &lt;string>] [-icmpVsrResponse ( PASSIVE | ACTIVE )] [-RHIstate ( PASSIVE | ACTIVE )] [-newServiceRequest &lt;positive_integer>  [&lt;newServiceRequestUnit>]] [-newServiceRequestIncrementInterval &lt;positive_integer>] [-minAutoscaleMembers &lt;positive_integer>] [-maxAutoscaleMembers &lt;positive_integer>] [-persistAVPno &lt;positive_integer> ...] [-skippersistency &lt;skippersistency>] [-td &lt;positive_integer>] [-authnProfile &lt;string>] [-macmodeRetainvlan ( ENABLED | DISABLED )] [-dbsLb ( ENABLED | DISABLED )] [-dns64 ( ENABLED | DISABLED )] [-bypassAAAA ( YES | NO )] [-RecursionAvailable ( YES | NO )] [-processLocal ( ENABLED | DISABLED )]
+add lb vserver &lt;name>@ &lt;serviceType> [(&lt;IPAddress>@ &lt;port> [-range &lt;positive_integer>]) | (-IPPattern &lt;ippat> -IPMask &lt;ipmask>)] [-persistenceType &lt;persistenceType>] [-timeout &lt;mins>] [-persistenceBackup ( SOURCEIP | NONE )] [-backupPersistenceTimeout &lt;mins>] [-lbMethod &lt;lbMethod> [-hashLength &lt;positive_integer>] [-netmask &lt;netmask>] [-v6netmasklen &lt;positive_integer>] [-dataLength &lt;positive_integer>] [-dataOffset &lt;positive_integer>]] [-cookieName &lt;string>] [-rule &lt;expression>] [-Listenpolicy &lt;expression> [-Listenpriority &lt;positive_integer>]] [-resRule &lt;expression>] [-persistMask &lt;netmask>] [-v6persistmasklen &lt;positive_integer>] [-pq ( ON | OFF )] [-sc ( ON | OFF )] [-rtspNat ( ON | OFF )] [-m &lt;m>] [-tosId &lt;positive_integer>] [-sessionless ( ENABLED | DISABLED )] [-state ( ENABLED | DISABLED )] [-connfailover &lt;connfailover>] [-redirectURL &lt;URL>] [-cacheable ( YES | NO )] [-cltTimeout &lt;secs>] [-soMethod &lt;soMethod>] [-soPersistence ( ENABLED | DISABLED )] [-soPersistenceTimeOut &lt;positive_integer>] [-healthThreshold &lt;positive_integer>] [-soThreshold &lt;positive_integer>] [-soBackupAction &lt;soBackupAction>] [-redirectPortRewrite ( ENABLED | DISABLED )] [-downStateFlush ( ENABLED | DISABLED )] [-backupVServer &lt;string>] [-disablePrimaryOnDown ( ENABLED | DISABLED )] [-insertVserverIPPort &lt;insertVserverIPPort> [&lt;vipHeader>] ] [-AuthenticationHost &lt;string>] [-Authentication ( ON | OFF )] [-authn401 ( ON | OFF )] [-authnVsName &lt;string>] [-push ( ENABLED | DISABLED )] [-pushVserver &lt;string>] [-pushLabel &lt;expression>] [-pushMultiClients ( YES | NO )] [-tcpProfileName &lt;string>] [-httpProfileName &lt;string>] [-dbProfileName &lt;string>] [-comment &lt;string>] [-l2Conn ( ON | OFF )] [-oracleServerVersion ( 10G | 11G )] [-mssqlServerVersion &lt;mssqlServerVersion>] [-mysqlProtocolVersion &lt;positive_integer>] [-mysqlServerVersion &lt;string>] [-mysqlCharacterSet &lt;positive_integer>] [-mysqlServerCapabilities &lt;positive_integer>] [-appflowLog ( ENABLED | DISABLED )] [-netProfile &lt;string>] [-icmpVsrResponse ( PASSIVE | ACTIVE )] [-RHIstate ( PASSIVE | ACTIVE )] [-newServiceRequest &lt;positive_integer> [&lt;newServiceRequestUnit>]] [-newServiceRequestIncrementInterval &lt;positive_integer>] [-minAutoscaleMembers &lt;positive_integer>] [-maxAutoscaleMembers &lt;positive_integer>] [-persistAVPno &lt;positive_integer> ...] [-skippersistency &lt;skippersistency>] [-td &lt;positive_integer>] [-authnProfile &lt;string>] [-macmodeRetainvlan ( ENABLED | DISABLED )] [-dbsLb ( ENABLED | DISABLED )] [-dns64 ( ENABLED | DISABLED )] [-bypassAAAA ( YES | NO )] [-RecursionAvailable ( YES | NO )] [-processLocal ( ENABLED | DISABLED )] [-dnsProfileName &lt;string>]
 
 
 ##Arguments
 
 <b>name</b>
-Name for the virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Can be changed after the virtual server is created.
-CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my vserver" or 'my vserver').
+Name for the virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Can be changed after the virtual server is created. CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my vserver" or 'my vserver').
 
 <b>serviceType</b>
-Protocol used by the service (also called the service type).
-Possible values: HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, DTLS, NNTP, DNS, DHCPRA, ANY, SIP_UDP, DNS_TCP, RTSP, PUSH, SSL_PUSH, RADIUS, RDP, MYSQL, MSSQL, DIAMETER, SSL_DIAMETER, TFTP, ORACLE
+Protocol used by the service (also called the service type). Possible values: HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, DTLS, NNTP, DNS, DHCPRA, ANY, SIP_UDP, SIP_TCP, SIP_SSL, DNS_TCP, RTSP, PUSH, SSL_PUSH, RADIUS, RDP, MYSQL, MSSQL, DIAMETER, SSL_DIAMETER, TFTP, ORACLE, SMPP, SYSLOGTCP, SYSLOGUDP
 
 <b>IPAddress</b>
 IPv4 or IPv6 address to assign to the virtual server.
 
 <b>IPPattern</b>
-IP address pattern, in dotted decimal notation, for identifying packets to be accepted by the virtual server. The IP Mask parameter specifies which part of the destination IP address is matched against the pattern.  Mutually exclusive with the IP Address parameter. 
-For example, if the IP pattern assigned to the virtual server is 198.51.100.0 and the IP mask is 255.255.240.0 (a forward mask), the first 20 bits in the destination IP addresses are matched with the first 20 bits in the pattern. The virtual server accepts requests with IP addresses that range from 198.51.96.1 to 198.51.111.254.  You can also use a pattern such as 0.0.2.2 and a mask such as 0.0.255.255 (a reverse mask).
-If a destination IP address matches more than one IP pattern, the pattern with the longest match is selected, and the associated virtual server processes the request. For example, if virtual servers vs1 and vs2 have the same IP pattern, 0.0.100.128, but different IP masks of 0.0.255.255 and 0.0.224.255, a destination IP address of 198.51.100.128 has the longest match with the IP pattern of vs1. If a destination IP address matches two or more virtual servers to the same extent, the request is processed by the virtual server whose port number matches the port number in the request.
+IP address pattern, in dotted decimal notation, for identifying packets to be accepted by the virtual server. The IP Mask parameter specifies which part of the destination IP address is matched against the pattern. Mutually exclusive with the IP Address parameter. For example, if the IP pattern assigned to the virtual server is 198.51.100.0 and the IP mask is 255.255.240.0 (a forward mask), the first 20 bits in the destination IP addresses are matched with the first 20 bits in the pattern. The virtual server accepts requests with IP addresses that range from 198.51.96.1 to 198.51.111.254. You can also use a pattern such as 0.0.2.2 and a mask such as 0.0.255.255 (a reverse mask). If a destination IP address matches more than one IP pattern, the pattern with the longest match is selected, and the associated virtual server processes the request. For example, if virtual servers vs1 and vs2 have the same IP pattern, 0.0.100.128, but different IP masks of 0.0.255.255 and 0.0.224.255, a destination IP address of 198.51.100.128 has the longest match with the IP pattern of vs1. If a destination IP address matches two or more virtual servers to the same extent, the request is processed by the virtual server whose port number matches the port number in the request.
+
+<b>IPMask</b>
+IP mask, in dotted decimal notation, for the IP Pattern parameter. Can have leading or trailing non-zero octets (for example, 255.255.240.0 or 0.0.255.255). Accordingly, the mask specifies whether the first n bits or the last n bits of the destination IP address in a client request are to be matched with the corresponding bits in the IP pattern. The former is called a forward mask. The latter is called a reverse mask.
 
 <b>port</b>
 Port number for the virtual server.
 
 <b>range</b>
-Number of IP addresses that the appliance must generate and assign to the virtual server. The virtual server then functions as a network virtual server, accepting traffic on any of the generated IP addresses. The IP addresses are generated automatically, as follows: 
-* For a range of n, the last octet of the address specified by the IP Address parameter increments n-1 times. 
-* If the last octet exceeds 255, it rolls over to 0 and the third octet increments by 1.
-Note: The Range parameter assigns multiple IP addresses to one virtual server. To generate an array of virtual servers, each of which owns only one IP address, use brackets in the IP Address and Name parameters to specify the range. For example:
-add lb vserver my_vserver[1-3] HTTP 192.0.2.[1-3] 80
-Default value: 1
-Minimum value: 1
-Maximum value: 254
+Number of IP addresses that the appliance must generate and assign to the virtual server. The virtual server then functions as a network virtual server, accepting traffic on any of the generated IP addresses. The IP addresses are generated automatically, as follows: * For a range of n, the last octet of the address specified by the IP Address parameter increments n-1 times. * If the last octet exceeds 255, it rolls over to 0 and the third octet increments by 1. Note: The Range parameter assigns multiple IP addresses to one virtual server. To generate an array of virtual servers, each of which owns only one IP address, use brackets in the IP Address and Name parameters to specify the range. For example: add lb vserver my_vserver[1-3] HTTP 192.0.2.[1-3] 80 Default value: 1 Minimum value: 1 Maximum value: 254
 
 <b>persistenceType</b>
-Type of persistence for the virtual server. Available settings function as follows:
-* SOURCEIP - Connections from the same client IP address belong to the same persistence session.
-* COOKIEINSERT - Connections that have the same HTTP Cookie, inserted by a Set-Cookie directive from a server, belong to the same persistence session. 
-* SSLSESSION - Connections that have the same SSL Session ID belong to the same persistence session.
-* CUSTOMSERVERID - Connections with the same server ID form part of the same session. For this persistence type, set the Server ID (CustomServerID) parameter for each service and configure the Rule parameter to identify the server ID in a request.
-* RULE - All connections that match a user defined rule belong to the same persistence session. 
-* URLPASSIVE - Requests that have the same server ID in the URL query belong to the same persistence session. The server ID is the hexadecimal representation of the IP address and port of the service to which the request must be forwarded. This persistence type requires a rule to identify the server ID in the request. 
-* DESTIP - Connections to the same destination IP address belong to the same persistence session.
-* SRCIPDESTIP - Connections that have the same source IP address and destination IP address belong to the same persistence session.
-* CALLID - Connections that have the same CALL-ID SIP header belong to the same persistence session.
-* RTSPSID - Connections that have the same RTSP Session ID belong to the same persistence session.
-Possible values: SOURCEIP, COOKIEINSERT, SSLSESSION, RULE, URLPASSIVE, CUSTOMSERVERID, DESTIP, SRCIPDESTIP, CALLID, RTSPSID, DIAMETER, NONE
+Type of persistence for the virtual server. Available settings function as follows: * SOURCEIP - Connections from the same client IP address belong to the same persistence session. * COOKIEINSERT - Connections that have the same HTTP Cookie, inserted by a Set-Cookie directive from a server, belong to the same persistence session. * SSLSESSION - Connections that have the same SSL Session ID belong to the same persistence session. * CUSTOMSERVERID - Connections with the same server ID form part of the same session. For this persistence type, set the Server ID (CustomServerID) parameter for each service and configure the Rule parameter to identify the server ID in a request. * RULE - All connections that match a user defined rule belong to the same persistence session. * URLPASSIVE - Requests that have the same server ID in the URL query belong to the same persistence session. The server ID is the hexadecimal representation of the IP address and port of the service to which the request must be forwarded. This persistence type requires a rule to identify the server ID in the request. * DESTIP - Connections to the same destination IP address belong to the same persistence session. * SRCIPDESTIP - Connections that have the same source IP address and destination IP address belong to the same persistence session. * CALLID - Connections that have the same CALL-ID SIP header belong to the same persistence session. * RTSPSID - Connections that have the same RTSP Session ID belong to the same persistence session. Possible values: SOURCEIP, COOKIEINSERT, SSLSESSION, RULE, URLPASSIVE, CUSTOMSERVERID, DESTIP, SRCIPDESTIP, CALLID, RTSPSID, DIAMETER, NONE
 
 <b>timeout</b>
-Time period for which a persistence session is in effect.
-Default value: 2
-Maximum value: 1440
+Time period for which a persistence session is in effect. Default value: 2 Maximum value: 1440
 
 <b>persistenceBackup</b>
-Backup persistence type for the virtual server. Becomes operational if the primary persistence mechanism fails.
-Possible values: SOURCEIP, NONE
+Backup persistence type for the virtual server. Becomes operational if the primary persistence mechanism fails. Possible values: SOURCEIP, NONE
 
 <b>backupPersistenceTimeout</b>
-Time period for which backup persistence is in effect.
-Default value: 2
-Minimum value: 2
-Maximum value: 1440
+Time period for which backup persistence is in effect. Default value: 2 Minimum value: 2 Maximum value: 1440
 
 <b>lbMethod</b>
-Load balancing method.  The available settings function as follows:
-* ROUNDROBIN - Distribute requests in rotation, regardless of the load. Weights can be assigned to services to enforce weighted round robin distribution.
-* LEASTCONNECTION (default) - Select the service with the fewest connections. 
-* LEASTRESPONSETIME - Select the service with the lowest average response time. 
-* LEASTBANDWIDTH - Select the service currently handling the least traffic.
-* LEASTPACKETS - Select the service currently serving the lowest number of packets per second.
-* CUSTOMLOAD - Base service selection on the SNMP metrics obtained by custom load monitors.
-* LRTM - Select the service with the lowest response time. Response times are learned through monitoring probes. This method also takes the number of active connections into account.
-Also available are a number of hashing methods, in which the appliance extracts a predetermined portion of the request, creates a hash of the portion, and then checks whether any previous requests had the same hash value. If it finds a match, it forwards the request to the service that served those previous requests. Following are the hashing methods: 
-* URLHASH - Create a hash of the request URL (or part of the URL).
-* DOMAINHASH - Create a hash of the domain name in the request (or part of the domain name). The domain name is taken from either the URL or the Host header. If the domain name appears in both locations, the URL is preferred. If the request does not contain a domain name, the load balancing method defaults to LEASTCONNECTION.
-* DESTINATIONIPHASH - Create a hash of the destination IP address in the IP header. 
-* SOURCEIPHASH - Create a hash of the source IP address in the IP header.  
-* TOKEN - Extract a token from the request, create a hash of the token, and then select the service to which any previous requests with the same token hash value were sent. 
-* SRCIPDESTIPHASH - Create a hash of the string obtained by concatenating the source IP address and destination IP address in the IP header.  
-* SRCIPSRCPORTHASH - Create a hash of the source IP address and source port in the IP header.  
-* CALLIDHASH - Create a hash of the SIP Call-ID header.
-Possible values: ROUNDROBIN, LEASTCONNECTION, LEASTRESPONSETIME, URLHASH, DOMAINHASH, DESTINATIONIPHASH, SOURCEIPHASH, SRCIPDESTIPHASH, LEASTBANDWIDTH, LEASTPACKETS, TOKEN, SRCIPSRCPORTHASH, LRTM, CALLIDHASH, CUSTOMLOAD, LEASTREQUEST
-Default value: PEMGMT_LB_LEASTCONNS
+Load balancing method. The available settings function as follows: * ROUNDROBIN - Distribute requests in rotation, regardless of the load. Weights can be assigned to services to enforce weighted round robin distribution. * LEASTCONNECTION (default) - Select the service with the fewest connections. * LEASTRESPONSETIME - Select the service with the lowest average response time. * LEASTBANDWIDTH - Select the service currently handling the least traffic. * LEASTPACKETS - Select the service currently serving the lowest number of packets per second. * CUSTOMLOAD - Base service selection on the SNMP metrics obtained by custom load monitors. * LRTM - Select the service with the lowest response time. Response times are learned through monitoring probes. This method also takes the number of active connections into account. Also available are a number of hashing methods, in which the appliance extracts a predetermined portion of the request, creates a hash of the portion, and then checks whether any previous requests had the same hash value. If it finds a match, it forwards the request to the service that served those previous requests. Following are the hashing methods: * URLHASH - Create a hash of the request URL (or part of the URL). * DOMAINHASH - Create a hash of the domain name in the request (or part of the domain name). The domain name is taken from either the URL or the Host header. If the domain name appears in both locations, the URL is preferred. If the request does not contain a domain name, the load balancing method defaults to LEASTCONNECTION. * DESTINATIONIPHASH - Create a hash of the destination IP address in the IP header. * SOURCEIPHASH - Create a hash of the source IP address in the IP header. * TOKEN - Extract a token from the request, create a hash of the token, and then select the service to which any previous requests with the same token hash value were sent. * SRCIPDESTIPHASH - Create a hash of the string obtained by concatenating the source IP address and destination IP address in the IP header. * SRCIPSRCPORTHASH - Create a hash of the source IP address and source port in the IP header. * CALLIDHASH - Create a hash of the SIP Call-ID header. Possible values: ROUNDROBIN, LEASTCONNECTION, LEASTRESPONSETIME, URLHASH, DOMAINHASH, DESTINATIONIPHASH, SOURCEIPHASH, SRCIPDESTIPHASH, LEASTBANDWIDTH, LEASTPACKETS, TOKEN, SRCIPSRCPORTHASH, LRTM, CALLIDHASH, CUSTOMLOAD, LEASTREQUEST, AUDITLOGHASH Default value: LEASTCONNECTION
+
+<b>hashLength</b>
+Number of bytes to consider for the hash value used in the URLHASH and DOMAINHASH load balancing methods. Default value: 80 Minimum value: 1 Maximum value: 4096
+
+<b>netmask</b>
+IPv4 subnet mask to apply to the destination IP address or source IP address when the load balancing method is DESTINATIONIPHASH or SOURCEIPHASH. Default value: 0xFFFFFFFF
+
+<b>v6netmasklen</b>
+Number of bits to consider in an IPv6 destination or source IP address, for creating the hash that is required by the DESTINATIONIPHASH and SOURCEIPHASH load balancing methods. Default value: 128 Minimum value: 1 Maximum value: 128
 
 <b>cookieName</b>
 Use this parameter to specify the cookie name for COOKIE peristence type. It specifies the name of cookie with a maximum of 32 characters. If not specified, cookie name is internally generated.
 
 <b>rule</b>
-Expression, or name of a named expression, against which traffic is evaluated. Written in the classic or default syntax.
-Note:
-Maximum length of a string literal in the expression is 255 characters. A longer string can be split into smaller strings of up to 255 characters each, and the smaller strings concatenated with the + operator. For example, you can create a 500-character string as follows: '"&lt;string of 255 characters&gt;" + "&lt;string of 245 characters&gt;"'
-The following requirements apply only to the NetScaler CLI:
-* If the expression includes one or more spaces, enclose the entire expression in double quotation marks.
-* If the expression itself includes double quotation marks, escape the quotations by using the \\ character. 
-* Alternatively, you can use single quotation marks to enclose the rule, in which case you do not have to escape the double quotation marks.
-Default value: "none"
+Expression, or name of a named expression, against which traffic is evaluated. Written in the classic or default syntax. Note: Maximum length of a string literal in the expression is 255 characters. A longer string can be split into smaller strings of up to 255 characters each, and the smaller strings concatenated with the + operator. For example, you can create a 500-character string as follows: '"&lt;string of 255 characters&gt;" + "&lt;string of 245 characters&gt;"' The following requirements apply only to the NetScaler CLI: * If the expression includes one or more spaces, enclose the entire expression in double quotation marks. * If the expression itself includes double quotation marks, escape the quotations by using the \\ character. * Alternatively, you can use single quotation marks to enclose the rule, in which case you do not have to escape the double quotation marks. Default value: "none"
 
 <b>Listenpolicy</b>
-Default syntax expression identifying traffic accepted by the virtual server. Can be either an expression (for example, CLIENT.IP.DST.IN_SUBNET(192.0.2.0/24) or the name of a named expression. In the above example, the virtual server accepts all requests whose destination IP address is in the 192.0.2.0/24 subnet.
-Default value: "none"
+Default syntax expression identifying traffic accepted by the virtual server. Can be either an expression (for example, CLIENT.IP.DST.IN_SUBNET(192.0.2.0/24) or the name of a named expression. In the above example, the virtual server accepts all requests whose destination IP address is in the 192.0.2.0/24 subnet. Default value: "NONE"
 
 <b>Listenpriority</b>
-Integer specifying the priority of the listen policy. A higher number specifies a lower priority. If a request matches the listen policies of more than one virtual server the virtual server whose listen policy has the highest priority (the lowest priority number) accepts the request.
-Default value: 101
-Maximum value: 101
+Integer specifying the priority of the listen policy. A higher number specifies a lower priority. If a request matches the listen policies of more than one virtual server the virtual server whose listen policy has the highest priority (the lowest priority number) accepts the request. Default value: 101 Minimum value: 0 Maximum value: 101
 
 <b>resRule</b>
-Default syntax expression specifying which part of a server's response to use for creating rule based persistence sessions (persistence type RULE). Can be either an expression or the name of a named expression.
-Example:
-HTTP.RES.HEADER("setcookie").VALUE(0).TYPECAST_NVLIST_T('=',';').VALUE("server1").
-Default value: "none"
+Default syntax expression specifying which part of a server's response to use for creating rule based persistence sessions (persistence type RULE). Can be either an expression or the name of a named expression. Example: HTTP.RES.HEADER("setcookie").VALUE(0).TYPECAST_NVLIST_T('=',';').VALUE("server1"). Default value: "none"
 
 <b>persistMask</b>
-Persistence mask for IP based persistence types, for IPv4 virtual servers.
-Default value: 0xFFFFFFFF
+Persistence mask for IP based persistence types, for IPv4 virtual servers. Default value: 0xFFFFFFFF
 
 <b>v6persistmasklen</b>
-Persistence mask for IP based persistence types, for IPv6 virtual servers.
-Default value: 128
-Minimum value: 1
-Maximum value: 128
+Persistence mask for IP based persistence types, for IPv6 virtual servers. Default value: 128 Minimum value: 1 Maximum value: 128
 
 <b>pq</b>
-Use priority queuing on the virtual server. based persistence types, for IPv6 virtual servers.
-Possible values: ON, OFF
-Default value: OFF
+Use priority queuing on the virtual server. based persistence types, for IPv6 virtual servers. Possible values: ON, OFF Default value: OFF
 
 <b>sc</b>
-Use SureConnect on the virtual server.
-Possible values: ON, OFF
-Default value: OFF
+Use SureConnect on the virtual server. Possible values: ON, OFF Default value: OFF
 
 <b>rtspNat</b>
-Use network address translation (NAT) for RTSP data connections.
-Possible values: ON, OFF
-Default value: OFF
+Use network address translation (NAT) for RTSP data connections. Possible values: ON, OFF Default value: OFF
 
 <b>m</b>
-Redirection mode for load balancing. Available settings function as follows:
-* IP - Before forwarding a request to a server, change the destination IP address to the server's IP address. 
-* MAC - Before forwarding a request to a server, change the destination MAC address to the server's MAC address.  The destination IP address is not changed. MAC-based redirection mode is used mostly in firewall load balancing deployments. 
-* IPTUNNEL - Perform IP-in-IP encapsulation for client IP packets. In the outer IP headers, set the destination IP address to the IP address of the server and the source IP address to the subnet IP (SNIP). The client IP packets are not modified. Applicable to both IPv4 and IPv6 packets. 
-* TOS - Encode the virtual server's TOS ID in the TOS field of the IP header. 
-You can use either the IPTUNNEL or the TOS option to implement Direct Server Return (DSR).
-Possible values: IP, MAC, IPTUNNEL, TOS
-Default value: NSFWD_IP
+Redirection mode for load balancing. Available settings function as follows: * IP - Before forwarding a request to a server, change the destination IP address to the server's IP address. * MAC - Before forwarding a request to a server, change the destination MAC address to the server's MAC address. The destination IP address is not changed. MAC-based redirection mode is used mostly in firewall load balancing deployments. * IPTUNNEL - Perform IP-in-IP encapsulation for client IP packets. In the outer IP headers, set the destination IP address to the IP address of the server and the source IP address to the subnet IP (SNIP). The client IP packets are not modified. Applicable to both IPv4 and IPv6 packets. * TOS - Encode the virtual server's TOS ID in the TOS field of the IP header. You can use either the IPTUNNEL or the TOS option to implement Direct Server Return (DSR). Possible values: IP, MAC, IPTUNNEL, TOS Default value: IP
 
 <b>tosId</b>
-TOS ID of the virtual server. Applicable only when the load balancing redirection mode is set to TOS.
-Minimum value: 1
-Maximum value: 63
+TOS ID of the virtual server. Applicable only when the load balancing redirection mode is set to TOS. Minimum value: 1 Maximum value: 63
 
 <b>dataLength</b>
-Length of the token to be extracted from the data segment of an incoming packet, for use in the token method of load balancing. The length of the token, specified in bytes, must not be greater than 24 KB. Applicable to virtual servers of type TCP.
-Minimum value: 1
-Maximum value: 100
+Length of the token to be extracted from the data segment of an incoming packet, for use in the token method of load balancing. The length of the token, specified in bytes, must not be greater than 24 KB. Applicable to virtual servers of type TCP. Minimum value: 1 Maximum value: 100
 
 <b>dataOffset</b>
-Offset to be considered when extracting a token from the TCP payload. Applicable to virtual servers, of type TCP, using the token method of load balancing. Must be within the first 24 KB of the TCP payload.
-Maximum value: 25400
+Offset to be considered when extracting a token from the TCP payload. Applicable to virtual servers, of type TCP, using the token method of load balancing. Must be within the first 24 KB of the TCP payload. Minimum value: 0 Maximum value: 25400
 
 <b>sessionless</b>
-Perform load balancing on a per-packet basis, without establishing sessions. Recommended for load balancing of intrusion detection system (IDS) servers and scenarios involving direct server return (DSR), where session information is unnecessary.
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
+Perform load balancing on a per-packet basis, without establishing sessions. Recommended for load balancing of intrusion detection system (IDS) servers and scenarios involving direct server return (DSR), where session information is unnecessary. Possible values: ENABLED, DISABLED Default value: DISABLED
 
 <b>state</b>
-State of the load balancing virtual server.
-Possible values: ENABLED, DISABLED
-Default value: ENABLED
+State of the load balancing virtual server. Possible values: ENABLED, DISABLED Default value: ENABLED
 
 <b>connfailover</b>
-Mode in which the connection failover feature must operate for the virtual server. After a failover, established TCP connections and UDP packet flows are kept active and resumed on the secondary appliance. Clients remain connected to the same servers. Available settings function as follows:
-* STATEFUL - The primary appliance shares state information with the secondary appliance, in real time, resulting in some runtime processing overhead. 
-* STATELESS - State information is not shared, and the new primary appliance tries to re-create the packet flow on the basis of the information contained in the packets it receives. 
-* DISABLED - Connection failover does not occur.
-Possible values: DISABLED, STATEFUL, STATELESS
-Default value: DISABLED
+Mode in which the connection failover feature must operate for the virtual server. After a failover, established TCP connections and UDP packet flows are kept active and resumed on the secondary appliance. Clients remain connected to the same servers. Available settings function as follows: * STATEFUL - The primary appliance shares state information with the secondary appliance, in real time, resulting in some runtime processing overhead. * STATELESS - State information is not shared, and the new primary appliance tries to re-create the packet flow on the basis of the information contained in the packets it receives. * DISABLED - Connection failover does not occur. Possible values: DISABLED, STATEFUL, STATELESS Default value: DISABLED
 
 <b>redirectURL</b>
-URL to which to redirect traffic if the virtual server becomes unavailable. 
-WARNING! Make sure that the domain in the URL does not match the domain specified for a content switching policy. If it does, requests are continuously redirected to the unavailable virtual server.
+URL to which to redirect traffic if the virtual server becomes unavailable. WARNING! Make sure that the domain in the URL does not match the domain specified for a content switching policy. If it does, requests are continuously redirected to the unavailable virtual server.
 
 <b>cacheable</b>
-Route cacheable requests to a cache redirection virtual server. The load balancing virtual server can forward requests only to a transparent cache redirection virtual server that has an IP address and port combination of *:80, so such a cache redirection virtual server must be configured on the appliance.
-Possible values: YES, NO
-Default value: NO
+Route cacheable requests to a cache redirection virtual server. The load balancing virtual server can forward requests only to a transparent cache redirection virtual server that has an IP address and port combination of *:80, so such a cache redirection virtual server must be configured on the appliance. Possible values: YES, NO Default value: NO
 
 <b>cltTimeout</b>
-Idle time, in seconds, after which a client connection is terminated.
-Default value: VAL_NOT_SET
-Maximum value: 31536000
+Idle time, in seconds, after which a client connection is terminated. Default value: -1 Maximum value: 31536000
 
 <b>soMethod</b>
-Type of threshold that, when exceeded, triggers spillover. Available settings function as follows:
-* CONNECTION - Spillover occurs when the number of client connections exceeds the threshold.
-* DYNAMICCONNECTION - Spillover occurs when the number of client connections at the virtual server exceeds the sum of the maximum client (Max Clients) settings for bound services. Do not specify a spillover threshold for this setting, because the threshold is implied by the Max Clients settings of bound services.
-* BANDWIDTH - Spillover occurs when the bandwidth consumed by the virtual server's incoming and outgoing traffic exceeds the threshold. 
-* HEALTH - Spillover occurs when the percentage of weights of the services that are UP drops below the threshold. For example, if services svc1, svc2, and svc3 are bound to a virtual server, with weights 1, 2, and 3, and the spillover threshold is 50%, spillover occurs if svc1 and svc3 or svc2 and svc3 transition to DOWN. 
-* NONE - Spillover does not occur.
-Possible values: CONNECTION, DYNAMICCONNECTION, BANDWIDTH, HEALTH, NONE
+Type of threshold that, when exceeded, triggers spillover. Available settings function as follows: * CONNECTION - Spillover occurs when the number of client connections exceeds the threshold. * DYNAMICCONNECTION - Spillover occurs when the number of client connections at the virtual server exceeds the sum of the maximum client (Max Clients) settings for bound services. Do not specify a spillover threshold for this setting, because the threshold is implied by the Max Clients settings of bound services. * BANDWIDTH - Spillover occurs when the bandwidth consumed by the virtual server's incoming and outgoing traffic exceeds the threshold. * HEALTH - Spillover occurs when the percentage of weights of the services that are UP drops below the threshold. For example, if services svc1, svc2, and svc3 are bound to a virtual server, with weights 1, 2, and 3, and the spillover threshold is 50%, spillover occurs if svc1 and svc3 or svc2 and svc3 transition to DOWN. * NONE - Spillover does not occur. Possible values: CONNECTION, DYNAMICCONNECTION, BANDWIDTH, HEALTH, NONE
 
 <b>soPersistence</b>
-If spillover occurs, maintain source IP address based persistence for both primary and backup virtual servers.
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
+If spillover occurs, maintain source IP address based persistence for both primary and backup virtual servers. Possible values: ENABLED, DISABLED Default value: DISABLED
 
 <b>soPersistenceTimeOut</b>
-Timeout for spillover persistence, in minutes.
-Default value: 2
-Minimum value: 2
-Maximum value: 1440
+Timeout for spillover persistence, in minutes. Default value: 2 Minimum value: 2 Maximum value: 1440
 
 <b>healthThreshold</b>
-Threshold in percent of active services below which vserver state is made down. If this threshold is 0, vserver state will be up even if one bound service is up.
-Default value: 0
-Minimum value: 0
-Maximum value: 100
+Threshold in percent of active services below which vserver state is made down. If this threshold is 0, vserver state will be up even if one bound service is up. Default value: 0 Minimum value: 0 Maximum value: 100
 
 <b>soThreshold</b>
-Threshold at which spillover occurs. Specify an integer for the CONNECTION spillover method, a bandwidth value in kilobits per second for the BANDWIDTH method (do not enter the units), or a percentage for the HEALTH method (do not enter the percentage symbol).
-Minimum value: 1
-Maximum value: 4294967287
+Threshold at which spillover occurs. Specify an integer for the CONNECTION spillover method, a bandwidth value in kilobits per second for the BANDWIDTH method (do not enter the units), or a percentage for the HEALTH method (do not enter the percentage symbol). Minimum value: 1 Maximum value: 4294967287
 
 <b>soBackupAction</b>
-Action to be performed if spillover is to take effect, but no backup chain to spillover is usable or exists
-Possible values: DROP, ACCEPT, REDIRECT
+Action to be performed if spillover is to take effect, but no backup chain to spillover is usable or exists Possible values: DROP, ACCEPT, REDIRECT
 
 <b>redirectPortRewrite</b>
-Rewrite the port and change the protocol to ensure successful HTTP redirects from services.
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
+Rewrite the port and change the protocol to ensure successful HTTP redirects from services. Possible values: ENABLED, DISABLED Default value: DISABLED
 
 <b>downStateFlush</b>
-Flush all active transactions associated with a virtual server whose state transitions from UP to DOWN. Do not enable this option for applications that must complete their transactions.
-Possible values: ENABLED, DISABLED
-Default value: ENABLED
+Flush all active transactions associated with a virtual server whose state transitions from UP to DOWN. Do not enable this option for applications that must complete their transactions. Possible values: ENABLED, DISABLED Default value: ENABLED
 
 <b>backupVServer</b>
 Name of the backup virtual server to which to forward requests if the primary virtual server goes DOWN or reaches its spillover threshold.
 
 <b>disablePrimaryOnDown</b>
-If the primary virtual server goes down, do not allow it to return to primary status until manually enabled.
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
+If the primary virtual server goes down, do not allow it to return to primary status until manually enabled. Possible values: ENABLED, DISABLED Default value: DISABLED
 
 <b>insertVserverIPPort</b>
-Insert an HTTP header, whose value is the IP address and port number of the virtual server, before forwarding a request to the server. The format of the header is &lt;vipHeader&gt;: &lt;virtual server IP address&gt;_&lt;port number &gt;, where vipHeader is the name that you specify for the header. If the virtual server has an IPv6 address, the address in the header is enclosed in brackets ([ and ]) to separate it from the port number. If you have mapped an IPv4 address to a virtual server's IPv6 address, the value of this parameter determines which IP address is inserted in the header, as follows:
-* VIPADDR - Insert the IP address of the virtual server in the HTTP header regardless of whether the virtual server has an IPv4 address or an IPv6 address. A mapped IPv4 address, if configured, is ignored.
-* V6TOV4MAPPING - Insert the IPv4 address that is mapped to the virtual server's IPv6 address. If a mapped IPv4 address is not configured, insert the IPv6 address.
-* OFF - Disable header insertion.
-Possible values: OFF, VIPADDR, V6TOV4MAPPING
+Insert an HTTP header, whose value is the IP address and port number of the virtual server, before forwarding a request to the server. The format of the header is &lt;vipHeader&gt;: &lt;virtual server IP address&gt;_&lt;port number &gt;, where vipHeader is the name that you specify for the header. If the virtual server has an IPv6 address, the address in the header is enclosed in brackets ([ and ]) to separate it from the port number. If you have mapped an IPv4 address to a virtual server's IPv6 address, the value of this parameter determines which IP address is inserted in the header, as follows: * VIPADDR - Insert the IP address of the virtual server in the HTTP header regardless of whether the virtual server has an IPv4 address or an IPv6 address. A mapped IPv4 address, if configured, is ignored. * V6TOV4MAPPING - Insert the IPv4 address that is mapped to the virtual server's IPv6 address. If a mapped IPv4 address is not configured, insert the IPv6 address. * OFF - Disable header insertion. Possible values: OFF, VIPADDR, V6TOV4MAPPING
+
+<b>vipHeader</b>
+Name for the inserted header. The default name is vip-header.
 
 <b>AuthenticationHost</b>
 Fully qualified domain name (FQDN) of the authentication virtual server to which the user must be redirected for authentication. Make sure that the Authentication parameter is set to ENABLED.
 
 <b>Authentication</b>
-Enable or disable user authentication.
-Possible values: ON, OFF
-Default value: OFF
+Enable or disable user authentication. Possible values: ON, OFF Default value: OFF
 
 <b>authn401</b>
-Enable or disable user authentication with HTTP 401 responses.
-Possible values: ON, OFF
-Default value: OFF
+Enable or disable user authentication with HTTP 401 responses. Possible values: ON, OFF Default value: OFF
 
 <b>authnVsName</b>
 Name of an authentication virtual server with which to authenticate users.
 
 <b>push</b>
-Process traffic with the push virtual server that is bound to this load balancing virtual server.
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
+Process traffic with the push virtual server that is bound to this load balancing virtual server. Possible values: ENABLED, DISABLED Default value: DISABLED
 
 <b>pushVserver</b>
 Name of the load balancing virtual server, of type PUSH or SSL_PUSH, to which the server pushes updates received on the load balancing virtual server that you are configuring.
 
 <b>pushLabel</b>
-Expression for extracting a label from the server's response. Can be either an expression or the name of a named expression.
-Default value: "none"
+Expression for extracting a label from the server's response. Can be either an expression or the name of a named expression. Default value: "none"
 
 <b>pushMultiClients</b>
-Allow multiple Web 2.0 connections from the same client to connect to the virtual server and expect updates.
-Possible values: YES, NO
-Default value: NO
+Allow multiple Web 2.0 connections from the same client to connect to the virtual server and expect updates. Possible values: YES, NO Default value: NO
 
 <b>tcpProfileName</b>
 Name of the TCP profile whose settings are to be applied to the virtual server.
@@ -311,133 +195,91 @@ Name of the DB profile whose settings are to be applied to the virtual server.
 Any comments that you might want to associate with the virtual server.
 
 <b>l2Conn</b>
-Use Layer 2 parameters (channel number, MAC address, and VLAN ID) in addition to the 4-tuple (&lt;source IP&gt;:&lt;source port&gt;::&lt;destination IP&gt;:&lt;destination port&gt;) that is used to identify a connection. Allows multiple TCP and non-TCP connections with the same 4-tuple to co-exist on the NetScaler appliance.
-Possible values: ON, OFF
+Use Layer 2 parameters (channel number, MAC address, and VLAN ID) in addition to the 4-tuple (&lt;source IP&gt;:&lt;source port&gt;::&lt;destination IP&gt;:&lt;destination port&gt;) that is used to identify a connection. Allows multiple TCP and non-TCP connections with the same 4-tuple to co-exist on the NetScaler appliance. Possible values: ON, OFF
 
 <b>oracleServerVersion</b>
-Oracle server version
-Possible values: 10G, 11G
-Default value: ORACLE_SERVER_10G
+Oracle server version Possible values: 10G, 11G Default value: 10G
 
 <b>mssqlServerVersion</b>
-For a load balancing virtual server of type MSSQL, the Microsoft SQL Server version. Set this parameter if you expect some clients to run a version different from the version of the database. This setting provides compatibility between the client-side and server-side connections by ensuring that all communication conforms to the server's version.
-Possible values: 70, 2000, 2000SP1, 2005, 2008, 2008R2, 2012
-Default value: TDS_PROT_2008B
+For a load balancing virtual server of type MSSQL, the Microsoft SQL Server version. Set this parameter if you expect some clients to run a version different from the version of the database. This setting provides compatibility between the client-side and server-side connections by ensuring that all communication conforms to the server's version. Possible values: 70, 2000, 2000SP1, 2005, 2008, 2008R2, 2012, 2014 Default value: 2008R2
 
 <b>mysqlProtocolVersion</b>
-MySQL protocol version that the virtual server advertises to clients.
-Default value: NSA_MYSQL_PROTOCOL_VER_DEFAULT
+MySQL protocol version that the virtual server advertises to clients. Default value: NSA_MYSQL_PROTOCOL_VER_DEFAULT Minimum value: 0
 
 <b>mysqlServerVersion</b>
-MySQL server version string that the virtual server advertises to clients.
-Default value: NSA_MYSQL_SERVER_VER_DEFAULT
+MySQL server version string that the virtual server advertises to clients. Default value: NSA_MYSQL_SERVER_VER_DEFAULT
 
 <b>mysqlCharacterSet</b>
-Character set that the virtual server advertises to clients.
-Default value: NSA_MYSQL_CHAR_SET_DEFAULT
+Character set that the virtual server advertises to clients. Default value: NSA_MYSQL_CHAR_SET_DEFAULT Minimum value: 0
 
 <b>mysqlServerCapabilities</b>
-Server capabilities that the virtual server advertises to clients.
-Default value: NSA_MYSQL_SVR_CAPABILITIES_DEFAULT
+Server capabilities that the virtual server advertises to clients. Default value: NSA_MYSQL_SVR_CAPABILITIES_DEFAULT Minimum value: 0
 
 <b>appflowLog</b>
-Apply AppFlow logging to the virtual server.
-Possible values: ENABLED, DISABLED
-Default value: ENABLED
+Apply AppFlow logging to the virtual server. Possible values: ENABLED, DISABLED Default value: ENABLED
 
 <b>netProfile</b>
 Name of the network profile to associate with the virtual server. If you set this parameter, the virtual server uses only the IP addresses in the network profile as source IP addresses when initiating connections with servers.
 
 <b>icmpVsrResponse</b>
-How the NetScaler appliance responds to ping requests received for an IP address that is common to one or more virtual servers. Available settings function as follows:
-* If set to PASSIVE on all the virtual servers that share the IP address, the appliance always responds to the ping requests.
-* If set to ACTIVE on all the virtual servers that share the IP address, the appliance responds to the ping requests if at least one of the virtual servers is UP. Otherwise, the appliance does not respond.
-* If set to ACTIVE on some virtual servers and PASSIVE on the others, the appliance responds if at least one virtual server with the ACTIVE setting is UP. Otherwise, the appliance does not respond.
-Note: This parameter is available at the virtual server level. A similar parameter, ICMP Response, is available at the IP address level, for IPv4 addresses of type VIP. To set that parameter, use the add ip command in the CLI or the Create IP dialog box in the GUI.
-Possible values: PASSIVE, ACTIVE
-Default value: NS_VSR_PASSIVE
+How the NetScaler appliance responds to ping requests received for an IP address that is common to one or more virtual servers. Available settings function as follows: * If set to PASSIVE on all the virtual servers that share the IP address, the appliance always responds to the ping requests. * If set to ACTIVE on all the virtual servers that share the IP address, the appliance responds to the ping requests if at least one of the virtual servers is UP. Otherwise, the appliance does not respond. * If set to ACTIVE on some virtual servers and PASSIVE on the others, the appliance responds if at least one virtual server with the ACTIVE setting is UP. Otherwise, the appliance does not respond. Note: This parameter is available at the virtual server level. A similar parameter, ICMP Response, is available at the IP address level, for IPv4 addresses of type VIP. To set that parameter, use the add ip command in the CLI or the Create IP dialog box in the GUI. Possible values: PASSIVE, ACTIVE Default value: PASSIVE
 
 <b>RHIstate</b>
-Route Health Injection (RHI) functionality of the NetSaler appliance for advertising the route of the VIP address associated with the virtual server. When Vserver RHI Level (RHI) parameter is set to VSVR_CNTRLD, the following are different RHI behaviors for the VIP address on the basis of RHIstate (RHI STATE) settings on the virtual servers associated with the VIP address:
-* If you set RHI STATE to PASSIVE on all virtual servers, the NetScaler ADC always advertises the route for the VIP address.
-* If you set RHI STATE to ACTIVE on all virtual servers, the NetScaler ADC advertises the route for the VIP address if at least one of the associated virtual servers is in UP state.
-* If you set RHI STATE to ACTIVE on some and PASSIVE on others, the NetScaler ADC advertises the route for the VIP address if at least one of the associated virtual servers, whose RHI STATE set to ACTIVE, is in UP state.
-Possible values: PASSIVE, ACTIVE
-Default value: NS_VSR_PASSIVE
+Route Health Injection (RHI) functionality of the NetSaler appliance for advertising the route of the VIP address associated with the virtual server. When Vserver RHI Level (RHI) parameter is set to VSVR_CNTRLD, the following are different RHI behaviors for the VIP address on the basis of RHIstate (RHI STATE) settings on the virtual servers associated with the VIP address: * If you set RHI STATE to PASSIVE on all virtual servers, the NetScaler ADC always advertises the route for the VIP address. * If you set RHI STATE to ACTIVE on all virtual servers, the NetScaler ADC advertises the route for the VIP address if at least one of the associated virtual servers is in UP state. * If you set RHI STATE to ACTIVE on some and PASSIVE on others, the NetScaler ADC advertises the route for the VIP address if at least one of the associated virtual servers, whose RHI STATE set to ACTIVE, is in UP state. Possible values: PASSIVE, ACTIVE Default value: PASSIVE
 
 <b>newServiceRequest</b>
-Number of requests, or percentage of the load on existing services, by which to increase the load on a new service at each interval in slow-start mode. A non-zero value indicates that slow-start is applicable. A zero value indicates that the global RR startup parameter is applied. Changing the value to zero will cause services currently in slow start to take the full traffic as determined by the LB method. Subsequently, any new services added will use the global RR factor.
-Default value: 0
+Number of requests, or percentage of the load on existing services, by which to increase the load on a new service at each interval in slow-start mode. A non-zero value indicates that slow-start is applicable. A zero value indicates that the global RR startup parameter is applied. Changing the value to zero will cause services currently in slow start to take the full traffic as determined by the LB method. Subsequently, any new services added will use the global RR factor. Default value: 0 Minimum value: 0
+
+<b>newServiceRequestUnit</b>
+Units in which to increment load at each interval in slow-start mode. Possible values: PER_SECOND, PERCENT Default value: PER_SECOND
 
 <b>newServiceRequestIncrementInterval</b>
-Interval, in seconds, between successive increments in the load on a new service or a service whose state has just changed from DOWN to UP. A value of 0 (zero) specifies manual slow start.
-Default value: 0
-Maximum value: 3600
+Interval, in seconds, between successive increments in the load on a new service or a service whose state has just changed from DOWN to UP. A value of 0 (zero) specifies manual slow start. Default value: 0 Minimum value: 0 Maximum value: 3600
 
 <b>minAutoscaleMembers</b>
-Minimum number of members expected to be present when vserver is used in Autoscale.
-Default value: 0
-Maximum value: 5000
+Minimum number of members expected to be present when vserver is used in Autoscale. Default value: 0 Minimum value: 0 Maximum value: 5000
 
 <b>maxAutoscaleMembers</b>
-Maximum number of members expected to be present when vserver is used in Autoscale.
-Default value: 0
-Maximum value: 5000
+Maximum number of members expected to be present when vserver is used in Autoscale. Default value: 0 Minimum value: 0 Maximum value: 5000
 
 <b>persistAVPno</b>
-Persist AVP number for Diameter Persistency. 
-            In case this AVP is not defined in Base RFC 3588 and it is nested inside a Grouped AVP, 
-            define a sequence of AVP numbers (max 3) in order of parent to child. So say persist AVP number X 
-            is nested inside AVP Y which is nested in Z, then define the list as  Z Y X
-Minimum value: 1
+Persist AVP number for Diameter Persistency. In case this AVP is not defined in Base RFC 3588 and it is nested inside a Grouped AVP, define a sequence of AVP numbers (max 3) in order of parent to child. So say persist AVP number X is nested inside AVP Y which is nested in Z, then define the list as Z Y X Minimum value: 1
 
 <b>skippersistency</b>
-This argument decides the behavior incase the service which is selected from an existing persistence session has reached threshold.
-Possible values: Bypass, ReLb, None
-Default value: NS_DONT_SKIPPERSIST
+This argument decides the behavior incase the service which is selected from an existing persistence session has reached threshold. Possible values: Bypass, ReLb, None Default value: None
 
 <b>td</b>
-Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
-Minimum value: 0
-Maximum value: 4094
+Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0. Minimum value: 0 Maximum value: 4094
 
 <b>authnProfile</b>
 Name of the authentication profile to be used when authentication is turned on.
 
 <b>macmodeRetainvlan</b>
-This option is used to retain vlan information of incoming packet when macmode is enabled
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
+This option is used to retain vlan information of incoming packet when macmode is enabled Possible values: ENABLED, DISABLED Default value: DISABLED
 
 <b>dbsLb</b>
-Enable database specific load balancing for MySQL and MSSQL service types.
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
+Enable database specific load balancing for MySQL and MSSQL service types. Possible values: ENABLED, DISABLED Default value: DISABLED
 
 <b>dns64</b>
-This argument is for enabling/disabling the dns64 on lbvserver
-Possible values: ENABLED, DISABLED
+This argument is for enabling/disabling the dns64 on lbvserver Possible values: ENABLED, DISABLED
 
 <b>bypassAAAA</b>
-If this option is enabled while resolving DNS64 query AAAA queries are not sent to back end dns server
-Possible values: YES, NO
-Default value: NO
+If this option is enabled while resolving DNS64 query AAAA queries are not sent to back end dns server Possible values: YES, NO Default value: NO
 
 <b>RecursionAvailable</b>
-When set to YES, this option causes the DNS replies from this vserver to have the RA bit turned on. Typically one would set this option to YES, when the vserver is load balancing a set of DNS servers thatsupport recursive queries.
-Possible values: YES, NO
-Default value: NO
+When set to YES, this option causes the DNS replies from this vserver to have the RA bit turned on. Typically one would set this option to YES, when the vserver is load balancing a set of DNS servers thatsupport recursive queries. Possible values: YES, NO Default value: NO
 
 <b>processLocal</b>
-By turning on this option packets destined to a vserver in a cluster will not under go any steering. Turn this option for single packet request response mode or when the upstream device is performing a proper RSS for connection based distribution.
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
+By turning on this option packets destined to a vserver in a cluster will not under go any steering. Turn this option for single packet request response mode or when the upstream device is performing a proper RSS for connection based distribution. Possible values: ENABLED, DISABLED Default value: DISABLED
+
+<b>dnsProfileName</b>
+Name of the DNS profile to be associated with the VServer. DNS profile properties will be applied to the transactions processed by a VServer. This parameter is valid only for DNS and DNS-TCP VServers.
 
 
 
 ##Example
 
-add lb vserver http_vsvr http 10.102.1.10 80	To add multiple vservers at once use the following command:	add lb vs http_vsvr[1-4] http 10.102.27.[115-118] 80	This command adds the vserver http_vsvr1 with the IP address 10.102.27.115, http_vsvr2 with 10.102.27.116, http_vsvr3 with 10.102.27.117 and http_vsvr4 with 10.102.27.118
+add lb vserver http_vsvr http 10.102.1.10 80 To add multiple vservers at once use the following command: add lb vs http_vsvr[1-4] http 10.102.27.[115-118] 80 This command adds the vserver http_vsvr1 with the IP address 10.102.27.115, http_vsvr2 with 10.102.27.116, http_vsvr3 with 10.102.27.117 and http_vsvr4 with 10.102.27.118
 
 ##rm lb vserver
 
@@ -458,7 +300,7 @@ Name of the virtual server.
 
 ##Example
 
-rm vserver lb_vip	To remove multiple vservers use the following command:	rm vserver lb_vip[1-3]
+rm vserver lb_vip To remove multiple vservers use the following command: rm vserver lb_vip[1-3]
 
 ##set lb vserver
 
@@ -467,7 +309,7 @@ Modifies the specified parameters of a load balancing virtual server.
 
 ##Synopsys
 
-set lb vserver &lt;name>@ [-IPAddress &lt;ip_addr|ipv6_addr|*>@] [-IPPattern &lt;ippat>] [-IPMask &lt;ipmask>] [-weight &lt;positive_integer>  &lt;serviceName>@] [-persistenceType &lt;persistenceType>] [-timeout &lt;mins>] [-persistenceBackup ( SOURCEIP | NONE )] [-backupPersistenceTimeout &lt;mins>] [-lbMethod &lt;lbMethod>  [-hashLength &lt;positive_integer>]   [-netmask &lt;netmask>]    [-v6netmasklen &lt;positive_integer>]  ] [-rule &lt;expression>] [-cookieName &lt;string>] [-resRule &lt;expression>] [-persistMask &lt;netmask>] [-v6persistmasklen &lt;positive_integer>] [-pq ( ON | OFF )] [-sc ( ON | OFF )] [-rtspNat ( ON | OFF )] [-m &lt;m>] [-tosId &lt;positive_integer>] [-dataLength &lt;positive_integer>] [-dataOffset &lt;positive_integer>] [-sessionless ( ENABLED | DISABLED )] [-connfailover &lt;connfailover>] [-backupVServer &lt;string>] [-redirectURL &lt;URL>] [-cacheable ( YES | NO )] [-cltTimeout &lt;secs>] [-soMethod &lt;soMethod>] [-soThreshold &lt;positive_integer>] [-soPersistence ( ENABLED | DISABLED )] [-soPersistenceTimeOut &lt;positive_integer>] [-healthThreshold &lt;positive_integer>] [-soBackupAction &lt;soBackupAction>] [-redirectPortRewrite ( ENABLED | DISABLED )] [-downStateFlush ( ENABLED | DISABLED )] [-insertVserverIPPort &lt;insertVserverIPPort>  [&lt;vipHeader>] ] [-disablePrimaryOnDown ( ENABLED | DISABLED )] [-AuthenticationHost &lt;string>] [-Authentication ( ON | OFF )] [-authn401 ( ON | OFF )] [-authnVsName &lt;string>] [-push ( ENABLED | DISABLED )] [-pushVserver &lt;string>] [-pushLabel &lt;expression>] [-pushMultiClients ( YES | NO )] [-Listenpolicy &lt;expression>] [-Listenpriority &lt;positive_integer>] [-tcpProfileName &lt;string>] [-httpProfileName &lt;string>] [-dbProfileName &lt;string>] [-comment &lt;string>] [-l2Conn ( ON | OFF )] [-oracleServerVersion ( 10G | 11G )] [-mssqlServerVersion &lt;mssqlServerVersion>] [-mysqlProtocolVersion &lt;positive_integer>] [-mysqlServerVersion &lt;string>] [-mysqlCharacterSet &lt;positive_integer>] [-mysqlServerCapabilities &lt;positive_integer>] [-appflowLog ( ENABLED | DISABLED )] [-netProfile &lt;string>] [-icmpVsrResponse ( PASSIVE | ACTIVE )] [-RHIstate ( PASSIVE | ACTIVE )] [-newServiceRequest &lt;positive_integer>] [&lt;newServiceRequestUnit>] [-newServiceRequestIncrementInterval &lt;positive_integer>] [-minAutoscaleMembers &lt;positive_integer>] [-maxAutoscaleMembers &lt;positive_integer>] [-persistAVPno &lt;positive_integer> ...] [-skippersistency &lt;skippersistency>] [-authnProfile &lt;string>] [-macmodeRetainvlan ( ENABLED | DISABLED )] [-dbsLb ( ENABLED | DISABLED )] [-dns64 ( ENABLED | DISABLED )] [-bypassAAAA ( YES | NO )] [-RecursionAvailable ( YES | NO )] [-processLocal ( ENABLED | DISABLED )]
+set lb vserver &lt;name>@ [-IPAddress &lt;ip_addr|ipv6_addr|*>@] [-IPPattern &lt;ippat>] [-IPMask &lt;ipmask>] [-weight &lt;positive_integer> &lt;serviceName>@] [-persistenceType &lt;persistenceType>] [-timeout &lt;mins>] [-persistenceBackup ( SOURCEIP | NONE )] [-backupPersistenceTimeout &lt;mins>] [-lbMethod &lt;lbMethod> [-hashLength &lt;positive_integer>] [-netmask &lt;netmask>] [-v6netmasklen &lt;positive_integer>] ] [-rule &lt;expression>] [-cookieName &lt;string>] [-resRule &lt;expression>] [-persistMask &lt;netmask>] [-v6persistmasklen &lt;positive_integer>] [-pq ( ON | OFF )] [-sc ( ON | OFF )] [-rtspNat ( ON | OFF )] [-m &lt;m>] [-tosId &lt;positive_integer>] [-dataLength &lt;positive_integer>] [-dataOffset &lt;positive_integer>] [-sessionless ( ENABLED | DISABLED )] [-connfailover &lt;connfailover>] [-backupVServer &lt;string>] [-redirectURL &lt;URL>] [-cacheable ( YES | NO )] [-cltTimeout &lt;secs>] [-soMethod &lt;soMethod>] [-soThreshold &lt;positive_integer>] [-soPersistence ( ENABLED | DISABLED )] [-soPersistenceTimeOut &lt;positive_integer>] [-healthThreshold &lt;positive_integer>] [-soBackupAction &lt;soBackupAction>] [-redirectPortRewrite ( ENABLED | DISABLED )] [-downStateFlush ( ENABLED | DISABLED )] [-insertVserverIPPort &lt;insertVserverIPPort> [&lt;vipHeader>] ] [-disablePrimaryOnDown ( ENABLED | DISABLED )] [-AuthenticationHost &lt;string>] [-Authentication ( ON | OFF )] [-authn401 ( ON | OFF )] [-authnVsName &lt;string>] [-push ( ENABLED | DISABLED )] [-pushVserver &lt;string>] [-pushLabel &lt;expression>] [-pushMultiClients ( YES | NO )] [-Listenpolicy &lt;expression>] [-Listenpriority &lt;positive_integer>] [-tcpProfileName &lt;string>] [-httpProfileName &lt;string>] [-dbProfileName &lt;string>] [-comment &lt;string>] [-l2Conn ( ON | OFF )] [-oracleServerVersion ( 10G | 11G )] [-mssqlServerVersion &lt;mssqlServerVersion>] [-mysqlProtocolVersion &lt;positive_integer>] [-mysqlServerVersion &lt;string>] [-mysqlCharacterSet &lt;positive_integer>] [-mysqlServerCapabilities &lt;positive_integer>] [-appflowLog ( ENABLED | DISABLED )] [-netProfile &lt;string>] [-icmpVsrResponse ( PASSIVE | ACTIVE )] [-RHIstate ( PASSIVE | ACTIVE )] [-newServiceRequest &lt;positive_integer>] [&lt;newServiceRequestUnit>] [-newServiceRequestIncrementInterval &lt;positive_integer>] [-minAutoscaleMembers &lt;positive_integer>] [-maxAutoscaleMembers &lt;positive_integer>] [-persistAVPno &lt;positive_integer> ...] [-skippersistency &lt;skippersistency>] [-authnProfile &lt;string>] [-macmodeRetainvlan ( ENABLED | DISABLED )] [-dbsLb ( ENABLED | DISABLED )] [-dns64 ( ENABLED | DISABLED )] [-bypassAAAA ( YES | NO )] [-RecursionAvailable ( YES | NO )] [-processLocal ( ENABLED | DISABLED )] [-dnsProfileName &lt;string>]
 
 
 ##Arguments
@@ -479,259 +321,157 @@ Name of the virtual server.
 IPv4 or IPv6 address to assign to the virtual server.
 
 <b>IPPattern</b>
-IP address pattern, in dotted decimal notation, for identifying packets to be accepted by the virtual server. The IP Mask parameter specifies which part of the destination IP address is matched against the pattern.  Mutually exclusive with the IP Address parameter. 
-For example, if the IP pattern assigned to the virtual server is 198.51.100.0 and the IP mask is 255.255.240.0 (a forward mask), the first 20 bits in the destination IP addresses are matched with the first 20 bits in the pattern. The virtual server accepts requests with IP addresses that range from 198.51.96.1 to 198.51.111.254.  You can also use a pattern such as 0.0.2.2 and a mask such as 0.0.255.255 (a reverse mask).
-If a destination IP address matches more than one IP pattern, the pattern with the longest match is selected, and the associated virtual server processes the request. For example, if virtual servers vs1 and vs2 have the same IP pattern, 0.0.100.128, but different IP masks of 0.0.255.255 and 0.0.224.255, a destination IP address of 198.51.100.128 has the longest match with the IP pattern of vs1. If a destination IP address matches two or more virtual servers to the same extent, the request is processed by the virtual server whose port number matches the port number in the request.
+IP address pattern, in dotted decimal notation, for identifying packets to be accepted by the virtual server. The IP Mask parameter specifies which part of the destination IP address is matched against the pattern. Mutually exclusive with the IP Address parameter. For example, if the IP pattern assigned to the virtual server is 198.51.100.0 and the IP mask is 255.255.240.0 (a forward mask), the first 20 bits in the destination IP addresses are matched with the first 20 bits in the pattern. The virtual server accepts requests with IP addresses that range from 198.51.96.1 to 198.51.111.254. You can also use a pattern such as 0.0.2.2 and a mask such as 0.0.255.255 (a reverse mask). If a destination IP address matches more than one IP pattern, the pattern with the longest match is selected, and the associated virtual server processes the request. For example, if virtual servers vs1 and vs2 have the same IP pattern, 0.0.100.128, but different IP masks of 0.0.255.255 and 0.0.224.255, a destination IP address of 198.51.100.128 has the longest match with the IP pattern of vs1. If a destination IP address matches two or more virtual servers to the same extent, the request is processed by the virtual server whose port number matches the port number in the request.
 
 <b>IPMask</b>
 IP mask, in dotted decimal notation, for the IP Pattern parameter. Can have leading or trailing non-zero octets (for example, 255.255.240.0 or 0.0.255.255). Accordingly, the mask specifies whether the first n bits or the last n bits of the destination IP address in a client request are to be matched with the corresponding bits in the IP pattern. The former is called a forward mask. The latter is called a reverse mask.
 
 <b>weight</b>
-Weight to assign to the specified service.
-Minimum value: 1
-Maximum value: 100
+Weight to assign to the specified service. Minimum value: 1 Maximum value: 100
+
+<b>serviceName</b>
+Service to bind to the virtual server.
 
 <b>persistenceType</b>
-Type of persistence for the virtual server. Available settings function as follows:
-* SOURCEIP - Connections from the same client IP address belong to the same persistence session.
-* COOKIEINSERT - Connections that have the same HTTP Cookie, inserted by a Set-Cookie directive from a server, belong to the same persistence session. 
-* SSLSESSION - Connections that have the same SSL Session ID belong to the same persistence session.
-* CUSTOMSERVERID - Connections with the same server ID form part of the same session. For this persistence type, set the Server ID (CustomServerID) parameter for each service and configure the Rule parameter to identify the server ID in a request.
-* RULE - All connections that match a user defined rule belong to the same persistence session. 
-* URLPASSIVE - Requests that have the same server ID in the URL query belong to the same persistence session. The server ID is the hexadecimal representation of the IP address and port of the service to which the request must be forwarded. This persistence type requires a rule to identify the server ID in the request. 
-* DESTIP - Connections to the same destination IP address belong to the same persistence session.
-* SRCIPDESTIP - Connections that have the same source IP address and destination IP address belong to the same persistence session.
-* CALLID - Connections that have the same CALL-ID SIP header belong to the same persistence session.
-* RTSPSID - Connections that have the same RTSP Session ID belong to the same persistence session.
-Possible values: SOURCEIP, COOKIEINSERT, SSLSESSION, RULE, URLPASSIVE, CUSTOMSERVERID, DESTIP, SRCIPDESTIP, CALLID, RTSPSID, DIAMETER, NONE
+Type of persistence for the virtual server. Available settings function as follows: * SOURCEIP - Connections from the same client IP address belong to the same persistence session. * COOKIEINSERT - Connections that have the same HTTP Cookie, inserted by a Set-Cookie directive from a server, belong to the same persistence session. * SSLSESSION - Connections that have the same SSL Session ID belong to the same persistence session. * CUSTOMSERVERID - Connections with the same server ID form part of the same session. For this persistence type, set the Server ID (CustomServerID) parameter for each service and configure the Rule parameter to identify the server ID in a request. * RULE - All connections that match a user defined rule belong to the same persistence session. * URLPASSIVE - Requests that have the same server ID in the URL query belong to the same persistence session. The server ID is the hexadecimal representation of the IP address and port of the service to which the request must be forwarded. This persistence type requires a rule to identify the server ID in the request. * DESTIP - Connections to the same destination IP address belong to the same persistence session. * SRCIPDESTIP - Connections that have the same source IP address and destination IP address belong to the same persistence session. * CALLID - Connections that have the same CALL-ID SIP header belong to the same persistence session. * RTSPSID - Connections that have the same RTSP Session ID belong to the same persistence session. Possible values: SOURCEIP, COOKIEINSERT, SSLSESSION, RULE, URLPASSIVE, CUSTOMSERVERID, DESTIP, SRCIPDESTIP, CALLID, RTSPSID, DIAMETER, NONE
 
 <b>timeout</b>
-Time period for which a persistence session is in effect.
-Default value: 2
-Maximum value: 1440
+Time period for which a persistence session is in effect. Default value: 2 Maximum value: 1440
 
 <b>persistenceBackup</b>
-Backup persistence type for the virtual server. Becomes operational if the primary persistence mechanism fails.
-Possible values: SOURCEIP, NONE
+Backup persistence type for the virtual server. Becomes operational if the primary persistence mechanism fails. Possible values: SOURCEIP, NONE
 
 <b>backupPersistenceTimeout</b>
-Time period for which backup persistence is in effect.
-Default value: 2
-Minimum value: 2
-Maximum value: 1440
+Time period for which backup persistence is in effect. Default value: 2 Minimum value: 2 Maximum value: 1440
 
 <b>lbMethod</b>
-Load balancing method.  The available settings function as follows:
-* ROUNDROBIN - Distribute requests in rotation, regardless of the load. Weights can be assigned to services to enforce weighted round robin distribution.
-* LEASTCONNECTION (default) - Select the service with the fewest connections. 
-* LEASTRESPONSETIME - Select the service with the lowest average response time. 
-* LEASTBANDWIDTH - Select the service currently handling the least traffic.
-* LEASTPACKETS - Select the service currently serving the lowest number of packets per second.
-* CUSTOMLOAD - Base service selection on the SNMP metrics obtained by custom load monitors.
-* LRTM - Select the service with the lowest response time. Response times are learned through monitoring probes. This method also takes the number of active connections into account.
-Also available are a number of hashing methods, in which the appliance extracts a predetermined portion of the request, creates a hash of the portion, and then checks whether any previous requests had the same hash value. If it finds a match, it forwards the request to the service that served those previous requests. Following are the hashing methods: 
-* URLHASH - Create a hash of the request URL (or part of the URL).
-* DOMAINHASH - Create a hash of the domain name in the request (or part of the domain name). The domain name is taken from either the URL or the Host header. If the domain name appears in both locations, the URL is preferred. If the request does not contain a domain name, the load balancing method defaults to LEASTCONNECTION.
-* DESTINATIONIPHASH - Create a hash of the destination IP address in the IP header. 
-* SOURCEIPHASH - Create a hash of the source IP address in the IP header.  
-* TOKEN - Extract a token from the request, create a hash of the token, and then select the service to which any previous requests with the same token hash value were sent. 
-* SRCIPDESTIPHASH - Create a hash of the string obtained by concatenating the source IP address and destination IP address in the IP header.  
-* SRCIPSRCPORTHASH - Create a hash of the source IP address and source port in the IP header.  
-* CALLIDHASH - Create a hash of the SIP Call-ID header.
-Possible values: ROUNDROBIN, LEASTCONNECTION, LEASTRESPONSETIME, URLHASH, DOMAINHASH, DESTINATIONIPHASH, SOURCEIPHASH, SRCIPDESTIPHASH, LEASTBANDWIDTH, LEASTPACKETS, TOKEN, SRCIPSRCPORTHASH, LRTM, CALLIDHASH, CUSTOMLOAD, LEASTREQUEST
-Default value: PEMGMT_LB_LEASTCONNS
+Load balancing method. The available settings function as follows: * ROUNDROBIN - Distribute requests in rotation, regardless of the load. Weights can be assigned to services to enforce weighted round robin distribution. * LEASTCONNECTION (default) - Select the service with the fewest connections. * LEASTRESPONSETIME - Select the service with the lowest average response time. * LEASTBANDWIDTH - Select the service currently handling the least traffic. * LEASTPACKETS - Select the service currently serving the lowest number of packets per second. * CUSTOMLOAD - Base service selection on the SNMP metrics obtained by custom load monitors. * LRTM - Select the service with the lowest response time. Response times are learned through monitoring probes. This method also takes the number of active connections into account. Also available are a number of hashing methods, in which the appliance extracts a predetermined portion of the request, creates a hash of the portion, and then checks whether any previous requests had the same hash value. If it finds a match, it forwards the request to the service that served those previous requests. Following are the hashing methods: * URLHASH - Create a hash of the request URL (or part of the URL). * DOMAINHASH - Create a hash of the domain name in the request (or part of the domain name). The domain name is taken from either the URL or the Host header. If the domain name appears in both locations, the URL is preferred. If the request does not contain a domain name, the load balancing method defaults to LEASTCONNECTION. * DESTINATIONIPHASH - Create a hash of the destination IP address in the IP header. * SOURCEIPHASH - Create a hash of the source IP address in the IP header. * TOKEN - Extract a token from the request, create a hash of the token, and then select the service to which any previous requests with the same token hash value were sent. * SRCIPDESTIPHASH - Create a hash of the string obtained by concatenating the source IP address and destination IP address in the IP header. * SRCIPSRCPORTHASH - Create a hash of the source IP address and source port in the IP header. * CALLIDHASH - Create a hash of the SIP Call-ID header. Possible values: ROUNDROBIN, LEASTCONNECTION, LEASTRESPONSETIME, URLHASH, DOMAINHASH, DESTINATIONIPHASH, SOURCEIPHASH, SRCIPDESTIPHASH, LEASTBANDWIDTH, LEASTPACKETS, TOKEN, SRCIPSRCPORTHASH, LRTM, CALLIDHASH, CUSTOMLOAD, LEASTREQUEST, AUDITLOGHASH Default value: LEASTCONNECTION
+
+<b>hashLength</b>
+Number of bytes to consider for the hash value used in the URLHASH and DOMAINHASH load balancing methods. Default value: 80 Minimum value: 1 Maximum value: 4096
+
+<b>netmask</b>
+IPv4 subnet mask to apply to the destination IP address or source IP address when the load balancing method is DESTINATIONIPHASH or SOURCEIPHASH. Default value: 0xFFFFFFFF
+
+<b>v6netmasklen</b>
+Number of bits to consider in an IPv6 destination or source IP address, for creating the hash that is required by the DESTINATIONIPHASH and SOURCEIPHASH load balancing methods. Default value: 128 Minimum value: 1 Maximum value: 128
 
 <b>rule</b>
-Expression, or name of a named expression, against which traffic is evaluated. Written in the classic or default syntax.
-Note:
-Maximum length of a string literal in the expression is 255 characters. A longer string can be split into smaller strings of up to 255 characters each, and the smaller strings concatenated with the + operator. For example, you can create a 500-character string as follows: '"&lt;string of 255 characters&gt;" + "&lt;string of 245 characters&gt;"'
-The following requirements apply only to the NetScaler CLI:
-* If the expression includes one or more spaces, enclose the entire expression in double quotation marks.
-* If the expression itself includes double quotation marks, escape the quotations by using the \\ character. 
-* Alternatively, you can use single quotation marks to enclose the rule, in which case you do not have to escape the double quotation marks.
-Default value: "none"
+Expression, or name of a named expression, against which traffic is evaluated. Written in the classic or default syntax. Note: Maximum length of a string literal in the expression is 255 characters. A longer string can be split into smaller strings of up to 255 characters each, and the smaller strings concatenated with the + operator. For example, you can create a 500-character string as follows: '"&lt;string of 255 characters&gt;" + "&lt;string of 245 characters&gt;"' The following requirements apply only to the NetScaler CLI: * If the expression includes one or more spaces, enclose the entire expression in double quotation marks. * If the expression itself includes double quotation marks, escape the quotations by using the \\ character. * Alternatively, you can use single quotation marks to enclose the rule, in which case you do not have to escape the double quotation marks. Default value: "none"
 
 <b>cookieName</b>
 Use this parameter to specify the cookie name for COOKIE peristence type. It specifies the name of cookie with a maximum of 32 characters. If not specified, cookie name is internally generated.
 
 <b>resRule</b>
-Default syntax expression specifying which part of a server's response to use for creating rule based persistence sessions (persistence type RULE). Can be either an expression or the name of a named expression.
-Example:
-HTTP.RES.HEADER("setcookie").VALUE(0).TYPECAST_NVLIST_T('=',';').VALUE("server1").
-Default value: "none"
+Default syntax expression specifying which part of a server's response to use for creating rule based persistence sessions (persistence type RULE). Can be either an expression or the name of a named expression. Example: HTTP.RES.HEADER("setcookie").VALUE(0).TYPECAST_NVLIST_T('=',';').VALUE("server1"). Default value: "none"
 
 <b>persistMask</b>
-Persistence mask for IP based persistence types, for IPv4 virtual servers.
-Default value: 0xFFFFFFFF
+Persistence mask for IP based persistence types, for IPv4 virtual servers. Default value: 0xFFFFFFFF
 
 <b>v6persistmasklen</b>
-Persistence mask for IP based persistence types, for IPv6 virtual servers.
-Default value: 128
-Minimum value: 1
-Maximum value: 128
+Persistence mask for IP based persistence types, for IPv6 virtual servers. Default value: 128 Minimum value: 1 Maximum value: 128
 
 <b>pq</b>
-Use priority queuing on the virtual server. based persistence types, for IPv6 virtual servers.
-Possible values: ON, OFF
-Default value: OFF
+Use priority queuing on the virtual server. based persistence types, for IPv6 virtual servers. Possible values: ON, OFF Default value: OFF
 
 <b>sc</b>
-Use SureConnect on the virtual server.
-Possible values: ON, OFF
-Default value: OFF
+Use SureConnect on the virtual server. Possible values: ON, OFF Default value: OFF
 
 <b>rtspNat</b>
-Use network address translation (NAT) for RTSP data connections.
-Possible values: ON, OFF
-Default value: OFF
+Use network address translation (NAT) for RTSP data connections. Possible values: ON, OFF Default value: OFF
 
 <b>m</b>
-Redirection mode for load balancing. Available settings function as follows:
-* IP - Before forwarding a request to a server, change the destination IP address to the server's IP address. 
-* MAC - Before forwarding a request to a server, change the destination MAC address to the server's MAC address.  The destination IP address is not changed. MAC-based redirection mode is used mostly in firewall load balancing deployments. 
-* IPTUNNEL - Perform IP-in-IP encapsulation for client IP packets. In the outer IP headers, set the destination IP address to the IP address of the server and the source IP address to the subnet IP (SNIP). The client IP packets are not modified. Applicable to both IPv4 and IPv6 packets. 
-* TOS - Encode the virtual server's TOS ID in the TOS field of the IP header. 
-You can use either the IPTUNNEL or the TOS option to implement Direct Server Return (DSR).
-Possible values: IP, MAC, IPTUNNEL, TOS
-Default value: NSFWD_IP
+Redirection mode for load balancing. Available settings function as follows: * IP - Before forwarding a request to a server, change the destination IP address to the server's IP address. * MAC - Before forwarding a request to a server, change the destination MAC address to the server's MAC address. The destination IP address is not changed. MAC-based redirection mode is used mostly in firewall load balancing deployments. * IPTUNNEL - Perform IP-in-IP encapsulation for client IP packets. In the outer IP headers, set the destination IP address to the IP address of the server and the source IP address to the subnet IP (SNIP). The client IP packets are not modified. Applicable to both IPv4 and IPv6 packets. * TOS - Encode the virtual server's TOS ID in the TOS field of the IP header. You can use either the IPTUNNEL or the TOS option to implement Direct Server Return (DSR). Possible values: IP, MAC, IPTUNNEL, TOS Default value: IP
 
 <b>tosId</b>
-TOS ID of the virtual server. Applicable only when the load balancing redirection mode is set to TOS.
-Minimum value: 1
-Maximum value: 63
+TOS ID of the virtual server. Applicable only when the load balancing redirection mode is set to TOS. Minimum value: 1 Maximum value: 63
 
 <b>dataLength</b>
-Length of the token to be extracted from the data segment of an incoming packet, for use in the token method of load balancing. The length of the token, specified in bytes, must not be greater than 24 KB. Applicable to virtual servers of type TCP.
-Minimum value: 1
-Maximum value: 100
+Length of the token to be extracted from the data segment of an incoming packet, for use in the token method of load balancing. The length of the token, specified in bytes, must not be greater than 24 KB. Applicable to virtual servers of type TCP. Minimum value: 1 Maximum value: 100
 
 <b>dataOffset</b>
-Offset to be considered when extracting a token from the TCP payload. Applicable to virtual servers, of type TCP, using the token method of load balancing. Must be within the first 24 KB of the TCP payload.
-Maximum value: 25400
+Offset to be considered when extracting a token from the TCP payload. Applicable to virtual servers, of type TCP, using the token method of load balancing. Must be within the first 24 KB of the TCP payload. Minimum value: 0 Maximum value: 25400
 
 <b>sessionless</b>
-Perform load balancing on a per-packet basis, without establishing sessions. Recommended for load balancing of intrusion detection system (IDS) servers and scenarios involving direct server return (DSR), where session information is unnecessary.
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
+Perform load balancing on a per-packet basis, without establishing sessions. Recommended for load balancing of intrusion detection system (IDS) servers and scenarios involving direct server return (DSR), where session information is unnecessary. Possible values: ENABLED, DISABLED Default value: DISABLED
 
 <b>connfailover</b>
-Mode in which the connection failover feature must operate for the virtual server. After a failover, established TCP connections and UDP packet flows are kept active and resumed on the secondary appliance. Clients remain connected to the same servers. Available settings function as follows:
-* STATEFUL - The primary appliance shares state information with the secondary appliance, in real time, resulting in some runtime processing overhead. 
-* STATELESS - State information is not shared, and the new primary appliance tries to re-create the packet flow on the basis of the information contained in the packets it receives. 
-* DISABLED - Connection failover does not occur.
-Possible values: DISABLED, STATEFUL, STATELESS
-Default value: DISABLED
+Mode in which the connection failover feature must operate for the virtual server. After a failover, established TCP connections and UDP packet flows are kept active and resumed on the secondary appliance. Clients remain connected to the same servers. Available settings function as follows: * STATEFUL - The primary appliance shares state information with the secondary appliance, in real time, resulting in some runtime processing overhead. * STATELESS - State information is not shared, and the new primary appliance tries to re-create the packet flow on the basis of the information contained in the packets it receives. * DISABLED - Connection failover does not occur. Possible values: DISABLED, STATEFUL, STATELESS Default value: DISABLED
 
 <b>backupVServer</b>
 Name of the backup virtual server to which to forward requests if the primary virtual server goes DOWN or reaches its spillover threshold.
 
 <b>redirectURL</b>
-URL to which to redirect traffic if the virtual server becomes unavailable. 
-WARNING! Make sure that the domain in the URL does not match the domain specified for a content switching policy. If it does, requests are continuously redirected to the unavailable virtual server.
+URL to which to redirect traffic if the virtual server becomes unavailable. WARNING! Make sure that the domain in the URL does not match the domain specified for a content switching policy. If it does, requests are continuously redirected to the unavailable virtual server.
 
 <b>cacheable</b>
-Route cacheable requests to a cache redirection virtual server. The load balancing virtual server can forward requests only to a transparent cache redirection virtual server that has an IP address and port combination of *:80, so such a cache redirection virtual server must be configured on the appliance.
-Possible values: YES, NO
-Default value: NO
+Route cacheable requests to a cache redirection virtual server. The load balancing virtual server can forward requests only to a transparent cache redirection virtual server that has an IP address and port combination of *:80, so such a cache redirection virtual server must be configured on the appliance. Possible values: YES, NO Default value: NO
 
 <b>cltTimeout</b>
-Idle time, in seconds, after which a client connection is terminated.
-Default value: VAL_NOT_SET
-Maximum value: 31536000
+Idle time, in seconds, after which a client connection is terminated. Default value: -1 Maximum value: 31536000
 
 <b>soMethod</b>
-Type of threshold that, when exceeded, triggers spillover. Available settings function as follows:
-* CONNECTION - Spillover occurs when the number of client connections exceeds the threshold.
-* DYNAMICCONNECTION - Spillover occurs when the number of client connections at the virtual server exceeds the sum of the maximum client (Max Clients) settings for bound services. Do not specify a spillover threshold for this setting, because the threshold is implied by the Max Clients settings of bound services.
-* BANDWIDTH - Spillover occurs when the bandwidth consumed by the virtual server's incoming and outgoing traffic exceeds the threshold. 
-* HEALTH - Spillover occurs when the percentage of weights of the services that are UP drops below the threshold. For example, if services svc1, svc2, and svc3 are bound to a virtual server, with weights 1, 2, and 3, and the spillover threshold is 50%, spillover occurs if svc1 and svc3 or svc2 and svc3 transition to DOWN. 
-* NONE - Spillover does not occur.
-Possible values: CONNECTION, DYNAMICCONNECTION, BANDWIDTH, HEALTH, NONE
+Type of threshold that, when exceeded, triggers spillover. Available settings function as follows: * CONNECTION - Spillover occurs when the number of client connections exceeds the threshold. * DYNAMICCONNECTION - Spillover occurs when the number of client connections at the virtual server exceeds the sum of the maximum client (Max Clients) settings for bound services. Do not specify a spillover threshold for this setting, because the threshold is implied by the Max Clients settings of bound services. * BANDWIDTH - Spillover occurs when the bandwidth consumed by the virtual server's incoming and outgoing traffic exceeds the threshold. * HEALTH - Spillover occurs when the percentage of weights of the services that are UP drops below the threshold. For example, if services svc1, svc2, and svc3 are bound to a virtual server, with weights 1, 2, and 3, and the spillover threshold is 50%, spillover occurs if svc1 and svc3 or svc2 and svc3 transition to DOWN. * NONE - Spillover does not occur. Possible values: CONNECTION, DYNAMICCONNECTION, BANDWIDTH, HEALTH, NONE
+
+<b>soThreshold</b>
+Threshold at which spillover occurs. Specify an integer for the CONNECTION spillover method, a bandwidth value in kilobits per second for the BANDWIDTH method (do not enter the units), or a percentage for the HEALTH method (do not enter the percentage symbol). Minimum value: 1 Maximum value: 4294967287
 
 <b>soPersistence</b>
-If spillover occurs, maintain source IP address based persistence for both primary and backup virtual servers.
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
+If spillover occurs, maintain source IP address based persistence for both primary and backup virtual servers. Possible values: ENABLED, DISABLED Default value: DISABLED
 
 <b>soPersistenceTimeOut</b>
-Timeout for spillover persistence, in minutes.
-Default value: 2
-Minimum value: 2
-Maximum value: 1440
+Timeout for spillover persistence, in minutes. Default value: 2 Minimum value: 2 Maximum value: 1440
 
 <b>healthThreshold</b>
-Threshold in percent of active services below which vserver state is made down. If this threshold is 0, vserver state will be up even if one bound service is up.
-Default value: 0
-Minimum value: 0
-Maximum value: 100
+Threshold in percent of active services below which vserver state is made down. If this threshold is 0, vserver state will be up even if one bound service is up. Default value: 0 Minimum value: 0 Maximum value: 100
 
 <b>soBackupAction</b>
-Action to be performed if spillover is to take effect, but no backup chain to spillover is usable or exists
-Possible values: DROP, ACCEPT, REDIRECT
+Action to be performed if spillover is to take effect, but no backup chain to spillover is usable or exists Possible values: DROP, ACCEPT, REDIRECT
 
 <b>redirectPortRewrite</b>
-Rewrite the port and change the protocol to ensure successful HTTP redirects from services.
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
+Rewrite the port and change the protocol to ensure successful HTTP redirects from services. Possible values: ENABLED, DISABLED Default value: DISABLED
 
 <b>downStateFlush</b>
-Flush all active transactions associated with a virtual server whose state transitions from UP to DOWN. Do not enable this option for applications that must complete their transactions.
-Possible values: ENABLED, DISABLED
-Default value: ENABLED
+Flush all active transactions associated with a virtual server whose state transitions from UP to DOWN. Do not enable this option for applications that must complete their transactions. Possible values: ENABLED, DISABLED Default value: ENABLED
 
 <b>insertVserverIPPort</b>
-Insert an HTTP header, whose value is the IP address and port number of the virtual server, before forwarding a request to the server. The format of the header is &lt;vipHeader&gt;: &lt;virtual server IP address&gt;_&lt;port number &gt;, where vipHeader is the name that you specify for the header. If the virtual server has an IPv6 address, the address in the header is enclosed in brackets ([ and ]) to separate it from the port number. If you have mapped an IPv4 address to a virtual server's IPv6 address, the value of this parameter determines which IP address is inserted in the header, as follows:
-* VIPADDR - Insert the IP address of the virtual server in the HTTP header regardless of whether the virtual server has an IPv4 address or an IPv6 address. A mapped IPv4 address, if configured, is ignored.
-* V6TOV4MAPPING - Insert the IPv4 address that is mapped to the virtual server's IPv6 address. If a mapped IPv4 address is not configured, insert the IPv6 address.
-* OFF - Disable header insertion.
-Possible values: OFF, VIPADDR, V6TOV4MAPPING
+Insert an HTTP header, whose value is the IP address and port number of the virtual server, before forwarding a request to the server. The format of the header is &lt;vipHeader&gt;: &lt;virtual server IP address&gt;_&lt;port number &gt;, where vipHeader is the name that you specify for the header. If the virtual server has an IPv6 address, the address in the header is enclosed in brackets ([ and ]) to separate it from the port number. If you have mapped an IPv4 address to a virtual server's IPv6 address, the value of this parameter determines which IP address is inserted in the header, as follows: * VIPADDR - Insert the IP address of the virtual server in the HTTP header regardless of whether the virtual server has an IPv4 address or an IPv6 address. A mapped IPv4 address, if configured, is ignored. * V6TOV4MAPPING - Insert the IPv4 address that is mapped to the virtual server's IPv6 address. If a mapped IPv4 address is not configured, insert the IPv6 address. * OFF - Disable header insertion. Possible values: OFF, VIPADDR, V6TOV4MAPPING
+
+<b>vipHeader</b>
+Name for the inserted header. The default name is vip-header.
 
 <b>disablePrimaryOnDown</b>
-If the primary virtual server goes down, do not allow it to return to primary status until manually enabled.
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
+If the primary virtual server goes down, do not allow it to return to primary status until manually enabled. Possible values: ENABLED, DISABLED Default value: DISABLED
 
 <b>AuthenticationHost</b>
 Fully qualified domain name (FQDN) of the authentication virtual server to which the user must be redirected for authentication. Make sure that the Authentication parameter is set to ENABLED.
 
 <b>Authentication</b>
-Enable or disable user authentication.
-Possible values: ON, OFF
-Default value: OFF
+Enable or disable user authentication. Possible values: ON, OFF Default value: OFF
 
 <b>authn401</b>
-Enable or disable user authentication with HTTP 401 responses.
-Possible values: ON, OFF
-Default value: OFF
+Enable or disable user authentication with HTTP 401 responses. Possible values: ON, OFF Default value: OFF
 
 <b>authnVsName</b>
 Name of an authentication virtual server with which to authenticate users.
 
 <b>push</b>
-Process traffic with the push virtual server that is bound to this load balancing virtual server.
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
+Process traffic with the push virtual server that is bound to this load balancing virtual server. Possible values: ENABLED, DISABLED Default value: DISABLED
 
 <b>pushVserver</b>
 Name of the load balancing virtual server, of type PUSH or SSL_PUSH, to which the server pushes updates received on the load balancing virtual server that you are configuring.
 
 <b>pushLabel</b>
-Expression for extracting a label from the server's response. Can be either an expression or the name of a named expression.
-Default value: "none"
+Expression for extracting a label from the server's response. Can be either an expression or the name of a named expression. Default value: "none"
 
 <b>pushMultiClients</b>
-Allow multiple Web 2.0 connections from the same client to connect to the virtual server and expect updates.
-Possible values: YES, NO
-Default value: NO
+Allow multiple Web 2.0 connections from the same client to connect to the virtual server and expect updates. Possible values: YES, NO Default value: NO
 
 <b>Listenpolicy</b>
-Default syntax expression identifying traffic accepted by the virtual server. Can be either an expression (for example, CLIENT.IP.DST.IN_SUBNET(192.0.2.0/24) or the name of a named expression. In the above example, the virtual server accepts all requests whose destination IP address is in the 192.0.2.0/24 subnet.
-Default value: "none"
+Default syntax expression identifying traffic accepted by the virtual server. Can be either an expression (for example, CLIENT.IP.DST.IN_SUBNET(192.0.2.0/24) or the name of a named expression. In the above example, the virtual server accepts all requests whose destination IP address is in the 192.0.2.0/24 subnet. Default value: "NONE"
 
 <b>Listenpriority</b>
-Integer specifying the priority of the listen policy. A higher number specifies a lower priority. If a request matches the listen policies of more than one virtual server the virtual server whose listen policy has the highest priority (the lowest priority number) accepts the request.
-Default value: 101
-Maximum value: 101
+Integer specifying the priority of the listen policy. A higher number specifies a lower priority. If a request matches the listen policies of more than one virtual server the virtual server whose listen policy has the highest priority (the lowest priority number) accepts the request. Default value: 101 Minimum value: 0 Maximum value: 101
 
 <b>tcpProfileName</b>
 Name of the TCP profile whose settings are to be applied to the virtual server.
@@ -746,128 +486,88 @@ Name of the DB profile whose settings are to be applied to the virtual server.
 Any comments that you might want to associate with the virtual server.
 
 <b>l2Conn</b>
-Use Layer 2 parameters (channel number, MAC address, and VLAN ID) in addition to the 4-tuple (&lt;source IP&gt;:&lt;source port&gt;::&lt;destination IP&gt;:&lt;destination port&gt;) that is used to identify a connection. Allows multiple TCP and non-TCP connections with the same 4-tuple to co-exist on the NetScaler appliance.
-Possible values: ON, OFF
+Use Layer 2 parameters (channel number, MAC address, and VLAN ID) in addition to the 4-tuple (&lt;source IP&gt;:&lt;source port&gt;::&lt;destination IP&gt;:&lt;destination port&gt;) that is used to identify a connection. Allows multiple TCP and non-TCP connections with the same 4-tuple to co-exist on the NetScaler appliance. Possible values: ON, OFF
 
 <b>oracleServerVersion</b>
-Oracle server version
-Possible values: 10G, 11G
-Default value: ORACLE_SERVER_10G
+Oracle server version Possible values: 10G, 11G Default value: 10G
 
 <b>mssqlServerVersion</b>
-For a load balancing virtual server of type MSSQL, the Microsoft SQL Server version. Set this parameter if you expect some clients to run a version different from the version of the database. This setting provides compatibility between the client-side and server-side connections by ensuring that all communication conforms to the server's version.
-Possible values: 70, 2000, 2000SP1, 2005, 2008, 2008R2, 2012
-Default value: TDS_PROT_2008B
+For a load balancing virtual server of type MSSQL, the Microsoft SQL Server version. Set this parameter if you expect some clients to run a version different from the version of the database. This setting provides compatibility between the client-side and server-side connections by ensuring that all communication conforms to the server's version. Possible values: 70, 2000, 2000SP1, 2005, 2008, 2008R2, 2012, 2014 Default value: 2008R2
 
 <b>mysqlProtocolVersion</b>
-MySQL protocol version that the virtual server advertises to clients.
-Default value: NSA_MYSQL_PROTOCOL_VER_DEFAULT
+MySQL protocol version that the virtual server advertises to clients. Default value: NSA_MYSQL_PROTOCOL_VER_DEFAULT Minimum value: 0
 
 <b>mysqlServerVersion</b>
-MySQL server version string that the virtual server advertises to clients.
-Default value: NSA_MYSQL_SERVER_VER_DEFAULT
+MySQL server version string that the virtual server advertises to clients. Default value: NSA_MYSQL_SERVER_VER_DEFAULT
 
 <b>mysqlCharacterSet</b>
-Character set that the virtual server advertises to clients.
-Default value: NSA_MYSQL_CHAR_SET_DEFAULT
+Character set that the virtual server advertises to clients. Default value: NSA_MYSQL_CHAR_SET_DEFAULT Minimum value: 0
 
 <b>mysqlServerCapabilities</b>
-Server capabilities that the virtual server advertises to clients.
-Default value: NSA_MYSQL_SVR_CAPABILITIES_DEFAULT
+Server capabilities that the virtual server advertises to clients. Default value: NSA_MYSQL_SVR_CAPABILITIES_DEFAULT Minimum value: 0
 
 <b>appflowLog</b>
-Apply AppFlow logging to the virtual server.
-Possible values: ENABLED, DISABLED
-Default value: ENABLED
+Apply AppFlow logging to the virtual server. Possible values: ENABLED, DISABLED Default value: ENABLED
 
 <b>netProfile</b>
 Name of the network profile to associate with the virtual server. If you set this parameter, the virtual server uses only the IP addresses in the network profile as source IP addresses when initiating connections with servers.
 
 <b>icmpVsrResponse</b>
-How the NetScaler appliance responds to ping requests received for an IP address that is common to one or more virtual servers. Available settings function as follows:
-* If set to PASSIVE on all the virtual servers that share the IP address, the appliance always responds to the ping requests.
-* If set to ACTIVE on all the virtual servers that share the IP address, the appliance responds to the ping requests if at least one of the virtual servers is UP. Otherwise, the appliance does not respond.
-* If set to ACTIVE on some virtual servers and PASSIVE on the others, the appliance responds if at least one virtual server with the ACTIVE setting is UP. Otherwise, the appliance does not respond.
-Note: This parameter is available at the virtual server level. A similar parameter, ICMP Response, is available at the IP address level, for IPv4 addresses of type VIP. To set that parameter, use the add ip command in the CLI or the Create IP dialog box in the GUI.
-Possible values: PASSIVE, ACTIVE
-Default value: NS_VSR_PASSIVE
+How the NetScaler appliance responds to ping requests received for an IP address that is common to one or more virtual servers. Available settings function as follows: * If set to PASSIVE on all the virtual servers that share the IP address, the appliance always responds to the ping requests. * If set to ACTIVE on all the virtual servers that share the IP address, the appliance responds to the ping requests if at least one of the virtual servers is UP. Otherwise, the appliance does not respond. * If set to ACTIVE on some virtual servers and PASSIVE on the others, the appliance responds if at least one virtual server with the ACTIVE setting is UP. Otherwise, the appliance does not respond. Note: This parameter is available at the virtual server level. A similar parameter, ICMP Response, is available at the IP address level, for IPv4 addresses of type VIP. To set that parameter, use the add ip command in the CLI or the Create IP dialog box in the GUI. Possible values: PASSIVE, ACTIVE Default value: PASSIVE
 
 <b>RHIstate</b>
-Route Health Injection (RHI) functionality of the NetSaler appliance for advertising the route of the VIP address associated with the virtual server. When Vserver RHI Level (RHI) parameter is set to VSVR_CNTRLD, the following are different RHI behaviors for the VIP address on the basis of RHIstate (RHI STATE) settings on the virtual servers associated with the VIP address:
-* If you set RHI STATE to PASSIVE on all virtual servers, the NetScaler ADC always advertises the route for the VIP address.
-* If you set RHI STATE to ACTIVE on all virtual servers, the NetScaler ADC advertises the route for the VIP address if at least one of the associated virtual servers is in UP state.
-* If you set RHI STATE to ACTIVE on some and PASSIVE on others, the NetScaler ADC advertises the route for the VIP address if at least one of the associated virtual servers, whose RHI STATE set to ACTIVE, is in UP state.
-Possible values: PASSIVE, ACTIVE
-Default value: NS_VSR_PASSIVE
+Route Health Injection (RHI) functionality of the NetSaler appliance for advertising the route of the VIP address associated with the virtual server. When Vserver RHI Level (RHI) parameter is set to VSVR_CNTRLD, the following are different RHI behaviors for the VIP address on the basis of RHIstate (RHI STATE) settings on the virtual servers associated with the VIP address: * If you set RHI STATE to PASSIVE on all virtual servers, the NetScaler ADC always advertises the route for the VIP address. * If you set RHI STATE to ACTIVE on all virtual servers, the NetScaler ADC advertises the route for the VIP address if at least one of the associated virtual servers is in UP state. * If you set RHI STATE to ACTIVE on some and PASSIVE on others, the NetScaler ADC advertises the route for the VIP address if at least one of the associated virtual servers, whose RHI STATE set to ACTIVE, is in UP state. Possible values: PASSIVE, ACTIVE Default value: PASSIVE
 
 <b>newServiceRequest</b>
-Number of requests, or percentage of the load on existing services, by which to increase the load on a new service at each interval in slow-start mode. A non-zero value indicates that slow-start is applicable. A zero value indicates that the global RR startup parameter is applied. Changing the value to zero will cause services currently in slow start to take the full traffic as determined by the LB method. Subsequently, any new services added will use the global RR factor.
-Default value: 0
+Number of requests, or percentage of the load on existing services, by which to increase the load on a new service at each interval in slow-start mode. A non-zero value indicates that slow-start is applicable. A zero value indicates that the global RR startup parameter is applied. Changing the value to zero will cause services currently in slow start to take the full traffic as determined by the LB method. Subsequently, any new services added will use the global RR factor. Default value: 0 Minimum value: 0
+
+<b>newServiceRequestUnit</b>
+Units in which to increment load at each interval in slow-start mode. Possible values: PER_SECOND, PERCENT Default value: PER_SECOND
 
 <b>newServiceRequestIncrementInterval</b>
-Interval, in seconds, between successive increments in the load on a new service or a service whose state has just changed from DOWN to UP. A value of 0 (zero) specifies manual slow start.
-Default value: 0
-Maximum value: 3600
+Interval, in seconds, between successive increments in the load on a new service or a service whose state has just changed from DOWN to UP. A value of 0 (zero) specifies manual slow start. Default value: 0 Minimum value: 0 Maximum value: 3600
 
 <b>minAutoscaleMembers</b>
-Minimum number of members expected to be present when vserver is used in Autoscale.
-Default value: 0
-Maximum value: 5000
+Minimum number of members expected to be present when vserver is used in Autoscale. Default value: 0 Minimum value: 0 Maximum value: 5000
 
 <b>maxAutoscaleMembers</b>
-Maximum number of members expected to be present when vserver is used in Autoscale.
-Default value: 0
-Maximum value: 5000
+Maximum number of members expected to be present when vserver is used in Autoscale. Default value: 0 Minimum value: 0 Maximum value: 5000
 
 <b>persistAVPno</b>
-Persist AVP number for Diameter Persistency. 
-            In case this AVP is not defined in Base RFC 3588 and it is nested inside a Grouped AVP, 
-            define a sequence of AVP numbers (max 3) in order of parent to child. So say persist AVP number X 
-            is nested inside AVP Y which is nested in Z, then define the list as  Z Y X
-Minimum value: 1
+Persist AVP number for Diameter Persistency. In case this AVP is not defined in Base RFC 3588 and it is nested inside a Grouped AVP, define a sequence of AVP numbers (max 3) in order of parent to child. So say persist AVP number X is nested inside AVP Y which is nested in Z, then define the list as Z Y X Minimum value: 1
 
 <b>skippersistency</b>
-This argument decides the behavior incase the service which is selected from an existing persistence session has reached threshold.
-Possible values: Bypass, ReLb, None
-Default value: NS_DONT_SKIPPERSIST
+This argument decides the behavior incase the service which is selected from an existing persistence session has reached threshold. Possible values: Bypass, ReLb, None Default value: None
 
 <b>authnProfile</b>
 Name of the authentication profile to be used when authentication is turned on.
 
 <b>macmodeRetainvlan</b>
-This option is used to retain vlan information of incoming packet when macmode is enabled
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
+This option is used to retain vlan information of incoming packet when macmode is enabled Possible values: ENABLED, DISABLED Default value: DISABLED
 
 <b>dbsLb</b>
-Enable database specific load balancing for MySQL and MSSQL service types.
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
+Enable database specific load balancing for MySQL and MSSQL service types. Possible values: ENABLED, DISABLED Default value: DISABLED
 
 <b>dns64</b>
-This argument is for enabling/disabling the dns64 on lbvserver
-Possible values: ENABLED, DISABLED
+This argument is for enabling/disabling the dns64 on lbvserver Possible values: ENABLED, DISABLED
 
 <b>bypassAAAA</b>
-If this option is enabled while resolving DNS64 query AAAA queries are not sent to back end dns server
-Possible values: YES, NO
-Default value: NO
+If this option is enabled while resolving DNS64 query AAAA queries are not sent to back end dns server Possible values: YES, NO Default value: NO
 
 <b>RecursionAvailable</b>
-When set to YES, this option causes the DNS replies from this vserver to have the RA bit turned on. Typically one would set this option to YES, when the vserver is load balancing a set of DNS servers thatsupport recursive queries.
-Possible values: YES, NO
-Default value: NO
+When set to YES, this option causes the DNS replies from this vserver to have the RA bit turned on. Typically one would set this option to YES, when the vserver is load balancing a set of DNS servers thatsupport recursive queries. Possible values: YES, NO Default value: NO
 
 <b>processLocal</b>
-By turning on this option packets destined to a vserver in a cluster will not under go any steering. Turn this option for single packet request response mode or when the upstream device is performing a proper RSS for connection based distribution.
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
+By turning on this option packets destined to a vserver in a cluster will not under go any steering. Turn this option for single packet request response mode or when the upstream device is performing a proper RSS for connection based distribution. Possible values: ENABLED, DISABLED Default value: DISABLED
+
+<b>dnsProfileName</b>
+Name of the DNS profile to be associated with the VServer. DNS profile properties will be applied to the transactions processed by a VServer. This parameter is valid only for DNS and DNS-TCP VServers.
 
 
 
 ##Example
 
-set lb vserver http_vip  -lbmethod  LEASTRESPONSETIME	To set the load balancing method for multiple vserver use the following command:	set lb vserver http_vip[1-3] -lbmethod  LEASTRESPONSETIME
+set lb vserver http_vip -lbmethod LEASTRESPONSETIME To set the load balancing method for multiple vserver use the following command: set lb vserver http_vip[1-3] -lbmethod LEASTRESPONSETIME
 
 ##unset lb vserver
 
@@ -876,12 +576,12 @@ Removes the specified parameter settings from the virtual server..Refer to the s
 
 ##Synopsys
 
-unset lb vserver &lt;name>@ [-backupVServer] [-cltTimeout] [-redirectURL] [-authn401] [-Authentication] [-AuthenticationHost] [-authnVsName] [-pushVserver] [-pushLabel] [-tcpProfileName] [-httpProfileName] [-dbProfileName] [-rule] [-l2Conn] [-mysqlProtocolVersion] [-mysqlServerVersion] [-mysqlCharacterSet] [-mysqlServerCapabilities] [-appflowLog] [-netProfile] [-icmpVsrResponse] [-skippersistency] [-minAutoscaleMembers] [-maxAutoscaleMembers] [-authnProfile] [-macmodeRetainvlan] [-dbsLb] [-serviceName] [-persistenceType] [-timeout] [-persistenceBackup] [-backupPersistenceTimeout] [-lbMethod] [-hashLength] [-netmask] [-v6netmasklen] [-cookieName] [-resRule] [-persistMask] [-v6persistmasklen] [-pq] [-sc] [-rtspNat] [-m] [-tosId] [-dataLength] [-dataOffset] [-sessionless] [-connfailover] [-cacheable] [-soMethod] [-soPersistence] [-soPersistenceTimeOut] [-healthThreshold] [-soBackupAction] [-redirectPortRewrite] [-downStateFlush] [-insertVserverIPPort] [-vipHeader] [-disablePrimaryOnDown] [-push] [-pushMultiClients] [-Listenpolicy] [-Listenpriority] [-comment] [-oracleServerVersion] [-mssqlServerVersion] [-RHIstate] [-newServiceRequest] [-newServiceRequestUnit] [-newServiceRequestIncrementInterval] [-persistAVPno] [-RecursionAvailable]
+unset lb vserver &lt;name>@ [-backupVServer] [-cltTimeout] [-redirectURL] [-authn401] [-Authentication] [-AuthenticationHost] [-authnVsName] [-pushVserver] [-pushLabel] [-tcpProfileName] [-httpProfileName] [-dbProfileName] [-rule] [-l2Conn] [-mysqlProtocolVersion] [-mysqlServerVersion] [-mysqlCharacterSet] [-mysqlServerCapabilities] [-appflowLog] [-netProfile] [-icmpVsrResponse] [-skippersistency] [-minAutoscaleMembers] [-maxAutoscaleMembers] [-authnProfile] [-macmodeRetainvlan] [-dbsLb] [-dnsProfileName] [-serviceName] [-persistenceType] [-timeout] [-persistenceBackup] [-backupPersistenceTimeout] [-lbMethod] [-hashLength] [-netmask] [-v6netmasklen] [-cookieName] [-resRule] [-persistMask] [-v6persistmasklen] [-pq] [-sc] [-rtspNat] [-m] [-tosId] [-dataLength] [-dataOffset] [-sessionless] [-connfailover] [-cacheable] [-soMethod] [-soPersistence] [-soPersistenceTimeOut] [-healthThreshold] [-soBackupAction] [-redirectPortRewrite] [-downStateFlush] [-insertVserverIPPort] [-vipHeader] [-disablePrimaryOnDown] [-push] [-pushMultiClients] [-Listenpolicy] [-Listenpriority] [-comment] [-oracleServerVersion] [-mssqlServerVersion] [-RHIstate] [-newServiceRequest] [-newServiceRequestUnit] [-newServiceRequestIncrementInterval] [-persistAVPno] [-RecursionAvailable]
 
 
 ##Example
 
-unset lb vserver lb_vip -backupVServer	To unset the backup virtual server for multiple vservers use the following command:	unset lb vserver lb_vip[1-3] -backupVServer
+unset lb vserver lb_vip -backupVServer To unset the backup virtual server for multiple vservers use the following command: unset lb vserver lb_vip[1-3] -backupVServer
 
 ##bind lb vserver
 
@@ -890,17 +590,19 @@ Binds a service, service group, or policy to a virtual server.
 
 ##Synopsys
 
-bind lb vserver &lt;name>@ ((&lt;serviceName>@  [-weight &lt;positive_integer>] ) | &lt;serviceGroupName>@ | (-policyName &lt;string>@  [-priority &lt;positive_integer>]  [-gotoPriorityExpression &lt;expression>]  [-type ( REQUEST | RESPONSE )]  [-invoke  (&lt;labelType>  &lt;labelName>) ]  ))
+bind lb vserver &lt;name>@ ((&lt;serviceName>@ [-weight &lt;positive_integer>] ) | &lt;serviceGroupName>@ | (-policyName &lt;string>@ [-priority &lt;positive_integer>] [-gotoPriorityExpression &lt;expression>] [-type ( REQUEST | RESPONSE )] [-invoke (&lt;labelType> &lt;labelName>) ] ))
 
 
 ##Arguments
 
 <b>name</b>
-Name for the virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Can be changed after the virtual server is created.
-CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my vserver" or 'my vserver').
+Name for the virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Can be changed after the virtual server is created. CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my vserver" or 'my vserver').
 
 <b>serviceName</b>
 Name of the service.
+
+<b>weight</b>
+Integer specifying the weight of the service. A larger number specifies a greater weight. Defines the capacity of the service relative to the other services in the load balancing configuration. Determines the priority given to the service in load balancing decisions. Default value: 1 Minimum value: 1 Maximum value: 100
 
 <b>serviceGroupName</b>
 Name of the service group.
@@ -908,11 +610,29 @@ Name of the service group.
 <b>policyName</b>
 Name of the policy to bind to the virtual server.
 
+<b>priority</b>
+Integer specifying the policy's priority. The lower the priority number, the higher the policy's priority. Minimum value: 1 Maximum value: 2147483647
+
+<b>gotoPriorityExpression</b>
+Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE. Specify one of the following values: * NEXT - Evaluate the policy with the next higher priority number. * END - End policy evaluation. * USE_INVOCATION_RESULT - Applicable if this policy invokes another policy label. If the final goto in the invoked policy label has a value of END, the evaluation stops. If the final goto is anything other than END, the current policy label performs a NEXT. * A default syntax expression that evaluates to a number. If you specify an expression, the number to which it evaluates determines the next policy to evaluate, as follows: * If the expression evaluates to a higher numbered priority, the policy with that priority is evaluated next. * If the expression evaluates to the priority of the current policy, the policy with the next higher numbered priority is evaluated next. * If the expression evaluates to a priority number that is numerically higher than the highest numbered priority, policy evaluation ends. An UNDEF event is triggered if: * The expression is invalid. * The expression evaluates to a priority number that is numerically lower than the current policy's priority. * The expression evaluates to a priority number that is between the current policy's priority number (say, 30) and the highest priority number (say, 100), but does not match any configured priority number (for example, the expression evaluates to the number 85). This example assumes that the priority number increments by 10 for every successive policy, and therefore a priority number of 85 does not exist in the policy label.
+
+<b>type</b>
+Bind point to which to bind the policy. Applicable only to compression, rewrite, and cache policies. Possible values: REQUEST, RESPONSE
+
+<b>invoke</b>
+Invoke policies bound to a virtual server or policy label.
+
+<b>labelType</b>
+Type of policy label to invoke. Applicable only to rewrite and cache policies. Available settings function as follows: * reqvserver - Evaluate the request against the request-based policies bound to the specified virtual server. * resvserver - Evaluate the response against the response-based policies bound to the specified virtual server. * policylabel - invoke the request or response against the specified user-defined policy label. Possible values: reqvserver, resvserver, policylabel
+
+<b>labelName</b>
+Name of the virtual server or user-defined policy label to invoke if the policy evaluates to TRUE.
+
 
 
 ##Example
 
-bind lb vserver http_vip http_svc	To bind a service to multiple vservers use the following command:	bind lb vs http_vip[1-3] http_svc	To bind multiple services to a vserver use the following command:	bind lb vs http_vip http_svc[1-3]
+bind lb vserver http_vip http_svc To bind a service to multiple vservers use the following command: bind lb vs http_vip[1-3] http_svc To bind multiple services to a vserver use the following command: bind lb vs http_vip http_svc[1-3]
 
 ##unbind lb vserver
 
@@ -921,14 +641,13 @@ Unbinds a service, service group, or policy from a virtual server.
 
 ##Synopsys
 
-unbind lb vserver &lt;name>@ (&lt;serviceName>@ | &lt;serviceGroupName>@ | (-policyName &lt;string>@  [-type ( REQUEST | RESPONSE )])) [-priority &lt;positive_integer>]
+unbind lb vserver &lt;name>@ (&lt;serviceName>@ | &lt;serviceGroupName>@ | (-policyName &lt;string>@ [-type ( REQUEST | RESPONSE )])) [-priority &lt;positive_integer>]
 
 
 ##Arguments
 
 <b>name</b>
-Name for the virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Can be changed after the virtual server is created.
-CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my vserver" or 'my vserver').
+Name for the virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Can be changed after the virtual server is created. CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my vserver" or 'my vserver').
 
 <b>serviceName</b>
 Name of the service.
@@ -939,16 +658,17 @@ The name of the service group that is unbound.
 <b>policyName</b>
 Name of the policy to bind to the virtual server.
 
+<b>type</b>
+Bind point from which to unbind the policy label. Possible values: REQUEST, RESPONSE
+
 <b>priority</b>
-Priority number of the policy.
-Minimum value: 1
-Maximum value: 2147483647
+Priority number of the policy. Minimum value: 1 Maximum value: 2147483647
 
 
 
 ##Example
 
-unbind lb vserver http_vip  http_svc	To unbind a service from multiple vservers use the following command:	unbind lb vs http_vip[1-3] http_svc        To unbind multiple services from a vserver use the following command:        unbind lb vs http_vip http_svc[1-3]
+unbind lb vserver http_vip http_svc To unbind a service from multiple vservers use the following command: unbind lb vs http_vip[1-3] http_svc To unbind multiple services from a vserver use the following command: unbind lb vs http_vip http_svc[1-3]
 
 ##enable lb vserver
 
@@ -969,7 +689,7 @@ Name of the virtual server.
 
 ##Example
 
-enable vserver lb_vip	To enable multiple vservers at once use the following command:	enable vserver lb_vip[1-3]
+enable vserver lb_vip To enable multiple vservers at once use the following command: enable vserver lb_vip[1-3]
 
 ##disable lb vserver
 
@@ -990,7 +710,7 @@ Name of the virtual server.
 
 ##Example
 
-disable vserver lb_vip	To disable multiple vservers at once use the following command:	disable vserver lb_vip[1-3]
+disable vserver lb_vip To disable multiple vservers at once use the following command: disable vserver lb_vip[1-3]
 
 ##show lb vserver
 
@@ -999,21 +719,13 @@ Displays the statistical data collected for a load balancing virtual server.
 
 ##Synopsys
 
-show lb vserver [&lt;name>]show lb vserver stats - alias for 'stat lb vserver'
+show lb vserver [&lt;name>] show lb vserver stats - alias for 'stat lb vserver'
 
 
 ##Arguments
 
 <b>name</b>
 Name of the virtual server. If no name is provided, statistical data of all configured virtual servers is displayed.
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
 
 
 
@@ -1054,11 +766,7 @@ The permanent mapping for the V6 Address
 Port number for the virtual server.
 
 <b>range</b>
-Number of IP addresses that the appliance must generate and assign to the virtual server. The virtual server then functions as a network virtual server, accepting traffic on any of the generated IP addresses. The IP addresses are generated automatically, as follows: 
-* For a range of n, the last octet of the address specified by the IP Address parameter increments n-1 times. 
-* If the last octet exceeds 255, it rolls over to 0 and the third octet increments by 1.
-Note: The Range parameter assigns multiple IP addresses to one virtual server. To generate an array of virtual servers, each of which owns only one IP address, use brackets in the IP Address and Name parameters to specify the range. For example:
-add lb vserver my_vserver[1-3] HTTP 192.0.2.[1-3] 80
+Number of IP addresses that the appliance must generate and assign to the virtual server. The virtual server then functions as a network virtual server, accepting traffic on any of the generated IP addresses. The IP addresses are generated automatically, as follows: * For a range of n, the last octet of the address specified by the IP Address parameter increments n-1 times. * If the last octet exceeds 255, it rolls over to 0 and the third octet increments by 1. Note: The Range parameter assigns multiple IP addresses to one virtual server. To generate an array of virtual servers, each of which owns only one IP address, use brackets in the IP Address and Name parameters to specify the range. For example: add lb vserver my_vserver[1-3] HTTP 192.0.2.[1-3] 80
 
 <b>serviceType</b>
 Protocol used by the service (also called the service type).
@@ -1079,20 +787,7 @@ Effective state of the LB vserver , based on the state of backup vservers.
 Current status of the lb vserver. During the initial phase if the configured lb method is not round robin , the vserver will adopt round robin to distribute traffic for a predefined number of requests.
 
 <b>lbrrreason</b>
-Reason why a vserver is in RR. The following are the reasons:
-1  - MEP is DOWN (GSLB)
-2  - LB method has changed
-3  - Bound service's state changed to UP
-4  - A new service is bound
-5  - Startup RR factor has changed
-6  - LB feature is enabled
-7  - Load monitor is not active on a service
-8  - Vserver is Enabled
-9  - SSL feature is Enabled
-10 - All bound services have reached threshold. Using effective state to load balance (GSLB)
-11 - Primary state of bound services are not UP. Using effective state to load balance (GSLB)
-12 - No LB decision can be made as all bound services have either reached threshold or are not UP (GSLB)
-13 - All load monitors are active
+Reason why a vserver is in RR. The following are the reasons: 1 - MEP is DOWN (GSLB) 2 - LB method has changed 3 - Bound service's state changed to UP 4 - A new service is bound 5 - Startup RR factor has changed 6 - LB feature is enabled 7 - Load monitor is not active on a service 8 - Vserver is Enabled 9 - SSL feature is Enabled 10 - All bound services have reached threshold. Using effective state to load balance (GSLB) 11 - Primary state of bound services are not UP. Using effective state to load balance (GSLB) 12 - No LB decision can be made as all bound services have either reached threshold or are not UP (GSLB) 13 - All load monitors are active
 
 <b>cacheType</b>
 Cache type.
@@ -1194,8 +889,7 @@ The netmask of the destination network.
 Rule type.
 
 <b>resRule</b>
-Use this parameter to specify the expression to be used in response for RULE persistence type.
-The string is an in-line expression with a maximum of 1499 characters.
+Use this parameter to specify the expression to be used in response for RULE persistence type. The string is an in-line expression with a maximum of 1499 characters.
 
 <b>gotoPriorityExpression</b>
 Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.
@@ -1354,7 +1048,11 @@ Any comments that you might want to associate with the virtual server.
 <b>policySubType</b>
 
 <b>l2Conn</b>
-Use Layer 2 parameters (channel number, MAC address, and VLAN ID) in addition to the 4-tuple (&lt;source IP>:&lt;source port>::&lt;destination IP>:&lt;destination port>) that is used to identify a connection. Allows multiple TCP and non-TCP connections with the same 4-tuple to co-exist on the NetScaler appliance.
+Use Layer 2 parameters (channel number, MAC address, and VLAN ID) in addition to the 4-tuple (
+            &lt;source IP>:
+              &lt;source port>::
+                &lt;destination IP>:
+                  &lt;destination port>) that is used to identify a connection. Allows multiple TCP and non-TCP connections with the same 4-tuple to co-exist on the NetScaler appliance.
 
 <b>oracleServerVersion</b>
 Oracle server version
@@ -1384,17 +1082,10 @@ Name of the network profile to associate with the virtual server. If you set thi
 This field is set to true if it is a GSLBVserver.
 
 <b>icmpVsrResponse</b>
-How the NetScaler appliance responds to ping requests received for an IP address that is common to one or more virtual servers. Available settings function as follows:
-* If set to PASSIVE on all the virtual servers that share the IP address, the appliance always responds to the ping requests.
-* If set to ACTIVE on all the virtual servers that share the IP address, the appliance responds to the ping requests if at least one of the virtual servers is UP. Otherwise, the appliance does not respond.
-* If set to ACTIVE on some virtual servers and PASSIVE on the others, the appliance responds if at least one virtual server with the ACTIVE setting is UP. Otherwise, the appliance does not respond.
-Note: This parameter is available at the virtual server level. A similar parameter, ICMP Response, is available at the IP address level, for IPv4 addresses of type VIP. To set that parameter, use the add ip command in the CLI or the Create IP dialog box in the GUI.
+How the NetScaler appliance responds to ping requests received for an IP address that is common to one or more virtual servers. Available settings function as follows: * If set to PASSIVE on all the virtual servers that share the IP address, the appliance always responds to the ping requests. * If set to ACTIVE on all the virtual servers that share the IP address, the appliance responds to the ping requests if at least one of the virtual servers is UP. Otherwise, the appliance does not respond. * If set to ACTIVE on some virtual servers and PASSIVE on the others, the appliance responds if at least one virtual server with the ACTIVE setting is UP. Otherwise, the appliance does not respond. Note: This parameter is available at the virtual server level. A similar parameter, ICMP Response, is available at the IP address level, for IPv4 addresses of type VIP. To set that parameter, use the add ip command in the CLI or the Create IP dialog box in the GUI.
 
 <b>RHIstate</b>
-Route Health Injection (RHI) functionality of the NetSaler appliance for advertising the route of the VIP address associated with the virtual server. When Vserver RHI Level (RHI) parameter is set to VSVR_CNTRLD, the following are different RHI behaviors for the VIP address on the basis of RHIstate (RHI STATE) settings on the virtual servers associated with the VIP address:
-* If you set RHI STATE to PASSIVE on all virtual servers, the NetScaler ADC always advertises the route for the VIP address.
-* If you set RHI STATE to ACTIVE on all virtual servers, the NetScaler ADC advertises the route for the VIP address if at least one of the associated virtual servers is in UP state.
-* If you set RHI STATE to ACTIVE on some and PASSIVE on others, the NetScaler ADC advertises the route for the VIP address if at least one of the associated virtual servers, whose RHI STATE set to ACTIVE, is in UP state.
+Route Health Injection (RHI) functionality of the NetSaler appliance for advertising the route of the VIP address associated with the virtual server. When Vserver RHI Level (RHI) parameter is set to VSVR_CNTRLD, the following are different RHI behaviors for the VIP address on the basis of RHIstate (RHI STATE) settings on the virtual servers associated with the VIP address: * If you set RHI STATE to PASSIVE on all virtual servers, the NetScaler ADC always advertises the route for the VIP address. * If you set RHI STATE to ACTIVE on all virtual servers, the NetScaler ADC advertises the route for the VIP address if at least one of the associated virtual servers is in UP state. * If you set RHI STATE to ACTIVE on some and PASSIVE on others, the NetScaler ADC advertises the route for the VIP address if at least one of the associated virtual servers, whose RHI STATE set to ACTIVE, is in UP state.
 
 <b>newServiceRequest</b>
 Number of requests, or percentage of the load on existing services, by which to increase the load on a new service at each interval in slow-start mode. A non-zero value indicates that slow-start is applicable. A zero value indicates that the global RR startup parameter is applied. Changing the value to zero will cause services currently in slow start to take the full traffic as determined by the LB method. Subsequently, any new services added will use the global RR factor.
@@ -1415,10 +1106,7 @@ used for showing the ip of bound entities
 used for showing ports of bound entities
 
 <b>persistAVPno</b>
-Persist AVP number for Diameter Persistency. 
-            In case this AVP is not defined in Base RFC 3588 and it is nested inside a Grouped AVP, 
-            define a sequence of AVP numbers (max 3) in order of parent to child. So say persist AVP number X 
-            is nested inside AVP Y which is nested in Z, then define the list as  Z Y X
+Persist AVP number for Diameter Persistency. In case this AVP is not defined in Base RFC 3588 and it is nested inside a Grouped AVP, define a sequence of AVP numbers (max 3) in order of parent to child. So say persist AVP number X is nested inside AVP Y which is nested in Z, then define the list as Z Y X
 
 <b>skippersistency</b>
 This argument decides the behavior incase the service which is selected from an existing persistence session has reached threshold.
@@ -1456,6 +1144,12 @@ By turning on this option packets destined to a vserver in a cluster will not un
 <b>vsvrdynconnsothreshold</b>
 Spillover threshold for dynamic connection
 
+<b>backupVserverStatus</b>
+Staus of BackUp Vserver .
+
+<b>dnsProfileName</b>
+Name of the DNS profile to be associated with the VServer. DNS profile properties will be applied to the transactions processed by a VServer. This parameter is valid only for DNS and DNS-TCP VServers.
+
 <b>devno</b>
 
 <b>count</b>
@@ -1469,7 +1163,7 @@ Displays the statistical data collected for a load balancing virtual server.
 
 ##Synopsys
 
-stat lb vserver [&lt;name>] [-detail] [-fullValues] [-ntimes &lt;positive_integer>] [-logFile &lt;input_filename>] [-clearstats ( basic | full )] [-sortBy Hits  [&lt;sortOrder>]]
+stat lb vserver [&lt;name>] [-detail] [-fullValues] [-ntimes &lt;positive_integer>] [-logFile &lt;input_filename>] [-clearstats ( basic | full )] [-sortBy Hits [&lt;sortOrder>]]
 
 
 ##Arguments
@@ -1477,13 +1171,26 @@ stat lb vserver [&lt;name>] [-detail] [-fullValues] [-ntimes &lt;positive_intege
 <b>name</b>
 Name of the virtual server. If no name is provided, statistical data of all configured virtual servers is displayed.
 
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed. Default value: 1 Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
+
 <b>clearstats</b>
-Clear the statsistics / counters
-Possible values: basic, full
+Clear the statsistics / counters Possible values: basic, full
 
 <b>sortBy</b>
-use this argument to sort by specific key
-Possible values: Hits
+use this argument to sort by specific key Possible values: Hits
+
+<b>sortOrder</b>
+use this argument to specify sort order Possible values: ascending, descending Default value: SORT_DESCENDING
 
 
 
@@ -1579,6 +1286,9 @@ Number invalid requests/responses on this vserver
 
 <b>Invalid Request/Response Dropped (IvldReqRspDrp)</b>
 Number invalid requests/responses dropped on this vserver
+
+<b>Vserver Down Backup Hits (VserverDownBackupHits )</b>
+Number of times traffic was diverted to backup vserver since primary vserver was DOWN.
 
 <b>Current Server Est connections (SvrEstConn)</b>
 Number of server connections in ESTABLISHED state.

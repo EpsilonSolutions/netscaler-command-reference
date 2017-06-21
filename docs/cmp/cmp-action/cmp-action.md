@@ -34,12 +34,10 @@ Possible values: compress, gzip, deflate, nocompress
 <b>addVaryHeader</b>
 Control insertion of the Vary header in HTTP responses compressed by NetScaler. Intermediate caches store different versions of the response for different values of the headers present in the Vary response header.
 Possible values: GLOBAL, DISABLED, ENABLED
-Default value: CMP_VARY_HDR_GLOBAL
+Default value: GLOBAL
 
-<b>deltaType</b>
-The type of delta action (if delta type compression action is defined).
-Possible values: PERURL, PERPOLICY
-Default value: NS_ACT_CMP_DELTA_TYPE_PERURL
+<b>varyHeaderValue</b>
+The value of the HTTP Vary header for compressed responses.
 
 
 
@@ -83,14 +81,6 @@ show cmp action [&lt;name>]
 <b>name</b>
 Name of the action for which to display detailed information.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -104,7 +94,7 @@ Available settings function as follows:
 * NOCOMPRESS - Do not compress the response if the request matches a policy that uses this action.
 
 <b>deltaType</b>
-The type of delta action if compression type is delta compression.NOTE: This attribute is deprecated.Deprecating delta action in cmp policies
+The type of delta action if compression type is delta compression.
 
 <b>addVaryHeader</b>
 Control insertion of the Vary header in HTTP responses compressed by NetScaler. Intermediate caches store different versions of the response for different values of the headers present in the Vary response header.
@@ -161,7 +151,10 @@ Possible values: compress, gzip, deflate, nocompress
 <b>addVaryHeader</b>
 Control insertion of the Vary header in HTTP responses compressed by NetScaler. Intermediate caches store different versions of the response for different values of the headers present in the Vary response header.
 Possible values: GLOBAL, DISABLED, ENABLED
-Default value: CMP_VARY_HDR_GLOBAL
+Default value: GLOBAL
+
+<b>varyHeaderValue</b>
+The value of the HTTP Vary header for compressed responses.
 
 
 

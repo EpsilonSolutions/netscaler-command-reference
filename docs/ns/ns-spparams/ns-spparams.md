@@ -25,7 +25,7 @@ Maximum value: 32767
 <b>throttle</b>
 Rate at which the system opens connections to the server.
 Possible values: Aggressive, Normal, Relaxed
-Default value: NORM_SP_TABLE
+Default value: Normal
 
 
 
@@ -51,14 +51,6 @@ Displays the surge protection configuration on the appliance. Surge protection p
 ##Synopsys
 
 show ns spParams
-
-
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

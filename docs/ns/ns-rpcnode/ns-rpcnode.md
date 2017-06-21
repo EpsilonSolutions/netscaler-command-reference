@@ -61,14 +61,6 @@ show ns rpcNode [&lt;IPAddress>]
 <b>IPAddress</b>
 IP address of the node.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -81,6 +73,9 @@ The src ip used in communiction with the peer System node.
 
 <b>secure</b>
 State of the channel when talking to the node.
+
+<b>flags</b>
+Flags related to this rpcNode
 
 <b>devno</b>
 

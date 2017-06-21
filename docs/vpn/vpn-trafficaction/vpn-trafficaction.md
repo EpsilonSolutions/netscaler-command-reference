@@ -12,7 +12,7 @@ Creates an action to be applied by a policy that matches the traffic being proce
 
 ##Synopsys
 
-add vpn trafficAction &lt;name> &lt;qual> [-appTimeout &lt;mins>] [(-SSO ( ON | OFF )  [-formSSOAction &lt;string>]) | -wanscaler ( ON | OFF )] [-fta ( ON | OFF )] [-kcdAccount &lt;string>] [-samlSSOProfile &lt;string>] [-proxy &lt;string>]
+add vpn trafficAction &lt;name> &lt;qual> [-appTimeout &lt;mins>] [(-SSO ( ON | OFF )  [-formSSOAction &lt;string>]) | -wanscaler ( ON | OFF )] [-HDX ( ON | OFF )] [-fta ( ON | OFF )] [-kcdAccount &lt;string>] [-samlSSOProfile &lt;string>] [-proxy &lt;string>] [-userExpression &lt;string>] [-passwdExpression &lt;string>]
 
 
 ##Arguments
@@ -23,7 +23,7 @@ The following requirement applies only to the NetScaler CLI:
 If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my action" or 'my action').
 
 <b>qual</b>
-Protocol, either HTTP or TCP, to be used with the action. If you specify TCP, single sign-on cannot be configured.
+Protocol, either HTTP or TCP, to be used with the action.
 Possible values: http, tcp
 
 <b>appTimeout</b>
@@ -33,6 +33,10 @@ Maximum value: 715827
 
 <b>SSO</b>
 Provide single sign-on to the web application.
+Possible values: ON, OFF
+
+<b>HDX</b>
+Provide hdx proxy to the ICA traffic
 Possible values: ON, OFF
 
 <b>formSSOAction</b>
@@ -48,13 +52,21 @@ Possible values: ON, OFF
 
 <b>kcdAccount</b>
 Kerberos constrained delegation account name
-Default value: "None"
+Default value: "Default"
 
 <b>samlSSOProfile</b>
 Profile to be used for doing SAML SSO to remote relying party
 
 <b>proxy</b>
 IP address and Port of the proxy server to be used for HTTP access for this request.
+
+<b>userExpression</b>
+expression that will be evaluated to obtain username for SingleSignOn
+Maximum value: 256
+
+<b>passwdExpression</b>
+expression that will be evaluated to obtain password for SingleSignOn
+Maximum value: 256
 
 
 
@@ -82,7 +94,7 @@ Modifies a traffic policy action to be applied by the policy if the rule criteri
 
 ##Synopsys
 
-set vpn trafficAction &lt;name> [-appTimeout &lt;mins>] [-SSO ( ON | OFF ) | -wanscaler ( ON | OFF )] [-formSSOAction &lt;string>] [-fta ( ON | OFF )] [-kcdAccount &lt;string>] [-samlSSOProfile &lt;string>] [-proxy &lt;string>]
+set vpn trafficAction &lt;name> [-appTimeout &lt;mins>] [-SSO ( ON | OFF ) | -wanscaler ( ON | OFF )] [-HDX ( ON | OFF )] [-formSSOAction &lt;string>] [-fta ( ON | OFF )] [-kcdAccount &lt;string>] [-samlSSOProfile &lt;string>] [-proxy &lt;string>] [-userExpression &lt;string>] [-passwdExpression &lt;string>]
 
 
 ##Arguments
@@ -99,6 +111,10 @@ Maximum value: 715827
 Provide single sign-on to the web application.
 Possible values: ON, OFF
 
+<b>HDX</b>
+Provide hdx proxy to the ICA traffic
+Possible values: ON, OFF
+
 <b>formSSOAction</b>
 Name of the form-based single sign-on profile. Form-based single sign-on allows users to log on one time to all protected applications in your network, instead of requiring them to log on separately to access each one.
 
@@ -112,13 +128,21 @@ Possible values: ON, OFF
 
 <b>kcdAccount</b>
 Kerberos constrained delegation account name
-Default value: "None"
+Default value: "Default"
 
 <b>samlSSOProfile</b>
 Profile to be used for doing SAML SSO to remote relying party
 
 <b>proxy</b>
 IP address and Port of the proxy server to be used for HTTP access for this request.
+
+<b>userExpression</b>
+expression that will be evaluated to obtain username for SingleSignOn
+Maximum value: 256
+
+<b>passwdExpression</b>
+expression that will be evaluated to obtain password for SingleSignOn
+Maximum value: 256
 
 
 
@@ -129,7 +153,7 @@ Use this command to remove vpn trafficAction settings.Refer to the set vpn traff
 
 ##Synopsys
 
-unset vpn trafficAction &lt;name> [-wanscaler] [-kcdAccount] [-proxy]
+unset vpn trafficAction &lt;name> [-wanscaler] [-kcdAccount] [-proxy] [-userExpression] [-passwdExpression]
 
 
 ##show vpn trafficAction
@@ -147,14 +171,6 @@ show vpn trafficAction [&lt;name>]
 <b>name</b>
 Name of the traffic policy action for which to display detailed information.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -171,6 +187,9 @@ Whether or not Single Sign On is enabled.
 <b>formSSOAction</b>
 Name of the form-based single sign-on profile. Form-based single sign-on allows users to log on one time to all protected applications in your network, instead of requiring them to log on separately to access each one.
 
+<b>HDX</b>
+Whether or not HDX Proxy for ICA traffic is enabled.
+
 <b>fta</b>
 Whether or not file-type association is enabled.
 
@@ -185,6 +204,12 @@ Profile to be used for doing SAML SSO to remote relying party
 
 <b>proxy</b>
 IP address and Port of the proxy server to be used for HTTP access for this request.
+
+<b>userExpression</b>
+expression that will be evaluated to obtain username for SingleSignOn
+
+<b>passwdExpression</b>
+expression that will be evaluated to obtain password for SingleSignOn
 
 <b>stateflag</b>
 

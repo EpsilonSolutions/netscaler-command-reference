@@ -34,10 +34,6 @@ Default value: 20
 Minimum value: 1
 Maximum value: 256
 
-<b>summary</b>
-
-<b>fullValues</b>
-
 
 
 ##Outputs

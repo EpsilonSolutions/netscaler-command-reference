@@ -103,14 +103,6 @@ Name of the SNMPv3 group whose details you want the NetScaler appliance to displ
 Security level of the SNMPv3 group whose details you want the NetScaler appliance to display.
 Possible values: noAuthNoPriv, authNoPriv, authPriv
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

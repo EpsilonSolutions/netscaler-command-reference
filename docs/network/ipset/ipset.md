@@ -115,14 +115,6 @@ show ipset [&lt;name>]
 <b>name</b>
 Name of the IP set whose details you want to display.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

@@ -15,14 +15,6 @@ Display the Reverse NAT configuration.
 show rnatglobal
 
 
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
-
-
 ##Outputs
 
 <b>policy</b>
@@ -53,6 +45,10 @@ bind rnatglobal [-policy &lt;string>  [-priority &lt;positive_integer>]]
 
 <b>policy</b>
 Name of the policy getting bound to the RNAT globally. This policy will apply to all the RNATS present
+
+<b>priority</b>
+Priority of the policy
+Minimum value: 0
 
 
 

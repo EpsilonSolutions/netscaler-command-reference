@@ -20,6 +20,11 @@ bind system global [&lt;policyName>  [-priority &lt;positive_integer>]]
 <b>policyName</b>
 Name of the policy to bind globally.
 
+<b>priority</b>
+Integer specifying the priority of the policy. A lower number specifies a higher priority. Policies are evaluated in the order of their priority numbers. Note that priority range 64001 to 65535 is reserved for internal system usage of binding policies by default
+Minimum value: 0
+Maximum value: 65535
+
 
 
 ##unbind system global
@@ -47,18 +52,6 @@ Displays information about all global policy bindings.
 ##Synopsys
 
 show system global
-
-
-##Arguments
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

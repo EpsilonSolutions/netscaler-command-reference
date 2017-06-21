@@ -34,10 +34,12 @@ Possible values: HOSTNAME, HOSTNAME_AND_IP, DNS
 <b>maxPostLen</b>
 Maximum number of POST body bytes to consider when evaluating parameters for a content group for which you have configured hit parameters and invalidation parameters.
 Default value: 4096
+Minimum value: 0
 Maximum value: 131072
 
 <b>prefetchMaxPending</b>
 Maximum number of outstanding prefetches in the Integrated Cache.
+Minimum value: 0
 
 <b>enableBypass</b>
 Evaluate the request-time policies before attempting hit selection. If set to NO, an incoming request for which a matching object is found in cache storage results in a response regardless of the policy configuration.
@@ -74,14 +76,6 @@ Displays the global configuration of the Integrated Cache.
 ##Synopsys
 
 show cache parameter
-
-
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

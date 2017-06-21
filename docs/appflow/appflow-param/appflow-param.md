@@ -12,7 +12,7 @@ Configures AppFlow parameters.
 
 ##Synopsys
 
-set appflow param [-templateRefresh &lt;secs>] [-appnameRefresh &lt;secs>] [-flowRecordInterval &lt;secs>] [-udpPmtu &lt;positive_integer>] [-httpUrl ( ENABLED | DISABLED )] [-AAAUserName ( ENABLED | DISABLED )] [-httpCookie ( ENABLED | DISABLED )] [-httpReferer ( ENABLED | DISABLED )] [-httpMethod ( ENABLED | DISABLED )] [-httpHost ( ENABLED | DISABLED )] [-httpUserAgent ( ENABLED | DISABLED )] [-clientTrafficOnly ( YES | NO )] [-httpContentType ( ENABLED | DISABLED )] [-httpAuthorization ( ENABLED | DISABLED )] [-httpVia ( ENABLED | DISABLED )] [-httpXForwardedFor ( ENABLED | DISABLED )] [-httpLocation ( ENABLED | DISABLED )] [-httpSetCookie ( ENABLED | DISABLED )] [-httpSetCookie2 ( ENABLED | DISABLED )] [-connectionChaining ( ENABLED | DISABLED )] [-httpDomain ( ENABLED | DISABLED )] [-skipCacheRedirectionHttpTransaction ( ENABLED | DISABLED )]
+set appflow param [-templateRefresh &lt;secs>] [-appnameRefresh &lt;secs>] [-flowRecordInterval &lt;secs>] [-udpPmtu &lt;positive_integer>] [-httpUrl ( ENABLED | DISABLED )] [-AAAUserName ( ENABLED | DISABLED )] [-httpCookie ( ENABLED | DISABLED )] [-httpReferer ( ENABLED | DISABLED )] [-httpMethod ( ENABLED | DISABLED )] [-httpHost ( ENABLED | DISABLED )] [-httpUserAgent ( ENABLED | DISABLED )] [-clientTrafficOnly ( YES | NO )] [-httpContentType ( ENABLED | DISABLED )] [-httpAuthorization ( ENABLED | DISABLED )] [-httpVia ( ENABLED | DISABLED )] [-httpXForwardedFor ( ENABLED | DISABLED )] [-httpLocation ( ENABLED | DISABLED )] [-httpSetCookie ( ENABLED | DISABLED )] [-httpSetCookie2 ( ENABLED | DISABLED )] [-connectionChaining ( ENABLED | DISABLED )] [-httpDomain ( ENABLED | DISABLED )] [-skipCacheRedirectionHttpTransaction ( ENABLED | DISABLED )] [-identifierName ( ENABLED | DISABLED )] [-identifierSessionName ( ENABLED | DISABLED )] [-observationDomainId &lt;positive_integer>] [-observationDomainName &lt;string>]
 
 
 ##Arguments
@@ -131,6 +131,24 @@ Skip Cache http transaction. This HTTP transaction is specific to Cache Redirect
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
+<b>identifierName</b>
+Include the stream identifier name to be exported.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>identifierSessionName</b>
+Include the stream identifier session name to be exported.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>observationDomainId</b>
+An observation domain groups a set of NetScalers based on deployment: cluster, HA etc. A unique Observation Domain ID is required to be assigned to each such group.
+Default value: 0
+Minimum value: 1000
+
+<b>observationDomainName</b>
+Name of the Observation Domain defined by the observation domain ID.
+
 
 
 ##Example
@@ -144,7 +162,7 @@ Use this command to remove appflow param settings.Refer to the set appflow param
 
 ##Synopsys
 
-unset appflow param [-templateRefresh] [-appnameRefresh] [-flowRecordInterval] [-udpPmtu] [-httpUrl] [-AAAUserName] [-httpCookie] [-httpReferer] [-httpMethod] [-httpHost] [-httpUserAgent] [-clientTrafficOnly] [-httpContentType] [-httpAuthorization] [-httpVia] [-httpXForwardedFor] [-httpLocation] [-httpSetCookie] [-httpSetCookie2] [-connectionChaining] [-httpDomain] [-skipCacheRedirectionHttpTransaction]
+unset appflow param [-templateRefresh] [-appnameRefresh] [-flowRecordInterval] [-udpPmtu] [-httpUrl] [-AAAUserName] [-httpCookie] [-httpReferer] [-httpMethod] [-httpHost] [-httpUserAgent] [-clientTrafficOnly] [-httpContentType] [-httpAuthorization] [-httpVia] [-httpXForwardedFor] [-httpLocation] [-httpSetCookie] [-httpSetCookie2] [-connectionChaining] [-httpDomain] [-skipCacheRedirectionHttpTransaction] [-identifierName] [-identifierSessionName] [-observationDomainId] [-observationDomainName]
 
 
 ##show appflow param
@@ -155,18 +173,6 @@ Displays AppFlow parameters.
 ##Synopsys
 
 show appflow param
-
-
-##Arguments
-
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -236,6 +242,21 @@ State of AppFlow HTTP Domain name logging
 
 <b>skipCacheRedirectionHttpTransaction</b>
 Skip Cache http transaction. This HTTP transaction is specific to Cache Redirection module. In Case of Cache Miss there will be another HTTP transaction initiated by the cache server.
+
+<b>identifierName</b>
+State of AppFlow Stream Identifier Name logging
+
+<b>identifierSessionName</b>
+State of AppFlow Stream Identifier Session Name logging
+
+<b>observationDomainId</b>
+An observation domain groups a set of NetScalers based on deployment: cluster, HA etc. A unique Observation Domain ID is required to be assigned to each such group.
+
+<b>observationDomainName</b>
+Name of the Observation Domain defined by the observation domain ID.
+
+<b>builtin</b>
+Flag to determine if the appflow param is built-in or not
 
 
 

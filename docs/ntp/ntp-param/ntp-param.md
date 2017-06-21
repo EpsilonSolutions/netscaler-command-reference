@@ -30,11 +30,13 @@ Maximum value: 65534
 <b>autokeyLogsec</b>
 Autokey protocol requires the keys to be refreshed periodically. This parameter specifies the interval between regenerations of new session keys. In seconds, expressed as a power of 2.
 Default value: 12
+Minimum value: 0
 Maximum value: 32
 
 <b>revokeLogsec</b>
 Interval between re-randomizations of the autokey seeds to prevent brute-force attacks on the autokey algorithms.
 Default value: 16
+Minimum value: 0
 Maximum value: 32
 
 
@@ -57,14 +59,6 @@ Displays information about the NTP parameters.
 ##Synopsys
 
 show ntp param
-
-
-##Arguments
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs

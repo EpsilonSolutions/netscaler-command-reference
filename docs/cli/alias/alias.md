@@ -18,6 +18,9 @@ alias [&lt;pattern>  [(command)]]
 <b>pattern</b>
 Alias name. (Can be a regular expression.)
 
+<b>command</b>
+Target command
+
 
 
 ##Example

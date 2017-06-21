@@ -31,6 +31,10 @@ Specify end time in mmddyyyyhhmm upto which values have to be collected.
 Last is literal way of saying a certain time period from the current moment. Example: -last 1 hour, -last 1 day, et cetera.
 Default value: 1
 
+<b>unit</b>
+Specify the  time period from current moment. Example 1 x where x = hours/ days/ years.
+Possible values: HOURS, DAYS, MONTHS
+
 <b>dataSource</b>
 Specifies the source which contains all the stored counter values.
 

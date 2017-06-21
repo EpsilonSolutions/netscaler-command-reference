@@ -12,13 +12,13 @@ Adds an extended ACL rule to the NetScaler appliance. To commit this operation, 
 
 ##Synopsys
 
-add ns acl &lt;aclname> &lt;aclaction> [-td &lt;positive_integer>] [-srcIP  [&lt;operator>]  &lt;srcIPVal>] [-srcPort  [&lt;operator>]  &lt;srcPortVal>] [-destIP  [&lt;operator>]  &lt;destIPVal>] [-destPort  [&lt;operator>]  &lt;destPortVal>] [-TTL &lt;positive_integer>] [-srcMac &lt;mac_addr>] [(-protocol &lt;protocol>  [-established]) | -protocolNumber &lt;positive_integer>] [-vlan &lt;positive_integer> | -vxlan &lt;positive_integer>] [-interface &lt;interface_name>] [-icmpType &lt;positive_integer>  [-icmpCode &lt;positive_integer>]] [-priority &lt;positive_integer>] [-state ( ENABLED | DISABLED )] [-logstate ( ENABLED | DISABLED )  [-ratelimit &lt;positive_integer>]]
+add ns acl &lt;aclname> &lt;aclaction> [-td &lt;positive_integer>] [-srcIP  [&lt;operator>]  &lt;srcIPVal>] [-srcPort  [&lt;operator>]  &lt;srcPortVal>] [-destIP  [&lt;operator>]  &lt;destIPVal>] [-destPort  [&lt;operator>]  &lt;destPortVal>] [-TTL &lt;positive_integer>] [-srcMac &lt;mac_addr>  [-srcMacMask &lt;string>]] [(-protocol &lt;protocol>  [-established]) | -protocolNumber &lt;positive_integer>] [-vlan &lt;positive_integer> | -vxlan &lt;positive_integer>] [-interface &lt;interface_name>] [-icmpType &lt;positive_integer>  [-icmpCode &lt;positive_integer>]] [-priority &lt;positive_integer>] [-state ( ENABLED | DISABLED )] [-logstate ( ENABLED | DISABLED )  [-ratelimit &lt;positive_integer>]]
 
 
 ##Arguments
 
 <b>aclname</b>
-Name for the extended ACL rule. Must begin with an ASCII alphabetic or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Can be changed after the extended ACL rule is created.
+Name for the extended ACL rule. Must begin with an ASCII alphabetic or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after the extended ACL rule is created.
 
 <b>aclaction</b>
 Action to perform on incoming IPv4 packets that match the extended ACL rule.
@@ -36,15 +36,34 @@ Maximum value: 4094
 <b>srcIP</b>
 IP address or range of IP addresses to match against the source IP address of an incoming IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [10.102.29.30-10.102.29.189].
 
+<b>operator</b>
+Either the equals (=) or does not equal (!=) logical operator.
+Possible values: =, !=, EQ, NEQ
+
+<b>srcIPVal</b>
+IP address or range of IP addresses to match against the source IP address of an incoming IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [10.102.29.30-10.102.29.189].
+
 <b>srcPort</b>
 Port number or range of port numbers to match against the source port number of an incoming IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90].
 
+<b>srcPortVal</b>
+Port number or range of port numbers to match against the source port number of an incoming IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90].
+Maximum value: 65535
+
 <b>destIP</b>
+IP address or range of IP addresses to match against the destination IP address of an incoming IPv4 packet.  In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [10.102.29.30-10.102.29.189].
+
+<b>destIPVal</b>
 IP address or range of IP addresses to match against the destination IP address of an incoming IPv4 packet.  In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [10.102.29.30-10.102.29.189].
 
 <b>destPort</b>
 Port number or range of port numbers to match against the destination port number of an incoming IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90].
 Note: The destination port can be specified only for TCP and UDP protocols.
+
+<b>destPortVal</b>
+Port number or range of port numbers to match against the destination port number of an incoming IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90].
+Note: The destination port can be specified only for TCP and UDP protocols.
+Maximum value: 65535
 
 <b>TTL</b>
 Number of seconds, in multiples of four, after which the extended ACL rule expires. If you do not want the extended ACL rule to expire, do not specify a TTL value.
@@ -53,6 +72,10 @@ Maximum value: 2147483647
 
 <b>srcMac</b>
 MAC address to match against the source MAC address of an incoming IPv4 packet.
+
+<b>srcMacMask</b>
+Used to define range of Source MAC address. It takes string of 0 and 1, 0s are for exact match and 1s for wildcard. For matching first 3 bytes of MAC address, srcMacMask value "000000111111". 
+Default value: "000000000000"
 
 <b>protocol</b>
 Protocol to match against the protocol of an incoming IPv4 packet.
@@ -82,11 +105,13 @@ Allow only incoming TCP packets that have the ACK or RST bit set, if the action 
 <b>icmpType</b>
 ICMP Message type to match against the message type of an incoming ICMP packet. For example, to block DESTINATION UNREACHABLE messages, you must specify 3 as the ICMP type.
 Note: This parameter can be specified only for the ICMP protocol.
+Minimum value: 0
 Maximum value: 65536
 
 <b>icmpCode</b>
 Code of a particular ICMP message type to match against the ICMP code of an incoming ICMP packet.  For example, to block DESTINATION HOST UNREACHABLE messages, specify 3 as the ICMP type and 1 as the ICMP code.
 If you set this parameter, you must set the ICMP Type parameter.
+Minimum value: 0
 Maximum value: 65536
 
 <b>priority</b>
@@ -97,12 +122,12 @@ Maximum value: 100000
 <b>state</b>
 Enable or disable the extended ACL rule. After you apply the extended ACL rules, the NetScaler appliance compares incoming packets against the enabled extended ACL rules.
 Possible values: ENABLED, DISABLED
-Default value: XACLENABLED
+Default value: ENABLED
 
 <b>logstate</b>
 Enable or disable logging of events related to the extended ACL rule. The log messages are stored in the configured syslog or auditlog server.
 Possible values: ENABLED, DISABLED
-Default value: GENDISABLED
+Default value: DISABLED
 
 <b>ratelimit</b>
 Maximum number of log messages to be generated per second. If you set this parameter, you must enable the Log State parameter.
@@ -144,7 +169,7 @@ Modifies the parameters of an ACL rule. To commit this operation, you must apply
 
 ##Synopsys
 
-set ns acl &lt;aclname> [-aclaction &lt;aclaction>] [-srcIP  [&lt;operator>]  &lt;srcIPVal>] [-srcPort  [&lt;operator>]  &lt;srcPortVal>] [-destIP  [&lt;operator>]  &lt;destIPVal>] [-destPort  [&lt;operator>]  &lt;destPortVal>] [-srcMac &lt;mac_addr>] [-protocol &lt;protocol> | -protocolNumber &lt;positive_integer>] [-icmpType &lt;positive_integer>  [-icmpCode &lt;positive_integer>]] [-vlan &lt;positive_integer> | -vxlan &lt;positive_integer>] [-interface &lt;interface_name>] [-priority &lt;positive_integer>] [-logstate ( ENABLED | DISABLED )] [-ratelimit &lt;positive_integer>] [-established]
+set ns acl &lt;aclname> [-aclaction &lt;aclaction>] [-srcIP  [&lt;operator>]  &lt;srcIPVal>] [-srcPort  [&lt;operator>]  &lt;srcPortVal>] [-destIP  [&lt;operator>]  &lt;destIPVal>] [-destPort  [&lt;operator>]  &lt;destPortVal>] [-srcMac &lt;mac_addr>  [-srcMacMask &lt;string>]] [-protocol &lt;protocol> | -protocolNumber &lt;positive_integer>] [-icmpType &lt;positive_integer>  [-icmpCode &lt;positive_integer>]] [-vlan &lt;positive_integer> | -vxlan &lt;positive_integer>] [-interface &lt;interface_name>] [-priority &lt;positive_integer>] [-logstate ( ENABLED | DISABLED )] [-ratelimit &lt;positive_integer>] [-established]
 
 
 ##Arguments
@@ -163,18 +188,41 @@ Possible values: BRIDGE, DENY, ALLOW
 <b>srcIP</b>
 IP address or range of IP addresses to match against the source IP address of an incoming IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [10.102.29.30-10.102.29.189].
 
+<b>operator</b>
+Either the equals (=) or does not equal (!=) logical operator.
+Possible values: =, !=, EQ, NEQ
+
+<b>srcIPVal</b>
+IP address or range of IP addresses to match against the source IP address of an incoming IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [10.102.29.30-10.102.29.189].
+
 <b>srcPort</b>
 Port number or range of port numbers to match against the source port number of an incoming IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90].
 
+<b>srcPortVal</b>
+Port number or range of port numbers to match against the source port number of an incoming IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90].
+Maximum value: 65535
+
 <b>destIP</b>
+IP address or range of IP addresses to match against the destination IP address of an incoming IPv4 packet.  In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [10.102.29.30-10.102.29.189].
+
+<b>destIPVal</b>
 IP address or range of IP addresses to match against the destination IP address of an incoming IPv4 packet.  In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [10.102.29.30-10.102.29.189].
 
 <b>destPort</b>
 Port number or range of port numbers to match against the destination port number of an incoming IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90].
 Note: The destination port can be specified only for TCP and UDP protocols.
 
+<b>destPortVal</b>
+Port number or range of port numbers to match against the destination port number of an incoming IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90].
+Note: The destination port can be specified only for TCP and UDP protocols.
+Maximum value: 65535
+
 <b>srcMac</b>
 MAC address to match against the source MAC address of an incoming IPv4 packet.
+
+<b>srcMacMask</b>
+Used to define range of Source MAC address. It takes string of 0 and 1, 0s are for exact match and 1s for wildcard. For matching first 3 bytes of MAC address, srcMacMask value "000000111111". 
+Default value: "000000000000"
 
 <b>protocol</b>
 Protocol to match against the protocol of an incoming IPv4 packet.
@@ -188,6 +236,13 @@ Maximum value: 255
 <b>icmpType</b>
 ICMP Message type to match against the message type of an incoming ICMP packet. For example, to block DESTINATION UNREACHABLE messages, you must specify 3 as the ICMP type.
 Note: This parameter can be specified only for the ICMP protocol.
+Minimum value: 0
+Maximum value: 65536
+
+<b>icmpCode</b>
+Code of a particular ICMP message type to match against the ICMP code of an incoming ICMP packet.  For example, to block DESTINATION HOST UNREACHABLE messages, specify 3 as the ICMP type and 1 as the ICMP code.
+If you set this parameter, you must set the ICMP Type parameter.
+Minimum value: 0
 Maximum value: 65536
 
 <b>vlan</b>
@@ -211,7 +266,13 @@ Maximum value: 100000
 <b>logstate</b>
 Enable or disable logging of events related to the extended ACL rule. The log messages are stored in the configured syslog or auditlog server.
 Possible values: ENABLED, DISABLED
-Default value: GENDISABLED
+Default value: DISABLED
+
+<b>ratelimit</b>
+Maximum number of log messages to be generated per second. If you set this parameter, you must enable the Log State parameter.
+Default value: 100
+Minimum value: 1
+Maximum value: 10000
 
 <b>established</b>
 Allow only incoming TCP packets that have the ACK or RST bit set, if the action set for the ACL rule is ALLOW and these packets match the other conditions in the ACL rule.
@@ -229,7 +290,7 @@ Resets the attributes of the specified extended ACL rule. Attributes for which a
 
 ##Synopsys
 
-unset ns acl &lt;aclname> [-srcIP] [-srcPort] [-destIP] [-destPort] [-srcMac] [-protocol] [-icmpType] [-icmpCode] [-vlan] [-vxlan] [-interface] [-logstate] [-ratelimit] [-established]
+unset ns acl &lt;aclname> [-srcIP] [-srcPort] [-destIP] [-destPort] [-srcMac] [-srcMacMask] [-protocol] [-icmpType] [-icmpCode] [-vlan] [-vxlan] [-interface] [-logstate] [-ratelimit] [-established]
 
 
 ##Example
@@ -293,6 +354,20 @@ stat ns acl [&lt;aclname>] [-detail] [-fullValues] [-ntimes &lt;positive_integer
 <b>aclname</b>
 Name of the extended ACL rule whose statistics you want the NetScaler appliance to display.
 
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
+
 <b>clearstats</b>
 Clear the statsistics / counters
 Possible values: basic, full
@@ -343,7 +418,7 @@ stat acl
 
 ##Related Commands
 
-<ul><li><a href="../../..//">stat ns</a></li><li><a href="../../../ml#stat-ns-limitident/ml#stat-ns-limitident">stat ns limitIdentifier</a></li><li><a href="../../..//">stat ns acl6</a></li><li><a href="../../../t-ns-simp/t-ns-simp">stat ns simpleacl</a></li><li><a href="../../../at-ns-simpl/at-ns-simpl">stat ns simpleacl6</a></li><li><a href="../../..//">stat ns pbr</a></li><li><a href="../../../s-m/s-m">stat ns memory</a></li><li><a href="../../..//">stat ns pbr6</a></li><li><a href="../../../#stat-ns-trafficd/#stat-ns-trafficd">stat ns trafficDomain</a></li></ul>
+<ul><li><a href="../../..//">stat ns</a></li><li><a href="../../../ml#stat-ns-limitident/ml#stat-ns-limitident">stat ns limitIdentifier</a></li><li><a href="../../..//">stat ns acl6</a></li><li><a href="../../../t-ns-simp/t-ns-simp">stat ns simpleacl</a></li><li><a href="../../../at-ns-simpl/at-ns-simpl">stat ns simpleacl6</a></li><li><a href="../../..//">stat ns pbr</a></li><li><a href="../../../s-m/s-m">stat ns memory</a></li><li><a href="../../..//">stat ns pbr6</a></li><li><a href="../../../#stat-ns-trafficd/#stat-ns-trafficd">stat ns trafficDomain</a></li><li><a href="../../../t-ns-part/t-ns-part">stat ns partition</a></li></ul>
 
 
 
@@ -386,14 +461,6 @@ show ns acl [&lt;aclname>]
 <b>aclname</b>
 Name of the extended ACL rule whose details you want the NetScaler appliance to display.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -410,6 +477,9 @@ Available settings function as follows:
 
 <b>srcMac</b>
 MAC address to match against the source MAC address of an incoming IPv4 packet.
+
+<b>srcMacMask</b>
+Used to define range of Source MAC address. It takes string of 0 and 1, 0s are for exact match and 1s for wildcard. For matching first 3 bytes of MAC address, srcMacMask value "000000111111".
 
 <b>stateflag</b>
 ACL state flag.
@@ -488,5 +558,5 @@ Time when this acl is applied.
 
 ##Example
 
-sh acl foo    Name: foo                               Action: ALLOW    Hits: 0    srcIP = 10.102.1.150    destIP = 202.54.12.47    srcMac:                                Protocol: TCP    srcPort                                destPort = 110    Vlan:                                   Interface:    Active Status: ENABLED                   Applied Status: NOTAPPLIED    Priority: 1027
+sh acl foo    Name: foo                               Action: ALLOW    Hits: 0    srcIP = 10.102.1.150    destIP = 202.54.12.47    srcMac:                               srcMacMask:	Protocol: TCP    srcPort                                destPort = 110    Vlan:                                   Interface:    Active Status: ENABLED                   Applied Status: NOTAPPLIED    Priority: 1027
 

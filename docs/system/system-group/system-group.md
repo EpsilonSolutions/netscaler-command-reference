@@ -32,7 +32,7 @@ String to display at the command-line prompt. Can consist of letters, numbers, h
 Note: The 63-character limit for the length of the string does not apply to the characters that replace the variables.
 
 <b>timeout</b>
-CLI session inactivity timeout, in seconds.If Restrictedtimeout argument of system parameter is enabled, Timeout can have values in the range [300-86400] seconds. If Restrictedtimeout argument of system parameter is disabled, Timeout can have values in the range [0, 10-100000000] seconds. Default value is 900 seconds.
+CLI session inactivity timeout, in seconds. If Restrictedtimeout argument of system parameter is enabled, Timeout can have values in the range [300-86400] seconds.If Restrictedtimeout argument of system parameter is disabled, Timeout can have values in the range [0, 10-100000000] seconds. Default value is 900 seconds.
 
 
 
@@ -74,6 +74,10 @@ Name of a system user to bind to the group.
 <b>policyName</b>
 Name of the command policy to be bind to the group.
 
+<b>priority</b>
+Integer specifying the priority of the command policy. A lower number specifies a higher priority. Policies are evaluated in the order of their priority numbers.
+Minimum value: 0
+
 
 
 ##unbind system group
@@ -114,14 +118,6 @@ show system group [&lt;groupName>]
 <b>groupName</b>
 Name of the system group about which to display information.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
-
 
 
 ##Outputs
@@ -146,7 +142,7 @@ String to display at the command-line prompt. Can consist of letters, numbers, h
 Note: The 63-character limit for the length of the string does not apply to the characters that replace the variables.
 
 <b>timeout</b>
-CLI session inactivity timeout, in seconds.If Restrictedtimeout argument of system parameter is enabled, Timeout can have values in the range [300-86400] seconds. If Restrictedtimeout argument of system parameter is disabled, Timeout can have values in the range [0, 10-100000000] seconds. Default value is 900 seconds.
+CLI session inactivity timeout, in seconds. If Restrictedtimeout argument of system parameter is enabled, Timeout can have values in the range [300-86400] seconds.If Restrictedtimeout argument of system parameter is disabled, Timeout can have values in the range [0, 10-100000000] seconds. Default value is 900 seconds.
 
 <b>devno</b>
 
@@ -182,7 +178,7 @@ String to display at the command-line prompt. Can consist of letters, numbers, h
 Note: The 63-character limit for the length of the string does not apply to the characters that replace the variables.
 
 <b>timeout</b>
-CLI session inactivity timeout, in seconds.If Restrictedtimeout argument of system parameter is enabled, Timeout can have values in the range [300-86400] seconds. If Restrictedtimeout argument of system parameter is disabled, Timeout can have values in the range [0, 10-100000000] seconds. Default value is 900 seconds.
+CLI session inactivity timeout, in seconds. If Restrictedtimeout argument of system parameter is enabled, Timeout can have values in the range [300-86400] seconds.If Restrictedtimeout argument of system parameter is disabled, Timeout can have values in the range [0, 10-100000000] seconds. Default value is 900 seconds.
 
 
 

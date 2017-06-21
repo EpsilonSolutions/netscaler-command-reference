@@ -90,13 +90,8 @@ show snmp view [&lt;name>  [&lt;subtree>]]
 <b>name</b>
 Name of the SNMPv3 view.
 
-<b>summary</b>
-
-<b>fullValues</b>
-
-<b>format</b>
-
-<b>level</b>
+<b>subtree</b>
+A MIB subtree of the SNMPv3 view.
 
 
 
