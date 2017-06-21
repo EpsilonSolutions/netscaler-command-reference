@@ -203,6 +203,9 @@ input[type=text] {
   color:#227be3 !important;cursor: pointer;
     left: -20px;
 }
+.wy-nav-side {
+    width: 320px;
+}
 .wy-nav-content-wrap {
     margin-left: 350px;
     max-width: none;
@@ -283,8 +286,7 @@ input[type=text] {
 }
 nav.stickynav{
   margin-top:0px !important;
-  border-right: 2px solid #f0f0f0;
-  min-height: 1000px;
+  border-right: 2px solid #f0f0f0
 }
 
 .rst-content .admonition-todo .admonition-title, .rst-content .admonition-todo .wy-alert-title, .rst-content .attention .admonition-title, .rst-content .attention .wy-alert-title, .rst-content .caution .admonition-title, .rst-content .caution .wy-alert-title, .rst-content .warning .admonition-title, .rst-content .warning .wy-alert-title, .rst-content .wy-alert-warning.danger .admonition-title, .rst-content .wy-alert-warning.danger .wy-alert-title, .rst-content .wy-alert-warning.error .admonition-title, .rst-content .wy-alert-warning.error .wy-alert-title, .rst-content .wy-alert-warning.hint .admonition-title, .rst-content .wy-alert-warning.hint .wy-alert-title, .rst-content .wy-alert-warning.important .admonition-title, .rst-content .wy-alert-warning.important .wy-alert-title, .rst-content .wy-alert-warning.note .admonition-title, .rst-content .wy-alert-warning.note .wy-alert-title, .rst-content .wy-alert-warning.seealso .admonition-title, .rst-content .wy-alert-warning.seealso .wy-alert-title, .rst-content .wy-alert-warning.tip .admonition-title, .rst-content .wy-alert-warning.tip .wy-alert-title, .rst-content .wy-alert.wy-alert-warning .admonition-title, .wy-alert.wy-alert-warning .rst-content .admonition-title, .wy-alert.wy-alert-warning .wy-alert-title,.rst-content .hint .admonition-title, .rst-content .hint .wy-alert-title, .rst-content .important .admonition-title, .rst-content .important .wy-alert-title, .rst-content .tip .admonition-title, .rst-content .tip .wy-alert-title, .rst-content .wy-alert-success.admonition-todo .admonition-title, .rst-content .wy-alert-success.admonition-todo .wy-alert-title, .rst-content .wy-alert-success.attention .admonition-title, .rst-content .wy-alert-success.attention .wy-alert-title, .rst-content .wy-alert-success.caution .admonition-title, .rst-content .wy-alert-success.caution .wy-alert-title, .rst-content .wy-alert-success.danger .admonition-title, .rst-content .wy-alert-success.danger .wy-alert-title, .rst-content .wy-alert-success.error .admonition-title, .rst-content .wy-alert-success.error .wy-alert-title, .rst-content .wy-alert-success.note .admonition-title, .rst-content .wy-alert-success.note .wy-alert-title, .rst-content .wy-alert-success.seealso .admonition-title, .rst-content .wy-alert-success.seealso .wy-alert-title, .rst-content .wy-alert-success.warning .admonition-title, .rst-content .wy-alert-success.warning .wy-alert-title, .rst-content .wy-alert.wy-alert-success .admonition-title, .wy-alert.wy-alert-success .rst-content .admonition-title, .wy-alert.wy-alert-success .wy-alert-title{
@@ -309,9 +311,6 @@ li.toctree-l1 > a.toctree-l1-a{
 ul.subnav > li{
 	padding-bottom:3px;
 }
-ul.current > li{
-	padding-bottom:3px;
-}
 
 li.toctree-l1{
 	padding-bottom:3px;
@@ -323,6 +322,7 @@ li.toctree-l1{
 .wy-menu.wy-menu-vertical{
   position: relative;
   margin-left: 10px;
+  margin-top: 25px;
 }
 span.left-nav-parent-pages-actual:before {
     content: "";
