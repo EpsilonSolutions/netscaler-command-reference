@@ -1,7 +1,8 @@
-#NetScaler 11.0 Command Reference
-
-A detailed list of the commands that can be used to configure the NetScaler appliance through the CLI.
-* [AAA Commands](./aaa/aaa-commands.md)
+# NetScaler 11.1 Command Reference
+
+A detailed list of the commands that can be used to configure the NetScaler appliance through the CLI.
+
+* [AAA Commands](./aaa/aaa-commands.md)
 * [Application Commands](./app/application-commands.md)
 * [AppFlow Commands](./appflow/appflow-commands.md)
 * [Application Firewall Commands](./appfw/application-firewall-commands.md)

@@ -26,7 +26,7 @@ pages:
     - aaa-stats: aaa/aaa-stats/aaa-stats.md
     - aaa-tacacsparams: aaa/aaa-tacacsparams/aaa-tacacsparams.md
     - aaa-user: aaa/aaa-user/aaa-user.md
-- App:
+- Application:
     - application-commands: app/application-commands.md
     - application: app/application/application.md
 - Appflow:
@@ -38,7 +38,7 @@ pages:
     - appflow-param: appflow/appflow-param/appflow-param.md
     - appflow-policy: appflow/appflow-policy/appflow-policy.md
     - appflow-policylabel: appflow/appflow-policylabel/appflow-policylabel.md
-- Appfw:
+- Application Firewall:
     - application-firewall-commands: appfw/application-firewall-commands.md
     - appfw: appfw/appfw/appfw.md
     - appfw-archive: appfw/appfw-archive/appfw-archive.md
@@ -328,7 +328,7 @@ pages:
     - lsn-sipalgprofile: lsn/lsn-sipalgprofile/lsn-sipalgprofile.md
     - lsn-static: lsn/lsn-static/lsn-static.md
     - lsn-transportprofile: lsn/lsn-transportprofile/lsn-transportprofile.md
-- Media classification:
+- Media Classification:
     - mediaclassification-commands: mediaclassification/mediaclassification-commands.md
     - mediaclassification: mediaclassification/mediaclassification/mediaclassification.md
     - mediaclassification-stats: mediaclassification/mediaclassification-stats/mediaclassification-stats.md
