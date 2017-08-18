@@ -12,7 +12,7 @@ Creates an action (profile) for a RADIUS server. The profile contains all config
 
 ##Synopsys
 
-add authentication radiusAction &lt;name> {-serverIP &lt;ip_addr|ipv6_addr|*> | {-serverName &lt;string>}} [-serverPort &lt;port>] [-authTimeout &lt;positive_integer>] {-radKey } [-radNASip ( ENABLED | DISABLED )] [-radNASid &lt;string>] [-radVendorID &lt;positive_integer>] [-radAttributeType &lt;positive_integer>] [-radGroupsPrefix &lt;string>] [-radGroupSeparator &lt;string>] [-passEncoding &lt;passEncoding>] [-ipVendorID &lt;positive_integer>] [-ipAttributeType &lt;positive_integer>] [-accounting ( ON | OFF )] [-pwdVendorID &lt;positive_integer>  [-pwdAttributeType &lt;positive_integer>]] [-defaultAuthenticationGroup &lt;string>] [-callingstationid ( ENABLED | DISABLED )]
+add authentication radiusAction &lt;name> {-serverIP &lt;ip_addr|ipv6_addr|*> | {-serverName &lt;string>}} [-serverPort &lt;port>] [-authTimeout &lt;positive_integer>] {-radKey } [-radNASip ( ENABLED | DISABLED )] [-radNASid &lt;string>] [-radVendorID &lt;positive_integer>] [-radAttributeType &lt;positive_integer>] [-radGroupsPrefix &lt;string>] [-radGroupSeparator &lt;string>] [-passEncoding &lt;passEncoding>] [-ipVendorID &lt;positive_integer>] [-ipAttributeType &lt;positive_integer>] [-accounting ( ON | OFF )] [-pwdVendorID &lt;positive_integer>  [-pwdAttributeType &lt;positive_integer>]] [-defaultAuthenticationGroup &lt;string>] [-callingstationid ( ENABLED | DISABLED )] [-authservRetry &lt;positive_integer>] [-authentication ( ON | OFF )]
 
 
 ##Arguments
@@ -98,6 +98,17 @@ Send Calling-Station-ID of the client to the RADIUS server. IP Address of the cl
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
+<b>authservRetry</b>
+Number of retry by the NetScaler appliance before getting response from the RADIUS server.
+Default value: 3
+Minimum value: 1
+Maximum value: 10
+
+<b>authentication</b>
+Configure the RADIUS server state to accept or refuse authentication messages.
+Possible values: ON, OFF
+Default value: ON
+
 
 
 ##rm authentication radiusAction
@@ -124,7 +135,7 @@ Configures a RADIUS server profile (action). The profile contains all configurat
 
 ##Synopsys
 
-set authentication radiusAction &lt;name> [-serverIP &lt;ip_addr|ipv6_addr|*>] [-serverName &lt;string>] [-serverPort &lt;port>] [-authTimeout &lt;positive_integer>] {-radKey } [-radNASip ( ENABLED | DISABLED )] [-radNASid &lt;string>] [-radVendorID &lt;positive_integer>] [-radAttributeType &lt;positive_integer>] [-radGroupsPrefix &lt;string>] [-radGroupSeparator &lt;string>] [-passEncoding &lt;passEncoding>] [-ipVendorID &lt;positive_integer>] [-ipAttributeType &lt;positive_integer>] [-accounting ( ON | OFF )] [-pwdVendorID &lt;positive_integer>] [-pwdAttributeType &lt;positive_integer>] [-defaultAuthenticationGroup &lt;string>] [-callingstationid ( ENABLED | DISABLED )]
+set authentication radiusAction &lt;name> [-serverIP &lt;ip_addr|ipv6_addr|*>] [-serverName &lt;string>] [-serverPort &lt;port>] [-authTimeout &lt;positive_integer>] {-radKey } [-radNASip ( ENABLED | DISABLED )] [-radNASid &lt;string>] [-radVendorID &lt;positive_integer>] [-radAttributeType &lt;positive_integer>] [-radGroupsPrefix &lt;string>] [-radGroupSeparator &lt;string>] [-passEncoding &lt;passEncoding>] [-ipVendorID &lt;positive_integer>] [-ipAttributeType &lt;positive_integer>] [-accounting ( ON | OFF )] [-pwdVendorID &lt;positive_integer>] [-pwdAttributeType &lt;positive_integer>] [-defaultAuthenticationGroup &lt;string>] [-callingstationid ( ENABLED | DISABLED )] [-authservRetry &lt;positive_integer>] [-authentication ( ON | OFF )]
 
 
 ##Arguments
@@ -209,6 +220,17 @@ Send Calling-Station-ID of the client to the RADIUS server. IP Address of the cl
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
+<b>authservRetry</b>
+Number of retry by the NetScaler appliance before getting response from the RADIUS server.
+Default value: 3
+Minimum value: 1
+Maximum value: 10
+
+<b>authentication</b>
+Configure the RADIUS server state to accept or refuse authentication messages.
+Possible values: ON, OFF
+Default value: ON
+
 
 
 ##unset authentication radiusAction
@@ -218,7 +240,7 @@ Use this command to remove authentication radiusAction settings.Refer to the set
 
 ##Synopsys
 
-unset authentication radiusAction &lt;name> [-serverPort] [-authTimeout] [-radNASip] [-radNASid] [-radVendorID] [-radAttributeType] [-radGroupsPrefix] [-radGroupSeparator] [-passEncoding] [-ipVendorID] [-ipAttributeType] [-accounting] [-pwdVendorID] [-pwdAttributeType] [-defaultAuthenticationGroup] [-callingstationid]
+unset authentication radiusAction &lt;name> [-serverPort] [-authTimeout] [-radNASip] [-radNASid] [-radVendorID] [-radAttributeType] [-radGroupsPrefix] [-radGroupSeparator] [-passEncoding] [-ipVendorID] [-ipAttributeType] [-accounting] [-pwdVendorID] [-pwdAttributeType] [-defaultAuthenticationGroup] [-callingstationid] [-authservRetry] [-authentication]
 
 
 ##show authentication radiusAction
@@ -310,6 +332,12 @@ This is the default group that is chosen when the authentication succeeds in add
 
 <b>callingstationid</b>
 Send Calling-Station-ID of the client to the RADIUS server. IP Address of the client is sent as its Calling-Station-ID.
+
+<b>authservRetry</b>
+Number of retry by the NetScaler appliance before getting response from the RADIUS server.
+
+<b>authentication</b>
+Configure the RADIUS server state to accept or refuse authentication messages.
 
 <b>devno</b>
 

@@ -19,7 +19,7 @@ install wf package [-jre &lt;URL>] [-wf &lt;URL>]
 
 <b>jre</b>
 Complete path to the JRE tar file. 
-You can use OpenJDK7 package for FreeBSD 8.x/amd64.The Java package can be downloaded from http://ftp.freebsd.org/pub/FreeBSD/releases/amd64/amd64/8.4-RELEASE/packages/java/openjdk-7.17.02_2.tbz or http://www.freebsdfoundation.org/cgi-bin/download?download=diablo-jdk-freebsd6.amd64.1.7.17.07.02.tbz
+You can use OpenJDK7 package for FreeBSD 8.x/amd64.The Java package can be downloaded from http://ftp-archive.freebsd.org/pub/FreeBSD-Archive/old-releases/amd64/amd64/8.4-RELEASE/packages/java/openjdk-7.17.02_2.tbz or http://www.freebsdfoundation.org/cgi-bin/download?download=diablo-jdk-freebsd6.amd64.1.7.17.07.02.tbz
 
 <b>wf</b>
 Complete path to the WebFront tar file for installing the WebFront on the NetScaler appliance. This file includes Apache Tomcat Web server. The file name has the following format: nswf-&lt;version number&gt;.tar (for example, nswf-1.5.tar).
@@ -58,7 +58,7 @@ show wf package
 
 <b>jre</b>
 Complete path to the JRE tar file. 
-You can use OpenJDK7 package for FreeBSD 8.x/amd64.The Java package can be downloaded from http://ftp.freebsd.org/pub/FreeBSD/releases/amd64/amd64/8.4-RELEASE/packages/java/openjdk-7.17.02_2.tbz or http://www.freebsdfoundation.org/cgi-bin/download?download=diablo-jdk-freebsd6.amd64.1.7.17.07.02.tbz
+You can use OpenJDK7 package for FreeBSD 8.x/amd64.The Java package can be downloaded from http://ftp-archive.freebsd.org/pub/FreeBSD-Archive/old-releases/amd64/amd64/8.4-RELEASE/packages/java/openjdk-7.17.02_2.tbz or http://www.freebsdfoundation.org/cgi-bin/download?download=diablo-jdk-freebsd6.amd64.1.7.17.07.02.tbz
 
 <b>wf</b>
 Complete path to the WebFront tar file for installing the WebFront on the NetScaler appliance. This file includes Apache Tomcat Web server. The file name has the following format: nswf-&lt;version number>.tar (for example, nswf-1.5.tar).

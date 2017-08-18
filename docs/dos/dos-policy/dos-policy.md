@@ -7,12 +7,12 @@ The following operations can be performed on "dos policy":
 
 ##add dos policy
 
-Adds a DoS protection policy to the appliance.Note: To apply DoS protection to a service, bind the DoS policy to the service by using the bind service command.
+Adds a DoS protection policy to the appliance.Note: To apply DoS protection to a service, bind the DoS policy to the service by using the bind service command. NOTE: This command is deprecated.HTTP DOS protection feature has been deprecated in favour of AppQoE
 
 
 ##Synopsys
 
-add dos policy &lt;name> -qDepth &lt;positive_integer> [-cltDetectRate &lt;positive_integer>]
+
 
 
 ##Arguments
@@ -37,12 +37,12 @@ add dos policy dospol -qdepth 100 -cltDetectRate 90
 
 ##rm dos policy
 
-Removes a DoS protection policy from the appliance.
+Removes a DoS protection policy from the appliance. NOTE: This command is deprecated.HTTP DOS protection feature has been deprecated in favour of AppQoE
 
 
 ##Synopsys
 
-rm dos policy &lt;name>
+
 
 
 ##Arguments
@@ -58,12 +58,12 @@ rm dos policy dospol
 
 ##set dos policy
 
-Modifies the attributes of a DoS protection policy.
+Modifies the attributes of a DoS protection policy. NOTE: This command is deprecated.
 
 
 ##Synopsys
 
-set dos policy &lt;name> [-qDepth &lt;positive_integer>] [-cltDetectRate &lt;positive_integer>]
+
 
 
 ##Arguments
@@ -88,22 +88,22 @@ set dos policy dospol -qdepth 1000
 
 ##unset dos policy
 
-Use this command to remove dos policy settings.Refer to the set dos policy command for meanings of the arguments.
+Use this command to remove dos policy settings.Refer to the set dos policy command for meanings of the arguments.NOTE: This command is deprecated.
 
 
 ##Synopsys
 
-unset dos policy &lt;name> -cltDetectRate
+
 
 
 ##show dos policy
 
-Displays information about a DoS protection policy.
+Displays information about a DoS protection policy. NOTE: This command is deprecated.HTTP DOS protection feature has been deprecated in favour of AppQoE
 
 
 ##Synopsys
 
-show dos policy [&lt;name>]
+
 
 
 ##Arguments
@@ -135,12 +135,12 @@ Client detect rate. Integer representing the percentage of traffic to which the 
 
 ##stat dos policy
 
-Displays statistics of the DoS protection policy.
+Displays statistics of the DoS protection policy. NOTE: This command is deprecated.HTTP DOS protection feature has been deprecated in favour of AppQoE
 
 
 ##Synopsys
 
-stat dos policy [&lt;name>] [-detail] [-fullValues] [-ntimes &lt;positive_integer>] [-logFile &lt;input_filename>] [-clearstats ( basic | full )]
+
 
 
 ##Arguments

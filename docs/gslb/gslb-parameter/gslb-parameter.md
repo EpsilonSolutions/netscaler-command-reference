@@ -12,7 +12,7 @@ Sets various global GSLB parameters.
 
 ##Synopsys
 
-set gslb parameter [-ldnsEntryTimeout &lt;secs>] [-RTTTolerance &lt;msecs>] [-ldnsMask &lt;netmask>] [-v6ldnsmasklen &lt;positive_integer>] [-ldnsProbeOrder &lt;ldnsProbeOrder> ...] [-dropLdnsReq ( ENABLED | DISABLED )]
+set gslb parameter [-ldnsEntryTimeout &lt;secs>] [-RTTTolerance &lt;msecs>] [-ldnsMask &lt;netmask>] [-v6ldnsmasklen &lt;positive_integer>] [-ldnsProbeOrder &lt;ldnsProbeOrder> ...] [-dropLdnsReq ( ENABLED | DISABLED )] [-GSLBSvcStateDelayTime &lt;secs>] [-AutomaticConfigSync ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -42,10 +42,21 @@ Maximum value: 128
 <b>ldnsProbeOrder</b>
 Order in which monitors should be initiated to calculate RTT.
 Possible values: PING, DNS, TCP
-Default value: ARRAY(0x2b118fdc)
+Default value: ARRAY(0x2bb8bcf8)
 
 <b>dropLdnsReq</b>
 Drop LDNS requests if round-trip time (RTT) information is not available.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>GSLBSvcStateDelayTime</b>
+Amount of delay in updating the state of GSLB service to DOWN when MEP goes down.
+			This parameter is applicable only if monitors are not bound to GSLB services
+Default value: 0
+Maximum value: 3600
+
+<b>AutomaticConfigSync</b>
+GSLB configuration will be synced automatically to remote gslb sites if enabled.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
@@ -62,7 +73,7 @@ Use this command to remove gslb parameter settings.Refer to the set gslb paramet
 
 ##Synopsys
 
-unset gslb parameter [-ldnsEntryTimeout] [-RTTTolerance] [-ldnsMask] [-v6ldnsmasklen] [-ldnsProbeOrder] [-dropLdnsReq]
+unset gslb parameter [-ldnsEntryTimeout] [-RTTTolerance] [-ldnsMask] [-v6ldnsmasklen] [-ldnsProbeOrder] [-dropLdnsReq] [-GSLBSvcStateDelayTime] [-AutomaticConfigSync]
 
 
 ##show gslb parameter
@@ -97,6 +108,13 @@ The order in which monitors should be initiated to calculate RTT
 
 <b>dropLdnsReq</b>
 Drop LDNS requests if round-trip time (RTT) information is not available.
+
+<b>GSLBSvcStateDelayTime</b>
+Amount of delay in updating the state of GSLB service to DOWN when MEP goes down.
+			This parameter is applicable only if monitors are not bound to GSLB services
+
+<b>AutomaticConfigSync</b>
+GSLB configuration will be synced automatically to remote gslb sites if enabled.
 
 
 

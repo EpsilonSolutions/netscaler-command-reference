@@ -12,16 +12,10 @@ Configure front end optimization parameters.
 
 ##Synopsys
 
-set feo parameter [-cacheMaxage &lt;positive_integer>] [-JpegQualityPercent &lt;positive_integer>] [-cssInlineThresSize &lt;positive_integer>] [-jsInlineThresSize &lt;positive_integer>] [-imgInlineThresSize &lt;positive_integer>]
+set feo parameter [-JpegQualityPercent &lt;positive_integer>] [-cssInlineThresSize &lt;positive_integer>] [-jsInlineThresSize &lt;positive_integer>] [-imgInlineThresSize &lt;positive_integer>]
 
 
 ##Arguments
-
-<b>cacheMaxage</b>
-Maximum period (in days), for cache extension.
-Default value: 30
-Minimum value: 0
-Maximum value: 360
 
 <b>JpegQualityPercent</b>
 The percentage value of a JPEG image quality to be reduced. Range: 0 - 100
@@ -51,7 +45,7 @@ Maximum value: 2048
 
 ##Example
 
-set feo param -CacheMaxAge 8 -JpegQualityPercent 80 -cssInlineThresSize 1024 -jsInlineThresSize 1024 -imgInlineThresSize 1024
+set feo param -JpegQualityPercent 80 -cssInlineThresSize 1024 -jsInlineThresSize 1024 -imgInlineThresSize 1024
 
 ##unset feo parameter
 
@@ -60,7 +54,7 @@ Use this command to remove feo parameter settings.Refer to the set feo parameter
 
 ##Synopsys
 
-unset feo parameter [-cacheMaxage] [-JpegQualityPercent] [-cssInlineThresSize] [-jsInlineThresSize] [-imgInlineThresSize]
+unset feo parameter [-JpegQualityPercent] [-cssInlineThresSize] [-jsInlineThresSize] [-imgInlineThresSize]
 
 
 ##show feo parameter
@@ -74,9 +68,6 @@ show feo parameter
 
 
 ##Outputs
-
-<b>cacheMaxage</b>
-Maximum period (in days), for cache extension.
 
 <b>JpegQualityPercent</b>
 The percentage value of a JPEG image quality to be reduced. Range: 0 - 100

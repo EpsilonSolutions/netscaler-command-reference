@@ -18,7 +18,7 @@ add ns acl6 &lt;acl6name> &lt;acl6action> [-td &lt;positive_integer>] [-srcIPv6 
 ##Arguments
 
 <b>acl6name</b>
-Name for the ACL6 rule. Must begin with an ASCII alphabetic or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after the ACL6 rule is created.
+Name for the ACL6 rule. Must begin with an ASCII alphabetic or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters.
 
 <b>acl6action</b>
 Action to perform on the incoming IPv6 packets that match the ACL6 rule.
@@ -34,17 +34,17 @@ Minimum value: 0
 Maximum value: 4094
 
 <b>srcIPv6</b>
-IP address or range of IP addresses to match against the source IP address of an incoming IPv6 packet. In the command line interface, separate the range with a hyphen and enclose within brackets.
+IP address or range of IP addresses to match against the source IP address of an incoming IPv6 packet. In the command line interface, separate the range with a hyphen.
 
 <b>operator</b>
-Logical operator.
+Either the equals (=) or does not equal (!=) logical operator.
 Possible values: =, !=, EQ, NEQ
 
 <b>srcIPv6Val</b>
 Source IPv6 address (range).
 
 <b>srcPort</b>
-Port number or range of port numbers to match against the source port number of an incoming IPv6 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90].
+Port number or range of port numbers to match against the source port number of an incoming IPv6 packet. In the command line interface, separate the range with a hyphen. For example: 40-90.
 Note: The destination port can be specified only for TCP and UDP protocols.
 
 <b>srcPortVal</b>
@@ -52,13 +52,13 @@ Source port (range).
 Maximum value: 65535
 
 <b>destIPv6</b>
-IP address or range of IP addresses to match against the destination IP address of an incoming IPv6 packet.  In the command line interface, separate the range with a hyphen and enclose within brackets.
+IP address or range of IP addresses to match against the destination IP address of an incoming IPv6 packet.  In the command line interface, separate the range with a hyphen.
 
 <b>destIPv6Val</b>
 Destination IPv6 address (range).
 
 <b>destPort</b>
-Port number or range of port numbers to match against the destination port number of an incoming IPv6 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90].
+Port number or range of port numbers to match against the destination port number of an incoming IPv6 packet. In the command line interface, separate the range with a hyphen. For example: 40-90.
 Note: The destination port can be specified only for TCP and UDP protocols.
 
 <b>destPortVal</b>
@@ -117,7 +117,7 @@ Maximum value: 65536
 <b>priority</b>
 Priority for the ACL6 rule, which determines the order in which it is evaluated relative to the other ACL6 rules. If you do not specify priorities while creating ACL6 rules, the ACL6 rules are evaluated in the order in which they are created.
 Minimum value: 1
-Maximum value: 80000
+Maximum value: 81920
 
 <b>state</b>
 State of the ACL6.
@@ -183,10 +183,10 @@ Action associated with the ACL6.
 Possible values: BRIDGE, DENY, ALLOW
 
 <b>srcIPv6</b>
-IP address or range of IP addresses to match against the source IP address of an incoming IPv6 packet. In the command line interface, separate the range with a hyphen and enclose within brackets.
+IP address or range of IP addresses to match against the source IP address of an incoming IPv6 packet. In the command line interface, separate the range with a hyphen.
 
 <b>operator</b>
-Logical operator.
+Either the equals (=) or does not equal (!=) logical operator.
 Possible values: =, !=, EQ, NEQ
 
 <b>srcIPv6Val</b>
@@ -200,7 +200,7 @@ Source port (range).
 Maximum value: 65535
 
 <b>destIPv6</b>
-IP address or range of IP addresses to match against the destination IP address of an incoming IPv6 packet.  In the command line interface, separate the range with a hyphen and enclose within brackets.
+IP address or range of IP addresses to match against the destination IP address of an incoming IPv6 packet.  In the command line interface, separate the range with a hyphen.
 
 <b>destIPv6Val</b>
 Destination IPv6 address (range).
@@ -256,7 +256,7 @@ ID of an interface. The NetScaler appliance applies the ACL6 rule only to the in
 <b>priority</b>
 Priority for the ACL6 rule, which determines the order in which it is evaluated relative to the other ACL6 rules. If you do not specify priorities while creating ACL6 rules, the ACL6 rules are evaluated in the order in which they are created.
 Minimum value: 1
-Maximum value: 80000
+Maximum value: 81920
 
 <b>established</b>
 Allow only incoming TCP packets that have the ACK or RST bit set if the action set for the ACL6 rule is ALLOW and these packets match the other conditions in the ACL6 rule.
@@ -501,6 +501,9 @@ Protocol number in IPv6 header or name.
 <b>srcPortVal</b>
 Source port (range).
 
+<b>operator</b>
+Either the equals (=) or does not equal (!=) logical operator.
+
 <b>destPortVal</b>
 Destination port (range).
 
@@ -545,14 +548,14 @@ This flag indicates that the ACL6 should be used for TCP response traffic only.
 <b>priority</b>
 Priority for the ACL6 rule, which determines the order in which it is evaluated relative to the other ACL6 rules. If you do not specify priorities while creating ACL6 rules, the ACL6 rules are evaluated in the order in which they are created.
 
-<b>operator</b>
-Logical operator.
-
 <b>time</b>
 Time when this acl is applied.
 
 <b>td</b>
 Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
+
+<b>aclassociate</b>
+ACL6 linked
 
 <b>devno</b>
 

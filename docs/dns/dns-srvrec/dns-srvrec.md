@@ -47,12 +47,12 @@ Maximum value: 2147483647
 
 ##rm dns srvRec
 
-Removes, from the specified domain, the SRV record created for the service provided by the specified target host.
+Removes, from the specified domain, the SRV record created for the service provided by the specified target host. For EDNS Client Subnet (ECS) records, a subnet needsto be specified to remove the SRV record created for the service provided by the specified target host which is cached for that particular subnet
 
 
 ##Synopsys
 
-rm dns srvRec &lt;domain> &lt;target> ...
+rm dns srvRec &lt;domain> &lt;target> ... [-ecsSubnet &lt;ip_addr[/prefix]|ipv6_addr[/prefix]>]
 
 
 ##Arguments
@@ -62,6 +62,9 @@ Domain name of the SRV record.
 
 <b>target</b>
 Target host for the specified service.
+
+<b>ecsSubnet</b>
+Subnet for which the cached SRV record need to be removed.
 
 
 
@@ -158,6 +161,9 @@ Time to Live (TTL), in seconds, for the record. TTL is the time for which the re
 
 <b>authType</b>
 Record type.
+
+<b>ecsSubnet</b>
+Subnet for which this particular record is cached. Subnet caching will occur for responses with EDNS Client Subnet (ECS) option. Applies to resource records obtained through proxy configurations only.
 
 <b>devno</b>
 

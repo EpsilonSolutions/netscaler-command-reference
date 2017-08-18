@@ -12,7 +12,7 @@ Modifies the global configuration settings for the RADIUS server. The settings t
 
 ##Synopsys
 
-set aaa radiusParams [-serverIP &lt;ip_addr|ipv6_addr|*>] [-serverPort &lt;port>] [-authTimeout &lt;positive_integer>] {-radKey } [-radNASip ( ENABLED | DISABLED )] [-radNASid &lt;string>] [-radVendorID &lt;positive_integer>] [-radAttributeType &lt;positive_integer>] [-radGroupsPrefix &lt;string>] [-radGroupSeparator &lt;string>] [-passEncoding &lt;passEncoding>] [-ipVendorID &lt;positive_integer>] [-ipAttributeType &lt;positive_integer>] [-accounting ( ON | OFF )] [-pwdVendorID &lt;positive_integer>] [-pwdAttributeType &lt;positive_integer>] [-defaultAuthenticationGroup &lt;string>] [-callingstationid ( ENABLED | DISABLED )]
+set aaa radiusParams [-serverIP &lt;ip_addr|ipv6_addr|*>] [-serverPort &lt;port>] [-authTimeout &lt;positive_integer>] {-radKey } [-radNASip ( ENABLED | DISABLED )] [-radNASid &lt;string>] [-radVendorID &lt;positive_integer>] [-radAttributeType &lt;positive_integer>] [-radGroupsPrefix &lt;string>] [-radGroupSeparator &lt;string>] [-passEncoding &lt;passEncoding>] [-ipVendorID &lt;positive_integer>] [-ipAttributeType &lt;positive_integer>] [-accounting ( ON | OFF )] [-pwdVendorID &lt;positive_integer>] [-pwdAttributeType &lt;positive_integer>] [-defaultAuthenticationGroup &lt;string>] [-callingstationid ( ENABLED | DISABLED )] [-authservRetry &lt;positive_integer>] [-authentication ( ON | OFF )]
 
 
 ##Arguments
@@ -90,6 +90,17 @@ Send Calling-Station-ID of the client to the RADIUS server. IP Address of the cl
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
+<b>authservRetry</b>
+Number of retry by the NetScaler appliance before getting response from the RADIUS server.
+Default value: 3
+Minimum value: 1
+Maximum value: 10
+
+<b>authentication</b>
+Configure the RADIUS server state to accept or refuse authentication messages.
+Possible values: ON, OFF
+Default value: ON
+
 
 
 ##Example
@@ -109,7 +120,7 @@ Use this command to remove aaa radiusParams settings.Refer to the set aaa radius
 
 ##Synopsys
 
-unset aaa radiusParams [-serverIP] [-serverPort] [-authTimeout] [-radNASip] [-radNASid] [-radVendorID] [-radAttributeType] [-radGroupsPrefix] [-radGroupSeparator] [-passEncoding] [-ipVendorID] [-ipAttributeType] [-accounting] [-pwdVendorID] [-pwdAttributeType] [-defaultAuthenticationGroup] [-callingstationid]
+unset aaa radiusParams [-serverIP] [-serverPort] [-authTimeout] [-radNASip] [-radNASid] [-radVendorID] [-radAttributeType] [-radGroupsPrefix] [-radGroupSeparator] [-passEncoding] [-ipVendorID] [-ipAttributeType] [-accounting] [-pwdVendorID] [-pwdAttributeType] [-defaultAuthenticationGroup] [-callingstationid] [-authservRetry] [-authentication]
 
 
 ##show aaa radiusParams
@@ -131,7 +142,8 @@ IP address of your RADIUS server.
 Port number on which the RADIUS server listens for connections.
 
 <b>radKey</b>
-The key shared between the client and the server.
+The key shared between the RADIUS server and clients. 
+Required for allowing the NetScaler appliance to communicate with the RADIUS server.
 
 <b>groupAuthName</b>
 To associate AAA users with an AAA group, use the command
@@ -187,6 +199,15 @@ This is the default group that is chosen when the authentication succeeds in add
 
 <b>callingstationid</b>
 Send Calling-Station-ID of the client to the RADIUS server. IP Address of the client is sent as its Calling-Station-ID.
+
+<b>authservRetry</b>
+Number of retry by the NetScaler appliance before getting response from the RADIUS server.
+
+<b>authentication</b>
+Configure the RADIUS server state to accept or refuse authentication messages.
+
+<b>builtin</b>
+Indicates that a variable is a built-in (SYSTEM INTERNAL) type.
 
 
 

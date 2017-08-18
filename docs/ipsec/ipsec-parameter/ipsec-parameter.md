@@ -109,6 +109,9 @@ IKE retry interval for bringing up the connection
 <b>perfectForwardSecrecy</b>
 Enable/Disable PFS.
 
+<b>responderOnly</b>
+Responder Only config for IKED.
+
 <b>retransmissiontime</b>
 The interval in seconds to retry sending the IKE messages to peer, three consecutive attempts are done with doubled interval after every failure,
 increases for every retransmit till 6 retransmits.

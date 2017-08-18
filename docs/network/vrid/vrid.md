@@ -7,12 +7,12 @@ The following operations can be performed on "vrID":
 
 ##add vrID
 
-Adds a VMAC address to the NetScaler appliance.A Virtual MAC address (VMAC) is a floating entity, shared by the nodes in an HA configuration.
+Adds a VMAC address to the NetScaler appliance.A Virtual MAC address (VMAC) is a floating entity, shared by the nodes in an high availability, or active-active, or cluster setup
 
 
 ##Synopsys
 
-add vrID &lt;id> [-priority &lt;positive_integer>] [-preemption ( ENABLED | DISABLED )] [-sharing ( ENABLED | DISABLED )] [-tracking &lt;tracking>] [-ownerNode &lt;positive_integer>] [-trackifNumPriority &lt;positive_integer>]
+add vrID &lt;id> [-priority &lt;positive_integer>] [-preemption ( ENABLED | DISABLED )] [-sharing ( ENABLED | DISABLED )] [-tracking &lt;tracking>] [-ownerNode &lt;positive_integer>] [-trackifNumPriority &lt;positive_integer>] [-preemptiondelaytimer &lt;secs>]
 
 
 ##Arguments
@@ -25,7 +25,7 @@ Maximum value: 255
 <b>priority</b>
 Base priority (BP), in an active-active mode configuration, which ordinarily determines the master VIP address.
 Default value: 255
-Minimum value: 1
+Minimum value: 0
 Maximum value: 255
 
 <b>preemption</b>
@@ -51,16 +51,22 @@ Possible values: NONE, ONE, ALL, PROGRESSIVE
 Default value: NONE
 
 <b>ownerNode</b>
-Assign a cluster node as the owner of this VMAC address. If no owner is configured, owner node is displayed as ALL and one node is dynamically elected as the owner.
+In a cluster setup, assign a cluster node as the owner of this VMAC address for IP based VRRP configuration. If no owner is configured, owner node is displayed as ALL and one node is dynamically elected as the owner.
 Default value: -1 
 Minimum value: 0
 Maximum value: 31
 
 <b>trackifNumPriority</b>
-Priority by which the Effective priority will be reduced if any of the tracked interfaces goes down.
+Priority by which the Effective priority will be reduced if any of the tracked interfaces goes down in an active-active configuration.
 Default value: 0
 Minimum value: 1
 Maximum value: 255
+
+<b>preemptiondelaytimer</b>
+Preemption delay time, in seconds, in an active-active configuration. If any high priority node will come in network, it will wait for these many seconds before becoming master.
+Default value: 0
+Minimum value: 1
+Maximum value: 36000
 
 
 
@@ -97,7 +103,7 @@ Modifies parameters related to a VMAC address on the NetScaler appliance.
 
 ##Synopsys
 
-set vrID &lt;id> [-priority &lt;positive_integer>] [-preemption ( ENABLED | DISABLED )] [-sharing ( ENABLED | DISABLED )] [-tracking &lt;tracking>] [-ownerNode &lt;positive_integer>] [-trackifNumPriority &lt;positive_integer>]
+set vrID &lt;id> [-priority &lt;positive_integer>] [-preemption ( ENABLED | DISABLED )] [-sharing ( ENABLED | DISABLED )] [-tracking &lt;tracking>] [-ownerNode &lt;positive_integer>] [-trackifNumPriority &lt;positive_integer>] [-preemptiondelaytimer &lt;secs>]
 
 
 ##Arguments
@@ -110,7 +116,7 @@ Maximum value: 255
 <b>priority</b>
 Base priority (BP), in an active-active mode configuration, which ordinarily determines the master VIP address.
 Default value: 255
-Minimum value: 1
+Minimum value: 0
 Maximum value: 255
 
 <b>preemption</b>
@@ -136,7 +142,7 @@ Possible values: NONE, ONE, ALL, PROGRESSIVE
 Default value: NONE
 
 <b>ownerNode</b>
-Assign a cluster node as the owner of this VMAC address. If no owner is configured, owner node is displayed as ALL and one node is dynamically elected as the owner.
+In a cluster setup, assign a cluster node as the owner of this VMAC address for IP based VRRP configuration. If no owner is configured, owner node is displayed as ALL and one node is dynamically elected as the owner.
 Default value: -1 
 Minimum value: 0
 Maximum value: 31
@@ -146,6 +152,12 @@ Priority by which the Effective priority will be reduced if any of the tracked i
 Default value: 0
 Minimum value: 1
 Maximum value: 255
+
+<b>preemptiondelaytimer</b>
+Preemption delay time, in seconds, in an active-active configuration. If any high priority node will come in network, it will wait for these many seconds before becoming master.
+Default value: 0
+Minimum value: 1
+Maximum value: 36000
 
 
 
@@ -160,7 +172,7 @@ Use this command to remove  vrID settings.Refer to the set  vrID command for mea
 
 ##Synopsys
 
-unset vrID &lt;id> [-priority] [-preemption] [-sharing] [-tracking] [-ownerNode] [-trackifNumPriority]
+unset vrID &lt;id> [-priority] [-preemption] [-sharing] [-tracking] [-ownerNode] [-trackifNumPriority] [-preemptiondelaytimer]
 
 
 ##bind vrID
@@ -181,7 +193,11 @@ Minimum value: 1
 Maximum value: 255
 
 <b>ifnum</b>
-Interfaces to bind to the VMAC, specified in (slot/port) notation (for example, 1/2).Use spaces to separate multiple entries.
+Interfaces to bind to the VMAC. Use spaces to separate multiple entries. For a NetScaler appliance, specify the interface in C/U notation (for example, 1/3).For a cluster setup for configuring interface based VRRP, specify the interface in N/C/U notation (for example, 2/1/3) . where C can take one of the following values:
+		                  * 0 - Indicates a mgmt port.
+				  * 1 - Indicates a 1 Gbps port.
+				  * 10 - Indicates a 10 Gbps port.
+Note: Interface based VRRP is only applicable to a two-node cluster where one of node is in active state and the other in Spare. You must associate the VRID to the interfaces of both the nodes of the active-spare cluster setup. This is because unlike in a high availability setup, interface ID differs in a cluster setup
 
 <b>trackifNum</b>
 Interfaces which need to be tracked for this vrID.
@@ -241,6 +257,9 @@ Maximum value: 255
 <b>ifaces</b>
 Interfaces bound to this VRID.
 
+<b>ifnum</b>
+Interfaces to bind to the VMAC, specified in (slot/port) notation (for example, 1/2).Use spaces to separate multiple entries.
+
 <b>type</b>
 Indicates whether this VRID entry was added manually or dynamically. When you manually add a VRID entry, the value for this parameter is STATIC. Otherwise, it is DYNAMIC.
 
@@ -284,13 +303,16 @@ State of this VRID.
 Run time owner node of the vrid.
 
 <b>ownerNode</b>
-Assign a cluster node as the owner of this VMAC address. If no owner is configured, owner node is displayed as ALL and one node is dynamically elected as the owner.
+In a cluster setup, assign a cluster node as the owner of this VMAC address for IP based VRRP configuration. If no owner is configured, owner node is displayed as ALL and one node is dynamically elected as the owner.
 
 <b>trackifNum</b>
 Interfaces which need to be tracked for this vrID.
 
 <b>trackifNumPriority</b>
-Priority by which the Effective priority will be reduced if any of the tracked interfaces goes down.
+Priority by which the Effective priority will be reduced if any of the tracked interfaces goes down in an active-active configuration.
+
+<b>preemptiondelaytimer</b>
+Preemption delay time, in seconds, in an active-active configuration. If any high priority node will come in network, it will wait for these many seconds before becoming master.
 
 <b>devno</b>
 

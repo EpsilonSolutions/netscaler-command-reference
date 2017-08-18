@@ -52,6 +52,12 @@ Total number of Server responses received.
 <b>Total Record updates (TotRecUp)</b>
 Total number of record updates.
 
+<b>Current cache size (CurCacheSize)</b>
+Current DNS cache size
+
+<b>Negative cache size (CurNegCacheSize)</b>
+Current Negative DNS cache size
+
 <b>Auth answers (AuthAns)</b>
 Number of queries which were authoritatively answered.
 

@@ -55,12 +55,12 @@ TBD
 
 ##rm dns naptrRec
 
-Removes the specified NAPTR record from the specified domain.
+Removes the specified NAPTR record from the specified domain. For EDNS Client Subnet (ECS) records, a subnet needs to be specified to remove a NAPTR record which is cached for that particular subnet
 
 
 ##Synopsys
 
-rm dns naptrRec &lt;domain> ((&lt;order>  &lt;preference>  [-flags &lt;string>]  [-services &lt;string>]  (-regexp &lt;expression> | -replacement &lt;string>) ) | -recordId &lt;positive_integer>@)
+rm dns naptrRec &lt;domain> ((&lt;order>  &lt;preference>  [-flags &lt;string>]  [-services &lt;string>]  (-regexp &lt;expression> | -replacement &lt;string>) ) | -recordId &lt;positive_integer>@) [-ecsSubnet &lt;ip_addr[/prefix]|ipv6_addr[/prefix]>]
 
 
 ##Arguments
@@ -78,6 +78,9 @@ Unique, internally generated record ID. View the details of the naptr record to 
 domain name and all other naptr record attributes as was supplied during the add command.
 Minimum value: 1
 Maximum value: 65535
+
+<b>ecsSubnet</b>
+Subnet for which the cached NAPTR record need to be removed.
 
 <b>preference</b>
 An integer specifying the preference of this NAPTR among NAPTR records having same order. lower the number, higher the preference.
@@ -154,6 +157,12 @@ Time to Live (TTL), in seconds, for the record. TTL is the time for which the re
 
 <b>authType</b>
 Authentication type.
+
+<b>ecsSubnet</b>
+Subnet for which this particular record is cached. Subnet caching will occur for responses with EDNS Client Subnet (ECS) option. Applies to resource records obtained through proxy configurations only.
+
+<b>vServerName</b>
+Virtual server name.
 
 <b>devno</b>
 

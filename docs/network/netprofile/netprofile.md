@@ -3,7 +3,7 @@
 The following operations can be performed on "netProfile":
 
 
-[add](#add-netprofile) | [rm](#rm-netprofile) | [set](#set-netprofile) | [unset](#unset-netprofile) | [show](#show-netprofile)
+[add](#add-netprofile) | [rm](#rm-netprofile) | [set](#set-netprofile) | [unset](#unset-netprofile) | [bind](#bind-netprofile) | [unbind](#unbind-netprofile) | [show](#show-netprofile)
 
 ##add netProfile
 
@@ -115,6 +115,74 @@ unset netProfile &lt;name> [-srcIP] [-srcippersistency] [-overrideLsn]
 
 unset netProfile prof1 -srcIP
 
+##bind netProfile
+
+Binds specified port range to a netprofile.
+
+
+##Synopsys
+
+bind netProfile &lt;name> (-srcPortRange &lt;int[-int]> ... | (-natRule &lt;ip_addr>  &lt;netmask>  &lt;rewriteIp>))
+
+
+##Arguments
+
+<b>name</b>
+Name of the netprofile to which to bind port ranges.
+
+<b>srcPortRange</b>
+When the source port range is configured and associated with the netprofile bound to a service group, Netscaler will choose a port from the range configured for connection establishment at the backend servers.
+Minimum value: 1024
+Maximum value: 65535
+
+<b>natRule</b>
+When Natrule is configured and netprofile is bound to lb vserver, NetScaler will use the prefix of rewrite IP for outgoing packets if prefix of source IP of incoming packet matches with prefix of IP of natrule.
+This will take preference over USIP and USNIP configuration.
+  ip_addr   : IP for which prefix need to rewritten.
+  netmask   : Netmask for NatRule IP and RewriteIP.
+  rewriteIp : Prefix for modified IP.
+
+<b>netmask</b>
+
+<b>rewriteIp</b>
+
+
+
+##Example
+
+bind netprofile npf_1 -srcportrange 2000-3000bind netprofile npf_1 -natRule 10.0.0.0 255.0.0.0 11.0.0.0
+
+##unbind netProfile
+
+Unbinds the specified port range from a netprofile.
+
+
+##Synopsys
+
+unbind netProfile &lt;name> (-srcPortRange &lt;int[-int]> ... | (-natRule &lt;ip_addr>  &lt;netmask>))
+
+
+##Arguments
+
+<b>name</b>
+Name of the netprofile to which to bind port ranges.
+
+<b>srcPortRange</b>
+When the source port range is configured and associated with the netprofile bound to a service group, Netscaler will choose a port from the range configured for connection establishment at the backend servers.
+Minimum value: 1024
+Maximum value: 65535
+
+<b>natRule</b>
+Unbind the already bound natrule from netProfile.
+
+<b>netmask</b>
+
+
+
+##Example
+
+unbind netprofile npf_1 -srcportrange 2000-3000unbind netprofile npf_1 -natrule 1.0.0.0 255.0.0.0
+
 ##show netProfile
 
 Displays the settings of all net profiles configured on the NetScaler appliance, or of the specified net profile.
@@ -146,18 +214,28 @@ When the net profile is associated with a virtual server or its bound services, 
 <b>netprofRefcount</b>
 Used to keep reference count of IP
 
-<b>vpathEncap</b>
-enable/disable vPath Encapsulation
-
 <b>overrideLsn</b>
 USNIP/USIP settings override LSN settings for configured
               service/virtual server traffic..
 
+<b>srcPortRange</b>
+When the source port range is configured and associated with the netprofile bound to a service group, Netscaler will choose a port from the range configured for connection establishment at the backend servers.
+
+<b>stateflag</b>
+state flag
+
+<b>flags</b>
+
+<b>natRule</b>
+IPv4 network address on whose traffic you want the NetScaler appliance to do rewrite ip prefix.
+
+<b>netmask</b>
+
+<b>rewriteIp</b>
+
 <b>devno</b>
 
 <b>count</b>
-
-<b>stateflag</b>
 
 
 

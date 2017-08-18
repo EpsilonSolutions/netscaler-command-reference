@@ -3,7 +3,7 @@
 The following operations can be performed on "protocol httpBand":
 
 
-[set](#set-protocol-httpband) | [unset](#unset-protocol-httpband) | [show](#show-protocol-httpband)
+[set](#set-protocol-httpband) | [unset](#unset-protocol-httpband) | [show](#show-protocol-httpband) | [clear](#clear-protocol-httpband)
 
 ##set protocol httpBand
 
@@ -102,5 +102,39 @@ The number of HTTP requests/responses in this size range, expressed as a percent
 <b>Totals</b>
 The total of totalBandSize, avgBandSize, BandData, accessCount, accessRatio respectively.
 
+<b>reqBandSize</b>
+Band size, in bytes, for HTTP request band statistics. For example, if you specify a band size of 100 bytes, statistics will be maintained and displayed for the following size ranges:
+0 - 99 bytes
+100 - 199 bytes
+200 - 299 bytes and so on.
 
+<b>respBandSize</b>
+Band size, in bytes, for HTTP response band statistics. For example, if you specify a band size of 100 bytes, statistics will be maintained and displayed for the following size ranges:
+0 - 99 bytes
+100 - 199 bytes
+200 - 299 bytes and so on.
+
+
+
+##clear protocol httpBand
+
+Clears HTTP request/response band statistics.
+
+
+##Synopsys
+
+clear protocol httpBand -type ( REQUEST | RESPONSE )
+
+
+##Arguments
+
+<b>type</b>
+Type of statistics to display.
+Possible values: REQUEST, RESPONSE
+
+
+
+##Example
+
+clear protocol httpband -type REQUEST, clear protocol httpband -type RESPONSE
 

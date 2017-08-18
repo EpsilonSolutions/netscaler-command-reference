@@ -20,7 +20,7 @@ add rewrite policy &lt;name> &lt;rule> &lt;action> [&lt;undefAction>] [-comment 
 <b>name</b>
 Name for the rewrite policy. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) hash (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Can be changed after the rewrite policy is added.
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my rewrite policy" or ?my rewrite policy?).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my rewrite policy" or 'my rewrite policy').
 
 <b>rule</b>
 Expression against which traffic is evaluated. Written in default syntax.
@@ -310,7 +310,7 @@ Existing name of the rewrite policy.
 New name for the rewrite policy. 
 Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) hash (#), space ( ), at (@), equals (=), colon (:), and underscore characters.
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my rewrite policy" or ?my rewrite policy?).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my rewrite policy" or 'my rewrite policy').
 
 
 

@@ -61,7 +61,16 @@ Flags controlling the display.
 Subscriber Session flags.
 
 <b>TTL</b>
-Subscriber Session Activity Timeout remaining. Netscaler will send a CCR-U after ttl expires. If subscriber sessions is a negative session, then Netscaler will send a CCR-I after TTL expires. Negative Sessions are sessions which have not been resolved by PCRF and instead of polling PCRF continously, Netscaler has installed a negative session. If default subscriber is configued, then Negative Sessions inherits default subscriber profile.
+Subscriber Session revalidation Timeout remaining. This TTL gets refreshed when a radius or CCA or RAR message is received for this subscriber session.
+Netscaler will send a CCR-U after revalidation timer expires.
+If subscriber sessions is a negative session, then Netscaler will send a CCR-I after TTL expires. Negative Sessions are sessions which have not been resolved by PCRF and instead of polling PCRF continously, Netscaler has installed a negative session. If default subscriber is configued, then Negative Sessions inherits default subscriber profile.
+
+<b>idleTTL</b>
+Subscriber Session Activity Timeout remaining. Netscaler will take an idleAction after ttl expires. idleaction could be -->
+1. ccrTerminate: (default) send CCR-T to inform PCRF about session termination and delete the session.  
+2. delete: Just delete the subscriber session without informing PCRF.
+3. ccrUpdate: Do not delete the session and instead send a CCR-U to PCRF requesting for an updated session.
+      But if this is a negative session and idleaction is ccrUpdate then NS won't take any action. Also on negative sessions ccrTerminate translates to delete.
 
 <b>avpdisplaybuffer</b>
 Subscriber Attributes Display.

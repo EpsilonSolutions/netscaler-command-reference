@@ -12,7 +12,7 @@ Binds NetScaler Gateway entities, including policies, globally.
 
 ##Synopsys
 
-bind vpn global [-policyName &lt;string>  [-priority &lt;positive_integer>]  [-secondary]  [-groupExtraction]] [-intranetDomain &lt;string>] [-intranetApplication &lt;string>] [-nextHopServer &lt;string>] [-urlName &lt;string>] [-intranetIP &lt;ip_addr>  &lt;netmask>] [-intranetIP6 &lt;ip_addr|ipv6_addr|*>  &lt;numaddr>] [-staServer &lt;URL>  [-staAddressType ( IPV4 | IPV6 )]] [-appController &lt;URL>] [-sharefile &lt;string>] [-portaltheme &lt;string>] [-eula &lt;string>]
+bind vpn global [-policyName &lt;string>  [-priority &lt;positive_integer>]  [-secondary]  [-groupExtraction]  [-gotoPriorityExpression &lt;expression>]] [-intranetDomain &lt;string>] [-intranetApplication &lt;string>] [-nextHopServer &lt;string>] [-urlName &lt;string>] [-intranetIP &lt;ip_addr>  &lt;netmask>] [-intranetIP6 &lt;ip_addr|ipv6_addr|*>  &lt;numaddr>] [-staServer &lt;URL>  [-staAddressType ( IPV4 | IPV6 )]] [-appController &lt;URL>] [-sharefile &lt;string>] [-portaltheme &lt;string>] [-eula &lt;string>]
 
 
 ##Arguments
@@ -21,9 +21,9 @@ bind vpn global [-policyName &lt;string>  [-priority &lt;positive_integer>]  [-s
 Name of the policy to bind globally.
 
 <b>priority</b>
-Priority assigned to this session policy. A lower number indicates a higher priority. 
-Maximum value for default syntax policies is 4294967295 and for classic policies is 64000.
+Integer specifying the policy's priority. The lower the priority number, the higher the policy's priority. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.
 Minimum value: 0
+Maximum value: 2147483647
 
 <b>secondary</b>
 Bind the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only to a primary authentication server but also to a secondary authentication server. User groups are aggregated across both authentication servers. The user name must be exactly the same on both authentication servers, but the authentication servers can require different passwords.
@@ -69,11 +69,14 @@ App Controller server, in the format 'http(s)://IP/FQDN'
 <b>sharefile</b>
 ShareFile server, in the format 'IP:PORT / FQDN:PORT'
 
+<b>gotoPriorityExpression</b>
+Applicable only to advance vpn session policy. An expression or other value specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.
+
 <b>portaltheme</b>
-Vserver Theme applicable to all vpn vservers
+Portaltheme name to bind globally
 
 <b>eula</b>
-Eula applicable to all vpn vservers
+EULA name to bind globally
 
 
 
@@ -133,10 +136,10 @@ App Controller server to be removed, in the format 'http(s)://IP/FQDN'
 ShareFile server to be removed, in the format 'IP:PORT / FQDN:PORT'
 
 <b>portaltheme</b>
-Name of the Theme to be unbound to vpn vserver
+Name of the Portal theme to unbind from vpnglobal
 
 <b>eula</b>
-Name of the Theme to be unbound to vpn vserver
+Name of the EULA to unbind from vpnglobal
 
 
 
@@ -158,7 +161,7 @@ show vpn global
 The name of the policy.
 
 <b>priority</b>
-The priority of the policy.
+Integer specifying the policy's priority. The lower the priority number, the higher the policy's priority. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.
 
 <b>intranetDomain</b>
 The conflicting intranet domain name.
@@ -193,6 +196,9 @@ Type of the STA server address(ipv4/v6).
 <b>staAuthID</b>
 Authority ID of the STA Server. Authority ID is used to match incoming STA Tickets in the SOCKS/CGP protocol with the right STA Server.
 
+<b>staState</b>
+State of the STA Server. If Authority ID is set then STA Server is UP else DOWN.
+
 <b>appController</b>
 Configured App Controller server.
 
@@ -216,13 +222,16 @@ Bind the Authentication policy to a tertiary chain which will be used only for g
 <b>policyType</b>
 Policy type (Classic/Advanced) to be bound.Used for display.
 
+<b>gotoPriorityExpression</b>
+Applicable only to advance vpn session policy. An expression or other value specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.
+
 <b>globalBindType</b>
 
 <b>portaltheme</b>
-Theme for all vpn vservers
+Name of the portal theme bound to vpnglobal
 
 <b>eula</b>
-EULA for all vpn vservers
+Name of the EULA bound to vpnglobal
 
 <b>devno</b>
 

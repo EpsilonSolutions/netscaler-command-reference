@@ -193,3 +193,9 @@ Number of hits on the policy
 
 stat tm trafficpolicy.
 
+##Related Commands
+
+<ul><li><a href="../../../#stat-tm-sessionp/#stat-tm-sessionp">stat tm sessionPolicy</a></li></ul>
+
+
+

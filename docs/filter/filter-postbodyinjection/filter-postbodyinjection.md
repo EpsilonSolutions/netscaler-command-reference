@@ -7,12 +7,12 @@ The following operations can be performed on "filter postbodyInjection":
 
 ##set filter postbodyInjection
 
-Specifies the file to be used for postbody injection.
+Specifies the file to be used for postbody injection. NOTE: This command is deprecated.Deprecated in favour of Client Side Measurements that can be enabled on an appflow action
 
 
 ##Synopsys
 
-set filter postbodyInjection &lt;postbody>
+
 
 
 ##Arguments
@@ -28,12 +28,12 @@ set filter postbodyInjection ens/postbody.js
 
 ##unset filter postbodyInjection
 
-Removes the setting that specifies the file used for postbody injection..Refer to the set filter postbodyInjection command for meanings of the arguments.
+Removes the setting that specifies the file used for postbody injection..Refer to the set filter postbodyInjection command for meanings of the arguments.NOTE: This command is deprecated.Deprecated in favour of Client Side Measurements that can be enabled on an appflow action
 
 
 ##Synopsys
 
-unset filter postbodyInjection [-postbody]
+
 
 
 ##Example
@@ -42,12 +42,12 @@ unset filter postbodyInjection
 
 ##show filter postbodyInjection
 
-Displays the name of the file used for postbody injection.
+Displays the name of the file used for postbody injection. NOTE: This command is deprecated.Deprecated in favour of Client Side Measurements that can be enabled on an appflow action
 
 
 ##Synopsys
 
-show filter postbodyInjection
+
 
 
 ##Outputs

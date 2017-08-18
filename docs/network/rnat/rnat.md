@@ -50,7 +50,7 @@ Modifies parameters of an RNAT rule.
 
 ##Synopsys
 
-set rnat ((&lt;network>  [&lt;netmask>]  [-natIP &lt;ip_addr|*>@ ...]) | (&lt;aclname>  [-redirectPort &lt;port>]  [-natIP &lt;ip_addr|*>@ ...])) [-td &lt;positive_integer>] [-srcippersistency ( ENABLED | DISABLED )] [-useproxyport ( ENABLED | DISABLED )] [-ownerGroup &lt;string>]
+set rnat ((&lt;network>  [&lt;netmask>]  [-natIP &lt;ip_addr|*>@ ...]) | (&lt;aclname>  [-redirectPort &lt;port>]  [-natIP &lt;ip_addr|*>@ ...])) [-td &lt;positive_integer>] [-srcippersistency ( ENABLED | DISABLED )] [-useproxyport ( ENABLED | DISABLED )] [-ownerGroup &lt;string>] [-connfailover ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -91,6 +91,11 @@ Default value: ENABLED
 The owner node group in a Cluster for this rnat rule.
 Default value: DEFAULT_NG
 
+<b>connfailover</b>
+Synchronize connection information with the secondary appliance in a high availability (HA) pair. That is, synchronize all connection-related information for the RNAT session. In order for this to work, tcpproxy should be DISABLED. To disable tcpproxy use "set rnatparam tcpproxy DISABLED"
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
 
 
 ##unset rnat
@@ -100,7 +105,7 @@ Use this command to modify the parameters of  configured Reverse NAT on the syst
 
 ##Synopsys
 
-unset rnat ((&lt;network>  [&lt;netmask>]) | (&lt;aclname>  [-redirectPort])) [-td &lt;positive_integer>] [-natIP &lt;ip_addr|*>@ ...] [-srcippersistency] [-ownerGroup &lt;string>] [-useproxyport]
+unset rnat ((&lt;network>  [&lt;netmask>]) | (&lt;aclname>  [-redirectPort])) [-td &lt;positive_integer>] [-natIP &lt;ip_addr|*>@ ...] [-srcippersistency] [-ownerGroup &lt;string>] [-useproxyport] [-connfailover]
 
 
 ##stat rnat
@@ -202,6 +207,9 @@ This contains the flags for RNAT in DB
 
 <b>ownerGroup</b>
 The owner node group in a Cluster for this rnat rule.
+
+<b>connfailover</b>
+Synchronize connection information with the secondary appliance in a high availability (HA) pair. That is, synchronize all connection-related information for the RNAT session. In order for this to work, tcpproxy should be DISABLED. To disable tcpproxy use "set rnatparam tcpproxy DISABLED"
 
 <b>devno</b>
 

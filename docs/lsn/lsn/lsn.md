@@ -101,7 +101,7 @@ Current number of LSN subscribers.
 
 ##Related Commands
 
-<ul><li><a href="../../../lsn-/lsn-">stat lsn group</a></li><li><a href="../../../-lsn-d/-lsn-d">stat lsn dslite</a></li></ul>
+<ul><li><a href="../../../lsn-/lsn-">stat lsn group</a></li><li><a href="../../../-lsn-d/-lsn-d">stat lsn dslite</a></li><li><a href="../../../lsn-/lsn-">stat lsn nat64</a></li></ul>
 
 
 

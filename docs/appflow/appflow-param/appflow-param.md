@@ -12,7 +12,7 @@ Configures AppFlow parameters.
 
 ##Synopsys
 
-set appflow param [-templateRefresh &lt;secs>] [-appnameRefresh &lt;secs>] [-flowRecordInterval &lt;secs>] [-udpPmtu &lt;positive_integer>] [-httpUrl ( ENABLED | DISABLED )] [-AAAUserName ( ENABLED | DISABLED )] [-httpCookie ( ENABLED | DISABLED )] [-httpReferer ( ENABLED | DISABLED )] [-httpMethod ( ENABLED | DISABLED )] [-httpHost ( ENABLED | DISABLED )] [-httpUserAgent ( ENABLED | DISABLED )] [-clientTrafficOnly ( YES | NO )] [-httpContentType ( ENABLED | DISABLED )] [-httpAuthorization ( ENABLED | DISABLED )] [-httpVia ( ENABLED | DISABLED )] [-httpXForwardedFor ( ENABLED | DISABLED )] [-httpLocation ( ENABLED | DISABLED )] [-httpSetCookie ( ENABLED | DISABLED )] [-httpSetCookie2 ( ENABLED | DISABLED )] [-connectionChaining ( ENABLED | DISABLED )] [-httpDomain ( ENABLED | DISABLED )] [-skipCacheRedirectionHttpTransaction ( ENABLED | DISABLED )] [-identifierName ( ENABLED | DISABLED )] [-identifierSessionName ( ENABLED | DISABLED )] [-observationDomainId &lt;positive_integer>] [-observationDomainName &lt;string>]
+set appflow param [-templateRefresh &lt;secs>] [-appnameRefresh &lt;secs>] [-flowRecordInterval &lt;secs>] [-SecurityInsightRecordInterval &lt;secs>] [-udpPmtu &lt;positive_integer>] [-httpUrl ( ENABLED | DISABLED )] [-AAAUserName ( ENABLED | DISABLED )] [-httpCookie ( ENABLED | DISABLED )] [-httpReferer ( ENABLED | DISABLED )] [-httpMethod ( ENABLED | DISABLED )] [-httpHost ( ENABLED | DISABLED )] [-httpUserAgent ( ENABLED | DISABLED )] [-clientTrafficOnly ( YES | NO )] [-httpContentType ( ENABLED | DISABLED )] [-httpAuthorization ( ENABLED | DISABLED )] [-httpVia ( ENABLED | DISABLED )] [-httpXForwardedFor ( ENABLED | DISABLED )] [-httpLocation ( ENABLED | DISABLED )] [-httpSetCookie ( ENABLED | DISABLED )] [-httpSetCookie2 ( ENABLED | DISABLED )] [-connectionChaining ( ENABLED | DISABLED )] [-httpDomain ( ENABLED | DISABLED )] [-skipCacheRedirectionHttpTransaction ( ENABLED | DISABLED )] [-identifierName ( ENABLED | DISABLED )] [-identifierSessionName ( ENABLED | DISABLED )] [-observationDomainId &lt;positive_integer>] [-observationDomainName &lt;string>] [-subscriberAwareness ( ENABLED | DISABLED )] [-subscriberIdObfuscation ( ENABLED | DISABLED )] [-SecurityInsightTraffic ( ENABLED | DISABLED )] [-cacheInsight ( ENABLED | DISABLED )] [-videoInsight ( ENABLED | DISABLED )] [-httpQueryWithUrl ( ENABLED | DISABLED )] [-urlCategory ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -32,6 +32,12 @@ Maximum value: 3600
 <b>flowRecordInterval</b>
 Interval, in seconds, at which to send flow records to the configured collectors.
 Default value: 60
+Minimum value: 60
+Maximum value: 3600
+
+<b>SecurityInsightRecordInterval</b>
+Interval, in seconds, at which to send security insight flow records to the configured collectors.
+Default value: 600
 Minimum value: 60
 Maximum value: 3600
 
@@ -149,6 +155,41 @@ Minimum value: 1000
 <b>observationDomainName</b>
 Name of the Observation Domain defined by the observation domain ID.
 
+<b>subscriberAwareness</b>
+Enable this option for logging end user MSISDN in L4/L7 appflow records
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>subscriberIdObfuscation</b>
+Enable this option for obfuscating MSISDN in L4/L7 appflow records
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>SecurityInsightTraffic</b>
+Flag to determine whether security insight traffic needs to be exported or not
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>cacheInsight</b>
+Flag to determine whether cache records need to be exported or not. If this flag is true and IC is enabled, cache records are exported instead of L7 HTTP records
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>videoInsight</b>
+Flag to determine whether video records need to be exported or not. If this flag is true and video optimization feature is enabled, video records are exported.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>httpQueryWithUrl</b>
+Include the HTTP query segment along with the URL that the NetScaler received from the client.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>urlCategory</b>
+Include the URL category record.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
 
 
 ##Example
@@ -162,7 +203,7 @@ Use this command to remove appflow param settings.Refer to the set appflow param
 
 ##Synopsys
 
-unset appflow param [-templateRefresh] [-appnameRefresh] [-flowRecordInterval] [-udpPmtu] [-httpUrl] [-AAAUserName] [-httpCookie] [-httpReferer] [-httpMethod] [-httpHost] [-httpUserAgent] [-clientTrafficOnly] [-httpContentType] [-httpAuthorization] [-httpVia] [-httpXForwardedFor] [-httpLocation] [-httpSetCookie] [-httpSetCookie2] [-connectionChaining] [-httpDomain] [-skipCacheRedirectionHttpTransaction] [-identifierName] [-identifierSessionName] [-observationDomainId] [-observationDomainName]
+unset appflow param [-templateRefresh] [-appnameRefresh] [-flowRecordInterval] [-SecurityInsightRecordInterval] [-udpPmtu] [-httpUrl] [-AAAUserName] [-httpCookie] [-httpReferer] [-httpMethod] [-httpHost] [-httpUserAgent] [-clientTrafficOnly] [-httpContentType] [-httpAuthorization] [-httpVia] [-httpXForwardedFor] [-httpLocation] [-httpSetCookie] [-httpSetCookie2] [-connectionChaining] [-httpDomain] [-skipCacheRedirectionHttpTransaction] [-identifierName] [-identifierSessionName] [-observationDomainId] [-observationDomainName] [-subscriberAwareness] [-subscriberIdObfuscation] [-SecurityInsightTraffic] [-cacheInsight] [-videoInsight] [-httpQueryWithUrl] [-urlCategory]
 
 
 ##show appflow param
@@ -185,6 +226,9 @@ Interval, in seconds, at which to send Appnames to the configured collectors. Ap
 
 <b>flowRecordInterval</b>
 Interval, in seconds, at which to send flow records to the configured collectors.
+
+<b>SecurityInsightRecordInterval</b>
+Interval, in seconds, at which to send security insight flow records to the configured collectors.
 
 <b>udpPmtu</b>
 MTU, in bytes, for IPFIX UDP packets.
@@ -257,6 +301,33 @@ Name of the Observation Domain defined by the observation domain ID.
 
 <b>builtin</b>
 Flag to determine if the appflow param is built-in or not
+
+<b>SecurityInsightTraffic</b>
+State of Security Insight traffic exporting
+
+<b>subscriberAwareness</b>
+Enable this option for logging end user MSISDN in L4/L7 appflow records
+
+<b>subscriberIdObfuscation</b>
+Enable this option for obfuscating MSISDN in L4/L7 appflow records
+
+<b>cacheInsight</b>
+Flag to determine whether cache records need to be exported or not. If this flag is true and IC is enabled, cache records are exported instead of L7 HTTP records
+
+<b>videoInsight</b>
+Flag to determine whether video records need to be exported or not. If this flag is true and video optimization feature is enabled, video records are exported.
+
+<b>httpQueryWithUrl</b>
+Include the HTTP query segment along with the URL that the NetScaler received from the client.
+
+<b>tcpBurstReporting</b>
+TCP burst reporting enable/disable knob.
+
+<b>tcpBurstReportingThreshold</b>
+TCP burst reporting threshold.
+
+<b>urlCategory</b>
+Include the URL category record.
 
 
 

@@ -46,6 +46,9 @@ True if the token is used for current session
 <b>clientType</b>
 client type of the session
 
+<b>partitionName</b>
+Name of the partition where the user is currently present.
+
 <b>devno</b>
 
 <b>count</b>

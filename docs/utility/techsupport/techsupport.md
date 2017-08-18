@@ -10,7 +10,7 @@ Generates a gzipped tar archive of system configuration data and statistics. To 
 
 ##Synopsys
 
-show techsupport [-scope &lt;scope>  &lt;partitionName>] [-upload  [-proxy &lt;string>]  [-casenumber &lt;string>]  [-file &lt;string>]  [-description &lt;string>]]
+show techsupport [-scope &lt;scope>  &lt;partitionName>] [-upload  [-proxy &lt;string>]  [-casenumber &lt;string>]  [-file &lt;string>]  [-description &lt;string>]  [-userName &lt;string>  {-password }]]
 
 
 ##Arguments
@@ -37,6 +37,12 @@ Specifies the name (with full path) of the collector archive file to be uploaded
 
 <b>description</b>
 Provides a text description for the the upload, and can be used for logging purposes.
+
+<b>userName</b>
+Specifies My Citrix user name, which is used to login to Citrix upload server
+
+<b>password</b>
+Specifies My Citrix password, which is used to login to Citrix upload server
 
 
 

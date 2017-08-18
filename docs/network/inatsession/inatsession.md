@@ -10,7 +10,7 @@ Display statistics for stateful inat sessions.
 
 ##Synopsys
 
-stat inatsession &lt;name> [-detail] [-fullValues] [-ntimes &lt;positive_integer>] [-logFile &lt;input_filename>] [-clearstats ( basic | full )]
+stat inatsession [&lt;name>] [-detail] [-fullValues] [-ntimes &lt;positive_integer>] [-logFile &lt;input_filename>] [-clearstats ( basic | full )]
 
 
 ##Arguments
@@ -50,6 +50,24 @@ Possible values: basic, full
 
 ##Outputs
 
+<b>Total INAT Session hits (globalInatHits)</b>
+Total INAT Session hits
+
+<b>Total INAT Current sessions (globalCurInatSessions)</b>
+Total INAT current sessions
+
+<b>Total INAT Received Bytes (globalInatReceiveBytes)</b>
+Total INAT Received Bytes
+
+<b>Total INAT Sent Bytes (globalInatSentBytes)</b>
+Total INAT Sent Bytes
+
+<b>Total INAT Packets Received (globalInatPktReceived)</b>
+Total INAT Packets Received
+
+<b>Total INAT Packets Sent (globalInatPktSent)</b>
+Total INAT Packets Sent
+
 <b>INAT total sessions (inatTotHits)</b>
 INAT total sessions
 
@@ -72,5 +90,5 @@ INAT total Packets Sent
 
 ##Example
 
-stat inatsession inat_1
+stat inatsession
 

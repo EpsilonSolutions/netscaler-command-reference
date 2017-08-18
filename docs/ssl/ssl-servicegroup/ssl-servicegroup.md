@@ -12,7 +12,7 @@ Sets the advanced SSL configuration for an SSL service group.
 
 ##Synopsys
 
-set ssl serviceGroup &lt;serviceGroupName>@ [-sslProfile &lt;string>] [-sessReuse ( ENABLED | DISABLED )  [-sessTimeout &lt;positive_integer>]] [-nonFipsCiphers ( ENABLED | DISABLED )] [-ssl3 ( ENABLED | DISABLED )] [-tls1 ( ENABLED | DISABLED )] [-tls11 ( ENABLED | DISABLED )] [-tls12 ( ENABLED | DISABLED )] [-serverAuth ( ENABLED | DISABLED )  [-commonName &lt;string>]] [-sendCloseNotify ( YES | NO )]
+set ssl serviceGroup &lt;serviceGroupName>@ [-sslProfile &lt;string>] [-sessReuse ( ENABLED | DISABLED )  [-sessTimeout &lt;positive_integer>]] [-ssl3 ( ENABLED | DISABLED )] [-tls1 ( ENABLED | DISABLED )] [-tls11 ( ENABLED | DISABLED )] [-tls12 ( ENABLED | DISABLED )] [-SNIEnable ( ENABLED | DISABLED )] [-ocspStapling ( ENABLED | DISABLED )] [-serverAuth ( ENABLED | DISABLED )] [-commonName &lt;string>] [-sendCloseNotify ( YES | NO )] [-strictSigDigestCheck ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -34,11 +34,6 @@ Default value: 300
 Minimum value: 0
 Maximum value: 4294967294
 
-<b>nonFipsCiphers</b>
-State of usage of ciphers that are not FIPS approved. Valid only for an SSL service bound with a FIPS key and certificate.
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
-
 <b>ssl3</b>
 State of SSLv3 protocol support for the SSL service group.
 Possible values: ENABLED, DISABLED
@@ -59,6 +54,18 @@ State of TLSv1.2 protocol support for the SSL service group.
 Possible values: ENABLED, DISABLED
 Default value: ENABLED
 
+<b>SNIEnable</b>
+State of the Server Name Indication (SNI) feature on the service. SNI helps to enable SSL encryption on multiple domains on a single virtual server or service if the domains are controlled by the same organization and share the same second-level domain name. For example, *.sports.net can be used to secure domains such as login.sports.net and help.sports.net.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>ocspStapling</b>
+State of OCSP stapling support on the SSL virtual server. Supported only if the protocol used is higher than SSLv3. Possible values:
+ENABLED: The appliance sends a request to the OCSP responder to check the status of the server certificate and caches the response for the specified time. If the response is valid at the time of SSL handshake with the client, the OCSP-based server certificate status is sent to the client during the handshake.
+DISABLED: The appliance does not check the status of the server certificate.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
 <b>serverAuth</b>
 State of server authentication support for the SSL service group.
 Possible values: ENABLED, DISABLED
@@ -71,6 +78,11 @@ Name to be checked against the CommonName (CN) field in the server certificate b
 Enable sending SSL Close-Notify at the end of a transaction
 Possible values: YES, NO
 Default value: YES
+
+<b>strictSigDigestCheck</b>
+Parameter indicating to check whether peer's certificate is signed with one of signature-hash combination supported by Netscaler
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
 
 
 
@@ -85,7 +97,7 @@ Use this command to remove ssl serviceGroup settings.Refer to the set ssl servic
 
 ##Synopsys
 
-unset ssl serviceGroup &lt;serviceGroupName>@ [-sslProfile] [-sessReuse] [-sessTimeout] [-nonFipsCiphers] [-ssl3] [-tls1] [-tls11] [-tls12] [-serverAuth] [-commonName] [-sendCloseNotify]
+unset ssl serviceGroup &lt;serviceGroupName>@ [-sslProfile] [-sessReuse] [-sessTimeout] [-ssl3] [-tls1] [-tls11] [-tls12] [-SNIEnable] [-ocspStapling] [-serverAuth] [-commonName] [-sendCloseNotify] [-strictSigDigestCheck]
 
 
 ##bind ssl serviceGroup
@@ -95,7 +107,7 @@ Bind a SSL certkey or a SSL policy to a SSL service.
 
 ##Synopsys
 
-bind ssl serviceGroup &lt;serviceGroupName>@ ((-certkeyName &lt;string>  [(-CA  [-crlCheck ( Mandatory | Optional ) | -ocspCheck ( Mandatory | Optional )]) | -SNICert] ) | -cipherName &lt;string>)
+bind ssl serviceGroup &lt;serviceGroupName>@ ((-certkeyName &lt;string>  [(-CA  [-crlCheck ( Mandatory | Optional ) | -ocspCheck ( Mandatory | Optional )]) | -SNICert] ) | -cipherName &lt;string>) [-eccCurveName &lt;eccCurveName>]
 
 
 ##Arguments
@@ -123,6 +135,10 @@ Possible values: Mandatory, Optional
 <b>cipherName</b>
 A cipher-suite can consist of an individual cipher name, the system predefined cipher-alias name, or user defined cipher-group name.
 
+<b>eccCurveName</b>
+Named ECC curve bound to service group
+Possible values: ALL, P_224, P_256, P_384, P_521
+
 
 
 ##Example
@@ -136,7 +152,7 @@ Unbind a SSL policy from a SSL service.
 
 ##Synopsys
 
-unbind ssl serviceGroup &lt;serviceGroupName>@ ((-certkeyName &lt;string>  [(-CA  [-crlCheck ( Mandatory | Optional )]) | -SNICert] ) | -cipherName &lt;string>)
+unbind ssl serviceGroup &lt;serviceGroupName>@ ((-certkeyName &lt;string>  [(-CA  [-crlCheck ( Mandatory | Optional )]) | -SNICert] ) | -cipherName &lt;string>) [-eccCurveName &lt;eccCurveName>]
 
 
 ##Arguments
@@ -160,6 +176,10 @@ The name of the CertKey. Use this option to bind Certkey(s) which will be used i
 <b>cipherName</b>
 A cipher-suite can consist of an individual cipher name, the system predefined cipher-alias name, or user defined cipher-group name.
 
+<b>eccCurveName</b>
+Named ECC curve bound to service group
+Possible values: ALL, P_224, P_256, P_384, P_521
+
 
 
 ##Example
@@ -173,16 +193,13 @@ Displays information about SSL-specific configuration for all SSL service groups
 
 ##Synopsys
 
-show ssl serviceGroup [&lt;serviceGroupName>] [-cipherDetails]
+show ssl serviceGroup [&lt;serviceGroupName>]
 
 
 ##Arguments
 
 <b>serviceGroupName</b>
 Name of the SSL service group for which to show detailed information.
-
-<b>cipherDetails</b>
-Display details of the individual ciphers bound to the SSL service group.
 
 
 
@@ -258,6 +275,14 @@ State of TLSv1.1 protocol support for the SSL service group.
 <b>tls12</b>
 State of TLSv1.2 protocol support for the SSL service group.
 
+<b>SNIEnable</b>
+The state of SNI extension. Server Name Indication (SNI) helps to enable SSL encryption on multiple subdomains if the domains are controlled by the same organization and share the same second-level domain name.
+
+<b>ocspStapling</b>
+State of OCSP stapling support on the SSL virtual server. Supported only if the protocol used is higher than SSLv3. Possible values:
+ENABLED: The appliance sends a request to the OCSP responder to check the status of the server certificate and caches the response for the specified time. If the response is valid at the time of SSL handshake with the client, the OCSP-based server certificate status is sent to the client during the handshake.
+DISABLED: The appliance does not check the status of the server certificate.
+
 <b>serverAuth</b>
 The state of the server authentication configuration for the SSL service group. For SSL deployments where data is encrypted end-to-end using SSL, you can authenticate the server.
 
@@ -299,8 +324,14 @@ The name of the CertKey. Use this option to bind Certkey(s) which will be used i
 <b>sendCloseNotify</b>
 Enable sending SSL Close-Notify at the end of a transaction
 
+<b>eccCurveName</b>
+Named ECC curve bound to servicegroup.
+
 <b>sslProfile</b>
 Name of the SSL profile that contains SSL settings for the Service Group.
+
+<b>strictSigDigestCheck</b>
+Parameter indicating to check whether peer's certificate is signed with one of signature-hash combination supported by Netscaler
 
 <b>devno</b>
 

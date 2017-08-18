@@ -12,7 +12,7 @@ Enables a NetScaler Gateway appliance in the first DMZ to communicate with one o
 
 ##Synopsys
 
-add vpn nextHopServer &lt;name> &lt;nextHopIP> &lt;nextHopPort> [-secure ( ON | OFF )]
+add vpn nextHopServer &lt;name> (&lt;nextHopIP> | (-nextHopFQDN &lt;string>  [-resAddressType ( IPV4 | IPV6 )])) &lt;nextHopPort> [-secure ( ON | OFF )]
 
 
 ##Arguments
@@ -22,7 +22,15 @@ Name for the NetScaler Gateway appliance in the first DMZ.
 Maximum value: 32
 
 <b>nextHopIP</b>
-IP address or FQDN of the NetScaler Gateway proxy in the second DMZ.
+IP address of the NetScaler Gateway proxy in the second DMZ.
+
+<b>nextHopFQDN</b>
+FQDN of the NetScaler Gateway proxy in the second DMZ.
+
+<b>resAddressType</b>
+Address Type (IPV4/IPv6) of DNS name of nextHopServer FQDN.
+Possible values: IPV4, IPV6
+Minimum value: 1
 
 <b>nextHopPort</b>
 Port number of the NetScaler Gateway proxy in the second DMZ.
@@ -84,6 +92,12 @@ Maximum value: 32
 
 <b>nextHopIP</b>
 Next hop IP address.
+
+<b>nextHopFQDN</b>
+Next hop FQDN.
+
+<b>resAddressType</b>
+Next hop FQDN Address Type.
 
 <b>nextHopPort</b>
 Next hop port number.

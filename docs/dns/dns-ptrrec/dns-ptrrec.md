@@ -36,18 +36,21 @@ add dns ptrrec 1.1.1.in-addr.arpa. abc.com
 
 ##rm dns ptrRec
 
-Removes a pointer (PTR) record for the specified domain name and reverse domain name.
+Removes a pointer (PTR) record for the specified domain name and reverse domain name. For EDNS Client Subnet (ECS) records, a subnet needs to be specified to remove a PTR record for the specified domain name and reverse domain name which is cached for that particular subnet
 
 
 ##Synopsys
 
-rm dns ptrRec &lt;reverseDomain> [&lt;domain> ...]
+rm dns ptrRec &lt;reverseDomain> [-ecsSubnet &lt;ip_addr[/prefix]|ipv6_addr[/prefix]>] [&lt;domain> ...]
 
 
 ##Arguments
 
 <b>reverseDomain</b>
 Reverse domain name of the PTR record.
+
+<b>ecsSubnet</b>
+Subnet for which the cached PTR record need to be removed.
 
 <b>domain</b>
 Domain name for which to remove reverse mapping.
@@ -92,6 +95,9 @@ Time to Live (TTL), in seconds, for the record. TTL is the time for which the re
 
 <b>authType</b>
 Authentication type.
+
+<b>ecsSubnet</b>
+Subnet for which this particular record is cached. Subnet caching will occur for responses with EDNS Client Subnet (ECS) option. Applies to resource records obtained through proxy configurations only.
 
 <b>devno</b>
 

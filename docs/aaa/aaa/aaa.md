@@ -55,23 +55,23 @@ Count of non HTTP connections that succeeded authorization.
 <b>Non HTTP authorization failures (atznonhtpf)</b>
 Count of non HTTP connections that failed authorization.
 
-<b>Current AAA sessions (totcursess)</b>
-Count of current AAA sessions.
+<b>Current SmartAccess AAA Sessions (totcursess)</b>
+Count of current SmartAccess AAA sessions.
 
-<b>Total AAA sessions (totsess)</b>
-Count of all AAA sessions.
+<b>Total SmartAccess AAA sessions (totsess)</b>
+Count of all SmartAccess AAA sessions.
 
 <b>Timed out AAA sessions (totsessto)</b>
 Count of AAA sessions that have timed out.
 
-<b>Current ICAOnly sessions (totcuricasess)</b>
-Count of current ICA only sessions.
+<b>Current Basic (ICAOnly) AAA Sess (totcuricasess)</b>
+Count of current Basic ICA only sessions.
 
-<b>Current ICAOnly Conn (curicaonlyconn)</b>
-Count of current ICA only connections.
+<b>Current Basic (ICAOnly) ICA Conn (curicaonlyconn)</b>
+Count of current Basic ICA only connections.
 
-<b>Current ICA (Smart Access) Conn (curicaconn)</b>
-Count of current ICA connections.
+<b>Current Smart Access ICA Conn (curicaconn)</b>
+Count of current SmartAccess ICA connections.
 
 <b>Current TM sessions (curTMses)</b>
 Count of current AAATM sessions.

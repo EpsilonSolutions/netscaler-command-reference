@@ -12,7 +12,7 @@ Adds an action to be used for OAuth authentication.
 
 ##Synopsys
 
-add authentication OAuthAction &lt;name> -authorizationEndpoint &lt;URL> -tokenEndpoint &lt;URL> [-idtokenDecryptEndpoint &lt;URL>] -clientID &lt;string> -clientSecret &lt;string> [-defaultAuthenticationGroup &lt;string>] [-Attribute1 &lt;string>] [-Attribute2 &lt;string>] [-Attribute3 &lt;string>] [-Attribute4 &lt;string>] [-Attribute5 &lt;string>] [-Attribute6 &lt;string>] [-Attribute7 &lt;string>] [-Attribute8 &lt;string>] [-Attribute9 &lt;string>] [-Attribute10 &lt;string>] [-Attribute11 &lt;string>] [-Attribute12 &lt;string>] [-Attribute13 &lt;string>] [-Attribute14 &lt;string>] [-Attribute15 &lt;string>] [-Attribute16 &lt;string>]
+add authentication OAuthAction &lt;name> [-OAuthType ( GENERIC | INTUNE )] [-authorizationEndpoint &lt;URL>] [-tokenEndpoint &lt;URL>] [-idtokenDecryptEndpoint &lt;URL>] -clientID &lt;string> -clientSecret  [-defaultAuthenticationGroup &lt;string>] [-Attribute1 &lt;string>] [-Attribute2 &lt;string>] [-Attribute3 &lt;string>] [-Attribute4 &lt;string>] [-Attribute5 &lt;string>] [-Attribute6 &lt;string>] [-Attribute7 &lt;string>] [-Attribute8 &lt;string>] [-Attribute9 &lt;string>] [-Attribute10 &lt;string>] [-Attribute11 &lt;string>] [-Attribute12 &lt;string>] [-Attribute13 &lt;string>] [-Attribute14 &lt;string>] [-Attribute15 &lt;string>] [-Attribute16 &lt;string>] [-tenantID &lt;string>] [-GraphEndpoint &lt;string>] [-refreshInterval &lt;positive_integer>] [-CertEndpoint &lt;string>] [-audience &lt;string>] [-userNameField &lt;string>] [-skewTime &lt;mins>] [-issuer &lt;string>]
 
 
 ##Arguments
@@ -23,8 +23,13 @@ Must begin with a letter, number, or the underscore character (_), and must cont
 The following requirement applies only to the NetScaler CLI:
 If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication action" or 'my authentication action').
 
+<b>OAuthType</b>
+Type of the OAuth implementation. Default value is generic implementation that is applicable for most deployments.
+Possible values: GENERIC, INTUNE
+Default value: GENERIC
+
 <b>authorizationEndpoint</b>
-Authorization endpoint/url to which unauthenticated user will be redirected. Netscaler appliance redirects user to this endpoint by adding query parameters including clientid.
+Authorization endpoint/url to which unauthenticated user will be redirected. Netscaler appliance redirects user to this endpoint by adding query parameters including clientid. If this parameter not specified then as default value we take Token Endpoint/URL value. Please note that Authorization Endpoint or Token Endpoint is mandatory for oauthAction
 
 <b>tokenEndpoint</b>
 URL to which OAuth token will be posted to verify its authenticity. User obtains this token from Authorization server upon successful authentication. Netscaler appliance will validate presented token by posting it to the URL configured
@@ -88,6 +93,33 @@ Expression that would be evaluated to extract attribute15 from the oauth respons
 
 <b>Attribute16</b>
 Expression that would be evaluated to extract attribute16 from the oauth response
+
+<b>tenantID</b>
+TenantID of the application. This is usually specific to providers such as Microsoft and usually refers to the deployment identifier.
+
+<b>GraphEndpoint</b>
+URL of the Graph API service to learn Enterprise Mobility Services (EMS) endpoints.
+
+<b>refreshInterval</b>
+Interval at which services are monitored for necessary configuration.
+Default value: 1440
+Minimum value: 0
+
+<b>CertEndpoint</b>
+URL of the endpoint that contains JWKs (Json Web Key) for JWT (Json Web Token) verification.
+
+<b>audience</b>
+Audience for which token sent by Authorization server is applicable. This is typically entity name or url that represents the recipient
+
+<b>userNameField</b>
+Attribute in the token from which username should be extracted.
+
+<b>skewTime</b>
+This option specifies the allowed clock skew in number of minutes that Netscaler allows on an incoming token. For example, if skewTime is 10, then token would be valid from (current time - 10) min to (current time + 10) min, ie 20min in all.
+Default value: 5
+
+<b>issuer</b>
+Identity of the server whose tokens are to be accepted.
 
 
 
@@ -123,7 +155,7 @@ Modifies the attributes of an existing OAuth authentication action.
 
 ##Synopsys
 
-set authentication OAuthAction &lt;name> [-authorizationEndpoint &lt;URL>] [-tokenEndpoint &lt;URL>] [-idtokenDecryptEndpoint &lt;URL>] [-clientID &lt;string>] [-clientSecret &lt;string>] [-defaultAuthenticationGroup &lt;string>] [-Attribute1 &lt;string>] [-Attribute2 &lt;string>] [-Attribute3 &lt;string>] [-Attribute4 &lt;string>] [-Attribute5 &lt;string>] [-Attribute6 &lt;string>] [-Attribute7 &lt;string>] [-Attribute8 &lt;string>] [-Attribute9 &lt;string>] [-Attribute10 &lt;string>] [-Attribute11 &lt;string>] [-Attribute12 &lt;string>] [-Attribute13 &lt;string>] [-Attribute14 &lt;string>] [-Attribute15 &lt;string>] [-Attribute16 &lt;string>]
+set authentication OAuthAction &lt;name> [-OAuthType ( GENERIC | INTUNE )] [-authorizationEndpoint &lt;URL>] [-tokenEndpoint &lt;URL>] [-idtokenDecryptEndpoint &lt;URL>] [-clientID &lt;string>] [-clientSecret ] [-defaultAuthenticationGroup &lt;string>] [-Attribute1 &lt;string>] [-Attribute2 &lt;string>] [-Attribute3 &lt;string>] [-Attribute4 &lt;string>] [-Attribute5 &lt;string>] [-Attribute6 &lt;string>] [-Attribute7 &lt;string>] [-Attribute8 &lt;string>] [-Attribute9 &lt;string>] [-Attribute10 &lt;string>] [-Attribute11 &lt;string>] [-Attribute12 &lt;string>] [-Attribute13 &lt;string>] [-Attribute14 &lt;string>] [-Attribute15 &lt;string>] [-Attribute16 &lt;string>] [-tenantID &lt;string>] [-GraphEndpoint &lt;string>] [-refreshInterval &lt;positive_integer>] [-CertEndpoint &lt;string>] [-audience &lt;string>] [-userNameField &lt;string>] [-skewTime &lt;mins>] [-issuer &lt;string>]
 
 
 ##Arguments
@@ -131,8 +163,13 @@ set authentication OAuthAction &lt;name> [-authorizationEndpoint &lt;URL>] [-tok
 <b>name</b>
 Name of the action to configure.
 
+<b>OAuthType</b>
+Type of the OAuth implementation. Default value is generic implementation that is applicable for most deployments.
+Possible values: GENERIC, INTUNE
+Default value: GENERIC
+
 <b>authorizationEndpoint</b>
-Authorization endpoint/url to which unauthenticated user will be redirected. Netscaler appliance redirects user to this endpoint by adding query parameters including clientid.
+Authorization endpoint/url to which unauthenticated user will be redirected. Netscaler appliance redirects user to this endpoint by adding query parameters including clientid. If this parameter not specified then as default value we take Token Endpoint/URL value. Please note that Authorization Endpoint or Token Endpoint is mandatory for oauthAction
 
 <b>tokenEndpoint</b>
 URL to which OAuth token will be posted to verify its authenticity. User obtains this token from Authorization server upon successful authentication. Netscaler appliance will validate presented token by posting it to the URL configured
@@ -197,6 +234,33 @@ Expression that would be evaluated to extract attribute15 from the oauth respons
 <b>Attribute16</b>
 Expression that would be evaluated to extract attribute16 from the oauth response
 
+<b>tenantID</b>
+TenantID of the application. This is usually specific to providers such as Microsoft and usually refers to the deployment identifier.
+
+<b>GraphEndpoint</b>
+URL of the Graph API service to learn Enterprise Mobility Services (EMS) endpoints.
+
+<b>refreshInterval</b>
+Interval at which services are monitored for necessary configuration.
+Default value: 1440
+Minimum value: 0
+
+<b>CertEndpoint</b>
+URL of the endpoint that contains JWKs (Json Web Key) for JWT (Json Web Token) verification.
+
+<b>audience</b>
+Audience for which token sent by Authorization server is applicable. This is typically entity name or url that represents the recipient
+
+<b>userNameField</b>
+Attribute in the token from which username should be extracted.
+
+<b>skewTime</b>
+This option specifies the allowed clock skew in number of minutes that Netscaler allows on an incoming token. For example, if skewTime is 10, then token would be valid from (current time - 10) min to (current time + 10) min, ie 20min in all.
+Default value: 5
+
+<b>issuer</b>
+Identity of the server whose tokens are to be accepted.
+
 
 
 ##Example
@@ -210,7 +274,7 @@ Use this command to remove authentication OAuthAction settings.Refer to the set 
 
 ##Synopsys
 
-unset authentication OAuthAction &lt;name> [-idtokenDecryptEndpoint] [-defaultAuthenticationGroup] [-Attribute1] [-Attribute2] [-Attribute3] [-Attribute4] [-Attribute5] [-Attribute6] [-Attribute7] [-Attribute8] [-Attribute9] [-Attribute10] [-Attribute11] [-Attribute12] [-Attribute13] [-Attribute14] [-Attribute15] [-Attribute16]
+unset authentication OAuthAction &lt;name> [-OAuthType] [-idtokenDecryptEndpoint] [-defaultAuthenticationGroup] [-Attribute1] [-Attribute2] [-Attribute3] [-Attribute4] [-Attribute5] [-Attribute6] [-Attribute7] [-Attribute8] [-Attribute9] [-Attribute10] [-Attribute11] [-Attribute12] [-Attribute13] [-Attribute14] [-Attribute15] [-Attribute16] [-GraphEndpoint] [-refreshInterval] [-CertEndpoint] [-audience] [-userNameField] [-skewTime] [-issuer]
 
 
 ##show authentication OAuthAction
@@ -235,7 +299,7 @@ Name of the OAuth authentication action to display. If a name is not provided, i
 <b>stateflag</b>
 
 <b>authorizationEndpoint</b>
-Authorization endpoint/url to which unauthenticated user will be redirected. Netscaler appliance redirects user to this endpoint by adding query parameters including clientid.
+Authorization endpoint/url to which unauthenticated user will be redirected. Netscaler appliance redirects user to this endpoint by adding query parameters including clientid. If this parameter not specified then as default value we take Token Endpoint/URL value. Please note that Authorization Endpoint or Token Endpoint is mandatory for oauthAction
 
 <b>tokenEndpoint</b>
 URL to which OAuth token will be posted to verify its authenticity. User obtains this token from Authorization server upon successful authentication. Netscaler appliance will validate presented token by posting it to the URL configured
@@ -299,6 +363,36 @@ Expression that would be evaluated to extract attribute15 from the oauth respons
 
 <b>Attribute16</b>
 Expression that would be evaluated to extract attribute16 from the oauth response
+
+<b>tenantID</b>
+TenantID of the application. This is usually specific to providers such as Microsoft and usually refers to the deployment identifier.
+
+<b>GraphEndpoint</b>
+URL of the Graph API service to learn Enterprise Mobility Services (EMS) endpoints.
+
+<b>refreshInterval</b>
+Interval at which services are monitored for necessary configuration.
+
+<b>CertEndpoint</b>
+URL of the endpoint that contains JWKs (Json Web Key) for JWT (Json Web Token) verification.
+
+<b>OAuthType</b>
+Type of the OAuth implementation. Default value is generic implementation that is applicable for most deployments.
+
+<b>audience</b>
+Audience for which token sent by Authorization server is applicable. This is typically entity name or url that represents the recipient
+
+<b>userNameField</b>
+Attribute in the token from which username should be extracted.
+
+<b>skewTime</b>
+This option specifies the allowed clock skew in number of minutes that Netscaler allows on an incoming token. For example, if skewTime is 10, then token would be valid from (current time - 10) min to (current time + 10) min, ie 20min in all.
+
+<b>issuer</b>
+Identity of the server whose tokens are to be accepted.
+
+<b>OAuthStatus</b>
+Describes status information of oauth server.
 
 <b>devno</b>
 

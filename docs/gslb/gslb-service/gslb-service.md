@@ -12,7 +12,7 @@ Creates a global server load balancing (GSLB) service.
 
 ##Synopsys
 
-add gslb service &lt;serviceName> (-cnameEntry &lt;string> | &lt;IP> | &lt;serverName> | &lt;serviceType> | &lt;port> | -publicIP &lt;ip_addr|ipv6_addr|*> | -publicPort &lt;port> | -sitePersistence &lt;sitePersistence> | -sitePrefix &lt;string>) [-maxClient &lt;positive_integer>] [-healthMonitor ( YES | NO )] -siteName &lt;string> [-state ( ENABLED | DISABLED )] [-cip ( ENABLED | DISABLED )  [&lt;cipHeader>]] [-cookieTimeout &lt;mins>] [-cltTimeout &lt;secs>] [-svrTimeout &lt;secs>] [-maxBandwidth &lt;positive_integer>] [-downStateFlush ( ENABLED | DISABLED )] [-maxAAAUsers &lt;positive_integer>] [-monThreshold &lt;positive_integer>] [-hashId &lt;positive_integer>] [-comment &lt;string>] [-appflowLog ( ENABLED | DISABLED )]
+add gslb service &lt;serviceName> (-cnameEntry &lt;string> | &lt;IP> | &lt;serverName> | &lt;serviceType> | &lt;port> | -publicIP &lt;ip_addr|ipv6_addr|*> | -publicPort &lt;port> | -sitePersistence &lt;sitePersistence> | -sitePrefix &lt;string>) [-maxClient &lt;positive_integer>] [-healthMonitor ( YES | NO )] -siteName &lt;string> [-state ( ENABLED | DISABLED )] [-cip ( ENABLED | DISABLED )  [&lt;cipHeader>]] [-cookieTimeout &lt;mins>] [-cltTimeout &lt;secs>] [-svrTimeout &lt;secs>] [-maxBandwidth &lt;positive_integer>] [-downStateFlush ( ENABLED | DISABLED )] [-maxAAAUsers &lt;positive_integer>] [-monThreshold &lt;positive_integer>] [-hashId &lt;positive_integer>] [-comment &lt;string>] [-appflowLog ( ENABLED | DISABLED )] [-naptrReplacement &lt;string>  [-naptrDomainTTL &lt;secs>]] [-naptrOrder &lt;positive_integer>] [-naptrServices &lt;string>] [-naptrPreference &lt;positive_integer>]
 
 
 ##Arguments
@@ -120,6 +120,29 @@ Enable logging appflow flow information
 Possible values: ENABLED, DISABLED
 Default value: ENABLED
 
+<b>naptrReplacement</b>
+The replacement domain name for this NAPTR.
+
+<b>naptrOrder</b>
+An integer specifying the order in which the NAPTR records MUST be processed in order to accurately represent the ordered list of Rules. The ordering is from lowest to highest
+Default value: 1
+Minimum value: 1
+Maximum value: 65535
+
+<b>naptrServices</b>
+Service Parameters applicable to this delegation path.
+
+<b>naptrDomainTTL</b>
+Modify the TTL of the internally created naptr domain
+Default value: 3600
+Minimum value: 1
+
+<b>naptrPreference</b>
+An integer specifying the preference of this NAPTR among NAPTR records having same order. lower the number, higher the preference.
+Default value: 1
+Minimum value: 1
+Maximum value: 65535
+
 
 
 ##Example
@@ -154,7 +177,7 @@ Modifies the specified parameters of a global server load balancing (GSLB) servi
 
 ##Synopsys
 
-set gslb service &lt;serviceName> [-IPAddress &lt;ip_addr|ipv6_addr|*>] [-publicIP &lt;ip_addr|ipv6_addr|*>] [-publicPort &lt;port>] [-cip ( ENABLED | DISABLED )  [&lt;cipHeader>]] [-sitePersistence &lt;sitePersistence>] [-sitePrefix &lt;string>] [-maxClient &lt;positive_integer>] [-healthMonitor ( YES | NO )] [-maxBandwidth &lt;positive_integer>] [-downStateFlush ( ENABLED | DISABLED )] [-maxAAAUsers &lt;positive_integer>] [-viewName &lt;string>  &lt;viewIP>] [-monThreshold &lt;positive_integer>] [-weight &lt;positive_integer>  &lt;monitorName>] [-hashId &lt;positive_integer>] [-comment &lt;string>] [-appflowLog ( ENABLED | DISABLED )]
+set gslb service &lt;serviceName> [-IPAddress &lt;ip_addr|ipv6_addr|*>] [-publicIP &lt;ip_addr|ipv6_addr|*>] [-publicPort &lt;port>] [-cip ( ENABLED | DISABLED )  [&lt;cipHeader>]] [-sitePersistence &lt;sitePersistence>] [-sitePrefix &lt;string>] [-maxClient &lt;positive_integer>] [-healthMonitor ( YES | NO )] [-maxBandwidth &lt;positive_integer>] [-downStateFlush ( ENABLED | DISABLED )] [-maxAAAUsers &lt;positive_integer>] [-viewName &lt;string>  &lt;viewIP>] [-monThreshold &lt;positive_integer>] [-weight &lt;positive_integer>  &lt;monitorName>] [-hashId &lt;positive_integer>] [-comment &lt;string>] [-appflowLog ( ENABLED | DISABLED )] [-naptrOrder &lt;positive_integer>] [-naptrPreference &lt;positive_integer>] [-naptrServices &lt;string>] [-naptrReplacement &lt;string>  [-naptrDomainTTL &lt;secs>]]
 
 
 ##Arguments
@@ -242,6 +265,29 @@ Enable logging appflow flow information
 Possible values: ENABLED, DISABLED
 Default value: ENABLED
 
+<b>naptrOrder</b>
+An integer specifying the order in which the NAPTR records MUST be processed in order to accurately represent the ordered list of Rules. The ordering is from lowest to highest
+Default value: 1
+Minimum value: 1
+Maximum value: 65535
+
+<b>naptrPreference</b>
+An integer specifying the preference of this NAPTR among NAPTR records having same order. lower the number, higher the preference.
+Default value: 1
+Minimum value: 1
+Maximum value: 65535
+
+<b>naptrServices</b>
+Service Parameters applicable to this delegation path.
+
+<b>naptrReplacement</b>
+The replacement domain name for this NAPTR.
+
+<b>naptrDomainTTL</b>
+Modify the TTL of the internally created naptr domain
+Default value: 3600
+Minimum value: 1
+
 
 
 ##Example
@@ -255,7 +301,7 @@ Use this command to remove gslb service settings.Refer to the set gslb service c
 
 ##Synopsys
 
-unset gslb service &lt;serviceName> [-publicIP] [-publicPort] [-cip] [-cipHeader] [-sitePersistence] [-sitePrefix] [-maxClient] [-healthMonitor] [-maxBandwidth] [-downStateFlush] [-maxAAAUsers] [-monThreshold] [-hashId] [-comment] [-appflowLog]
+unset gslb service &lt;serviceName> [-publicIP] [-publicPort] [-cip] [-cipHeader] [-sitePersistence] [-sitePrefix] [-maxClient] [-healthMonitor] [-maxBandwidth] [-downStateFlush] [-maxAAAUsers] [-monThreshold] [-hashId] [-comment] [-appflowLog] [-naptrOrder] [-naptrPreference] [-naptrServices] [-naptrReplacement] [-naptrDomainTTL]
 
 
 ##bind gslb service
@@ -501,6 +547,24 @@ Tells the mon owner of the gslb service.
 
 <b>ClMonView</b>
 Tells the view id of the monitoring owner.
+
+<b>lastresponse</b>
+Displays the gslb monitor status in string format.
+
+<b>naptrOrder</b>
+An integer specifying the order in which the NAPTR records MUST be processed in order to accurately represent the ordered list of Rules. The ordering is from lowest to highest
+
+<b>naptrPreference</b>
+An integer specifying the preference of this NAPTR among NAPTR records having same order. lower the number, higher the preference.
+
+<b>naptrServices</b>
+Service Parameters applicable to this delegation path.
+
+<b>naptrReplacement</b>
+The replacement domain name for this NAPTR.
+
+<b>naptrDomainTTL</b>
+Modify the TTL of the internally created naptr domain
 
 <b>devno</b>
 

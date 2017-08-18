@@ -12,7 +12,7 @@ Creates a DNS profile. These DNS profiles can be associated with DNS/DNS-TCP LB 
 
 ##Synopsys
 
-add dns profile &lt;dnsProfileName> [-dnsQueryLogging ( ENABLED | DISABLED )] [-dnsAnswerSecLogging ( ENABLED | DISABLED )] [-dnsExtendedLogging ( ENABLED | DISABLED )] [-dnsErrorLogging ( ENABLED | DISABLED )] [-cacheRecords ( ENABLED | DISABLED )] [-cacheNegativeResponses ( ENABLED | DISABLED )]
+add dns profile &lt;dnsProfileName> [-dnsQueryLogging ( ENABLED | DISABLED )] [-dnsAnswerSecLogging ( ENABLED | DISABLED )] [-dnsExtendedLogging ( ENABLED | DISABLED )] [-dnsErrorLogging ( ENABLED | DISABLED )] [-cacheRecords ( ENABLED | DISABLED )] [-cacheNegativeResponses ( ENABLED | DISABLED )] [-dropMultiQueryRequest ( ENABLED | DISABLED )] [-cacheECSResponses ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -49,6 +49,16 @@ Default value: ENABLED
 Cache negative responses in the DNS cache. When disabled, the appliance stops caching negative responses except referral records. This applies to all configurations - proxy, end resolver, and forwarder. However, cached responses are not flushed. The appliance does not serve negative responses from the cache until this parameter is enabled again.
 Possible values: ENABLED, DISABLED
 Default value: ENABLED
+
+<b>dropMultiQueryRequest</b>
+Drop the DNS requests containing multiple queries. When enabled, DNS requests containing multiple queries will be dropped. In case of proxy configuration by default the DNS request containing multiple queries is forwarded to the backend and in case of ADNS and Resolver configuration NOCODE error response will be sent to the client.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>cacheECSResponses</b>
+Cache DNS responses with EDNS Client Subnet(ECS) option in the DNS cache. When disabled, the appliance stops caching responses with ECS option. This is relevant to proxy configuration. Enabling/disabling support of ECS option when NetScaler is authoritative for a GSLB domain is supported using a knob in GSLB vserver. In all other modes, ECS option is ignored.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
 
 
 
@@ -63,7 +73,7 @@ Modifies the attributes of a DNS profile.
 
 ##Synopsys
 
-set dns profile &lt;dnsProfileName> [-dnsQueryLogging ( ENABLED | DISABLED )] [-dnsAnswerSecLogging ( ENABLED | DISABLED )] [-dnsExtendedLogging ( ENABLED | DISABLED )] [-dnsErrorLogging ( ENABLED | DISABLED )] [-cacheRecords ( ENABLED | DISABLED )] [-cacheNegativeResponses ( ENABLED | DISABLED )]
+set dns profile &lt;dnsProfileName> [-dnsQueryLogging ( ENABLED | DISABLED )] [-dnsAnswerSecLogging ( ENABLED | DISABLED )] [-dnsExtendedLogging ( ENABLED | DISABLED )] [-dnsErrorLogging ( ENABLED | DISABLED )] [-cacheRecords ( ENABLED | DISABLED )] [-cacheNegativeResponses ( ENABLED | DISABLED )] [-dropMultiQueryRequest ( ENABLED | DISABLED )] [-cacheECSResponses ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -101,6 +111,16 @@ Cache negative responses in the DNS cache. When disabled, the appliance stops ca
 Possible values: ENABLED, DISABLED
 Default value: ENABLED
 
+<b>dropMultiQueryRequest</b>
+Drop the DNS requests containing multiple queries. When enabled, DNS requests containing multiple queries will be dropped. In case of proxy configuration by default the DNS request containing multiple queries is forwarded to the backend and in case of ADNS and Resolver configuration NOCODE error response will be sent to the client.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>cacheECSResponses</b>
+Cache DNS responses with EDNS Client Subnet(ECS) option in the DNS cache. When disabled, the appliance stops caching responses with ECS option. This is relevant to proxy configuration. Enabling/disabling support of ECS option when NetScaler is authoritative for a GSLB domain is supported using a knob in GSLB vserver. In all other modes, ECS option is ignored.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
 
 
 ##Example
@@ -114,7 +134,7 @@ Use this command to remove dns profile settings.Refer to the set dns profile com
 
 ##Synopsys
 
-unset dns profile &lt;dnsProfileName> [-dnsQueryLogging] [-dnsAnswerSecLogging] [-dnsExtendedLogging] [-dnsErrorLogging] [-cacheRecords] [-cacheNegativeResponses]
+unset dns profile &lt;dnsProfileName> [-dnsQueryLogging] [-dnsAnswerSecLogging] [-dnsExtendedLogging] [-dnsErrorLogging] [-cacheRecords] [-cacheNegativeResponses] [-dropMultiQueryRequest] [-cacheECSResponses]
 
 
 ##rm dns profile
@@ -174,6 +194,12 @@ Cache resource records in the DNS cache. Applies to resource records obtained th
 
 <b>cacheNegativeResponses</b>
 Cache negative responses in the DNS cache. When disabled, the appliance stops caching negative responses except referral records. This applies to all configurations - proxy, end resolver, and forwarder. However, cached responses are not flushed. The appliance does not serve negative responses from the cache until this parameter is enabled again.
+
+<b>dropMultiQueryRequest</b>
+Drop the DNS requests containing multiple queries. When enabled, DNS requests containing multiple queries will be dropped. In case of proxy configuration by default the DNS request containing multiple queries is forwarded to the backend and in case of ADNS and Resolver configuration NOCODE error response will be sent to the client.
+
+<b>cacheECSResponses</b>
+Cache DNS responses with EDNS Client Subnet(ECS) option in the DNS cache. When disabled, the appliance stops caching responses with ECS option. This is relevant to proxy configuration. Enabling/disabling support of ECS option when NetScaler is authoritative for a GSLB domain is supported using a knob in GSLB vserver. In all other modes, ECS option is ignored.
 
 <b>referenceCount</b>
 Number of entities using this profile

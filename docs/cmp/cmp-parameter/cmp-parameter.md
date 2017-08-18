@@ -56,7 +56,6 @@ Type of policy. Available settings function as follows:
  * Classic -  Classic policies evaluate basic characteristics of traffic and other data.
  * Advanced -  Advanced policies (which have been renamed as default syntax policies) can perform the same type of evaluations as classic policies. They also enable you to analyze more data (for example, the body of an HTTP request) and to configure more operations in the policy rule (for example, transforming data in the body of a request into an HTTP header).
 Possible values: CLASSIC, ADVANCED
-Default value: CLASSIC
 
 <b>addVaryHeader</b>
 Control insertion of the Vary header in HTTP responses compressed by NetScaler. Intermediate caches store different versions of the response for different values of the headers present in the Vary response header.
@@ -79,13 +78,17 @@ set cmp param -cmpLevel bestspeed -quantumSize 20480
 
 ##unset cmp parameter
 
-Use this command to remove cmp parameter settings.Refer to the set cmp parameter command for meanings of the arguments.
+Reverts to the default value.Refer to the set cmp parameter command for meanings of the arguments.
 
 
 ##Synopsys
 
-unset cmp parameter [-cmpLevel] [-quantumSize] [-serverCmp] [-minResSize] [-cmpBypassPct] [-cmpOnPush] [-policyType] [-addVaryHeader] [-varyHeaderValue] [-externalCache]
+unset cmp parameter [-policyType] [-cmpLevel] [-quantumSize] [-serverCmp] [-minResSize] [-cmpBypassPct] [-cmpOnPush] [-addVaryHeader] [-varyHeaderValue] [-externalCache]
 
+
+##Example
+
+unset cmp param -policytype
 
 ##show cmp parameter
 

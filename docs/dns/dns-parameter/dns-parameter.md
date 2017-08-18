@@ -12,7 +12,7 @@ Modifies global DNS parameters on the NetScaler appliance.
 
 ##Synopsys
 
-set dns parameter [-retries &lt;positive_integer>] [-minTTL &lt;secs>] [-maxTTL &lt;secs>] [-nameLookupPriority ( WINS | DNS )] [-recursion ( ENABLED | DISABLED )] [-resolutionOrder &lt;resolutionOrder>] [-dnssec ( ENABLED | DISABLED )] [-maxPipeline &lt;positive_integer>] [-dnsRootReferral ( ENABLED | DISABLED )] [-dns64Timeout &lt;msecs>]
+set dns parameter [-retries &lt;positive_integer>] [-minTTL &lt;secs>] [-maxTTL &lt;secs>] [-nameLookupPriority ( WINS | DNS )] [-recursion ( ENABLED | DISABLED )] [-resolutionOrder &lt;resolutionOrder>] [-dnssec ( ENABLED | DISABLED )] [-maxPipeline &lt;positive_integer>] [-dnsRootReferral ( ENABLED | DISABLED )] [-dns64Timeout &lt;msecs>] [-ecsMaxSubnets &lt;positive_integer>] [-maxnegcacheTTL &lt;secs>] [-cacheHitBypass ( ENABLED | DISABLED )] [-maxCacheSize &lt;MBytes>] [-maxNegativeCacheSize &lt;MBytes>] [-cacheNoExpire ( ENABLED | DISABLED )] [-splitPktQueryProcessing ( ALLOW | DROP )] [-cacheECSZeroPrefix ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -72,6 +72,44 @@ While doing DNS64 resolution, this parameter specifies the time to wait before s
 Default value: -1 
 Maximum value: 10000
 
+<b>ecsMaxSubnets</b>
+Maximum number of subnets that can be cached corresponding to a single domain. Subnet caching will occur for responses with EDNS Client Subnet (ECS) option. Caching of such responses can be disabled using DNS profile settings. A value of zero indicates that the number of subnets cached is limited only by existing memory constraints. The default value is zero.
+Default value: 0
+Minimum value: 0
+Maximum value: 1280
+
+<b>maxnegcacheTTL</b>
+Maximum time to live (TTL) for all negative records ( NXDONAIN and NODATA ) cached in the DNS cache by DNS proxy, end resolver, and forwarder configurations. If the TTL of a record that is to be cached is higher than the value configured for maxnegcacheTTL, the TTL of the record is set to the value of maxnegcacheTTL before caching. When you modify this setting, the new value is applied only to those records that are cached after the modification. The TTL values of existing records are not changed.
+Default value: 604800
+Minimum value: 1
+Maximum value: 604800
+
+<b>cacheHitBypass</b>
+This parameter is applicable only in proxy mode and if this parameter is enabled  we will forward all the client requests to the backend DNS server and the response served will be cached on netscaler
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>maxCacheSize</b>
+Maximum memory, in megabytes, that can be used for dns caching per Packet Engine.
+
+<b>maxNegativeCacheSize</b>
+Maximum memory, in megabytes, that can be used for caching of negative DNS responses per packet engine.
+
+<b>cacheNoExpire</b>
+If this flag is set to YES, the existing entries in cache do not age out. On reaching the max limit the cache records are frozen
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>splitPktQueryProcessing</b>
+Processing requests split across multiple packets
+Possible values: ALLOW, DROP
+Default value: ALLOW
+
+<b>cacheECSZeroPrefix</b>
+Cache ECS responses with a Scope Prefix length of zero. Such a cached response will be used for all queries with this domain name and any subnet. When disabled, ECS responses with Scope Prefix length of zero will be cached, but not tied to any subnet. This option has no effect if caching of ECS responses is disabled in the corresponding DNS profile.
+Possible values: ENABLED, DISABLED
+Default value: ENABLED
+
 
 
 ##unset dns parameter
@@ -81,7 +119,7 @@ Use this command to remove dns parameter settings.Refer to the set dns parameter
 
 ##Synopsys
 
-unset dns parameter [-retries] [-minTTL] [-maxTTL] [-nameLookupPriority] [-recursion] [-resolutionOrder] [-dnssec] [-maxPipeline] [-dnsRootReferral] [-dns64Timeout]
+unset dns parameter [-retries] [-minTTL] [-maxTTL] [-nameLookupPriority] [-recursion] [-resolutionOrder] [-dnssec] [-maxPipeline] [-dnsRootReferral] [-dns64Timeout] [-ecsMaxSubnets] [-maxnegcacheTTL] [-cacheHitBypass] [-maxCacheSize] [-maxNegativeCacheSize] [-cacheNoExpire] [-splitPktQueryProcessing] [-cacheECSZeroPrefix]
 
 
 ##show dns parameter
@@ -132,6 +170,30 @@ Send a root referral if a client queries a domain name that is unrelated to the 
 
 <b>dns64Timeout</b>
 While doing DNS64 resolution, this parameter specifies the time to wait before sending an A query if no response is received from backend DNS server for AAAA query.
+
+<b>ecsMaxSubnets</b>
+Maximum number of subnets that can be cached corresponding to a single domain. Subnet caching will occur for responses with EDNS Client Subnet (ECS) option. Caching of such responses can be disabled using DNS profile settings. A value of zero indicates that the number of subnets cached is limited only by existing memory constraints. The default value is zero.
+
+<b>maxnegcacheTTL</b>
+Maximum time to live (TTL) for all negative records ( NXDONAIN and NODATA ) cached in the DNS cache by DNS proxy, end resolver, and forwarder configurations. If the TTL of a record that is to be cached is higher than the value configured for maxnegcacheTTL, the TTL of the record is set to the value of maxnegcacheTTL before caching. When you modify this setting, the new value is applied only to those records that are cached after the modification. The TTL values of existing records are not changed.
+
+<b>cacheHitBypass</b>
+This parameter is applicable only in proxy mode and if this parameter is enabled  we will forward all the client requests to the backend DNS server and the response served will be cached on netscaler
+
+<b>maxCacheSize</b>
+Maximum memory, in megabytes, that can be used for dns caching per Packet Engine.
+
+<b>maxNegativeCacheSize</b>
+Maximum memory, in megabytes, that can be used for caching of negative DNS responses per packet engine.
+
+<b>cacheNoExpire</b>
+If this flag is set to YES, the existing entries in cache do not age out. On reaching the max limit the cache records are frozen
+
+<b>splitPktQueryProcessing</b>
+Processing requests split across multiple packets
+
+<b>cacheECSZeroPrefix</b>
+Cache ECS responses with a Scope Prefix length of zero. Such a cached response will be used for all queries with this domain name and any subnet. When disabled, ECS responses with Scope Prefix length of zero will be cached, but not tied to any subnet. This option has no effect if caching of ECS responses is disabled in the corresponding DNS profile.
 
 
 

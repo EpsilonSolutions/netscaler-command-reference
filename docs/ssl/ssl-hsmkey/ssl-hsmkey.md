@@ -12,16 +12,28 @@ Add HSM Key.
 
 ##Synopsys
 
-add ssl hsmKey &lt;hsmKeyName> -key &lt;string>
+add ssl hsmKey &lt;hsmKeyName> [-hsmType ( THALES | SAFENET )] [-key &lt;string> | -serialNum &lt;string>] {-password }
 
 
 ##Arguments
 
 <b>hsmKeyName</b>
 
+<b>hsmType</b>
+Type of HSM.
+Possible values: THALES, SAFENET
+Default value: THALES
+
 <b>key</b>
-Name of and, optionally, path to the HSM key file. /var/opt/nfast/kmdata/local/ is the default path
+Name of and, optionally, path to the HSM key file. /var/opt/nfast/kmdata/local/ is the default path. Applies only to THALES HSM.
 Maximum value: 63
+
+<b>serialNum</b>
+Serial number of the partition on which the key is present. Applies only to SafeNet HSM.
+Maximum value: 16
+
+<b>password</b>
+Password for a partition. Applies only to SafeNet HSM.
 
 
 
@@ -36,13 +48,25 @@ Removes the specified HSM key, from the HSM Appliance.
 
 ##Synopsys
 
-rm ssl hsmKey &lt;hsmKeyName>
+rm ssl hsmKey &lt;hsmKeyName> [-hsmType ( THALES | SAFENET )] [-serialNum &lt;string>] {-password }
 
 
 ##Arguments
 
 <b>hsmKeyName</b>
-Name of the HSMKEY to be removed
+Name of the HSMKEY.
+
+<b>hsmType</b>
+Type of the HSMKEY.
+Possible values: THALES, SAFENET
+Default value: THALES
+
+<b>serialNum</b>
+SerialNum of a partition on which Safent HSMKey is present.
+Maximum value: 16
+
+<b>password</b>
+Password of a partition on which SafeNet HSMkey is present.
 
 
 
@@ -68,6 +92,12 @@ Name of the HSM Key for which to show detailed information.
 
 
 ##Outputs
+
+<b>hsmType</b>
+Type of the HSM key.
+
+<b>serialNum</b>
+SerialNum of a partition on which Safenet key is present.
 
 <b>devno</b>
 

@@ -3,7 +3,7 @@
 The following operations can be performed on "netbridge":
 
 
-[add](#add-netbridge) | [rm](#rm-netbridge) | [show](#show-netbridge) | [bind](#bind-netbridge) | [unbind](#unbind-netbridge)
+[add](#add-netbridge) | [set](#set-netbridge) | [unset](#unset-netbridge) | [rm](#rm-netbridge) | [show](#show-netbridge) | [bind](#bind-netbridge) | [unbind](#unbind-netbridge)
 
 ##add netbridge
 
@@ -12,7 +12,7 @@ Add a network bridge.
 
 ##Synopsys
 
-add netbridge &lt;name>
+add netbridge &lt;name> [-vxlanVlanMap &lt;string>]
 
 
 ##Arguments
@@ -20,11 +20,48 @@ add netbridge &lt;name>
 <b>name</b>
 The name of the network bridge.
 
+<b>vxlanVlanMap</b>
+The vlan to vxlan mapping to be applied to this netbridge.
+
 
 
 ##Example
 
 add netbridge bridge1
+
+##set netbridge
+
+Set network bridge parameters.
+
+
+##Synopsys
+
+set netbridge &lt;name> [-vxlanVlanMap &lt;string>]
+
+
+##Arguments
+
+<b>name</b>
+The name of the network bridge.
+
+<b>vxlanVlanMap</b>
+The vlan to vxlan mapping to be applied to this netbridge.
+
+
+
+##Example
+
+set netbridge bridge1 -vlanVxlanMap p1
+
+##unset netbridge
+
+Use this command to remove  netbridge settings.Refer to the set  netbridge command for meanings of the arguments.
+
+
+##Synopsys
+
+unset netbridge &lt;name> -vxlanVlanMap
+
 
 ##rm netbridge
 
@@ -65,6 +102,9 @@ The name of the network bridge.
 
 
 ##Outputs
+
+<b>vxlanVlanMap</b>
+The vlan to vxlan mapping to be applied to this netbridge.
 
 <b>tunnel</b>
 The name of the tunnel that is a part of this bridge.

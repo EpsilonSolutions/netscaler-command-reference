@@ -12,7 +12,7 @@ Add LSN Group.
 
 ##Synopsys
 
-add lsn group &lt;groupname> -clientname &lt;string> [-nattype ( DYNAMIC | DETERMINISTIC )] [-portblocksize &lt;positive_integer>] [-logging ( ENABLED | DISABLED )] [-sessionLogging ( ENABLED | DISABLED )] [-sessionSync ( ENABLED | DISABLED )] [-snmptraplimit &lt;positive_integer>] [-ftp ( ENABLED | DISABLED )] [-pptp ( ENABLED | DISABLED )] [-sipalg ( ENABLED | DISABLED )] [-rtspalg ( ENABLED | DISABLED )] [-ip6profile &lt;string>]
+add lsn group &lt;groupname> -clientname &lt;string> [-nattype ( DYNAMIC | DETERMINISTIC )  [-allocPolicy ( PORTS | IPADDRS )]] [-portblocksize &lt;positive_integer>] [-logging ( ENABLED | DISABLED )] [-sessionLogging ( ENABLED | DISABLED )] [-sessionSync ( ENABLED | DISABLED )] [-snmptraplimit &lt;positive_integer>] [-ftp ( ENABLED | DISABLED )] [-pptp ( ENABLED | DISABLED )] [-sipalg ( ENABLED | DISABLED )] [-rtspalg ( ENABLED | DISABLED )] [-ip6profile &lt;string>]
 
 
 ##Arguments
@@ -27,17 +27,38 @@ Name of the LSN client entity to be associated with the LSN group. You can assoc
 Type of NAT IP address and port allocation (from the bound LSN pools) for subscribers:
 Available options function as follows:
 * Deterministic - Allocate a NAT IP address and a block of ports to each subscriber (of the LSN client bound to the LSN group). The NetScaler ADC sequentially allocates NAT resources to these subscribers. The NetScaler ADC assigns the first block of ports (block size determined by the port block size parameter of the LSN group) on the beginning NAT IP address to the beginning subscriber IP address. The next range of ports is assigned to the next subscriber, and so on, until the NAT address does not have enough ports for the next subscriber. In this case, the first port block on the next NAT address is used for the subscriber, and so on.  Because each subscriber now receives a deterministic NAT IP address and a block of ports, a subscriber can be identified without any need for logging. For a connection, a subscriber can be identified based only on the NAT IP address and port, and the destination IP address and port. The maximum number of LSN subscribers allowed, globally, is 1 million.  
-* Dynamic - Allocate a random NAT IP address and a port from the LSN NAT pool for a subscriber\\?s connection. If port block allocation is enabled (in LSN pool) and a port block size is specified (in the LSN group), the NetScaler ADC allocates a random NAT IP address and a block of ports for a subscriber when it initiates a connection for the first time. The ADC allocates this NAT IP address and a port (from the allocated block of ports) for different connections from this subscriber. If all the ports are allocated (for different subscriber\\?s connections) from the subscriber\\?s allocated port block, the ADC allocates a new random port block for the subscriber.
+* Dynamic - Allocate a random NAT IP address and a port from the LSN NAT pool for a subscriber's connection. If port block allocation is enabled (in LSN pool) and a port block size is specified (in the LSN group), the NetScaler ADC allocates a random NAT IP address and a block of ports for a subscriber when it initiates a connection for the first time. The ADC allocates this NAT IP address and a port (from the allocated block of ports) for different connections from this subscriber. If all the ports are allocated (for different subscriber's connections) from the subscriber's allocated port block, the ADC allocates a new random port block for the subscriber.
 Possible values: DYNAMIC, DETERMINISTIC
 Default value: DYNAMIC
+
+<b>allocPolicy</b>
+NAT IP and PORT block allocation policy for Deterministic NAT. Supported Policies are,
+1: PORTS(Default): Port blocks from single NATIP will be allocated to LSN subscribers sequentially. After all blocks are exhausted, port blocks from next NATIP will be allocated and so on.
+2: IPADDRS: One port block from each NATIP will be allocated and once all the NATIPs are over second port block from each NATIP will be allocated and so on.
+To understand better if we assume port blocks of all NAT IPs as two dimensional array, PORTS policy follows "row major order" and IPADDRS policy follows "column major order" while allocating port blocks.
+Example:
+Client IPs: 2.2.2.1, 2.2.2.2 and 2.2.2.3
+NAT IPs and PORT Blocks: 
+4.4.4.1:PB1, PB2, PB3,., PBn
+4.4.4.2: PB1, PB2, PB3,., PBn
+PORTS Policy: 
+2.2.2.1 =&gt; 4.4.4.1:PB1
+2.2.2.2 =&gt; 4.4.4.1:PB2
+2.2.2.3 =&gt; 4.4.4.1:PB3
+IPADDRS Policy:
+2.2.2.1 =&gt; 4.4.4.1:PB1
+2.2.2.2 =&gt; 4.4.4.2:PB1
+2.2.2.3 =&gt; 4.4.4.1:PB2
+Possible values: PORTS, IPADDRS
+Default value: PORTS
 
 <b>portblocksize</b>
 Size of the NAT port block to be allocated for each subscriber.
 To set this parameter for Dynamic NAT, you must enable the port block allocation parameter in the bound LSN pool. For Deterministic NAT, the port block allocation parameter is always  enabled, and you cannot disable it.
-In Dynamic NAT, the NetScaler ADC allocates a random NAT port block, from the available NAT port pool of an NAT IP address, for each subscriber. For a subscriber, if all the ports are allocated from the subscriber\\?s allocated port block, the ADC allocates a new random port block for the subscriber.
-The default port block size is 512 for Deterministic NAT, and 0 for Dynamic NAT.
+In Dynamic NAT, the NetScaler ADC allocates a random NAT port block, from the available NAT port pool of an NAT IP address, for each subscriber. For a subscriber, if all the ports are allocated from the subscriber's allocated port block, the ADC allocates a new random port block for the subscriber.
+The default port block size is 256 for Deterministic NAT, and 0 for Dynamic NAT.
 Default value: 0
-Minimum value: 512
+Minimum value: 256
 Maximum value: 65536
 
 <b>logging</b>
@@ -85,7 +106,7 @@ Minimum value: 0
 Maximum value: 10000
 
 <b>ftp</b>
-Enable Application Layer Gateway (ALG) for the FTP protocol. For some application-layer protocols, the IP addresses and protocol port numbers are usually communicated in the packet?s payload. When acting as an ALG, the NetScaler changes the packet?s payload to ensure that the protocol continues to work over LSN. 
+Enable Application Layer Gateway (ALG) for the FTP protocol. For some application-layer protocols, the IP addresses and protocol port numbers are usually communicated in the packet's payload. When acting as an ALG, the NetScaler changes the packet's payload to ensure that the protocol continues to work over LSN. 
 Note:  The NetScaler ADC also includes ALG for ICMP and TFTP protocols. ALG for the ICMP protocol is enabled by default, and there is no provision to disable it. ALG for the TFTP protocol is disabled by default. ALG is enabled automatically for an LSN group when you bind a UDP LSN application profile, with endpoint-independent-mapping, endpoint-independent filtering, and destination port as 69 (well-known port for TFTP), to the LSN group.
 Possible values: ENABLED, DISABLED
 Default value: ENABLED
@@ -93,7 +114,7 @@ Default value: ENABLED
 <b>pptp</b>
 Enable the PPTP Application Layer Gateway.
 Possible values: ENABLED, DISABLED
-Default value: ENABLED
+Default value: DISABLED
 
 <b>sipalg</b>
 Enable the SIP ALG.
@@ -154,10 +175,10 @@ Name for the LSN group. Must begin with an ASCII alphanumeric or underscore (_) 
 <b>portblocksize</b>
 Size of the NAT port block to be allocated for each subscriber.
 To set this parameter for Dynamic NAT, you must enable the port block allocation parameter in the bound LSN pool. For Deterministic NAT, the port block allocation parameter is always  enabled, and you cannot disable it.
-In Dynamic NAT, the NetScaler ADC allocates a random NAT port block, from the available NAT port pool of an NAT IP address, for each subscriber. For a subscriber, if all the ports are allocated from the subscriber\\?s allocated port block, the ADC allocates a new random port block for the subscriber.
-The default port block size is 512 for Deterministic NAT, and 0 for Dynamic NAT.
+In Dynamic NAT, the NetScaler ADC allocates a random NAT port block, from the available NAT port pool of an NAT IP address, for each subscriber. For a subscriber, if all the ports are allocated from the subscriber's allocated port block, the ADC allocates a new random port block for the subscriber.
+The default port block size is 256 for Deterministic NAT, and 0 for Dynamic NAT.
 Default value: 0
-Minimum value: 512
+Minimum value: 256
 Maximum value: 65536
 
 <b>logging</b>
@@ -205,7 +226,7 @@ Minimum value: 0
 Maximum value: 10000
 
 <b>ftp</b>
-Enable Application Layer Gateway (ALG) for the FTP protocol. For some application-layer protocols, the IP addresses and protocol port numbers are usually communicated in the packet?s payload. When acting as an ALG, the NetScaler changes the packet?s payload to ensure that the protocol continues to work over LSN. 
+Enable Application Layer Gateway (ALG) for the FTP protocol. For some application-layer protocols, the IP addresses and protocol port numbers are usually communicated in the packet's payload. When acting as an ALG, the NetScaler changes the packet's payload to ensure that the protocol continues to work over LSN. 
 Note:  The NetScaler ADC also includes ALG for ICMP and TFTP protocols. ALG for the ICMP protocol is enabled by default, and there is no provision to disable it. ALG for the TFTP protocol is disabled by default. ALG is enabled automatically for an LSN group when you bind a UDP LSN application profile, with endpoint-independent-mapping, endpoint-independent filtering, and destination port as 69 (well-known port for TFTP), to the LSN group.
 Possible values: ENABLED, DISABLED
 Default value: ENABLED
@@ -213,7 +234,7 @@ Default value: ENABLED
 <b>pptp</b>
 Enable the PPTP Application Layer Gateway.
 Possible values: ENABLED, DISABLED
-Default value: ENABLED
+Default value: DISABLED
 
 <b>sipalg</b>
 Enable the SIP ALG.
@@ -248,7 +269,7 @@ Bind LSN Group with protocol profiles and pools.
 
 ##Synopsys
 
-bind lsn group &lt;groupname> (-poolname &lt;string> | -transportprofilename &lt;string> | -httphdrlogprofilename &lt;string> | -appsprofilename &lt;string> | -sipalgprofilename &lt;string> | -rtspalgprofilename &lt;string>)
+bind lsn group &lt;groupname> (-poolname &lt;string> | -transportprofilename &lt;string> | -ipsecAlgProfile &lt;string> | -httphdrlogprofilename &lt;string> | -appsprofilename &lt;string> | -sipalgprofilename &lt;string> | -rtspalgprofilename &lt;string> | -pcpServer &lt;string> | -logProfileName &lt;string>)
 
 
 ##Arguments
@@ -265,6 +286,9 @@ Name of the LSN transport profile to bind to the specified LSN group. Bind a pro
 By default, one LSN transport profile with default settings for TCP, UDP, and ICMP protocols is bound to an LSN group during its creation. This profile is called a default transport.
 An LSN transport profile that you bind to an LSN group overrides the default LSN transport profile for that protocol.
 
+<b>ipsecAlgProfile</b>
+Name of the IPSec ALG profile to bind to the specified LSN group.
+
 <b>httphdrlogprofilename</b>
 The name of the LSN HTTP header logging Profile.
 
@@ -278,6 +302,12 @@ The name of the LSN SIP ALG Profile.
 
 <b>rtspalgprofilename</b>
 The name of the LSN RTSP ALG Profile.
+
+<b>pcpServer</b>
+Name of the PCP server to be associated with lsn group.
+
+<b>logProfileName</b>
+The name of the LSN logging Profile.
 
 
 
@@ -292,7 +322,7 @@ Unbind LSN Group with protocol profiles and pools.
 
 ##Synopsys
 
-unbind lsn group &lt;groupname> (-poolname &lt;string> | -transportprofilename &lt;string> | -httphdrlogprofilename &lt;string> | -appsprofilename &lt;string> | -sipalgprofilename &lt;string> | -rtspalgprofilename &lt;string>)
+unbind lsn group &lt;groupname> (-poolname &lt;string> | -transportprofilename &lt;string> | -ipsecAlgProfile &lt;string> | -httphdrlogprofilename &lt;string> | -appsprofilename &lt;string> | -sipalgprofilename &lt;string> | -rtspalgprofilename &lt;string> | -pcpServer &lt;string> | -logProfileName &lt;string>)
 
 
 ##Arguments
@@ -309,6 +339,9 @@ Name of the LSN transport profile to bind to the specified LSN group. Bind a pro
 By default, one LSN transport profile with default settings for TCP, UDP, and ICMP protocols is bound to an LSN group during its creation. This profile is called a default transport.
 An LSN transport profile that you bind to an LSN group overrides the default LSN transport profile for that protocol.
 
+<b>ipsecAlgProfile</b>
+Name of the IPSec ALG profile to bind to the specified LSN group.
+
 <b>httphdrlogprofilename</b>
 The name of the LSN HTTP header logging Profile.
 
@@ -322,6 +355,12 @@ The name of the LSN SIP ALG Profile.
 
 <b>rtspalgprofilename</b>
 The name of the LSN RTSP ALG Profile.
+
+<b>pcpServer</b>
+Name of the PCP server to be associated with lsn group.
+
+<b>logProfileName</b>
+The name of the LSN logging Profile.
 
 
 
@@ -369,13 +408,32 @@ Name of the LSN client entity to be associated with the LSN group. You can assoc
 Type of NAT IP address and port allocation (from the bound LSN pools) for subscribers:
 Available options function as follows:
 * Deterministic - Allocate a NAT IP address and a block of ports to each subscriber (of the LSN client bound to the LSN group). The NetScaler ADC sequentially allocates NAT resources to these subscribers. The NetScaler ADC assigns the first block of ports (block size determined by the port block size parameter of the LSN group) on the beginning NAT IP address to the beginning subscriber IP address. The next range of ports is assigned to the next subscriber, and so on, until the NAT address does not have enough ports for the next subscriber. In this case, the first port block on the next NAT address is used for the subscriber, and so on.  Because each subscriber now receives a deterministic NAT IP address and a block of ports, a subscriber can be identified without any need for logging. For a connection, a subscriber can be identified based only on the NAT IP address and port, and the destination IP address and port. The maximum number of LSN subscribers allowed, globally, is 1 million.  
-* Dynamic - Allocate a random NAT IP address and a port from the LSN NAT pool for a subscriber\\?s connection. If port block allocation is enabled (in LSN pool) and a port block size is specified (in the LSN group), the NetScaler ADC allocates a random NAT IP address and a block of ports for a subscriber when it initiates a connection for the first time. The ADC allocates this NAT IP address and a port (from the allocated block of ports) for different connections from this subscriber. If all the ports are allocated (for different subscriber\\?s connections) from the subscriber\\?s allocated port block, the ADC allocates a new random port block for the subscriber.
+* Dynamic - Allocate a random NAT IP address and a port from the LSN NAT pool for a subscriber's connection. If port block allocation is enabled (in LSN pool) and a port block size is specified (in the LSN group), the NetScaler ADC allocates a random NAT IP address and a block of ports for a subscriber when it initiates a connection for the first time. The ADC allocates this NAT IP address and a port (from the allocated block of ports) for different connections from this subscriber. If all the ports are allocated (for different subscriber's connections) from the subscriber's allocated port block, the ADC allocates a new random port block for the subscriber.
+
+<b>allocPolicy</b>
+NAT IP and PORT block allocation policy for Deterministic NAT. Supported Policies are,
+1: PORTS(Default): Port blocks from single NATIP will be allocated to LSN subscribers sequentially. After all blocks are exhausted, port blocks from next NATIP will be allocated and so on.
+2: IPADDRS: One port block from each NATIP will be allocated and once all the NATIPs are over second port block from each NATIP will be allocated and so on.
+To understand better if we assume port blocks of all NAT IPs as two dimensional array, PORTS policy follows "row major order" and IPADDRS policy follows "column major order" while allocating port blocks.
+Example:
+Client IPs: 2.2.2.1, 2.2.2.2 and 2.2.2.3
+NAT IPs and PORT Blocks: 
+4.4.4.1:PB1, PB2, PB3,., PBn
+4.4.4.2: PB1, PB2, PB3,., PBn
+PORTS Policy: 
+2.2.2.1 => 4.4.4.1:PB1
+2.2.2.2 => 4.4.4.1:PB2
+2.2.2.3 => 4.4.4.1:PB3
+IPADDRS Policy:
+2.2.2.1 => 4.4.4.1:PB1
+2.2.2.2 => 4.4.4.2:PB1
+2.2.2.3 => 4.4.4.1:PB2
 
 <b>portblocksize</b>
 Size of the NAT port block to be allocated for each subscriber.
 To set this parameter for Dynamic NAT, you must enable the port block allocation parameter in the bound LSN pool. For Deterministic NAT, the port block allocation parameter is always  enabled, and you cannot disable it.
-In Dynamic NAT, the NetScaler ADC allocates a random NAT port block, from the available NAT port pool of an NAT IP address, for each subscriber. For a subscriber, if all the ports are allocated from the subscriber\\?s allocated port block, the ADC allocates a new random port block for the subscriber.
-The default port block size is 512 for Deterministic NAT, and 0 for Dynamic NAT.
+In Dynamic NAT, the NetScaler ADC allocates a random NAT port block, from the available NAT port pool of an NAT IP address, for each subscriber. For a subscriber, if all the ports are allocated from the subscriber's allocated port block, the ADC allocates a new random port block for the subscriber.
+The default port block size is 256 for Deterministic NAT, and 0 for Dynamic NAT.
 
 <b>logging</b>
 Log mapping entries and sessions created or deleted for this LSN group. The NetScaler ADC logs LSN sessions for this LSN group only when both logging and session logging parameters are enabled.
@@ -413,7 +471,7 @@ For this setting to work, you must enable the global session synchronization par
 Maximum number of SNMP Trap messages that can be generated for the LSN group in one minute.
 
 <b>ftp</b>
-Enable Application Layer Gateway (ALG) for the FTP protocol. For some application-layer protocols, the IP addresses and protocol port numbers are usually communicated in the packet?s payload. When acting as an ALG, the NetScaler changes the packet?s payload to ensure that the protocol continues to work over LSN. 
+Enable Application Layer Gateway (ALG) for the FTP protocol. For some application-layer protocols, the IP addresses and protocol port numbers are usually communicated in the packet's payload. When acting as an ALG, the NetScaler changes the packet's payload to ensure that the protocol continues to work over LSN. 
 Note:  The NetScaler ADC also includes ALG for ICMP and TFTP protocols. ALG for the ICMP protocol is enabled by default, and there is no provision to disable it. ALG for the TFTP protocol is disabled by default. ALG is enabled automatically for an LSN group when you bind a UDP LSN application profile, with endpoint-independent-mapping, endpoint-independent filtering, and destination port as 69 (well-known port for TFTP), to the LSN group.
 
 <b>pptp</b>
@@ -439,6 +497,15 @@ By default, no LSN ip6 profile is associated with an LSN group during its creati
 
 <b>httphdrlogprofilename</b>
 The name of the LSN HTTP header logging Profile.
+
+<b>pcpServer</b>
+Name of the PCP server to be associated with lsn group.
+
+<b>logProfileName</b>
+The name of the LSN logging Profile.
+
+<b>ipsecAlgProfile</b>
+Name of the IPSec ALG profile to bind to the specified LSN group.
 
 <b>devno</b>
 
@@ -551,7 +618,7 @@ Number of ICMP Current Sessions for LSN group
 
 ##Related Commands
 
-<ul><li><a href="../../..//">stat lsn</a></li><li><a href="../../../-lsn-d/-lsn-d">stat lsn dslite</a></li></ul>
+<ul><li><a href="../../..//">stat lsn</a></li><li><a href="../../../-lsn-d/-lsn-d">stat lsn dslite</a></li><li><a href="../../../lsn-/lsn-">stat lsn nat64</a></li></ul>
 
 
 

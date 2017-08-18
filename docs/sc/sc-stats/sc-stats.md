@@ -5,12 +5,12 @@ The following operations can be performed on "sc stats":
 
 ##show sc stats
 
-show sc stats is an alias for stat sc
+show sc stats is an alias for stat sc NOTE: This command is deprecated.SureConnect feature has been deprecated in favour of AppQoE
 
 
 ##Synopsys
 
-show sc stats - alias for 'stat sc'
+
 
 
 ##Related Commands

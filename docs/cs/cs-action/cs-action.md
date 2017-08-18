@@ -20,7 +20,7 @@ add cs action &lt;name> [-targetLBVserver &lt;string> | -targetVserver &lt;strin
 <b>name</b>
 Name for the content switching action. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Can be changed after the content switching action is created.
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, ?my action? or ?my action?).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my action" or 'my action').
 
 <b>targetLBVserver</b>
 Name of the load balancing virtual server to which the content is switched.
@@ -38,7 +38,7 @@ Comments associated with this cs action.
 
 ##Example
 
- add cs action -targetLBVserver act1 lb1 
+i)When LB is the target:  add cs action act1 -targetLBVserver lb1ii)When VPN vserver is the target: add cs action act2 -targetVserver vpn1iii)When GSLB vserver is the target: add cs action act2 -targetVserver gslb1iv)Using expressions to extract the LB vserver: add cs action act3 -targetVserverExpr '"lbv"+CLIENT.TCP.CS_VSERVER.NAME.AFTER_STR("csv")'
 
 ##rm cs action
 
@@ -76,7 +76,7 @@ set cs action &lt;name> [-targetLBVserver &lt;string> | -targetVserver &lt;strin
 <b>name</b>
 Name for the content switching action. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Can be changed after the content switching action is created.
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, ?my action? or ?my action?).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my action" or 'my action').
 
 <b>targetLBVserver</b>
 Name of the load balancing virtual server to which the content is switched.
@@ -150,6 +150,8 @@ The number of times the action resulted in UNDEF.
 <b>comment</b>
 Comments associated with this cs action.
 
+<b>gslbBindings</b>
+
 <b>devno</b>
 
 <b>count</b>
@@ -178,7 +180,7 @@ Existing name of the content switching action.
 <b>newName</b>
 New name for the content switching action. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. 
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, my name or my name).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my name" or 'my name').
 
 
 

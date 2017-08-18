@@ -58,9 +58,6 @@ Failures in allocation of Access Gateway context structure. When an Access Gatew
 <b>Port allocation failed (Erport)</b>
 Number of times the NetScaler failed to allocate a port when sending a syslog message to the syslog server(s).
 
-<b>NAT lookup failed (Hshmiss)</b>
-NAT lookup failed.
-
 <b>Context not found (Ctxntfnd)</b>
 Failures in finding the context structure for an Access Gateway session during attempts to send session-specific audit messages.
 During an Access Gateway session, audit messages related to the session are queued up in the auditlog buffer for transmission to the audit log server(s). If the session is killed before the messages are sent, the context structure allocated at session creation is removed. This structure is needed for sending the queued auditlog messages. If it is not found, this counter is incremented.

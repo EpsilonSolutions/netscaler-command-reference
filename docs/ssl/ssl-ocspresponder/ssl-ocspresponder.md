@@ -202,9 +202,6 @@ Name of the OCSP responder for which to show detailed information.
 <b>url</b>
 URL of the OCSP responder.
 
-<b>useAIA</b>
-Only use the URL present in the certificate.
-
 <b>cache</b>
 Enable caching of responses. Caching of responses received from the OCSP responder enables faster responses to the clients and reduces the load on the OCSP responder.
 
@@ -242,6 +239,9 @@ Include the complete client certificate in the OCSP request.
 
 <b>IPAddress</b>
 The IPv6 address of the ocsp responder.
+
+<b>ocspAiaRefcount</b>
+No of CA certs referencing this AIA responder
 
 <b>devno</b>
 

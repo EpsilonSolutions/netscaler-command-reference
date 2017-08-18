@@ -12,7 +12,7 @@ Adds a VXLAN to the NetScaler appliance.
 
 ##Synopsys
 
-add vxlan &lt;id> [-vlan &lt;positive_integer>] [-port &lt;port>] [-dynamicRouting ( ENABLED | DISABLED )] [-ipv6DynamicRouting ( ENABLED | DISABLED )]
+add vxlan &lt;id> [-vlan &lt;positive_integer>] [-port &lt;port>] [-dynamicRouting ( ENABLED | DISABLED )] [-ipv6DynamicRouting ( ENABLED | DISABLED )] [-type ( VXLAN | VXLANGPE )  [-protocol &lt;protocol>]] [-innerVlanTagging ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -24,7 +24,7 @@ Maximum value: 16777215
 
 <b>vlan</b>
 ID of VLANs whose traffic is allowed over this VXLAN. If you do not specify any VLAN IDs, the NetScaler allows traffic of all VLANs that are not part of any other VXLANs.
-Minimum value: 1
+Minimum value: 2
 Maximum value: 4094
 
 <b>port</b>
@@ -40,6 +40,21 @@ Default value: DISABLED
 
 <b>ipv6DynamicRouting</b>
 Enable all IPv6 dynamic routing protocols on this VXLAN. Note: For the ENABLED setting to work, you must configure IPv6 dynamic routing protocols from the VTYSH command line.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>type</b>
+VXLAN encapsulation type. VXLAN, VXLANGPE
+Possible values: VXLAN, VXLANGPE
+Default value: VXLAN
+
+<b>protocol</b>
+VXLAN-GPE next protocol. RESERVED, IPv4, IPv6, ETHERNET, NSH
+Possible values: IPv4, IPv6, ETHERNET, NSH
+Default value: ETHERNET
+
+<b>innerVlanTagging</b>
+Specifies whether NS should generate VXLAN packets with inner VLAN tag.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
@@ -79,7 +94,7 @@ Modify VXLAN parameters
 
 ##Synopsys
 
-set vxlan &lt;id> [-vlan &lt;positive_integer>] [-port &lt;port>] [-dynamicRouting ( ENABLED | DISABLED )] [-ipv6DynamicRouting ( ENABLED | DISABLED )]
+set vxlan &lt;id> [-vlan &lt;positive_integer>] [-port &lt;port>] [-dynamicRouting ( ENABLED | DISABLED )] [-ipv6DynamicRouting ( ENABLED | DISABLED )] [-innerVlanTagging ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -91,7 +106,7 @@ Maximum value: 16777215
 
 <b>vlan</b>
 ID of VLANs whose traffic is allowed over this VXLAN. If you do not specify any VLAN IDs, the NetScaler allows traffic of all VLANs that are not part of any other VXLANs.
-Minimum value: 1
+Minimum value: 2
 Maximum value: 4094
 
 <b>port</b>
@@ -110,6 +125,11 @@ Enable all IPv6 dynamic routing protocols on this VXLAN. Note: For the ENABLED s
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
+<b>innerVlanTagging</b>
+Specifies whether NS should generate VXLAN packets with inner VLAN tag.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
 
 
 ##Example
@@ -123,7 +143,7 @@ Use this command to remove  vxlan settings.Refer to the set  vxlan command for m
 
 ##Synopsys
 
-unset vxlan &lt;id> [-vlan] [-port] [-dynamicRouting] [-ipv6DynamicRouting]
+unset vxlan &lt;id> [-vlan] [-port] [-dynamicRouting] [-ipv6DynamicRouting] [-innerVlanTagging]
 
 
 ##bind vxlan
@@ -133,7 +153,7 @@ Binds tunnels or IP addresses to the VXLAN
 
 ##Synopsys
 
-bind vxlan &lt;id> (-tunnel &lt;string> | (-IPAddress &lt;ip_addr|ipv6_addr|*>  [&lt;netmask>]))
+bind vxlan &lt;id> [-srcIP &lt;ip_addr>] [-IPAddress &lt;ip_addr|ipv6_addr|*>  [&lt;netmask>]]
 
 
 ##Arguments
@@ -143,8 +163,8 @@ A positive integer, which is also called VXLAN Network Identifier (VNI), that un
 Minimum value: 1
 Maximum value: 16777215
 
-<b>tunnel</b>
-Specifies the name of the configured tunnel to be associated with this VXLAN.
+<b>srcIP</b>
+The source IP address to use in outgoing vxlan packets.
 
 <b>IPAddress</b>
 Network address to be associated with the VXLAN. Should exist on the appliance before you associate it with the VXLAN.
@@ -165,7 +185,7 @@ Unbinds tunnels and IP addresses from the VXLAN
 
 ##Synopsys
 
-unbind vxlan &lt;id> (-tunnel &lt;string> | (-IPAddress &lt;ip_addr|ipv6_addr|*>  [&lt;netmask>]))
+unbind vxlan &lt;id> [-srcIP &lt;ip_addr>] [-IPAddress &lt;ip_addr|ipv6_addr|*>  [&lt;netmask>]]
 
 
 ##Arguments
@@ -175,8 +195,8 @@ A positive integer, which is also called VXLAN Network Identifier (VNI), that un
 Minimum value: 1
 Maximum value: 16777215
 
-<b>tunnel</b>
-Specifies the name of the configured tunnel to be associated with this VXLAN.
+<b>srcIP</b>
+The source IP address to use in outgoing vxlan packets.
 
 <b>IPAddress</b>
 The IP Address associated with the VXLAN configuration.
@@ -223,6 +243,9 @@ Enable dynamic routing on this VXLAN.
 <b>ipv6DynamicRouting</b>
 Enable all IPv6 dynamic routing protocols on this VXLAN. Note: For the ENABLED setting to work, you must configure IPv6 dynamic routing protocols from the VTYSH command line.
 
+<b>innerVlanTagging</b>
+Specifies whether NS should generate VXLAN packets with inner VLAN tag.
+
 <b>tunnel</b>
 Specifies the name of the configured tunnel to be associated with this VXLAN.
 
@@ -235,8 +258,20 @@ Subnet mask for the network address defined for this VXLAN.
 <b>td</b>
 Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
 
+<b>type</b>
+VXLAN encapsulation type. VXLAN, VXLANGPE
+
+<b>protocol</b>
+VXLAN-GPE next protocol. RESERVED, IPv4, IPv6, ETHERNET, NSH
+
 <b>stateflag</b>
 Internal flag for display
+
+<b>partitionName</b>
+The Partition to which this vxlan is bound
+
+<b>srcIP</b>
+The source IP address to use in outgoing vxlan packets.
 
 <b>devno</b>
 

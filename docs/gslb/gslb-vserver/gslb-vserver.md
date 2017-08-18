@@ -12,7 +12,7 @@ Creates a global server load balancing (GSLB) virtual server.
 
 ##Synopsys
 
-add gslb vserver &lt;name> &lt;serviceType> [-dnsRecordType &lt;dnsRecordType>] [-lbMethod &lt;lbMethod>] [-backupLBMethod &lt;backupLBMethod>] [-netmask &lt;netmask>] [-v6netmasklen &lt;positive_integer>] [-tolerance &lt;positive_integer>] [-persistenceType ( SOURCEIP | NONE )] [-persistenceId &lt;positive_integer>] [-persistMask &lt;netmask>] [-v6persistmasklen &lt;positive_integer>] [-timeout &lt;mins>] [-EDR ( ENABLED | DISABLED )] [-MIR ( ENABLED | DISABLED )] [-disablePrimaryOnDown ( ENABLED | DISABLED )] [-dynamicWeight &lt;dynamicWeight>] [-state ( ENABLED | DISABLED )] [-considerEffectiveState ( NONE | STATE_ONLY )] [-comment &lt;string>] [-soMethod &lt;soMethod>] [-soPersistence ( ENABLED | DISABLED )] [-soPersistenceTimeOut &lt;positive_integer>] [-soThreshold &lt;positive_integer>] [-soBackupAction &lt;soBackupAction>] [-appflowLog ( ENABLED | DISABLED )]
+add gslb vserver &lt;name> &lt;serviceType> [-dnsRecordType &lt;dnsRecordType>] [-lbMethod &lt;lbMethod>] [-backupLBMethod &lt;backupLBMethod>] [-netmask &lt;netmask>] [-v6netmasklen &lt;positive_integer>] [-tolerance &lt;positive_integer>] [-persistenceType ( SOURCEIP | NONE )] [-persistenceId &lt;positive_integer>] [-persistMask &lt;netmask>] [-v6persistmasklen &lt;positive_integer>] [-timeout &lt;mins>] [-EDR ( ENABLED | DISABLED )] [-ECS ( ENABLED | DISABLED )] [-ecsAddrValidation ( ENABLED | DISABLED )] [-MIR ( ENABLED | DISABLED )] [-disablePrimaryOnDown ( ENABLED | DISABLED )] [-dynamicWeight &lt;dynamicWeight>] [-state ( ENABLED | DISABLED )] [-considerEffectiveState ( NONE | STATE_ONLY )] [-comment &lt;string>] [-soMethod &lt;soMethod>] [-soPersistence ( ENABLED | DISABLED )] [-soPersistenceTimeOut &lt;positive_integer>] [-soThreshold &lt;positive_integer>] [-soBackupAction &lt;soBackupAction>] [-appflowLog ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -28,7 +28,7 @@ Possible values: HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, NNTP, ANY, SIP_U
 
 <b>dnsRecordType</b>
 DNS record type to associate with the GSLB virtual server's domain name.
-Possible values: A, AAAA, CNAME
+Possible values: A, AAAA, CNAME, NAPTR
 Default value: A
 
 <b>lbMethod</b>
@@ -83,6 +83,16 @@ Maximum value: 1440
 
 <b>EDR</b>
 Send clients an empty DNS response when the GSLB virtual server is DOWN.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>ECS</b>
+If enabled, respond with EDNS Client Subnet (ECS) option in the response for a DNS query with ECS. The ECS address will be used for persistence and spillover persistence (if enabled) instead of the LDNS address. Persistence mask is ignored if ECS is enabled.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>ecsAddrValidation</b>
+Validate if ECS address is a private or unroutable address and in such cases, use the LDNS IP.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
@@ -183,7 +193,7 @@ Modifies the specified parameters of a global server load balancing (GSLB) virtu
 
 ##Synopsys
 
-set gslb vserver &lt;name> [-dnsRecordType &lt;dnsRecordType>] [-backupVServer &lt;string>] [-lbMethod &lt;lbMethod>] [-backupLBMethod &lt;backupLBMethod>] [-netmask &lt;netmask>] [-v6netmasklen &lt;positive_integer>] [-tolerance &lt;positive_integer>] [-persistenceType ( SOURCEIP | NONE )] [-persistenceId &lt;positive_integer>] [-persistMask &lt;netmask>] [-v6persistmasklen &lt;positive_integer>] [-timeout &lt;mins>] [-EDR ( ENABLED | DISABLED )] [-MIR ( ENABLED | DISABLED )] [-disablePrimaryOnDown ( ENABLED | DISABLED )] [-dynamicWeight &lt;dynamicWeight>] [-considerEffectiveState ( NONE | STATE_ONLY )] [-soMethod &lt;soMethod>] [-soPersistence ( ENABLED | DISABLED )] [-soPersistenceTimeOut &lt;positive_integer>] [-soThreshold &lt;positive_integer>] [-soBackupAction &lt;soBackupAction>] [-serviceName &lt;string>  -weight &lt;positive_integer>] [-domainName &lt;string>  [-TTL &lt;secs>]  [-backupIP &lt;ip_addr|ipv6_addr|*>]  [-cookieDomain &lt;string>]  [-cookieTimeout &lt;mins>]  [-sitedomainTTL &lt;secs>]] [-comment &lt;string>] [-appflowLog ( ENABLED | DISABLED )]
+set gslb vserver &lt;name> [-dnsRecordType &lt;dnsRecordType>] [-backupVServer &lt;string>] [-lbMethod &lt;lbMethod>] [-backupLBMethod &lt;backupLBMethod>] [-netmask &lt;netmask>] [-v6netmasklen &lt;positive_integer>] [-tolerance &lt;positive_integer>] [-persistenceType ( SOURCEIP | NONE )] [-persistenceId &lt;positive_integer>] [-persistMask &lt;netmask>] [-v6persistmasklen &lt;positive_integer>] [-timeout &lt;mins>] [-EDR ( ENABLED | DISABLED )] [-ECS ( ENABLED | DISABLED )] [-ecsAddrValidation ( ENABLED | DISABLED )] [-MIR ( ENABLED | DISABLED )] [-disablePrimaryOnDown ( ENABLED | DISABLED )] [-dynamicWeight &lt;dynamicWeight>] [-considerEffectiveState ( NONE | STATE_ONLY )] [-soMethod &lt;soMethod>] [-soPersistence ( ENABLED | DISABLED )] [-soPersistenceTimeOut &lt;positive_integer>] [-soThreshold &lt;positive_integer>] [-soBackupAction &lt;soBackupAction>] [-serviceName &lt;string>  -weight &lt;positive_integer>] [-domainName &lt;string>  [-TTL &lt;secs>]  [-backupIP &lt;ip_addr|ipv6_addr|*>]  [-cookieDomain &lt;string>]  [-cookieTimeout &lt;mins>]  [-sitedomainTTL &lt;secs>]] [-comment &lt;string>] [-appflowLog ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -193,7 +203,7 @@ Name of the GSLB virtual server.
 
 <b>dnsRecordType</b>
 DNS record type to associate with the GSLB virtual server's domain name.
-Possible values: A, AAAA, CNAME
+Possible values: A, AAAA, CNAME, NAPTR
 Default value: A
 
 <b>backupVServer</b>
@@ -250,6 +260,16 @@ Maximum value: 1440
 
 <b>EDR</b>
 Send clients an empty DNS response when the GSLB virtual server is DOWN.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>ECS</b>
+If enabled, respond with EDNS Client Subnet (ECS) option in the response for a DNS query with ECS. The ECS address will be used for persistence and spillover persistence (if enabled) instead of the LDNS address. Persistence mask is ignored if ECS is enabled.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>ecsAddrValidation</b>
+Validate if ECS address is a private or unroutable address and in such cases, use the LDNS IP.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
@@ -353,7 +373,7 @@ Removes the specified settings from the specified global server load balancing (
 
 ##Synopsys
 
-unset gslb vserver &lt;name>@ [-backupVServer] [-dnsRecordType] [-lbMethod] [-backupLBMethod] [-netmask] [-v6netmasklen] [-tolerance] [-persistenceType] [-persistenceId] [-persistMask] [-v6persistmasklen] [-timeout] [-EDR] [-MIR] [-disablePrimaryOnDown] [-dynamicWeight] [-considerEffectiveState] [-soMethod] [-soPersistence] [-soPersistenceTimeOut] [-soBackupAction] [-serviceName] [-weight] [-comment] [-appflowLog]
+unset gslb vserver &lt;name>@ [-backupVServer] [-dnsRecordType] [-lbMethod] [-backupLBMethod] [-netmask] [-v6netmasklen] [-tolerance] [-persistenceType] [-persistenceId] [-persistMask] [-v6persistmasklen] [-timeout] [-EDR] [-ECS] [-ecsAddrValidation] [-MIR] [-disablePrimaryOnDown] [-dynamicWeight] [-considerEffectiveState] [-soMethod] [-soPersistence] [-soPersistenceTimeOut] [-soBackupAction] [-serviceName] [-weight] [-comment] [-appflowLog]
 
 
 ##Example
@@ -636,6 +656,12 @@ A non zero value enables the feature. The minimum value is 2 minutes. To disable
 <b>EDR</b>
 Indicates if Empty Down Response is enabled/disabled
 
+<b>ECS</b>
+If enabled, respond with EDNS Client Subnet (ECS) option in the response for a DNS query with ECS. The ECS address will be used for persistence and spillover persistence (if enabled) instead of the LDNS address. Persistence mask is ignored if ECS is enabled.
+
+<b>ecsAddrValidation</b>
+Validate if ECS address is a private or unroutable address and in such cases, use the LDNS IP.
+
 <b>MIR</b>
 Indicates if Multi IP Response is enabled/disabled
 
@@ -834,6 +860,9 @@ number of ACTIVE services bound to a vserver
 
 <b>Vserver hits (Hits)</b>
 Total vserver hits
+
+<b>Current Persistence Sessions (PersistenceSessions)</b>
+current vserver owned persistence sessions
 
 <b>Request bytes (Reqb)</b>
 Total number of request bytes received on this service or virtual server.

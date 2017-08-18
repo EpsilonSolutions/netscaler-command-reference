@@ -143,14 +143,14 @@ Enterprise License
 <b>isPlatinumLic</b>
 Platinum License
 
+<b>isSGwyLic</b>
+Simple Gateway License
+
 <b>RISE</b>
 RISE
 
 <b>DiskCaching</b>
 Integrated Disk Cache
-
-<b>vPath</b>
-Vpath
 
 <b>FEO</b>
 Front End Optimization
@@ -158,8 +158,20 @@ Front End Optimization
 <b>LSN</b>
 Large Scale NAT.
 
+<b>licensingMode</b>
+Pooled Licensed.
+
 <b>RDPProxy</b>
 RDPPROXY.
+
+<b>Rep</b>
+Reputation Services.
+
+<b>URLFiltering</b>
+URL Filtering.
+
+<b>VideoOptimization</b>
+Video Optimization.
 
 
 

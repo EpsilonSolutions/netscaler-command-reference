@@ -12,14 +12,14 @@ Show LSN Session.
 
 ##Synopsys
 
-show lsn session [-nattype ( NAT44 | DS-Lite )  [-network &lt;ip_addr>  [-netmask &lt;netmask>]  [-td &lt;positive_integer>]]  [-network6 &lt;ipv6_addr|*>]] [-clientname &lt;string>] [-natIP &lt;ip_addr>]
+show lsn session [-nattype &lt;nattype>  [-network &lt;ip_addr>  [-netmask &lt;netmask>]  [-td &lt;positive_integer>]]  [-network6 &lt;ipv6_addr|*>] ] [-clientname &lt;string>] [-natIP &lt;ip_addr>]
 
 
 ##Arguments
 
 <b>nattype</b>
 Type of sessions to be displayed.
-Possible values: NAT44, DS-Lite
+Possible values: NAT44, DS-Lite, NAT64
 Default value: NAT44
 
 <b>clientname</b>
@@ -76,6 +76,9 @@ The Session establishment direction, session was established for outbound or inb
 
 <b>srctd</b>
 
+<b>IPv6Address</b>
+IPv6 address of v6 vserver
+
 <b>devno</b>
 
 <b>count</b>
@@ -95,14 +98,14 @@ Flush LSN Session.
 
 ##Synopsys
 
-flush lsn session [-nattype ( NAT44 | DS-Lite )  [-network &lt;ip_addr>  [-netmask &lt;netmask>]  [-td &lt;positive_integer>]]  [-network6 &lt;ipv6_addr|*>]] [-clientname &lt;string>] [-natIP &lt;ip_addr>  [-natPort &lt;port>]]
+flush lsn session [-nattype &lt;nattype>  [-network &lt;ip_addr>  [-netmask &lt;netmask>]  [-td &lt;positive_integer>]]  [-network6 &lt;ipv6_addr|*>] ] [-clientname &lt;string>] [-natIP &lt;ip_addr>  [-natPort &lt;port>]]
 
 
 ##Arguments
 
 <b>nattype</b>
 Type of sessions to be displayed.
-Possible values: NAT44, DS-Lite
+Possible values: NAT44, DS-Lite, NAT64
 Default value: NAT44
 
 <b>clientname</b>

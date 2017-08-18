@@ -12,7 +12,7 @@ Add LSN Static Mapping.
 
 ##Synopsys
 
-add lsn static &lt;name> &lt;transportprotocol> &lt;subscrIP> &lt;subscrPort> [-td &lt;positive_integer>] [&lt;natIP>  [&lt;natPort>]] [-destIP &lt;ip_addr>  [-dsttd &lt;positive_integer>]]
+add lsn static &lt;name> &lt;transportprotocol> (&lt;subscrIP>  [&lt;network6>]) &lt;subscrPort> [-td &lt;positive_integer>] [&lt;natIP>  [&lt;natPort>]] [-destIP &lt;ip_addr>  [-dsttd &lt;positive_integer>]]
 
 
 ##Arguments
@@ -22,14 +22,17 @@ Name for the LSN static mapping entry. Must begin with an ASCII alphanumeric or 
 
 <b>transportprotocol</b>
 Protocol for the LSN mapping entry.
-Possible values: TCP, UDP, ICMP
+Possible values: TCP, UDP, ICMP, ALL
 
 <b>subscrIP</b>
-IPv4 address of an LSN subscriber for the LSN mapping entry.
+IPv4(NAT44 & DS-Lite)/IPv6(NAT64) address of an LSN subscriber for the LSN static mapping entry.
 
 <b>subscrPort</b>
-Port of the LSN subscriber for the LSN mapping entry.
+Port of the LSN subscriber for the LSN mapping entry. * represents all ports being used. Used in case of static wildcard
 Maximum value: 65535
+
+<b>network6</b>
+B4 address in DS-Lite setup
 
 <b>td</b>
 ID of the traffic domain to which the subscriber belongs. 
@@ -42,7 +45,8 @@ Maximum value: 4094
 IPv4 address, already existing on the NetScaler ADC as type LSN, to be used as NAT IP address for this mapping entry.
 
 <b>natPort</b>
-NAT port for this LSN mapping entry.
+NAT port for this LSN mapping entry. * represents all ports being used. Used in case of static wildcard
+Maximum value: 65535
 
 <b>destIP</b>
 Destination IP address for the LSN mapping entry.
@@ -88,13 +92,17 @@ Display LSN Static Mapping.
 
 ##Synopsys
 
-show lsn static [&lt;name>]
+show lsn static [&lt;name>] [-nattype &lt;nattype>]
 
 
 ##Arguments
 
 <b>name</b>
 Name for the LSN static mapping entry. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after the LSN group is created. The following requirement applies only to the NetScaler CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "lsn static1" or 'lsn static1').
+
+<b>nattype</b>
+Type of sessions to be displayed.
+Possible values: NAT44, DS-Lite, NAT64
 
 
 
@@ -104,16 +112,19 @@ Name for the LSN static mapping entry. Must begin with an ASCII alphanumeric or 
 Protocol for the LSN mapping entry.
 
 <b>subscrIP</b>
-IPv4 address of an LSN subscriber for the LSN mapping entry.
+IPv4(NAT44 & DS-Lite)/IPv6(NAT64) address of an LSN subscriber for the LSN static mapping entry.
 
 <b>subscrPort</b>
-Port of the LSN subscriber for the LSN mapping entry.
+Port of the LSN subscriber for the LSN mapping entry. * represents all ports being used. Used in case of static wildcard
+
+<b>network6</b>
+B4 address in DS-Lite setup
 
 <b>natIP</b>
 IPv4 address, already existing on the NetScaler ADC as type LSN, to be used as NAT IP address for this mapping entry.
 
 <b>natPort</b>
-NAT port for this LSN mapping entry.
+NAT port for this LSN mapping entry. * represents all ports being used. Used in case of static wildcard
 
 <b>td</b>
 ID of the traffic domain to which the subscriber belongs. 

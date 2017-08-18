@@ -99,11 +99,11 @@ Power supply +5V output. Acceptable range is 4.50 through 5.50 volts.
 
 <b>Standby 3.3 V Supply Voltage (V33Stby)</b>
 Standby power supply +3.3V output. Acceptable range is 2.970 through 3.630 volts. 9800 and 9960 platforms display standard value of 3.3V.
-You can configure Standby 3.3V Supply Voltage by using the Set snmp alarm VOLTAGE-LOW command to set the lower limit and the Set snmp alarm VOLTAGE-HIGH command to set the upper limit.
+				You can configure Standby 3.3V Supply Voltage by using the Set snmp alarm VOLTAGE-LOW command to set the lower limit and the Set snmp alarm VOLTAGE-HIGH command to set the upper limit.
 
 <b>Main 3.3 V Supply Voltage (V33Main)</b>
 Main power supply +3.3V output. Acceptable range is 2.970 through 3.630 volts. This is a critical counter.
-You can configure Main 3.3V Supply Voltage, by using the Set snmp alarm VOLTAGE-LOW command to set the lower limit and the Set snmp alarm VOLTAGE-HIGH command to set the upper limit.
+				You can configure Main 3.3V Supply Voltage, by using the Set snmp alarm VOLTAGE-LOW command to set the lower limit and the Set snmp alarm VOLTAGE-HIGH command to set the upper limit.
 
 <b>CPU 1 Core Voltage (Volts) (VCC1)</b>
 CPU core 1 voltage. Acceptable range is 1.080 through 1.650 volts. If CPU 1 is not connected to the health monitoring chip, display shows voltage of CPU 0.
@@ -120,8 +120,14 @@ Percentage of memory utilization on NetScaler.
 <b>Memory usage (MB) (MemUseMB)</b>
 Main memory currently in use, in megabytes.
 
+<b>Mgmt Additional-CPU  usage (%) (CPU)</b>
+Additonal Management CPU utilization percentage.
+
+<b>Mgmt CPU0 usage (%) (CPU)</b>
+Management CPU-0 utilization percentage.
+
 <b>Management CPU usage (%) (CPU)</b>
-Management CPU utilization percentage.
+Average Management CPU utilization percentage.
 
 <b>Packet CPU usage (%) (CPU)</b>
 Average CPU utilization percentage for all packet engines excluding management PE.
@@ -137,22 +143,22 @@ Time when the NetScaler appliance was last started.
 
 <b>/flash Used (%) (disk0PerUsage)</b>
 Used space in /flash partition of the disk, as a percentage. This is a critical counter.
-You can configure /flash Used (%) by using the Set snmp alarm DISK-USAGE-HIGH command.
+				You can configure /flash Used (%) by using the Set snmp alarm DISK-USAGE-HIGH command.
 
 <b>/var Used (%) (disk1PerUsage)</b>
 Used space in /var partition of the disk, as a percentage. This is a critical counter. You can configure /var Used (%) by using the Set snmp alarm DISK-USAGE-HIGH command.
 
 <b>CPU Fan 0 Speed (RPM) (CPUFan0)</b>
 CPU Fan 0 speed. Acceptable range is 3000 through 6000 RPM. This is a critical counter.
-You can configure CPU Fan 0 Speed by using the Set snmp alarm FAN-SPEED-LOW command to set the lower limit.
+				You can configure CPU Fan 0 Speed by using the Set snmp alarm FAN-SPEED-LOW command to set the lower limit.
 
 <b>CPU Fan 1 Speed (RPM) (CPUFan1)</b>
 CPU Fan 1 speed. Acceptable range is 3000 through 6000 RPM. 7000 platform displays speed of CPU fan 0. This is a critical counter.
-You can configure CPU Fan 1 Speed by using the Set snmp alarm FAN-SPEED-LOW command to set the lower limit.
+				You can configure CPU Fan 1 Speed by using the Set snmp alarm FAN-SPEED-LOW command to set the lower limit.
 
 <b>System Fan Speed (RPM) (systemFan)</b>
 System fan speed. Acceptable range is 3000 through 6000 RPM. This is a critical counter.
-You can configure System Fan Speed by using the Set snmp alarm FAN-SPEED-LOW command to set the lower limit.
+				You can configure System Fan Speed by using the Set snmp alarm FAN-SPEED-LOW command to set the lower limit.
 
 <b>System Fan 1 Speed (RPM) (systemFan1)</b>
 System fan 1 speed. For new platforms associated pin is connected to CPU supporting fans. For platforms in which it is not connected, it will point to System Fan.
@@ -162,15 +168,15 @@ System fan 2 speed. For new platforms associated pin is connected to CPU support
 
 <b>CPU 0 Temperature (Celsius) (TCPU0)</b>
 CPU 0 temperature. 9800 and 9960 platforms display internal chip temperature. This is a critical counter.
-You can configure CPU 0 Temperature by using the Set snmp alarm TEMPERATURE-HIGH command to set the upper limit.
+				You can configure CPU 0 Temperature by using the Set snmp alarm TEMPERATURE-HIGH command to set the upper limit.
 
 <b>CPU 1 Temperature (Celsius) (TCPU1)</b>
 CPU 1 temperature. 9800 and 9960 platforms display internal chip temperature. 7000, 9010 and 10010 platforms display CPU 0 temperature. This is a critical counter.
-You can configure CPU 1 Temperature by using the Set snmp alarm TEMPERATURE-HIGH command to set the upper limit.
+				You can configure CPU 1 Temperature by using the Set snmp alarm TEMPERATURE-HIGH command to set the upper limit.
 
 <b>Internal Temperature (Celsius) (intTemp)</b>
 Internal temperature of health monitoring chip. This is a critical counter.
-You can configure Internal Temperature by using the Set snmp alarm TEMPERATURE-HIGH command to set the upper limit.
+				You can configure Internal Temperature by using the Set snmp alarm TEMPERATURE-HIGH command to set the upper limit.
 
 <b>Power supply 1 status (PS1FAIL)</b>
 Power supply 1 failure status.
@@ -234,6 +240,12 @@ Total amount of system memory, in megabytes.
 
 <b>Management CPU usage (CPU)</b>
 Management CPU utilization: percentage * 10.
+
+<b>Management CPU0 usage (CPU)</b>
+Management CPU-0 utilization: percentage * 10.
+
+<b>Additonal Management CPU usage (additionalCPU)</b>
+Additonal Management CPU utilization: percentage * 10.
 
 <b>Master CPU usage (CPU0)</b>
 CPU0 utilization: percentage * 10.

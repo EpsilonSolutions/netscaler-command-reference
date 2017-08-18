@@ -7,7 +7,7 @@ The following operations can be performed on "vpn portaltheme":
 
 ##add vpn portaltheme
 
-Add a new portaltheme entity. The base theme should be either default or greenbubble
+Add a new portaltheme entity. The base theme should be either Default,Greenbubble,X1 or RfWebUI
 
 
 ##Synopsys

@@ -12,7 +12,7 @@ Clears the NetScaler running configurations based on different levels.
 
 ##Synopsys
 
-clear ns config [-force] &lt;level>
+clear ns config [-force] &lt;level> [-RBAconfig ( YES | NO )]
 
 
 ##Arguments
@@ -29,10 +29,15 @@ Types of configurations to be cleared.
   - HA node definitions
   - Feature and mode settings
   - nsroot password
-* extended: Clears the same configurations as the 'basic' option. In addition, it clears the nsroot password and feature and mode settings.
+* extended: Clears the same configurations as the 'basic' option. In addition, it clears the feature and mode settings.
 * full: Clears all configurations except NSIP, default route, and interface settings.
 Note: When you clear the configurations through the cluster IP address, by specifying the level as 'full', the cluster is deleted and all cluster nodes become standalone appliances. The 'basic' and 'extended' levels are propagated to the cluster nodes.
 Possible values: basic, extended, full
+
+<b>RBAconfig</b>
+RBA configurations and TACACS policies bound to system global will not be cleared if RBA is set to NO.This option is applicable only for BASIC level of clear configuration.Default is YES, which will clear rba configurations.
+Possible values: YES, NO
+Default value: YES
 
 
 

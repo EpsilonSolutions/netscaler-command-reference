@@ -36,18 +36,21 @@ add dns cnameRec www.mynw.org www.mynw.com -ttl 20
 
 ##rm dns cnameRec
 
-Removes a canonical name (CNAME) record.
+Removes a canonical name (CNAME) record. For EDNS Client Subnet (ECS) records, a subnet needs to be specified to remove a CNAME record which is cached for that particular subnet
 
 
 ##Synopsys
 
-rm dns cnameRec &lt;aliasName>
+rm dns cnameRec &lt;aliasName> [-ecsSubnet &lt;ip_addr[/prefix]|ipv6_addr[/prefix]>]
 
 
 ##Arguments
 
 <b>aliasName</b>
 Alias for which to remove the CNAME record.
+
+<b>ecsSubnet</b>
+Subnet for which the cached CNAME record need to be removed.
 
 
 
@@ -93,6 +96,9 @@ GSLB Vitual server name to which this domain is bound
 
 <b>authType</b>
 Record type.
+
+<b>ecsSubnet</b>
+Subnet for which this particular record is cached. Subnet caching will occur for responses with EDNS Client Subnet (ECS) option. Applies to resource records obtained through proxy configurations only.
 
 <b>devno</b>
 

@@ -34,7 +34,9 @@ IP address to match against the source IP address of an incoming IPv4 packet.
 
 <b>destPort</b>
 Port number to match against the destination port number of an incoming IPv4 packet.
-Omitting the port number creates an all-ports simple ACL rule, which matches any port. In that case, you cannot create another simple ACL rule specifying a specific port and the same source IPv4 address.
+DestPort is mandatory while setting Protocol. Omitting the port number and protocol creates an all-ports  and all protocols simple ACL rule, which matches any port and any protocol. In that case, you cannot create another simple ACL rule specifying a specific port and the same source IPv4 address.
+Minimum value: 1
+Maximum value: 65535
 
 <b>protocol</b>
 Protocol to match against the protocol of an incoming IPv4 packet. You must set this parameter if you have set the Destination Port parameter.
@@ -50,12 +52,6 @@ Maximum value: 2147483647
 ##Example
 
 add simpleacl rule1 DENY -srcIP 1.1.1.1 -destPort 80 -protocol TCPadd simpleacl rule2 DENY -srcIP 2.2.2.2 -TTL 600
-
-##Related Commands
-
-<ul><li><a href="../../..//">add ns acl</a></li><li><a href="../../..//">rm ns acl</a></li></ul>
-
-
 
 ##clear ns simpleacl
 
@@ -87,12 +83,6 @@ Name of the simple ACL rule that you want to remove.
 ##Example
 
 rm ns simpleacl rule1
-
-##Related Commands
-
-<ul><li><a href="../../..//">rm ns acl</a></li></ul>
-
-
 
 ##flush ns simpleacl
 

@@ -12,7 +12,7 @@ Sets the global AAA configuration. Any configuration settings made at this level
 
 ##Synopsys
 
-set aaa parameter [-enableStaticPageCaching ( YES | NO )] [-enableEnhancedAuthFeedback ( YES | NO )] [-defaultAuthType &lt;defaultAuthType>] [-maxAAAUsers &lt;positive_integer>] [-maxLoginAttempts &lt;positive_integer>  [-failedLoginTimeout &lt;mins>]] [-aaadnatIp &lt;ip_addr|*>] [-enableSessionStickiness ( YES | NO )]
+set aaa parameter [-enableStaticPageCaching ( YES | NO )] [-enableEnhancedAuthFeedback ( YES | NO )] [-defaultAuthType &lt;defaultAuthType>] [-maxAAAUsers &lt;positive_integer>] [-maxLoginAttempts &lt;positive_integer>  [-failedLoginTimeout &lt;mins>]] [-aaadnatIp &lt;ip_addr|*>] [-enableSessionStickiness ( YES | NO )] [-aaaSessionLoglevel &lt;aaaSessionLoglevel>] [-aaadLoglevel &lt;aaadLoglevel>] [-dynAddr ( ON | OFF )] [-ftMode &lt;ftMode>]
 
 
 ##Arguments
@@ -52,6 +52,44 @@ Enables/Disables stickiness to authentication servers
 Possible values: YES, NO
 Default value: NO
 
+<b>aaaSessionLoglevel</b>
+Audit log level, which specifies the types of events to log for cli executed commands. 
+Available values function as follows: 
+* EMERGENCY - Events that indicate an immediate crisis on the server.
+* ALERT - Events that might require action.
+* CRITICAL - Events that indicate an imminent server crisis.
+* ERROR - Events that indicate some type of error.
+* WARNING - Events that require action in the near future.
+* NOTICE - Events that the administrator should know about.
+* INFORMATIONAL - All but low-level events.
+* DEBUG - All events, in extreme detail.
+Possible values: EMERGENCY, ALERT, CRITICAL, ERROR, WARNING, NOTICE, INFORMATIONAL, DEBUG
+Default value: DEFAULT_LOGLEVEL_AAA
+
+<b>aaadLoglevel</b>
+AAAD log level, which specifies the types of AAAD events to log in nsvpn.log. 
+Available values function as follows: 
+* EMERGENCY - Events that indicate an immediate crisis on the server.
+* ALERT - Events that might require action.
+* CRITICAL - Events that indicate an imminent server crisis.
+* ERROR - Events that indicate some type of error.
+* WARNING - Events that require action in the near future.
+* NOTICE - Events that the administrator should know about.
+* INFORMATIONAL - All but low-level events.
+* DEBUG - All events, in extreme detail.
+Possible values: EMERGENCY, ALERT, CRITICAL, ERROR, WARNING, NOTICE, INFORMATIONAL, DEBUG
+Default value: INFORMATIONAL
+
+<b>dynAddr</b>
+Set by the DHCP client when the IP address was fetched dynamically.
+Possible values: ON, OFF
+Default value: OFF
+
+<b>ftMode</b>
+First time user mode determines which configuration options are shown by default when logging in to the GUI. This setting is controlled by the GUI.
+Possible values: ON, HA, OFF
+Default value: ON
+
 
 
 ##Example
@@ -65,7 +103,7 @@ Resets the global AAA parameter settings on the NetScaler appliance. Attributes 
 
 ##Synopsys
 
-unset aaa parameter [-enableStaticPageCaching] [-enableEnhancedAuthFeedback] [-defaultAuthType] [-maxAAAUsers] [-aaadnatIp] [-maxLoginAttempts] [-enableSessionStickiness]
+unset aaa parameter [-enableStaticPageCaching] [-enableEnhancedAuthFeedback] [-defaultAuthType] [-maxAAAUsers] [-aaadnatIp] [-maxLoginAttempts] [-enableSessionStickiness] [-aaaSessionLoglevel] [-aaadLoglevel] [-dynAddr] [-ftMode]
 
 
 ##show aaa parameter
@@ -103,6 +141,36 @@ Number of minutes an account will be locked if user exceeds maximum permissible 
 
 <b>enableSessionStickiness</b>
 Enables/Disables stickiness to authentication servers
+
+<b>aaaSessionLoglevel</b>
+Audit log level, which specifies the types of events to log for cli executed commands. 
+Available values function as follows: 
+* EMERGENCY - Events that indicate an immediate crisis on the server.
+* ALERT - Events that might require action.
+* CRITICAL - Events that indicate an imminent server crisis.
+* ERROR - Events that indicate some type of error.
+* WARNING - Events that require action in the near future.
+* NOTICE - Events that the administrator should know about.
+* INFORMATIONAL - All but low-level events.
+* DEBUG - All events, in extreme detail.
+
+<b>aaadLoglevel</b>
+AAAD log level, which specifies the types of AAAD events to log in nsvpn.log. 
+Available values function as follows: 
+* EMERGENCY - Events that indicate an immediate crisis on the server.
+* ALERT - Events that might require action.
+* CRITICAL - Events that indicate an imminent server crisis.
+* ERROR - Events that indicate some type of error.
+* WARNING - Events that require action in the near future.
+* NOTICE - Events that the administrator should know about.
+* INFORMATIONAL - All but low-level events.
+* DEBUG - All events, in extreme detail.
+
+<b>dynAddr</b>
+Set by the DHCP client when the IP address was fetched dynamically.
+
+<b>ftMode</b>
+First time user mode determines which configuration options are shown by default when logging in to the GUI. This setting is controlled by the GUI.
 
 
 

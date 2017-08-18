@@ -12,7 +12,7 @@ Creates an IPv6 address on the NetScaler appliance.
 
 ##Synopsys
 
-add ns ip6 &lt;IPv6Address>@ [-scope ( global | link-local )] [-type &lt;type>  [-hostRoute ( ENABLED | DISABLED )  [-ip6hostRtGw &lt;ipv6_addr|*>]  [-metric &lt;integer>]  [-vserverRHILevel &lt;vserverRHILevel>]  [-ospf6LSAType ( INTRA_AREA | EXTERNAL )  [-ospfArea &lt;positive_integer>]]]  ] [-vlan &lt;positive_integer>] [-nd ( ENABLED | DISABLED )] [-icmp ( ENABLED | DISABLED )] [-vServer ( ENABLED | DISABLED )] [-telnet ( ENABLED | DISABLED )] [-ftp ( ENABLED | DISABLED )] [-gui &lt;gui>] [-ssh ( ENABLED | DISABLED )] [-snmp ( ENABLED | DISABLED )] [-mgmtAccess ( ENABLED | DISABLED )] [-restrictAccess ( ENABLED | DISABLED )] [-dynamicRouting ( ENABLED | DISABLED )] [-state ( DISABLED | ENABLED )] [-map &lt;ip_addr>] [-ownerNode &lt;positive_integer>] [-td &lt;positive_integer>]
+add ns ip6 &lt;IPv6Address>@ [-scope ( global | link-local )] [-type &lt;type>  [-hostRoute ( ENABLED | DISABLED )  [-tag &lt;positive_integer>]  [-ip6hostRtGw &lt;ipv6_addr|*>]  [-metric &lt;integer>]  [-vserverRHILevel &lt;vserverRHILevel>]  [-ospf6LSAType ( INTRA_AREA | EXTERNAL )  [-ospfArea &lt;positive_integer>]]]  ] [-vlan &lt;positive_integer>] [-nd ( ENABLED | DISABLED )] [-icmp ( ENABLED | DISABLED )] [-vServer ( ENABLED | DISABLED )] [-telnet ( ENABLED | DISABLED )] [-ftp ( ENABLED | DISABLED )] [-gui &lt;gui>] [-ssh ( ENABLED | DISABLED )] [-snmp ( ENABLED | DISABLED )] [-mgmtAccess ( ENABLED | DISABLED )] [-restrictAccess ( ENABLED | DISABLED )] [-dynamicRouting ( ENABLED | DISABLED )] [-networkRoute ( ENABLED | DISABLED )] [-state ( DISABLED | ENABLED )] [-map &lt;ip_addr>] [-vrID6 &lt;positive_integer>] [-ownerNode &lt;positive_integer>] [-ownerDownResponse ( YES | NO )] [-td &lt;positive_integer>]
 
 
 ##Arguments
@@ -92,8 +92,17 @@ Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
 <b>hostRoute</b>
-Advertise a route for the VIP6 address by using the dynamic routing protocols running on the NetScaler appliance.
+Option to push the VIP6 to ZebOS routing table for Kernel route redistribution through dynamic routing protocols.
 Possible values: ENABLED, DISABLED
+
+<b>networkRoute</b>
+Option to push the SNIP6 subnet to ZebOS routing table for Kernel route redistribution through dynamic routing protocol.
+Possible values: ENABLED, DISABLED
+
+<b>tag</b>
+Tag value for the network/host route associated with this IP.
+Default value: 0
+Minimum value: 0
 
 <b>ip6hostRtGw</b>
 IPv6 address of the gateway for the route. If Gateway is not set, VIP uses :: as the gateway.
@@ -135,10 +144,20 @@ Default value: ENABLED
 <b>map</b>
 Mapped IPV4 address for the IPV6 address.
 
+<b>vrID6</b>
+A positive integer that uniquely identifies a VMAC address for binding to this VIP address. This binding is used to set up NetScaler appliances in an active-active configuration using VRRP.
+Minimum value: 1
+Maximum value: 255
+
 <b>ownerNode</b>
 ID of the cluster node for which you are adding the IP address. Must be used if you want the IP address to be active only on the specific node. Can be configured only through the cluster IP address. Cannot be changed after the IP address is created.
 Default value: 255
 Minimum value: 0
+
+<b>ownerDownResponse</b>
+in cluster system, if the owner node is down, whether should it respond to icmp/arp
+Possible values: YES, NO
+Default value: YES
 
 <b>td</b>
 Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
@@ -184,7 +203,7 @@ Modifies the specified parameters of an IPv6 address configured on the NetScaler
 
 ##Synopsys
 
-set ns ip6 (&lt;IPv6Address>@  [-td &lt;positive_integer>]) [-nd ( ENABLED | DISABLED )] [-icmp ( ENABLED | DISABLED )] [-vServer ( ENABLED | DISABLED )] [-telnet ( ENABLED | DISABLED )] [-ftp ( ENABLED | DISABLED )] [-gui &lt;gui>] [-ssh ( ENABLED | DISABLED )] [-snmp ( ENABLED | DISABLED )] [-mgmtAccess ( ENABLED | DISABLED )] [-restrictAccess ( ENABLED | DISABLED )] [-state ( DISABLED | ENABLED )] [-map &lt;ip_addr>] [-dynamicRouting ( ENABLED | DISABLED )] [-hostRoute ( ENABLED | DISABLED )  [-ip6hostRtGw &lt;ipv6_addr|*>]  [-metric &lt;integer>]  [-vserverRHILevel &lt;vserverRHILevel>]  [-ospf6LSAType ( INTRA_AREA | EXTERNAL )  [-ospfArea &lt;positive_integer>]]]
+set ns ip6 (&lt;IPv6Address>@  [-td &lt;positive_integer>]) [-nd ( ENABLED | DISABLED )] [-icmp ( ENABLED | DISABLED )] [-vServer ( ENABLED | DISABLED )] [-telnet ( ENABLED | DISABLED )] [-ftp ( ENABLED | DISABLED )] [-gui &lt;gui>] [-ssh ( ENABLED | DISABLED )] [-snmp ( ENABLED | DISABLED )] [-mgmtAccess ( ENABLED | DISABLED )] [-ownerDownResponse ( YES | NO )] [-restrictAccess ( ENABLED | DISABLED )] [-state ( DISABLED | ENABLED )] [-map &lt;ip_addr>] [-dynamicRouting ( ENABLED | DISABLED )] [-hostRoute ( ENABLED | DISABLED )] [-networkRoute ( ENABLED | DISABLED )] [-ip6hostRtGw &lt;ipv6_addr|*>] [-metric &lt;integer>] [-vserverRHILevel &lt;vserverRHILevel>] [-ospf6LSAType ( INTRA_AREA | EXTERNAL )  [-ospfArea &lt;positive_integer>]] [-tag &lt;positive_integer>] [-vrID6 &lt;positive_integer>]
 
 
 ##Arguments
@@ -242,6 +261,11 @@ The state of management access to this IP entity.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
+<b>ownerDownResponse</b>
+in cluster system, if the owner node is down, whether should it respond to icmp/arp
+Possible values: YES, NO
+Default value: YES
+
 <b>restrictAccess</b>
 Status of ports not used for management access (blocked/open) for the entity.
 Possible values: ENABLED, DISABLED
@@ -261,7 +285,11 @@ Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
 <b>hostRoute</b>
-Advertise a route for the VIP6 address by using the dynamic routing protocols running on the NetScaler appliance.
+Option to push the VIP6 to ZebOS routing table for Kernel route redistribution through dynamic routing protocols.
+Possible values: ENABLED, DISABLED
+
+<b>networkRoute</b>
+Option to push the SNIP6 subnet to ZebOS routing table for Kernel route redistribution through dynamic routing protocol.
 Possible values: ENABLED, DISABLED
 
 <b>ip6hostRtGw</b>
@@ -286,7 +314,7 @@ Possible values: ONE_VSERVER, ALL_VSERVERS, NONE, VSVR_CNTRLD
 Default value: ONE_VSERVER
 
 <b>ospf6LSAType</b>
-The OSPF's route advertisement type.
+Type of LSAs to be used by the IPv6 OSPF protocol, running on the NetScaler appliance, for advertising the route for the VIP6 address.
 Possible values: INTRA_AREA, EXTERNAL
 Default value: EXTERNAL
 
@@ -295,6 +323,16 @@ ID of the area in which the Intra-Area-Prefix LSAs are to be advertised for the 
 Default value: -1
 Minimum value: 0
 Maximum value: 4294967294LU
+
+<b>tag</b>
+Tag value for the network/host route associated with this IP.
+Default value: 0
+Minimum value: 0
+
+<b>vrID6</b>
+A positive integer that uniquely identifies a VMAC address for binding to this VIP address. This binding is used to set up NetScaler appliances in an active-active configuration using VRRP.
+Minimum value: 1
+Maximum value: 255
 
 
 
@@ -309,7 +347,7 @@ Modifies the parameters of an IPv6 address configured on the NetScaler appliance
 
 ##Synopsys
 
-unset ns ip6 &lt;IPv6Address>@ [-td &lt;positive_integer>] [-ospfArea] [-nd] [-icmp] [-vServer] [-telnet] [-ftp] [-gui] [-ssh] [-snmp] [-mgmtAccess] [-restrictAccess] [-state] [-map] [-dynamicRouting] [-hostRoute] [-ip6hostRtGw] [-metric] [-vserverRHILevel] [-ospf6LSAType]
+unset ns ip6 &lt;IPv6Address>@ [-td &lt;positive_integer>] [-ospfArea] [-nd] [-icmp] [-vServer] [-telnet] [-ftp] [-gui] [-ssh] [-snmp] [-mgmtAccess] [-ownerDownResponse] [-restrictAccess] [-state] [-map] [-dynamicRouting] [-hostRoute] [-networkRoute] [-ip6hostRtGw] [-metric] [-vserverRHILevel] [-ospf6LSAType] [-tag] [-vrID6]
 
 
 ##Example
@@ -392,13 +430,19 @@ Mapped IPV4 address for the IPV6 address.
 Allow dynamic routing on this IP address. Specific to Subnet IPv6 (SNIP6) address.
 
 <b>hostRoute</b>
-Advertise a route for the VIP6 address by using the dynamic routing protocols running on the NetScaler appliance.
+Option to push the VIP6 to ZebOS routing table for Kernel route redistribution through dynamic routing protocols.
+
+<b>networkRoute</b>
+Option to push the SNIP6 subnet to ZebOS routing table for Kernel route redistribution through dynamic routing protocol.
+
+<b>tag</b>
+Tag value for the network/host route associated with this IP.
 
 <b>ip6hostRtGw</b>
 IPv6 address of the gateway for the route. If Gateway is not set, VIP uses :: as the gateway.
 
 <b>metric</b>
-The metric value to be added or subtracted from the cost of the hostroute advertised for this IPv6 entity.
+The metric value to be added or subtracted from the cost of the route advertised for this IPv6 entity.
 
 <b>vserverRHILevel</b>
 Advertise or do not advertise the route for the Virtual IP (VIP6) address on the basis of the state of the virtual servers associated with that VIP6.
@@ -431,11 +475,17 @@ ID of the cluster node for which you are adding the IP address. Must be used if 
 
 <b>stateflag</b>
 
+<b>vrID6</b>
+A positive integer that uniquely identifies a VMAC address for binding to this VIP address. This binding is used to set up NetScaler appliances in an active-active configuration using VRRP.
+
 <b>cfgflags</b>
 This contains the flags for IP in DB
 
 <b>ipRefcount</b>
 Used to keep reference count of IPv6
+
+<b>ownerDownResponse</b>
+in cluster system, if the owner node is down, whether should it respond to icmp/arp
 
 <b>systemType</b>
 The type of the System. Possible Values: Standalone, HA, Cluster. Used for display purpose.

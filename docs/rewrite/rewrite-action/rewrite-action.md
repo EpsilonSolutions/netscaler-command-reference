@@ -20,7 +20,7 @@ add rewrite action &lt;name> &lt;type> &lt;target> [&lt;stringBuilderExpr>] [-pa
 <b>name</b>
 Name for the user-defined rewrite action. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) hash (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Can be changed after the rewrite policy is added.
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my rewrite action" or ?my rewrite action?).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my rewrite action" or 'my rewrite action').
 
 <b>type</b>
 Type of user-defined rewrite action. The information that you provide for, and the effect of, each type are as follows:: 
@@ -54,7 +54,7 @@ Pattern that is used to match multiple strings in the request or response. The p
 <b>search</b>
 Search facility that is used to match multiple strings in the request or response. Used in the INSERT_BEFORE_ALL, INSERT_AFTER_ALL, REPLACE_ALL, and DELETE_ALL action types. The following search types are supported:
 * Text ("text(string)") - A literal string. Example: -search text("hello")
-* Regular expression (?regex(re&lt;delimiter&gt;regular exp&lt;delimiter&gt;)?) - Pattern that is used to match multiple strings in the request or response. The pattern may be a string literal (without quotes) or a PCRE-format regular expression with a delimiter that consists of any printable ASCII non-alphanumeric character except for the underscore (_) and space ( ) that is not otherwise used in the expression. Example: -search regex(re~^hello~) The preceding regular expression can use the tilde (~) as the delimiter because that character does not appear in the regular expression itself.
+* Regular expression ("regex(re&lt;delimiter&gt;regular exp&lt;delimiter&gt;)") - Pattern that is used to match multiple strings in the request or response. The pattern may be a string literal (without quotes) or a PCRE-format regular expression with a delimiter that consists of any printable ASCII non-alphanumeric character except for the underscore (_) and space ( ) that is not otherwise used in the expression. Example: -search regex(re~^hello~) The preceding regular expression can use the tilde (~) as the delimiter because that character does not appear in the regular expression itself.
 * XPath ("xpath(xp&lt;delimiter&gt;xpath expression&lt;delimiter&gt;)") - An XPath expression. Example: -search xpath(xp%/a/b%)
 * JSON ("xpath_json(xp&lt;delimiter&gt;xpath expression&lt;delimiter&gt;)") - An XPath JSON expression. Example: -search xpath_json(xp%/a/b%)
 NOTE: JSON searches use the same syntax as XPath searches, but operate on JSON files instead of standard XML files.
@@ -124,7 +124,7 @@ Pattern that is used to match multiple strings in the request or response. The p
 <b>search</b>
 Search facility that is used to match multiple strings in the request or response. Used in the INSERT_BEFORE_ALL, INSERT_AFTER_ALL, REPLACE_ALL, and DELETE_ALL action types. The following search types are supported:
 * Text ("text(string)") - A literal string. Example: -search text("hello")
-* Regular expression (?regex(re&lt;delimiter&gt;regular exp&lt;delimiter&gt;)?) - Pattern that is used to match multiple strings in the request or response. The pattern may be a string literal (without quotes) or a PCRE-format regular expression with a delimiter that consists of any printable ASCII non-alphanumeric character except for the underscore (_) and space ( ) that is not otherwise used in the expression. Example: -search regex(re~^hello~) The preceding regular expression can use the tilde (~) as the delimiter because that character does not appear in the regular expression itself.
+* Regular expression ("regex(re&lt;delimiter&gt;regular exp&lt;delimiter&gt;)") - Pattern that is used to match multiple strings in the request or response. The pattern may be a string literal (without quotes) or a PCRE-format regular expression with a delimiter that consists of any printable ASCII non-alphanumeric character except for the underscore (_) and space ( ) that is not otherwise used in the expression. Example: -search regex(re~^hello~) The preceding regular expression can use the tilde (~) as the delimiter because that character does not appear in the regular expression itself.
 * XPath ("xpath(xp&lt;delimiter&gt;xpath expression&lt;delimiter&gt;)") - An XPath expression. Example: -search xpath(xp%/a/b%)
 * JSON ("xpath_json(xp&lt;delimiter&gt;xpath expression&lt;delimiter&gt;)") - An XPath JSON expression. Example: -search xpath_json(xp%/a/b%)
 NOTE: JSON searches use the same syntax as XPath searches, but operate on JSON files instead of standard XML files.
@@ -192,7 +192,7 @@ Pattern used for insert_before_all, insert_after_all, replace_all, delete_all ac
 <b>search</b>
 Search facility that is used to match multiple strings in the request or response. Used in the INSERT_BEFORE_ALL, INSERT_AFTER_ALL, REPLACE_ALL, and DELETE_ALL action types. The following search types are supported:
 * Text ("text(string)") - A literal string. Example: -search text("hello")
-* Regular expression (?regex(re&lt;delimiter>regular exp&lt;delimiter>)?) - Pattern that is used to match multiple strings in the request or response. The pattern may be a string literal (without quotes) or a PCRE-format regular expression with a delimiter that consists of any printable ASCII non-alphanumeric character except for the underscore (_) and space ( ) that is not otherwise used in the expression. Example: -search regex(re~^hello~) The preceding regular expression can use the tilde (~) as the delimiter because that character does not appear in the regular expression itself.
+* Regular expression ("regex(re&lt;delimiter>regular exp&lt;delimiter>)") - Pattern that is used to match multiple strings in the request or response. The pattern may be a string literal (without quotes) or a PCRE-format regular expression with a delimiter that consists of any printable ASCII non-alphanumeric character except for the underscore (_) and space ( ) that is not otherwise used in the expression. Example: -search regex(re~^hello~) The preceding regular expression can use the tilde (~) as the delimiter because that character does not appear in the regular expression itself.
 * XPath ("xpath(xp&lt;delimiter>xpath expression&lt;delimiter>)") - An XPath expression. Example: -search xpath(xp%/a/b%)
 * JSON ("xpath_json(xp&lt;delimiter>xpath expression&lt;delimiter>)") - An XPath JSON expression. Example: -search xpath_json(xp%/a/b%)
 NOTE: JSON searches use the same syntax as XPath searches, but operate on JSON files instead of standard XML files.
@@ -260,7 +260,7 @@ Existing name of the rewrite action.
 New name for the rewrite action. 
 Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) hash (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Can be changed after the rewrite policy is added.
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my rewrite action" or ?my rewrite action?).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my rewrite action" or 'my rewrite action').
 
 
 

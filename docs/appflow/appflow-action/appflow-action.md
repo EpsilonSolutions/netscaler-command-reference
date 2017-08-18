@@ -12,7 +12,7 @@ Creates an AppFlow action. The action can be associated with an AppFlow policy b
 
 ##Synopsys
 
-add appflow action &lt;name> -collectors &lt;string> ... [-clientSideMeasurements ( ENABLED | DISABLED )] [-comment &lt;string>]
+add appflow action &lt;name> -collectors &lt;string> ... [-clientSideMeasurements ( ENABLED | DISABLED )] [-pageTracking ( ENABLED | DISABLED )] [-webInsight ( ENABLED | DISABLED )] [-securityInsight ( ENABLED | DISABLED )] [-videoAnalytics ( ENABLED | DISABLED )] [-distributionAlgorithm ( ENABLED | DISABLED )] [-MetricsLog  [-TransactionLog &lt;TransactionLog>]] [-comment &lt;string>]
 
 
 ##Arguments
@@ -29,6 +29,39 @@ Name(s) of collector(s) to be associated with the AppFlow action.
 On enabling this option, the NetScaler will collect the time required to load and render the mainpage on the client.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
+
+<b>pageTracking</b>
+On enabling this option, the NetScaler will start tracking the page for waterfall chart by inserting a NS_ESNS cookie in the response.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>webInsight</b>
+On enabling this option, the netscaler will send the webinsight records to the configured collectors.
+Possible values: ENABLED, DISABLED
+Default value: ENABLED
+
+<b>securityInsight</b>
+On enabling this option, the netscaler will send the security insight records to the configured collectors.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>videoAnalytics</b>
+On enabling this option, the netscaler will send the videoinsight records to the configured collectors.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>distributionAlgorithm</b>
+On enabling this option, the netscaler will distribute records among the collectors. Else, all records will be sent to all the collectors.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>MetricsLog</b>
+If only the stats records are to be exported, turn on this option.
+
+<b>TransactionLog</b>
+If over stats channel, transactions logs also need to be sent, set this option appropriately. By default netscaler sends anomalous transaction logs over metrics channel. This can be changed to ALL or NONE transactions
+Possible values: ANOMALOUS, NONE, ALL
+Default value: ANOMALOUS
 
 <b>comment</b>
 Any comments about this action.  In the CLI, if including spaces between words, enclose the comment in quotation marks. (The quotation marks are not required in the configuration utility.)
@@ -67,7 +100,7 @@ Modifies the specified parameters of an AppFlow action.
 
 ##Synopsys
 
-set appflow action &lt;name> [-collectors &lt;string> ...] [-clientSideMeasurements ( ENABLED | DISABLED )] [-comment &lt;string>]
+set appflow action &lt;name> [-collectors &lt;string> ...] [-clientSideMeasurements ( ENABLED | DISABLED )] [-comment &lt;string>] [-pageTracking ( ENABLED | DISABLED )] [-webInsight ( ENABLED | DISABLED )] [-securityInsight ( ENABLED | DISABLED )] [-videoAnalytics ( ENABLED | DISABLED )] [-distributionAlgorithm ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -86,6 +119,31 @@ Default value: DISABLED
 <b>comment</b>
 Any comments about this action.  In the CLI, if including spaces between words, enclose the comment in quotation marks. (The quotation marks are not required in the configuration utility.)
 
+<b>pageTracking</b>
+On enabling this option, the NetScaler will start tracking the page for waterfall chart by inserting a NS_ESNS cookie in the response.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>webInsight</b>
+On enabling this option, the netscaler will send the webinsight records to the configured collectors.
+Possible values: ENABLED, DISABLED
+Default value: ENABLED
+
+<b>securityInsight</b>
+On enabling this option, the netscaler will send the security insight records to the configured collectors.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>videoAnalytics</b>
+On enabling this option, the netscaler will send the videoinsight records to the configured collectors.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>distributionAlgorithm</b>
+On enabling this option, the netscaler will distribute records among the collectors. Else, all records will be sent to all the collectors.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
 
 
 ##Example
@@ -99,7 +157,7 @@ Use this command to remove appflow action settings.Refer to the set appflow acti
 
 ##Synopsys
 
-unset appflow action &lt;name> [-clientSideMeasurements] [-comment]
+unset appflow action &lt;name> [-clientSideMeasurements] [-comment] [-pageTracking] [-webInsight] [-securityInsight] [-videoAnalytics] [-distributionAlgorithm]
 
 
 ##rename appflow action
@@ -158,6 +216,27 @@ Name(s) of collector(s) to be associated with the AppFlow action.
 
 <b>clientSideMeasurements</b>
 On enabling this option, the NetScaler will collect the time required to load and render the mainpage on the client.
+
+<b>pageTracking</b>
+On enabling this option, the NetScaler will start tracking the page for waterfall chart by inserting a NS_ESNS cookie in the response.
+
+<b>webInsight</b>
+On enabling this option, the netscaler will send the webinsight records to the configured collectors.
+
+<b>securityInsight</b>
+On enabling this option, the netscaler will send the security insight records to the configured collectors.
+
+<b>videoAnalytics</b>
+On enabling this option, the netscaler will send the videoinsight records to the configured collectors.
+
+<b>distributionAlgorithm</b>
+On enabling this option, the netscaler will distribute records among the collectors. Else, all records will be sent to all the collectors.
+
+<b>MetricsLog</b>
+If only the stats records are to be exported, turn on this option.
+
+<b>TransactionLog</b>
+If over stats channel, transactions logs also need to be sent, set this option appropriately. By default netscaler sends anomalous transaction logs over metrics channel. This can be changed to ALL or NONE transactions
 
 <b>referenceCount</b>
 The number of references to the action.

@@ -12,7 +12,7 @@ Adds a syslog action. The action contains a reference to a syslog server, and sp
 
 ##Synopsys
 
-add audit syslogAction &lt;name> (&lt;serverIP> | -lbVserverName &lt;string>) [-serverPort &lt;port>] -logLevel &lt;logLevel> ... [-dateFormat &lt;dateFormat>] [-logFacility &lt;logFacility>] [-tcp ( NONE | ALL )] [-acl ( ENABLED | DISABLED )] [-timeZone ( GMT_TIME | LOCAL_TIME )] [-userDefinedAuditlog ( YES | NO )] [-appflowExport ( ENABLED | DISABLED )] [-lsn ( ENABLED | DISABLED )] [-alg ( ENABLED | DISABLED )] [-transport ( TCP | UDP )] [-tcpProfileName &lt;string>] [-maxLogDataSizeToHold &lt;positive_integer>] [-dns ( ENABLED | DISABLED )]
+add audit syslogAction &lt;name> (&lt;serverIP> | ((&lt;serverDomainName>  [-domainResolveRetry &lt;integer>]) | -lbVserverName &lt;string>)) [-serverPort &lt;port>] -logLevel &lt;logLevel> ... [-dateFormat &lt;dateFormat>] [-logFacility &lt;logFacility>] [-tcp ( NONE | ALL )] [-acl ( ENABLED | DISABLED )] [-timeZone ( GMT_TIME | LOCAL_TIME )] [-userDefinedAuditlog ( YES | NO )] [-appflowExport ( ENABLED | DISABLED )] [-lsn ( ENABLED | DISABLED )] [-alg ( ENABLED | DISABLED )] [-subscriberLog ( ENABLED | DISABLED )] [-transport ( TCP | UDP )] [-tcpProfileName &lt;string>] [-maxLogDataSizeToHold &lt;positive_integer>] [-dns ( ENABLED | DISABLED )] [-netProfile &lt;string>] [-sslInterception ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -20,10 +20,22 @@ add audit syslogAction &lt;name> (&lt;serverIP> | -lbVserverName &lt;string>) [-
 <b>name</b>
 Name of the syslog action. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after the syslog action is added.
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, ?my syslog action? or ?my syslog action).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my syslog action" or 'my syslog action').
 
 <b>serverIP</b>
 IP address of the syslog server.
+
+<b>serverDomainName</b>
+SYSLOG server name as a FQDN.  Mutually exclusive with serverIP/lbVserverName
+
+<b>domainResolveRetry</b>
+Time, in seconds, for which the NetScaler appliance waits before sending another DNS query to resolve the host name of the syslog server if the last query failed.
+Default value: 5
+Minimum value: 5
+Maximum value: 20939
+
+<b>lbVserverName</b>
+Name of the LB vserver. Mutually exclusive with syslog serverIP/serverName
 
 <b>serverPort</b>
 Port on which the syslog server accepts connections.
@@ -68,7 +80,7 @@ Possible values: ENABLED, DISABLED
 Time zone used for date and timestamps in the logs. 
 Supported settings are: 
 * GMT_TIME. Coordinated Universal time.
-* LOCAL_TIME. Use the server?s timezone setting.
+* LOCAL_TIME. Use the server's timezone setting.
 Possible values: GMT_TIME, LOCAL_TIME
 
 <b>userDefinedAuditlog</b>
@@ -89,6 +101,10 @@ Possible values: ENABLED, DISABLED
 Log alg info
 Possible values: ENABLED, DISABLED
 
+<b>subscriberLog</b>
+Log subscriber session event information
+Possible values: ENABLED, DISABLED
+
 <b>transport</b>
 Transport type used to send auditlogs to syslog server. Default type is UDP.
 Possible values: TCP, UDP
@@ -106,8 +122,13 @@ Maximum value: 25600
 Log DNS related syslog messages
 Possible values: ENABLED, DISABLED
 
-<b>lbVserverName</b>
-Name of the LB vserver. Mutually exclusive with syslog server IP address
+<b>netProfile</b>
+Name of the network profile.
+The SNIP configured in the network profile will be used as source IP while sending log messages.
+
+<b>sslInterception</b>
+Log SSL Interception event information
+Possible values: ENABLED, DISABLED
 
 
 
@@ -135,7 +156,7 @@ Modifies the specified parameters of an existing syslog action.
 
 ##Synopsys
 
-set audit syslogAction &lt;name> [-serverIP &lt;ip_addr|ipv6_addr|*>] [-serverPort &lt;port>] [-logLevel &lt;logLevel> ...] [-dateFormat &lt;dateFormat>] [-logFacility &lt;logFacility>] [-tcp ( NONE | ALL )] [-acl ( ENABLED | DISABLED )] [-timeZone ( GMT_TIME | LOCAL_TIME )] [-userDefinedAuditlog ( YES | NO )] [-appflowExport ( ENABLED | DISABLED )] [-lsn ( ENABLED | DISABLED )] [-alg ( ENABLED | DISABLED )] [-transport ( TCP | UDP )] [-tcpProfileName &lt;string>] [-maxLogDataSizeToHold &lt;positive_integer>] [-dns ( ENABLED | DISABLED )] [-lbVserverName &lt;string>]
+set audit syslogAction &lt;name> [-serverIP &lt;ip_addr|ipv6_addr|*>] [-serverDomainName &lt;string>] [-lbVserverName &lt;string>] [-domainResolveRetry &lt;integer>] [-domainResolveNow] [-serverPort &lt;port>] [-logLevel &lt;logLevel> ...] [-dateFormat &lt;dateFormat>] [-logFacility &lt;logFacility>] [-tcp ( NONE | ALL )] [-acl ( ENABLED | DISABLED )] [-timeZone ( GMT_TIME | LOCAL_TIME )] [-userDefinedAuditlog ( YES | NO )] [-appflowExport ( ENABLED | DISABLED )] [-lsn ( ENABLED | DISABLED )] [-alg ( ENABLED | DISABLED )] [-subscriberLog ( ENABLED | DISABLED )] [-tcpProfileName &lt;string>] [-maxLogDataSizeToHold &lt;positive_integer>] [-dns ( ENABLED | DISABLED )] [-netProfile &lt;string>] [-sslInterception ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -145,6 +166,21 @@ Name of the syslog action to be modified.
 
 <b>serverIP</b>
 IP address of the syslog server.
+
+<b>serverDomainName</b>
+SYSLOG server name as a FQDN.  Mutually exclusive with serverIP/lbVserverName
+
+<b>lbVserverName</b>
+Name of the LB vserver. Mutually exclusive with syslog serverIP/serverName
+
+<b>domainResolveRetry</b>
+Time, in seconds, for which the NetScaler appliance waits before sending another DNS query to resolve the host name of the syslog server if the last query failed.
+Default value: 5
+Minimum value: 5
+Maximum value: 20939
+
+<b>domainResolveNow</b>
+Immediately send a DNS query to resolve the server's domain name.
 
 <b>serverPort</b>
 Port on which the syslog server accepts connections.
@@ -189,7 +225,7 @@ Possible values: ENABLED, DISABLED
 Time zone used for date and timestamps in the logs. 
 Supported settings are: 
 * GMT_TIME. Coordinated Universal time.
-* LOCAL_TIME. Use the server?s timezone setting.
+* LOCAL_TIME. Use the server's timezone setting.
 Possible values: GMT_TIME, LOCAL_TIME
 
 <b>userDefinedAuditlog</b>
@@ -210,9 +246,9 @@ Possible values: ENABLED, DISABLED
 Log alg info
 Possible values: ENABLED, DISABLED
 
-<b>transport</b>
-Transport type used to send auditlogs to syslog server. Default type is UDP.
-Possible values: TCP, UDP
+<b>subscriberLog</b>
+Log subscriber session event information
+Possible values: ENABLED, DISABLED
 
 <b>tcpProfileName</b>
 Name of the TCP profile whose settings are to be applied to the audit server info to tune the TCP connection parameters.
@@ -227,8 +263,13 @@ Maximum value: 25600
 Log DNS related syslog messages
 Possible values: ENABLED, DISABLED
 
-<b>lbVserverName</b>
-Name of the LB vserver. Mutually exclusive with syslog server IP address
+<b>netProfile</b>
+Name of the network profile.
+The SNIP configured in the network profile will be used as source IP while sending log messages.
+
+<b>sslInterception</b>
+Log SSL Interception event information
+Possible values: ENABLED, DISABLED
 
 
 
@@ -239,7 +280,7 @@ Removes the settings of an existing syslog action. Attributes for which a defaul
 
 ##Synopsys
 
-unset audit syslogAction &lt;name> [-serverPort] [-logLevel] [-dateFormat] [-logFacility] [-tcp] [-acl] [-timeZone] [-userDefinedAuditlog] [-appflowExport] [-lsn] [-alg] [-transport] [-tcpProfileName] [-maxLogDataSizeToHold] [-dns]
+unset audit syslogAction &lt;name> [-serverPort] [-logLevel] [-dateFormat] [-logFacility] [-tcp] [-acl] [-timeZone] [-userDefinedAuditlog] [-appflowExport] [-lsn] [-alg] [-subscriberLog] [-tcpProfileName] [-maxLogDataSizeToHold] [-dns] [-netProfile] [-sslInterception]
 
 
 ##show audit syslogAction
@@ -263,6 +304,18 @@ Name of the syslog action.
 
 <b>serverIP</b>
 IP address of the syslog server.
+
+<b>serverDomainName</b>
+SYSLOG server name as a FQDN.  Mutually exclusive with serverIP/lbVserverName
+
+<b>IP</b>
+The resolved IP address of the syslog server
+
+<b>lbVserverName</b>
+Name of the LB vserver. Mutually exclusive with syslog serverIP/serverName
+
+<b>domainResolveRetry</b>
+Time, in seconds, for which the NetScaler appliance waits before sending another DNS query to resolve the host name of the syslog server if the last query failed.
 
 <b>serverPort</b>
 Port on which the syslog server accepts connections.
@@ -302,7 +355,7 @@ Log access control list (ACL) messages.
 Time zone used for date and timestamps in the logs. 
 Supported settings are: 
 * GMT_TIME. Coordinated Universal time.
-* LOCAL_TIME. Use the server?s timezone setting.
+* LOCAL_TIME. Use the server's timezone setting.
 
 <b>stateflag</b>
 
@@ -322,6 +375,9 @@ Log lsn info
 <b>alg</b>
 Log alg info
 
+<b>subscriberLog</b>
+Log subscriber session event information
+
 <b>transport</b>
 Transport type used to send auditlogs to syslog server. Default type is UDP.
 
@@ -334,8 +390,12 @@ Max size of log data that can be held in NSB chain of server info.
 <b>dns</b>
 Log DNS related syslog messages
 
-<b>lbVserverName</b>
-Name of the LB vserver. Mutually exclusive with syslog server IP address
+<b>netProfile</b>
+Name of the network profile.
+The SNIP configured in the network profile will be used as source IP while sending log messages.
+
+<b>sslInterception</b>
+Log SSL Interception event information
 
 <b>devno</b>
 

@@ -12,7 +12,7 @@ Adds a VLAN to the NetScaler appliance.The newVLAN is not active unless interfac
 
 ##Synopsys
 
-add vlan &lt;id> [-aliasName &lt;string>] [-dynamicRouting ( ENABLED | DISABLED )] [-ipv6DynamicRouting ( ENABLED | DISABLED )] [-mtu &lt;positive_integer>]
+add vlan &lt;id> [-aliasName &lt;string>] [-dynamicRouting ( ENABLED | DISABLED )] [-ipv6DynamicRouting ( ENABLED | DISABLED )] [-mtu &lt;positive_integer>] [-sharing ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -40,6 +40,11 @@ Specifies the maximum transmission unit (MTU), in bytes. The MTU is the largest 
 Default value: 0
 Minimum value: 500
 Maximum value: 9216
+
+<b>sharing</b>
+If sharing is enabled, then this vlan can be shared across multiple partitions by binding it to all those partitions. If sharing is disabled, then this vlan can be bound to only one of the partitions.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
 
 
 
@@ -69,7 +74,7 @@ Modifies parameters of a VLAN on the NetScaler appliance.
 
 ##Synopsys
 
-set vlan &lt;id> [-aliasName &lt;string>] [-dynamicRouting ( ENABLED | DISABLED )] [-ipv6DynamicRouting ( ENABLED | DISABLED )] [-mtu &lt;positive_integer>]
+set vlan &lt;id> [-aliasName &lt;string>] [-dynamicRouting ( ENABLED | DISABLED )] [-ipv6DynamicRouting ( ENABLED | DISABLED )] [-mtu &lt;positive_integer>] [-sharing ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -98,6 +103,11 @@ Default value: 0
 Minimum value: 500
 Maximum value: 9216
 
+<b>sharing</b>
+If sharing is enabled, then this vlan can be shared across multiple partitions by binding it to all those partitions. If sharing is disabled, then this vlan can be bound to only one of the partitions.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
 
 
 ##Example
@@ -111,7 +121,7 @@ Use this command to remove  vlan settings.Refer to the set  vlan command for mea
 
 ##Synopsys
 
-unset vlan &lt;id> [-aliasName] [-dynamicRouting] [-ipv6DynamicRouting] [-mtu]
+unset vlan &lt;id> [-aliasName] [-dynamicRouting] [-ipv6DynamicRouting] [-mtu] [-sharing]
 
 
 ##bind vlan
@@ -278,6 +288,9 @@ SDX vlan.
 
 <b>mtu</b>
 Specifies the maximum transmission unit (MTU), in bytes. The MTU is the largest packet size, excluding 14 bytes of ethernet header and 4 bytes of crc, that can be transmitted and received over this VLAN.
+
+<b>sharing</b>
+If sharing is enabled, then this vlan can be shared across multiple partitions by binding it to all those partitions. If sharing is disabled, then this vlan can be bound to only one of the partitions.
 
 <b>partitionName</b>
 Name of the Partition to which this vlan bound to.

@@ -3,7 +3,7 @@
 The following operations can be performed on "locationFile6":
 
 
-[add](#add-locationfile6) | [rm](#rm-locationfile6) | [show](#show-locationfile6)
+[add](#add-locationfile6) | [rm](#rm-locationfile6) | [show](#show-locationfile6) | [import](#import-locationfile6)
 
 ##add locationFile6
 
@@ -74,4 +74,29 @@ The format of the location file.
 ##Example
 
 show locationfile6
+
+##import locationFile6
+
+Imports the specified location file to the NetScaler appliance, assigns it the specified name.
+
+
+##Synopsys
+
+import locationFile6 &lt;locationFile> &lt;src>
+
+
+##Arguments
+
+<b>locationFile</b>
+Name of the IPv6 location file, with or without absolute path. If the path is not included, the default path (/var/netscaler/locdb) is assumed. In a high availability setup, the static database must be stored in the same location on both NetScaler appliances.
+
+<b>src</b>
+URL \\(protocol, host, path, and file name\\) from where the location file will be imported.
+            NOTE: The import fails if the object to be imported is on an HTTPS server that requires client certificate authentication for access.
+
+
+
+##Example
+
+import locationfile6 locfile6_1 http://www.example.com/file_1
 

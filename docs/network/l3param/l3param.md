@@ -12,7 +12,7 @@ Set Layer 3 related global settings on the NetScaler
 
 ##Synopsys
 
-set L3Param [-srcnat ( ENABLED | DISABLED )] [-icmpGenRateThreshold &lt;positive_integer>] [-overrideRnat ( ENABLED | DISABLED )] [-dropDFFlag ( ENABLED | DISABLED )] [-mipRoundRobin ( ENABLED | DISABLED )] [-externalLoopBack ( ENABLED | DISABLED )] [-tnlPmtuWoConn ( ENABLED | DISABLED )] [-usipServerStrayPkt ( ENABLED | DISABLED )] [-forwardICMPFragments ( ENABLED | DISABLED )] [-dropIPFragments ( ENABLED | DISABLED )] [-AclLogTime &lt;positive_integer>] [-icmpErrGenerate ( ENABLED | DISABLED )] [-overrideLsn ( ENABLED | DISABLED )] [-implicitACLAllow ( ENABLED | DISABLED )] [-dynamicRouting ( ENABLED | DISABLED )]
+set L3Param [-srcnat ( ENABLED | DISABLED )] [-icmpGenRateThreshold &lt;positive_integer>] [-overrideRnat ( ENABLED | DISABLED )] [-dropDFFlag ( ENABLED | DISABLED )] [-mipRoundRobin ( ENABLED | DISABLED )] [-externalLoopBack ( ENABLED | DISABLED )] [-tnlPmtuWoConn ( ENABLED | DISABLED )] [-usipServerStrayPkt ( ENABLED | DISABLED )] [-forwardICMPFragments ( ENABLED | DISABLED )] [-dropIPFragments ( ENABLED | DISABLED )] [-AclLogTime &lt;positive_integer>] [-implicitACLAllow ( ENABLED | DISABLED )] [-dynamicRouting ( ENABLED | DISABLED )] [-ipv6DynamicRouting ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -49,7 +49,7 @@ Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
 <b>tnlPmtuWoConn</b>
-Enable external loopback.
+Enable/Disable learning PMTU of IP tunnel when ICMP error does not contain connection information.
 Possible values: ENABLED, DISABLED
 Default value: ENABLED
 
@@ -73,17 +73,6 @@ Parameter to tune acl logging time
 Default value: 5000
 Minimum value: 0
 
-<b>icmpErrGenerate</b>
-Enable/Disable fragmentation required icmp error generation, before encapsulating a packet with vPath header. This knob is only functional for vPath Environment
-Possible values: ENABLED, DISABLED
-Default value: ENABLED
-
-<b>overrideLsn</b>
-USNIP/USIP settings override LSN settings for configured
-              service/virtual server traffic.. 
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
-
 <b>implicitACLAllow</b>
 Do not apply ACLs for internal ports
 Possible values: ENABLED, DISABLED
@@ -91,6 +80,11 @@ Default value: ENABLED
 
 <b>dynamicRouting</b>
 Enable/Disable Dynamic routing on partition
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>ipv6DynamicRouting</b>
+Enable/Disable IPv6 Dynamic routing on partition
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
@@ -103,7 +97,7 @@ Use this command to remove  L3Param settings.Refer to the set  L3Param command f
 
 ##Synopsys
 
-unset L3Param [-srcnat] [-icmpGenRateThreshold] [-overrideRnat] [-dropDFFlag] [-mipRoundRobin] [-externalLoopBack] [-tnlPmtuWoConn] [-usipServerStrayPkt] [-forwardICMPFragments] [-dropIPFragments] [-AclLogTime] [-icmpErrGenerate] [-overrideLsn] [-implicitACLAllow] [-dynamicRouting]
+unset L3Param [-srcnat] [-icmpGenRateThreshold] [-overrideRnat] [-dropDFFlag] [-mipRoundRobin] [-externalLoopBack] [-tnlPmtuWoConn] [-usipServerStrayPkt] [-forwardICMPFragments] [-dropIPFragments] [-AclLogTime] [-implicitACLAllow] [-dynamicRouting] [-ipv6DynamicRouting]
 
 
 ##show L3Param
@@ -138,7 +132,7 @@ Enable round robin usage of mapped IPs.
 Enable external loopback.
 
 <b>tnlPmtuWoConn</b>
-Enable external loopback.
+Enable/Disable learning PMTU of IP tunnel when ICMP error does not contain connection information.
 
 <b>usipServerStrayPkt</b>
 Enable detection of stray server side pkts in USIP mode.
@@ -152,18 +146,14 @@ Enable dropping of IP fragments.
 <b>AclLogTime</b>
 Parameter to tune acl logging time
 
-<b>icmpErrGenerate</b>
-Enable/Disable fragmentation required icmp error generation, before encapsulating a packet with vPath header. This knob is only functional for vPath Environment
-
-<b>overrideLsn</b>
-USNIP/USIP settings override LSN settings for configured
-              service/virtual server traffic..
-
 <b>implicitACLAllow</b>
 Do not apply ACLs for internal ports
 
 <b>dynamicRouting</b>
 Enable/Disable Dynamic routing on partition
+
+<b>ipv6DynamicRouting</b>
+Enable/Disable IPv6 Dynamic routing on partition
 
 
 

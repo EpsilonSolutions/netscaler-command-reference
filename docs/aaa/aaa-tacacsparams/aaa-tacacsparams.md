@@ -12,7 +12,7 @@ Modifies the global configuration settings for the TACACS+ server. The settings 
 
 ##Synopsys
 
-set aaa tacacsParams [-serverIP &lt;ip_addr|ipv6_addr|*>] [-serverPort &lt;port>] [-authTimeout &lt;positive_integer>] {-tacacsSecret } [-authorization ( ON | OFF )] [-accounting ( ON | OFF )] [-auditFailedCmds ( ON | OFF )] [-defaultAuthenticationGroup &lt;string>]
+set aaa tacacsParams [-serverIP &lt;ip_addr|ipv6_addr|*>] [-serverPort &lt;port>] [-authTimeout &lt;positive_integer>] {-tacacsSecret } [-authorization ( ON | OFF )] [-accounting ( ON | OFF )] [-auditFailedCmds ( ON | OFF )] [-groupAttrName &lt;string>] [-defaultAuthenticationGroup &lt;string>]
 
 
 ##Arguments
@@ -45,6 +45,9 @@ Possible values: ON, OFF
 The option for sending accounting messages to the TACACS+ server.
 Possible values: ON, OFF
 
+<b>groupAttrName</b>
+TACACS+ group attribute name.Used for group extraction on the TACACS+ server.
+
 <b>defaultAuthenticationGroup</b>
 This is the default group that is chosen when the authentication succeeds in addition to extracted groups.
 Maximum value: 64
@@ -68,7 +71,7 @@ Use this command to remove aaa tacacsParams settings.Refer to the set aaa tacacs
 
 ##Synopsys
 
-unset aaa tacacsParams [-serverIP] [-serverPort] [-authTimeout] [-tacacsSecret] [-authorization] [-accounting] [-auditFailedCmds] [-defaultAuthenticationGroup]
+unset aaa tacacsParams [-serverIP] [-serverPort] [-authTimeout] [-tacacsSecret] [-authorization] [-accounting] [-auditFailedCmds] [-groupAttrName] [-defaultAuthenticationGroup]
 
 
 ##show aaa tacacsParams
@@ -104,8 +107,14 @@ The option to send accounting messages to TACACS+ server.
 <b>auditFailedCmds</b>
 The option to send accounting messages to TACACS+ server.
 
+<b>groupAttrName</b>
+TACACS+ group attribute name.Used for group extraction on the TACACS+ server.
+
 <b>defaultAuthenticationGroup</b>
 This is the default group that is chosen when the authentication succeeds in addition to extracted groups.
+
+<b>builtin</b>
+Indicates that a variable is a built-in (SYSTEM INTERNAL) type.
 
 
 

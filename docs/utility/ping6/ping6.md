@@ -21,7 +21,7 @@ Minimum value: 132
 Maximum value: 131071
 
 <b>c</b>
-Number of packets to send. The default value is infinite.
+Number of packets to send. The default value is infinite. For Nitro API, defalut value is taken as 5.
 Minimum value: 1
 Maximum value: 65535
 
@@ -43,7 +43,7 @@ Numeric output only. No name resolution.
 Pattern to fill in packets. Can be up to 16 bytes, useful for diagnosing data-dependent problems.
 
 <b>q</b>
-Quiet output. Only summary is printed.
+Quiet output. Only summary is printed. For Nitro API, this flag is set by default
 
 <b>s</b>
 Data size, in bytes. The default value is 32.
@@ -65,6 +65,12 @@ Maximum value: 4094
 
 <b>hostName</b>
 Address of host to ping.
+
+
+
+##Outputs
+
+<b>response</b>
 
 
 

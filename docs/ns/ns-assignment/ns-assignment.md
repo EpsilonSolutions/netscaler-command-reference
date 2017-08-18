@@ -20,7 +20,7 @@ add ns assignment &lt;name> -variable &lt;expression> [-set &lt;expression> | -a
 <b>name</b>
 Name for the assignment. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) hash (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Can be changed after the assignment is added.
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my assignment" or ?my assignment?).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my assignment" or my assignment).
 
 <b>variable</b>
 Left hand side of the assigment, of the form $variable-name (for a singleton variabled) or $variable-name[key-expression], where key-expression is a default syntax expression that evaluates to a text string and provides the key to select a map entry
@@ -64,7 +64,7 @@ set ns assignment &lt;name> [-variable &lt;expression>] [-set &lt;expression>] [
 <b>name</b>
 Name for the assignment. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) hash (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Can be changed after the assignment is added.
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my assignment" or ?my assignment?).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my assignment" or my assignment).
 
 <b>variable</b>
 Left hand side of the assigment, of the form $variable-name (for a singleton variabled) or $variable-name[key-expression], where key-expression is a default syntax expression that evaluates to a text string and provides the key to select a map entry
@@ -118,7 +118,7 @@ rm ns assignment &lt;name>
 <b>name</b>
 Name for the assignment. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) hash (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Can be changed after the assignment is added.
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my assignment" or ?my assignment?).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my assignment" or my assignment).
 
 
 
@@ -206,7 +206,7 @@ Existing name of the assignment.
 New name for the assignment.
 Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) hash (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Can be changed after the rewrite policy is added.
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my assignment" or ?my assignment?).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my assignment" or my assignment).
 
 
 

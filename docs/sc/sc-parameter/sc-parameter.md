@@ -7,12 +7,12 @@ The following operations can be performed on "sc parameter":
 
 ##set sc parameter
 
-Sets the parameters for displaying SureConnect information.
+Sets the parameters for displaying SureConnect information. NOTE: This command is deprecated.
 
 
 ##Synopsys
 
-set sc parameter [-sessionLife &lt;secs>] [-vsr &lt;input_filename>]
+
 
 
 ##Arguments
@@ -35,22 +35,22 @@ set sc parameter -sessionlife 200 -vsr /etc/vsr.htm
 
 ##unset sc parameter
 
-Use this command to remove sc parameter settings.Refer to the set sc parameter command for meanings of the arguments.
+Use this command to remove sc parameter settings.Refer to the set sc parameter command for meanings of the arguments.NOTE: This command is deprecated.
 
 
 ##Synopsys
 
-unset sc parameter [-sessionLife] [-vsr]
+
 
 
 ##show sc parameter
 
-Displays the values of the session life and vsr filename parameters.
+Displays the values of the session life and vsr filename parameters. NOTE: This command is deprecated.SureConnect feature has been deprecated in favour of AppQoE
 
 
 ##Synopsys
 
-show sc parameter
+
 
 
 ##Outputs

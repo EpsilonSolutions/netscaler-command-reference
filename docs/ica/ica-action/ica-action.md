@@ -3,7 +3,7 @@
 The following operations can be performed on "ica action":
 
 
-[add](#add-ica-action) | [rm](#rm-ica-action) | [set](#set-ica-action) | [rename](#rename-ica-action) | [show](#show-ica-action)
+[add](#add-ica-action) | [rm](#rm-ica-action) | [set](#set-ica-action) | [unset](#unset-ica-action) | [rename](#rename-ica-action) | [show](#show-ica-action)
 
 ##add ica action
 
@@ -12,7 +12,7 @@ Creates an ICA action, which is used to specify the ICA accessprofile.The action
 
 ##Synopsys
 
-add ica action &lt;name> -accessProfileName &lt;string>
+add ica action &lt;name> [-accessProfileName &lt;string>] [-latencyprofileName &lt;string>]
 
 
 ##Arguments
@@ -24,6 +24,9 @@ If the name includes one or more spaces, enclose the name in double or single qu
 
 <b>accessProfileName</b>
 Name of the ica accessprofile to be associated with this action.
+
+<b>latencyprofileName</b>
+Name of the ica latencyprofile to be associated with this action.
 
 
 
@@ -59,7 +62,7 @@ This command modifies the specified parameters of the specified ica action.
 
 ##Synopsys
 
-set ica action &lt;name> -accessProfileName &lt;string>
+set ica action &lt;name> [-accessProfileName &lt;string>] [-latencyprofileName &lt;string>]
 
 
 ##Arguments
@@ -70,11 +73,24 @@ Name of the action that you want to modify.
 <b>accessProfileName</b>
 Name of the ica accessprofile to be associated with this action.
 
+<b>latencyprofileName</b>
+Name of the ica latencyprofile to be associated with this action.
+
 
 
 ##Example
 
 set ica action ica_action_1 -accessprofileName profile2
+
+##unset ica action
+
+Use this command to remove ica action settings.Refer to the set ica action command for meanings of the arguments.
+
+
+##Synopsys
+
+unset ica action &lt;name> [-accessProfileName] [-latencyprofileName]
+
 
 ##rename ica action
 
@@ -125,6 +141,9 @@ Name of the ICA action.
 
 <b>accessProfileName</b>
 Name of the ica accessprofile to be associated with this action.
+
+<b>latencyprofileName</b>
+Name of the ica latencyprofile to be associated with this action.
 
 <b>hits</b>
 The number of times the action has been taken.

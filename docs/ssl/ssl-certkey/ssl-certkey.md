@@ -146,7 +146,6 @@ Name of the OCSP responder to be associated with the CA certificate.
 <b>priority</b>
 Priority of the OCSP responder binding.
 Minimum value: 1
-Maximum value: 32
 
 
 
@@ -182,7 +181,7 @@ Name of the OCSP responder.
 
 ##Example
 
-1)	unbind ssl certkey sslvip siteAcertkeyIn the above example, the server certificate siteAcertkey is unbound from the SSL virtual server.2) 	unbind ssl certkey sslvip CAcertkey -CAIn the above example, the CA certificate CAcertkey is unbound from the SSL virtual server.
+1)	unbind ssl certkey sslvip siteAcertkeyIn the above example, the server certificate siteAcertkey is unbound from the SSL virtual server.2)	unbind ssl certkey sslvip CAcertkey -CAIn the above example, the CA certificate CAcertkey is unbound from the SSL virtual server.
 
 ##Related Commands
 
@@ -278,6 +277,9 @@ The encoding format of the certificate and key (PEM,DER or PFX).
 <b>signatureAlg</b>
 Signature algorithm.
 
+<b>CertificateType</b>
+Specifies whether the certificate is of type root-CA, intermediate-CA, server, client, or client and server
+
 <b>serial</b>
 Serial number.
 
@@ -332,6 +334,9 @@ Service name to which the certificate key pair is bound.
 <b>ocspResponder</b>
 OCSP responders bound to this certkey
 
+<b>sslProfile</b>
+SSL profile name to which the certificate key pair is bound.
+
 <b>expiryMonitor</b>
 Certificate expiry monitor
 
@@ -342,6 +347,9 @@ Certificate expiry notification period
 The name of the Certificate-Authority.
 
 <b>stateflag</b>
+
+<b>ocspResponseStatus</b>
+Ocsp response status of the certificate.
 
 <b>gslbServiceFlag</b>
 Indicates that this is a gslb service
@@ -401,7 +409,7 @@ Override the check for matching domain names during a certificate update operati
 
 ##Example
 
-1)     update ssl certkey siteAcertkey -cert /nsconfig/ssl/cert.pem -key /nsconfig/ssl/pkey.pemThe above command updates a certificate and private key file.2)      update ssl certkey siteAcertkey -cert /nsconfig/ssl/cert.pem -key /nsconfig/ssl/pkey.pem -passwordPassword: ********The above command updates a certificate and private key file. Here the private key file is an encrypted key.3)	 update ssl certkey mydomaincertThe above command updates the certificate using the same parameters (-cert path/-key path) that it was added with.
+1)     update ssl certkey siteAcertkey -cert /nsconfig/ssl/cert.pem -key /nsconfig/ssl/pkey.pemThe above command updates a certificate and private key file.2)      update ssl certkey siteAcertkey -cert /nsconfig/ssl/cert.pem -key /nsconfig/ssl/pkey.pem -passwordPassword: ********The above command updates a certificate and private key file. Here the private key file is an encrypted key.3)      update ssl certkey mydomaincertThe above command updates the certificate using the same parameters (-cert path/-key path) that it was added with.
 
 ##Related Commands
 

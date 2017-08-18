@@ -19,7 +19,7 @@ set nd6RAvariables -vlan &lt;positive_integer> [-ceaseRouterAdv ( YES | NO )] [-
 
 <b>vlan</b>
 The VLAN number.
-Minimum value: 0
+Minimum value: 1
 Maximum value: 4094
 
 <b>ceaseRouterAdv</b>
@@ -123,7 +123,7 @@ show nd6RAvariables [-vlan &lt;positive_integer>]
 
 <b>vlan</b>
 The VLAN number.
-Minimum value: 0
+Minimum value: 1
 Maximum value: 4094
 
 
@@ -201,7 +201,7 @@ bind nd6RAvariables -vlan &lt;positive_integer> -ipv6Prefix &lt;ipv6_addr|*>
 
 <b>vlan</b>
 The VLAN number.
-Minimum value: 0
+Minimum value: 1
 Maximum value: 4094
 
 <b>ipv6Prefix</b>
@@ -227,7 +227,7 @@ unbind nd6RAvariables -vlan &lt;positive_integer> -ipv6Prefix &lt;ipv6_addr|*>
 
 <b>vlan</b>
 The VLAN number.
-Minimum value: 0
+Minimum value: 1
 Maximum value: 4094
 
 <b>ipv6Prefix</b>

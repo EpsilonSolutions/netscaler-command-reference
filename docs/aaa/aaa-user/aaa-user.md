@@ -82,7 +82,7 @@ Binds a policy to the specified user account.
 
 ##Synopsys
 
-bind aaa user &lt;userName> [-policy &lt;string>  [-priority &lt;positive_integer>]] [-intranetApplication &lt;string>] [-urlName &lt;string>] [-intranetIP &lt;ip_addr>  [&lt;netmask>]] [-intranetIP6 &lt;ip_addr|ipv6_addr|*>  [&lt;numaddr>]]
+bind aaa user &lt;userName> [-policy &lt;string>  [-priority &lt;positive_integer>]  [-gotoPriorityExpression &lt;expression>]] [-intranetApplication &lt;string>] [-urlName &lt;string>] [-intranetIP &lt;ip_addr>  [&lt;netmask>]] [-intranetIP6 &lt;ip_addr|ipv6_addr|*>  [&lt;numaddr>]]
 
 
 ##Arguments
@@ -97,8 +97,9 @@ If the name includes one or more spaces, enclose the name in double or
 single quotation marks (for example, "my policy" or "my policy").
 
 <b>priority</b>
-Integer specifying the priority of the policy. A lower number indicates a higher priority. Policies are evaluated in the order of their priority numbers.
+Integer specifying the priority of the policy.  A lower number indicates a higher priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies max priority is 64000. 
 Minimum value: 0
+Maximum value: 2147483647
 
 <b>intranetApplication</b>
 Name of the intranet VPN application to which the policy applies.
@@ -114,6 +115,21 @@ Subnet mask for the IP range in which the intranet application to which you are 
 Required if the intranet application has multiple IP addresses bound to
 it. Not needed if the intranet application resides on a single IP
 address.
+
+<b>gotoPriorityExpression</b>
+Expression or other value specifying the next policy to evaluate if the current policy evaluates to TRUE.  Specify one of the following values:
+* NEXT - Evaluate the policy with the next higher priority number.
+* END - End policy evaluation.
+* USE_INVOCATION_RESULT - Applicable if this policy invokes another policy label. If the final goto in the invoked policy label has a value of END, the evaluation stops. If the final goto is anything other than END, the current policy label performs a NEXT.
+* A default syntax or classic expression that evaluates to a number.
+If you specify an expression, the number to which it evaluates determines the next policy to evaluate, as follows:
+*  If the expression evaluates to a higher numbered priority, the policy with that priority is evaluated next.
+* If the expression evaluates to the priority of the current policy, the policy with the next higher numbered priority is evaluated next.
+* If the expression evaluates to a number that is larger than the largest numbered priority, policy evaluation ends.
+An UNDEF event is triggered if:
+* The expression is invalid.
+* The expression evaluates to a priority number that is numerically lower than the current policy's priority.
+* The expression evaluates to a priority number that is between the current policy's priority number (say, 30) and the highest priority number (say, 100), but does not match any configured priority number (for example, the expression evaluates to the number 85). This example assumes that the priority number increments by 10 for every successive policy, and therefore a priority number of 85 does not exist in the policy label.
 
 <b>intranetIP6</b>
 IP6 address of the intranet application to which you are binding the policy.
@@ -209,7 +225,7 @@ The group name
 The policy Name.
 
 <b>priority</b>
-The priority of the policy.
+Integer specifying the priority of the policy.  A lower number indicates a higher priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies max priority is 64000.
 
 <b>intranetApplication</b>
 Name of the intranet VPN application to which the policy applies.
@@ -238,6 +254,9 @@ Numbers of ipv6 address bound starting with intranetip6
 <b>password</b>
 Password with which the user logs on. Required for any user account that does not exist on an external authentication server. 
 If you are not using an external authentication server, all user accounts must have a password. If you are using an external authentication server, you must provide a password for local user accounts that do not exist on the authentication server.
+
+<b>gotoPriorityExpression</b>
+Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.
 
 <b>devno</b>
 

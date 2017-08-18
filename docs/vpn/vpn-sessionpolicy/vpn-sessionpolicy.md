@@ -127,6 +127,12 @@ The entity name to which policy is bound
 <b>builtin</b>
 Indicates that a variable is a built-in (SYSTEM INTERNAL) type.
 
+<b>expressionType</b>
+Type of policy (Classic/Advanced)
+
+<b>hits</b>
+Number of hits.
+
 <b>devno</b>
 
 <b>count</b>

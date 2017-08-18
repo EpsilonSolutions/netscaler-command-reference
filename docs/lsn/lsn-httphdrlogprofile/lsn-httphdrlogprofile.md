@@ -21,22 +21,22 @@ add lsn httphdrlogprofile &lt;httphdrlogprofilename> [-logURL ( ENABLED | DISABL
 The name of the HTTP header logging Profile.
 
 <b>logURL</b>
-URL information is looged if option is enabled.
+URL information is logged if option is enabled.
 Possible values: ENABLED, DISABLED
 Default value: ENABLED
 
 <b>logMethod</b>
-HTTP method information is looged if option is enabled.
+HTTP method information is logged if option is enabled.
 Possible values: ENABLED, DISABLED
 Default value: ENABLED
 
 <b>logVersion</b>
-Version information is looged if option is enabled.
+Version information is logged if option is enabled.
 Possible values: ENABLED, DISABLED
 Default value: ENABLED
 
 <b>logHost</b>
-Host information is looged if option is enabled.
+Host information is logged if option is enabled.
 Possible values: ENABLED, DISABLED
 Default value: ENABLED
 
@@ -83,22 +83,22 @@ set lsn httphdrlogprofile &lt;httphdrlogprofilename> [-logURL ( ENABLED | DISABL
 The name of the HTTP header logging Profile.
 
 <b>logURL</b>
-URL information is looged if option is enabled.
+URL information is logged if option is enabled.
 Possible values: ENABLED, DISABLED
 Default value: ENABLED
 
 <b>logMethod</b>
-HTTP method information is looged if option is enabled.
+HTTP method information is logged if option is enabled.
 Possible values: ENABLED, DISABLED
 Default value: ENABLED
 
 <b>logVersion</b>
-Version information is looged if option is enabled.
+Version information is logged if option is enabled.
 Possible values: ENABLED, DISABLED
 Default value: ENABLED
 
 <b>logHost</b>
-Host information is looged if option is enabled.
+Host information is logged if option is enabled.
 Possible values: ENABLED, DISABLED
 Default value: ENABLED
 
@@ -138,16 +138,16 @@ The name of the HTTP header logging Profile.
 ##Outputs
 
 <b>logURL</b>
-URL information is looged if option is enabled.
+URL information is logged if option is enabled.
 
 <b>logMethod</b>
-HTTP method information is looged if option is enabled.
+HTTP method information is logged if option is enabled.
 
 <b>logVersion</b>
-Version information is looged if option is enabled.
+Version information is logged if option is enabled.
 
 <b>logHost</b>
-Host information is looged if option is enabled.
+Host information is logged if option is enabled.
 
 <b>devno</b>
 

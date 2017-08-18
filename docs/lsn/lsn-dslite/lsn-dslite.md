@@ -113,7 +113,7 @@ Current number of LSN DS-Lite subscribers.
 
 ##Related Commands
 
-<ul><li><a href="../../..//">stat lsn</a></li><li><a href="../../../lsn-/lsn-">stat lsn group</a></li></ul>
+<ul><li><a href="../../..//">stat lsn</a></li><li><a href="../../../lsn-/lsn-">stat lsn group</a></li><li><a href="../../../lsn-/lsn-">stat lsn nat64</a></li></ul>
 
 
 

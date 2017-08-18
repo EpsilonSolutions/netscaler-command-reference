@@ -60,7 +60,7 @@ Binds a system user to a system group.
 
 ##Synopsys
 
-bind system group &lt;groupName> [-userName &lt;string>] [-policyName &lt;string>  &lt;priority>]
+bind system group &lt;groupName> (-userName &lt;string> | (-policyName &lt;string>  &lt;priority>) | -partitionName &lt;string>)
 
 
 ##Arguments
@@ -78,6 +78,9 @@ Name of the command policy to be bind to the group.
 Integer specifying the priority of the command policy. A lower number specifies a higher priority. Policies are evaluated in the order of their priority numbers.
 Minimum value: 0
 
+<b>partitionName</b>
+Name of the Partition to bind to the system group.
+
 
 
 ##unbind system group
@@ -87,7 +90,7 @@ Unbinds a system user from a group.
 
 ##Synopsys
 
-unbind system group &lt;groupName> [-userName &lt;string>] [-policyName &lt;string>]
+unbind system group &lt;groupName> (-userName &lt;string> | -policyName &lt;string> | -partitionName &lt;string>)
 
 
 ##Arguments
@@ -100,6 +103,9 @@ Name of the system user to unbind from the group.
 
 <b>policyName</b>
 Command policy to unbind from the group.
+
+<b>partitionName</b>
+Name of the Partition to bind to the system group.
 
 
 
@@ -143,6 +149,9 @@ Note: The 63-character limit for the length of the string does not apply to the 
 
 <b>timeout</b>
 CLI session inactivity timeout, in seconds. If Restrictedtimeout argument of system parameter is enabled, Timeout can have values in the range [300-86400] seconds.If Restrictedtimeout argument of system parameter is disabled, Timeout can have values in the range [0, 10-100000000] seconds. Default value is 900 seconds.
+
+<b>partitionName</b>
+Name of the Partition to bind to the system group.
 
 <b>devno</b>
 

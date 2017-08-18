@@ -5,12 +5,12 @@ The following operations can be performed on "sc":
 
 ##stat sc
 
-Displays SureConnect statistics.
+Displays SureConnect statistics. NOTE: This command is deprecated.SureConnect feature has been deprecated in favour of AppQoE
 
 
 ##Synopsys
 
-stat sc [-detail] [-fullValues] [-ntimes &lt;positive_integer>] [-logFile &lt;input_filename>] [-clearstats ( basic | full )]
+
 
 
 ##Arguments

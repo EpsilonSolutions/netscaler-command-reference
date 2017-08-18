@@ -22,6 +22,7 @@ The prefix used for translating packets received from private IPv6 servers into 
 
 <b>td</b>
 Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
+Default value: 0
 Minimum value: 0
 Maximum value: 4094
 
@@ -80,6 +81,7 @@ show inatparam [-td &lt;positive_integer>]
 
 <b>td</b>
 Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
+Default value: 0
 Minimum value: 0
 Maximum value: 4094
 
@@ -101,6 +103,8 @@ MTU setting for the IPv6 side. If the incoming IPv4 packet greater than this, ei
 
 <b>nat46FragHeader</b>
 When disabled, translator will not insert IPv6 fragmentation header for non fragmented IPv4 packets
+
+<b>setcmdflag</b>
 
 <b>devno</b>
 

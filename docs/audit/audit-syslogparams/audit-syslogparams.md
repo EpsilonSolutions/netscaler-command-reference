@@ -12,7 +12,7 @@ Modifies the syslog parameters.Changes the IP, the port, or the logging paramete
 
 ##Synopsys
 
-set audit syslogParams [-serverIP &lt;ip_addr|ipv6_addr|*>] [-serverPort &lt;port>] [-dateFormat &lt;dateFormat>] [-logLevel &lt;logLevel> ...] [-logFacility &lt;logFacility>] [-tcp ( NONE | ALL )] [-acl ( ENABLED | DISABLED )] [-timeZone ( GMT_TIME | LOCAL_TIME )] [-userDefinedAuditlog ( YES | NO )] [-appflowExport ( ENABLED | DISABLED )] [-lsn ( ENABLED | DISABLED )] [-alg ( ENABLED | DISABLED )] [-dns ( ENABLED | DISABLED )]
+set audit syslogParams [-serverIP &lt;ip_addr|ipv6_addr|*>] [-serverPort &lt;port>] [-dateFormat &lt;dateFormat>] [-logLevel &lt;logLevel> ...] [-logFacility &lt;logFacility>] [-tcp ( NONE | ALL )] [-acl ( ENABLED | DISABLED )] [-timeZone ( GMT_TIME | LOCAL_TIME )] [-userDefinedAuditlog ( YES | NO )] [-appflowExport ( ENABLED | DISABLED )] [-lsn ( ENABLED | DISABLED )] [-alg ( ENABLED | DISABLED )] [-subscriberLog ( ENABLED | DISABLED )] [-dns ( ENABLED | DISABLED )] [-sslInterception ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -63,7 +63,7 @@ Possible values: ENABLED, DISABLED
 Time zone used for date and timestamps in the logs. 
 Available settings function as follows: 
 * GMT_TIME - Coordinated Universal Time.
-* LOCAL_TIME  Use the server?s timezone setting.
+* LOCAL_TIME  Use the server's timezone setting.
 Possible values: GMT_TIME, LOCAL_TIME
 
 <b>userDefinedAuditlog</b>
@@ -84,8 +84,16 @@ Possible values: ENABLED, DISABLED
 Log the ALG messages
 Possible values: ENABLED, DISABLED
 
+<b>subscriberLog</b>
+Log subscriber session event information
+Possible values: ENABLED, DISABLED
+
 <b>dns</b>
 Log DNS related syslog messages
+Possible values: ENABLED, DISABLED
+
+<b>sslInterception</b>
+Log SSL Interceptionn event information
 Possible values: ENABLED, DISABLED
 
 
@@ -97,7 +105,7 @@ Removes the existing syslog parameter settings. Attributes for which a default v
 
 ##Synopsys
 
-unset audit syslogParams [-serverIP] [-serverPort] [-logLevel] [-dateFormat] [-logFacility] [-tcp] [-acl] [-timeZone] [-userDefinedAuditlog] [-appflowExport] [-lsn] [-alg] [-dns]
+unset audit syslogParams [-serverIP] [-serverPort] [-logLevel] [-dateFormat] [-logFacility] [-tcp] [-acl] [-timeZone] [-userDefinedAuditlog] [-appflowExport] [-lsn] [-alg] [-subscriberLog] [-dns] [-sslInterception]
 
 
 ##show audit syslogParams
@@ -156,7 +164,7 @@ Log access control list (ACL) messages.
 Time zone used for date and timestamps in the logs. 
 Available settings function as follows: 
 * GMT_TIME - Coordinated Universal Time.
-* LOCAL_TIME  Use the server?s timezone setting.
+* LOCAL_TIME  Use the server's timezone setting.
 
 <b>userDefinedAuditlog</b>
 Log user-configurable log messages to syslog. 
@@ -175,8 +183,14 @@ Log the LSN messages
 <b>alg</b>
 Log the ALG messages
 
+<b>subscriberLog</b>
+Log subscriber session event information
+
 <b>dns</b>
 Log DNS related syslog messages
+
+<b>sslInterception</b>
+Log SSL Interceptionn event information
 
 
 

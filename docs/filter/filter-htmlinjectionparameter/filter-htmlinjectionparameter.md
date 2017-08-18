@@ -7,12 +7,12 @@ The following operations can be performed on "filter htmlinjectionparameter":
 
 ##set filter htmlinjectionparameter
 
-Sets the HTML injection parameters.
+Sets the HTML injection parameters. NOTE: This command is deprecated.Deprecated in favour of Client Side Measurements that can be enabled on an appflow action
 
 
 ##Synopsys
 
-set filter htmlinjectionparameter [-rate &lt;positive_integer>] [-frequency &lt;positive_integer>] [-strict ( ENABLED | DISABLED )] [-htmlsearchlen &lt;positive_integer>]
+
 
 
 ##Arguments
@@ -45,12 +45,12 @@ set htmlinjection parameter -rate 10 -frequency 1
 
 ##unset filter htmlinjectionparameter
 
-Removes the HTML injection settings..Refer to the set filter htmlinjectionparameter command for meanings of the arguments.
+Removes the HTML injection settings..Refer to the set filter htmlinjectionparameter command for meanings of the arguments.NOTE: This command is deprecated.Deprecated in favour of Client Side Measurements that can be enabled on an appflow action
 
 
 ##Synopsys
 
-unset filter htmlinjectionparameter [-rate] [-frequency] [-strict] [-htmlsearchlen]
+
 
 
 ##Example
@@ -59,12 +59,12 @@ unset filter htmlinjectionparameter [-rate] [-frequency] [-strict] [-htmlsearchl
 
 ##show filter htmlinjectionparameter
 
-Displays the HTML injection parameters.
+Displays the HTML injection parameters. NOTE: This command is deprecated.Deprecated in favour of Client Side Measurements that can be enabled on an appflow action
 
 
 ##Synopsys
 
-show filter htmlinjectionparameter
+
 
 
 ##Outputs

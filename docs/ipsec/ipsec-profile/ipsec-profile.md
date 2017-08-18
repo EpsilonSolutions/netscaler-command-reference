@@ -131,6 +131,9 @@ IKE retry interval for bringing up the connection
 <b>perfectForwardSecrecy</b>
 Enable/Disable PFS.
 
+<b>responderOnly</b>
+Responder Only config for IKED.
+
 <b>builtin</b>
 Indicates that a variable is a built-in (SYSTEM INTERNAL) type.
 

@@ -3,7 +3,7 @@
 The following operations can be performed on "ssl vserver":
 
 
-[set](#set-ssl-vserver) | [unset](#unset-ssl-vserver) | [bind](#bind-ssl-vserver) | [unbind](#unbind-ssl-vserver) | [show](#show-ssl-vserver)
+[set](#set-ssl-vserver) | [unset](#unset-ssl-vserver) | [bind](#bind-ssl-vserver) | [unbind](#unbind-ssl-vserver) | [show](#show-ssl-vserver) | [stat](#stat-ssl-vserver)
 
 ##set ssl vserver
 
@@ -12,7 +12,7 @@ Sets advanced SSL configuration for an SSL virtual server.
 
 ##Synopsys
 
-set ssl vserver &lt;vServerName>@ [-clearTextPort &lt;port>] [-dh ( ENABLED | DISABLED )  -dhFile &lt;string>] [-dhCount &lt;positive_integer>] [-dhKeyExpSizeLimit ( ENABLED | DISABLED )] [-eRSA ( ENABLED | DISABLED )  [-eRSACount &lt;positive_integer>]] [-sessReuse ( ENABLED | DISABLED )  [-sessTimeout &lt;positive_integer>]] [-cipherRedirect ( ENABLED | DISABLED )  [-cipherURL &lt;URL>]] [-sslv2Redirect ( ENABLED | DISABLED )  [-sslv2URL &lt;URL>]] [-clientAuth ( ENABLED | DISABLED )  [-clientCert ( Mandatory | Optional )]] [-sslRedirect ( ENABLED | DISABLED )] [-redirectPortRewrite ( ENABLED | DISABLED )] [-nonFipsCiphers ( ENABLED | DISABLED )] [-ssl2 ( ENABLED | DISABLED )] [-ssl3 ( ENABLED | DISABLED )] [-tls1 ( ENABLED | DISABLED )] [-tls11 ( ENABLED | DISABLED )] [-tls12 ( ENABLED | DISABLED )] [-SNIEnable ( ENABLED | DISABLED )] [-pushEncTrigger &lt;pushEncTrigger>] [-sendCloseNotify ( YES | NO )] [-dtlsProfileName &lt;string>] [-sslProfile &lt;string>]
+set ssl vserver &lt;vServerName>@ [-clearTextPort &lt;port>] [-dh ( ENABLED | DISABLED )  -dhFile &lt;string>] [-dhCount &lt;positive_integer>] [-dhKeyExpSizeLimit ( ENABLED | DISABLED )] [-eRSA ( ENABLED | DISABLED )  [-eRSACount &lt;positive_integer>]] [-sessReuse ( ENABLED | DISABLED )  [-sessTimeout &lt;positive_integer>]] [-cipherRedirect ( ENABLED | DISABLED )  [-cipherURL &lt;URL>]] [-sslv2Redirect ( ENABLED | DISABLED )  [-sslv2URL &lt;URL>]] [-clientAuth ( ENABLED | DISABLED )  [-clientCert ( Mandatory | Optional )]] [-sslRedirect ( ENABLED | DISABLED )] [-redirectPortRewrite ( ENABLED | DISABLED )] [-ssl2 ( ENABLED | DISABLED )] [-ssl3 ( ENABLED | DISABLED )] [-tls1 ( ENABLED | DISABLED )] [-tls11 ( ENABLED | DISABLED )] [-tls12 ( ENABLED | DISABLED )] [-SNIEnable ( ENABLED | DISABLED )] [-ocspStapling ( ENABLED | DISABLED )] [-pushEncTrigger &lt;pushEncTrigger>] [-sendCloseNotify ( YES | NO )] [-dtlsProfileName &lt;string>] [-sslProfile &lt;string>] [-HSTS ( ENABLED | DISABLED )] [-maxage &lt;positive_integer>] [-IncludeSubdomains ( YES | NO )] [-strictSigDigestCheck ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -23,6 +23,7 @@ Name of the SSL virtual server for which to set advanced configuration.
 <b>clearTextPort</b>
 Port on which clear-text data is sent by the appliance to the server. Do not specify this parameter for SSL offloading with end-to-end encryption.
 Default value: 0
+Maximum value: 65534
 
 <b>dh</b>
 State of Diffie-Hellman (DH) key exchange.
@@ -101,11 +102,6 @@ State of the port rewrite while performing HTTPS redirect. If this parameter is 
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
-<b>nonFipsCiphers</b>
-State of usage of non-FIPS approved ciphers. Valid only for an SSL service bound with a FIPS key and certificate.
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
-
 <b>ssl2</b>
 State of SSLv2 protocol support for the SSL Virtual Server.
 Possible values: ENABLED, DISABLED
@@ -136,6 +132,13 @@ State of the Server Name Indication (SNI) feature on the virtual server and serv
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
+<b>ocspStapling</b>
+State of OCSP stapling support on the SSL virtual server. Supported only if the protocol used is higher than SSLv3. Possible values:
+ENABLED: The appliance sends a request to the OCSP responder to check the status of the server certificate and caches the response for the specified time. If the response is valid at the time of SSL handshake with the client, the OCSP-based server certificate status is sent to the client during the handshake.
+DISABLED: The appliance does not check the status of the server certificate. 
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
 <b>pushEncTrigger</b>
 Trigger encryption on the basis of the PUSH flag value. Available settings function as follows:
 * ALWAYS - Any PUSH packet triggers encryption.
@@ -155,6 +158,27 @@ Name of the DTLS profile whose settings are to be applied to the virtual server.
 <b>sslProfile</b>
 Name of the SSL profile that contains SSL settings for the virtual server.
 
+<b>HSTS</b>
+State of TLSv1.0 protocol support for the SSL Virtual Server.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>maxage</b>
+Set max-age value for STS header
+Default value: 0
+Minimum value: 0
+Maximum value: 4294967294
+
+<b>IncludeSubdomains</b>
+Set include sub domain value for STS header
+Possible values: YES, NO
+Default value: NO
+
+<b>strictSigDigestCheck</b>
+Parameter indicating to check whether peer entity certificate during TLS1.2 handshake is signed with one of signature-hash combination supported by Netscaler.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
 
 
 ##Example
@@ -168,7 +192,7 @@ Use this command to remove ssl vserver settings.Refer to the set ssl vserver com
 
 ##Synopsys
 
-unset ssl vserver &lt;vServerName>@ [-clearTextPort] [-dh] [-dhFile] [-dhCount] [-dhKeyExpSizeLimit] [-eRSA] [-eRSACount] [-sessReuse] [-sessTimeout] [-cipherRedirect] [-cipherURL] [-sslv2Redirect] [-sslv2URL] [-clientAuth] [-clientCert] [-sslRedirect] [-redirectPortRewrite] [-nonFipsCiphers] [-ssl2] [-ssl3] [-tls1] [-tls11] [-tls12] [-SNIEnable] [-sendCloseNotify] [-dtlsProfileName] [-sslProfile]
+unset ssl vserver &lt;vServerName>@ [-clearTextPort] [-dh] [-dhFile] [-dhCount] [-dhKeyExpSizeLimit] [-eRSA] [-eRSACount] [-sessReuse] [-sessTimeout] [-cipherRedirect] [-cipherURL] [-sslv2Redirect] [-sslv2URL] [-clientAuth] [-clientCert] [-sslRedirect] [-redirectPortRewrite] [-ssl2] [-ssl3] [-tls1] [-tls11] [-tls12] [-SNIEnable] [-ocspStapling] [-sendCloseNotify] [-dtlsProfileName] [-sslProfile] [-HSTS] [-maxage] [-IncludeSubdomains] [-strictSigDigestCheck]
 
 
 ##bind ssl vserver
@@ -308,16 +332,13 @@ Displays SSL specific configuration information for all SSL virtual servers, or 
 
 ##Synopsys
 
-show ssl vserver [&lt;vServerName>] [-cipherDetails]
+show ssl vserver [&lt;vServerName>]
 
 
 ##Arguments
 
 <b>vServerName</b>
 Name of the SSL virtual server for which to show detailed information.
-
-<b>cipherDetails</b>
-Display details of the individual ciphers bound to the SSL virtual server.
 
 
 
@@ -377,6 +398,17 @@ The state of HTTPS redirect feature support.
 <b>priority</b>
 The priority of the policies bound to this SSL service
 
+<b>type</b>
+Bind point to which to bind the policy. Possible Values: HANDSHAKE_REQ, HANDSHAKE_RES, CLIENTHELLO_REQ, CLIENTCERT_REQ, SERVERHELLO_RES, SERVERCERT_RES, SERVERHELLO_DONE_RES and REQUEST. These bindpoints mean:
+1. HANDSHAKE_REQ: Policy evaluation will be done at the end of handshake on request side (request side means between client and NetScaler)
+2. HANDSHAKE_RES: Policy evaluation will be done at the end of hadnshake on response side (response side means between Netscaler and server)
+3. INTERCEPT_REQ: Policy evaluation will be done after receiving Client Hello on request side.
+4. CLIENTCERT_REQ: Policy evaluation will be done after receiving Client Certificate on request side.
+5. SERVERHELLO_RES: Policy evaluation will be done after receiving Server Hello on response side.
+6. SERVERCERT_RES: Policy evaluation will be done after receiving Server Certificate on response side.
+7. SERVERHELLO_DONE_RES: Policy evaluation will be done after receiving Server Hello Done on response side.
+8. REQUEST: Policy evaluation will be done at appplication above SSL. This bindpoint is default and is used for actions based on clientauth and client cert.
+
 <b>polinherit</b>
 Whether the bound policy is a inherited policy or not
 
@@ -403,6 +435,11 @@ The  state of TLSv1.2 protocol support.
 
 <b>SNIEnable</b>
 The state of SNI extension.Server Name Indication (SNI) helps to enable SSL encryption on multiple subdomains if the domains are controlled by the same organization and share the same second-level domain name. State of SNI feature on service
+
+<b>ocspStapling</b>
+State of OCSP stapling support on the SSL virtual server. Supported only if the protocol used is higher than SSLv3. Possible values:
+ENABLED: The appliance sends a request to the OCSP responder to check the status of the server certificate and caches the response for the specified time. If the response is valid at the time of SSL handshake with the client, the OCSP-based server certificate status is sent to the client during the handshake.
+DISABLED: The appliance does not check the status of the server certificate.
 
 <b>cipherAliasName/cipherName/cipherGroupName</b>
 The name of the cipher group/alias/individual cipheri bindings.
@@ -469,6 +506,18 @@ The flag is used to indicate whether DTLS is set or not
 <b>sslProfile</b>
 Name of the SSL profile that contains SSL settings for the virtual server.
 
+<b>HSTS</b>
+State of TLSv1.0 protocol support for the SSL Virtual Server.
+
+<b>maxage</b>
+Set max-age value for STS header
+
+<b>IncludeSubdomains</b>
+Set include sub domain value for STS header
+
+<b>strictSigDigestCheck</b>
+Parameter indicating to check whether peer entity certificate during TLS1.2 handshake is signed with one of signature-hash combination supported by Netscaler.
+
 <b>devno</b>
 
 <b>count</b>
@@ -482,6 +531,103 @@ An example of the output of the show vserver sslvip command is as follows:sh ssl
 ##Related Commands
 
 <ul><li><a href="../../../d-ssl-ce/d-ssl-ce">bind ssl certkey</a></li><li><a href="../../../-ssl-c/-ssl-c">bind ssl cipher</a></li></ul>
+
+
+
+##stat ssl vserver
+
+Displays statistics for all SSL virtual servers, or displays detailed statistics for the specified SSL virtual server.
+
+
+##Synopsys
+
+stat ssl vserver [&lt;vServerName>] [-detail] [-fullValues] [-ntimes &lt;positive_integer>] [-logFile &lt;input_filename>] [-clearstats ( basic | full )]
+
+
+##Arguments
+
+<b>vServerName</b>
+Name of the SSL virtual server for which to show detailed statistics
+
+<b>detail</b>
+Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
+
+<b>fullValues</b>
+Specifies that numbers and strings should be displayed in their full form. Without this option, long strings are shortened and large numbers are abbreviated
+
+<b>ntimes</b>
+The number of times, in intervals of seven seconds, the statistics should be displayed.
+Default value: 1
+Minimum value: 0
+
+<b>logFile</b>
+The name of the log file to be used as input.
+
+<b>clearstats</b>
+Clear the statsistics / counters
+Possible values: basic, full
+
+
+
+##Outputs
+
+<b>count</b>
+
+<b>devno</b>
+
+<b>stateflag</b>
+
+
+
+##Outputs
+
+<b>Vserver Health (Health)</b>
+Health of the vserver. This gives percentage of UP services bound to this vserver.
+
+<b>Vserver IP address (vsvrIP)</b>
+IP address of the vserver
+
+<b>Port (port)</b>
+The port on which the service is running.
+
+<b>Vserver protocol (Protocol)</b>
+Protocol associated with the vserver
+
+<b>State</b>
+Current state of the server. Possible values are UP, DOWN, UNKNOWN, OFS(Out of Service), TROFS(Transition Out of Service), TROFS_DOWN(Down When going Out of Service)
+
+<b>total ACTIVE services (actSvcs)</b>
+number of ACTIVE services bound to a vserver
+
+<b>Client Authentication Success (sslTotClientAuthSuccess)</b>
+Number of successful client authentication on this vserver
+
+<b>Client Authentication Failure (sslTotClientAuthFailure)</b>
+Number of failure client authentication on this vserver
+
+<b>Total encrypted bytes (sslCtxTotEncBytes)</b>
+Number of encrypted bytes per SSL vserver
+
+<b>Total decrypted bytes (sslCtxTotDecBytes)</b>
+Number of decrypted bytes per SSL vserver
+
+<b>Total hardware encrypted bytes (sslCtxTotHwEncBytes)</b>
+Number of hardware encrypted bytes per SSL vserver
+
+<b>Total hardware decrypted bytes (sslCtxTotHwDec_Bytes)</b>
+Number of hw decrypted bytes per SSL vserver
+
+<b>Total new sessions created (sslCtxTotSessionNew)</b>
+Number of new sessions created
+
+<b>Total session hits (sslCtxTotSessionHits)</b>
+Number of session hits
+
+
+
+##Related Commands
+
+<ul><li><a href="../../..//">stat ssl</a></li></ul>
 
 
 

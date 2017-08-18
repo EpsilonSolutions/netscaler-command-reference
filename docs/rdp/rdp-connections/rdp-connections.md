@@ -3,6 +3,8 @@
 The following operations can be performed on "rdp connections":
 
 
+[show](#show-rdp-connections) | [kill](#kill-rdp-connections)
+
 ##show rdp connections
 
 Displays active connections that use the RDP proxy.
@@ -47,4 +49,28 @@ Core id of the session owner
 <b>count</b>
 
 
+
+##kill rdp connections
+
+Terminates the specified rdp connections.
+
+
+##Synopsys
+
+kill rdp connections [-userName &lt;string>] [-all]
+
+
+##Arguments
+
+<b>userName</b>
+User name for which rdp connections needs to be terminated.
+
+<b>all</b>
+Terminate all active rdpconnections.
+
+
+
+##Example
+
+kill rdpconnection -username joe
 

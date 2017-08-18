@@ -12,7 +12,7 @@ creates a new admin partition
 
 ##Synopsys
 
-add ns partition &lt;partitionName> [-maxBandwidth &lt;positive_integer>] [-minBandwidth &lt;positive_integer>] [-maxConn &lt;positive_integer>] [-maxMemLimit &lt;MBytes>]
+add ns partition &lt;partitionName> [-maxBandwidth &lt;positive_integer>] [-minBandwidth &lt;positive_integer>] [-maxConn &lt;positive_integer>] [-maxMemLimit &lt;MBytes>] [-partitionMAC &lt;mac_addr>]
 
 
 ##Arguments
@@ -21,23 +21,27 @@ add ns partition &lt;partitionName> [-maxBandwidth &lt;positive_integer>] [-minB
 Name of the Partition. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters.
 
 <b>maxBandwidth</b>
-Maximum bandwidth in Kbps, permitted on this partition.
+Maximum bandwidth, in Kbps, that the partition can consume. A zero value indicates the bandwidth is unrestricted on the partition and it can consume up to the system limits.
 Default value: 10240
 Minimum value: 0
 
 <b>minBandwidth</b>
-Minimum bandwidth in Kbps, permitted on this partition.
+Minimum bandwidth, in Kbps, that the partition can consume. A zero value indicates the bandwidth is unrestricted on the partition and it can consume up to the system limits
 Default value: 10240
 Minimum value: 0
 
 <b>maxConn</b>
-Maximum number of connections permitted on this partition.
+Maximum number of concurrent connections that can be open in the partition. A zero value indicates no limit on number of open connections.
 Default value: 1024
 Minimum value: 0
 
 <b>maxMemLimit</b>
-Maximum memory allowed for this partition in megabytes.
+Maximum memory, in megabytes, allocated to the partition.  A zero value indicates the memory is unlimited on the partition and it can consume up to the system limits.
 Default value: 10
+Minimum value: 0
+
+<b>partitionMAC</b>
+Special MAC address for the partition which is used for communication over shared vlans in this partition. If not specified, the MAC address is auto-generated.
 
 
 
@@ -73,7 +77,7 @@ set the properties of partition
 
 ##Synopsys
 
-set ns partition &lt;partitionName> [-maxBandwidth &lt;positive_integer>] [-minBandwidth &lt;positive_integer>] [-maxConn &lt;positive_integer>] [-maxMemLimit &lt;MBytes>]
+set ns partition &lt;partitionName> [-maxBandwidth &lt;positive_integer>] [-minBandwidth &lt;positive_integer>] [-maxConn &lt;positive_integer>] [-maxMemLimit &lt;MBytes>] [-partitionMAC &lt;mac_addr>]
 
 
 ##Arguments
@@ -82,23 +86,27 @@ set ns partition &lt;partitionName> [-maxBandwidth &lt;positive_integer>] [-minB
 Name of the Partition. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters.
 
 <b>maxBandwidth</b>
-Maximum bandwidth in Kbps, permitted on this partition.
+Maximum bandwidth, in Kbps, that the partition can consume. A zero value indicates the bandwidth is unrestricted on the partition and it can consume up to the system limits.
 Default value: 10240
 Minimum value: 0
 
 <b>minBandwidth</b>
-Minimum bandwidth in Kbps, permitted on this partition.
+Minimum bandwidth, in Kbps, that the partition can consume. A zero value indicates the bandwidth is unrestricted on the partition and it can consume up to the system limits
 Default value: 10240
 Minimum value: 0
 
 <b>maxConn</b>
-Maximum number of connections permitted on this partition.
+Maximum number of concurrent connections that can be open in the partition. A zero value indicates no limit on number of open connections.
 Default value: 1024
 Minimum value: 0
 
 <b>maxMemLimit</b>
-Maximum memory allowed for this partition in megabytes.
+Maximum memory, in megabytes, allocated to the partition.  A zero value indicates the memory is unlimited on the partition and it can consume up to the system limits.
 Default value: 10
+Minimum value: 0
+
+<b>partitionMAC</b>
+Special MAC address for the partition which is used for communication over shared vlans in this partition. If not specified, the MAC address is auto-generated.
 
 
 
@@ -113,7 +121,7 @@ Use this command to remove ns partition settings.Refer to the set ns partition c
 
 ##Synopsys
 
-unset ns partition &lt;partitionName> [-maxBandwidth] [-minBandwidth] [-maxConn] [-maxMemLimit]
+unset ns partition &lt;partitionName> [-maxBandwidth] [-minBandwidth] [-maxConn] [-maxMemLimit] [-partitionMAC]
 
 
 ##switch ns partition
@@ -144,7 +152,7 @@ bind resources to a partition.
 
 ##Synopsys
 
-bind ns partition &lt;partitionName> (-vlan &lt;positive_integer> | -bridgegroup &lt;positive_integer>)
+bind ns partition &lt;partitionName> (-vlan &lt;positive_integer> | -vxlan &lt;positive_integer> | -bridgegroup &lt;positive_integer>)
 
 
 ##Arguments
@@ -156,6 +164,11 @@ Name of the Partition. Must begin with an ASCII alphanumeric or underscore (_) c
 Vlan Identifier.
 Minimum value: 1
 Maximum value: 4094
+
+<b>vxlan</b>
+VXLAN Identifier.
+Minimum value: 1
+Maximum value: 16777215
 
 <b>bridgegroup</b>
 Bridge group Identifier.
@@ -175,7 +188,7 @@ Unbind resources to a partition.
 
 ##Synopsys
 
-unbind ns partition &lt;partitionName> (-vlan &lt;positive_integer> | -bridgegroup &lt;positive_integer>)
+unbind ns partition &lt;partitionName> (-vlan &lt;positive_integer> | -vxlan &lt;positive_integer> | -bridgegroup &lt;positive_integer>)
 
 
 ##Arguments
@@ -187,6 +200,11 @@ Name of the Partition. Must begin with an ASCII alphanumeric or underscore (_) c
 Vlan Identifier.
 Minimum value: 1
 Maximum value: 4094
+
+<b>vxlan</b>
+VXLAN Identifier.
+Minimum value: 1
+Maximum value: 16777215
 
 <b>bridgegroup</b>
 Bridge group Identifier.
@@ -225,16 +243,16 @@ Partition Id
 Type of the Partition
 
 <b>maxBandwidth</b>
-Maximum bandwidth in Kbps, permitted on this partition.
+Maximum bandwidth, in Kbps, that the partition can consume. A zero value indicates the bandwidth is unrestricted on the partition and it can consume up to the system limits.
 
 <b>minBandwidth</b>
-Minimum bandwidth in Kbps, permitted on this partition.
+Minimum bandwidth, in Kbps, that the partition can consume. A zero value indicates the bandwidth is unrestricted on the partition and it can consume up to the system limits
 
 <b>maxConn</b>
-Maximum number of connections permitted on this partition.
+Maximum number of concurrent connections that can be open in the partition. A zero value indicates no limit on number of open connections.
 
 <b>maxMemLimit</b>
-Maximum memory allowed for this partition in megabytes.
+Maximum memory, in megabytes, allocated to the partition.  A zero value indicates the memory is unlimited on the partition and it can consume up to the system limits.
 
 <b>stateflag</b>
 Used internally for display.
@@ -242,8 +260,17 @@ Used internally for display.
 <b>vlan</b>
 Identifier of the vlan that is assigned to this partition.
 
+<b>vxlan</b>
+Identifier of the vxlan that is assigned to this partition.
+
 <b>bridgegroup</b>
 Identifier of the bridge group that is assigned to this partition.
+
+<b>partitionMAC</b>
+Special MAC address for the partition which is used for communication over shared vlans in this partition. If not specified, the MAC address is auto-generated.
+
+<b>pmacInternal</b>
+Partition MAC is generated internally.
 
 <b>devno</b>
 

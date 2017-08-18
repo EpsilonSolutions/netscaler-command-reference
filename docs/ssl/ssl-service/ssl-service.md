@@ -12,7 +12,7 @@ Sets the advanced SSL configuration for an SSL service.
 
 ##Synopsys
 
-set ssl service &lt;serviceName>@ [-dh ( ENABLED | DISABLED )  -dhFile &lt;string>] [-dhCount &lt;positive_integer>] [-dhKeyExpSizeLimit ( ENABLED | DISABLED )] [-eRSA ( ENABLED | DISABLED )  [-eRSACount &lt;positive_integer>]] [-sessReuse ( ENABLED | DISABLED )  [-sessTimeout &lt;positive_integer>]] [-cipherRedirect ( ENABLED | DISABLED )  [-cipherURL &lt;URL>]] [-sslv2Redirect ( ENABLED | DISABLED )  [-sslv2URL &lt;URL>]] [-clientAuth ( ENABLED | DISABLED )  [-clientCert ( Mandatory | Optional )]] [-sslRedirect ( ENABLED | DISABLED )] [-redirectPortRewrite ( ENABLED | DISABLED )] [-nonFipsCiphers ( ENABLED | DISABLED )] [-ssl2 ( ENABLED | DISABLED )] [-ssl3 ( ENABLED | DISABLED )] [-tls1 ( ENABLED | DISABLED )] [-tls11 ( ENABLED | DISABLED )] [-tls12 ( ENABLED | DISABLED )] [-SNIEnable ( ENABLED | DISABLED )] [-serverAuth ( ENABLED | DISABLED )  [-commonName &lt;string>]] [-pushEncTrigger &lt;pushEncTrigger>] [-sendCloseNotify ( YES | NO )] [-dtlsProfileName &lt;string>] [-sslProfile &lt;string>]
+set ssl service &lt;serviceName>@ [-dh ( ENABLED | DISABLED )  -dhFile &lt;string>] [-dhCount &lt;positive_integer>] [-dhKeyExpSizeLimit ( ENABLED | DISABLED )] [-eRSA ( ENABLED | DISABLED )  [-eRSACount &lt;positive_integer>]] [-sessReuse ( ENABLED | DISABLED )  [-sessTimeout &lt;positive_integer>]] [-cipherRedirect ( ENABLED | DISABLED )  [-cipherURL &lt;URL>]] [-sslv2Redirect ( ENABLED | DISABLED )  [-sslv2URL &lt;URL>]] [-clientAuth ( ENABLED | DISABLED )  [-clientCert ( Mandatory | Optional )]] [-sslRedirect ( ENABLED | DISABLED )] [-redirectPortRewrite ( ENABLED | DISABLED )] [-ssl2 ( ENABLED | DISABLED )] [-ssl3 ( ENABLED | DISABLED )] [-tls1 ( ENABLED | DISABLED )] [-tls11 ( ENABLED | DISABLED )] [-tls12 ( ENABLED | DISABLED )] [-SNIEnable ( ENABLED | DISABLED )] [-ocspStapling ( ENABLED | DISABLED )] [-serverAuth ( ENABLED | DISABLED )] [-commonName &lt;string>] [-pushEncTrigger &lt;pushEncTrigger>] [-sendCloseNotify ( YES | NO )] [-dtlsProfileName &lt;string>] [-sslProfile &lt;string>] [-strictSigDigestCheck ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -106,11 +106,6 @@ State of the port rewrite while performing HTTPS redirect. If this parameter is 
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
-<b>nonFipsCiphers</b>
-State of usage of ciphers that are not FIPS approved. Valid only for an SSL service bound with a FIPS key and certificate.
-Possible values: ENABLED, DISABLED
-Default value: DISABLED
-
 <b>ssl2</b>
 State of SSLv2 protocol support for the SSL service.
 This parameter is not applicable when configuring a backend service.
@@ -139,7 +134,13 @@ Default value: ENABLED
 
 <b>SNIEnable</b>
 State of the Server Name Indication (SNI) feature on the virtual server and service-based offload. SNI helps to enable SSL encryption on multiple domains on a single virtual server or service if the domains are controlled by the same organization and share the same second-level domain name. For example, *.sports.net can be used to secure domains such as login.sports.net and help.sports.net.
-This parameter is not applicable when configuring a backend service.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>ocspStapling</b>
+State of OCSP stapling support on the SSL virtual server. Supported only if the protocol used is higher than SSLv3. Possible values:
+ENABLED: The appliance sends a request to the OCSP responder to check the status of the server certificate and caches the response for the specified time. If the response is valid at the time of SSL handshake with the client, the OCSP-based server certificate status is sent to the client during the handshake.
+DISABLED: The appliance does not check the status of the server certificate. 
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
@@ -170,6 +171,11 @@ Name of the DTLS profile that contains DTLS settings for the service.
 <b>sslProfile</b>
 Name of the SSL profile that contains SSL settings for the service.
 
+<b>strictSigDigestCheck</b>
+Parameter indicating to check whether peer's certificate during TLS1.2 handshake is signed with one of signature-hash combination supported by Netscaler
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
 
 
 ##Example
@@ -183,7 +189,7 @@ Use this command to remove ssl service settings.Refer to the set ssl service com
 
 ##Synopsys
 
-unset ssl service &lt;serviceName>@ [-dh] [-dhFile] [-dhCount] [-dhKeyExpSizeLimit] [-eRSA] [-eRSACount] [-sessReuse] [-sessTimeout] [-cipherRedirect] [-cipherURL] [-sslv2Redirect] [-sslv2URL] [-clientAuth] [-clientCert] [-sslRedirect] [-redirectPortRewrite] [-nonFipsCiphers] [-ssl2] [-ssl3] [-tls1] [-tls11] [-tls12] [-SNIEnable] [-serverAuth] [-commonName] [-sendCloseNotify] [-dtlsProfileName] [-sslProfile]
+unset ssl service &lt;serviceName>@ [-dh] [-dhFile] [-dhCount] [-dhKeyExpSizeLimit] [-eRSA] [-eRSACount] [-sessReuse] [-sessTimeout] [-cipherRedirect] [-cipherURL] [-sslv2Redirect] [-sslv2URL] [-clientAuth] [-clientCert] [-sslRedirect] [-redirectPortRewrite] [-ssl2] [-ssl3] [-tls1] [-tls11] [-tls12] [-SNIEnable] [-ocspStapling] [-serverAuth] [-commonName] [-sendCloseNotify] [-dtlsProfileName] [-sslProfile] [-strictSigDigestCheck]
 
 
 ##bind ssl service
@@ -304,7 +310,6 @@ Rule to use for the CRL corresponding to the CA certificate during client authen
 * MANDATORY - Deny SSL clients if the CRL is missing or expired, or the Next Update date is in the past, or the CRL is incomplete. 
 * OPTIONAL - Allow SSL clients if the CRL is missing or expired, or the Next Update date is in the past, or the CRL is incomplete, but deny if the client certificate is revoked in the CRL.
 Possible values: Mandatory, Optional
-Default value: CRLCHECK_OPTIONAL
 
 <b>SNICert</b>
 Name of the certificate-key pair to bind for use in SNI processing.
@@ -329,16 +334,13 @@ Displays information about SSL-specific configuration information for all SSL se
 
 ##Synopsys
 
-show ssl service [&lt;serviceName>] [-cipherDetails]
+show ssl service [&lt;serviceName>]
 
 
 ##Arguments
 
 <b>serviceName</b>
 Name of the SSL service for which to show detailed information.
-
-<b>cipherDetails</b>
-Display details of the individual ciphers bound to the SSL service.
 
 
 
@@ -415,6 +417,11 @@ The state of TLSv1.2 protocol support.
 
 <b>SNIEnable</b>
 The state of SNI extension. Server Name Indication (SNI) helps to enable SSL encryption on multiple subdomains if the domains are controlled by the same organization and share the same second-level domain name.
+
+<b>ocspStapling</b>
+State of OCSP stapling support on the SSL virtual server. Supported only if the protocol used is higher than SSLv3. Possible values:
+ENABLED: The appliance sends a request to the OCSP responder to check the status of the server certificate and caches the response for the specified time. If the response is valid at the time of SSL handshake with the client, the OCSP-based server certificate status is sent to the client during the handshake.
+DISABLED: The appliance does not check the status of the server certificate.
 
 <b>serverAuth</b>
 The  state of Server-Authentication support.
@@ -494,6 +501,9 @@ Name of the SSL profile that contains SSL settings for the service.
 
 <b>gslbServiceFlag</b>
 Indicates that this is a gslb service
+
+<b>strictSigDigestCheck</b>
+Parameter indicating to check whether peer's certificate during TLS1.2 handshake is signed with one of signature-hash combination supported by Netscaler
 
 <b>devno</b>
 

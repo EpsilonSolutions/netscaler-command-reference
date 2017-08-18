@@ -12,7 +12,7 @@ Enables or disables SNMP options for SNMP SET and SNMP trap logging.
 
 ##Synopsys
 
-set snmp option [-snmpset ( ENABLED | DISABLED )] [-snmpTrapLogging ( ENABLED | DISABLED )] [-partitionNameInTrap ( ENABLED | DISABLED )]
+set snmp option [-snmpset ( ENABLED | DISABLED )] [-snmpTrapLogging ( ENABLED | DISABLED )] [-partitionNameInTrap ( ENABLED | DISABLED )] [-snmpTrapLoggingLevel &lt;snmpTrapLoggingLevel>]
 
 
 ##Arguments
@@ -32,6 +32,11 @@ Send partition name as a varbind in traps. By default the partition names are no
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
+<b>snmpTrapLoggingLevel</b>
+Audit log level of SNMP trap logs. The default value is INFORMATIONAL.
+Possible values: EMERGENCY, ALERT, CRITICAL, ERROR, WARNING, NOTICE, INFORMATIONAL, DEBUG
+Default value: INFORMATIONAL
+
 
 
 ##unset snmp option
@@ -41,7 +46,7 @@ Use this command to remove snmp option settings.Refer to the set snmp option com
 
 ##Synopsys
 
-unset snmp option [-snmpset] [-snmpTrapLogging] [-partitionNameInTrap]
+unset snmp option [-snmpset] [-snmpTrapLogging] [-partitionNameInTrap] [-snmpTrapLoggingLevel]
 
 
 ##show snmp option
@@ -64,6 +69,9 @@ Log any SNMP trap events (for SNMP alarms in which logging is enabled) even if n
 
 <b>partitionNameInTrap</b>
 Send partition name as a varbind in traps. By default the partition names are not sent as a varbind.
+
+<b>snmpTrapLoggingLevel</b>
+Audit log level of SNMP trap logs. The default value is INFORMATIONAL.
 
 
 

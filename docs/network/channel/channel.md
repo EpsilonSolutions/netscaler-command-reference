@@ -12,7 +12,7 @@ Creates a link aggregate channel on the NetScaler appliance or on a cluster conf
 
 ##Synopsys
 
-add channel &lt;id> [-ifnum &lt;interface_name> ...] [-state ( ENABLED | DISABLED )] [-lamac &lt;mac_addr>] [-speed &lt;speed>] [-flowControl &lt;flowControl>] [-haMonitor ( ON | OFF )] [-tagall ( ON | OFF )] [-ifAlias &lt;string>] [-throughput &lt;positive_integer>] [-bandwidthHigh &lt;positive_integer>  [-bandwidthNormal &lt;positive_integer>]]
+add channel &lt;id> [-ifnum &lt;interface_name> ...] [-state ( ENABLED | DISABLED )] [-lamac &lt;mac_addr>] [-speed &lt;speed>] [-flowControl &lt;flowControl>] [-haMonitor ( ON | OFF )] [-haHeartbeat ( OFF | ON )] [-tagall ( ON | OFF )] [-ifAlias &lt;string>] [-throughput &lt;positive_integer>] [-bandwidthHigh &lt;positive_integer>  [-bandwidthNormal &lt;positive_integer>]]
 
 
 ##Arguments
@@ -48,12 +48,17 @@ Default value: AUTO
 
 <b>flowControl</b>
 Specifies the flow control type for this LA channel to manage the flow of frames. Flow control is a function as mentioned in clause 31 of the IEEE 802.3 standard. Flow control allows congested ports to pause traffic from the peer device. Flow control is achieved by sending PAUSE frames.
-Possible values: OFF, RX, TX, RXTX
+Possible values: OFF, RX, TX, RXTX, ON
 Default value: OFF
 
 <b>haMonitor</b>
 In a High Availability (HA) configuration, monitor the LA channel for failure events. Failure of any LA channel that has HA MON enabled triggers HA failover.
 Possible values: ON, OFF
+Default value: ON
+
+<b>haHeartbeat</b>
+In a High Availability (HA) configuration, configure the LA channel for sending heartbeats. LA channel that has HA Heartbeat disabled should not send the heartbeats.
+Possible values: OFF, ON
 Default value: ON
 
 <b>tagall</b>
@@ -106,7 +111,7 @@ Modifies the specified parameters of an LA channel.
 
 ##Synopsys
 
-set channel &lt;id> [-state ( ENABLED | DISABLED )] [-lamac &lt;mac_addr>] [-speed &lt;speed>] [-mtu &lt;positive_integer>] [-flowControl &lt;flowControl>] [-haMonitor ( ON | OFF )] [-tagall ( ON | OFF )] [-ifAlias &lt;string>] [-throughput &lt;positive_integer>] [-lrMinThroughput &lt;positive_integer>] [-linkRedundancy ( ON | OFF )] [-bandwidthHigh &lt;positive_integer>  [-bandwidthNormal &lt;positive_integer>]]
+set channel &lt;id> [-state ( ENABLED | DISABLED )] [-lamac &lt;mac_addr>] [-speed &lt;speed>] [-mtu &lt;positive_integer>] [-flowControl &lt;flowControl>] [-haMonitor ( ON | OFF )] [-haHeartbeat ( OFF | ON )] [-tagall ( ON | OFF )] [-ifAlias &lt;string>] [-throughput &lt;positive_integer>] [-lrMinThroughput &lt;positive_integer>] [-linkRedundancy ( ON | OFF )] [-bandwidthHigh &lt;positive_integer>  [-bandwidthNormal &lt;positive_integer>]]
 
 
 ##Arguments
@@ -128,19 +133,24 @@ Possible values: AUTO, 10, 100, 1000, 10000, 40000
 Default value: AUTO
 
 <b>mtu</b>
-The maximum transmission unit (MTU) is the largest packet size, measured in bytes excluding 14 bytes ethernet header and 4 bytes crc, that can be transmitted and received by this interface. Default value of MTU is 1500 on all the interface of Netscaler appliance any value configured more than 1500 on the interface will make the interface as jumbo enabled. In case of cluster backplane interface MTU value will be changed to 1514 by default, user has to change the backplane interface value to maximum mtu configured on any of the interface in cluster system plus 14 bytes more for backplane interface if Jumbo is enabled on any of the interface in a cluster system. Changing the backplane will bring back the MTU of backplane interface to default value of 1500. If a channel is configured as backplane then the same holds true for channel as well as member interfaces. In case of channel if member interfaces is configured as different mtu then the highest MTU configured MTU is treated as the LA MTU if MTU is not specified on LA explicitly. Low MTU interfaces in channel will be taken out of LA distribution list.
+The maximum transmission unit (MTU) is the largest packet size, measured in bytes excluding 14 bytes ethernet header and 4 bytes crc, that can be transmitted and received by this interface. Default value of MTU is 1500 on all the interface of Netscaler appliance any value configured more than 1500 on the interface will make the interface as jumbo enabled. In case of cluster backplane interface MTU value will be changed to 1514 by default, user has to change the backplane interface value to maximum mtu configured on any of the interface in cluster system plus 14 bytes more for backplane interface if Jumbo is enabled on any of the interface in a cluster system. Changing the backplane will bring back the MTU of backplane interface to default value of 1500. If a channel is configured as backplane then the same holds true for channel as well as member interfaces.
 Default value: 1500
 Minimum value: 1500
 Maximum value: 9216
 
 <b>flowControl</b>
 Required flow control for the LA channel.
-Possible values: OFF, RX, TX, RXTX
+Possible values: OFF, RX, TX, RXTX, ON
 Default value: OFF
 
 <b>haMonitor</b>
 The state of HA monitoring for the LA channel.
 Possible values: ON, OFF
+Default value: ON
+
+<b>haHeartbeat</b>
+The state of HA HEARTBEAT SEND config for the LA channel.
+Possible values: OFF, ON
 Default value: ON
 
 <b>tagall</b>
@@ -186,7 +196,7 @@ Use this command to remove  channel settings.Refer to the set  channel command f
 
 ##Synopsys
 
-unset channel &lt;id> [-state] [-speed] [-mtu] [-flowControl] [-haMonitor] [-tagall] [-ifAlias] [-throughput] [-lrMinThroughput] [-linkRedundancy] [-bandwidthHigh] [-bandwidthNormal]
+unset channel &lt;id> [-state] [-speed] [-mtu] [-flowControl] [-haMonitor] [-haHeartbeat] [-tagall] [-ifAlias] [-throughput] [-lrMinThroughput] [-linkRedundancy] [-bandwidthHigh] [-bandwidthNormal]
 
 
 ##bind channel
@@ -206,12 +216,15 @@ ID of the LA channel or the cluster LA channel to which you want to bind interfa
 
 <b>ifnum</b>
 Interfaces to be bound to the LA channel of a NetScaler appliance or to the LA channel of a cluster configuration.
+In case of standalone or HA configuration, Maximum 16 interfaces can be bound to a channel.
+In case of Cluster configuration, Maximum 16 interfaces can be bound to a Node level channel and maximum 16 interafce from each node can be bound to a Cluster level channel.
 For an LA channel of a NetScaler appliance, specify an interface in C/U notation (for example, 1/3). 
 For an LA channel of a cluster configuration, specify an interface in N/C/U notation (for example, 2/1/3).
 where C can take one of the following values:
 * 0 - Indicates a management interface.
 * 1 - Indicates a 1 Gbps port.
 * 10 - Indicates a 10 Gbps port.
+* 40 - Indicates a 40 Gbps port.
 U is a unique integer for representing an interface in a particular port group.
 N is the ID of the node to which an interface belongs in a cluster configuration.
 Use spaces to separate multiple entries.
@@ -283,7 +296,7 @@ The IEEE standard that the channel is based on.
 Flags of this channel.
 
 <b>mtu</b>
-The maximum transmission unit (MTU) is the largest packet size, measured in bytes excluding 14 bytes ethernet header and 4 bytes crc, that can be transmitted and received by this interface. Default value of MTU is 1500 on all the interface of Netscaler appliance any value configured more than 1500 on the interface will make the interface as jumbo enabled. In case of cluster backplane interface MTU value will be changed to 1514 by default, user has to change the backplane interface value to maximum mtu configured on any of the interface in cluster system plus 14 bytes more for backplane interface if Jumbo is enabled on any of the interface in a cluster system. Changing the backplane will bring back the MTU of backplane interface to default value of 1500. If a channel is configured as backplane then the same holds true for channel as well as member interfaces. In case of channel if member interfaces is configured as different mtu then the highest MTU configured MTU is treated as the LA MTU if MTU is not specified on LA explicitly. Low MTU interfaces in channel will be taken out of LA distribution list.
+The maximum transmission unit (MTU) is the largest packet size, measured in bytes excluding 14 bytes ethernet header and 4 bytes crc, that can be transmitted and received by this interface. Default value of MTU is 1500 on all the interface of Netscaler appliance any value configured more than 1500 on the interface will make the interface as jumbo enabled. In case of cluster backplane interface MTU value will be changed to 1514 by default, user has to change the backplane interface value to maximum mtu configured on any of the interface in cluster system plus 14 bytes more for backplane interface if Jumbo is enabled on any of the interface in a cluster system. Changing the backplane will bring back the MTU of backplane interface to default value of 1500. If a channel is configured as backplane then the same holds true for channel as well as member interfaces.
 
 <b>actualMtu</b>
 MTU of the channel. This is the maximum frame size that the channel can process.
@@ -328,17 +341,14 @@ Actualduplex setting for this interface.
 <b>flowControl</b>
 Actual flow control setting for this channel.
 
-<b>connDistr</b>
-Connection distribution setting on this Channel.
-
-<b>macdistr</b>
-MAC distribution setting on this Channel.
-
 <b>Mode</b>
 The  mode(AUTO/MANNUAL) for the LA channel.
 
 <b>haMonitor</b>
 HA monitoring enabled or disabled for this channel.
+
+<b>haHeartbeat</b>
+The state of HA HEARTBEAT SEND for the LA channel.
 
 <b>state</b>
 Enable or disable the LA channel.

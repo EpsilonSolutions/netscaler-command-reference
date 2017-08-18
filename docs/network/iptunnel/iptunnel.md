@@ -31,7 +31,7 @@ Type ofNetScaler owned public IPv4 address, configured on the local NetScaler ap
 
 <b>protocol</b>
 Name of the protocol to be used on this tunnel.
-Possible values: IPIP, GRE, IPSEC, VXLAN
+Possible values: IPIP, GRE, IPSEC
 Default value: IPIP
 
 <b>grepayload</b>
@@ -105,7 +105,7 @@ Name for the IP tunnel. Leading character must be a number or letter. Other char
 ##Outputs
 
 <b>name</b>
-Name for the PBR
+The name of the ip tunnel.
 
 <b>local</b>
 Type ofNetScaler owned public IPv4 address, configured on the local NetScaler appliance and used to set up the tunnel.
@@ -139,6 +139,9 @@ Whether the ipsec on this tunnel is up or down.
 
 <b>ownerGroup</b>
 The owner node group in a Cluster for the iptunnel.
+
+<b>refcnt</b>
+Number of PBRs to bound to this iptunnel
 
 <b>devno</b>
 

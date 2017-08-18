@@ -19,48 +19,6 @@ show ns connectiontable [&lt;filterexpression>] [-detail &lt;detail> ...] [-List
 The maximum length of filter expression is 255 and it can be of following format:
   &lt;expression&gt; [&lt;relop&gt; &lt;expression&gt;]
     &lt;relop&gt; = ( && | || )
-    connectiontable supports two types of filter expressions:
-    Classic Expressions:
-    [Note: Classic Expressions are not supported in non-default partitions]
-    &lt;expression&gt; = the expression string in the format:
-    &lt;qualifier&gt; &lt;operator&gt; &lt;qualifier-value&gt;
-    &lt;qualifier&gt; = SOURCEIP.
-    &lt;qualifier-value&gt; = A valid IP address.
-    &lt;qualifier&gt; = SOURCEPORT.
-    &lt;qualifier-value&gt; = A valid port number.
-    &lt;qualifier&gt; = DESTIP.
-    &lt;qualifier-value&gt; = A valid IP address.
-    &lt;qualifier&gt; = DESTPORT.
-    &lt;qualifier-value&gt; = A valid port number.
-    &lt;qualifier&gt; = IP.
-    &lt;qualifier-value&gt; = A valid IP address.
-    &lt;qualifier&gt; = PORT.
-    &lt;qualifier-value&gt; = A valid port number.
-    &lt;qualifier&gt; = IDLETIME.
-    &lt;qualifier-value&gt; = A positive integer indicating the idle time.
-    &lt;qualifier&gt; = SVCNAME.
-    &lt;qualifier-value&gt; = The name of a service.
-    &lt;qualifier&gt; = VSVRNAME.
-    &lt;qualifier-value&gt; = The name of a vserver.
-    &lt;qualifier&gt; = CONNID
-    &lt;qualifier-value&gt; = A valid PCB dev number.
-    &lt;qualifier&gt; = INTF
-    &lt;qualifier-value&gt; = A valid interface id in the form of x/y
-                (n/x/y in case of cluster interface).
-    &lt;qualifier&gt; = VLAN
-    &lt;qualifier-value&gt; = A valid VLAN ID.
-    &lt;qualifier&gt; = STATE.
-    &lt;qualifier-value&gt; = ( CLOSE_WAIT | CLOSED | CLOSING | ESTABLISHED |
-        FIN_WAIT_1 | FIN_WAIT_2 | LAST_ACK | LISTEN |
-        SYN_RECEIVED | SYN_SENT | TIME_WAIT )
-    &lt;qualifier&gt; = SVCTYPE.
-    &lt;qualifier-value&gt; = ( HTTP | FTP | TCP | UDP | SSL |
-        SSL_BRIDGE | SSL_TCP | NNTP | RPCSVR | RPCSVRS |
-        RPCCLNT | DNS | ADNS | SNMP | RTSP | DHCPRA | ANY |
-        MONITOR | MONITOR_UDP | MONITOR_PING | SIP_UDP | MYSQL | MSSQL | UNKNOWN )
-    &lt;operator&gt; = ( == | eq | != | neq | &gt; | gt | &lt; | lt | &gt;= |
-        ge | &lt;= | le | BETWEEN )
-    Default Expressions:
     &lt;expression&gt; =:
     CONNECTION.&lt;qualifier&gt;.&lt;qualifier-method&gt;.(&lt;qualifier-value&gt;)
     &lt;qualifier&gt; = SRCIP
@@ -154,7 +112,7 @@ The maximum length of filter expression is 255 and it can be of following format
     &lt;qualifier-method&gt; = [ EQ | NE ]
     &lt;qualifier-value&gt;  = ( SVC_HTTP | FTP | TCP | UDP | SSL |
         SSL_BRIDGE | SSL_TCP | NNTP | RPCSVR | RPCSVRS |
-        RPCCLNT | SVC_DNS | ADNS | SNMP | RTSP | DHCPRA | ANY|
+        RPCCLNT | SVC_DNS | ADNS | SNMP | RTSP | DHCPRA | NAT | ANY |
         MONITOR | MONITOR_UDP | MONITOR_PING | SIP_UDP |
         SVC_MYSQL | SVC_MSSQL | SERVICE_UNKNOWN )
     example = CONNECTION.SERVICE_TYPE.EQ(ANY)
@@ -258,8 +216,8 @@ Unique transaction number for the connection.
 <b>linkConnid</b>
 Unique transaction number for the peer connection.
 
-<b>filterFlags</b>
-flags used to store display options
+<b>connProperties</b>
+flags used to store connection properties like client, server etc.
 
 <b>optionFlags</b>
 flags used to store TCP options like Sack, WS
@@ -421,6 +379,126 @@ nnm message version.
 
 <b>td</b>
 Traffic Domain Id.
+
+<b>maxRcvbuf</b>
+Maximum receive window that application advertizes to peer.
+
+<b>linkmaxRcvbuf</b>
+Maximum receive window that application advertizes to peer in linked connection.
+
+<b>RxQsize</b>
+Total number of bytes in Netscaler receive buffer. This includes bytes being processed / policy related data / stored in application buffer.
+
+<b>linkRxQsize</b>
+Total number of bytes in Netscaler receive buffer for linked connection. This includes bytes being processed / policy related data / stored in application buffer.
+
+<b>maxSndbuf</b>
+Maximum send window that application can process and send.
+
+<b>linkmaxSndbuf</b>
+Maximum send window that application can process and send in linked connection.
+
+<b>TxQsize</b>
+Total number of bytes in Netscaler send buffer. This includes both inflight and queued bytes in netscaler.
+
+<b>linkTxQsize</b>
+Total number of bytes in Netscaler send buffer for linked connection. This includes both inflight and queued bytes in netscaler.
+
+<b>flavor</b>
+TCP congestion control algorithm.
+
+<b>linkflavor</b>
+TCP congestion control algorithm for a linked connection.
+
+<b>bwEstimate</b>
+TCP Bandwidth Estimate
+
+<b>linkbwEstimate</b>
+TCP Bandwidth Estimate for a linked connection
+
+<b>rttMin</b>
+Minimum Round Trip Time for the connection.
+
+<b>linkrttMin</b>
+Minimum Round Trip Time for linked connection.
+
+<b>name</b>
+Name of TCP profile attached to the connection.
+
+<b>linkName</b>
+Name of TCP profile attached to the connection.
+
+<b>tcpmode</b>
+TCP Optimization modes TRANSPARENT / ENDPOINT.
+
+<b>linktcpmode</b>
+TCP Optimization modes TRANSPARENT / ENDPOINT for linked connection.
+
+<b>realTimeRtt</b>
+Real Time / Instantaneous round trip time.
+
+<b>linkrealTimeRtt</b>
+Real Time / Instantaneous round trip time for linked connection.
+
+<b>sndBuf</b>
+send buffer size.
+
+<b>linksndBuf</b>
+Send buffer size for linked connection.
+
+<b>nsbTcpwaitQ</b>
+Number of packets in TCP wait queue.
+
+<b>linknsbTcpwaitQ</b>
+Number of packets in wait queue for linked connection.
+
+<b>nsbRetxQ</b>
+Number of packets in retransmission queue.
+
+<b>linknsbRetxQ</b>
+Number of packets in retransmission queue for linked connection.
+
+<b>sackblocks</b>
+Number of sack blocks attached to the connection.
+
+<b>linksackblocks</b>
+Number of sack blocks attached in linked connection.
+
+<b>congstate</b>
+TCP congestion state.
+
+<b>linkcongstate</b>
+TCP congestion state for a linked connection.
+
+<b>sndrecoverle</b>
+Sequence Number denoting end of fast recovery.
+
+<b>linksndrecoverle</b>
+Sequence Number denoting end of fast recovery for linked connection.
+
+<b>creditsInBytes</b>
+Connections current credits in Bytes/ms.
+
+<b>linkcredits</b>
+Link connections current credits in Bytes/ms.
+
+<b>rateInBytes</b>
+Connections current rate in Bytes/ms
+
+<b>linkrateInBytes</b>
+Link connections current rate in Bytes/ms
+
+<b>rateSchedulerQueue</b>
+Bytes that are queued in the rate scheduler for this connection
+
+<b>linkrateSchedulerQueue</b>
+Bytes that are queued in the rate scheduler for link connection
+
+<b>burstRateControl</b>
+TCP Burst Rate Control DISABLED/FIXED/DYNAMIC.
+
+<b>linkburstRateControl</b>
+TCP Burst Rate Control DISABLED/FIXED/DYNAMIC.
 
 <b>devno</b>
 

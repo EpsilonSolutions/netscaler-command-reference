@@ -30,7 +30,9 @@ The port of the WLM.
 The LBUID for the Load Balancer to communicate to the Work Load Manager.
 
 <b>KATimeout</b>
-The idle time period after which NS would probe the WLM. The value ranges from 1 to 1440 minutes. Default value: 2 Maximum value: 1440
+The idle time period after which NS would probe the WLM. The value ranges from 1 to 1440 minutes.
+Default value: 2
+Maximum value: 1440
 
 
 
@@ -75,7 +77,9 @@ set Work Load Manager attributes NOTE: This command is deprecated.
 The name of the work load manager.
 
 <b>KATimeout</b>
-The idle time period after which NS would probe the WLM. The value ranges from 1 to 1440 minutes. Default value: 2 Maximum value: 1440
+The idle time period after which NS would probe the WLM. The value ranges from 1 to 1440 minutes.
+Default value: 2
+Maximum value: 1440
 
 
 
@@ -167,7 +171,7 @@ Name of the virtual server which is to be bound to the WLM.
 
 ##Example
 
-bind lb wlm ibm_wlm http_vip To bind multiple vservers to workload manager use the following command: bind lb wlm ibm_wlm http_vip[1-3]
+bind lb wlm ibm_wlm http_vip 	To bind multiple vservers to workload manager use the following command:	bind lb wlm ibm_wlm http_vip[1-3]
 
 ##unbind lb wlm
 
@@ -191,5 +195,5 @@ Name of the virtual server which is to be unbound from the WLM.
 
 ##Example
 
-unbind lb wlm ibm_wlm http_vip To unbind multiple vservers from Work Load Manager use the following command: unbind lb wlm ibm_wlm http_vip[1-3]
+unbind lb wlm ibm_wlm http_vip	To unbind multiple vservers from Work Load Manager use the following command:	unbind lb wlm ibm_wlm http_vip[1-3]
 

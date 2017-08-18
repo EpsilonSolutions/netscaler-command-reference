@@ -12,7 +12,7 @@ Creates an IPv4 address on the NetScaler appliance.
 
 ##Synopsys
 
-add ns ip &lt;IPAddress>@ &lt;netmask> [-type &lt;type>  [-hostRoute ( ENABLED | DISABLED )  [-hostRtGw &lt;ip_addr>]  [-metric &lt;integer>]  [-vserverRHILevel &lt;vserverRHILevel>]  [-vserverRHIMode ( DYNAMIC_ROUTING | RISE )]  [-ospfLSAType ( TYPE1 | TYPE5 )  [-ospfArea &lt;positive_integer>]]]   ] [-arp ( ENABLED | DISABLED )] [-icmp ( ENABLED | DISABLED )] [-vServer ( ENABLED | DISABLED )] [-telnet ( ENABLED | DISABLED )] [-ftp ( ENABLED | DISABLED )] [-gui &lt;gui>] [-ssh ( ENABLED | DISABLED )] [-snmp ( ENABLED | DISABLED )] [-mgmtAccess ( ENABLED | DISABLED )] [-restrictAccess ( ENABLED | DISABLED )] [-dynamicRouting ( ENABLED | DISABLED )] [-state ( ENABLED | DISABLED )] [-vrID &lt;positive_integer>] [-icmpResponse &lt;icmpResponse>] [-ownerNode &lt;positive_integer>] [-arpResponse &lt;arpResponse>] [-td &lt;positive_integer>]
+add ns ip &lt;IPAddress>@ &lt;netmask> [-type &lt;type>  [-hostRoute ( ENABLED | DISABLED )  [-tag &lt;positive_integer>]  [-hostRtGw &lt;ip_addr>]  [-metric &lt;integer>]  [-vserverRHILevel &lt;vserverRHILevel>]  [-vserverRHIMode ( DYNAMIC_ROUTING | RISE )]  [-ospfLSAType ( TYPE1 | TYPE5 )  [-ospfArea &lt;positive_integer>]]]   ] [-arp ( ENABLED | DISABLED )] [-icmp ( ENABLED | DISABLED )] [-vServer ( ENABLED | DISABLED )] [-telnet ( ENABLED | DISABLED )] [-ftp ( ENABLED | DISABLED )] [-gui &lt;gui>] [-ssh ( ENABLED | DISABLED )] [-snmp ( ENABLED | DISABLED )] [-mgmtAccess ( ENABLED | DISABLED )] [-restrictAccess ( ENABLED | DISABLED )] [-dynamicRouting ( ENABLED | DISABLED )] [-networkRoute ( ENABLED | DISABLED )] [-state ( ENABLED | DISABLED )] [-vrID &lt;positive_integer>] [-icmpResponse &lt;icmpResponse>] [-ownerNode &lt;positive_integer>] [-arpResponse &lt;arpResponse>] [-ownerDownResponse ( YES | NO )] [-td &lt;positive_integer>]
 
 
 ##Arguments
@@ -29,7 +29,7 @@ Type of the IP address to create on the NetScaler appliance. Cannot be changed a
 * A Virtual IP (VIP) address is the IP address associated with a virtual server. It is the IP address to which clients connect. An appliance managing a wide range of traffic may have many VIPs configured. Some of the attributes of the VIP address are customized to meet the requirements of the virtual server.
 * A GSLB site IP (GSLBIP) address is associated with a GSLB site. It is not mandatory to specify a GSLBIP address when you initially configure the NetScaler appliance. A GSLBIP address is used only when you create a GSLB site.
 * A Cluster IP (CLIP) address is the management address of the cluster. All cluster configurations must be performed by accessing the cluster through this IP address.
-Possible values: SNIP, VIP, NSIP, GSLBsiteIP, CLIP
+Possible values: SNIP, VIP, NSIP, GSLBsiteIP, CLIP, LSN
 Default value: SNIP
 
 <b>arp</b>
@@ -88,8 +88,17 @@ Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
 <b>hostRoute</b>
-Advertise a route for the VIP address using the dynamic routing protocols running on the NetScaler appliance.
+Option to push the VIP to ZebOS routing table for Kernel route redistribution through dynamic routing protocols
 Possible values: ENABLED, DISABLED
+
+<b>networkRoute</b>
+Option to push the SNIP subnet to ZebOS routing table for Kernel route redistribution through dynamic routing protocol.
+Possible values: ENABLED, DISABLED
+
+<b>tag</b>
+Tag value for the network/host route associated with this IP.
+Default value: 0
+Minimum value: 0
 
 <b>hostRtGw</b>
 IP address of the gateway of the route for this VIP address.
@@ -166,6 +175,11 @@ Respond to ARP requests for a Virtual IP (VIP) address on the basis of the state
 Possible values: NONE, ONE_VSERVER, ALL_VSERVERS
 Default value: 5
 
+<b>ownerDownResponse</b>
+in cluster system, if the owner node is down, whether should it respond to icmp/arp
+Possible values: YES, NO
+Default value: YES
+
 <b>td</b>
 Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
 Minimum value: 0
@@ -210,7 +224,7 @@ Modifies the parameters of an IPv4 address configured on the NetScaler appliance
 
 ##Synopsys
 
-set ns ip (&lt;IPAddress>@  [-td &lt;positive_integer>]) [-netmask &lt;netmask>] [-arp ( ENABLED | DISABLED )] [-icmp ( ENABLED | DISABLED )] [-vServer ( ENABLED | DISABLED )] [-telnet ( ENABLED | DISABLED )] [-ftp ( ENABLED | DISABLED )] [-gui &lt;gui>] [-ssh ( ENABLED | DISABLED )] [-snmp ( ENABLED | DISABLED )] [-mgmtAccess ( ENABLED | DISABLED )] [-restrictAccess ( ENABLED | DISABLED )] [-dynamicRouting ( ENABLED | DISABLED )] [-hostRoute ( ENABLED | DISABLED )  [-hostRtGw &lt;ip_addr>]  [-metric &lt;integer>]  [-vserverRHILevel &lt;vserverRHILevel>]  [-vserverRHIMode ( DYNAMIC_ROUTING | RISE )]  [-ospfLSAType ( TYPE1 | TYPE5 )  [-ospfArea &lt;positive_integer>]]] [-vrID &lt;positive_integer>] [-icmpResponse &lt;icmpResponse>] [-arpResponse &lt;arpResponse>]
+set ns ip (&lt;IPAddress>@  [-td &lt;positive_integer>]) [-netmask &lt;netmask>] [-arp ( ENABLED | DISABLED )] [-icmp ( ENABLED | DISABLED )] [-vServer ( ENABLED | DISABLED )] [-telnet ( ENABLED | DISABLED )] [-ftp ( ENABLED | DISABLED )] [-gui &lt;gui>] [-ssh ( ENABLED | DISABLED )] [-snmp ( ENABLED | DISABLED )] [-mgmtAccess ( ENABLED | DISABLED )] [-restrictAccess ( ENABLED | DISABLED )] [-dynamicRouting ( ENABLED | DISABLED )] [-hostRoute ( ENABLED | DISABLED )] [-networkRoute ( ENABLED | DISABLED )] [-hostRtGw &lt;ip_addr>] [-metric &lt;integer>] [-vserverRHILevel &lt;vserverRHILevel>] [-vserverRHIMode ( DYNAMIC_ROUTING | RISE )] [-ospfLSAType ( TYPE1 | TYPE5 )  [-ospfArea &lt;positive_integer>]] [-tag &lt;positive_integer>] [-vrID &lt;positive_integer>] [-icmpResponse &lt;icmpResponse>] [-arpResponse &lt;arpResponse>] [-ownerDownResponse ( YES | NO )]
 
 
 ##Arguments
@@ -282,7 +296,11 @@ Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
 <b>hostRoute</b>
-Advertise a route for the VIP address using the dynamic routing protocols running on the NetScaler appliance.
+Option to push the VIP to ZebOS routing table for Kernel route redistribution through dynamic routing protocols
+Possible values: ENABLED, DISABLED
+
+<b>networkRoute</b>
+Option to push the SNIP subnet to ZebOS routing table for Kernel route redistribution through dynamic routing protocol.
 Possible values: ENABLED, DISABLED
 
 <b>hostRtGw</b>
@@ -324,6 +342,11 @@ Default value: -1
 Minimum value: 0
 Maximum value: 4294967294LU
 
+<b>tag</b>
+Tag value for the network/host route associated with this IP.
+Default value: 0
+Minimum value: 0
+
 <b>vrID</b>
 A positive integer that uniquely identifies a VMAC address for binding to this VIP address. This binding is used to set up NetScaler appliances in an active-active configuration using VRRP.
 Minimum value: 1
@@ -350,6 +373,11 @@ Respond to ARP requests for a Virtual IP (VIP) address on the basis of the state
 Possible values: NONE, ONE_VSERVER, ALL_VSERVERS
 Default value: 5
 
+<b>ownerDownResponse</b>
+in cluster system, if the owner node is down, whether should it respond to icmp/arp
+Possible values: YES, NO
+Default value: YES
+
 
 
 ##Example
@@ -363,7 +391,7 @@ Modifies the parameters of an IPv4 address configured on the NetScaler appliance
 
 ##Synopsys
 
-unset ns ip &lt;IPAddress>@ [-td &lt;positive_integer>] [-ospfArea] [-hostRtGw] [-netmask] [-arp] [-icmp] [-vServer] [-telnet] [-ftp] [-gui] [-ssh] [-snmp] [-mgmtAccess] [-restrictAccess] [-dynamicRouting] [-hostRoute] [-metric] [-vserverRHILevel] [-vserverRHIMode] [-ospfLSAType] [-vrID] [-icmpResponse] [-arpResponse]
+unset ns ip &lt;IPAddress>@ [-td &lt;positive_integer>] [-ospfArea] [-hostRtGw] [-netmask] [-arp] [-icmp] [-vServer] [-telnet] [-ftp] [-gui] [-ssh] [-snmp] [-mgmtAccess] [-restrictAccess] [-dynamicRouting] [-hostRoute] [-networkRoute] [-metric] [-vserverRHILevel] [-vserverRHIMode] [-ospfLSAType] [-tag] [-vrID] [-icmpResponse] [-arpResponse] [-ownerDownResponse]
 
 
 ##Example
@@ -444,7 +472,7 @@ Maximum value: 4094
 
 <b>type</b>
 Display the settings of all IPv4 addresses of a particular type.
-Possible values: SNIP, VIP, NSIP, GSLBsiteIP, CLIP
+Possible values: SNIP, VIP, NSIP, GSLBsiteIP, CLIP, LSN
 Default value: 0
 
 
@@ -502,7 +530,13 @@ Whether ospf is enabled or disabled.
 Whether rip is enabled or disabled.
 
 <b>hostRoute</b>
-Whether host route is enabled or disabled.
+Option to push the VIP to ZebOS routing table for Kernel route redistribution through dynamic routing protocols
+
+<b>networkRoute</b>
+Option to push the SNIP subnet to ZebOS routing table for Kernel route redistribution through dynamic routing protocol.
+
+<b>tag</b>
+Tag value for the network/host route associated with this IP.
 
 <b>hostRtGw</b>
 Gateway used for advertising host route.
@@ -511,7 +545,7 @@ Gateway used for advertising host route.
 Actual Gateway used for advertising host route.
 
 <b>metric</b>
-The metric value added or subtracted from the cost of the hostroute.
+The metric value added or subtracted from the cost of the route.
 
 <b>ospfArea</b>
 The area ID of the area in which OSPF Type1 LSAs are advertised. When ospfArea if not set, LSAs are advertised on all areas.
@@ -578,6 +612,9 @@ Respond to ARP requests for a Virtual IP (VIP) address on the basis of the state
 * ALL VSERVER - The NetScaler appliance responds to any ARP request for the VIP address if all of the associated virtual servers are in UP state.
 
 <b>stateflag</b>
+
+<b>ownerDownResponse</b>
+in cluster system, if the owner node is down, whether should it respond to icmp/arp
 
 <b>cfgflags</b>
 This contains the flags for IP in DB

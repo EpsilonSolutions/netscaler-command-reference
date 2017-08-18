@@ -41,6 +41,9 @@ An array of record types associated with the nsec record.
 <b>TTL</b>
 Time to Live (TTL), in seconds, for the record.
 
+<b>ecsSubnet</b>
+Subnet for which this particular record is cached. Subnet caching will occur for responses with EDNS Client Subnet (ECS) option. Applies to resource records obtained through proxy configurations only.
+
 <b>devno</b>
 
 <b>count</b>

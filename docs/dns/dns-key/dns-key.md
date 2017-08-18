@@ -3,7 +3,7 @@
 The following operations can be performed on "dns key":
 
 
-[add](#add-dns-key) | [create](#create-dns-key) | [set](#set-dns-key) | [unset](#unset-dns-key) | [rm](#rm-dns-key) | [show](#show-dns-key)
+[add](#add-dns-key) | [create](#create-dns-key) | [set](#set-dns-key) | [unset](#unset-dns-key) | [rm](#rm-dns-key) | [show](#show-dns-key) | [import](#import-dns-key)
 
 ##add dns key
 
@@ -12,7 +12,7 @@ Adds a DNS key to the zone that is specified in the key file.
 
 ##Synopsys
 
-add dns key &lt;keyName> &lt;publickey> &lt;privatekey> [-expires &lt;positive_integer>  [&lt;units>]] [-notificationPeriod &lt;positive_integer>  [&lt;units>]] [-TTL &lt;secs>]
+add dns key &lt;keyName> &lt;publickey> &lt;privatekey> [-expires &lt;positive_integer>  [&lt;units>]] [-notificationPeriod &lt;positive_integer>  [&lt;units>]] [-TTL &lt;secs>] {-password }
 
 
 ##Arguments
@@ -48,6 +48,9 @@ Time to Live (TTL), in seconds, for the DNSKEY resource record created in the zo
 Default value: 3600
 Maximum value: 2147483647
 
+<b>password</b>
+Passphrase for reading the encrypted public/private DNS keys
+
 
 
 ##Example
@@ -61,7 +64,7 @@ Creates a public-private key pair to use for signing a DNS zone. The keys are cr
 
 ##Synopsys
 
-create dns key -zoneName &lt;string> -keyType &lt;keyType> -algorithm RSASHA1 -keySize &lt;positive_integer> -fileNamePrefix &lt;string>
+create dns key -zoneName &lt;string> -keyType &lt;keyType> -algorithm RSASHA1 -keySize &lt;positive_integer> -fileNamePrefix &lt;string> {-password }
 
 
 ##Arguments
@@ -86,6 +89,9 @@ Minimum value: 0
 
 <b>fileNamePrefix</b>
 Common prefix for the names of the generated public and private key files and the Delegation Signer (DS) resource record. During key generation, the .key, .private, and .ds suffixes are appended automatically to the file name prefix to produce the names of the public key, the private key, and the DS record, respectively.
+
+<b>password</b>
+Passphrase for reading the encrypted public/private DNS keys
 
 
 
@@ -207,6 +213,9 @@ Time to Live (TTL), in seconds, for the DNSKEY resource record created in the zo
 <b>zoneName</b>
 Name of the zone for which the key is created.
 
+<b>password</b>
+Passphrase for reading the encrypted public/private DNS keys
+
 <b>devno</b>
 
 <b>count</b>
@@ -218,4 +227,24 @@ Name of the zone for which the key is created.
 ##Example
 
 show dns key
+
+##import dns key
+
+Import the DNSSEC key.
+
+
+##Synopsys
+
+import dns key &lt;keyName> -src &lt;URL>
+
+
+##Arguments
+
+<b>keyName</b>
+Name of the public-private key pair to publish in the zone.
+
+<b>src</b>
+URL (protocol, host, path, and file name) from where the DNS key file will be imported. NOTE: The import fails if the object to be imported is on an HTTPS server that requires client certificate authentication for access. This is a mandatory argument
+
+
 

@@ -12,7 +12,7 @@ Adds a session profile (action) to bind to a session policy that is applied to a
 
 ##Synopsys
 
-add vpn sessionAction &lt;name> [-userAccounting &lt;string>] [-httpPort &lt;port> ...] [-winsIP &lt;ip_addr>] [-dnsVserverName &lt;string>] [-splitDns &lt;splitDns>] [-sessTimeout &lt;mins>] [-clientSecurity &lt;expression>  [-clientSecurityGroup &lt;string>]  [-clientSecurityMessage &lt;string>]] [-clientSecurityLog ( ON | OFF )] [-splitTunnel &lt;splitTunnel>] [-localLanAccess ( ON | OFF )] [-rfc1918 ( ON | OFF )] [-killConnections ( ON | OFF )] [-transparentInterception ( ON | OFF )] [-defaultAuthorizationAction ( ALLOW | DENY )] [-authorizationGroup &lt;string>] [-Smartgroup &lt;string>] [-clientIdleTimeout &lt;mins>] [-proxy &lt;proxy>] [-allProtocolProxy &lt;string> | -httpProxy &lt;string> | -ftpProxy &lt;string> | -socksProxy &lt;string> | -gopherProxy &lt;string> | -sslProxy &lt;string>] [-proxyException &lt;string>] [-proxyLocalBypass ( ENABLED | DISABLED )] [-clientCleanupPrompt ( ON | OFF )] [-forceCleanup &lt;forceCleanup> ...] [-clientOptions &lt;clientOptions> ...] [-clientConfiguration &lt;clientConfiguration> ...] [-SSO ( ON | OFF )] [-ssoCredential ( PRIMARY | SECONDARY )] [-windowsAutoLogon ( ON | OFF )] [-useMIP ( NS | OFF )] [-useIIP &lt;useIIP>] [-clientDebug &lt;clientDebug>] [-loginScript &lt;input_filename>] [-logoutScript &lt;input_filename>] [-homePage &lt;URL>] [-icaProxy ( ON | OFF )] [-wihome &lt;URL>  [-wihomeAddressType ( IPV4 | IPV6 )]] [-citrixReceiverHome &lt;URL>] [-wiPortalMode ( NORMAL | COMPACT )] [-ClientChoices ( ON | OFF )] [-iipDnsSuffix &lt;string>] [-forcedTimeout &lt;mins>] [-forcedTimeoutWarning &lt;mins>] [-ntDomain &lt;string>] [-clientlessVpnMode &lt;clientlessVpnMode>] [-emailHome &lt;URL>] [-clientlessModeUrlEncoding &lt;clientlessModeUrlEncoding>] [-clientlessPersistentCookie &lt;clientlessPersistentCookie>] [-allowedLoginGroups &lt;string>] [-SecureBrowse ( ENABLED | DISABLED )] [-storefronturl &lt;string>] [-kcdAccount &lt;string>] [-rdpClientProfileName &lt;string>] [-WindowsPluginUpgrade &lt;WindowsPluginUpgrade>] [-MacPluginUpgrade &lt;MacPluginUpgrade>] [-LinuxPluginUpgrade &lt;LinuxPluginUpgrade>] [-iconWithReceiver ( ON | OFF )]
+add vpn sessionAction &lt;name> [-userAccounting &lt;string>] [-httpPort &lt;port> ...] [-winsIP &lt;ip_addr>] [-dnsVserverName &lt;string>] [-splitDns &lt;splitDns>] [-sessTimeout &lt;mins>] [-clientSecurity &lt;expression>  [-clientSecurityGroup &lt;string>]  [-clientSecurityMessage &lt;string>]] [-clientSecurityLog ( ON | OFF )] [-splitTunnel &lt;splitTunnel>] [-localLanAccess ( ON | OFF )] [-rfc1918 ( ON | OFF )] [-killConnections ( ON | OFF )] [-transparentInterception ( ON | OFF )] [-defaultAuthorizationAction ( ALLOW | DENY )] [-authorizationGroup &lt;string>] [-Smartgroup &lt;string>] [-clientIdleTimeout &lt;mins>] [-proxy &lt;proxy>] [-allProtocolProxy &lt;string> | -httpProxy &lt;string> | -autoProxyUrl &lt;URL> | -ftpProxy &lt;string> | -socksProxy &lt;string> | -gopherProxy &lt;string> | -sslProxy &lt;string>] [-proxyException &lt;string>] [-proxyLocalBypass ( ENABLED | DISABLED )] [-clientCleanupPrompt ( ON | OFF )] [-forceCleanup &lt;forceCleanup> ...] [-clientConfiguration ( none | trace ) ...] [-SSO ( ON | OFF )] [-ssoCredential ( PRIMARY | SECONDARY )] [-windowsAutoLogon ( ON | OFF )] [-useMIP ( NS | OFF )] [-useIIP &lt;useIIP>] [-loginScript &lt;input_filename>] [-logoutScript &lt;input_filename>] [-homePage &lt;URL>] [-icaProxy ( ON | OFF )] [-wihome &lt;URL>  [-wihomeAddressType ( IPV4 | IPV6 )]] [-citrixReceiverHome &lt;URL>] [-wiPortalMode ( NORMAL | COMPACT )] [-ClientChoices ( ON | OFF )] [-iipDnsSuffix &lt;string>] [-forcedTimeout &lt;mins>] [-forcedTimeoutWarning &lt;mins>] [-ntDomain &lt;string>] [-clientlessVpnMode &lt;clientlessVpnMode>] [-emailHome &lt;URL>] [-clientlessModeUrlEncoding &lt;clientlessModeUrlEncoding>] [-clientlessPersistentCookie &lt;clientlessPersistentCookie>] [-allowedLoginGroups &lt;string>] [-SecureBrowse ( ENABLED | DISABLED )] [-storefronturl &lt;string>] [-sfGatewayAuthType &lt;sfGatewayAuthType>] [-kcdAccount &lt;string>] [-rdpClientProfileName &lt;string>] [-WindowsPluginUpgrade &lt;WindowsPluginUpgrade>] [-MacPluginUpgrade &lt;MacPluginUpgrade>] [-LinuxPluginUpgrade &lt;LinuxPluginUpgrade>] [-iconWithReceiver ( ON | OFF )] [-alwaysONProfileName &lt;string>] [-pcoipProfileName &lt;string>]
 
 
 ##Arguments
@@ -87,7 +87,7 @@ Possible values: ALLOW, DENY
 Comma-separated list of groups in which the user is placed when none of the groups that the user is a part of is configured on NetScaler Gateway. The authorization policy can be bound to these groups to control access to the resources.
 
 <b>Smartgroup</b>
-This is the group in which the user is placed when the sessionpolicy associated with this sessionaction succeeds. The vpn session policy will do the post auth EPA check and if the check succeeds the user is placed in the group specified with smartgroup. The is_member_of (http.req.user.is_member_of) expression can then be used with policies to check if EPA has passed on the user belonging to this smartgroup
+This is the default group that is chosen when the authentication succeeds in addition to extracted groups.
 Maximum value: 64
 
 <b>clientIdleTimeout</b>
@@ -134,11 +134,8 @@ Possible values: ON, OFF
 <b>forceCleanup</b>
 Force cache clean-up when the user closes a session. You can specify all, none, or any combination of the client-side items.
 
-<b>clientOptions</b>
-Display only the configured menu options when you select the "Configure NetScaler Gateway" option in the NetScaler Gateway Plug-in system tray icon for Windows.
-
 <b>clientConfiguration</b>
-Display only the configured tabs when you select the "Configure NetSCaler Gateway" option in the NetScaler Gateway Plug-in system tray icon for Windows.
+Allow users to change client Debug logging level in Configuration tab of the NetScaler Gateway Plug-in for Windows.
 
 <b>SSO</b>
 Set single sign-on (SSO) for the session. When the user accesses a server, the user's logon credentials are passed to the server for authentication.
@@ -163,14 +160,6 @@ Define IP address pool options. Available settings function as follows:
 * NOSPILLOVER - When intranet IP addresses are enabled and the mapped IP address is not used, the Transfer Login page appears for users who have used all available intranet IP addresses. 
 * OFF - Address pool is not configured.
 Possible values: NOSPILLOVER, SPILLOVER, OFF
-
-<b>clientDebug</b>
-Set the trace level on NetScaler Gateway. Technical support technicians use these debug logs for in-depth debugging and troubleshooting purposes. Available settings function as follows: 
-* DEBUG - Detailed debug messages are collected and written into the specified file.
-* STATS - Application audit level error messages and debug statistic counters are written into the specified file. 
-* EVENTS - Application audit-level error messages are written into the specified file. 
-* OFF - Only critical events are logged into the Windows Application Log.
-Possible values: debug, stats, events, OFF
 
 <b>loginScript</b>
 Path to the logon script that is run when a session is established. Separate multiple scripts by using comma. A "$" in the path signifies that the word following the "$" is an environment variable.
@@ -254,6 +243,10 @@ Possible values: ENABLED, DISABLED
 <b>storefronturl</b>
 Web address for StoreFront to be used in this session for enumeration of resources from XenApp or XenDesktop.
 
+<b>sfGatewayAuthType</b>
+The authentication type configured for the NetScaler Gateway on StoreFront.
+Possible values: domain, RSA, domainAndRSA, SMS, smartCard, sfAuth, sfAuthAndRSA
+
 <b>kcdAccount</b>
 The kcd account details to be used in SSO
 
@@ -275,6 +268,15 @@ Possible values: Always, Essential, Never
 <b>iconWithReceiver</b>
 Option to decide whether to show plugin icon along with receiver
 Possible values: ON, OFF
+
+<b>alwaysONProfileName</b>
+Name of the AlwaysON profile associated with the session action. The builtin profile named none can be used to explicitly disable AlwaysON for the session action.
+
+<b>autoProxyUrl</b>
+URL to auto proxy config file
+
+<b>pcoipProfileName</b>
+Name of the PCOIP profile associated with the session action. The builtin profile named none can be used to explicitly disable PCOIP for the session action.
 
 
 
@@ -302,7 +304,7 @@ Modifies an action that was previously added to a session policy that is applied
 
 ##Synopsys
 
-set vpn sessionAction &lt;name> [-userAccounting &lt;string>] [-httpPort &lt;port> ...] [-winsIP &lt;ip_addr>] [-dnsVserverName &lt;string>] [-splitDns &lt;splitDns>] [-sessTimeout &lt;mins>] [-clientSecurity &lt;expression>  [-clientSecurityGroup &lt;string>]  [-clientSecurityMessage &lt;string>]] [-clientSecurityLog ( ON | OFF )] [-splitTunnel &lt;splitTunnel>] [-localLanAccess ( ON | OFF )] [-rfc1918 ( ON | OFF )] [-killConnections ( ON | OFF )] [-transparentInterception ( ON | OFF )] [-defaultAuthorizationAction ( ALLOW | DENY )] [-authorizationGroup &lt;string>] [-Smartgroup &lt;string>] [-clientIdleTimeout &lt;mins>] [-proxy &lt;proxy>] [-allProtocolProxy &lt;string> | -httpProxy &lt;string> | -ftpProxy &lt;string> | -socksProxy &lt;string> | -gopherProxy &lt;string> | -sslProxy &lt;string>] [-proxyException &lt;string>] [-proxyLocalBypass ( ENABLED | DISABLED )] [-clientCleanupPrompt ( ON | OFF )] [-forceCleanup &lt;forceCleanup> ...] [-clientOptions &lt;clientOptions> ...] [-clientConfiguration &lt;clientConfiguration> ...] [-SSO ( ON | OFF )] [-ssoCredential ( PRIMARY | SECONDARY )] [-windowsAutoLogon ( ON | OFF )] [-useMIP ( NS | OFF )] [-useIIP &lt;useIIP>] [-clientDebug &lt;clientDebug>] [-loginScript &lt;input_filename>] [-logoutScript &lt;input_filename>] [-homePage &lt;URL>] [-icaProxy ( ON | OFF )] [-wihome &lt;URL>  [-wihomeAddressType ( IPV4 | IPV6 )]] [-citrixReceiverHome &lt;URL>] [-wiPortalMode ( NORMAL | COMPACT )] [-ClientChoices ( ON | OFF )] [-iipDnsSuffix &lt;string>] [-forcedTimeout &lt;mins>] [-forcedTimeoutWarning &lt;mins>] [-ntDomain &lt;string>] [-clientlessVpnMode &lt;clientlessVpnMode>] [-emailHome &lt;URL>] [-clientlessModeUrlEncoding &lt;clientlessModeUrlEncoding>] [-clientlessPersistentCookie &lt;clientlessPersistentCookie>] [-allowedLoginGroups &lt;string>] [-SecureBrowse ( ENABLED | DISABLED )] [-storefronturl &lt;string>] [-kcdAccount &lt;string>] [-rdpClientProfileName &lt;string>] [-WindowsPluginUpgrade &lt;WindowsPluginUpgrade>] [-MacPluginUpgrade &lt;MacPluginUpgrade>] [-LinuxPluginUpgrade &lt;LinuxPluginUpgrade>] [-iconWithReceiver ( ON | OFF )]
+set vpn sessionAction &lt;name> [-userAccounting &lt;string>] [-httpPort &lt;port> ...] [-winsIP &lt;ip_addr>] [-dnsVserverName &lt;string>] [-splitDns &lt;splitDns>] [-sessTimeout &lt;mins>] [-clientSecurity &lt;expression>  [-clientSecurityGroup &lt;string>]  [-clientSecurityMessage &lt;string>]] [-clientSecurityLog ( ON | OFF )] [-splitTunnel &lt;splitTunnel>] [-localLanAccess ( ON | OFF )] [-rfc1918 ( ON | OFF )] [-killConnections ( ON | OFF )] [-transparentInterception ( ON | OFF )] [-defaultAuthorizationAction ( ALLOW | DENY )] [-authorizationGroup &lt;string>] [-Smartgroup &lt;string>] [-clientIdleTimeout &lt;mins>] [-proxy &lt;proxy>] [-allProtocolProxy &lt;string> | -httpProxy &lt;string> | -ftpProxy &lt;string> | -socksProxy &lt;string> | -gopherProxy &lt;string> | -sslProxy &lt;string>] [-proxyException &lt;string>] [-proxyLocalBypass ( ENABLED | DISABLED )] [-clientCleanupPrompt ( ON | OFF )] [-forceCleanup &lt;forceCleanup> ...] [-clientConfiguration ( none | trace ) ...] [-SSO ( ON | OFF )] [-ssoCredential ( PRIMARY | SECONDARY )] [-windowsAutoLogon ( ON | OFF )] [-useMIP ( NS | OFF )] [-useIIP &lt;useIIP>] [-loginScript &lt;input_filename>] [-logoutScript &lt;input_filename>] [-homePage &lt;URL>] [-icaProxy ( ON | OFF )] [-wihome &lt;URL>  [-wihomeAddressType ( IPV4 | IPV6 )]] [-citrixReceiverHome &lt;URL>] [-wiPortalMode ( NORMAL | COMPACT )] [-ClientChoices ( ON | OFF )] [-iipDnsSuffix &lt;string>] [-forcedTimeout &lt;mins>] [-forcedTimeoutWarning &lt;mins>] [-ntDomain &lt;string>] [-clientlessVpnMode &lt;clientlessVpnMode>] [-emailHome &lt;URL>] [-clientlessModeUrlEncoding &lt;clientlessModeUrlEncoding>] [-clientlessPersistentCookie &lt;clientlessPersistentCookie>] [-allowedLoginGroups &lt;string>] [-SecureBrowse ( ENABLED | DISABLED )] [-storefronturl &lt;string>] [-sfGatewayAuthType &lt;sfGatewayAuthType>] [-kcdAccount &lt;string>] [-rdpClientProfileName &lt;string>] [-WindowsPluginUpgrade &lt;WindowsPluginUpgrade>] [-MacPluginUpgrade &lt;MacPluginUpgrade>] [-LinuxPluginUpgrade &lt;LinuxPluginUpgrade>] [-iconWithReceiver ( ON | OFF )] [-alwaysONProfileName &lt;string>] [-autoProxyUrl &lt;URL>] [-pcoipProfileName &lt;string>]
 
 
 ##Arguments
@@ -375,7 +377,7 @@ Possible values: ALLOW, DENY
 Comma-separated list of groups in which the user is placed when none of the groups that the user is a part of is configured on NetScaler Gateway. The authorization policy can be bound to these groups to control access to the resources.
 
 <b>Smartgroup</b>
-This is the group in which the user is placed when the sessionpolicy associated with this sessionaction succeeds. The vpn session policy will do the post auth EPA check and if the check succeeds the user is placed in the group specified with smartgroup. The is_member_of (http.req.user.is_member_of) expression can then be used with policies to check if EPA has passed on the user belonging to this smartgroup
+This is the default group that is chosen when the authentication succeeds in addition to extracted groups.
 Maximum value: 64
 
 <b>clientIdleTimeout</b>
@@ -422,11 +424,8 @@ Possible values: ON, OFF
 <b>forceCleanup</b>
 Force cache clean-up when the user closes a session. You can specify all, none, or any combination of the client-side items.
 
-<b>clientOptions</b>
-Display only the configured menu options when you select the "Configure NetScaler Gateway" option in the NetScaler Gateway Plug-in system tray icon for Windows.
-
 <b>clientConfiguration</b>
-Display only the configured tabs when you select the "Configure NetSCaler Gateway" option in the NetScaler Gateway Plug-in system tray icon for Windows.
+Allow users to change client Debug logging level in Configuration tab of the NetScaler Gateway Plug-in for Windows.
 
 <b>SSO</b>
 Set single sign-on (SSO) for the session. When the user accesses a server, the user's logon credentials are passed to the server for authentication.
@@ -451,14 +450,6 @@ Define IP address pool options. Available settings function as follows:
 * NOSPILLOVER - When intranet IP addresses are enabled and the mapped IP address is not used, the Transfer Login page appears for users who have used all available intranet IP addresses. 
 * OFF - Address pool is not configured.
 Possible values: NOSPILLOVER, SPILLOVER, OFF
-
-<b>clientDebug</b>
-Set the trace level on NetScaler Gateway. Technical support technicians use these debug logs for in-depth debugging and troubleshooting purposes. Available settings function as follows: 
-* DEBUG - Detailed debug messages are collected and written into the specified file.
-* STATS - Application audit level error messages and debug statistic counters are written into the specified file. 
-* EVENTS - Application audit-level error messages are written into the specified file. 
-* OFF - Only critical events are logged into the Windows Application Log.
-Possible values: debug, stats, events, OFF
 
 <b>loginScript</b>
 Path to the logon script that is run when a session is established. Separate multiple scripts by using comma. A "$" in the path signifies that the word following the "$" is an environment variable.
@@ -545,6 +536,10 @@ Possible values: ENABLED, DISABLED
 <b>storefronturl</b>
 Web address for StoreFront to be used in this session for enumeration of resources from XenApp or XenDesktop.
 
+<b>sfGatewayAuthType</b>
+The authentication type configured for the NetScaler Gateway on StoreFront.
+Possible values: domain, RSA, domainAndRSA, SMS, smartCard, sfAuth, sfAuthAndRSA
+
 <b>kcdAccount</b>
 The kcd account details to be used in SSO
 
@@ -567,6 +562,15 @@ Possible values: Always, Essential, Never
 Option to decide whether to show plugin icon along with receiver
 Possible values: ON, OFF
 
+<b>alwaysONProfileName</b>
+Name of the AlwaysON profile associated with the session action. The builtin profile named none can be used to explicitly disable AlwaysON for the session action.
+
+<b>autoProxyUrl</b>
+URL to auto proxy config file
+
+<b>pcoipProfileName</b>
+Name of the PCOIP profile associated with the session action. The builtin profile named none can be used to explicitly disable PCOIP for the session action.
+
 
 
 ##unset vpn sessionAction
@@ -576,7 +580,7 @@ Use this command to remove vpn sessionAction settings.Refer to the set vpn sessi
 
 ##Synopsys
 
-unset vpn sessionAction &lt;name> [-userAccounting] [-httpPort] [-winsIP] [-dnsVserverName] [-splitDns] [-sessTimeout] [-clientSecurity] [-clientSecurityGroup] [-clientSecurityMessage] [-clientSecurityLog] [-splitTunnel] [-localLanAccess] [-rfc1918] [-killConnections] [-transparentInterception] [-defaultAuthorizationAction] [-authorizationGroup] [-Smartgroup] [-clientIdleTimeout] [-proxy] [-allProtocolProxy] [-httpProxy] [-ftpProxy] [-socksProxy] [-gopherProxy] [-sslProxy] [-proxyException] [-proxyLocalBypass] [-clientCleanupPrompt] [-forceCleanup] [-clientOptions] [-clientConfiguration] [-SSO] [-ssoCredential] [-windowsAutoLogon] [-useMIP] [-useIIP] [-clientDebug] [-loginScript] [-logoutScript] [-homePage] [-icaProxy] [-wihome] [-citrixReceiverHome] [-wiPortalMode] [-ClientChoices] [-iipDnsSuffix] [-forcedTimeout] [-forcedTimeoutWarning] [-ntDomain] [-clientlessVpnMode] [-emailHome] [-clientlessModeUrlEncoding] [-clientlessPersistentCookie] [-allowedLoginGroups] [-SecureBrowse] [-storefronturl] [-kcdAccount] [-rdpClientProfileName] [-WindowsPluginUpgrade] [-MacPluginUpgrade] [-LinuxPluginUpgrade] [-iconWithReceiver]
+unset vpn sessionAction &lt;name> [-userAccounting] [-httpPort] [-winsIP] [-dnsVserverName] [-splitDns] [-sessTimeout] [-clientSecurity] [-clientSecurityGroup] [-clientSecurityMessage] [-clientSecurityLog] [-splitTunnel] [-localLanAccess] [-rfc1918] [-killConnections] [-transparentInterception] [-defaultAuthorizationAction] [-authorizationGroup] [-Smartgroup] [-clientIdleTimeout] [-proxy] [-allProtocolProxy] [-httpProxy] [-ftpProxy] [-socksProxy] [-gopherProxy] [-sslProxy] [-proxyException] [-proxyLocalBypass] [-clientCleanupPrompt] [-forceCleanup] [-clientConfiguration] [-SSO] [-ssoCredential] [-windowsAutoLogon] [-useMIP] [-useIIP] [-loginScript] [-logoutScript] [-homePage] [-icaProxy] [-wihome] [-citrixReceiverHome] [-wiPortalMode] [-ClientChoices] [-iipDnsSuffix] [-forcedTimeout] [-forcedTimeoutWarning] [-ntDomain] [-clientlessVpnMode] [-emailHome] [-clientlessModeUrlEncoding] [-clientlessPersistentCookie] [-allowedLoginGroups] [-SecureBrowse] [-storefronturl] [-sfGatewayAuthType] [-kcdAccount] [-rdpClientProfileName] [-WindowsPluginUpgrade] [-MacPluginUpgrade] [-LinuxPluginUpgrade] [-iconWithReceiver] [-alwaysONProfileName] [-autoProxyUrl] [-pcoipProfileName]
 
 
 ##show vpn sessionAction
@@ -659,7 +663,7 @@ The Authorization Action, e.g. allow or deny
 The authorization group applied to client sessions.
 
 <b>Smartgroup</b>
-The smartaccess group applied to client sessions used in ica (smartaccess2) policy expressions to check if user is a member of group that has any antivirus (this expression would be on the vpn session policy
+This is the default group that is chosen when the authentication succeeds in addition to extracted groups.
 
 <b>clientIdleTimeout</b>
 The client idle timeout, in minutes.
@@ -798,6 +802,9 @@ Allow users to connect through NetScaler Gateway to network resources from iOS a
 <b>storefronturl</b>
 Web address for StoreFront to be used in this session for enumeration of resources from XenApp or XenDesktop.
 
+<b>sfGatewayAuthType</b>
+The authentication type configured for the NetScaler Gateway on StoreFront.
+
 <b>kcdAccount</b>
 The kcd account details to be used in SSO
 
@@ -818,6 +825,15 @@ Option to set plugin upgrade behaviour for Linux
 
 <b>iconWithReceiver</b>
 Option to decide whether to show plugin icon along with receiver
+
+<b>alwaysONProfileName</b>
+Name of the AlwaysON profile associated with the session action. The builtin profile named none can be used to explicitly disable AlwaysON for the session action.
+
+<b>autoProxyUrl</b>
+URL to auto proxy config file
+
+<b>pcoipProfileName</b>
+Name of the PCOIP profile associated with the session action. The builtin profile named none can be used to explicitly disable PCOIP for the session action.
 
 <b>devno</b>
 

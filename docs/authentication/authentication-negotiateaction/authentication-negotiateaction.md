@@ -12,7 +12,7 @@ Creates an action (profile) for an Active Directory (AD) server that is used as 
 
 ##Synopsys
 
-add authentication negotiateAction &lt;name> {-domain &lt;string>} {-domainUser &lt;string>} {-domainUserPasswd } [-defaultAuthenticationGroup &lt;string>] [-keytab &lt;string>]
+add authentication negotiateAction &lt;name> {-domain &lt;string>} {-domainUser &lt;string>} {-domainUserPasswd } [-defaultAuthenticationGroup &lt;string>] [-keytab &lt;string>] [-NTLMPath &lt;string>]
 
 
 ##Arguments
@@ -24,20 +24,22 @@ The following requirement applies only to the NetScaler CLI:
 If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication action" or 'my authentication action').
 
 <b>domain</b>
-Domain name of the AD KDC server.
+Domain name of the service principal that represnts Netscaler.
 
 <b>domainUser</b>
-User name that the NetScaler appliance uses to join the AD KDC server domain. 
-The NetScaler appliance uses the domain user name to check the health of the AD KDC server.
+User name of the account that is mapped with Netscaler principal. This can be given along with domain and password when keytab file is not available. If username is given along with keytab file, then that keytab file will be searched for this user's credentials.
 
 <b>domainUserPasswd</b>
-Password that the NetScaler appliance uses to join the AD KDC server domain.
+Password of the account that is mapped to the NetScaler principal.
 
 <b>defaultAuthenticationGroup</b>
 This is the default group that is chosen when the authentication succeeds in addition to extracted groups.
 
 <b>keytab</b>
-The path to the keytab file
+The path to the keytab file that is used to decrypt kerberos tickets presented to Netscaler. If keytab is not available, domain/username/password can be specified in the negotiate action configuration
+
+<b>NTLMPath</b>
+The path to the site that is enabled for NTLM authentication, including FQDN of the server. This is used when clients fallback to NTLM.
 
 
 
@@ -65,7 +67,7 @@ Configures an AD KDC server profile (negotiate action).
 
 ##Synopsys
 
-set authentication negotiateAction &lt;name> [-domain &lt;string>] [-domainUser &lt;string>] [-domainUserPasswd ] [-defaultAuthenticationGroup &lt;string>] [-keytab &lt;string>]
+set authentication negotiateAction &lt;name> [-domain &lt;string>] [-domainUser &lt;string>] [-domainUserPasswd ] [-defaultAuthenticationGroup &lt;string>] [-keytab &lt;string>] [-NTLMPath &lt;string>]
 
 
 ##Arguments
@@ -74,20 +76,22 @@ set authentication negotiateAction &lt;name> [-domain &lt;string>] [-domainUser 
 Name of the AD KDC server profile.
 
 <b>domain</b>
-Domain name of the AD KDC server.
+Domain name of the service principal that represnts Netscaler.
 
 <b>domainUser</b>
-User name that the NetScaler appliance uses to join the AD KDC server domain. 
-The NetScaler appliance uses the domain user name to check the health of the AD KDC server.
+User name of the account that is mapped with Netscaler principal. This can be given along with domain and password when keytab file is not available. If username is given along with keytab file, then that keytab file will be searched for this user's credentials.
 
 <b>domainUserPasswd</b>
-Password that the NetScaler appliance uses to join the AD KDC server domain.
+Password of the account that is mapped to the NetScaler principal.
 
 <b>defaultAuthenticationGroup</b>
 This is the default group that is chosen when the authentication succeeds in addition to extracted groups.
 
 <b>keytab</b>
-The path to the keytab file
+The path to the keytab file that is used to decrypt kerberos tickets presented to Netscaler. If keytab is not available, domain/username/password can be specified in the negotiate action configuration
+
+<b>NTLMPath</b>
+The path to the site that is enabled for NTLM authentication, including FQDN of the server. This is used when clients fallback to NTLM.
 
 
 
@@ -98,7 +102,7 @@ Use this command to remove authentication negotiateAction settings.Refer to the 
 
 ##Synopsys
 
-unset authentication negotiateAction &lt;name> [-domain] [-domainUser] [-domainUserPasswd] [-defaultAuthenticationGroup]
+unset authentication negotiateAction &lt;name> [-domain] [-domainUser] [-domainUserPasswd] [-defaultAuthenticationGroup] [-NTLMPath]
 
 
 ##show authentication negotiateAction
@@ -121,14 +125,13 @@ Name of the AD KDC server profile.
 ##Outputs
 
 <b>domain</b>
-Domain name of the AD KDC server.
+Domain name of the service principal that represnts Netscaler.
 
 <b>domainUser</b>
-User name that the NetScaler appliance uses to join the AD KDC server domain. 
-The NetScaler appliance uses the domain user name to check the health of the AD KDC server.
+User name of the account that is mapped with Netscaler principal. This can be given along with domain and password when keytab file is not available. If username is given along with keytab file, then that keytab file will be searched for this user's credentials.
 
 <b>domainUserPasswd</b>
-Password that the NetScaler appliance uses to join the AD KDC server domain.
+Password of the account that is mapped to the NetScaler principal.
 
 <b>OU</b>
 Active Directory organizational units (OU) attribute.
@@ -137,10 +140,13 @@ Active Directory organizational units (OU) attribute.
 This is the default group that is chosen when the authentication succeeds in addition to extracted groups.
 
 <b>keytab</b>
-The path to the keytab file
+The path to the keytab file that is used to decrypt kerberos tickets presented to Netscaler. If keytab is not available, domain/username/password can be specified in the negotiate action configuration
 
 <b>kcdSPN</b>
 Host SPN extracted from keytab file.
+
+<b>NTLMPath</b>
+The path to the site that is enabled for NTLM authentication, including FQDN of the server. This is used when clients fallback to NTLM.
 
 <b>stateflag</b>
 

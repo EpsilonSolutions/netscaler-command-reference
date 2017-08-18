@@ -35,7 +35,7 @@ Modifies the parameters of an interface.
 
 ##Synopsys
 
-set interface &lt;id>@ [-speed &lt;speed>] [-duplex &lt;duplex>] [-flowControl &lt;flowControl>] [-autoneg ( DISABLED | ENABLED )] [-haMonitor ( ON | OFF )] [-mtu &lt;positive_integer>] [-tagall ( ON | OFF )] [-lacpMode &lt;lacpMode>] [-lacpKey &lt;positive_integer>] [-lagtype ( NODE | CLUSTER )] [-lacpPriority &lt;positive_integer>] [-lacpTimeout ( LONG | SHORT )] [-ifAlias &lt;string>] [-throughput &lt;positive_integer>] [-linkRedundancy ( ON | OFF )] [-bandwidthHigh &lt;positive_integer>  [-bandwidthNormal &lt;positive_integer>]] [-lldpmode &lt;lldpmode>] [-lrsetPriority &lt;positive_integer>]
+set interface &lt;id>@ [-speed &lt;speed>] [-duplex &lt;duplex>] [-flowControl &lt;flowControl>] [-autoneg ( DISABLED | ENABLED )] [-haMonitor ( ON | OFF )] [-haHeartbeat ( OFF | ON )] [-mtu &lt;positive_integer>] [-tagall ( ON | OFF )] [-trunkmode ( ON | OFF )] [-trunkAllowedVlan &lt;int[-int]> ...] [-lacpMode &lt;lacpMode>] [-lacpKey &lt;positive_integer>] [-lagtype ( NODE | CLUSTER )] [-lacpPriority &lt;positive_integer>] [-lacpTimeout ( LONG | SHORT )] [-ifAlias &lt;string>] [-throughput &lt;positive_integer>] [-linkRedundancy ( ON | OFF )] [-bandwidthHigh &lt;positive_integer>  [-bandwidthNormal &lt;positive_integer>]] [-lldpmode &lt;lldpmode>] [-lrsetPriority &lt;positive_integer>]
 
 
 ##Arguments
@@ -68,7 +68,7 @@ Default value: AUTO
 
 <b>flowControl</b>
 802.3x flow control setting for the interface.  The 802.3x specification does not define flow control for 10 Mbps and 100 Mbps speeds, but if a Gigabit Ethernet interface operates at those speeds, the flow control settings can be applied. The flow control setting that is finally applied to an interface depends on auto-negotiation. With the ON option, the peer negotiates the flow control, but the appliance then forces two-way flow control for the interface.
-Possible values: OFF, RX, TX, RXTX
+Possible values: OFF, RX, TX, RXTX, ON
 Default value: OFF
 
 <b>autoneg</b>
@@ -81,8 +81,13 @@ In a High Availability (HA) configuration, monitor the interface for failure eve
 Possible values: ON, OFF
 Default value: ON
 
+<b>haHeartbeat</b>
+In a High Availability (HA) or Cluster configuration, configure the interface for sending heartbeats. In an HA or Cluster configuration, an interface that has HA Heartbeat disabled should not send the heartbeats.
+Possible values: OFF, ON
+Default value: ON
+
 <b>mtu</b>
-The maximum transmission unit (MTU) is the largest packet size, measured in bytes excluding 14 bytes ethernet header and 4 bytes crc, that can be transmitted and received by this interface. Default value of MTU is 1500 on all the interface of Netscaler appliance any value configured more than 1500 on the interface will make the interface as jumbo enabled. In case of cluster backplane interface MTU value will be changed to 1514 by default, user has to change the backplane interface value to maximum mtu configured on any of the interface in cluster system plus 14 bytes more for backplane interface if Jumbo is enabled on any of the interface in a cluster system. Changing the backplane will bring back the MTU of backplane interface to default value of 1500. If a channel is configured as backplane then the same holds true for channel as well as member interfaces. In case of channel if member interfaces is configured as different mtu then the highest MTU configured MTU is treated as the LA MTU if MTU is not specified on LA explicitly. Low MTU interfaces in channel will be taken out of LA distribution list.
+The maximum transmission unit (MTU) is the largest packet size, measured in bytes excluding 14 bytes ethernet header and 4 bytes crc, that can be transmitted and received by this interface. Default value of MTU is 1500 on all the interface of Netscaler appliance any value configured more than 1500 on the interface will make the interface as jumbo enabled. In case of cluster backplane interface MTU value will be changed to 1514 by default, user has to change the backplane interface value to maximum mtu configured on any of the interface in cluster system plus 14 bytes more for backplane interface if Jumbo is enabled on any of the interface in a cluster system. Changing the backplane will bring back the MTU of backplane interface to default value of 1500. If a channel is configured as backplane then the same holds true for channel as well as member interfaces.
 Default value: 1500
 Minimum value: 1500
 Maximum value: 9216
@@ -91,6 +96,16 @@ Maximum value: 9216
 Add a four-byte 802.1q tag to every packet sent on this interface.  The ON setting applies the tag for this interface's native VLAN. OFF applies the tag for all VLANs other than the native VLAN.
 Possible values: ON, OFF
 Default value: OFF
+
+<b>trunkmode</b>
+Accept and send 802.1q VLAN tagged packets, based on Allowed Vlan List of this interface.
+Possible values: ON, OFF
+Default value: OFF
+
+<b>trunkAllowedVlan</b>
+VLAN ID or range of VLAN IDs will be allowed on this trunk interface. In the command line interface, separate the range with a hyphen. For example: 40-90.
+Minimum value: 1
+Maximum value: 4094
 
 <b>lacpMode</b>
 Bind the interface to a LA channel created by the Link Aggregation control protocol (LACP).  
@@ -170,7 +185,7 @@ Use this command to remove  interface settings.Refer to the set  interface comma
 
 ##Synopsys
 
-unset interface &lt;id>@ [-speed] [-duplex] [-flowControl] [-autoneg] [-haMonitor] [-mtu] [-tagall] [-lacpMode] [-lacpKey] [-lacpPriority] [-lacpTimeout] [-ifAlias] [-throughput] [-linkRedundancy] [-bandwidthHigh] [-bandwidthNormal] [-lldpmode] [-lrsetPriority]
+unset interface &lt;id>@ [-speed] [-duplex] [-flowControl] [-autoneg] [-haMonitor] [-haHeartbeat] [-mtu] [-tagall] [-trunkmode] [-trunkAllowedVlan] [-lacpMode] [-lacpKey] [-lacpPriority] [-lacpTimeout] [-ifAlias] [-throughput] [-linkRedundancy] [-bandwidthHigh] [-bandwidthNormal] [-lldpmode] [-lrsetPriority]
 
 
 ##enable interface
@@ -282,7 +297,7 @@ Display the type of interface, the speeds at which this interface can operate, a
 Flags for this interface. Used for communicating the device states.
 
 <b>mtu</b>
-The maximum transmission unit (MTU) is the largest packet size, measured in bytes excluding 14 bytes ethernet header and 4 bytes crc, that can be transmitted and received by this interface. Default value of MTU is 1500 on all the interface of Netscaler appliance any value configured more than 1500 on the interface will make the interface as jumbo enabled. In case of cluster backplane interface MTU value will be changed to 1514 by default, user has to change the backplane interface value to maximum mtu configured on any of the interface in cluster system plus 14 bytes more for backplane interface if Jumbo is enabled on any of the interface in a cluster system. Changing the backplane will bring back the MTU of backplane interface to default value of 1500. If a channel is configured as backplane then the same holds true for channel as well as member interfaces. In case of channel if member interfaces is configured as different mtu then the highest MTU configured MTU is treated as the LA MTU if MTU is not specified on LA explicitly. Low MTU interfaces in channel will be taken out of LA distribution list.
+The maximum transmission unit (MTU) is the largest packet size, measured in bytes excluding 14 bytes ethernet header and 4 bytes crc, that can be transmitted and received by this interface. Default value of MTU is 1500 on all the interface of Netscaler appliance any value configured more than 1500 on the interface will make the interface as jumbo enabled. In case of cluster backplane interface MTU value will be changed to 1514 by default, user has to change the backplane interface value to maximum mtu configured on any of the interface in cluster system plus 14 bytes more for backplane interface if Jumbo is enabled on any of the interface in a cluster system. Changing the backplane will bring back the MTU of backplane interface to default value of 1500. If a channel is configured as backplane then the same holds true for channel as well as member interfaces.
 
 <b>actualMtu</b>
 MTU for this interface (the largest frame that can transit this interface).
@@ -323,17 +338,14 @@ Actual duplex setting for this interface.
 <b>flowControl</b>
 Actual flow control setting for this interface.
 
-<b>connDistr</b>
-Connection distribution setting on this interface.
-
-<b>macdistr</b>
-MAC distribution setting on this interface.
-
 <b>Mode</b>
 The  mode(AUTO/MANNUAL) for the LA channel.
 
 <b>haMonitor</b>
 HA monitor enabled or disabled for this interface.
+
+<b>haHeartbeat</b>
+HA Hearbeat send enabled or disabled for this interface.
 
 <b>state</b>
 Link state of the interface (UP/DOWN).
@@ -352,6 +364,12 @@ VLAN tagging behavior on this interface. With the ON setting,, packets are tagge
 
 <b>trunk</b>
 This argument is deprecated by tagall.
+
+<b>trunkmode</b>
+Accept and send 802.1q VLAN tagged packets, based on Allowed Vlan List of this interface.
+
+<b>trunkAllowedVlan</b>
+VLAN ID or range of VLAN IDs will be allowed on this trunk interface. In the command line interface, separate the range with a hyphen. For example: 40-90.
 
 <b>taggedAny</b>
 Interface setting to accept/drop all tagged packets.
@@ -684,6 +702,12 @@ Number of Jumbo Packets received on this interface.
 <b>Jumbo Packets Transmitted (JumboXmit)</b>
 Number of Jumbo packets transmitted on this interface by upper layer, with TSO enabled actual trasmission size could be non Jumbo.
 
+<b>Tagged Packets Received on Trunk interface through allowed vlan list (TrunkRcv)</b>
+Number of Tagged Packets received on this Trunk interface through Allowed VLan List.
+
+<b>Tagged Packets transmitted on Trunk interface through allowed vlan list (TrunkXmit)</b>
+Number of Tagged Packets transmitted on this Trunk interface through Allowed VLan List.
+
 <b>Multicast packets (McastPkt)</b>
 Number of multicast packets received by the specified interface since the NetScaler appliance was started or the interface statistics were cleared.
 
@@ -763,6 +787,9 @@ Number of MAC moves between ports. If a high rate of MAC moves is observed, it i
 
 <b>Times NIC became muted (ErrMtd)</b>
 Number of times the specified interface stopped transmitting and receiving packets due to MAC moves between ports.
+
+<b>Receive CRC errors (ErrRxCRC)</b>
+Number of packets received with the wrong checksum by the specified interface since the NetScaler appliance was started or the interface statistics were cleared. This indicates the number of Jabber frames received instead of CRC errors on the 10G data ports of NetScaler 12000-10G platform and the data ports of NetScaler MPX 15000 and 17000 platforms.
 
 <b>Interface Alias (IntfAlias)</b>
 Alias Name for the Interface

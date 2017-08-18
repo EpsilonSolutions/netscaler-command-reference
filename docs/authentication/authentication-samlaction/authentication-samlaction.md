@@ -12,7 +12,7 @@ Creates an action (profile) for a Security Assertion Markup Language (SAML) serv
 
 ##Synopsys
 
-add authentication samlAction &lt;name> {-samlIdPCertName &lt;string>} {-samlSigningCertName &lt;string>} {-samlRedirectUrl &lt;string>} {-samlACSIndex &lt;positive_integer>} {-samlUserField &lt;string>} {-samlRejectUnsignedAssertion &lt;samlRejectUnsignedAssertion>} {-samlIssuerName &lt;string>} {-samlTwoFactor ( ON | OFF )} [-defaultAuthenticationGroup &lt;string>] [-Attribute1 &lt;string>] [-Attribute2 &lt;string>] [-Attribute3 &lt;string>] [-Attribute4 &lt;string>] [-Attribute5 &lt;string>] [-Attribute6 &lt;string>] [-Attribute7 &lt;string>] [-Attribute8 &lt;string>] [-Attribute9 &lt;string>] [-Attribute10 &lt;string>] [-Attribute11 &lt;string>] [-Attribute12 &lt;string>] [-Attribute13 &lt;string>] [-Attribute14 &lt;string>] [-Attribute15 &lt;string>] [-Attribute16 &lt;string>] {-signatureAlg ( RSA-SHA1 | RSA-SHA256 )} {-digestMethod ( SHA1 | SHA256 )} [-requestedAuthnContext &lt;requestedAuthnContext>] [-authnCtxClassRef &lt;authnCtxClassRef> ...] [-samlBinding &lt;samlBinding>] [-attributeConsumingServiceIndex &lt;positive_integer>] [-sendThumbprint ( ON | OFF )] [-enforceUserName ( ON | OFF )] [-logoutURL &lt;string>] [-artifactResolutionServiceURL &lt;string>]
+add authentication samlAction &lt;name> {-samlIdPCertName &lt;string>} {-samlSigningCertName &lt;string>} {-samlRedirectUrl &lt;string>} {-samlACSIndex &lt;positive_integer>} {-samlUserField &lt;string>} {-samlRejectUnsignedAssertion &lt;samlRejectUnsignedAssertion>} {-samlIssuerName &lt;string>} {-samlTwoFactor ( ON | OFF )} [-defaultAuthenticationGroup &lt;string>] [-Attribute1 &lt;string>] [-Attribute2 &lt;string>] [-Attribute3 &lt;string>] [-Attribute4 &lt;string>] [-Attribute5 &lt;string>] [-Attribute6 &lt;string>] [-Attribute7 &lt;string>] [-Attribute8 &lt;string>] [-Attribute9 &lt;string>] [-Attribute10 &lt;string>] [-Attribute11 &lt;string>] [-Attribute12 &lt;string>] [-Attribute13 &lt;string>] [-Attribute14 &lt;string>] [-Attribute15 &lt;string>] [-Attribute16 &lt;string>] {-signatureAlg ( RSA-SHA1 | RSA-SHA256 )} {-digestMethod ( SHA1 | SHA256 )} [-requestedAuthnContext &lt;requestedAuthnContext>] [-authnCtxClassRef &lt;authnCtxClassRef> ...] [-samlBinding &lt;samlBinding>] [-attributeConsumingServiceIndex &lt;positive_integer>] [-sendThumbprint ( ON | OFF )] [-enforceUserName ( ON | OFF )] [-logoutURL &lt;string>] [-artifactResolutionServiceURL &lt;string>] [-skewTime &lt;mins>] [-logoutBinding ( REDIRECT | POST )] [-forceAuthn ( ON | OFF )]
 
 
 ##Arguments
@@ -42,7 +42,7 @@ Maximum value: 255
 SAML user ID, as given in the SAML assertion.
 
 <b>samlRejectUnsignedAssertion</b>
-Reject unsigned SAML assertions.
+Reject unsigned SAML assertions. ON option results in rejection of Assertion that is received without signature. STRICT option ensures that both Response and Assertion are signed. OFF allows unsigned Assertions.
 Possible values: ON, OFF, STRICT
 Default value: ON
 
@@ -58,52 +58,52 @@ Default value: OFF
 This is the default group that is chosen when the authentication succeeds in addition to extracted groups.
 
 <b>Attribute1</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute1
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute1. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute2</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute2
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute2. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute3</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute3
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute3. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute4</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute4
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute4. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute5</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute5
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute5. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute6</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute6
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute6. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute7</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute7
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute7. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute8</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute8
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute8. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute9</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute9
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute9. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute10</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute10
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute10. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute11</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute11
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute11. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute12</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute12
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute12. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute13</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute13
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute13. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute14</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute14
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute14. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute15</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute15
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute15. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute16</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute16
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute16. Maximum length of the extracted attribute is 239 bytes.
 
 <b>signatureAlg</b>
 Algorithm to be used to sign/verify SAML transactions
@@ -175,6 +175,20 @@ SingleLogout URL on IdP to which logoutRequest will be sent on Netscaler session
 
 <b>artifactResolutionServiceURL</b>
 URL of the Artifact Resolution Service on IdP to which Netscaler will post artifact to get actual SAML token.
+
+<b>skewTime</b>
+This option specifies the allowed clock skew in number of minutes that Netscaler ServiceProvider allows on an incoming assertion. For example, if skewTime is 10, then assertion would be valid from (current time - 10) min to (current time + 10) min, ie 20min in all.
+Default value: 5
+
+<b>logoutBinding</b>
+This element specifies the transport mechanism of saml logout messages.
+Possible values: REDIRECT, POST
+Default value: POST
+
+<b>forceAuthn</b>
+Option that forces authentication at the Identity Provider (IdP) that receives Netscaler's request
+Possible values: ON, OFF
+Default value: OFF
 
 
 
@@ -202,7 +216,7 @@ Modifies the specified parameters of a SAML server profile (action).
 
 ##Synopsys
 
-set authentication samlAction &lt;name> [-samlIdPCertName &lt;string>] [-samlSigningCertName &lt;string>] [-samlRedirectUrl &lt;string>] [-samlACSIndex &lt;positive_integer>] [-samlUserField &lt;string>] [-samlRejectUnsignedAssertion &lt;samlRejectUnsignedAssertion>] [-samlIssuerName &lt;string>] [-samlTwoFactor ( ON | OFF )] [-defaultAuthenticationGroup &lt;string>] [-Attribute1 &lt;string>] [-Attribute2 &lt;string>] [-Attribute3 &lt;string>] [-Attribute4 &lt;string>] [-Attribute5 &lt;string>] [-Attribute6 &lt;string>] [-Attribute7 &lt;string>] [-Attribute8 &lt;string>] [-Attribute9 &lt;string>] [-Attribute10 &lt;string>] [-Attribute11 &lt;string>] [-Attribute12 &lt;string>] [-Attribute13 &lt;string>] [-Attribute14 &lt;string>] [-Attribute15 &lt;string>] [-Attribute16 &lt;string>] [-signatureAlg ( RSA-SHA1 | RSA-SHA256 )] [-digestMethod ( SHA1 | SHA256 )] [-requestedAuthnContext &lt;requestedAuthnContext>] [-authnCtxClassRef &lt;authnCtxClassRef> ...] [-samlBinding &lt;samlBinding>] [-attributeConsumingServiceIndex &lt;positive_integer>] [-sendThumbprint ( ON | OFF )] [-enforceUserName ( ON | OFF )] [-logoutURL &lt;string>] [-artifactResolutionServiceURL &lt;string>]
+set authentication samlAction &lt;name> [-samlIdPCertName &lt;string>] [-samlSigningCertName &lt;string>] [-samlRedirectUrl &lt;string>] [-samlACSIndex &lt;positive_integer>] [-samlUserField &lt;string>] [-samlRejectUnsignedAssertion &lt;samlRejectUnsignedAssertion>] [-samlIssuerName &lt;string>] [-samlTwoFactor ( ON | OFF )] [-defaultAuthenticationGroup &lt;string>] [-Attribute1 &lt;string>] [-Attribute2 &lt;string>] [-Attribute3 &lt;string>] [-Attribute4 &lt;string>] [-Attribute5 &lt;string>] [-Attribute6 &lt;string>] [-Attribute7 &lt;string>] [-Attribute8 &lt;string>] [-Attribute9 &lt;string>] [-Attribute10 &lt;string>] [-Attribute11 &lt;string>] [-Attribute12 &lt;string>] [-Attribute13 &lt;string>] [-Attribute14 &lt;string>] [-Attribute15 &lt;string>] [-Attribute16 &lt;string>] [-signatureAlg ( RSA-SHA1 | RSA-SHA256 )] [-digestMethod ( SHA1 | SHA256 )] [-requestedAuthnContext &lt;requestedAuthnContext>] [-authnCtxClassRef &lt;authnCtxClassRef> ...] [-samlBinding &lt;samlBinding>] [-attributeConsumingServiceIndex &lt;positive_integer>] [-sendThumbprint ( ON | OFF )] [-enforceUserName ( ON | OFF )] [-logoutURL &lt;string>] [-artifactResolutionServiceURL &lt;string>] [-skewTime &lt;mins>] [-logoutBinding ( REDIRECT | POST )] [-forceAuthn ( ON | OFF )]
 
 
 ##Arguments
@@ -229,7 +243,7 @@ Maximum value: 255
 SAML user ID, as given in the SAML assertion.
 
 <b>samlRejectUnsignedAssertion</b>
-Reject unsigned SAML assertions.
+Reject unsigned SAML assertions. ON option results in rejection of Assertion that is received without signature. STRICT option ensures that both Response and Assertion are signed. OFF allows unsigned Assertions.
 Possible values: ON, OFF, STRICT
 Default value: ON
 
@@ -245,52 +259,52 @@ Default value: OFF
 This is the default group that is chosen when the authentication succeeds in addition to extracted groups.
 
 <b>Attribute1</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute1
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute1. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute2</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute2
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute2. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute3</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute3
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute3. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute4</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute4
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute4. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute5</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute5
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute5. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute6</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute6
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute6. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute7</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute7
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute7. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute8</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute8
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute8. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute9</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute9
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute9. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute10</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute10
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute10. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute11</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute11
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute11. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute12</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute12
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute12. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute13</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute13
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute13. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute14</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute14
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute14. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute15</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute15
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute15. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute16</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute16
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute16. Maximum length of the extracted attribute is 239 bytes.
 
 <b>signatureAlg</b>
 Algorithm to be used to sign/verify SAML transactions
@@ -363,6 +377,20 @@ SingleLogout URL on IdP to which logoutRequest will be sent on Netscaler session
 <b>artifactResolutionServiceURL</b>
 URL of the Artifact Resolution Service on IdP to which Netscaler will post artifact to get actual SAML token.
 
+<b>skewTime</b>
+This option specifies the allowed clock skew in number of minutes that Netscaler ServiceProvider allows on an incoming assertion. For example, if skewTime is 10, then assertion would be valid from (current time - 10) min to (current time + 10) min, ie 20min in all.
+Default value: 5
+
+<b>logoutBinding</b>
+This element specifies the transport mechanism of saml logout messages.
+Possible values: REDIRECT, POST
+Default value: POST
+
+<b>forceAuthn</b>
+Option that forces authentication at the Identity Provider (IdP) that receives Netscaler's request
+Possible values: ON, OFF
+Default value: OFF
+
 
 
 ##unset authentication samlAction
@@ -372,7 +400,7 @@ Use this command to remove authentication samlAction settings.Refer to the set a
 
 ##Synopsys
 
-unset authentication samlAction &lt;name> [-samlIdPCertName] [-samlSigningCertName] [-samlRedirectUrl] [-samlACSIndex] [-samlUserField] [-samlRejectUnsignedAssertion] [-samlIssuerName] [-samlTwoFactor] [-defaultAuthenticationGroup] [-Attribute1] [-Attribute2] [-Attribute3] [-Attribute4] [-Attribute5] [-Attribute6] [-Attribute7] [-Attribute8] [-Attribute9] [-Attribute10] [-Attribute11] [-Attribute12] [-Attribute13] [-Attribute14] [-Attribute15] [-Attribute16] [-signatureAlg] [-digestMethod] [-requestedAuthnContext] [-authnCtxClassRef] [-samlBinding] [-attributeConsumingServiceIndex] [-sendThumbprint] [-enforceUserName] [-logoutURL] [-artifactResolutionServiceURL]
+unset authentication samlAction &lt;name> [-samlIdPCertName] [-samlSigningCertName] [-samlRedirectUrl] [-samlACSIndex] [-samlUserField] [-samlRejectUnsignedAssertion] [-samlIssuerName] [-samlTwoFactor] [-defaultAuthenticationGroup] [-Attribute1] [-Attribute2] [-Attribute3] [-Attribute4] [-Attribute5] [-Attribute6] [-Attribute7] [-Attribute8] [-Attribute9] [-Attribute10] [-Attribute11] [-Attribute12] [-Attribute13] [-Attribute14] [-Attribute15] [-Attribute16] [-signatureAlg] [-digestMethod] [-requestedAuthnContext] [-authnCtxClassRef] [-samlBinding] [-attributeConsumingServiceIndex] [-sendThumbprint] [-enforceUserName] [-logoutURL] [-artifactResolutionServiceURL] [-skewTime] [-logoutBinding] [-forceAuthn]
 
 
 ##show authentication samlAction
@@ -410,7 +438,7 @@ Index/ID of the metadata entry corresponding to this configuration.
 SAML user ID, as given in the SAML assertion.
 
 <b>samlRejectUnsignedAssertion</b>
-Reject unsigned SAML assertions.
+Reject unsigned SAML assertions. ON option results in rejection of Assertion that is received without signature. STRICT option ensures that both Response and Assertion are signed. OFF allows unsigned Assertions.
 
 <b>samlIssuerName</b>
 The name to be used in requests sent from	Netscaler to IdP to uniquely identify Netscaler.
@@ -422,52 +450,52 @@ Option to enable second factor after SAML
 This is the default group that is chosen when the authentication succeeds in addition to extracted groups.
 
 <b>Attribute1</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute1
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute1. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute2</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute2
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute2. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute3</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute3
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute3. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute4</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute4
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute4. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute5</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute5
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute5. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute6</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute6
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute6. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute7</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute7
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute7. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute8</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute8
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute8. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute9</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute9
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute9. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute10</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute10
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute10. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute11</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute11
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute11. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute12</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute12
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute12. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute13</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute13
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute13. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute14</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute14
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute14. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute15</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute15
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute15. Maximum length of the extracted attribute is 239 bytes.
 
 <b>Attribute16</b>
-Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute16
+Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute16. Maximum length of the extracted attribute is 239 bytes.
 
 <b>signatureAlg</b>
 Algorithm to be used to sign/verify SAML transactions
@@ -524,6 +552,15 @@ SingleLogout URL on IdP to which logoutRequest will be sent on Netscaler session
 
 <b>artifactResolutionServiceURL</b>
 URL of the Artifact Resolution Service on IdP to which Netscaler will post artifact to get actual SAML token.
+
+<b>skewTime</b>
+This option specifies the allowed clock skew in number of minutes that Netscaler ServiceProvider allows on an incoming assertion. For example, if skewTime is 10, then assertion would be valid from (current time - 10) min to (current time + 10) min, ie 20min in all.
+
+<b>logoutBinding</b>
+This element specifies the transport mechanism of saml logout messages.
+
+<b>forceAuthn</b>
+Option that forces authentication at the Identity Provider (IdP) that receives Netscaler's request
 
 <b>devno</b>
 

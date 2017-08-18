@@ -61,18 +61,21 @@ Maximum value: 2147483647
 
 ##rm dns soaRec
 
-Removes the Start of Authority (SOA) record for the specified domain name.
+Removes the Start of Authority (SOA) record for the specified domain name. For EDNS Client Subnet (ECS) records, a subnet needs to be specified to remove the SOA record which is cached for that particular subnet
 
 
 ##Synopsys
 
-rm dns soaRec &lt;domain>
+rm dns soaRec &lt;domain> [-ecsSubnet &lt;ip_addr[/prefix]|ipv6_addr[/prefix]>]
 
 
 ##Arguments
 
 <b>domain</b>
 Domain name of the SOA record.
+
+<b>ecsSubnet</b>
+Subnet for which the cached SOA record need to be removed.
 
 
 
@@ -192,6 +195,9 @@ Time to Live (TTL), in seconds, for the record. TTL is the time for which the re
 
 <b>authType</b>
 Record type.
+
+<b>ecsSubnet</b>
+Subnet for which this particular record is cached. Subnet caching will occur for responses with EDNS Client Subnet (ECS) option. Applies to resource records obtained through proxy configurations only.
 
 <b>devno</b>
 

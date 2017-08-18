@@ -61,12 +61,12 @@ rm ns trafficDomain 1
 
 ##clear ns trafficDomain
 
-Remove Traffic Domain configuration.
+Remove Traffic Domain configuration. NOTE: This command is deprecated.This is deprecated as it is similar to rm traffidomain
 
 
 ##Synopsys
 
-clear ns trafficDomain &lt;td>
+
 
 
 ##Arguments
@@ -85,7 +85,7 @@ bind vlan or bridgegroup entities with traffic domain.
 
 ##Synopsys
 
-bind ns trafficDomain &lt;td> [-vlan &lt;positive_integer>] [-bridgegroup &lt;positive_integer>] [-vxlan &lt;positive_integer>]
+bind ns trafficDomain &lt;td> (-vlan &lt;positive_integer> | -bridgegroup &lt;positive_integer> | -vxlan &lt;positive_integer>)
 
 
 ##Arguments
@@ -123,7 +123,7 @@ Unbind vlan or bridgegroup entities from traffic domain
 
 ##Synopsys
 
-unbind ns trafficDomain &lt;td> [-vlan &lt;positive_integer>] [-bridgegroup &lt;positive_integer>] [-vxlan &lt;positive_integer>]
+unbind ns trafficDomain &lt;td> (-vlan &lt;positive_integer> | -bridgegroup &lt;positive_integer> | -vxlan &lt;positive_integer>)
 
 
 ##Arguments

@@ -12,7 +12,7 @@ The following operations can be performed on "ssl parameter":
 
 ##Synopsys
 
-set ssl parameter [-quantumSize &lt;quantumSize>] [-crlMemorySizeMB &lt;positive_integer>] [-strictCAChecks ( YES | NO )] [-sslTriggerTimeout &lt;positive_integer>] [-sendCloseNotify ( YES | NO )] [-encryptTriggerPktCount &lt;positive_integer>] [-denySSLReneg &lt;denySSLReneg>] [-insertionEncoding ( Unicode | UTF-8 )] [-ocspCacheSize &lt;positive_integer>] [-pushFlag &lt;positive_integer>] [-dropReqWithNoHostHeader ( YES | NO )] [-pushEncTriggerTimeout &lt;positive_integer>] [-cryptodevDisableLimit &lt;positive_integer>] [-undefActionControl &lt;string>] [-undefActionData &lt;string>]
+set ssl parameter [-quantumSize &lt;quantumSize>] [-crlMemorySizeMB &lt;positive_integer>] [-strictCAChecks ( YES | NO )] [-sslTriggerTimeout &lt;positive_integer>] [-sendCloseNotify ( YES | NO )] [-encryptTriggerPktCount &lt;positive_integer>] [-denySSLReneg &lt;denySSLReneg>] [-insertionEncoding ( Unicode | UTF-8 )] [-ocspCacheSize &lt;positive_integer>] [-pushFlag &lt;positive_integer>] [-dropReqWithNoHostHeader ( YES | NO )] [-pushEncTriggerTimeout &lt;positive_integer>] [-cryptodevDisableLimit &lt;positive_integer>] [-undefActionControl &lt;string>] [-undefActionData &lt;string>] [-defaultProfile ( ENABLED | DISABLED )] [-softwareCryptoThreshold &lt;positive_integer>] [-hybridFIPSMode ( ENABLED | DISABLED )] [-sigDigestType &lt;sigDigestType> ...] [-ssliErrorCache ( ENABLED | DISABLED )] [-ssliMaxErrorCacheMem &lt;positive_integer>] [-insertCertSpace ( YES | NO )]
 
 
 ##Arguments
@@ -104,6 +104,46 @@ Default value: "CLIENTAUTH"
 Name of the undefined built-in data action: NOOP, RESET or DROP.
 Default value: "NOOP"
 
+<b>defaultProfile</b>
+Global parameter used to enable default profile feature.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>softwareCryptoThreshold</b>
+Netscaler CPU utilization threshold (in percentage) beyond which crypto operations are not done in software.
+A value of zero implies that CPU is not utilized for doing crypto in software.
+Default value: 0
+Minimum value: 0
+Maximum value: 100
+
+<b>hybridFIPSMode</b>
+When this mode is enabled, system will use additional crypto hardware to accelerate symmetric crypto operations.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>sigDigestType</b>
+Signature Digest Algorithms that are supported by appliance. Default value is "ALL" and it will enable the following algorithms depending on the platform.
+On VPX: RSA-MD5 RSA-SHA1 RSA-SHA224 RSA-SHA256 RSA-SHA384 RSA-SHA512 DSA-SHA1 DSA-SHA224 DSA-SHA256 DSA-SHA384 DSA-SHA512
+On MPX with Nitrox-III Cards: RSA-MD5 RSA-SHA1 RSA-SHA224 RSA-SHA256 RSA-SHA384 RSA-SHA512 ECDSA-SHA1 ECDSA-SHA224 ECDSA-SHA256 ECDSA-SHA384 ECDSA-SHA512
+Others: RSA-MD5 RSA-SHA1 RSA-SHA224 RSA-SHA256 RSA-SHA384 RSA-SHA512.
+Default value: ALL
+
+<b>ssliErrorCache</b>
+Enable or disable dynamically learning and caching the learned information to make the subsequent interception or bypass decision. When enabled, NS does the lookup of this cached data to do early bypass.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>ssliMaxErrorCacheMem</b>
+Specify the maximum memory that can be used for caching the learned data. This memory is used as a LRU cache so that the old entries gets replaced with new entry once the set memory limit is fully utilised. A value of 0 decides the limit automatically.
+Default value: 0
+Minimum value: 0
+Maximum value: 4294967294
+
+<b>insertCertSpace</b>
+To insert space between lines in the certificate header of request
+Possible values: YES, NO
+Default value: YES
+
 
 
 ##unset ssl parameter
@@ -113,7 +153,7 @@ Use this command to remove ssl parameter settings.Refer to the set ssl parameter
 
 ##Synopsys
 
-unset ssl parameter [-quantumSize] [-crlMemorySizeMB] [-strictCAChecks] [-sslTriggerTimeout] [-sendCloseNotify] [-encryptTriggerPktCount] [-denySSLReneg] [-insertionEncoding] [-ocspCacheSize] [-pushFlag] [-dropReqWithNoHostHeader] [-pushEncTriggerTimeout] [-cryptodevDisableLimit] [-undefActionControl] [-undefActionData]
+unset ssl parameter [-quantumSize] [-crlMemorySizeMB] [-strictCAChecks] [-sslTriggerTimeout] [-sendCloseNotify] [-encryptTriggerPktCount] [-denySSLReneg] [-insertionEncoding] [-ocspCacheSize] [-pushFlag] [-dropReqWithNoHostHeader] [-pushEncTriggerTimeout] [-cryptodevDisableLimit] [-undefActionControl] [-undefActionData] [-defaultProfile] [-softwareCryptoThreshold] [-hybridFIPSMode] [-sigDigestType] [-ssliErrorCache] [-ssliMaxErrorCacheMem] [-insertCertSpace]
 
 
 ##show ssl parameter
@@ -176,6 +216,36 @@ Global undef action for SSL control policies
 
 <b>undefActionData</b>
 Global undef action for SSL data policies
+
+<b>defaultProfile</b>
+Global parameter used to enable default profile feature.
+
+<b>svctls1112disable</b>
+Disable TLS 1.1 and 1.2 for dynamic and VPN created services.
+
+<b>montls1112disable</b>
+Disable TLS 1.1 and 1.2 for secure (https) monitors bound to SSL_BRIDGE services.
+
+<b>softwareCryptoThreshold</b>
+CPU quota (%) to be allocated for crypto acceleration in software. Once the CPU utilization reaches or crosses this limit, CPU won't be used for driving crypto in software.
+
+<b>hybridFIPSMode</b>
+When this mode is enabled, system will use additional crypto hardware to accelerate symmetric crypto operations.
+
+<b>sigDigestType</b>
+Signature Digest Algorithms that are supported by appliance. Default value is "ALL" and it will enable the following algorithms depending on the platform.
+On VPX: RSA-MD5 RSA-SHA1 RSA-SHA224 RSA-SHA256 RSA-SHA384 RSA-SHA512 DSA-SHA1 DSA-SHA224 DSA-SHA256 DSA-SHA384 DSA-SHA512
+On MPX with Nitrox-III Cards: RSA-MD5 RSA-SHA1 RSA-SHA224 RSA-SHA256 RSA-SHA384 RSA-SHA512 ECDSA-SHA1 ECDSA-SHA224 ECDSA-SHA256 ECDSA-SHA384 ECDSA-SHA512
+Others: RSA-MD5 RSA-SHA1 RSA-SHA224 RSA-SHA256 RSA-SHA384 RSA-SHA512.
+
+<b>ssliErrorCache</b>
+Enable or disable dynamically learning and caching the learned information to make the subsequent interception or bypass decision. When enabled, NS does the lookup of this cached data to do early bypass.
+
+<b>ssliMaxErrorCacheMem</b>
+Specify the maximum memory that can be used for caching the learned data. This memory is used as a LRU cache so that the old entries gets replaced with new entry once the set memory limit is fully utilised. A value of 0 decides the limit automatically.
+
+<b>insertCertSpace</b>
+To insert space between lines in the certificate header of request
 
 
 

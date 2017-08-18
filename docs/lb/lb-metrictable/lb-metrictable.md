@@ -18,7 +18,8 @@ add lb metricTable &lt;metricTable>
 ##Arguments
 
 <b>metricTable</b>
-Name for the metric table. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my metrictable" or 'my metrictable').
+Name for the metric table. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. 
+CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my metrictable" or 'my metrictable').
 
 
 
@@ -170,5 +171,5 @@ Adds a temporary or permanent table.
 
 ##Example
 
-An example of the show metrictable command output is as follows: Name : ALTEON Type : INTERNAL Name : CISCO-CSS Type : INTERNAL Name : FOUNDRY Type : INTERNAL Name : NETSCALER Type : INTERNAL Name : F5 Type : INTERNAL Name : local Type : INTERNAL
+An example of the show metrictable command output is as follows:        Name : ALTEON                           Type : INTERNAL        Name : CISCO-CSS                        Type : INTERNAL        Name : FOUNDRY                          Type : INTERNAL        Name : NETSCALER                        Type : INTERNAL        Name : F5                               Type : INTERNAL        Name : local                            Type : INTERNAL
 

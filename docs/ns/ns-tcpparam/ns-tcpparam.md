@@ -12,7 +12,7 @@ Sets the TCP parameters for the NetScaler appliance.
 
 ##Synopsys
 
-set ns tcpParam [-WS ( ENABLED | DISABLED )] [-WSVal &lt;positive_integer>] [-SACK ( ENABLED | DISABLED )] [-learnVsvrMSS ( ENABLED | DISABLED )] [-maxBurst &lt;positive_integer>] [-initialCwnd &lt;positive_integer>] [-delayedAck &lt;positive_integer>] [-downStateRST ( ENABLED | DISABLED )] [-nagle ( ENABLED | DISABLED )] [-limitedPersist ( ENABLED | DISABLED )] [-oooQSize &lt;positive_integer>] [-ackOnPush ( ENABLED | DISABLED )] [-maxPktPerMss &lt;integer>] [-pktPerRetx &lt;integer>] [-minRTO &lt;integer>] [-slowStartIncr &lt;integer>] [-maxDynServerProbes &lt;positive_integer>] [-synHoldFastGiveup &lt;positive_integer>] [-maxSynholdPerprobe &lt;positive_integer>] [-maxSynhold &lt;positive_integer>] [-mssLearnInterval &lt;positive_integer>] [-mssLearnDelay &lt;positive_integer>] [-maxTimeWaitConn &lt;positive_integer>] [-maxSynAckRetx &lt;positive_integer>] [-synAttackDetection ( ENABLED | DISABLED )] [-connFlushIfNoMem &lt;connFlushIfNoMem>] [-connFlushThres &lt;positive_integer>] [-mptcpConCloseOnPassiveSF ( ENABLED | DISABLED )] [-mptcpChecksum ( ENABLED | DISABLED )] [-mptcpSFtimeout &lt;secs>] [-mptcpSFReplaceTimeout &lt;secs>] [-mptcpMaxSF &lt;positive_integer>] [-mptcpMaxPendingSF &lt;positive_integer>] [-mptcpPendingJoinThreshold &lt;positive_integer>] [-mptcpRTOsToSwitchSF &lt;positive_integer>] [-mptcpUseBackupOnDSS ( ENABLED | DISABLED )] [-TcpMaxRetries &lt;positive_integer>] [-mptcpImmediateSFCloseOnFIN ( ENABLED | DISABLED )] [-mptcpCloseMptcpSessionOnLastSFClose ( ENABLED | DISABLED )]
+set ns tcpParam [-WS ( ENABLED | DISABLED )] [-WSVal &lt;positive_integer>] [-SACK ( ENABLED | DISABLED )] [-learnVsvrMSS ( ENABLED | DISABLED )] [-maxBurst &lt;positive_integer>] [-initialCwnd &lt;positive_integer>] [-delayedAck &lt;positive_integer>] [-downStateRST ( ENABLED | DISABLED )] [-nagle ( ENABLED | DISABLED )] [-limitedPersist ( ENABLED | DISABLED )] [-oooQSize &lt;positive_integer>] [-ackOnPush ( ENABLED | DISABLED )] [-maxPktPerMss &lt;positive_integer>] [-pktPerRetx &lt;integer>] [-minRTO &lt;integer>] [-slowStartIncr &lt;integer>] [-maxDynServerProbes &lt;positive_integer>] [-synHoldFastGiveup &lt;positive_integer>] [-maxSynholdPerprobe &lt;positive_integer>] [-maxSynhold &lt;positive_integer>] [-mssLearnInterval &lt;positive_integer>] [-mssLearnDelay &lt;positive_integer>] [-maxTimeWaitConn &lt;positive_integer>] [-maxSynAckRetx &lt;positive_integer>] [-synAttackDetection ( ENABLED | DISABLED )] [-connFlushIfNoMem &lt;connFlushIfNoMem>] [-connFlushThres &lt;positive_integer>] [-mptcpConCloseOnPassiveSF ( ENABLED | DISABLED )] [-mptcpChecksum ( ENABLED | DISABLED )] [-mptcpSFtimeout &lt;secs>] [-mptcpSFReplaceTimeout &lt;secs>] [-mptcpMaxSF &lt;positive_integer>] [-mptcpMaxPendingSF &lt;positive_integer>] [-mptcpPendingJoinThreshold &lt;positive_integer>] [-mptcpRTOsToSwitchSF &lt;positive_integer>] [-mptcpUseBackupOnDSS ( ENABLED | DISABLED )] [-TcpMaxRetries &lt;positive_integer>] [-mptcpImmediateSFCloseOnFIN ( ENABLED | DISABLED )] [-mptcpCloseMptcpSessionOnLastSFClose ( ENABLED | DISABLED )] [-tcpFastOpenCookieTimeout &lt;secs>] [-autosyncookietimeout &lt;positive_integer>]
 
 
 ##Arguments
@@ -165,7 +165,7 @@ FIFO: If no half-closed or idle connection can be found, flush the oldest non-ma
 Note: If you enable this setting, you should also consider lowering the zombie timeout and half-close timeout, while setting the NetScaler timeout.
 See Also: connFlushThres argument below.
 Possible values: NONE, HALFCLOSED_AND_IDLE, FIFO
-Default value: 5
+Default value: NONE
 
 <b>connFlushThres</b>
 Flush an existing connection (as configured through -connFlushIfNoMem FIFO) if the system has more than specified number of connections, and a new connection is to be established.  Note: This value may be rounded down to be a whole multiple of the number of packet engines running.
@@ -236,6 +236,18 @@ Allow to send DATA FIN or FAST CLOSE on mptcp connection while sending FIN or RS
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
+<b>tcpFastOpenCookieTimeout</b>
+Timeout in seconds after which a new TFO Key is computed for generating TFO Cookie. If zero, the same key is used always. If timeout is less than 120seconds, NS defaults to 120seconds timeout.
+Default value: 0
+Minimum value: 0
+Maximum value: 31536000
+
+<b>autosyncookietimeout</b>
+Timeout for the server to function in syncookie mode after the synattack. This is valid if TCP syncookie is disabled on the profile and server acts in non syncookie mode by default.
+Default value: 30
+Minimum value: 7
+Maximum value: 65535
+
 
 
 ##unset ns tcpParam
@@ -245,7 +257,7 @@ Use this command to remove ns tcpParam settings.Refer to the set ns tcpParam com
 
 ##Synopsys
 
-unset ns tcpParam [-WS] [-WSVal] [-SACK] [-learnVsvrMSS] [-maxBurst] [-initialCwnd] [-delayedAck] [-downStateRST] [-nagle] [-limitedPersist] [-oooQSize] [-ackOnPush] [-maxPktPerMss] [-pktPerRetx] [-minRTO] [-slowStartIncr] [-maxDynServerProbes] [-synHoldFastGiveup] [-maxSynholdPerprobe] [-maxSynhold] [-mssLearnInterval] [-mssLearnDelay] [-maxTimeWaitConn] [-maxSynAckRetx] [-synAttackDetection] [-connFlushIfNoMem] [-connFlushThres] [-mptcpConCloseOnPassiveSF] [-mptcpChecksum] [-mptcpSFtimeout] [-mptcpSFReplaceTimeout] [-mptcpMaxSF] [-mptcpMaxPendingSF] [-mptcpPendingJoinThreshold] [-mptcpRTOsToSwitchSF] [-mptcpUseBackupOnDSS] [-TcpMaxRetries] [-mptcpImmediateSFCloseOnFIN] [-mptcpCloseMptcpSessionOnLastSFClose]
+unset ns tcpParam [-WS] [-WSVal] [-SACK] [-learnVsvrMSS] [-maxBurst] [-initialCwnd] [-delayedAck] [-downStateRST] [-nagle] [-limitedPersist] [-oooQSize] [-ackOnPush] [-maxPktPerMss] [-pktPerRetx] [-minRTO] [-slowStartIncr] [-maxDynServerProbes] [-synHoldFastGiveup] [-maxSynholdPerprobe] [-maxSynhold] [-mssLearnInterval] [-mssLearnDelay] [-maxTimeWaitConn] [-maxSynAckRetx] [-synAttackDetection] [-connFlushIfNoMem] [-connFlushThres] [-mptcpConCloseOnPassiveSF] [-mptcpChecksum] [-mptcpSFtimeout] [-mptcpSFReplaceTimeout] [-mptcpMaxSF] [-mptcpMaxPendingSF] [-mptcpPendingJoinThreshold] [-mptcpRTOsToSwitchSF] [-mptcpUseBackupOnDSS] [-TcpMaxRetries] [-mptcpImmediateSFCloseOnFIN] [-mptcpCloseMptcpSessionOnLastSFClose] [-tcpFastOpenCookieTimeout] [-autosyncookietimeout]
 
 
 ##show ns tcpParam
@@ -388,8 +400,14 @@ Allow subflows to close immediately on FIN before the DATA_FIN exchange is compl
 <b>mptcpCloseMptcpSessionOnLastSFClose</b>
 Allow to send DATA FIN or FAST CLOSE on mptcp connection while sending FIN or RST on the last subflow.
 
+<b>tcpFastOpenCookieTimeout</b>
+Timeout in seconds after which a new TFO Key is computed for generating TFO Cookie. If zero, the same key is used always. If timeout is less than 120seconds, NS defaults to 120seconds timeout.
+
 <b>builtin</b>
 Flag to determine if the tcp param is built-in or not
+
+<b>autosyncookietimeout</b>
+Timeout for the server to function in syncookie mode after the synattack. This is valid if TCP syncookie is disabled on the profile and server acts in non syncookie mode by default.
 
 
 

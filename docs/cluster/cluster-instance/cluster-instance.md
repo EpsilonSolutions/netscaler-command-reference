@@ -12,7 +12,7 @@ Adds a cluster instance to the appliance. Execute this command on only the first
 
 ##Synopsys
 
-add cluster instance &lt;clId> [-deadInterval &lt;secs>] [-helloInterval &lt;msecs>] [-preemption ( ENABLED | DISABLED )] [-quorumType ( MAJORITY | NONE )] [-inc ( ENABLED | DISABLED )] [-processLocal ( ENABLED | DISABLED )]
+add cluster instance &lt;clId> [-deadInterval &lt;secs>] [-helloInterval &lt;msecs>] [-preemption ( ENABLED | DISABLED )] [-quorumType ( MAJORITY | NONE )] [-inc ( ENABLED | DISABLED )] [-processLocal ( ENABLED | DISABLED )] [-retainConnectionsOnCluster ( YES | NO )]
 
 
 ##Arguments
@@ -23,13 +23,13 @@ Minimum value: 1
 Maximum value: 16
 
 <b>deadInterval</b>
-Amount of time, in seconds, after which nodes that do not respond to the heartbeats are assumed to be down.
+Amount of time, in seconds, after which nodes that do not respond to the heartbeats are assumed to be down.If the value is less than 3 sec, set the helloInterval parameter to 200 msec
 Default value: 3
-Minimum value: 3
+Minimum value: 1
 Maximum value: 60
 
 <b>helloInterval</b>
-Interval, in milliseconds, at which heartbeats are sent to each cluster node to check the health status.
+Interval, in milliseconds, at which heartbeats are sent to each cluster node to check the health status.Set the value to 200 msec, if the deadInterval parameter is less than 3 sec
 Default value: 200
 Minimum value: 200
 Maximum value: 1000
@@ -53,6 +53,11 @@ Default value: DISABLED
 By turning on this option packets destined to a service in a cluster will not under go any steering.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
+
+<b>retainConnectionsOnCluster</b>
+This option enables you to retain existing connections on a node joining a Cluster system or when a node is being configured for passive timeout. By default, this option is disabled.
+Possible values: YES, NO
+Default value: NO
 
 
 
@@ -90,7 +95,7 @@ Modifies the specified attributes of a cluster instance.
 
 ##Synopsys
 
-set cluster instance &lt;clId> [-deadInterval &lt;secs>] [-helloInterval &lt;msecs>] [-preemption ( ENABLED | DISABLED )] [-quorumType ( MAJORITY | NONE )] [-inc ( ENABLED | DISABLED )] [-processLocal ( ENABLED | DISABLED )] [-nodegroup &lt;string>]
+set cluster instance &lt;clId> [-deadInterval &lt;secs>] [-helloInterval &lt;msecs>] [-preemption ( ENABLED | DISABLED )] [-quorumType ( MAJORITY | NONE )] [-inc ( ENABLED | DISABLED )] [-processLocal ( ENABLED | DISABLED )] [-nodegroup &lt;string>] [-retainConnectionsOnCluster ( YES | NO )]
 
 
 ##Arguments
@@ -101,13 +106,13 @@ Minimum value: 1
 Maximum value: 16
 
 <b>deadInterval</b>
-Amount of time, in seconds, after which nodes that do not respond to the heartbeats are assumed to be down.
+Amount of time, in seconds, after which nodes that do not respond to the heartbeats are assumed to be down.If the value is less than 3 sec, set the helloInterval parameter to 200 msec
 Default value: 3
-Minimum value: 3
+Minimum value: 1
 Maximum value: 60
 
 <b>helloInterval</b>
-Interval, in milliseconds, at which heartbeats are sent to each cluster node to check the health status.
+Interval, in milliseconds, at which heartbeats are sent to each cluster node to check the health status.Set the value to 200 msec, if the deadInterval parameter is less than 3 sec
 Default value: 200
 Minimum value: 200
 Maximum value: 1000
@@ -135,6 +140,11 @@ Default value: DISABLED
 <b>nodegroup</b>
 The node group in a Cluster system used for transition from L2 to L3.
 
+<b>retainConnectionsOnCluster</b>
+This option enables you to retain existing connections on a node joining a Cluster system or when a node is being configured for passive timeout. By default, this option is disabled.
+Possible values: YES, NO
+Default value: NO
+
 
 
 ##Example
@@ -148,7 +158,7 @@ Use this command to remove cluster instance settings.Refer to the set cluster in
 
 ##Synopsys
 
-unset cluster instance &lt;clId> [-deadInterval] [-helloInterval] [-preemption] [-quorumType] [-inc] [-processLocal] [-nodegroup]
+unset cluster instance &lt;clId> [-deadInterval] [-helloInterval] [-preemption] [-quorumType] [-inc] [-processLocal] [-nodegroup] [-retainConnectionsOnCluster]
 
 
 ##enable cluster instance
@@ -219,10 +229,10 @@ Maximum value: 16
 ##Outputs
 
 <b>deadInterval</b>
-Amount of time, in seconds, after which nodes that do not respond to the heartbeats are assumed to be down.
+Amount of time, in seconds, after which nodes that do not respond to the heartbeats are assumed to be down.If the value is less than 3 sec, set the helloInterval parameter to 200 msec
 
 <b>helloInterval</b>
-Interval, in milliseconds, at which heartbeats are sent to each cluster node to check the health status.
+Interval, in milliseconds, at which heartbeats are sent to each cluster node to check the health status.Set the value to 200 msec, if the deadInterval parameter is less than 3 sec
 
 <b>preemption</b>
 Preempt a cluster node that is configured as a SPARE if an ACTIVE node becomes available.
@@ -244,6 +254,12 @@ The node group in a Cluster system used for transition from L2 to L3.
 
 <b>processLocal</b>
 By turning on this option packets destined to a service in a cluster will not under go any steering.
+
+<b>validMtu</b>
+Correct MTU value that has to be set on backplane.
+
+<b>retainConnectionsOnCluster</b>
+This option enables you to retain existing connections on a node joining a Cluster system or when a node is being configured for passive timeout. By default, this option is disabled.
 
 <b>nodeId</b>
 The unique number that identiies a cluster.

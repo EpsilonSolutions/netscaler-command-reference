@@ -104,7 +104,7 @@ Percentage of memory utilization on NetScaler.
 Main memory currently in use, in megabytes.
 
 <b>Management CPU usage (%) (CPU)</b>
-Management CPU utilization percentage.
+Average Management CPU utilization percentage.
 
 <b>Packet CPU usage (%) (CPU)</b>
 Average CPU utilization percentage for all packet engines excluding management PE.
@@ -117,21 +117,21 @@ Time when the last master state transition occurred. You can use this statistic 
 
 <b>System state (HAState)</b>
 State of the HA node, based on its health, in a high availability setup. Possible values are: 
-UP ? Indicates that the node is accessible and can function as either a primary or secondary node.
-DISABLED ? Indicates that the high availability status of the node has been manually disabled. Synchronization and propagation cannot take place between the peer nodes.
-INIT ? Indicates that the node is in the process of becoming part of the high availability configuration. 
-PARTIALFAIL ? Indicates that one of the high availability monitored interfaces has failed because of a card or link failure. This state triggers a failover.
-COMPLETEFAIL ? Indicates that all the interfaces of the node are unusable, because the interfaces on which high availability monitoring is enabled are not connected or are manually disabled. This state triggers a failover.
-DUMB ? Indicates that the node is in listening mode. It does not participate in high availability transitions or transfer configuration from the peer node. This is a configured value, not a statistic.
-PARTIALFAILSSL ? Indicates that the SSL card has failed. This state triggers a failover.
-ROUTEMONITORFAIL ? Indicates that the route monitor has failed. This state triggers a failover.
+UP - Indicates that the node is accessible and can function as either a primary or secondary node.
+DISABLED - Indicates that the high availability status of the node has been manually disabled. Synchronization and propagation cannot take place between the peer nodes.
+INIT - Indicates that the node is in the process of becoming part of the high availability configuration. 
+PARTIALFAIL - Indicates that one of the high availability monitored interfaces has failed because of a card or link failure. This state triggers a failover.
+COMPLETEFAIL - Indicates that all the interfaces of the node are unusable, because the interfaces on which high availability monitoring is enabled are not connected or are manually disabled. This state triggers a failover.
+DUMB - Indicates that the node is in listening mode. It does not participate in high availability transitions or transfer configuration from the peer node. This is a configured value, not a statistic.
+PARTIALFAILSSL - Indicates that the SSL card has failed. This state triggers a failover.
+ROUTEMONITORFAIL - Indicates that the route monitor has failed. This state triggers a failover.
 
 <b>Master state (mastate)</b>
 Indicates the high availability state of the node. Possible values are: 
-STAYSECONDARY ? Indicates that the selected node remains the secondary node in a high availability setup. In this case a forced failover does not change the state but, instead, returns an appropriate error message. This is a configured value and not a statistic.
-PRIMARY ? Indicates that the selected node is the primary node in a high availability setup. 
-SECONDARY ? Indicates that the selected node is the secondary node in a high availability setup. 
-CLAIMING ? Indicates that the secondary node is in the process of taking over as the primary node. This is the intermediate state in the transition of the secondary node to primary status. 
+STAYSECONDARY - Indicates that the selected node remains the secondary node in a high availability setup. In this case a forced failover does not change the state but, instead, returns an appropriate error message. This is a configured value and not a statistic.
+PRIMARY - Indicates that the selected node is the primary node in a high availability setup. 
+SECONDARY - Indicates that the selected node is the secondary node in a high availability setup. 
+CLAIMING - Indicates that the secondary node is in the process of taking over as the primary node. This is the intermediate state in the transition of the secondary node to primary status. 
 FORCE CHANGE - Indicates that the secondary node is forcibly changing its status to primary due to a forced failover issued on the secondary node.
 
 <b># SSL cards present (SSLCards)</b>
@@ -139,7 +139,7 @@ Number of SSL crypto cards present on the NetScaler appliance.
 
 <b>/flash Used (%) (disk0PerUsage)</b>
 Used space in /flash partition of the disk, as a percentage. This is a critical counter.
-You can configure /flash Used (%) by using the Set snmp alarm DISK-USAGE-HIGH command.
+				You can configure /flash Used (%) by using the Set snmp alarm DISK-USAGE-HIGH command.
 
 <b>/var Used (%) (disk1PerUsage)</b>
 Used space in /var partition of the disk, as a percentage. This is a critical counter. You can configure /var Used (%) by using the Set snmp alarm DISK-USAGE-HIGH command.

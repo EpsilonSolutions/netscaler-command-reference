@@ -12,7 +12,7 @@ Creates a content switching virtual server.
 
 ##Synopsys
 
-add cs vserver &lt;name> [-td &lt;positive_integer>] &lt;serviceType> ((&lt;IPAddress>  [-range &lt;positive_integer>]) | (-IPPattern &lt;ippat>  -IPMask &lt;ipmask>)) &lt;port> [-state ( ENABLED | DISABLED )] [-stateupdate ( ENABLED | DISABLED )] [-cacheable ( YES | NO )] [-redirectURL &lt;URL>] [-cltTimeout &lt;secs>] [-precedence ( RULE | URL )] [-caseSensitive ( ON | OFF )] [-soMethod &lt;soMethod>] [-soPersistence ( ENABLED | DISABLED )] [-soPersistenceTimeOut &lt;positive_integer>] [-soThreshold &lt;positive_integer>] [-soBackupAction &lt;soBackupAction>] [-redirectPortRewrite ( ENABLED | DISABLED )] [-downStateFlush ( ENABLED | DISABLED )] [-backupVServer &lt;string>] [-disablePrimaryOnDown ( ENABLED | DISABLED )] [-insertVserverIPPort &lt;insertVserverIPPort>  [&lt;vipHeader>] ] [-rtspNat ( ON | OFF )] [-AuthenticationHost &lt;string>] [-Authentication ( ON | OFF )] [-Listenpolicy &lt;expression>  [-Listenpriority &lt;positive_integer>]] [-authn401 ( ON | OFF )] [-authnVsName &lt;string>] [-push ( ENABLED | DISABLED )] [-pushVserver &lt;string>] [-pushLabel &lt;expression>] [-pushMultiClients ( YES | NO )] [-tcpProfileName &lt;string>] [-httpProfileName &lt;string>] [-dbProfileName &lt;string>] [-oracleServerVersion ( 10G | 11G )] [-comment &lt;string>] [-mssqlServerVersion &lt;mssqlServerVersion>] [-l2Conn ( ON | OFF )] [-mysqlProtocolVersion &lt;positive_integer>] [-mysqlServerVersion &lt;string>] [-mysqlCharacterSet &lt;positive_integer>] [-mysqlServerCapabilities &lt;positive_integer>] [-appflowLog ( ENABLED | DISABLED )] [-netProfile &lt;string>] [-icmpVsrResponse ( PASSIVE | ACTIVE )] [-RHIstate ( PASSIVE | ACTIVE )] [-authnProfile &lt;string>] [-dnsProfileName &lt;string>]
+add cs vserver &lt;name> [-td &lt;positive_integer>] &lt;serviceType> ((&lt;IPAddress>  [-range &lt;positive_integer>]  &lt;port>) | -targetType GSLB | (-IPPattern &lt;ippat>  -IPMask &lt;ipmask>)) [-dnsRecordType &lt;dnsRecordType>] [-persistenceId &lt;positive_integer>] [-state ( ENABLED | DISABLED )] [-stateupdate ( ENABLED | DISABLED )] [-cacheable ( YES | NO )] [-redirectURL &lt;URL>] [-cltTimeout &lt;secs>] [-precedence ( RULE | URL )] [-caseSensitive ( ON | OFF )] [-soMethod &lt;soMethod>] [-soPersistence ( ENABLED | DISABLED )] [-soPersistenceTimeOut &lt;positive_integer>] [-soThreshold &lt;positive_integer>] [-soBackupAction &lt;soBackupAction>] [-redirectPortRewrite ( ENABLED | DISABLED )] [-downStateFlush ( ENABLED | DISABLED )] [-backupVServer &lt;string>] [-disablePrimaryOnDown ( ENABLED | DISABLED )] [-insertVserverIPPort &lt;insertVserverIPPort>  [&lt;vipHeader>] ] [-rtspNat ( ON | OFF )] [-AuthenticationHost &lt;string>] [-Authentication ( ON | OFF )] [-Listenpolicy &lt;expression>  [-Listenpriority &lt;positive_integer>]] [-authn401 ( ON | OFF )] [-authnVsName &lt;string>] [-push ( ENABLED | DISABLED )] [-pushVserver &lt;string>] [-pushLabel &lt;expression>] [-pushMultiClients ( YES | NO )] [-tcpProfileName &lt;string>] [-httpProfileName &lt;string>] [-dbProfileName &lt;string>] [-oracleServerVersion ( 10G | 11G )] [-comment &lt;string>] [-mssqlServerVersion &lt;mssqlServerVersion>] [-l2Conn ( ON | OFF )] [-mysqlProtocolVersion &lt;positive_integer>] [-mysqlServerVersion &lt;string>] [-mysqlCharacterSet &lt;positive_integer>] [-mysqlServerCapabilities &lt;positive_integer>] [-appflowLog ( ENABLED | DISABLED )] [-netProfile &lt;string>] [-icmpVsrResponse ( PASSIVE | ACTIVE )] [-RHIstate ( PASSIVE | ACTIVE )] [-authnProfile &lt;string>] [-dnsProfileName &lt;string>]
 
 
 ##Arguments
@@ -34,6 +34,15 @@ Possible values: HTTP, SSL, TCP, FTP, RTSP, SSL_TCP, UDP, DNS, SIP_UDP, SIP_TCP,
 
 <b>IPAddress</b>
 IP address of the content switching virtual server.
+
+<b>targetType</b>
+Virtual server target type.
+Possible values: GSLB
+Default value: VAL_NOT_SET
+
+<b>dnsRecordType</b>
+
+<b>persistenceId</b>
 
 <b>IPPattern</b>
 IP address pattern, in dotted decimal notation, for identifying packets to be accepted by the virtual server. The IP Mask parameter specifies which part of the destination IP address is matched against the pattern. Mutually exclusive with the IP Address parameter. 
@@ -311,7 +320,7 @@ Modifies the configuration of a content switching virtual server.
 
 ##Synopsys
 
-set cs vserver &lt;name> [-IPAddress &lt;ip_addr|ipv6_addr|*>] [-IPPattern &lt;ippat>] [-IPMask &lt;ipmask>] [-stateupdate ( ENABLED | DISABLED )] [-precedence ( RULE | URL )] [-caseSensitive ( ON | OFF )] [-backupVServer &lt;string>] [-redirectURL &lt;URL>] [-cacheable ( YES | NO )] [-cltTimeout &lt;secs>] [-soMethod &lt;soMethod>] [-soPersistence ( ENABLED | DISABLED )] [-soPersistenceTimeOut &lt;positive_integer>] [-soThreshold &lt;positive_integer>] [-soBackupAction &lt;soBackupAction>] [-redirectPortRewrite ( ENABLED | DISABLED )] [-downStateFlush ( ENABLED | DISABLED )] [-disablePrimaryOnDown ( ENABLED | DISABLED )] [-insertVserverIPPort &lt;insertVserverIPPort>  [&lt;vipHeader>] ] [-rtspNat ( ON | OFF )] [-AuthenticationHost &lt;string>] [-Authentication ( ON | OFF )] [-Listenpolicy &lt;expression>] [-Listenpriority &lt;positive_integer>] [-authn401 ( ON | OFF )] [-authnVsName &lt;string>] [-push ( ENABLED | DISABLED )] [-pushVserver &lt;string>] [-pushLabel &lt;expression>] [-pushMultiClients ( YES | NO )] [-tcpProfileName &lt;string>] [-httpProfileName &lt;string>] [-dbProfileName &lt;string>] [-comment &lt;string>] [-l2Conn ( ON | OFF )] [-mssqlServerVersion &lt;mssqlServerVersion>] [-mysqlProtocolVersion &lt;positive_integer>] [-oracleServerVersion ( 10G | 11G )] [-mysqlServerVersion &lt;string>] [-mysqlCharacterSet &lt;positive_integer>] [-mysqlServerCapabilities &lt;positive_integer>] [-appflowLog ( ENABLED | DISABLED )] [-netProfile &lt;string>] [-authnProfile &lt;string>] [-icmpVsrResponse ( PASSIVE | ACTIVE )] [-RHIstate ( PASSIVE | ACTIVE )] [-dnsProfileName &lt;string>]
+set cs vserver &lt;name> [-IPAddress &lt;ip_addr|ipv6_addr|*>] [-IPPattern &lt;ippat>] [-IPMask &lt;ipmask>] [-stateupdate ( ENABLED | DISABLED )] [-precedence ( RULE | URL )] [-caseSensitive ( ON | OFF )] [-backupVServer &lt;string>] [-redirectURL &lt;URL>] [-cacheable ( YES | NO )] [-cltTimeout &lt;secs>] [-soMethod &lt;soMethod>] [-soPersistence ( ENABLED | DISABLED )] [-soPersistenceTimeOut &lt;positive_integer>] [-soThreshold &lt;positive_integer>] [-soBackupAction &lt;soBackupAction>] [-redirectPortRewrite ( ENABLED | DISABLED )] [-downStateFlush ( ENABLED | DISABLED )] [-disablePrimaryOnDown ( ENABLED | DISABLED )] [-insertVserverIPPort &lt;insertVserverIPPort>  [&lt;vipHeader>] ] [-rtspNat ( ON | OFF )] [-AuthenticationHost &lt;string>] [-Authentication ( ON | OFF )] [-Listenpolicy &lt;expression>] [-Listenpriority &lt;positive_integer>] [-authn401 ( ON | OFF )] [-authnVsName &lt;string>] [-push ( ENABLED | DISABLED )] [-pushVserver &lt;string>] [-pushLabel &lt;expression>] [-pushMultiClients ( YES | NO )] [-tcpProfileName &lt;string>] [-httpProfileName &lt;string>] [-dbProfileName &lt;string>] [-comment &lt;string>] [-l2Conn ( ON | OFF )] [-mssqlServerVersion &lt;mssqlServerVersion>] [-mysqlProtocolVersion &lt;positive_integer>] [-oracleServerVersion ( 10G | 11G )] [-mysqlServerVersion &lt;string>] [-mysqlCharacterSet &lt;positive_integer>] [-mysqlServerCapabilities &lt;positive_integer>] [-appflowLog ( ENABLED | DISABLED )] [-netProfile &lt;string>] [-authnProfile &lt;string>] [-icmpVsrResponse ( PASSIVE | ACTIVE )] [-RHIstate ( PASSIVE | ACTIVE )] [-dnsProfileName &lt;string>] [-dnsRecordType &lt;dnsRecordType>] [-persistenceId &lt;positive_integer>] [-domainName &lt;string>  [-TTL &lt;secs>]  [-backupIP &lt;ip_addr|ipv6_addr|*>]  [-cookieDomain &lt;string>]  [-cookieTimeout &lt;mins>]  [-sitedomainTTL &lt;secs>]]
 
 
 ##Arguments
@@ -544,6 +553,23 @@ Default value: PASSIVE
 <b>dnsProfileName</b>
 Name of the DNS profile to be associated with the VServer. DNS profile properties will applied to the transactions processed by a VServer. This parameter is valid only for DNS and DNS-TCP VServers.
 
+<b>dnsRecordType</b>
+
+<b>persistenceId</b>
+
+<b>domainName</b>
+Domain name for which to change the time to live (TTL) and/or backup service IP address.
+
+<b>TTL</b>
+
+<b>backupIP</b>
+
+<b>cookieDomain</b>
+
+<b>cookieTimeout</b>
+
+<b>sitedomainTTL</b>
+
 
 
 ##Related Commands
@@ -559,7 +585,7 @@ Unset the parameters of a content switching virtual server..Refer to the set cs 
 
 ##Synopsys
 
-unset cs vserver &lt;name> [-caseSensitive] [-backupVServer] [-cltTimeout] [-redirectURL] [-authn401] [-Authentication] [-AuthenticationHost] [-authnVsName] [-pushVserver] [-pushLabel] [-tcpProfileName] [-httpProfileName] [-dbProfileName] [-l2Conn] [-mysqlProtocolVersion] [-mysqlServerVersion] [-mysqlCharacterSet] [-mysqlServerCapabilities] [-appflowLog] [-netProfile] [-icmpVsrResponse] [-authnProfile] [-dnsProfileName] [-stateupdate] [-precedence] [-cacheable] [-soMethod] [-soPersistence] [-soPersistenceTimeOut] [-soBackupAction] [-redirectPortRewrite] [-downStateFlush] [-disablePrimaryOnDown] [-insertVserverIPPort] [-vipHeader] [-rtspNat] [-Listenpolicy] [-Listenpriority] [-push] [-pushMultiClients] [-comment] [-mssqlServerVersion] [-oracleServerVersion] [-RHIstate]
+unset cs vserver &lt;name> [-caseSensitive] [-backupVServer] [-cltTimeout] [-redirectURL] [-authn401] [-Authentication] [-AuthenticationHost] [-authnVsName] [-pushVserver] [-pushLabel] [-tcpProfileName] [-httpProfileName] [-dbProfileName] [-l2Conn] [-mysqlProtocolVersion] [-mysqlServerVersion] [-mysqlCharacterSet] [-mysqlServerCapabilities] [-appflowLog] [-netProfile] [-icmpVsrResponse] [-authnProfile] [-dnsProfileName] [-stateupdate] [-precedence] [-cacheable] [-soMethod] [-soPersistence] [-soPersistenceTimeOut] [-soBackupAction] [-redirectPortRewrite] [-downStateFlush] [-disablePrimaryOnDown] [-insertVserverIPPort] [-vipHeader] [-rtspNat] [-Listenpolicy] [-Listenpriority] [-push] [-pushMultiClients] [-comment] [-mssqlServerVersion] [-oracleServerVersion] [-RHIstate] [-dnsRecordType] [-persistenceId]
 
 
 ##Related Commands
@@ -575,7 +601,7 @@ Binds a content switching virtual server to a content switching policy.
 
 ##Synopsys
 
-bind cs vserver &lt;name> [-lbvserver &lt;string> | (-policyName &lt;string>  [-targetLBVserver &lt;string>]  [-priority &lt;positive_integer>]  [-gotoPriorityExpression &lt;expression>]  [-type ( REQUEST | RESPONSE )]  [-invoke  (&lt;labelType>  &lt;labelName>) ]  )]
+bind cs vserver &lt;name> (-lbvserver &lt;string> | -vServer &lt;string> | (-policyName &lt;string>  [-targetLBVserver &lt;string>]  [-priority &lt;positive_integer>]  [-gotoPriorityExpression &lt;expression>]  [-type ( REQUEST | RESPONSE )]  [-invoke  (&lt;labelType>  &lt;labelName>) ]  ) | (-domainName &lt;string>  [-TTL &lt;secs>]  [-backupIP &lt;ip_addr|ipv6_addr|*>]  [-cookieDomain &lt;string>]  [-cookieTimeout &lt;mins>]  [-sitedomainTTL &lt;secs>]))
 
 
 ##Arguments
@@ -588,12 +614,15 @@ Name of the default Load Balancing vserver bound. If for a particular content no
 Example: bind cs vserver cs1 -lbvserver lb1
 Note: Use this parameter for default binding only.
 
+<b>vServer</b>
+Name of the default gslb or vpn vserver bound to CS vserver of type GSLB/VPN. For Example: bind cs vserver cs1 -vserver gslb1 or bind cs vserver cs1 -vserver vpn1
+
 <b>policyName</b>
 Name of the content switching policy to bind to the content switching virtual server Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Cannot be changed after a policy is created.
 To bind a content switching policy, you need a content-based virtual server (content switching virtual server) and an address-based virtual server (load balancing virtual server). You can assign multiple policies to the virtual server pair. 
 Note: When binding a CS virtual server to a default LB virtual server, the Policy Name parameter is optional.
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, ?my policy? or ?my policy?).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my policy" or 'my policy').
 
 <b>targetLBVserver</b>
 Name of the Load Balancing virtual server to which the content is switched, if policy rule is evaluated to be TRUE.
@@ -606,9 +635,9 @@ Minimum value: 0
 
 <b>gotoPriorityExpression</b>
 Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE.  Specify one of the following values:
-* NEXT ? Evaluate the policy with the next higher priority number.
-* END ? End policy evaluation.
-* USE_INVOCATION_RESULT ? Applicable if this policy invokes another policy label. If the final goto in the invoked policy label has a value of END, the evaluation stops. If the final goto is anything other than END, the current policy label performs a NEXT.
+* NEXT - Evaluate the policy with the next higher priority number.
+* END - End policy evaluation.
+* USE_INVOCATION_RESULT - Applicable if this policy invokes another policy label. If the final goto in the invoked policy label has a value of END, the evaluation stops. If the final goto is anything other than END, the current policy label performs a NEXT.
 * A default syntax expression that evaluates to a number.
 If you specify an expression, the number to which it evaluates determines the next policy to evaluate, as follows:
 * If the expression evaluates to a higher numbered priority, the policy with that priority is evaluated next.
@@ -616,8 +645,8 @@ If you specify an expression, the number to which it evaluates determines the ne
 * If the expression evaluates to a priority number that is numerically higher than the highest numbered priority, policy evaluation ends.
 An UNDEF event is triggered if:
 * The expression is invalid.
-* The expression evaluates to a priority number that is numerically lower than the current policy?s priority.
-* The expression evaluates to a priority number that is between the current policy?s priority number (say, 30) and the highest priority number (say, 100), but does not match any configured priority number (for example, the expression evaluates to the number 85). This example assumes that the priority number increments by 10 for every successive policy, and therefore a priority number of 85 does not exist in the policy label.
+* The expression evaluates to a priority number that is numerically lower than the current policy's priority.
+* The expression evaluates to a priority number that is between the current policy's priority number (say, 30) and the highest priority number (say, 100), but does not match any configured priority number (for example, the expression evaluates to the number 85). This example assumes that the priority number increments by 10 for every successive policy, and therefore a priority number of 85 does not exist in the policy label.
 
 <b>type</b>
 For a rewrite policy, the bind point to which to bind the policy. Note: This parameter applies only to rewrite policies, because content switching policies are evaluated only at request time.
@@ -632,6 +661,19 @@ Possible values: reqvserver, resvserver, policylabel
 
 <b>labelName</b>
 Name of the label to be invoked.
+
+<b>domainName</b>
+Domain name for which to change the time to live (TTL) and/or backup service IP address.
+
+<b>TTL</b>
+
+<b>backupIP</b>
+
+<b>cookieDomain</b>
+
+<b>cookieTimeout</b>
+
+<b>sitedomainTTL</b>
 
 
 
@@ -652,13 +694,16 @@ Unbinds the virtual server from the content switching policy.
 
 ##Synopsys
 
-unbind cs vserver &lt;name> [(-policyName &lt;string>  [-type ( REQUEST | RESPONSE )]) | -lbvserver &lt;string>] [-priority &lt;positive_integer>]
+unbind cs vserver &lt;name> (-vServer &lt;string> | (-policyName &lt;string>  [-type ( REQUEST | RESPONSE )]) | -domainName &lt;string> | -lbvserver &lt;string>) [-priority &lt;positive_integer>]
 
 
 ##Arguments
 
 <b>name</b>
 Name of the virtual server to unbind from the policy.
+
+<b>vServer</b>
+Name of the default gslb or vpn vserver bound to CS vserver of type GSLB/VPN. For Example: bind cs vserver cs1 -vserver gslb1 or bind cs vserver cs1 -vserver vpn1
 
 <b>policyName</b>
 Name of the policy from which to unbind the content switching virtual server. Note: To unbind the content switching virtual server from the default policy, do not specify a value for this parameter.
@@ -671,8 +716,11 @@ Possible values: REQUEST, RESPONSE
 Priority number of the policy from which to unbind the content switching virtual server.
 Minimum value: 1
 
+<b>domainName</b>
+Domain name for which to change the time to live (TTL) and/or backup service IP address.
+
 <b>lbvserver</b>
-The virtual server name (created with the add lb vserver command) to which content will be switched.
+Name of the default lb vserver bound. Use this param for Default binding only. For Example: bind cs vserver cs1 -lbvserver lb1
 Default value: "default_lb"
 
 
@@ -1008,6 +1056,9 @@ A host route is injected according to the setting on the virtual servers
 <b>lbvserver</b>
 Name of the default lb vserver bound. Use this param for Default binding only. For Example: bind cs vserver cs1 -lbvserver lb1
 
+<b>vServer</b>
+Name of the default gslb or vpn vserver bound to CS vserver of type GSLB/VPN. For Example: bind cs vserver cs1 -vserver gslb1 or bind cs vserver cs1 -vserver vpn1
+
 <b>targetLBVserver</b>
 target vserver name.
 
@@ -1018,6 +1069,26 @@ Name of the authentication profile to be used when authentication is turned on.
 
 <b>dnsProfileName</b>
 Name of the DNS profile to be associated with the VServer. DNS profile properties will applied to the transactions processed by a VServer. This parameter is valid only for DNS and DNS-TCP VServers.
+
+<b>targetType</b>
+Virtual server target type.
+
+<b>domainName</b>
+Domain name for which to change the time to live (TTL) and/or backup service IP address.
+
+<b>TTL</b>
+
+<b>backupIP</b>
+
+<b>cookieDomain</b>
+
+<b>cookieTimeout</b>
+
+<b>sitedomainTTL</b>
+
+<b>dnsRecordType</b>
+
+<b>persistenceId</b>
 
 <b>devno</b>
 
@@ -1077,6 +1148,12 @@ Possible values: basic, full
 
 
 ##Outputs
+
+<b>Average client TTLB (cltTTLB)</b>
+Average TTLB between the client and the server. TTLB is the time interval between sending the request packet to a service and receiving the ACK for response from client.
+
+<b>Apdex for client response times. (cltResponseTimeApdex)</b>
+Vserver APDEX index based on client response times.
 
 <b>Current Client Est connections (ClntEstConn)</b>
 Number of client connections in ESTABLISHED state.
@@ -1144,6 +1221,21 @@ Number invalid requests/responses dropped on this vserver
 <b>Vserver Down Backup Hits (VserverDownBackupHits )</b>
 Number of times traffic was diverted to backup vserver since primary vserver was DOWN.
 
+<b>Current Multipath TCP sessions (MptcpSess)</b>
+Current Multipath TCP sessions
+
+<b>Current Multipath TCP subflows (subflowConn)</b>
+Current Multipath TCP subflows
+
+<b>Total transactions for Client TTLB (totCltTTLBTransactions)</b>
+Total transactions where client TTLB is calculated.
+
+<b>Tolerating TTLB Transactions (toleratingTTLBTransactions)</b>
+Tolerable transactions based on APDEX threshold (>T && &lt;4T).
+
+<b>Frustrating TTLB Transactions (frustratingTTLBTransactions)</b>
+Frustrating transactions based on APDEX threshold (>4T).
+
 <b>Current Server Est connections (SvrEstConn)</b>
 Number of server connections in ESTABLISHED state.
 
@@ -1167,7 +1259,7 @@ Existing name of the content switching virtual server.
 <b>newName</b>
 New name for the virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. 
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, my name or my name).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my name" or 'my name').
 
 
 

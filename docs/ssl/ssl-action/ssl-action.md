@@ -12,7 +12,7 @@ Creates a new SSL action. An SSL action defines SSL settings that you can apply 
 
 ##Synopsys
 
-add ssl action &lt;name> [-clientAuth ( DOCLIENTAUTH | NOCLIENTAUTH )] [-clientCert ( ENABLED | DISABLED )  -certHeader &lt;string>] [-clientCertSerialNumber ( ENABLED | DISABLED )  -certSerialHeader &lt;string>] [-clientCertSubject ( ENABLED | DISABLED )  -certSubjectHeader &lt;string>] [-clientCertHash ( ENABLED | DISABLED )  -certHashHeader &lt;string>] [-clientCertIssuer ( ENABLED | DISABLED )  -certIssuerHeader &lt;string>] [-sessionID ( ENABLED | DISABLED )  -sessionIDHeader &lt;string>] [-cipher ( ENABLED | DISABLED )  -cipherHeader &lt;string>] [-clientCertNotBefore ( ENABLED | DISABLED )  -certNotBeforeHeader &lt;string>] [-clientCertNotAfter ( ENABLED | DISABLED )  -certNotAfterHeader &lt;string>] [-OWASupport ( ENABLED | DISABLED )]
+add ssl action &lt;name> [-clientAuth ( DOCLIENTAUTH | NOCLIENTAUTH )] [-clientCert ( ENABLED | DISABLED )  -certHeader &lt;string>] [-clientCertSerialNumber ( ENABLED | DISABLED )  -certSerialHeader &lt;string>] [-clientCertSubject ( ENABLED | DISABLED )  -certSubjectHeader &lt;string>] [-clientCertHash ( ENABLED | DISABLED )  -certHashHeader &lt;string>] [-clientCertFingerprint ( ENABLED | DISABLED )  -certFingerprintHeader &lt;string>  -certFingerprintDigest &lt;certFingerprintDigest>] [-clientCertIssuer ( ENABLED | DISABLED )  -certIssuerHeader &lt;string>] [-sessionID ( ENABLED | DISABLED )  -sessionIDHeader &lt;string>] [-cipher ( ENABLED | DISABLED )  -cipherHeader &lt;string>] [-clientCertNotBefore ( ENABLED | DISABLED )  -certNotBeforeHeader &lt;string>] [-clientCertNotAfter ( ENABLED | DISABLED )  -certNotAfterHeader &lt;string>] [-OWASupport ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -48,11 +48,22 @@ Possible values: ENABLED, DISABLED
 Name of the header into which to insert the client certificate subject.
 
 <b>clientCertHash</b>
-Insert the certificate signature (hash) into the HTTP header of the request being sent to the web server.
+Insert the certificate's signature into the HTTP header of the request being sent to the web server. The signature is the value extracted directly from the X.509 certificate signature field. All X.509 certificates contain a signature field.
 Possible values: ENABLED, DISABLED
 
 <b>certHashHeader</b>
 Name of the header into which to insert the client certificate signature (hash).
+
+<b>clientCertFingerprint</b>
+Insert the certificate's fingerprint into the HTTP header of the request being sent to the web server. The fingerprint is derived by computing the specified hash value (SHA256, for example) of the DER-encoding of the client certificate.
+Possible values: ENABLED, DISABLED
+
+<b>certFingerprintHeader</b>
+Name of the header into which to insert the client certificate fingerprint.
+
+<b>certFingerprintDigest</b>
+Digest algorithm used to compute the fingerprint of the client certificate.
+Possible values: SHA1, SHA224, SHA256, SHA384, SHA512
 
 <b>clientCertIssuer</b>
 Insert the certificate issuer details into the HTTP header of the request being sent to the web server.
@@ -160,9 +171,16 @@ Insert the client certificate subject, also known as the distinguished name (DN)
 <b>certSubjectHeader</b>
 
 <b>clientCertHash</b>
-Insert the certificate signature (hash) into the HTTP header of the request being sent to the web server.
+Insert the certificate's signature into the HTTP header of the request being sent to the web server. The signature is the value extracted directly from the X.509 certificate signature field. All X.509 certificates contain a signature field.
 
 <b>certHashHeader</b>
+
+<b>clientCertFingerprint</b>
+Insert the certificate's fingerprint into the HTTP header of the request being sent to the web server. The fingerprint is derived by computing the specified hash value (SHA256, for example) of the DER-encoding of the client certificate.
+
+<b>certFingerprintHeader</b>
+
+<b>certFingerprintDigest</b>
 
 <b>clientCertIssuer</b>
 Insert the certificate issuer details into the HTTP header of the request being sent to the web server.

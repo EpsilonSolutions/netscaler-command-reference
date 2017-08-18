@@ -10,7 +10,7 @@ Generates a new Certificate Signing Request (CSR). A CSR is a collection of info
 
 ##Synopsys
 
-create ssl certReq &lt;reqFile> (-keyFile &lt;input_filename> | -fipsKeyName &lt;string>) [-keyform ( DER | PEM )  {-PEMPassPhrase }] -countryName &lt;string> -stateName &lt;string> -organizationName &lt;string> [-organizationUnitName &lt;string>] [-localityName &lt;string>] [-commonName &lt;string>] [-emailAddress &lt;string>] {-challengePassword } [-companyName &lt;string>]
+create ssl certReq &lt;reqFile> (-keyFile &lt;input_filename> | -fipsKeyName &lt;string>) [-keyform ( DER | PEM )  {-PEMPassPhrase }] -countryName &lt;string> -stateName &lt;string> -organizationName &lt;string> [-organizationUnitName &lt;string>] [-localityName &lt;string>] [-commonName &lt;string>] [-emailAddress &lt;string>] {-challengePassword } [-companyName &lt;string>] [-digestMethod ( SHA1 | SHA256 )]
 
 
 ##Arguments
@@ -63,6 +63,10 @@ Pass phrase, embedded in the certificate signing request that is shared only bet
 
 <b>companyName</b>
 Additional name for the company or web site.
+
+<b>digestMethod</b>
+Digest algorithm used in creating CSR
+Possible values: SHA1, SHA256
 
 
 

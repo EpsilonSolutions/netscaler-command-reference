@@ -67,20 +67,23 @@ Number of successful probes to all back-end servers.
 <b>File-system requests received (totFsHit)</b>
 Number of file system requests received by VPN server.
 
-<b>IIP disabled and MIP used (IIPdMIPu)</b>
-Number of times MIP is used as IIP is disabled.
+<b>VPN User License Not Available (licFail)</b>
+Number of users not able to login because of license unavailability.
 
-<b>IIP failed and MIP used (IIPfMIPu)</b>
-Number of times MIP is used as IIP assignment failed.
+<b>IIP disabled and SNIP used (IIPdMIPu)</b>
+Number of times SNIP is used as IIP is disabled.
 
-<b>IIP spillover and MIP used (IIPsMIPu)</b>
-Number of times MIP is used on IIP Spillover.
+<b>IIP failed and SNIP used (IIPfMIPu)</b>
+Number of times SNIP is used as IIP assignment failed.
 
-<b>IIP disabled and MIP disabled (IIPdMIPd)</b>
-Both IIP and MIP is disabled.
+<b>IIP spillover and SNIP used (IIPsMIPu)</b>
+Number of times SNIP is used on IIP Spillover.
 
-<b>IIP failed and MIP disabled (IIPfMIPd)</b>
-Number of times IIP assignment failed and MIP is disabled.
+<b>IIP disabled and SNIP disabled (IIPdMIPd)</b>
+Both IIP and SNIP is disabled.
+
+<b>IIP failed and SNIP disabled (IIPfMIPd)</b>
+Number of times IIP assignment failed and SNIP is disabled.
 
 <b>SOCKS method request received (SOCKSmReqR)</b>
 Number of received SOCKS method request.

@@ -12,7 +12,7 @@ Add LSN IP6 profile.
 
 ##Synopsys
 
-add lsn ip6profile &lt;name> -type DS-Lite [-network6 &lt;ipv6_addr|*>]
+add lsn ip6profile &lt;name> -type ( DS-Lite | NAT64 ) [-natprefix &lt;ipv6_addr|*>] [-network6 &lt;ipv6_addr|*>]
 
 
 ##Arguments
@@ -22,7 +22,10 @@ Name for the LSN ip6 profile. Must begin with an ASCII alphanumeric or underscor
 
 <b>type</b>
 IPv6 translation type for which to set the LSN IP6 profile parameters.
-Possible values: DS-Lite
+Possible values: DS-Lite, NAT64
+
+<b>natprefix</b>
+IPv6 address(es) of the LSN subscriber(s) or subscriber network(s) on whose traffic you want the NetScaler ADC to perform Large Scale NAT.
 
 <b>network6</b>
 IPv6 address of the NetScaler ADC AFTR device

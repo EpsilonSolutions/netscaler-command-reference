@@ -50,6 +50,9 @@ Possible values: basic, full
 
 ##Outputs
 
+<b>Maximum Allocation Failed (MB) (MemTotAllocFailed)</b>
+Total system memory allocation failed.
+
 <b>Allocation failure (AllocF)</b>
 Memory allocation failure for particular feature.
 

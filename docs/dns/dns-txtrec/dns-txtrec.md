@@ -36,12 +36,12 @@ add dns txtRec spf.m.test. "v=spf1 ip4:1.2.3.0/24 ip4:1.3.4.0/24 ?all" add dns t
 
 ##rm dns txtRec
 
-Removes the specified TXT record from the specified domain.
+Removes the specified TXT record from the specified domain. For EDNS Client Subnet (ECS) records, a subnet needs to be specified to remove a TXT record which is cached for that particular subnet.
 
 
 ##Synopsys
 
-rm dns txtRec &lt;domain> (&lt;string> ... | -recordId &lt;positive_integer>@)
+rm dns txtRec &lt;domain> (&lt;string> ... | -recordId &lt;positive_integer>@) [-ecsSubnet &lt;ip_addr[/prefix]|ipv6_addr[/prefix]>]
 
 
 ##Arguments
@@ -56,6 +56,9 @@ Complete set of text strings in the TXT record, entered in the order in which th
 Unique, internally generated record ID. View the details of the TXT record to obtain its record ID. Mutually exclusive with the string parameter.
 Minimum value: 1
 Maximum value: 65535
+
+<b>ecsSubnet</b>
+Subnet for which the cached TXT record need to be removed.
 
 
 
@@ -92,6 +95,9 @@ Default value: ADNS
 
 <b>string</b>
 Information to store in the TXT resource record. Enclose the string in single or double quotation marks. A TXT resource record can contain up to six strings, each of which can contain up to 255 characters. If you want to add a string of more than 255 characters, evaluate whether splitting it into two or more smaller strings, subject to the six-string limit, works for you.
+
+<b>ecsSubnet</b>
+Subnet for which this particular record is cached. Subnet caching will occur for responses with EDNS Client Subnet (ECS) option. Applies to resource records obtained through proxy configurations only
 
 <b>TTL</b>
 Time to Live (TTL), in seconds, for the record. TTL is the time for which the record must be cached by DNS proxies. The specified TTL is applied to all the resource records that are of the same record type and belong to the specified domain name. For example, if you add an address record, with a TTL of 36000, to the domain name example.com, the TTLs of all the address records of example.com are changed to 36000. If the TTL is not specified, the NetScaler appliance uses either the DNS zone's minimum TTL or, if the SOA record is not available on the appliance, the default value of 3600.

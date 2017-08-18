@@ -37,6 +37,15 @@ Possible values: basic, full
 
 ##Outputs
 
+<b>InUse Memory (%) (cacmemMaxMemLimitPcnt)</b>
+Integrated Cache memory insue percent.
+
+<b>InUse Memory (MB) (cacmemMaxMemLimit)</b>
+Integrated Cache memory insue, in megabytes.
+
+<b>Maximum Allocation Failed (MB) (ShmemErrAllocFailed)</b>
+Total shared memory allocation failed.
+
 <b>Shared Memory InUse (%) (shMemAllocpcnt)</b>
 Shared memory insue percent.
 
@@ -45,6 +54,9 @@ Shared memory insue, in megabytes.
 
 <b>Total Shared Memory (MB) (shMemtotMB)</b>
 Total shared memory allowed to allocate, in megabytes.
+
+<b>Maximum Allocation Failed (MB) (MemTotAllocFailed)</b>
+Total system memory allocation failed.
 
 <b>Free Memory (MB) (MemTotFree)</b>
 Total Free PE Memory in the System.
@@ -66,6 +78,9 @@ Total memory available (grabbed) for use by packet engine (PE), in megabytes.
 
 <b>Maximum Memory Available (MB) (MemTotAvail)</b>
 Total system memory available for PE to grab from the system.
+
+<b>Maximum Memory (MB) (cacmemMaxSysLimitMB)</b>
+Integrated Cache memory, in megabytes.
 
 
 

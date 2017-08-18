@@ -5,12 +5,12 @@ The following operations can be performed on "pq":
 
 ##stat pq
 
-Displays statistics of priority queuing.
+Displays statistics of priority queuing. NOTE: This command is deprecated.Priority Queuing feature has been deprecated in favour of AppQoE
 
 
 ##Synopsys
 
-stat pq [-detail] [-fullValues] [-ntimes &lt;positive_integer>] [-logFile &lt;input_filename>] [-clearstats ( basic | full )]
+
 
 
 ##Arguments

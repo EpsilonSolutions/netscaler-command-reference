@@ -65,7 +65,7 @@ Bandwidth saving from TCP compression expressed as percentage.
 Ratio of the compressible data received from the server to the compressed data sent to the client.
 
 <b>HTTP compression requests</b>
-Number of HTTP compression requests the NetScaler receives for which the response is successfully compressed. For example, after you enable compression and configure services, if you send requests to the NetScaler with the following header information: ?Accept-Encoding: gzip, deflate?, and NetScaler compresses the corresponding response, this counter is incremented.
+Number of HTTP compression requests the NetScaler receives for which the response is successfully compressed. For example, after you enable compression and configure services, if you send HTTP requests to the NetScaler using a HTTP client that supports compression, and NetScaler compresses the corresponding response, this counter is incremented.
 
 <b>Compressible bytes received</b>
 Number of bytes that can be compressed, which the NetScaler receives from the server. This gives the content length of the response that the NetScaler receives from server.

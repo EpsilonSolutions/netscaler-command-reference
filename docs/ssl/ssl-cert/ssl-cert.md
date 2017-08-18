@@ -29,10 +29,10 @@ Type of certificate to generate. Specify one of the following:
 * INTM_CERT - Intermediate-CA certificate. 
 * CLNT_CERT - End-user client certificate used for client authentication.
 * SRVR_CERT - SSL server certificate used on SSL servers for end-to-end encryption.
-Possible values: ROOT_CERT, INTM_CERT, CLNT_CERT, SRVR_CERT
+Possible values: ROOT_CERT, INTM_CERT, CLNT_CERT, SRVR_CERT, UNKNOWN, CLIENTANDSERVER_CERT
 
 <b>keyFile</b>
-Name for and, optionally, path to the private key. You can either use an existing RSA or DSA key that you own or create a new private key on the NetScaler appliance. This file is required only when creating a self-signed Root-CA certificate. The key file is stored in the /nsconfig/ssl directory by default.                    
+Name for and, optionally, path to the private key. You can either use an existing RSA or DSA key that you own or create a new private key on the NetScaler appliance. This file is required only when creating a self-signed Root-CA certificate. The key file is stored in the /nsconfig/ssl directory by default. 
 If the input key specified is an encrypted key, you are prompted to enter the PEM pass phrase that was used for encrypting the key.
 Maximum value: 63
 

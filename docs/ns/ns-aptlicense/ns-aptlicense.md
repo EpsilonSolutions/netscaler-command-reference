@@ -12,13 +12,18 @@ The following operations can be performed on "ns aptlicense":
 
 ##Synopsys
 
-show ns aptlicense &lt;serialNo>
+show ns aptlicense &lt;serialNo> [-useProxy ( YES | NO )]
 
 
 ##Arguments
 
 <b>serialNo</b>
 Hardware Serial Number/License Activation Code(LAC)
+
+<b>useProxy</b>
+Specifies whether to use the licenseproxyserver to reach the internet. Make sure to configure licenseproxyserver to use this option.
+Possible values: YES, NO
+Default value: NO
 
 
 
@@ -73,7 +78,7 @@ show ns aptlicense &lt;hw-no/lac&gt;
 
 ##Synopsys
 
-update ns aptlicense &lt;id> &lt;sessionId> &lt;bindType> &lt;countAvailable> [&lt;licenseDir>]
+update ns aptlicense &lt;id> &lt;sessionId> &lt;bindType> &lt;countAvailable> [&lt;licenseDir>] [-useProxy ( YES | NO )]
 
 
 ##Arguments
@@ -92,6 +97,11 @@ The user can allocate one or more licenses. Ensure the value is less than (for p
 
 <b>licenseDir</b>
 License Directory
+
+<b>useProxy</b>
+Specifies whether to use the licenseproxyserver to reach the internet. Make sure to configure licenseproxyserver to use this option.
+Possible values: YES, NO
+Default value: NO
 
 
 

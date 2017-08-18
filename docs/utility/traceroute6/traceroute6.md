@@ -28,7 +28,7 @@ Bypass normal routing tables and send directly to a host on an attached network.
 Verbose output. List received ICMP packets other than TIME_EXCEEDED and UNREACHABLE.
 
 <b>m</b>
-Maximum hop value for outgoing probe packets.
+Maximum hop value for outgoing probe packets. For Nitro API, default value is taken as 10.
 Default value: 64
 Minimum value: 1
 Maximum value: 255
@@ -40,7 +40,7 @@ Minimum value: 1
 Maximum value: 65535
 
 <b>q</b>
-Number of probes per hop.
+Number of probes per hop. For Nitro API, default value is taken as 1.
 Default value: 3
 Minimum value: 1
 Maximum value: 65535
@@ -54,7 +54,7 @@ Minimum value: 1
 Maximum value: 4094
 
 <b>w</b>
-Time (in seconds) to wait for a response to a query.
+Time (in seconds) to wait for a response to a query. For Nitro API, defalut value is set to 3.
 Default value: 5
 Minimum value: 2
 Maximum value: 86399
@@ -67,6 +67,12 @@ Length (in bytes) of the query packets.
 Default value: 44
 Minimum value: 44
 Maximum value: 32768
+
+
+
+##Outputs
+
+<b>response</b>
 
 
 

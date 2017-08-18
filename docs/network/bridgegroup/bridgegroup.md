@@ -88,7 +88,7 @@ Default value: DISABLED
 
 ##Example
 
-set bridgegroup bg1 -dynamicRouting ENABLED
+set bridgegroup 1 -dynamicRouting ENABLED
 
 ##unset bridgegroup
 
@@ -107,7 +107,7 @@ Bind a vlan or an ip address to a bridgegroup.
 
 ##Synopsys
 
-bind bridgegroup &lt;id> [-vlan &lt;positive_integer>] [-IPAddress &lt;ip_addr|ipv6_addr|*>  [&lt;netmask>]  [-td &lt;positive_integer>]]
+bind bridgegroup &lt;id> [-vlan &lt;positive_integer>] [-IPAddress &lt;ip_addr|ipv6_addr|*>  [&lt;netmask>]  [-td &lt;positive_integer>]  [-ownerGroup &lt;string>]]
 
 
 ##Arguments
@@ -133,11 +133,15 @@ Integer value that uniquely identifies the traffic domain in which you want to c
 Minimum value: 0
 Maximum value: 4094
 
+<b>ownerGroup</b>
+The owner node group in a Cluster for this vlan.
+Default value: DEFAULT_NG
+
 
 
 ##Example
 
-bind bridgegroup bg1 -vlan 2
+bind bridgegroup 1 -vlan 2
 
 ##unbind bridgegroup
 
@@ -146,7 +150,7 @@ Unbinds the specified VLANs or IP addresses from a bridge group.
 
 ##Synopsys
 
-unbind bridgegroup &lt;id> [-vlan &lt;positive_integer>] [-IPAddress &lt;ip_addr|ipv6_addr|*>  [&lt;netmask>]  [-td &lt;positive_integer>]]
+unbind bridgegroup &lt;id> [-vlan &lt;positive_integer>] [-IPAddress &lt;ip_addr|ipv6_addr|*>  [&lt;netmask>]  [-td &lt;positive_integer>]  [-ownerGroup &lt;string>]]
 
 
 ##Arguments
@@ -171,6 +175,10 @@ The network mask for the subnet defined for the bridge group.
 Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
 Minimum value: 0
 Maximum value: 4094
+
+<b>ownerGroup</b>
+The owner node group in a Cluster for this vlan.
+Default value: DEFAULT_NG
 
 
 
@@ -235,6 +243,9 @@ Temporary flag used for internal purpose.
 
 <b>partitionName</b>
 Name of the Partition to which this vlan bound to.
+
+<b>ownerGroup</b>
+The owner node group in a Cluster for this vlan.
 
 <b>devno</b>
 

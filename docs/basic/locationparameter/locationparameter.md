@@ -151,6 +151,9 @@ This argument displays the state of flushing.
 <b>loading</b>
 This argument displays the state of loading.
 
+<b>matchWildcardtoany</b>
+Indicates whether wildcard qualifiers should match any other qualifier including non-wildcard. Option to fallback after default behavior changes to not match
+
 
 
 ##Example

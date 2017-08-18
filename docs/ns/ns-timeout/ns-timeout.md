@@ -60,13 +60,13 @@ Minimum value: 0
 Maximum value: 31536000
 
 <b>anyTcpClient</b>
-Global idle timeout, in seconds, for TCP client connections. This value is overridden by the client timeout that is configured on individual entities.
+Global idle timeout, in seconds, for TCP client connections. This value takes precedence over  entity level timeout settings (vserver/service). This is applicable only to transport protocol TCP.
 Default value: 0
 Minimum value: 0
 Maximum value: 31536000
 
 <b>anyTcpServer</b>
-Global idle timeout, in seconds, for TCP server connections. This value is overridden by the server timeout that is configured on individual entities.
+Global idle timeout, in seconds, for TCP server connections. This value takes precedence over entity level timeout settings ( vserver/service). This is applicable only to transport protocol TCP.
 Default value: 0
 Minimum value: 0
 Maximum value: 31536000
@@ -178,10 +178,10 @@ Maximum value: 600
 Default value: 10
 
 <b>anyTcpClient</b>
-Global idle timeout, in seconds, for TCP client connections. This value is overridden by the client timeout that is configured on individual entities.
+Global idle timeout, in seconds, for TCP client connections. This value takes precedence over  entity level timeout settings (vserver/service). This is applicable only to transport protocol TCP.
 
 <b>anyTcpServer</b>
-Global idle timeout, in seconds, for TCP server connections. This value is overridden by the server timeout that is configured on individual entities.
+Global idle timeout, in seconds, for TCP server connections. This value takes precedence over entity level timeout settings ( vserver/service). This is applicable only to transport protocol TCP.
 
 <b>nontcpZombie</b>
 Timer interval(in seconds) for zombie process that cleanup inactive IP NAT connections

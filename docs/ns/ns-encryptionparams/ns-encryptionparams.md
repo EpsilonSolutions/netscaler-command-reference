@@ -19,7 +19,7 @@ set ns encryptionParams -method &lt;method> [-keyValue ]
 
 <b>method</b>
 Cipher method (and key length) to be used to encrypt and decrypt content. The default value is AES256.
-Possible values: NONE, RC4, DES3, AES128, AES192, AES256
+Possible values: NONE, RC4, DES3, AES128, AES192, AES256, DES, DES-CBC, DES-CFB, DES-OFB, DES-ECB, DES3-CBC, DES3-CFB, DES3-OFB, DES3-ECB, AES128-CBC, AES128-CFB, AES128-OFB, AES128-ECB, AES192-CBC, AES192-CFB, AES192-OFB, AES192-ECB, AES256-CBC, AES256-CFB, AES256-OFB, AES256-ECB
 
 <b>keyValue</b>
 The base64-encoded key generation number, method, and key value.

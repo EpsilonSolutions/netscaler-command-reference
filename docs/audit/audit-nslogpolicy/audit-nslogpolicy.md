@@ -21,7 +21,7 @@ add audit nslogPolicy &lt;name> &lt;rule> &lt;action>
 Name for the policy. 
 Must begin with a letter, number, or the underscore character (_), and must consist only of letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore characters. Cannot be changed after the nslog policy is added.
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, ?my nslog policy? or ?my nslog policy?).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my nslog policy" or 'my nslog policy').
 
 <b>rule</b>
 Name of the NetScaler named rule, or a default syntax expression, that defines the messages to be logged to the nslog server.
@@ -92,6 +92,8 @@ Name of the policy.
 
 ##Outputs
 
+<b>stateflag</b>
+
 <b>rule</b>
 Name of the NetScaler named rule, or a default syntax expression, that defines the messages to be logged to the nslog server.
 
@@ -113,11 +115,12 @@ The entity name to which policy is bound
 <b>builtin</b>
 Indicates that a variable is a built-in (SYSTEM INTERNAL) type.
 
+<b>expressionType</b>
+Type of policy (Classic/Advanced)
+
 <b>devno</b>
 
 <b>count</b>
-
-<b>stateflag</b>
 
 
 

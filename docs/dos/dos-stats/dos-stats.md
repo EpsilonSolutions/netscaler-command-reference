@@ -5,12 +5,12 @@ The following operations can be performed on "dos stats":
 
 ##show dos stats
 
-show dos stats is an alias for stat dosDisplays DoS protection statistics.
+show dos stats is an alias for stat dosDisplays DoS protection statistics. NOTE: This command is deprecated.HTTP DOS protection feature has been deprecated in favour of AppQoE
 
 
 ##Synopsys
 
-show dos stats - alias for 'stat dos'
+
 
 
 ##Related Commands

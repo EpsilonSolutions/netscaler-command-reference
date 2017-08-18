@@ -12,7 +12,7 @@ Adds a TCP profile to the NetScaler appliance.
 
 ##Synopsys
 
-add ns tcpProfile &lt;name> [-WS ( ENABLED | DISABLED )] [-SACK ( ENABLED | DISABLED )] [-WSVal &lt;positive_integer>] [-nagle ( ENABLED | DISABLED )] [-ackOnPush ( ENABLED | DISABLED )] [-mss &lt;positive_integer>] [-maxBurst &lt;positive_integer>] [-initialCwnd &lt;positive_integer>] [-delayedAck &lt;positive_integer>] [-oooQSize &lt;positive_integer>] [-maxPktPerMss &lt;positive_integer>] [-pktPerRetx &lt;positive_integer>] [-minRTO &lt;positive_integer>] [-slowStartIncr &lt;positive_integer>] [-bufferSize &lt;positive_integer>] [-synCookie ( ENABLED | DISABLED )] [-KAprobeUpdateLastactivity ( ENABLED | DISABLED )] [-flavor &lt;flavor>] [-dynamicReceiveBuffering ( ENABLED | DISABLED )] [-KA ( ENABLED | DISABLED )] [-KAconnIdleTime &lt;positive_integer>] [-KAmaxProbes &lt;positive_integer>] [-KAprobeInterval &lt;positive_integer>] [-sendBuffsize &lt;positive_integer>] [-mptcp ( ENABLED | DISABLED )] [-EstablishClientConn &lt;EstablishClientConn>] [-tcpSegOffload ( AUTOMATIC | DISABLED )] [-rstWindowAttenuate ( ENABLED | DISABLED )] [-rstMaxAck ( ENABLED | DISABLED )] [-spoofSynDrop ( ENABLED | DISABLED )] [-ecn ( ENABLED | DISABLED )] [-mptcpDropDataOnPreEstSF ( ENABLED | DISABLED )] [-mptcpFastOpen ( ENABLED | DISABLED )] [-mptcpSessionTimeout &lt;positive_integer>] [-TimeStamp ( ENABLED | DISABLED )] [-dsack ( ENABLED | DISABLED )] [-ackAggregation ( ENABLED | DISABLED )] [-frto ( ENABLED | DISABLED )] [-maxcwnd &lt;positive_integer>] [-fack ( ENABLED | DISABLED )]
+add ns tcpProfile &lt;name> [-WS ( ENABLED | DISABLED )] [-SACK ( ENABLED | DISABLED )] [-WSVal &lt;positive_integer>] [-nagle ( ENABLED | DISABLED )] [-ackOnPush ( ENABLED | DISABLED )] [-mss &lt;positive_integer>] [-maxBurst &lt;positive_integer>] [-initialCwnd &lt;positive_integer>] [-delayedAck &lt;positive_integer>] [-oooQSize &lt;positive_integer>] [-maxPktPerMss &lt;positive_integer>] [-pktPerRetx &lt;positive_integer>] [-minRTO &lt;positive_integer>] [-slowStartIncr &lt;positive_integer>] [-bufferSize &lt;positive_integer>] [-synCookie ( ENABLED | DISABLED )] [-KAprobeUpdateLastactivity ( ENABLED | DISABLED )] [-flavor &lt;flavor>] [-dynamicReceiveBuffering ( ENABLED | DISABLED )] [-KA ( ENABLED | DISABLED )] [-KAconnIdleTime &lt;positive_integer>] [-KAmaxProbes &lt;positive_integer>] [-KAprobeInterval &lt;positive_integer>] [-sendBuffsize &lt;positive_integer>] [-mptcp ( ENABLED | DISABLED )] [-EstablishClientConn &lt;EstablishClientConn>] [-tcpSegOffload ( AUTOMATIC | DISABLED )] [-rstWindowAttenuate ( ENABLED | DISABLED )] [-rstMaxAck ( ENABLED | DISABLED )] [-spoofSynDrop ( ENABLED | DISABLED )] [-ecn ( ENABLED | DISABLED )] [-mptcpDropDataOnPreEstSF ( ENABLED | DISABLED )] [-mptcpFastOpen ( ENABLED | DISABLED )] [-mptcpSessionTimeout &lt;positive_integer>] [-TimeStamp ( ENABLED | DISABLED )] [-dsack ( ENABLED | DISABLED )] [-ackAggregation ( ENABLED | DISABLED )] [-frto ( ENABLED | DISABLED )] [-maxcwnd &lt;positive_integer>] [-fack ( ENABLED | DISABLED )] [-tcpmode ( TRANSPARENT | ENDPOINT )] [-tcpFastOpen ( ENABLED | DISABLED )] [-Hystart ( ENABLED | DISABLED )] [-dupackthresh &lt;positive_integer>] [-burstRateControl &lt;burstRateControl>] [-tcprate &lt;positive_integer>] [-rateqmax &lt;positive_integer>] [-DropHalfClosedConnOnTimeout ( ENABLED | DISABLED )] [-DropEstConnOnTimeout ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -125,7 +125,7 @@ Default value: Default
 Enable or disable dynamic receive buffering. When enabled, allows the receive buffer to be adjusted dynamically based on memory and network conditions.
 Note: The buffer size argument must be set for dynamic adjustments to take place.
 Possible values: ENABLED, DISABLED
-Default value: ENABLED
+Default value: DISABLED
 
 <b>KA</b>
 Send periodic TCP keep-alive (KA) probes to check if peer is still up.
@@ -142,7 +142,7 @@ Maximum value: 4095
 Number of keep-alive (KA) probes to be sent when not acknowledged, before assuming the peer to be down.
 Default value: NSTCP_KA_DEFAULT_PROBE_COUNT
 Minimum value: 1
-Maximum value: 255
+Maximum value: 254
 
 <b>KAprobeInterval</b>
 Time interval, in seconds, before the next keep-alive (KA) probe, if the peer does not respond.
@@ -238,6 +238,54 @@ Enable or disable FACK (Forward ACK).
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
+<b>tcpmode</b>
+TCP Optimization modes TRANSPARENT / ENDPOINT.
+Possible values: TRANSPARENT, ENDPOINT
+Default value: TRANSPARENT
+
+<b>tcpFastOpen</b>
+Enable or disable TCP Fastopen. When enabled, NS can receive or send Data in SYN or SYN-ACK packets.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>Hystart</b>
+Enable or disable CUBIC Hystart
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>dupackthresh</b>
+TCP dupack threshold.
+Default value: 3
+Minimum value: 1
+Maximum value: 15
+
+<b>burstRateControl</b>
+TCP Burst Rate Control DISABLED/FIXED/DYNAMIC. FIXED requires a TCP rate to be set.
+Possible values: DISABLED, FIXED, DYNAMIC
+Default value: DISABLED
+
+<b>tcprate</b>
+TCP connection payload send rate in Kb/s
+Default value: 0
+Minimum value: 0
+Maximum value: 10000000
+
+<b>rateqmax</b>
+Maximum connection queue size in bytes, when BurstRateControl is used
+Default value: 0
+Minimum value: 0
+Maximum value: 1000000000
+
+<b>DropHalfClosedConnOnTimeout</b>
+Silently drop tcp half closed connections on idle timeout
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>DropEstConnOnTimeout</b>
+Silently drop tcp established connections on idle timeout
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
 
 
 ##Example
@@ -272,7 +320,7 @@ Modifies the attributes of a TCP profile.
 
 ##Synopsys
 
-set ns tcpProfile &lt;name> [-WS ( ENABLED | DISABLED )] [-SACK ( ENABLED | DISABLED )] [-WSVal &lt;positive_integer>] [-nagle ( ENABLED | DISABLED )] [-ackOnPush ( ENABLED | DISABLED )] [-mss &lt;positive_integer>] [-maxBurst &lt;positive_integer>] [-initialCwnd &lt;positive_integer>] [-delayedAck &lt;positive_integer>] [-oooQSize &lt;positive_integer>] [-maxPktPerMss &lt;positive_integer>] [-pktPerRetx &lt;positive_integer>] [-minRTO &lt;positive_integer>] [-slowStartIncr &lt;positive_integer>] [-bufferSize &lt;positive_integer>] [-synCookie ( ENABLED | DISABLED )] [-KAprobeUpdateLastactivity ( ENABLED | DISABLED )] [-flavor &lt;flavor>] [-dynamicReceiveBuffering ( ENABLED | DISABLED )] [-KA ( ENABLED | DISABLED )] [-KAconnIdleTime &lt;positive_integer>] [-KAmaxProbes &lt;positive_integer>] [-KAprobeInterval &lt;positive_integer>] [-sendBuffsize &lt;positive_integer>] [-mptcp ( ENABLED | DISABLED )] [-EstablishClientConn &lt;EstablishClientConn>] [-tcpSegOffload ( AUTOMATIC | DISABLED )] [-rstWindowAttenuate ( ENABLED | DISABLED )] [-rstMaxAck ( ENABLED | DISABLED )] [-spoofSynDrop ( ENABLED | DISABLED )] [-ecn ( ENABLED | DISABLED )] [-mptcpDropDataOnPreEstSF ( ENABLED | DISABLED )] [-mptcpFastOpen ( ENABLED | DISABLED )] [-mptcpSessionTimeout &lt;positive_integer>] [-TimeStamp ( ENABLED | DISABLED )] [-dsack ( ENABLED | DISABLED )] [-ackAggregation ( ENABLED | DISABLED )] [-frto ( ENABLED | DISABLED )] [-maxcwnd &lt;positive_integer>] [-fack ( ENABLED | DISABLED )]
+set ns tcpProfile &lt;name> [-WS ( ENABLED | DISABLED )] [-SACK ( ENABLED | DISABLED )] [-WSVal &lt;positive_integer>] [-nagle ( ENABLED | DISABLED )] [-ackOnPush ( ENABLED | DISABLED )] [-mss &lt;positive_integer>] [-maxBurst &lt;positive_integer>] [-initialCwnd &lt;positive_integer>] [-delayedAck &lt;positive_integer>] [-oooQSize &lt;positive_integer>] [-maxPktPerMss &lt;positive_integer>] [-pktPerRetx &lt;positive_integer>] [-minRTO &lt;positive_integer>] [-slowStartIncr &lt;positive_integer>] [-bufferSize &lt;positive_integer>] [-synCookie ( ENABLED | DISABLED )] [-KAprobeUpdateLastactivity ( ENABLED | DISABLED )] [-flavor &lt;flavor>] [-dynamicReceiveBuffering ( ENABLED | DISABLED )] [-KA ( ENABLED | DISABLED )] [-KAconnIdleTime &lt;positive_integer>] [-KAmaxProbes &lt;positive_integer>] [-KAprobeInterval &lt;positive_integer>] [-sendBuffsize &lt;positive_integer>] [-mptcp ( ENABLED | DISABLED )] [-EstablishClientConn &lt;EstablishClientConn>] [-tcpSegOffload ( AUTOMATIC | DISABLED )] [-rstWindowAttenuate ( ENABLED | DISABLED )] [-rstMaxAck ( ENABLED | DISABLED )] [-spoofSynDrop ( ENABLED | DISABLED )] [-ecn ( ENABLED | DISABLED )] [-mptcpDropDataOnPreEstSF ( ENABLED | DISABLED )] [-mptcpFastOpen ( ENABLED | DISABLED )] [-mptcpSessionTimeout &lt;positive_integer>] [-TimeStamp ( ENABLED | DISABLED )] [-dsack ( ENABLED | DISABLED )] [-ackAggregation ( ENABLED | DISABLED )] [-frto ( ENABLED | DISABLED )] [-maxcwnd &lt;positive_integer>] [-fack ( ENABLED | DISABLED )] [-tcpmode ( TRANSPARENT | ENDPOINT )] [-tcpFastOpen ( ENABLED | DISABLED )] [-Hystart ( ENABLED | DISABLED )] [-dupackthresh &lt;positive_integer>] [-burstRateControl &lt;burstRateControl>] [-tcprate &lt;positive_integer>] [-rateqmax &lt;positive_integer>] [-DropHalfClosedConnOnTimeout ( ENABLED | DISABLED )] [-DropEstConnOnTimeout ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -384,7 +432,7 @@ Default value: Default
 Enable or disable dynamic receive buffering. When enabled, allows the receive buffer to be adjusted dynamically based on memory and network conditions.
 Note: The buffer size argument must be set for dynamic adjustments to take place.
 Possible values: ENABLED, DISABLED
-Default value: ENABLED
+Default value: DISABLED
 
 <b>KA</b>
 Send periodic TCP keep-alive (KA) probes to check if peer is still up.
@@ -401,7 +449,7 @@ Maximum value: 4095
 Number of keep-alive (KA) probes to be sent when not acknowledged, before assuming the peer to be down.
 Default value: NSTCP_KA_DEFAULT_PROBE_COUNT
 Minimum value: 1
-Maximum value: 255
+Maximum value: 254
 
 <b>KAprobeInterval</b>
 Time interval, in seconds, before the next keep-alive (KA) probe, if the peer does not respond.
@@ -497,6 +545,54 @@ Enable or disable FACK (Forward ACK).
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
+<b>tcpmode</b>
+TCP Optimization modes TRANSPARENT / ENDPOINT.
+Possible values: TRANSPARENT, ENDPOINT
+Default value: TRANSPARENT
+
+<b>tcpFastOpen</b>
+Enable or disable TCP Fastopen. When enabled, NS can receive or send Data in SYN or SYN-ACK packets.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>Hystart</b>
+Enable or disable CUBIC Hystart
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>dupackthresh</b>
+TCP dupack threshold.
+Default value: 3
+Minimum value: 1
+Maximum value: 15
+
+<b>burstRateControl</b>
+TCP Burst Rate Control DISABLED/FIXED/DYNAMIC. FIXED requires a TCP rate to be set.
+Possible values: DISABLED, FIXED, DYNAMIC
+Default value: DISABLED
+
+<b>tcprate</b>
+TCP connection payload send rate in Kb/s
+Default value: 0
+Minimum value: 0
+Maximum value: 10000000
+
+<b>rateqmax</b>
+Maximum connection queue size in bytes, when BurstRateControl is used
+Default value: 0
+Minimum value: 0
+Maximum value: 1000000000
+
+<b>DropHalfClosedConnOnTimeout</b>
+Silently drop tcp half closed connections on idle timeout
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>DropEstConnOnTimeout</b>
+Silently drop tcp established connections on idle timeout
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
 
 
 ##Example
@@ -510,7 +606,7 @@ Removes the attributes of the TCP profile. Attributes for which a default value 
 
 ##Synopsys
 
-unset ns tcpProfile &lt;name> [-WS] [-SACK] [-WSVal] [-nagle] [-ackOnPush] [-mss] [-maxBurst] [-initialCwnd] [-delayedAck] [-oooQSize] [-maxPktPerMss] [-pktPerRetx] [-minRTO] [-slowStartIncr] [-bufferSize] [-synCookie] [-KAprobeUpdateLastactivity] [-flavor] [-dynamicReceiveBuffering] [-KA] [-KAmaxProbes] [-KAconnIdleTime] [-KAprobeInterval] [-sendBuffsize] [-mptcp] [-EstablishClientConn] [-tcpSegOffload] [-rstWindowAttenuate] [-rstMaxAck] [-spoofSynDrop] [-ecn] [-mptcpDropDataOnPreEstSF] [-mptcpFastOpen] [-mptcpSessionTimeout] [-TimeStamp] [-dsack] [-ackAggregation] [-frto] [-maxcwnd] [-fack]
+unset ns tcpProfile &lt;name> [-WS] [-SACK] [-WSVal] [-nagle] [-ackOnPush] [-mss] [-maxBurst] [-initialCwnd] [-delayedAck] [-oooQSize] [-maxPktPerMss] [-pktPerRetx] [-minRTO] [-slowStartIncr] [-bufferSize] [-synCookie] [-KAprobeUpdateLastactivity] [-flavor] [-dynamicReceiveBuffering] [-KA] [-KAmaxProbes] [-KAconnIdleTime] [-KAprobeInterval] [-sendBuffsize] [-mptcp] [-EstablishClientConn] [-tcpSegOffload] [-rstWindowAttenuate] [-rstMaxAck] [-spoofSynDrop] [-ecn] [-mptcpDropDataOnPreEstSF] [-mptcpFastOpen] [-mptcpSessionTimeout] [-TimeStamp] [-dsack] [-ackAggregation] [-frto] [-maxcwnd] [-fack] [-tcpmode] [-tcpFastOpen] [-Hystart] [-dupackthresh] [-burstRateControl] [-tcprate] [-rateqmax] [-DropHalfClosedConnOnTimeout] [-DropEstConnOnTimeout]
 
 
 ##show ns tcpProfile
@@ -656,6 +752,60 @@ TCP Maximum Congestion Window.
 
 <b>fack</b>
 Forward Acknowlegement
+
+<b>tcpmode</b>
+TCP Optimization mode
+
+<b>tcpFastOpen</b>
+Enable or disable TCP fastopen.
+
+<b>Hystart</b>
+TCP CUBIC Hystart
+
+<b>dupackthresh</b>
+TCP Dupack Threshold
+
+<b>nileD1Percent</b>
+TCP Nile D1 percent
+
+<b>nileD2Percent</b>
+TCP Nile D2 percent
+
+<b>nileD3Percent</b>
+TCP Nile D3 percent
+
+<b>nileBetaMaxPercent</b>
+TCP Nile Beta max
+
+<b>nileBetaMinPercent</b>
+TCP Nile Beta min
+
+<b>nileAlphaMax</b>
+TCP Nile Alpha max
+
+<b>nileAlphaMinPercent</b>
+TCP Nile Alpha min
+
+<b>nileRttFilter</b>
+TCP Nile RTT filter
+
+<b>nileRttFactor</b>
+TCP Nile RTT factor
+
+<b>burstRateControl</b>
+TCP Burst Rate Control DISABLED/FIXED/DYNAMIC. FIXED requires a TCP rate to be set.
+
+<b>tcprate</b>
+TCP connection payload send rate in Kb/s
+
+<b>rateqmax</b>
+Maximum connection queue size in bytes, when BurstRateControl is used
+
+<b>DropHalfClosedConnOnTimeout</b>
+Silently drop tcp half closed connections on idle timeout
+
+<b>DropEstConnOnTimeout</b>
+Silently drop tcp established connections on idle timeout
 
 <b>stateflag</b>
 State flag

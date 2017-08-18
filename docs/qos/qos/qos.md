@@ -10,10 +10,12 @@ Display QoS statistics.
 
 ##Synopsys
 
-stat qos [-detail] [-fullValues] [-ntimes &lt;positive_integer>] [-logFile &lt;input_filename>] [-clearstats ( basic | full )]
+stat qos [-name ] [-detail] [-fullValues] [-ntimes &lt;positive_integer>] [-logFile &lt;input_filename>] [-clearstats ( basic | full )]
 
 
 ##Arguments
+
+<b>name</b>
 
 <b>detail</b>
 Specifies detailed output (including more statistics). The output can be quite voluminous. Without this argument, the output will show only a summary.
@@ -37,128 +39,176 @@ Possible values: basic, full
 
 ##Outputs
 
-<b>IPC messages sent from QoS (ipcsent)</b>
-IPC messages sent from qos system.
+<b>Receive direction packets processed by QoS (qos_packets_received)</b>
+Receive direction packets processed by QoS
 
-<b>IPC messages QoS failed to send (ipcfailed)</b>
-IPC messages failed to send from qos system.
+<b>Send direction packets processed by QoS (qos_packets_sent)</b>
+Send direction packets processed by QoS
 
-<b>IPC messages QoS received (ipcrcvd)</b>
-IPC messages received by qos.
+<b>Packets bypassing QoS (qos_packets_bypassed)</b>
+Packets bypassing QoS
 
-<b>IPC messages sent to QoS (pe2qsent)</b>
-IPC messages sent to qos system.
+<b>Total packets dropped (qos_packets_dropped)</b>
+Total packets dropped
 
-<b>IPC messages failed to send QoS (pe2qfail)</b>
-IPC messages failed to send to qos system.
+<b>Received bytes processed by QoS (qos_bytes_rx)</b>
+Received bytes processed by QoS
 
-<b>IPC messages received from QoS (pe2qrecv)</b>
-IPC messages received from qos system.
+<b>Sent bytes processed by QoS (qos_bytes_tx)</b>
+Sent bytes processed by QoS
 
-<b>Bytes QoS marked for drop (bytsdrop)</b>
-Bytes QoS marked for drop
+<b>QoS lazy byte optimization rate (qos_lazy_bytes)</b>
+QoS lazy byte optimization rate
 
-<b>QoS bytes sent not classified (bytsntnc)</b>
-Bytes scheduled by QoS that were not classified.
+<b>QoS actual bytes scheduled (qos_real_bytes)</b>
+QoS actual bytes scheduled
 
-<b>QoS bytes dropped no connection (bytdrpnc)</b>
-Bytes dropped by QoS when no connection was found.
+<b>Total packets filtered by QoS (qos_packets_filtered)</b>
+Total packets filtered by QoS
 
-<b>Packets sent to QoS (qosinpkt)</b>
-Packets sent to QoS for scheduling.
+<b>Total packets classified by QoS (qos_packets_classified)</b>
+Total packets classified by QoS
 
-<b>Packets from QoS to be sent (qosotpkt)</b>
-Packets from QoS to be sent
+<b>New QoS flows (qos_flows)</b>
+New QoS flows
 
-<b>Packets Dropped by QoS (qosdrpkt)</b>
-Packets Dropped by QoS.
+<b>Recycled QoS flows (qos_flow_recycles)</b>
+Recycled QoS flows
 
-<b>Classified source MAC rewritten (qosrwmac)</b>
-Number of packets with inband classification in source MAC.
+<b>QoS Flow Recycle failures (qos_session_recycle_failure)</b>
+QoS Flow Recycle failures
 
-<b>QoS packets unclassified (qosuclas)</b>
-Number of packets without classification.
+<b>Sessions manually ignored (qos_sessions_ignored)</b>
+Sessions manually ignored
 
-<b>QoS packets classified (qosclas)</b>
-Number of packets with classification.
+<b>sessions manually consumed (qos_sessions_consumed)</b>
+sessions manually consumed
 
-<b>QoS learned true MAC (qoslm)</b>
-QoS learned true MAC
+<b>Uneque qos action objects created (qos_actions_created)</b>
+Uneque qos action objects created
 
-<b>QoS Input Bytes (qosib)</b>
-Bytes sent to QoS for scheduling
+<b>Policies re-evaluated due to cli change (qos_policy_reeval)</b>
+Policies re-evaluated due to cli change
 
-<b>QoS Output Bytes (qosob)</b>
-Bytes received from QoS to be sent
+<b>Connections unable to be classified beyond TCP (qos_cfy_tcp_unknown)</b>
+Connections unable to be classified beyond TCP
 
-<b>QoS Free Held List (qosfc)</b>
-No. more packets QoS can hold onto.
+<b>Connections unable to be classified beyond UDP (qos_cfy_udp_unknown)</b>
+Connections unable to be classified beyond UDP
 
-<b>QoS Link 00 Bytes Sent (qosl00sd)</b>
-QoS bytes sent on Link 00
+<b>Scheduler leaf nodes constructed (qos_sch_leafs)</b>
+Scheduler leaf nodes constructed
 
-<b>QoS Link 00 Bytes Dropped (qosl00dr)</b>
-QoS bytes dropped on Link 00
+<b>Scheduler nodes constructed (qos_session_mem)</b>
+Scheduler nodes constructed
 
-<b>QoS Link 01 Bytes Sent (qosl01sd)</b>
-QoS bytes sent on Link 01
+<b>Scheduler virtual packets constructed (qos_sch_virtual_packets)</b>
+Scheduler virtual packets constructed
 
-<b>QoS Link 01 Bytes Dropped (qosl01dr)</b>
-QoS bytes dropped on Link 01
+<b>Scheduler bytes accepted (qos_sch_virtual_bytes_accepted)</b>
+Scheduler bytes accepted
 
-<b>QoS Link 02 Bytes Sent (qosl02sd)</b>
-QoS bytes sent on Link 02
+<b>Scheduler Failures to recycle QoS flows (qos_sch_leaf_recycle_failures)</b>
+Scheduler Failures to recycle QoS flows
 
-<b>QoS Link 02 Bytes Dropped (qosl02dr)</b>
-QoS bytes dropped on Link 02
+<b>Scheduler Regulated node count (qos_sch_node_regulated_count)</b>
+Scheduler Regulated node count
 
-<b>QoS Link 03 Bytes Sent (qosl03sd)</b>
-QoS bytes sent on Link 03
+<b>Scheduler session classes constructed (qos_sch_sessions_created)</b>
+Scheduler session classes constructed
 
-<b>QoS Link 03 Bytes Dropped (qosl03dr)</b>
-QoS bytes dropped on Link 03
+<b>Scheduler session classes constructed (qos_sch_sessions_deleted)</b>
+Scheduler session classes constructed
 
-<b>QoS Link 04 Bytes Sent (qosl04sd)</b>
-QoS bytes sent on Link 04
+<b>Scheduler sdrr nodes constructed (qos_sch_sdrr_nodes)</b>
+Scheduler sdrr nodes constructed
 
-<b>QoS Link 04 Bytes Dropped (qosl04dr)</b>
-QoS bytes dropped on Link 04
+<b>Scheduler session connections created (qos_sch_session_conns)</b>
+Scheduler session connections created
 
-<b>QoS Link 05 Bytes Sent (qosl05sd)</b>
-QoS bytes sent on Link 05
+<b>Scheduler session connections removed (qos_sch_session_conns_removed)</b>
+Scheduler session connections removed
 
-<b>QoS Link 05 Bytes Dropped (qosl05dr)</b>
-QoS bytes dropped on Link 05
+<b>Scheduler regulated sessions count (qos_sch_sessions_regulated_count)</b>
+Scheduler regulated sessions count
 
-<b>QoS Link 06 Bytes Sent (qosl06sd)</b>
-QoS bytes sent on Link 06
+<b>Scheduler session bytes total (qos_sch_sessions_byte_count)</b>
+Scheduler session bytes total
 
-<b>QoS Link 06 Bytes Dropped (qosl06dr)</b>
-QoS bytes dropped on Link 06
+<b>Scheduler regulated node count (qos_sch_regulated_count)</b>
+Scheduler regulated node count
 
-<b>QoS Link 07 Bytes Sent (qosl07sd)</b>
-QoS bytes sent on Link 07
+<b>Scheduler links created (qos_sch_links_created)</b>
+Scheduler links created
 
-<b>QoS Link 07 Bytes Dropped (qosl07dr)</b>
-QoS bytes dropped on Link 07
+<b>Scheduler links deleted (qos_sch_links_deleted)</b>
+Scheduler links deleted
 
-<b>QoS Link 08 Bytes Sent (qosl08sd)</b>
-QoS bytes sent on Link 08
+<b>Scheduler links updated (qos_sch_links_updated)</b>
+Scheduler links updated
 
-<b>QoS Link 08 Bytes Dropped (qosl08dr)</b>
-QoS bytes dropped on Link 08
+<b>Scheduler calls to poll_libqos (qos_sch_poll_count)</b>
+Scheduler calls to poll_libqos
 
-<b>QoS Link 09 Bytes Sent (qosl09sd)</b>
-QoS bytes sent on Link 09
+<b>Scheduler peer messages received (qos_sch_peer_msgs)</b>
+Scheduler peer messages received
 
-<b>QoS Link 09 Bytes Dropped (qosl09dr)</b>
-QoS bytes dropped on Link 09
+<b>IPC failed for QoS messages. (qos_error_ipc)</b>
+IPC failed for QoS messages.
 
-<b>QoS Link 10 Bytes Sent (qosl10sd)</b>
-QoS bytes sent on Link 10
+<b>DPI inspection state invalid (qos_flow_mem)</b>
+DPI inspection state invalid
 
-<b>QoS Link 10 Bytes Dropped (qosl10dr)</b>
-QoS bytes dropped on Link 10
+<b>recycel failed backlog (qos_recycle_failed_backlog)</b>
+recycle failed backlog
+
+<b>qos recycle failures due to session (qos_recycle_failed_session)</b>
+qos recycle failures because of associated session
+
+<b>Failed attempts to create actions (qos_error_create_action_failed)</b>
+Failed attempts to create actions
+
+<b>Failed attempts to modify actions (qos_error_modify_action_failed)</b>
+Failed attempts to modify actions
+
+<b>Failed attempts to remove actions (qos_error_remove_action_failed)</b>
+Failed attempts to remove actions
+
+<b>Internal CLI error (qos_error_cli_unknown)</b>
+Internal CLI error
+
+<b>qos action rename not yet implemented (qos_error_rename_not_implemented)</b>
+qos action rename not yet implemented
+
+<b>Failed attempts to remove qos policy (qos_error_remove_policy_failed)</b>
+Failed attempts to remove qos policy
+
+<b>Failed attempts to create qos policy (qos_error_create_policy_failed)</b>
+Failed attempts to create qos policy
+
+<b>Libqos api failures (qos_error_libqos_api_failures)</b>
+Libqos api failures
+
+<b>Libqos api qos_session_add_pcb/natpcb() failed for reason QS_EINVALIDPCB (qos_error_api_ses_invalidpcb)</b>
+Libqos api qos_session_add_pcb/natpcb() failed for reason QS_EINVALIDPCB
+
+<b>Libqos api qos_session_add_pcb/natpcb() failed for reason QS_ENOTREADY (qos_error_api_ses_notready)</b>
+Libqos api qos_session_add_pcb/natpcb() failed for reason QS_ENOTREADY
+
+<b>Libqos api qos_session_add_pcb/natpcb() failed for reason QS_EINSESSION (qos_error_api_ses_add_insession)</b>
+Libqos api qos_session_add_pcb/natpcb() failed for reason QS_EINSESSION
+
+<b>Libqos api qos_session_add_pcb/natpcb() failed (qos_error_api_ses_add_other)</b>
+Libqos api qos_session_add_pcb/natpcb() failed
+
+<b>Libqos api qos_session_rem_pcb/natpcb() failed for reason QS_ENOTINSESSION (qos_error_api_ses_rem_notinsession)</b>
+Libqos api qos_session_rem_pcb/natpcb() failed for reason QS_ENOTINSESSION
+
+<b>Libqos api qos_session_rem_pcb/natpcb() failed (qos_error_api_ses_rem_other)</b>
+Libqos api qos_session_rem_pcb/natpcb() failed
+
+<b>Libqos api qos_session_delete faled (qos_error_api_ses_del)</b>
+Libqos api qos_session_delete faled
 
 
 

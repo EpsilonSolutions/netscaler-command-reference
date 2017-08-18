@@ -12,7 +12,7 @@ Set the Gx Interface configuration on NS.
 
 ##Synopsys
 
-set subscriber gxInterface [-vServer &lt;string>] [-service &lt;string>] [-pcrfRealm &lt;string>] [-holdOnSubscriberAbsence ( YES | NO )] [-requestTimeout &lt;positive_integer>] [-requestRetryAttempts &lt;positive_integer>] [-idleTTL &lt;positive_integer>] [-negativeTTL &lt;positive_integer>] [-servicePathAVP &lt;positive_integer> ...] [-servicePathVendorid &lt;positive_integer>]
+set subscriber gxInterface [-vServer &lt;string>] [-service &lt;string>] [-pcrfRealm &lt;string>] [-holdOnSubscriberAbsence ( YES | NO )] [-requestTimeout &lt;positive_integer>] [-requestRetryAttempts &lt;positive_integer>] [-revalidationTimeout &lt;positive_integer>] [-negativeTTL &lt;positive_integer>] [-servicePathAVP &lt;positive_integer> ...] [-servicePathVendorid &lt;positive_integer>]
 
 
 ##Arguments
@@ -43,10 +43,10 @@ If the request does not complete within requestTimeout time, the request is retr
 Default value: 3
 Minimum value: 0
 
-<b>idleTTL</b>
-q!Idle Time, in seconds, after which the Gx CCR-U request will be sent after any PCRF activity on a session. Any RAR or CCA message resets the timer.
+<b>revalidationTimeout</b>
+q!Revalidation Timeout, in seconds, after which the Gx CCR-U request will be sent after any PCRF activity on a session. Any RAR or CCA message resets the timer.
 Zero value disables the idle timeout. !
-Default value: 900
+Default value: 0
 Minimum value: 0
 Maximum value: 86400
 
@@ -75,7 +75,7 @@ Use this command to remove subscriber gxInterface settings.Refer to the set subs
 
 ##Synopsys
 
-unset subscriber gxInterface [-vServer] [-service] [-holdOnSubscriberAbsence] [-requestTimeout] [-requestRetryAttempts] [-idleTTL] [-negativeTTL] [-servicePathAVP] [-servicePathVendorid]
+unset subscriber gxInterface [-vServer] [-service] [-holdOnSubscriberAbsence] [-requestTimeout] [-requestRetryAttempts] [-revalidationTimeout] [-negativeTTL] [-servicePathAVP] [-servicePathVendorid]
 
 
 ##show subscriber gxInterface
@@ -114,6 +114,10 @@ If the request does not complete within requestTimeout time, the request is retr
 
 <b>idleTTL</b>
 q!Idle Time, in seconds, after which the Gx CCR-U request will be sent after any PCRF activity on a session. Any RAR or CCA message resets the timer.
+Zero value disables the idle timeout. !
+
+<b>revalidationTimeout</b>
+q!Revalidation Timeout, in seconds, after which the Gx CCR-U request will be sent after any PCRF activity on a session. Any RAR or CCA message resets the timer.
 Zero value disables the idle timeout. !
 
 <b>negativeTTL</b>

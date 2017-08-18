@@ -12,7 +12,7 @@ Sets global parameters for NetScaler Gateway.
 
 ##Synopsys
 
-set vpn parameter [-httpPort &lt;port> ...] [-winsIP &lt;ip_addr>] [-dnsVserverName &lt;string>] [-splitDns &lt;splitDns>] [-sessTimeout &lt;mins>] [-clientSecurity &lt;expression>  [-clientSecurityGroup &lt;string>]  [-clientSecurityMessage &lt;string>]] [-clientSecurityLog ( ON | OFF )] [-Smartgroup &lt;string>] [-splitTunnel &lt;splitTunnel>] [-localLanAccess ( ON | OFF )] [-rfc1918 ( ON | OFF )] [-killConnections ( ON | OFF )] [-transparentInterception ( ON | OFF )] [-defaultAuthorizationAction ( ALLOW | DENY )] [-authorizationGroup &lt;string>] [-clientIdleTimeout &lt;mins>] [-proxy &lt;proxy>] [-allProtocolProxy &lt;string> | -httpProxy &lt;string> | -ftpProxy &lt;string> | -socksProxy &lt;string> | -gopherProxy &lt;string> | -sslProxy &lt;string>] [-proxyException &lt;string>] [-proxyLocalBypass ( ENABLED | DISABLED )] [-clientCleanupPrompt ( ON | OFF )] [-forceCleanup &lt;forceCleanup> ...] [-clientOptions &lt;clientOptions> ...] [-clientConfiguration &lt;clientConfiguration> ...] [-SSO ( ON | OFF )] [-ssoCredential ( PRIMARY | SECONDARY )] [-windowsAutoLogon ( ON | OFF )] [-useMIP ( NS | OFF )] [-useIIP &lt;useIIP>] [-clientDebug &lt;clientDebug>] [-loginScript &lt;input_filename>] [-logoutScript &lt;input_filename>] [-homePage &lt;URL>] [-icaProxy ( ON | OFF )] [-wihome &lt;URL>  [-wihomeAddressType ( IPV4 | IPV6 )]] [-citrixReceiverHome &lt;URL>] [-wiPortalMode ( NORMAL | COMPACT )] [-ClientChoices ( ON | OFF )] [-iipDnsSuffix &lt;string>] [-forcedTimeout &lt;mins>] [-forcedTimeoutWarning &lt;mins>] [-ntDomain &lt;string>] [-clientlessVpnMode &lt;clientlessVpnMode>] [-clientlessModeUrlEncoding &lt;clientlessModeUrlEncoding>] [-clientlessPersistentCookie &lt;clientlessPersistentCookie>] [-emailHome &lt;URL>] [-allowedLoginGroups &lt;string>] [-encryptCsecExp ( ENABLED | DISABLED )] [-appTokenTimeout &lt;positive_integer>] [-mdxTokenTimeout &lt;positive_integer>] [-UITHEME &lt;UITHEME>] [-SecureBrowse ( ENABLED | DISABLED )] [-storefronturl &lt;string>] [-kcdAccount &lt;string>] [-clientversions &lt;string>] [-rdpClientProfileName &lt;string>] [-WindowsPluginUpgrade &lt;WindowsPluginUpgrade>] [-MacPluginUpgrade &lt;MacPluginUpgrade>] [-LinuxPluginUpgrade &lt;LinuxPluginUpgrade>] [-iconWithReceiver ( ON | OFF )] [-userDomains &lt;string>] [-icaSessionTimeout ( ON | OFF )]
+set vpn parameter [-httpPort &lt;port> ...] [-winsIP &lt;ip_addr>] [-dnsVserverName &lt;string>] [-splitDns &lt;splitDns>] [-icaUserAccounting &lt;string>] [-sessTimeout &lt;mins>] [-clientSecurity &lt;expression>  [-clientSecurityGroup &lt;string>]  [-clientSecurityMessage &lt;string>]] [-clientSecurityLog ( ON | OFF )] [-Smartgroup &lt;string>] [-splitTunnel &lt;splitTunnel>] [-localLanAccess ( ON | OFF )] [-rfc1918 ( ON | OFF )] [-killConnections ( ON | OFF )] [-transparentInterception ( ON | OFF )] [-defaultAuthorizationAction ( ALLOW | DENY )] [-authorizationGroup &lt;string>] [-clientIdleTimeout &lt;mins>] [-proxy &lt;proxy>] [-allProtocolProxy &lt;string> | -httpProxy &lt;string> | -ftpProxy &lt;string> | -socksProxy &lt;string> | -gopherProxy &lt;string> | -sslProxy &lt;string>] [-proxyException &lt;string>] [-proxyLocalBypass ( ENABLED | DISABLED )] [-clientCleanupPrompt ( ON | OFF )] [-forceCleanup &lt;forceCleanup> ...] [-clientConfiguration ( none | trace ) ...] [-SSO ( ON | OFF )] [-ssoCredential ( PRIMARY | SECONDARY )] [-windowsAutoLogon ( ON | OFF )] [-useMIP ( NS | OFF )] [-useIIP &lt;useIIP>] [-loginScript &lt;input_filename>] [-logoutScript &lt;input_filename>] [-homePage &lt;URL>] [-icaProxy ( ON | OFF )] [-wihome &lt;URL>  [-wihomeAddressType ( IPV4 | IPV6 )]] [-citrixReceiverHome &lt;URL>] [-wiPortalMode ( NORMAL | COMPACT )] [-ClientChoices ( ON | OFF )] [-iipDnsSuffix &lt;string>] [-forcedTimeout &lt;mins>] [-forcedTimeoutWarning &lt;mins>] [-ntDomain &lt;string>] [-clientlessVpnMode &lt;clientlessVpnMode>] [-clientlessModeUrlEncoding &lt;clientlessModeUrlEncoding>] [-clientlessPersistentCookie &lt;clientlessPersistentCookie>] [-emailHome &lt;URL>] [-allowedLoginGroups &lt;string>] [-encryptCsecExp ( ENABLED | DISABLED )] [-appTokenTimeout &lt;positive_integer>] [-mdxTokenTimeout &lt;positive_integer>] [-UITHEME &lt;UITHEME>] [-SecureBrowse ( ENABLED | DISABLED )] [-storefronturl &lt;string>] [-kcdAccount &lt;string>] [-clientversions &lt;string>] [-rdpClientProfileName &lt;string>] [-WindowsPluginUpgrade &lt;WindowsPluginUpgrade>] [-MacPluginUpgrade &lt;MacPluginUpgrade>] [-LinuxPluginUpgrade &lt;LinuxPluginUpgrade>] [-iconWithReceiver ( ON | OFF )] [-icaSessionTimeout ( ON | OFF )] [-alwaysONProfileName &lt;string>] [-autoProxyUrl &lt;URL>] [-pcoipProfileName &lt;string>]
 
 
 ##Arguments
@@ -31,6 +31,9 @@ Name of the DNS virtual server for the user session.
 Route the DNS requests to the local DNS server configured on the user device, or NetScaler Gateway (remote), or both.
 Possible values: LOCAL, REMOTE, BOTH
 
+<b>icaUserAccounting</b>
+The name of the radiusPolicy to use for RADIUS user accounting info on the session.
+
 <b>sessTimeout</b>
 Number of minutes after which the session times out.
 Default value: 30
@@ -47,12 +50,12 @@ The client security group that will be assigned on failure of the client securit
 The client security message that will be displayed on failure of the client security check.
 
 <b>clientSecurityLog</b>
-Set the logging of client security checks.
+Specifies whether or not to display all failed Client Security scans to the end user
 Possible values: ON, OFF
-Default value: ON
+Default value: OFF
 
 <b>Smartgroup</b>
-Comma-separated list of groups in which the user is placed when none of the groups that the user is a part of is configured on NetScaler Gateway. The ica (smartacccess2) uses these groups in the is_member_of expressions and the vpn session policy will have the expression to check for presence of antivirus.
+This is the default group that is chosen when the authentication succeeds in addition to extracted groups.
 Maximum value: 64
 
 <b>splitTunnel</b>
@@ -81,7 +84,7 @@ Default value: OFF
 <b>transparentInterception</b>
 Allow access to network resources by using a single IP address and subnet mask or a range of IP addresses. The OFF setting sets the mode to proxy, in which you configure destination and source IP addresses and port numbers. If you are using the NetScaler Gateway Plug-in for Windows, set this parameter to ON, in which the mode is set to transparent. If you are using the NetScaler Gateway Plug-in for Java, set this parameter to OFF.
 Possible values: ON, OFF
-Default value: ON
+Default value: OFF
 
 <b>defaultAuthorizationAction</b>
 Specify the network resources that users have access to when they log on to the internal network. The default setting for authorization is to deny access to all network resources. Citrix recommends using the default global setting and then creating authorization policies to define the network resources users can access. If you set the default authorization policy to DENY, you must explicitly authorize access to any network resource, which improves security.
@@ -137,11 +140,8 @@ Default value: ON
 <b>forceCleanup</b>
 Force cache clean-up when the user closes a session. You can specify all, none, or any combination of the client-side items.
 
-<b>clientOptions</b>
-Display only the configured menu options when you select the "Configure NetScaler Gateway" option in the NetScaler Gateway Plug-in's system tray icon for Windows.
-
 <b>clientConfiguration</b>
-Display only the configured tabs when you select the "Configure NetScaler Gateway" option in the NetScaler Gateway Plug-in's system tray icon for Windows.
+Allow users to change client Debug logging level in Configuration tab of the NetScaler Gateway Plug-in for Windows.
 
 <b>SSO</b>
 Set single sign-on (SSO) for the session. When the user accesses a server, the user's logon credentials are passed to the server for authentication.
@@ -171,15 +171,6 @@ Define IP address pool options. Available settings function as follows:
 * OFF - Address pool is not configured.
 Possible values: NOSPILLOVER, SPILLOVER, OFF
 Default value: NOSPILLOVER
-
-<b>clientDebug</b>
-Set the trace level on NetScaler Gateway. Technical support technicians use these debug logs for in-depth debugging and troubleshooting purposes. Available settings function as follows: 
-* DEBUG - Detailed debug messages are collected and written into the specified file.
-* STATS - Application audit level error messages and debug statistic counters are written into the specified file. 
-* EVENTS - Application audit-level error messages are written into the specified file. 
-* OFF - Only critical events are logged into the Windows Application Log.
-Possible values: debug, stats, events, OFF
-Default value: OFF
 
 <b>loginScript</b>
 Path to the logon script that is run when a session is established. Separate multiple scripts by using comma. A "$" in the path signifies that the word following the "$" is an environment variable.
@@ -319,13 +310,19 @@ Option to decide whether to show plugin icon along with receiver icon
 Possible values: ON, OFF
 Default value: OFF
 
-<b>userDomains</b>
-List of user domains specified as comma seperated value
-
 <b>icaSessionTimeout</b>
 Enable or disable ica session timeout. If enabled and in case AAA session gets terminated, ICA connections associated with that will also get terminated
 Possible values: ON, OFF
 Default value: OFF
+
+<b>alwaysONProfileName</b>
+Name of the AlwaysON profile. The builtin profile named none can be used to explicitly disable AlwaysON.
+
+<b>autoProxyUrl</b>
+URL to auto proxy config file
+
+<b>pcoipProfileName</b>
+Name of the PCOIP profile.
 
 
 
@@ -340,7 +337,7 @@ Removes global parameters for NetScaler Gateway..Refer to the set vpn parameter 
 
 ##Synopsys
 
-unset vpn parameter [-httpPort] [-winsIP] [-dnsVserverName] [-splitDns] [-sessTimeout] [-clientSecurity] [-clientSecurityGroup] [-Smartgroup] [-clientSecurityMessage] [-clientSecurityLog] [-authorizationGroup] [-clientIdleTimeout] [-allProtocolProxy | -httpProxy | -ftpProxy | -socksProxy | -gopherProxy | -sslProxy] [-proxyException] [-forceCleanup] [-clientOptions] [-clientConfiguration] [-loginScript] [-logoutScript] [-homePage] [-proxy] [-wihome] [-citrixReceiverHome] [-wiPortalMode] [-iipDnsSuffix] [-forcedTimeout] [-forcedTimeoutWarning] [-defaultAuthorizationAction] [-ntDomain] [-clientlessVpnMode] [-emailHome] [-clientlessModeUrlEncoding] [-clientlessPersistentCookie] [-allowedLoginGroups] [-appTokenTimeout] [-mdxTokenTimeout] [-storefronturl] [-UITHEME] [-kcdAccount] [-rdpClientProfileName] [-WindowsPluginUpgrade] [-MacPluginUpgrade] [-LinuxPluginUpgrade] [-iconWithReceiver] [-userDomains] [-icaSessionTimeout] [-splitTunnel] [-localLanAccess] [-rfc1918] [-killConnections] [-transparentInterception] [-proxyLocalBypass] [-clientCleanupPrompt] [-SSO] [-ssoCredential] [-windowsAutoLogon] [-useMIP] [-useIIP] [-clientDebug] [-icaProxy] [-ClientChoices] [-encryptCsecExp] [-SecureBrowse] [-clientversions]
+unset vpn parameter [-httpPort] [-winsIP] [-dnsVserverName] [-splitDns] [-icaUserAccounting] [-sessTimeout] [-clientSecurity] [-clientSecurityGroup] [-Smartgroup] [-clientSecurityMessage] [-clientSecurityLog] [-authorizationGroup] [-clientIdleTimeout] [-allProtocolProxy | -httpProxy | -ftpProxy | -socksProxy | -gopherProxy | -sslProxy] [-proxyException] [-forceCleanup] [-clientConfiguration] [-loginScript] [-logoutScript] [-homePage] [-proxy] [-wihome] [-citrixReceiverHome] [-wiPortalMode] [-iipDnsSuffix] [-forcedTimeout] [-forcedTimeoutWarning] [-defaultAuthorizationAction] [-ntDomain] [-clientlessVpnMode] [-emailHome] [-clientlessModeUrlEncoding] [-clientlessPersistentCookie] [-allowedLoginGroups] [-appTokenTimeout] [-mdxTokenTimeout] [-storefronturl] [-UITHEME] [-kcdAccount] [-rdpClientProfileName] [-WindowsPluginUpgrade] [-MacPluginUpgrade] [-LinuxPluginUpgrade] [-iconWithReceiver] [-icaSessionTimeout] [-alwaysONProfileName] [-autoProxyUrl] [-pcoipProfileName] [-splitTunnel] [-localLanAccess] [-rfc1918] [-killConnections] [-transparentInterception] [-proxyLocalBypass] [-clientCleanupPrompt] [-SSO] [-ssoCredential] [-windowsAutoLogon] [-useMIP] [-useIIP] [-icaProxy] [-ClientChoices] [-encryptCsecExp] [-SecureBrowse] [-clientversions]
 
 
 ##show vpn parameter
@@ -370,6 +367,9 @@ The configured DNS vserver used for DNS host resolution by the VPN.
 <b>splitDns</b>
 The VPN client SplitDns state.
 
+<b>icaUserAccounting</b>
+RADIUS policy to use for user accounting
+
 <b>sessTimeout</b>
 The session timeout, in minutes.
 
@@ -383,10 +383,10 @@ The client security group that will be assigned on failure of the client securit
 The client security message that will be displayed on failure of the client security check.
 
 <b>clientSecurityLog</b>
-Set the logging of client security checks.
+Specifies whether or not to display all failed Client Security scans to the end user
 
 <b>Smartgroup</b>
-Comma-separated list of groups in which the user is placed when none of the groups that the user is a part of is configured on NetScaler Gateway. The ica (smartacccess2) uses these groups in the is_member_of expressions and the vpn session policy will have the expression to check for presence of antivirus.
+This is the default group that is chosen when the authentication succeeds in addition to extracted groups.
 
 <b>splitTunnel</b>
 Send, through the tunnel, traffic only for intranet applications that are defined in NetScaler Gateway. Route all other traffic directly to the Internet. The OFF setting routes all traffic through NetScaler Gateway. With the REVERSE setting, intranet applications define the network traffic that is not intercepted. All network traffic directed to internal IP addresses bypasses the VPN tunnel, while other traffic goes through NetScaler Gateway. Reverse split tunneling can be used to log all non-local LAN traffic. For example, if users have a home network and are logged on through the NetScaler Gateway Plug-in, network traffic destined to a printer or another device within the home network is not intercepted.
@@ -590,6 +590,15 @@ List of user domains specified as comma seperated value
 
 <b>icaSessionTimeout</b>
 Enable or disable ica session timeout. If enabled and in case AAA session gets terminated, ICA connections associated with that will also get terminated
+
+<b>alwaysONProfileName</b>
+Name of the AlwaysON profile. The builtin profile named none can be used to explicitly disable AlwaysON.
+
+<b>autoProxyUrl</b>
+URL to auto proxy config file
+
+<b>pcoipProfileName</b>
+Name of the PCOIP profile.
 
 
 

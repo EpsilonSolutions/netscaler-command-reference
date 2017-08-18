@@ -12,7 +12,7 @@ Adds a static entry to the ND6 table of the NetScaler appliance.
 
 ##Synopsys
 
-add nd6 &lt;neighbor> &lt;mac> (&lt;ifnum> | (-vxlan &lt;positive_integer>  -vtep &lt;ip_addr>)) [-vlan &lt;integer>] [-td &lt;positive_integer>]
+add nd6 &lt;neighbor> &lt;mac> (&lt;ifnum> | -vxlan &lt;positive_integer>) [-vlan &lt;integer>] [-vtep &lt;ip_addr>] [-td &lt;positive_integer>]
 
 
 ##Arguments
@@ -143,6 +143,9 @@ IP address of the VXLAN tunnel endpoint (VTEP) through which the IPv6 address of
 
 <b>flags</b>
 flag for static/permanent entry.
+
+<b>controlPlane</b>
+This nd6 entry is populated by a control plane protocol
 
 <b>channel</b>
 The tunnel that is bound to a netbridge.

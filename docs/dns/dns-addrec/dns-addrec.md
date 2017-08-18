@@ -36,18 +36,21 @@ Add dns addrec www.mynw.com 65.200.211.139 -ttl 10
 
 ##rm dns addRec
 
-Removes an IPv4 address from an address record. The associated domain name must be specified. If no IPv4 address is specified, all records that belong to the specified domain name are removed.
+Removes an IPv4 address from an address record. The associated domain name must be specified. For EDNS Client Subnet (ECS) records, a subnet needs to be specified to remove an IPV4 address from an address record which is cached for that particular subnet. If no IPv4 address is specified, all records that belong to the specified domain name are removed.
 
 
 ##Synopsys
 
-rm dns addRec &lt;hostName> [&lt;IPAddress> ...]
+rm dns addRec &lt;hostName> [-ecsSubnet &lt;ip_addr[/prefix]|ipv6_addr[/prefix]>] [&lt;IPAddress> ...]
 
 
 ##Arguments
 
 <b>hostName</b>
 Domain name.
+
+<b>ecsSubnet</b>
+Subnet for which the cached address records need to be removed.
 
 <b>IPAddress</b>
 IPv4 address(es) of the address records to remove from the specified domain name.
@@ -86,6 +89,9 @@ Possible values: ALL, ADNS, PROXY
 
 <b>IPAddress</b>
 IP addresses for the domain name.
+
+<b>ecsSubnet</b>
+Subnet for which this particular record is cached. Subnet caching will occur for responses with EDNS Client Subnet (ECS) option. Applies to resource records obtained through proxy configurations only.
 
 <b>TTL</b>
 The time to live, in seconds.

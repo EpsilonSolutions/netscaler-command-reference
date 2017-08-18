@@ -5,12 +5,12 @@ The following operations can be performed on "dos":
 
 ##stat dos
 
-Displays DoS protection statistics.
+Displays DoS protection statistics. NOTE: This command is deprecated.HTTP DOS protection feature has been deprecated in favour of AppQoE
 
 
 ##Synopsys
 
-stat dos [-detail] [-fullValues] [-ntimes &lt;positive_integer>] [-logFile &lt;input_filename>] [-clearstats ( basic | full )]
+
 
 
 ##Arguments

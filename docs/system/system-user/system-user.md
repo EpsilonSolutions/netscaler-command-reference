@@ -12,7 +12,7 @@ Adds a new user to the system.Note: You must provide the password after the user
 
 ##Synopsys
 
-add system user &lt;userName> [-externalAuth ( ENABLED | DISABLED )] [-promptString &lt;string>] [-timeout &lt;secs>] [-logging ( ENABLED | DISABLED )]
+add system user &lt;userName> [-externalAuth ( ENABLED | DISABLED )] [-promptString &lt;string>] [-timeout &lt;secs>] [-logging ( ENABLED | DISABLED )] [-maxsession &lt;positive_integer>]
 
 
 ##Arguments
@@ -47,6 +47,12 @@ Users logging privilege
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
+<b>maxsession</b>
+Maximum number of client connection allowed per user
+Default value: 20
+Minimum value: 1
+Maximum value: 40
+
 
 
 ##rm system user
@@ -73,7 +79,7 @@ Modifies the specified parameters of a system-user entry.
 
 ##Synopsys
 
-set system user &lt;userName> {-password } [-externalAuth ( ENABLED | DISABLED )] [-promptString &lt;string>] [-timeout &lt;secs>] [-logging ( ENABLED | DISABLED )]
+set system user &lt;userName> {-password } [-externalAuth ( ENABLED | DISABLED )] [-promptString &lt;string>] [-timeout &lt;secs>] [-logging ( ENABLED | DISABLED )] [-maxsession &lt;positive_integer>]
 
 
 ##Arguments
@@ -107,6 +113,12 @@ Users logging privilege
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
+<b>maxsession</b>
+Maximum number of client connection allowed per user
+Default value: 20
+Minimum value: 1
+Maximum value: 40
+
 
 
 ##unset system user
@@ -116,7 +128,7 @@ Use this command to remove system user settings.Refer to the set system user com
 
 ##Synopsys
 
-unset system user &lt;userName> [-externalAuth] [-promptString] [-timeout] [-logging]
+unset system user &lt;userName> [-externalAuth] [-promptString] [-timeout] [-logging] [-maxsession]
 
 
 ##bind system user
@@ -203,6 +215,8 @@ Password for the system user. Can include any ASCII character.
 
 <b>encrypted</b>
 
+<b>hashmethod</b>
+
 <b>externalAuth</b>
 Whether to use external authentication servers for the system user authentication or not
 
@@ -230,6 +244,9 @@ Name of the Partition to bind to the system user.
 
 <b>logging</b>
 Users logging privilege
+
+<b>maxsession</b>
+Maximum number of client connection allowed per user
 
 <b>devno</b>
 

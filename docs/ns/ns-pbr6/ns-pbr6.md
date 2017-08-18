@@ -12,7 +12,7 @@ Adds an IPv6 policy based route (PBR6) to the NetScaler appliance. To commit thi
 
 ##Synopsys
 
-add ns pbr6 &lt;name> [-td &lt;positive_integer>] &lt;action> [-srcIPv6  [&lt;operator>]  &lt;srcIPv6Val>] [-srcPort  [&lt;operator>]  &lt;srcPortVal>] [-destIPv6  [&lt;operator>]  &lt;destIPv6Val>] [-destPort  [&lt;operator>]  &lt;destPortVal>] [-srcMac &lt;mac_addr>  [-srcMacMask &lt;string>]] [-protocol &lt;protocol> | -protocolNumber &lt;positive_integer>] [-vlan &lt;positive_integer> | -vxlan &lt;positive_integer>] [-interface &lt;interface_name>] [-priority &lt;positive_integer>] [-state ( ENABLED | DISABLED )] [-msr ( ENABLED | DISABLED )  [-monitor &lt;string>]] [(-nextHop  &lt;nextHopVal>) | -ipTunnel &lt;string>] [-nextHopVlan &lt;positive_integer>]
+add ns pbr6 &lt;name> [-td &lt;positive_integer>] &lt;action> [-srcIPv6  [&lt;operator>]  &lt;srcIPv6Val>] [-srcPort  [&lt;operator>]  &lt;srcPortVal>] [-destIPv6  [&lt;operator>]  &lt;destIPv6Val>] [-destPort  [&lt;operator>]  &lt;destPortVal>] [-srcMac &lt;mac_addr>  [-srcMacMask &lt;string>]] [-protocol &lt;protocol> | -protocolNumber &lt;positive_integer>] [-vlan &lt;positive_integer> | -vxlan &lt;positive_integer>] [-interface &lt;interface_name>] [-priority &lt;positive_integer>] [-state ( ENABLED | DISABLED )] [-msr ( ENABLED | DISABLED )  [-monitor &lt;string>]] [(-nextHop  &lt;nextHopVal>) | (-ipTunnel &lt;string>  [-vxlanVlanMap &lt;string>])] [-nextHopVlan &lt;positive_integer>] [-ownerGroup &lt;string>]
 
 
 ##Arguments
@@ -33,30 +33,30 @@ Available settings function as follows:
 Possible values: ALLOW, DENY
 
 <b>srcIPv6</b>
-IP address or range of IP addresses to match against the source IP address of an outgoing IPv6 packet. In the command line interface, separate the range with a hyphen and enclose within brackets.
+IP address or range of IP addresses to match against the source IP address of an outgoing IPv6 packet. In the command line interface, separate the range with a hyphen.
 
 <b>operator</b>
-Logical operator.
+Either the equals (=) or does not equal (!=) logical operator.
 Possible values: =, !=, EQ, NEQ
 
 <b>srcIPv6Val</b>
-IP address or range of IP addresses to match against the source IP address of an outgoing IPv6 packet. In the command line interface, separate the range with a hyphen and enclose within brackets.
+IP address or range of IP addresses to match against the source IP address of an outgoing IPv6 packet. In the command line interface, separate the range with a hyphen.
 
 <b>srcPort</b>
-Port number or range of port numbers to match against the source port number of an outgoing IPv6 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90].
+Port number or range of port numbers to match against the source port number of an outgoing IPv6 packet. In the command line interface, separate the range with a hyphen. For example: 40-90.
 
 <b>srcPortVal</b>
 Source port (range).
 Maximum value: 65535
 
 <b>destIPv6</b>
-IP address or range of IP addresses to match against the destination IP address of an outgoing IPv6 packet.  In the command line interface, separate the range with a hyphen and enclose within brackets.
+IP address or range of IP addresses to match against the destination IP address of an outgoing IPv6 packet.  In the command line interface, separate the range with a hyphen.
 
 <b>destIPv6Val</b>
-IP address or range of IP addresses to match against the destination IP address of an outgoing IPv6 packet.  In the command line interface, separate the range with a hyphen and enclose within brackets.
+IP address or range of IP addresses to match against the destination IP address of an outgoing IPv6 packet.  In the command line interface, separate the range with a hyphen.
 
 <b>destPort</b>
-Port number or range of port numbers to match against the destination port number of an outgoing IPv6 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90].
+Port number or range of port numbers to match against the destination port number of an outgoing IPv6 packet. In the command line interface, separate the range with a hyphen. For example: 40-90.
 Note: The destination port can be specified only for TCP and UDP protocols.
 
 <b>destPortVal</b>
@@ -95,7 +95,7 @@ ID of an interface. The NetScaler appliance compares the PBR6 only to the outgoi
 <b>priority</b>
 Priority of the PBR6, which determines the order in which it is evaluated relative to the other PBR6s. If you do not specify priorities while creating PBR6s, the PBR6s are evaluated in the order in which they are created.
 Minimum value: 1
-Maximum value: 80000
+Maximum value: 81920
 
 <b>state</b>
 Enable or disable the PBR6. After you apply the PBR6s, the NetScaler appliance compares outgoing packets to the enabled PBR6s.
@@ -119,16 +119,23 @@ The Next Hop IPv6 address.
 <b>ipTunnel</b>
 The iptunnel name where packets need to be forwarded upon.
 
+<b>vxlanVlanMap</b>
+The vlan to vxlan mapping to be applied for incoming packets over this pbr tunnel.
+
 <b>nextHopVlan</b>
 VLAN number to be used for link local nexthop .
 Minimum value: 1
 Maximum value: 4094
 
+<b>ownerGroup</b>
+The owner node group in a Cluster for this pbr rule. If owner node group is not specified then the pbr rule is treated as Striped pbr rule.
+Default value: DEFAULT_NG
+
 
 
 ##Example
 
-add ns pbr6 rule1 ALLOW -srcport 45-1024 -destIPv6 2001::45 -nexthop 2001::49
+add ns pbr6 rule1 ALLOW -srcport 45-1024 -destIPv6 2001::45 -nexthop 2001::49add ns pbr6 rule2 ALLOW -srcIPv6 200::1 -destIPv6 200::5 -priority 10 -ipTunnel t8 -vxlanVlanMap maptbl1
 
 ##renumber ns pbr6
 
@@ -172,7 +179,7 @@ Modifies the specified parameters of a PBR6.To commit this operation, you must a
 
 ##Synopsys
 
-set ns pbr6 &lt;name> [-action ( ALLOW | DENY )] [-srcIPv6  [&lt;operator>]  &lt;srcIPv6Val>] [-srcPort  [&lt;operator>]  &lt;srcPortVal>] [-destIPv6  [&lt;operator>]  &lt;destIPv6Val>] [-destPort  [&lt;operator>]  &lt;destPortVal>] [-srcMac &lt;mac_addr>  [-srcMacMask &lt;string>]] [-protocol &lt;protocol> | -protocolNumber &lt;positive_integer>] [-vlan &lt;positive_integer> | -vxlan &lt;positive_integer>] [-interface &lt;interface_name>] [-priority &lt;positive_integer>] [-msr ( ENABLED | DISABLED )  [-monitor &lt;string>]] [(-nextHop  &lt;nextHopVal>) | -ipTunnel &lt;string>] [-nextHopVlan &lt;positive_integer>]
+set ns pbr6 &lt;name> [-action ( ALLOW | DENY )] [-srcIPv6  [&lt;operator>]  &lt;srcIPv6Val>] [-srcPort  [&lt;operator>]  &lt;srcPortVal>] [-destIPv6  [&lt;operator>]  &lt;destIPv6Val>] [-destPort  [&lt;operator>]  &lt;destPortVal>] [-srcMac &lt;mac_addr>  [-srcMacMask &lt;string>]] [-protocol &lt;protocol> | -protocolNumber &lt;positive_integer>] [-vlan &lt;positive_integer> | -vxlan &lt;positive_integer>] [-interface &lt;interface_name>] [-priority &lt;positive_integer>] [-msr ( ENABLED | DISABLED )  [-monitor &lt;string>]] [(-nextHop  &lt;nextHopVal>) | (-ipTunnel &lt;string>  [-vxlanVlanMap &lt;string>])] [-nextHopVlan &lt;positive_integer>]
 
 
 ##Arguments
@@ -188,33 +195,33 @@ Available settings function as follows:
 Possible values: ALLOW, DENY
 
 <b>srcIPv6</b>
-IP address or range of IP addresses to match against the source IP address of an outgoing IPv6 packet. In the command line interface, separate the range with a hyphen and enclose within brackets.
+IP address or range of IP addresses to match against the source IP address of an outgoing IPv6 packet. In the command line interface, separate the range with a hyphen.
 
 <b>operator</b>
-Logical operator.
+Either the equals (=) or does not equal (!=) logical operator.
 Possible values: =, !=, EQ, NEQ
 
 <b>srcIPv6Val</b>
-IP address or range of IP addresses to match against the source IP address of an outgoing IPv6 packet. In the command line interface, separate the range with a hyphen and enclose within brackets.
+IP address or range of IP addresses to match against the source IP address of an outgoing IPv6 packet. In the command line interface, separate the range with a hyphen.
 
 <b>srcPort</b>
 Source Port (range).
 
 <b>srcPortVal</b>
-Port number or range of port numbers to match against the source port number of an outgoing IPv6 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90].
+Port number or range of port numbers to match against the source port number of an outgoing IPv6 packet. In the command line interface, separate the range with a hyphen. For example: 40-90.
 Maximum value: 65535
 
 <b>destIPv6</b>
-IP address or range of IP addresses to match against the destination IP address of an outgoing IPv6 packet.  In the command line interface, separate the range with a hyphen and enclose within brackets.
+IP address or range of IP addresses to match against the destination IP address of an outgoing IPv6 packet.  In the command line interface, separate the range with a hyphen.
 
 <b>destIPv6Val</b>
-IP address or range of IP addresses to match against the destination IP address of an outgoing IPv6 packet.  In the command line interface, separate the range with a hyphen and enclose within brackets.
+IP address or range of IP addresses to match against the destination IP address of an outgoing IPv6 packet.  In the command line interface, separate the range with a hyphen.
 
 <b>destPort</b>
 Destination Port (range).
 
 <b>destPortVal</b>
-Port number or range of port numbers to match against the destination port number of an outgoing IPv6 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90].
+Port number or range of port numbers to match against the destination port number of an outgoing IPv6 packet. In the command line interface, separate the range with a hyphen. For example: 40-90.
 Note: The destination port can be specified only for TCP and UDP protocols.
 Maximum value: 65535
 
@@ -250,7 +257,7 @@ ID of an interface. The NetScaler appliance compares the PBR6 only to the outgoi
 <b>priority</b>
 Priority of the PBR6, which determines the order in which it is evaluated relative to the other PBR6s. If you do not specify priorities while creating PBR6s, the PBR6s are evaluated in the order in which they are created.
 Minimum value: 1
-Maximum value: 80000
+Maximum value: 81920
 
 <b>msr</b>
 Monitor the route specified by the Next Hop parameter.
@@ -268,6 +275,9 @@ The Next Hop IPv6 address
 
 <b>ipTunnel</b>
 The iptunnel name where packets need to be forwarded upon.
+
+<b>vxlanVlanMap</b>
+The vlan to vxlan mapping to be applied for incoming packets over this pbr tunnel.
 
 <b>nextHopVlan</b>
 VLAN number to be used for link local nexthop .
@@ -287,7 +297,7 @@ Resets the attributes of the specified PBR6. Attributes for which a default valu
 
 ##Synopsys
 
-unset ns pbr6 &lt;name> [-srcIPv6] [-srcPort] [-destIPv6] [-destPort] [-srcMac] [-srcMacMask] [-protocol] [-interface] [-vlan] [-vxlan] [-msr] [-monitor] [-nextHop] [-ipTunnel] [-nextHopVlan]
+unset ns pbr6 &lt;name> [-srcIPv6] [-srcPort] [-destIPv6] [-destPort] [-srcMac] [-srcMacMask] [-protocol] [-interface] [-vlan] [-vxlan] [-msr] [-monitor] [-nextHop] [-ipTunnel] [-nextHopVlan] [-vxlanVlanMap]
 
 
 ##Example
@@ -395,6 +405,9 @@ Total packets that matched one of the configured PBR6
 <b>PBR6 misses (PBR6Miss)</b>
 Total packets that did not match any PBR6
 
+<b>PBR6 Null Drop (PBR6NullDrop)</b>
+Total packets that are dropped due to null next hop
+
 <b>Hits for this PBR6 (PBR6Hits)</b>
 Number of times the pbr6 was hit
 
@@ -457,17 +470,20 @@ Protocol number in IPv6 header or name.
 Protocol number in IPv6 header or name.
 
 <b>srcPortVal</b>
-Port number or range of port numbers to match against the source port number of an outgoing IPv6 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90].
+Port number or range of port numbers to match against the source port number of an outgoing IPv6 packet. In the command line interface, separate the range with a hyphen. For example: 40-90.
+
+<b>operator</b>
+Either the equals (=) or does not equal (!=) logical operator.
 
 <b>destPortVal</b>
-Port number or range of port numbers to match against the destination port number of an outgoing IPv6 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90].
+Port number or range of port numbers to match against the destination port number of an outgoing IPv6 packet. In the command line interface, separate the range with a hyphen. For example: 40-90.
 Note: The destination port can be specified only for TCP and UDP protocols.
 
 <b>srcIPv6Val</b>
-IP address or range of IP addresses to match against the source IP address of an outgoing IPv6 packet. In the command line interface, separate the range with a hyphen and enclose within brackets.
+IP address or range of IP addresses to match against the source IP address of an outgoing IPv6 packet. In the command line interface, separate the range with a hyphen.
 
 <b>destIPv6Val</b>
-IP address or range of IP addresses to match against the destination IP address of an outgoing IPv6 packet.  In the command line interface, separate the range with a hyphen and enclose within brackets.
+IP address or range of IP addresses to match against the destination IP address of an outgoing IPv6 packet.  In the command line interface, separate the range with a hyphen.
 
 <b>vlan</b>
 ID of the VLAN. The NetScaler appliance compares the PBR6 only to the outgoing packets on the specified VLAN. If you do not specify an interface ID, the appliance compares the PBR6 to the outgoing packets on all VLANs.
@@ -489,9 +505,6 @@ Number of hits of this PBR6.
 
 <b>priority</b>
 Priority of the PBR6, which determines the order in which it is evaluated relative to the other PBR6s. If you do not specify priorities while creating PBR6s, the PBR6s are evaluated in the order in which they are created.
-
-<b>operator</b>
-Logical operator.
 
 <b>msr</b>
 Whether Monitored Static Route(MSR) is enabled or disabled.
@@ -526,11 +539,17 @@ ID of the VLAN, if you have specified a link local address for the Next Hop para
 <b>ipTunnel</b>
 The iptunnel name where packets need to be forwarded upon.
 
+<b>vxlanVlanMap</b>
+The vlan to vxlan mapping to be applied for incoming packets over this pbr tunnel.
+
 <b>nextHopVlan</b>
 VLAN number to be used for link local nexthop .
 
 <b>data</b>
 Internal data of this route.
+
+<b>ownerGroup</b>
+The owner node group in a Cluster for this pbr rule. If owner node group is not specified then the pbr rule is treated as Striped pbr rule.
 
 <b>devno</b>
 

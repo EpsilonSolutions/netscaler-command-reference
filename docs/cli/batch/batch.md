@@ -28,6 +28,12 @@ Minimum value: 0
 
 
 
+##Outputs
+
+<b>response</b>
+
+
+
 ##Example
 
 batch -f cmds.txt

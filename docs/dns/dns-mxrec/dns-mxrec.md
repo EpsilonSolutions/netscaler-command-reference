@@ -37,12 +37,12 @@ Maximum value: 2147483647
 
 ##rm dns mxRec
 
-Removes the specified mail exchange (MX) record from the specified domain.
+Removes the specified mail exchange (MX) record from the specified domain. For EDNS Client Subnet (ECS) records, a subnet needs to be specified to remove the specified mail exchange (MX) record which is cached for that particular subnet
 
 
 ##Synopsys
 
-rm dns mxRec &lt;domain> &lt;mx>
+rm dns mxRec &lt;domain> &lt;mx> [-ecsSubnet &lt;ip_addr[/prefix]|ipv6_addr[/prefix]>]
 
 
 ##Arguments
@@ -52,6 +52,9 @@ Domain name.
 
 <b>mx</b>
 Host name of the mail exchange server.
+
+<b>ecsSubnet</b>
+Subnet for which the cached MX record need to be removed.
 
 
 
@@ -133,6 +136,9 @@ Time to Live (TTL), in seconds, for the record. TTL is the time for which the re
 
 <b>authType</b>
 Record type.
+
+<b>ecsSubnet</b>
+Subnet for which this particular record is cached. Subnet caching will occur for responses with EDNS Client Subnet (ECS) option. Applies to resource records obtained through proxy configurations only.
 
 <b>devno</b>
 

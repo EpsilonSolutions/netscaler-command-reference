@@ -26,7 +26,7 @@ Name of the authentication vserver at which authentication should be done.
 Maximum value: 128
 
 <b>AuthenticationHost</b>
-Hostname of the authentication vserver.
+Hostname of the authentication vserver to which user must be redirected for authentication.
 Maximum value: 256
 
 <b>AuthenticationDomain</b>
@@ -77,7 +77,7 @@ Name of the authentication vserver at which authentication should be done.
 Maximum value: 128
 
 <b>AuthenticationHost</b>
-Hostname of the authentication vserver.
+Hostname of the authentication vserver to which user must be redirected for authentication.
 Maximum value: 256
 
 <b>AuthenticationDomain</b>
@@ -124,7 +124,7 @@ Name of the authentication profile.
 Name of the authentication vserver at which authentication should be done.
 
 <b>AuthenticationHost</b>
-Hostname of the authentication vserver.
+Hostname of the authentication vserver to which user must be redirected for authentication.
 
 <b>AuthenticationDomain</b>
 Domain for which TM cookie must to be set. If unspecified, cookie will be set for FQDN.

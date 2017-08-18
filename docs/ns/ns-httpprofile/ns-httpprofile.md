@@ -12,7 +12,7 @@ Adds an HTTP profile to the NetScaler appliance.
 
 ##Synopsys
 
-add ns httpProfile &lt;name> [-dropInvalReqs ( ENABLED | DISABLED )] [-markHttp09Inval ( ENABLED | DISABLED )] [-markConnReqInval ( ENABLED | DISABLED )] [-cmpOnPush ( ENABLED | DISABLED )] [-conMultiplex ( ENABLED | DISABLED )] [-maxReusePool &lt;positive_integer>] [-dropExtraCRLF ( ENABLED | DISABLED )] [-incompHdrDelay &lt;positive_integer>] [-webSocket ( ENABLED | DISABLED )] [-rtspTunnel ( ENABLED | DISABLED )] [-reqTimeout &lt;positive_integer>] [-adptTimeout ( ENABLED | DISABLED )] [-reqTimeoutAction &lt;string>] [-dropExtraData ( ENABLED | DISABLED )] [-webLog ( ENABLED | DISABLED )] [-clientIpHdrExpr &lt;expression>] [-maxReq &lt;positive_integer>] [-persistentETag ( ENABLED | DISABLED )] [-spdy &lt;spdy>] [-http2 ( ENABLED | DISABLED )] [-reusePoolTimeout &lt;positive_integer>] [-maxHeaderLen &lt;positive_integer>] [-minReUsePool &lt;positive_integer>] [-http2MaxHeaderListSize &lt;positive_integer>] [-http2MaxFrameSize &lt;positive_integer>] [-http2MaxConcurrentStreams &lt;positive_integer>] [-http2InitialWindowSize &lt;positive_integer>] [-http2HeaderTableSize &lt;positive_integer>]
+add ns httpProfile &lt;name> [-dropInvalReqs ( ENABLED | DISABLED )] [-markHttp09Inval ( ENABLED | DISABLED )] [-markConnReqInval ( ENABLED | DISABLED )] [-cmpOnPush ( ENABLED | DISABLED )] [-conMultiplex ( ENABLED | DISABLED )] [-maxReusePool &lt;positive_integer>] [-dropExtraCRLF ( ENABLED | DISABLED )] [-incompHdrDelay &lt;positive_integer>] [-webSocket ( ENABLED | DISABLED )] [-rtspTunnel ( ENABLED | DISABLED )] [-reqTimeout &lt;positive_integer>] [-adptTimeout ( ENABLED | DISABLED )] [-reqTimeoutAction &lt;string>] [-dropExtraData ( ENABLED | DISABLED )] [-webLog ( ENABLED | DISABLED )] [-clientIpHdrExpr &lt;expression>] [-maxReq &lt;positive_integer>] [-persistentETag ( ENABLED | DISABLED )] [-http2 ( ENABLED | DISABLED )] [-http2Direct ( ENABLED | DISABLED )] [-altsvc ( ENABLED | DISABLED )] [-reusePoolTimeout &lt;positive_integer>] [-maxHeaderLen &lt;positive_integer>] [-minReUsePool &lt;positive_integer>] [-http2MaxHeaderListSize &lt;positive_integer>] [-http2MaxFrameSize &lt;positive_integer>] [-http2MaxConcurrentStreams &lt;positive_integer>] [-http2InitialWindowSize &lt;positive_integer>] [-http2HeaderTableSize &lt;positive_integer>] [-http2MinSeverConn &lt;positive_integer>] [-apdexCltRespTimeThreshold &lt;positive_integer>]
 
 
 ##Arguments
@@ -47,7 +47,7 @@ Possible values: ENABLED, DISABLED
 Default value: ENABLED
 
 <b>maxReusePool</b>
-Maximum limit on the number of connections, from the NetScaler to a particular server that are kept in the reuse pool. This setting is helpful for optimal memory utilization and for reducing the idle connections to the server just after the peak time. Zero implies no limit on reuse pool size.
+Maximum limit on the number of connections, from the NetScaler to a particular server that are kept in the reuse pool. This setting is helpful for optimal memory utilization and for reducing the idle connections to the server just after the peak time. Zero implies no limit on reuse pool size. If non-zero value is given, it has to be greater than or equal to the number of running Packet Engines.
 Default value: 0
 Minimum value: 0
 Maximum value: 360000
@@ -114,13 +114,18 @@ Generate the persistent NetScaler specific ETag for the HTTP response with ETag 
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
-<b>spdy</b>
-Enable SPDYv2 or SPDYv3 or both over SSL vserver. SSL will advertise SPDY support either during NPN Handshake or when client will advertises SPDY support during ALPN handshake. Both SPDY versions are enabled when this parameter is set to ENABLED.
-Possible values: DISABLED, ENABLED, V2, V3
+<b>http2</b>
+Choose whether to enable support for HTTP/2.
+Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
-<b>http2</b>
-Choose whether to enable support for HTTP/2 (draft-14).
+<b>http2Direct</b>
+Choose whether to enable support for Direct HTTP/2.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>altsvc</b>
+Choose whether to enable support for Alternative Service.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
@@ -171,6 +176,18 @@ Maximum size of the header compression table used to decode header blocks, in by
 Default value: 4096
 Minimum value: 0
 Maximum value: 16384
+
+<b>http2MinSeverConn</b>
+Minimum number of HTTP2 connections established to backend server, on receiving HTTP requests from client before multiplexing the streams into the available HTTP/2 connections.
+Default value: 20
+Minimum value: 1
+Maximum value: 360000
+
+<b>apdexCltRespTimeThreshold</b>
+This option sets the satisfactory threshold (T) for client response time in milliseconds to be used for APDEX calculations. This means a transaction responding in less than this threshold is considered satisfactory. Transaction responding between T and 4*T is considered tolerable. Any transaction responding in more than 4*T time is considered frustrating. Netscaler maintains stats for such tolerable and frustrating transcations. And client response time related apdex counters are only updated on a vserver which receives clients traffic.
+Default value: 500 
+Minimum value: 1
+Maximum value: 3600000
 
 
 
@@ -206,7 +223,7 @@ Modifies the attributes of an HTTP profile.
 
 ##Synopsys
 
-set ns httpProfile &lt;name> [-dropInvalReqs ( ENABLED | DISABLED )] [-markHttp09Inval ( ENABLED | DISABLED )] [-markConnReqInval ( ENABLED | DISABLED )] [-cmpOnPush ( ENABLED | DISABLED )] [-conMultiplex ( ENABLED | DISABLED )] [-maxReusePool &lt;positive_integer>] [-dropExtraCRLF ( ENABLED | DISABLED )] [-incompHdrDelay &lt;positive_integer>] [-webSocket ( ENABLED | DISABLED )] [-rtspTunnel ( ENABLED | DISABLED )] [-reqTimeout &lt;positive_integer>] [-adptTimeout ( ENABLED | DISABLED )] [-reqTimeoutAction &lt;string>] [-dropExtraData ( ENABLED | DISABLED )] [-webLog ( ENABLED | DISABLED )] [-clientIpHdrExpr &lt;expression>] [-maxReq &lt;positive_integer>] [-persistentETag ( ENABLED | DISABLED )] [-spdy &lt;spdy>] [-http2 ( ENABLED | DISABLED )] [-http2MaxHeaderListSize &lt;positive_integer>] [-http2MaxFrameSize &lt;positive_integer>] [-http2MaxConcurrentStreams &lt;positive_integer>] [-http2InitialWindowSize &lt;positive_integer>] [-http2HeaderTableSize &lt;positive_integer>] [-reusePoolTimeout &lt;positive_integer>] [-maxHeaderLen &lt;positive_integer>] [-minReUsePool &lt;positive_integer>]
+set ns httpProfile &lt;name> [-dropInvalReqs ( ENABLED | DISABLED )] [-markHttp09Inval ( ENABLED | DISABLED )] [-markConnReqInval ( ENABLED | DISABLED )] [-cmpOnPush ( ENABLED | DISABLED )] [-conMultiplex ( ENABLED | DISABLED )] [-maxReusePool &lt;positive_integer>] [-dropExtraCRLF ( ENABLED | DISABLED )] [-incompHdrDelay &lt;positive_integer>] [-webSocket ( ENABLED | DISABLED )] [-rtspTunnel ( ENABLED | DISABLED )] [-reqTimeout &lt;positive_integer>] [-adptTimeout ( ENABLED | DISABLED )] [-reqTimeoutAction &lt;string>] [-dropExtraData ( ENABLED | DISABLED )] [-webLog ( ENABLED | DISABLED )] [-clientIpHdrExpr &lt;expression>] [-maxReq &lt;positive_integer>] [-persistentETag ( ENABLED | DISABLED )] [-http2 ( ENABLED | DISABLED )] [-http2Direct ( ENABLED | DISABLED )] [-altsvc ( ENABLED | DISABLED )] [-http2MaxHeaderListSize &lt;positive_integer>] [-http2MaxFrameSize &lt;positive_integer>] [-http2MaxConcurrentStreams &lt;positive_integer>] [-http2InitialWindowSize &lt;positive_integer>] [-http2HeaderTableSize &lt;positive_integer>] [-http2MinSeverConn &lt;positive_integer>] [-reusePoolTimeout &lt;positive_integer>] [-maxHeaderLen &lt;positive_integer>] [-minReUsePool &lt;positive_integer>] [-apdexCltRespTimeThreshold &lt;positive_integer>]
 
 
 ##Arguments
@@ -240,7 +257,7 @@ Possible values: ENABLED, DISABLED
 Default value: ENABLED
 
 <b>maxReusePool</b>
-Maximum limit on the number of connections, from the NetScaler to a particular server that are kept in the reuse pool. This setting is helpful for optimal memory utilization and for reducing the idle connections to the server just after the peak time. Zero implies no limit on reuse pool size.
+Maximum limit on the number of connections, from the NetScaler to a particular server that are kept in the reuse pool. This setting is helpful for optimal memory utilization and for reducing the idle connections to the server just after the peak time. Zero implies no limit on reuse pool size. If non-zero value is given, it has to be greater than or equal to the number of running Packet Engines.
 Default value: 0
 Minimum value: 0
 Maximum value: 360000
@@ -307,13 +324,18 @@ Generate the persistent NetScaler specific ETag for the HTTP response with ETag 
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
-<b>spdy</b>
-Enable SPDYv2 or SPDYv3 or both over SSL vserver. SSL will advertise SPDY support either during NPN Handshake or when client will advertises SPDY support during ALPN handshake. Both SPDY versions are enabled when this parameter is set to ENABLED.
-Possible values: DISABLED, ENABLED, V2, V3
+<b>http2</b>
+Choose whether to enable support for HTTP/2.
+Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
-<b>http2</b>
-Choose whether to enable support for HTTP/2 (draft-14).
+<b>http2Direct</b>
+Choose whether to enable support for Direct HTTP/2.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>altsvc</b>
+Choose whether to enable support for Alternative Service.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
@@ -347,6 +369,12 @@ Default value: 4096
 Minimum value: 0
 Maximum value: 16384
 
+<b>http2MinSeverConn</b>
+Minimum number of HTTP2 connections established to backend server, on receiving HTTP requests from client before multiplexing the streams into the available HTTP/2 connections.
+Default value: 20
+Minimum value: 1
+Maximum value: 360000
+
 <b>reusePoolTimeout</b>
 Idle timeout (in seconds) for server connections in re-use pool. Connections in the re-use pool are flushed, if they remain idle for the configured timeout.
 Default value: 0
@@ -365,6 +393,12 @@ Default value: 0
 Minimum value: 0
 Maximum value: 360000
 
+<b>apdexCltRespTimeThreshold</b>
+This option sets the satisfactory threshold (T) for client response time in milliseconds to be used for APDEX calculations. This means a transaction responding in less than this threshold is considered satisfactory. Transaction responding between T and 4*T is considered tolerable. Any transaction responding in more than 4*T time is considered frustrating. Netscaler maintains stats for such tolerable and frustrating transcations. And client response time related apdex counters are only updated on a vserver which receives clients traffic.
+Default value: 500 
+Minimum value: 1
+Maximum value: 3600000
+
 
 
 ##Example
@@ -378,7 +412,7 @@ Removes the attributes of the HTTP profile. Attributes for which a default value
 
 ##Synopsys
 
-unset ns httpProfile &lt;name> [-dropInvalReqs] [-markHttp09Inval] [-markConnReqInval] [-cmpOnPush] [-conMultiplex] [-maxReusePool] [-dropExtraCRLF] [-incompHdrDelay] [-webSocket] [-dropExtraData] [-clientIpHdrExpr] [-reqTimeout] [-adptTimeout] [-reqTimeoutAction] [-webLog] [-maxReq] [-persistentETag] [-spdy] [-http2] [-http2MaxHeaderListSize] [-http2MaxFrameSize] [-http2MaxConcurrentStreams] [-http2InitialWindowSize] [-http2HeaderTableSize] [-reusePoolTimeout] [-maxHeaderLen] [-rtspTunnel] [-minReUsePool]
+unset ns httpProfile &lt;name> [-dropInvalReqs] [-markHttp09Inval] [-markConnReqInval] [-cmpOnPush] [-conMultiplex] [-maxReusePool] [-dropExtraCRLF] [-incompHdrDelay] [-webSocket] [-dropExtraData] [-clientIpHdrExpr] [-reqTimeout] [-adptTimeout] [-reqTimeoutAction] [-webLog] [-maxReq] [-persistentETag] [-http2] [-http2MaxHeaderListSize] [-http2MaxFrameSize] [-http2MaxConcurrentStreams] [-http2InitialWindowSize] [-http2HeaderTableSize] [-http2MinSeverConn] [-reusePoolTimeout] [-maxHeaderLen] [-rtspTunnel] [-minReUsePool] [-apdexCltRespTimeThreshold] [-http2Direct] [-altsvc]
 
 
 ##show ns httpProfile
@@ -464,7 +498,13 @@ Generate the persistent NetScaler specific ETag for the HTTP response with ETag 
 Enable SPDYv2 or SPDYv3 or both over SSL vserver. SSL will advertise SPDY support either during NPN Handshake or when client will advertises SPDY support during ALPN handshake. Both SPDY versions are enabled when this parameter is set to ENABLED.
 
 <b>http2</b>
-Choose whether to enable support for HTTP/2 (draft-14).
+Choose whether to enable support for HTTP/2.
+
+<b>http2Direct</b>
+Choose whether to enable support for Direct HTTP/2.
+
+<b>altsvc</b>
+Choose whether to enable support for Alternative Service.
 
 <b>http2MaxHeaderListSize</b>
 Maximum size of header list that the NetScaler is prepared to accept, in bytes. NOTE: The actual plain text header size that the NetScaler accepts is limited by maxHeaderLen. Please change this parameter as well when modifying http2MaxHeaderListSize.
@@ -481,6 +521,9 @@ Initial window size for stream level flow control, in bytes.
 <b>http2HeaderTableSize</b>
 Maximum size of the header compression table used to decode header blocks, in bytes.
 
+<b>http2MinSeverConn</b>
+Minimum number of HTTP2 connections established to backend server, on receiving HTTP requests from client before multiplexing the streams into the available HTTP/2 connections.
+
 <b>reusePoolTimeout</b>
 Idle timeout (in seconds) for server connections in re-use pool. Connections in the re-use pool are flushed, if they remain idle for the configured timeout.
 
@@ -495,6 +538,12 @@ Minimum limit on the number of connections, from the NetScaler to a particular s
 
 <b>builtin</b>
 Flag to determine if http profile is built-in or not
+
+<b>apdexSvrRespTimeThreshold</b>
+This option sets the satisfactory threshold (T) for server response time in milliseconds to be used for APDEX calculations. This means a transaction responding in less than this threshold is considered satisfactory. Transaction responding between T and 4*T is considered tolerable. Any transaction responding in more than 4*T time is considered frustrating. Netscaler maintains stats for such tolerable and frustrating transcations. Server Response time related apdex counters are only updated on backend services or a backend vserver which is not accepting client traffic.
+
+<b>apdexCltRespTimeThreshold</b>
+This option sets the satisfactory threshold (T) for client response time in milliseconds to be used for APDEX calculations. This means a transaction responding in less than this threshold is considered satisfactory. Transaction responding between T and 4*T is considered tolerable. Any transaction responding in more than 4*T time is considered frustrating. Netscaler maintains stats for such tolerable and frustrating transcations. And client response time related apdex counters are only updated on a vserver which receives clients traffic.
 
 <b>devno</b>
 

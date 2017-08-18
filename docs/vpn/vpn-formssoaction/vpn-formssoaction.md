@@ -30,7 +30,7 @@ Name of the form field in which the user types in the user ID.
 Name of the form field in which the user types in the password.
 
 <b>ssoSuccessRule</b>
-Use a frequently used expression or create a custom expression describing the action that the form-based single sign-on profile takes when invoked by a policy. Used for verifying successful single sign-on.
+Advanced expression that defines the criteria for SSO success. Expression such as checking for cookie in the response is a common example.
 
 <b>nameValuePair</b>
 Other name-value pair attributes to send to the server, in addition to sending the user name and password. Value names are separated by an ampersand (&), such as in name1=value1=value2.
@@ -96,7 +96,7 @@ Name of the form field in which the user types in the user ID.
 Name of the form field in which the user types in the password.
 
 <b>ssoSuccessRule</b>
-Use a frequently used expression or create a custom expression describing the action that the form-based single sign-on profile takes when invoked by a policy. Used for verifying successful single sign-on.
+Advanced expression that defines the criteria for SSO success. Expression such as checking for cookie in the response is a common example.
 
 <b>responsesize</b>
 Maximum number of bytes to allow in the response size. Specifies the number of bytes in the response to be parsed for extracting the forms.

@@ -90,10 +90,10 @@ Minimum value: 2
 LDAP-group attribute that uniquely identifies the group. No two groups on one LDAP server can have the same group name identifier.
 
 <b>groupSearchAttribute</b>
-LDAP-group attribute that designates the parent group of the specified group. Use this attribute to search for a group?s parent group.
+LDAP-group attribute that designates the parent group of the specified group. Use this attribute to search for a group's parent group.
 
 <b>groupSearchSubAttribute</b>
-LDAP-group subattribute that designates the parent group of the specified group. Use this attribute to search for a group?s parent group.
+LDAP-group subattribute that designates the parent group of the specified group. Use this attribute to search for a group's parent group.
 
 <b>groupSearchFilter</b>
 Search-expression that can be specified for sending group-search requests to the LDAP server.
@@ -194,16 +194,19 @@ Number of levels up to which the system can query nested LDAP groups.
 LDAP-group attribute that uniquely identifies the group. No two groups on one LDAP server can have the same group name identifier.
 
 <b>groupSearchAttribute</b>
-LDAP-group attribute that designates the parent group of the specified group. Use this attribute to search for a group?s parent group.
+LDAP-group attribute that designates the parent group of the specified group. Use this attribute to search for a group's parent group.
 
 <b>groupSearchSubAttribute</b>
-LDAP-group subattribute that designates the parent group of the specified group. Use this attribute to search for a group?s parent group.
+LDAP-group subattribute that designates the parent group of the specified group. Use this attribute to search for a group's parent group.
 
 <b>groupSearchFilter</b>
 Search-expression that can be specified for sending group-search requests to the LDAP server.
 
 <b>defaultAuthenticationGroup</b>
 This is the default group that is chosen when the authentication succeeds in addition to extracted groups.
+
+<b>builtin</b>
+Indicates that a variable is a built-in (SYSTEM INTERNAL) type.
 
 
 

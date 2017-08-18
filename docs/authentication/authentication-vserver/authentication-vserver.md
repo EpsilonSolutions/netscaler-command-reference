@@ -51,7 +51,7 @@ Possible values: ON, OFF
 Default value: ON
 
 <b>AuthenticationDomain</b>
-Fully-qualified domain name (FQDN) of the authentication virtual server.
+The domain of the authentication cookie set by Authentication vserver
 
 <b>comment</b>
 Any comments associated with this virtual server.
@@ -126,7 +126,7 @@ Possible values: ON, OFF
 Default value: ON
 
 <b>AuthenticationDomain</b>
-Fully-qualified domain name (FQDN) of the authentication virtual server.
+The domain of the authentication cookie set by Authentication vserver
 
 <b>comment</b>
 Any comments associated with this virtual server.
@@ -164,7 +164,7 @@ Binds authentication policies to an authentication virtual server.
 
 ##Synopsys
 
-bind authentication vserver &lt;name> [-policy &lt;string>  [-priority &lt;positive_integer>]  [-secondary]  [-groupExtraction]  [-nextFactor &lt;string>]  [-gotoPriorityExpression &lt;expression>]]
+bind authentication vserver &lt;name> [-policy &lt;string>  [-priority &lt;positive_integer>]  [-secondary]  [-groupExtraction]  [-nextFactor &lt;string>]  [-gotoPriorityExpression &lt;expression>]] [-portaltheme &lt;string>]
 
 
 ##Arguments
@@ -205,6 +205,9 @@ An UNDEF event is triggered if:
 * The expression evaluates to a priority number that is numerically lower than the current policy's priority.
 * The expression evaluates to a priority number that is between the current policy's priority number (say, 30) and the highest priority number (say, 100), but does not match any configured priority number (for example, the expression evaluates to the number 85). This example assumes that the priority number increments by 10 for every successive policy, and therefore a priority number of 85 does not exist in the policy label.
 
+<b>portaltheme</b>
+Portal theme to be bound to Authentication vserver
+
 
 
 ##unbind authentication vserver
@@ -214,7 +217,7 @@ Unbinds the specified policy from the specified authentication virtual server.
 
 ##Synopsys
 
-unbind authentication vserver &lt;name> [-policy &lt;string>  [-secondary]  [-groupExtraction]]
+unbind authentication vserver &lt;name> [-policy &lt;string>  [-secondary]  [-groupExtraction]] [-portaltheme &lt;string>]
 
 
 ##Arguments
@@ -230,6 +233,9 @@ Applicable only to classic authentication policy
 
 <b>groupExtraction</b>
 Applicable only to classic authentication policy
+
+<b>portaltheme</b>
+Name of Theme to be unbound from authentication vserver
 
 
 
@@ -362,7 +368,7 @@ Indicates whether or not authentication is being applied to incoming users to th
 The number of current users logged in to this vserver.
 
 <b>AuthenticationDomain</b>
-Fully-qualified domain name (FQDN) of the authentication virtual server.
+The domain of the authentication cookie set by Authentication vserver
 
 <b>rule</b>
 The name of the rule, or expression, if any, that policy for the authentication server is to use. Rules are combinations of Expressions. Expressions are simple conditions, such as a test for equality, applied to operands, such as a URL string or an IP address. Expression syntax is described in the Installation and Configuration Guide. The default rule is ns_true.
@@ -469,6 +475,9 @@ On success invoke label.
 
 <b>gotoPriorityExpression</b>
 Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.
+
+<b>portaltheme</b>
+Theme for Authentication virtual server Login portal
 
 <b>devno</b>
 

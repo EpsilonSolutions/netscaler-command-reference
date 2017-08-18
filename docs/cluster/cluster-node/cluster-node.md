@@ -3,7 +3,7 @@
 The following operations can be performed on "cluster node":
 
 
-[add](#add-cluster-node) | [set](#set-cluster-node) | [unset](#unset-cluster-node) | [rm](#rm-cluster-node) | [show](#show-cluster-node) | [stat](#stat-cluster-node)
+[add](#add-cluster-node) | [set](#set-cluster-node) | [unset](#unset-cluster-node) | [rm](#rm-cluster-node) | [show](#show-cluster-node) | [stat](#stat-cluster-node) | [bind](#bind-cluster-node) | [unbind](#unbind-cluster-node)
 
 ##add cluster node
 
@@ -12,7 +12,7 @@ Adds a NetScaler appliance to a cluster.
 
 ##Synopsys
 
-add cluster node &lt;nodeId>@ &lt;IPAddress>@ [-state &lt;state>] [-backplane &lt;interface_name>@] [-priority &lt;positive_integer>] [-nodegroup &lt;string>]
+add cluster node &lt;nodeId>@ &lt;IPAddress>@ [-state &lt;state>] [-backplane &lt;interface_name>@] [-priority &lt;positive_integer>] [-nodegroup &lt;string>] [-delay &lt;mins>]
 
 
 ##Arguments
@@ -49,6 +49,11 @@ Maximum value: 31
 The default node group in a Cluster system.
 Default value: DEFAULT_NG
 
+<b>delay</b>
+Applicable for Passive node and node becomes passive after this timeout
+Default value: 0
+Maximum value: 1440
+
 
 
 ##Example
@@ -62,7 +67,7 @@ Modifies the attributes of a cluster node.
 
 ##Synopsys
 
-set cluster node &lt;nodeId>@ [-state &lt;state>] [-backplane &lt;interface_name>@] [-priority &lt;positive_integer>]
+set cluster node &lt;nodeId>@ [-state &lt;state>] [-backplane &lt;interface_name>@] [-priority &lt;positive_integer>] [-delay &lt;mins>]
 
 
 ##Arguments
@@ -92,6 +97,11 @@ Default value: 31
 Minimum value: 0
 Maximum value: 31
 
+<b>delay</b>
+Applicable for Passive node and node becomes passive after this timeout
+Default value: 0
+Maximum value: 1440
+
 
 
 ##Example
@@ -105,7 +115,7 @@ Use this command to remove cluster node settings.Refer to the set cluster node c
 
 ##Synopsys
 
-unset cluster node &lt;nodeId>@ [-state] [-backplane] [-priority]
+unset cluster node &lt;nodeId>@ [-state] [-backplane] [-priority] [-delay]
 
 
 ##rm cluster node
@@ -185,6 +195,9 @@ Active, Spare or Passive.
 <b>backplane</b>
 Interface through which the node communicates with the other nodes in the cluster. Must be specified in the three-tuple form n/c/u, where n represents the node ID and c/u refers to the interface on the appliance.
 
+<b>syncState</b>
+Enable/Disable the synchronization of cluster configurations on the node.
+
 <b>priority</b>
 Preference for selecting a node as the configuration coordinator. The node with the lowest priority value is selected as the configuration coordinator.
 When the current configuration coordinator goes down, the node with the next lowest priority is made the new configuration coordinator. When the original node comes back up, it will preempt the new configuration coordinator and take over as the configuration coordinator.
@@ -236,6 +249,24 @@ Name of the state specific nodegroup.
 
 <b>cfgflags</b>
 Flag indicates whether the node is bound to cluster nodegroup
+
+<b>routeMonitor</b>
+The IP address (IPv4 or IPv6).
+
+<b>routeMonState</b>
+Current routemonstate
+
+<b>netmask</b>
+The netmask.
+
+<b>delay</b>
+Applicable for Passive node and node becomes passive after this timeout
+
+<b>curPassiveTimeout</b>
+Applicable for Passive node and node becomes passive after this timeout
+
+<b>isLearnedAsPassive</b>
+Applicable for Active nodes, it will be set to TRUE if the node is active but learned as Passive
 
 <b>devno</b>
 
@@ -348,4 +379,62 @@ Health State of the node with respect to sync in the cluster.
 <ul><li><a href="../../../.html#stat-cluster-ins/.html#stat-cluster-ins">stat cluster instance</a></li></ul>
 
 
+
+##bind cluster node
+
+Adds a route monitor to the specified cluster node.
+
+
+##Synopsys
+
+bind cluster node &lt;nodeId> (-routeMonitor &lt;ip_addr|ipv6_addr|*>  [&lt;netmask>])
+
+
+##Arguments
+
+<b>nodeId</b>
+A number that uniquely identifies the cluster node. 
+Minimum value: 0
+Maximum value: 31
+
+<b>routeMonitor</b>
+Route Monitor
+
+<b>netmask</b>
+The subnet mask associated with the IPv4 route specified by the routeMonitor parameter.
+
+
+
+##Example
+
+bind cluster node 1 -routeMonitor 5.5.5.0 255.255.255.0
+
+##unbind cluster node
+
+Removes a route monitor entry from the local node
+
+
+##Synopsys
+
+unbind cluster node &lt;nodeId> (-routeMonitor &lt;ip_addr|ipv6_addr|*>  [&lt;netmask>])
+
+
+##Arguments
+
+<b>nodeId</b>
+A number that uniquely identifies the cluster node.
+Minimum value: 0
+Maximum value: 31
+
+<b>routeMonitor</b>
+Route Monitor
+
+<b>netmask</b>
+The subnet mask associated with the IPv4 route specified by the routeMonitor parameter.
+
+
+
+##Example
+
+unbind cluster node 1 -routeMonitor 5.5.5.0 255.255.255.0
 

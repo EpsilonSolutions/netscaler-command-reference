@@ -34,7 +34,9 @@ IP address to match against the source IP address of an incoming IPv6 packet.
 
 <b>destPort</b>
 Port number to match against the destination port number of an incoming IPv6 packet.
-Omitting the port number creates an all-ports simple ACL6 rule, which matches any port. In that case, you cannot create another simple ACL6 rule specifying a specific port and the same source IPv6 address.
+DestPort is mandatory while setting Protocol. Omitting the port number and protocol creates an all-ports  and all protocol simple ACL6 rule, which matches any port and any protocol. In that case, you cannot create another simple ACL6 rule specifying a specific port and the same source IPv6 address.
+Minimum value: 1
+Maximum value: 65535
 
 <b>protocol</b>
 Protocol to match against the protocol of an incoming IPv6 packet. You must set this parameter if you set the Destination Port parameter.
@@ -101,12 +103,6 @@ Name of the simple ACL6 rule that you want to remove.
 ##Example
 
 rm ns simpleacl6 rule1
-
-##Related Commands
-
-<ul><li><a href="../../..//">rm ns acl6</a></li></ul>
-
-
 
 ##show ns simpleacl6
 

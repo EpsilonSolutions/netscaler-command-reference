@@ -157,9 +157,6 @@ AppQoS
 <b>DiskCaching</b>
 Integrated Disk Cache
 
-<b>vPath</b>
-Vpath
-
 <b>ContentAccelerator</b>
 Transparent Integrated Caching.
 
@@ -174,6 +171,15 @@ Large Scale NAT.
 
 <b>RDPProxy</b>
 RDPPROXY.
+
+<b>Rep</b>
+Reputation Services.
+
+<b>URLFiltering</b>
+URL Filtering.
+
+<b>VideoOptimization</b>
+Video Optimization.
 
 
 

@@ -12,7 +12,7 @@ Creates a global server load balancing site.
 
 ##Synopsys
 
-add gslb site &lt;siteName> [&lt;siteType>] &lt;siteIPAddress> [-publicIP &lt;ip_addr|ipv6_addr|*>] [-metricExchange ( ENABLED | DISABLED )] [-nwMetricExchange ( ENABLED | DISABLED )] [-sessionExchange ( ENABLED | DISABLED )] [-triggerMonitor &lt;triggerMonitor>] [-parentSite &lt;string>] [-clip &lt;ip_addr|ipv6_addr|*>  [&lt;publicCLIP>]]
+add gslb site &lt;siteName> [&lt;siteType>] &lt;siteIPAddress> [-publicIP &lt;ip_addr|ipv6_addr|*>] [-metricExchange ( ENABLED | DISABLED )] [-nwMetricExchange ( ENABLED | DISABLED )] [-sessionExchange ( ENABLED | DISABLED )] [-triggerMonitor &lt;triggerMonitor>] [-parentSite &lt;string> | -backupParentlist &lt;string> ...] [-clip &lt;ip_addr|ipv6_addr|*>  [&lt;publicCLIP>]] [-naptrReplacementSuffix &lt;string>]
 
 
 ##Arguments
@@ -67,6 +67,13 @@ Cluster IP address. Specify this parameter to connect to the remote cluster site
 <b>publicCLIP</b>
 IP address to be used to globally access the remote cluster when it is deployed behind a NAT. It can be same as the normal cluster IP address.
 
+<b>naptrReplacementSuffix</b>
+The naptr replacement suffix configured here will be used to construct the naptr replacement field in NAPTR record.
+
+<b>backupParentlist</b>
+The list of backup gslb sites configured in preferred order. Need to be parent gsb sites.
+Default value: "None"
+
 
 
 ##Example
@@ -101,7 +108,7 @@ Modifies the specified parameters of a global server load balancing (GSLB) site.
 
 ##Synopsys
 
-set gslb site &lt;siteName> [-metricExchange ( ENABLED | DISABLED )] [-nwMetricExchange ( ENABLED | DISABLED )] [-sessionExchange ( ENABLED | DISABLED )] [-triggerMonitor &lt;triggerMonitor>]
+set gslb site &lt;siteName> [-metricExchange ( ENABLED | DISABLED )] [-nwMetricExchange ( ENABLED | DISABLED )] [-sessionExchange ( ENABLED | DISABLED )] [-triggerMonitor &lt;triggerMonitor>] [-naptrReplacementSuffix &lt;string>] [-backupParentlist &lt;string> ...]
 
 
 ##Arguments
@@ -135,6 +142,13 @@ MEPDOWN_SVCDOWN - Monitor the service in either of the following situations:
 Possible values: ALWAYS, MEPDOWN, MEPDOWN_SVCDOWN
 Default value: ALWAYS
 
+<b>naptrReplacementSuffix</b>
+The naptr replacement suffix configured here will be used to construct the naptr replacement field in NAPTR record.
+
+<b>backupParentlist</b>
+The list of backup gslb sites configured in preferred order. Need to be parent gsb sites.
+Default value: "None"
+
 
 
 ##Example
@@ -148,7 +162,7 @@ Use this command to remove gslb site settings.Refer to the set gslb site command
 
 ##Synopsys
 
-unset gslb site &lt;siteName> [-metricExchange] [-nwMetricExchange] [-sessionExchange] [-triggerMonitor]
+unset gslb site &lt;siteName> [-metricExchange] [-nwMetricExchange] [-sessionExchange] [-triggerMonitor] [-naptrReplacementSuffix] [-backupParentlist]
 
 
 ##show gslb site
@@ -236,6 +250,15 @@ Cluster IP address. Specify this parameter to connect to the remote cluster site
 <b>publicCLIP</b>
 IP address to be used to globally access the remote cluster when it is deployed behind a NAT. It can be same as the normal cluster IP address.
 
+<b>naptrReplacementSuffix</b>
+The naptr replacement suffix configured here will be used to construct the naptr replacement field in NAPTR record.
+
+<b>backupParentlist</b>
+The list of backup gslb sites configured in preferred order. Need to be parent gsb sites.
+
+<b>curBackupparentIP</b>
+Current active backup parent IP address since the configured is DOWN.
+
 <b>devno</b>
 
 <b>count</b>
@@ -320,7 +343,7 @@ The public IP address of this GSLB site.
 <b>Site Metric Metric Exchange State (SiteMetricMEPstate)</b>
 Indicates the status of the site metric Metric Exchange connection at this GSLB site.
 
-<b>Netowrk Metric Metric Exchange State (NwMetricMEPstate)</b>
+<b>Network Metric Metric Exchange State (NwMetricMEPstate)</b>
 Indicates the status of the network metric Metric Exchange connection at this GSLB site.
 
 <b>Request bytes (Reqb)</b>

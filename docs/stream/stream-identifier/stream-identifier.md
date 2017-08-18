@@ -330,7 +330,7 @@ Possible values: basic, full
 
 <b>sortBy</b>
 use this argument to sort by specific key
-Possible values: Req, BandW, RspTime, Conn, breachcnt
+Possible values: Req, BandW, RspTime, Conn, breachcnt, pktCredits
 
 <b>sortOrder</b>
 use this argument to specify sort order
@@ -365,6 +365,9 @@ Current connections on the stream session.
 
 <b>Stream Session Breaching Transactions (breachcnt)</b>
 Total Breaching Transactions in configured interval.
+
+<b>Stream session packet credits (pktCredits)</b>
+Calculated Packet credits on current connection.
 
 
 

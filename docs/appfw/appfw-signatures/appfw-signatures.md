@@ -100,16 +100,13 @@ Updates the specified signatures object from the source.
 
 ##Synopsys
 
-update appfw signatures &lt;name> [-mergeDefault]
+update appfw signatures &lt;name>
 
 
 ##Arguments
 
 <b>name</b>
 Name of the signatures object to update.
-
-<b>mergeDefault</b>
-Merges signature file with default signature file.
 
 
 

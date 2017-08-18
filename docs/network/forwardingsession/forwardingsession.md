@@ -12,7 +12,7 @@ Adds a forwarding session rule, which creates forwarding-session entries for tra
 
 ##Synopsys
 
-add forwardingSession &lt;name> ((&lt;network>  [&lt;netmask>]) | -acl6name &lt;string> | -aclname &lt;string>) [-td &lt;positive_integer>] [-connfailover ( ENABLED | DISABLED )]
+add forwardingSession &lt;name> ((&lt;network>  [&lt;netmask>]) | -acl6name &lt;string> | -aclname &lt;string>) [-td &lt;positive_integer>] [-connfailover ( ENABLED | DISABLED )] [-sourceroutecache ( ENABLED | DISABLED )] [-processLocal ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -44,6 +44,16 @@ Synchronize connection information with the secondary appliance in a high availa
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
+<b>sourceroutecache</b>
+Cache the source ip address and mac address of the DA servers.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>processLocal</b>
+Enabling this option on forwarding session will not steer the packet to flow processor. Instead, packet will be routed.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
 
 
 ##set forwardingSession
@@ -53,7 +63,7 @@ Modifies parameters of a forwarding session rule.
 
 ##Synopsys
 
-set forwardingSession &lt;name> [-connfailover ( ENABLED | DISABLED )]
+set forwardingSession &lt;name> [-connfailover ( ENABLED | DISABLED )] [-sourceroutecache ( ENABLED | DISABLED )] [-processLocal ( ENABLED | DISABLED )] [-acl6name &lt;string>] [-aclname &lt;string>]
 
 
 ##Arguments
@@ -65,6 +75,22 @@ Name of the forwarding session rule. Required for identifying the forwarding ses
 Synchronize connection information with the secondary appliance in a high availability (HA) pair. That is, synchronize all connection-related information for the forwarding session.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
+
+<b>sourceroutecache</b>
+Cache the source ip address and mac address of the DA servers.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>processLocal</b>
+Enabling this option on forwarding session will not steer the packet to flow processor. Instead, packet will be routed.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>acl6name</b>
+Name of any configured ACL6 whose action is ALLOW. The rule of the ACL6 is used as a forwarding session rule.
+
+<b>aclname</b>
+Name of any configured ACL whose action is ALLOW. The rule of the ACL is used as a forwarding session rule.
 
 
 
@@ -129,6 +155,12 @@ Name of any configured ACL6 whose action is ALLOW. The rule of the ACL6 is used 
 
 <b>connfailover</b>
 Synchronize connection information with the secondary appliance in a high availability (HA) pair. That is, synchronize all connection-related information for the forwarding session.
+
+<b>sourceroutecache</b>
+Cache the source ip address and mac address of the DA servers.
+
+<b>processLocal</b>
+Enabling this option on forwarding session will not steer the packet to flow processor. Instead, packet will be routed.
 
 <b>devno</b>
 

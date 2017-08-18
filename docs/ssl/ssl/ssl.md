@@ -37,6 +37,36 @@ Possible values: basic, full
 
 ##Outputs
 
+<b>Bytes decrypted on the back-end (secondary card) (DecHwBeSecondary)</b>
+Number of bytes decrypted on the back-end in hardware on secondary card.
+
+<b>Bytes decrypted on the front-end (secondary card) (DecHwFeSecondary)</b>
+Number of bytes decrypted on the front-end in hardware on secondary card.
+
+<b>Bytes encrypted on the back-end (secondary card) (EncHwBeSecondary)</b>
+Number of bytes encrypted on the back-end in hardware on secondary card.
+
+<b>Bytes encrypted on the front-end (secondary card) (EncHwFeSecondary)</b>
+Number of bytes encrypted on the front-end in hardware on secondary card.
+
+<b>Bytes decrypted (secondary card) (DecHwSecondary)</b>
+Number of bytes decrypted in hardware on secondary card.
+
+<b>Bytes encrypted (secondary card) (EncHwSecondary)</b>
+Number of bytes encrypted in hardware on secondary card.
+
+<b>Secondary card utilization (%) (SSLCryptoUtilStat2nd)</b>
+Utilization of the hardware crypto resource. Only valid values are 0-100%. Only works on N3FIPS+N3 hybrid platform.
+
+<b>SSL crypto utilization (%) (SSLCryptoUtilStat)</b>
+Utilization of the hardware crypto resource. Only valid values are 0-100%. Only works on platforms with Nitrox-3 chips.
+
+<b># Secondary SSL cards UP (SSLCardUPSecondary)</b>
+Number of Add on SSL cards that are UP.
+
+<b># Secondary SSL cards present (SSLCardsSecondary)</b>
+Number of secondary SSL crypto cards present on the NetScaler appliance.
+
 <b># SSL cards UP (SSLCardUP)</b>
 Number of SSL cards that are UP. If the number of cards UP is lower than a threshold, a failover is initiated.
 
@@ -123,6 +153,9 @@ Number of bytes encrypted on the NetScaler appliance.
 
 <b>Bytes decrypted (Dec)</b>
 Number of bytes decrypted on the NetScaler appliance.
+
+<b>Server in record (ServerInRecord)</b>
+Number server in record on the NetScaler appliance.
 
 <b>SSL session renegotiations (SSLRn)</b>
 Number of SSL session renegotiations on the NetScaler appliance.
@@ -223,6 +256,12 @@ Number of MD5 hashes on the NetScaler appliance.
 <b>SHA hashes (SHAHsh)</b>
 Number of SHA hashes on the NetScaler appliance.
 
+<b>SHA256 hashes (SHA256Hsh)</b>
+Number of SHA256 hashes on the NetScaler appliance.
+
+<b>SHA384 hashes (SHA384Hsh)</b>
+Number of SHA384 hashes on the NetScaler appliance.
+
 <b>SSLv2 SSL handshakes (SSL2Hs)</b>
 Number of handshakes on SSLv2 on the NetScaler appliance.
 
@@ -261,6 +300,9 @@ Number of Diffie-Helman authentications on the NetScaler appliance.
 
 <b>DSS (DSA) authentications (DSSAt)</b>
 Total number of times DSS authorization is used on the NetScaler appliance.
+
+<b>ECDSA authentications (ECDSAAt)</b>
+Total number of times ECDSA authorization is used on the NetScaler appliance.
 
 <b>Null authentications (NullAt)</b>
 Number of Null authentications on the NetScaler appliance.
@@ -355,17 +397,35 @@ Number of back-end MD5 hashes on the NetScaler appliance.
 <b>SHA hashes (BSHAHsh)</b>
 Number of back-end SHA hashes on the NetScaler appliance.
 
+<b>SHA256 hashes (BSHA256Hsh)</b>
+Number of back-end SHA256 hashes on the NetScaler appliance.
+
+<b>SHA384 hashes (BSHA384Hsh)</b>
+Number of back-end SHA384 hashes on the NetScaler appliance.
+
 <b>SSLv3 handshakes (BSSL3Hs)</b>
 Number of back-end SSLv3 handshakes on the NetScaler appliance.
 
 <b>TLSv1 handshakes (BTLS1Hs)</b>
 Number of back-end TLSv1 handshakes on the NetScaler appliance.
 
+<b>TLSv1.1 handshakes (BTLS11Hs)</b>
+Number of back-end TLSv1.1 handshakes on the NetScaler appliance.
+
+<b>TLSv1.2 handshakes (BTLS12Hs)</b>
+Number of back-end TLSv1.2 handshakes on the NetScaler appliance.
+
 <b>SSLv3 client authentications (BSSL3CAt)</b>
 Number of back-end SSLv3 client authentications on the NetScaler appliance.
 
 <b>TLSv1 client authentications (BTLS1CAt)</b>
 Number of back-end TLSv1 client authentications on the NetScaler appliance.
+
+<b>TLSv1.1 client authentications (BTLS11CAt)</b>
+Number of back-end TLSv1.1 client authentications on the NetScaler appliance.
+
+<b>TLSv1.2 client authentications (BTLS12CAt)</b>
+Number of back-end TLSv1.2 client authentications on the NetScaler appliance.
 
 <b>RSA authentications (BRSAAt)</b>
 Number of back-end RSA authentications on the NetScaler appliance.
@@ -375,6 +435,9 @@ Number of back-end DH authentications on the NetScaler appliance.
 
 <b>DSS authentications (BDSSAt)</b>
 Number of back-end DSS authentications on the NetScaler appliance.
+
+<b>ECDSA authentications (BECDSAAt)</b>
+Number of back-end ECDSA authentications on the NetScaler appliance.
 
 <b>Null authentications (BNullAt)</b>
 Number of back-end null authentications on the NetScaler appliance.
@@ -386,7 +449,7 @@ Number of RSA key exchanges offloaded to the cryptography card.
 Number of RSA sign operations offloaded to the cryptography card.
 
 <b>DH key exchanges offloaded (DHkxOf)</b>
-Number of DH key exchanges offloaded to the cryptography card.d
+Number of DH key exchanges offloaded to the cryptography card.
 
 <b>RC4 encryptions offloaded (RC4EnOf)</b>
 Number of RC4 encryptions offloaded to the cryptography card.
@@ -406,26 +469,26 @@ Number of AES-GCM 256-bit encryptions offloaded to the cryptography card.
 <b>Bytes encrypted in hardware (EncHw)</b>
 Number of bytes encrypted in hardware.
 
-<b>Bytes encrypted in software. (EncSw)</b>
+<b>Bytes encrypted in software (EncSw)</b>
 Number of bytes encrypted in software.
 
-<b>Bytes encrypted on the front end. (EncFe)</b>
-Number of bytes encrypted on the front end.
+<b>Bytes encrypted on the front-end. (EncFe)</b>
+Number of bytes encrypted on the front-end.
 
-<b>Bytes encrypted in hardware on the front end. (EncHwFe)</b>
-Number of bytes encrypted in hardware on the front end.
+<b>Bytes encrypted in hardware on the front-end. (EncHwFe)</b>
+Number of bytes encrypted in hardware on the front-end.
 
-<b>Bytes encrypted in software on front-end (EncSwFe)</b>
-Number of bytes encrypted in software on the front end.
+<b>Bytes encrypted in software on the front-end (EncSwFe)</b>
+Number of bytes encrypted in software on the front-end.
 
-<b>Bytes encrypted on back-end (EncBe)</b>
-Number of bytes encrypted on the back end.
+<b>Bytes encrypted on the back-end (EncBe)</b>
+Number of bytes encrypted on the back-end.
 
-<b>Bytes encrypted in hardware on back-end (EncHwBe)</b>
-Number of bytes encrypted in hardware on the back end.
+<b>Bytes encrypted in hardware on the back-end (EncHwBe)</b>
+Number of bytes encrypted in hardware on the back-end.
 
-<b>Bytes encrypted in software on back-end (EncSwBe)</b>
-Number of bytes encrypted in software on the back end.
+<b>Bytes encrypted in software on the back-end (EncSwBe)</b>
+Number of bytes encrypted in software on the back-end.
 
 <b>Bytes decrypted in hardware (DecHw)</b>
 Number of bytes decrypted in hardware.
@@ -433,23 +496,41 @@ Number of bytes decrypted in hardware.
 <b>Bytes decrypted in software (DecSw)</b>
 Number of bytes decrypted in software.
 
-<b>Bytes decrypted on front-end (DecFe)</b>
-Number of bytes decrypted on the front end.
+<b>Bytes decrypted on the front-end (DecFe)</b>
+Number of bytes decrypted on the front-end.
 
-<b>Bytes decrypted in hardware on front-end (DecHwFe)</b>
-Number of bytes decrypted in hardware on the front end.
+<b>Bytes decrypted in hardware on the front-end (DecHwFe)</b>
+Number of bytes decrypted in hardware on the front-end.
 
-<b>Bytes decrypted in software on front-end (DecSwFe)</b>
-Number of bytes decrypted in software on the front end.
+<b>Bytes decrypted in software on the front-end (DecSwFe)</b>
+Number of bytes decrypted in software on the front-end.
 
-<b>Bytes decrypted on back-end (DecBe)</b>
-Number of bytes decrypted on the back end.
+<b>Bytes decrypted on the back-end (DecBe)</b>
+Number of bytes decrypted on the back-end.
 
-<b>Bytes decrypted in hardware on back-end (DecHwBe)</b>
-Number of bytes decrypted in hardware on the back end.
+<b>Bytes decrypted in hardware on the back-end (DecHwBe)</b>
+Number of bytes decrypted in hardware on the back-end.
 
-<b>Bytes decrypted in software on the back end. (DecSwBe)</b>
-Number of bytes decrypted in software on back-end
+<b>Bytes decrypted in software on the back-end. (DecSwBe)</b>
+Number of bytes decrypted in software on the back-end
+
+<b>Total SPCB in use (SPCBInUseCount)</b>
+Number of SPCB in use.
+
+<b>Active SSL sessions (sessionInUse)</b>
+Number of active SSL sessions on the NetScaler appliance.
+
+<b>Current queue size (curQsize)</b>
+Current queue size
+
+<b>In Q count for current card (CardInQCount)</b>
+Number of current SSL card InQ count.
+
+<b>In BulkQ count for current card (CardinBlkQ)</b>
+Number of current SSL card In BulkQ count.
+
+<b>In KeyQ count for current card (CardinKeyQ)</b>
+Number of current SSL card In KeyQ count.
 
 <b>Backend SSL sessions reused (BSeRe)</b>
 Number of back-end SSL sessions reused on the NetScaler appliance.
@@ -459,6 +540,15 @@ Number of IDEA 128-bit cipher encryptions on the NetScaler appliance.
 
 <b>IDEA 128-bit encryptions (BIDEAEn1)</b>
 Number of back-end IDEA 128-bit cipher encryptions on the NetScaler appliance.
+
+<b>ssl crypto card status secondary (SSLCardStSecondary)</b>
+Status of the secondary SSL card(s). The value should be interpreted in binary form, with each set bit indicates a card as UP.
+
+
+
+##Related Commands
+
+<ul><li><a href="../../../t-ssl-vs/t-ssl-vs">stat ssl vserver</a></li></ul>
 
 
 

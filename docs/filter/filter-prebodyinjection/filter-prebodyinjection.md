@@ -7,12 +7,12 @@ The following operations can be performed on "filter prebodyInjection":
 
 ##set filter prebodyInjection
 
-Specifies the file to be used for prebody injection.
+Specifies the file to be used for prebody injection. NOTE: This command is deprecated.Deprecated in favour of Client Side Measurements that can be enabled on an appflow action
 
 
 ##Synopsys
 
-set filter prebodyInjection &lt;prebody>
+
 
 
 ##Arguments
@@ -28,12 +28,12 @@ set filter prebodyInjection ens/prebody.js
 
 ##unset filter prebodyInjection
 
-Removes the setting that specifies the file used for prebody injection..Refer to the set filter prebodyInjection command for meanings of the arguments.
+Removes the setting that specifies the file used for prebody injection..Refer to the set filter prebodyInjection command for meanings of the arguments.NOTE: This command is deprecated.Deprecated in favour of Client Side Measurements that can be enabled on an appflow action
 
 
 ##Synopsys
 
-unset filter prebodyInjection [-prebody]
+
 
 
 ##Example
@@ -42,12 +42,12 @@ unset filter prebodyInjection
 
 ##show filter prebodyInjection
 
-Displays the name of the file used for prebody injection.
+Displays the name of the file used for prebody injection. NOTE: This command is deprecated.Deprecated in favour of Client Side Measurements that can be enabled on an appflow action
 
 
 ##Synopsys
 
-show filter prebodyInjection
+
 
 
 ##Outputs

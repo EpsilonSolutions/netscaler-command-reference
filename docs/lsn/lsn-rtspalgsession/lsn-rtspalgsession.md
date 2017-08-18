@@ -12,7 +12,7 @@ Show LSN RTSP session.
 
 ##Synopsys
 
-show lsn rtspalgsession [-sessionId &lt;string>]
+show lsn rtspalgsession [&lt;sessionId>]
 
 
 ##Arguments
@@ -26,6 +26,9 @@ Session ID for the RTSP call.
 
 <b>callflags</b>
 Flags for the call entry.
+
+<b>xlatip</b>
+XLAT IP Address if its XLAT session.
 
 <b>callrefcount</b>
 Reference count for the call entry.
@@ -73,7 +76,7 @@ Flush RTSP session.
 
 ##Synopsys
 
-flush lsn rtspalgsession [-sessionId &lt;string>]
+flush lsn rtspalgsession &lt;sessionId>
 
 
 ##Arguments

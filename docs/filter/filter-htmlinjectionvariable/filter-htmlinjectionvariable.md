@@ -7,12 +7,12 @@ The following operations can be performed on "filter htmlinjectionvariable":
 
 ##add filter htmlinjectionvariable
 
-Creates an HTML injection variable.
+Creates an HTML injection variable. NOTE: This command is deprecated.Deprecated in favour of Client Side Measurements that can be enabled on an appflow action
 
 
 ##Synopsys
 
-add filter htmlinjectionvariable &lt;variable> [-value &lt;string>]
+
 
 
 ##Arguments
@@ -31,12 +31,12 @@ add htmlinjectionvariable EDGESIGHT_SERVER_IP -value 1.1.1.1
 
 ##rm filter htmlinjectionvariable
 
-Removes an HTML injection variable.
+Removes an HTML injection variable. NOTE: This command is deprecated.Deprecated in favour of Client Side Measurements that can be enabled on an appflow action
 
 
 ##Synopsys
 
-rm filter htmlinjectionvariable &lt;variable>
+
 
 
 ##Arguments
@@ -52,12 +52,12 @@ rm htmlinjectionvariable EDGESIGHT_SERVER_IP
 
 ##set filter htmlinjectionvariable
 
-Modifies the value of an HTML injection variable.
+Modifies the value of an HTML injection variable. NOTE: This command is deprecated.
 
 
 ##Synopsys
 
-set filter htmlinjectionvariable &lt;variable> [-value &lt;string>]
+
 
 
 ##Arguments
@@ -76,22 +76,22 @@ set htmlinjectionvariable EDGESIGHT_SERVER_IP -value 2.2.2.2
 
 ##unset filter htmlinjectionvariable
 
-Use this command to remove filter htmlinjectionvariable settings.Refer to the set filter htmlinjectionvariable command for meanings of the arguments.
+Use this command to remove filter htmlinjectionvariable settings.Refer to the set filter htmlinjectionvariable command for meanings of the arguments.NOTE: This command is deprecated.
 
 
 ##Synopsys
 
-unset filter htmlinjectionvariable &lt;variable> -value
+
 
 
 ##show filter htmlinjectionvariable
 
-Displays information about HTML injection variables.
+Displays information about HTML injection variables. NOTE: This command is deprecated.Deprecated in favour of Client Side Measurements that can be enabled on an appflow action
 
 
 ##Synopsys
 
-show filter htmlinjectionvariable [&lt;variable>]
+
 
 
 ##Arguments

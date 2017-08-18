@@ -105,5 +105,14 @@ Number of requests in the idle queue/reuse pool.
 <b>Maximum server connections (MaxConn)</b>
 Maximum open connections allowed on this service.
 
+<b>Total transactions for server TTLB (totSvrTTLBTransactions)</b>
+Total transactions where server TTLB is calculated.
+
+<b>Tolerating TTLB Transactions (toleratingTTLBTransactions)</b>
+Tolerable transactions based on APDEX threshold (>T && &lt;4T).
+
+<b>Frustrating TTLB Transactions (frustratingTTLBTransactions)</b>
+Frustrating transactions based on APDEX threshold (>4T).
+
 
 

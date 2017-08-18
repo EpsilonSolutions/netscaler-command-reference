@@ -7,12 +7,12 @@ The following operations can be performed on "nstrace":
 
 ##start nstrace
 
-Start NetScaler packet capture tool.
+Start NetScaler packet capture tool. There should be at least 2 GB of free disk space for trace to start
 
 
 ##Synopsys
 
-start nstrace [-nf &lt;positive_integer>] [-time &lt;positive_integer> | -filesize &lt;positive_integer>] [-size &lt;positive_integer>] [-mode &lt;mode> ...] [-perNIC ( ENABLED | DISABLED )] [-fileName &lt;string>] [-fileId &lt;string>] [-filter &lt;expression>] [-link ( ENABLED | DISABLED )] [-nodes &lt;positive_integer> ...] [-traceformat ( NSCAP | PCAP )] [-merge &lt;merge>] [-doruntimecleanup ( ENABLED | DISABLED )] [-traceBuffers &lt;positive_integer>] [-skipRPC ( ENABLED | DISABLED )] [-inMemoryTrace ( ENABLED | DISABLED )]
+start nstrace [-nf &lt;positive_integer>] [-time &lt;positive_integer>] [-size &lt;positive_integer>] [-mode &lt;mode> ...] [-perNIC ( ENABLED | DISABLED )] [-fileName &lt;string>] [-fileId &lt;string>] [-filter &lt;expression>] [-link ( ENABLED | DISABLED )] [-nodes &lt;positive_integer> ...] [-filesize &lt;positive_integer>] [-traceformat ( NSCAP | PCAP )] [-merge &lt;merge>] [-doruntimecleanup ( ENABLED | DISABLED )] [-traceBuffers &lt;positive_integer>] [-skipRPC ( ENABLED | DISABLED )] [-skipLocalSSH ( ENABLED | DISABLED )] [-capsslkeys ( ENABLED | DISABLED )] [-capdroppkt ( ENABLED | DISABLED )] [-inMemoryTrace ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -43,13 +43,12 @@ Capturing mode for trace. Mode can be any of the following values or combination
       IPV6        Translated IPv6 packets
       C2C         Capture C2C message
       NS_FR_TX    TX/TXB packets are not captured in flow receiver.
-      SSLPLAIN    Decrypted SSL packets
       MPTCP       MPTCP master flow
       Default mode: NEW_RX TXB 
 Default value: DEFAULT_MODE
 
 <b>perNIC</b>
-Use separate trace files for each interface. Works only with tcpdump format.
+Use separate trace files for each interface. Works only with cap format.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
@@ -63,39 +62,6 @@ ID for the trace file name for uniqueness. Should be used only with -name option
 Filter expression for nstrace. Maximum length of filter is 255 and it can be of following format:
      &lt;expression&gt; [&lt;relop&gt; &lt;expression&gt;]
      &lt;relop&gt; = ( && | || )
-     nstrace supports two types of filter expressions:
-     Classic Expressions:
-     [Note: Classic Expressions are not supported in non-default partitions]
-     &lt;expression&gt; = the expression string in the format:
-     &lt;qualifier&gt; &lt;operator&gt; &lt;qualifier-value&gt;
-     &lt;qualifier&gt; = SOURCEIP.
-     &lt;qualifier-value&gt; = A valid IP address
-     &lt;qualifier&gt; = SOURCEPORT.
-     &lt;qualifier-value&gt; = A valid port number.
-     &lt;qualifier&gt; = DESTIP.
-     &lt;qualifier-value&gt; = A valid IP address.
-     &lt;qualifier&gt; = DESTPORT.
-     &lt;qualifier-value&gt; = A valid port number.
-     &lt;qualifier&gt; = IP.
-     &lt;qualifier-value&gt; = A valid IP address.
-     &lt;qualifier&gt; = PORT.
-     &lt;qualifier-value&gt; = A valid port number.
-     &lt;qualifier&gt; = SVCNAME.
-     &lt;qualifier-value&gt; = The name of a service.
-     &lt;qualifier&gt; = VSVRNAME.
-     &lt;qualifier-value&gt; = The name of a vserver.
-     &lt;qualifier&gt; = CONNID
-     &lt;qualifier-value&gt; = A valid PCB dev number.
-     &lt;qualifier&gt; = VLAN
-     &lt;qualifier-value&gt; = A valid VLAN ID.
-     &lt;qualifier&gt; = INTF
-     &lt;qualifier-value&gt; = A valid interface id in the form of x/y 
-                 (n/x/y in case of cluster interface).
-     &lt;operator&gt; = ( == | eq | != | neq | &gt; | gt
-     | &lt; | lt | &gt;= | ge | &lt;= | le | BETWEEN )
-     eg: start nstrace -filter "SOURCEIP == 10.102.34.201 || (SVCNAME != s1 && SOURCEPORT &gt; 80)"
-     The filter expression should be given in double quotes.
-     Default Expressions:
      &lt;expression&gt; =:
      CONNECTION.&lt;qualifier&gt;.&lt;qualifier-method&gt;.(&lt;qualifier-value&gt;)
      &lt;qualifier&gt; = SRCIP
@@ -178,7 +144,7 @@ Filter expression for nstrace. Maximum length of filter is 255 and it can be of 
         SSL_BRIDGE | SSL_TCP | NNTP | RPCSVR | RPCSVRS |
         RPCCLNT | SVC_DNS | ADNS | SNMP | RTSP | DHCPRA | ANY|
         MONITOR | MONITOR_UDP | MONITOR_PING | SIP_UDP |
-        SVC_MYSQL | SVC_MSSQL | SERVICE_UNKNOWN )
+        SVC_MYSQL | SVC_MSSQL | FIX | SSL_FIX | SERVICE_UNKNOWN )
      example = CONNECTION.SERVICE_TYPE.EQ(ANY)
      &lt;qualifier&gt; = TRAFFIC_DOMAIN_ID
      &lt;qualifier-method&gt; = [ EQ | NE | GT | GE | LT | LE
@@ -212,10 +178,10 @@ Minimum value: 0
 Maximum value: 32
 
 <b>filesize</b>
-File size, in MB, treshold for rollover.
-Default value: 0
+File size, in MB, treshold for rollover. If free disk space is less than 2GB at the time of rollover, trace will stop
+Default value: 1024
 Minimum value: 0
-Maximum value: 65536
+Maximum value: 10240
 
 <b>traceformat</b>
 Format in which trace will be generated
@@ -241,6 +207,22 @@ Minimum value: 1000
 skip RPC packets
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
+
+<b>skipLocalSSH</b>
+skip local SSH packets
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>capsslkeys</b>
+Capture SSL Master keys. Master keys will not be captured on FIPS machine.
+                Warning: The captured keys can be used to decrypt information that may be confidential. The captured key files have to be stored in a secure environment
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
+<b>capdroppkt</b>
+Captures Dropped Packets if set to ENABLED.
+Possible values: ENABLED, DISABLED
+Default value: ENABLED
 
 <b>inMemoryTrace</b>
 Logs packets in appliance's memory and dumps the trace file on stopping the nstrace operation
@@ -327,7 +309,6 @@ Capturing mode for trace. Mode can be any of the following values or combination
       IPV6        Translated IPv6 packets
       C2C         Capture C2C message
       NS_FR_TX    TX/TXB packets are not captured in flow receiver.
-      SSLPLAIN    Decrypted SSL packets
       MPTCP       MPTCP master flow
       Default mode: NEW_RX TXB
 
@@ -335,7 +316,7 @@ Capturing mode for trace. Mode can be any of the following values or combination
 Format in which trace will be generated
 
 <b>perNIC</b>
-Use separate trace files for each interface. Works only with tcpdump format.
+Use separate trace files for each interface. Works only with cap format.
 
 <b>fileName</b>
 Name of the trace file.
@@ -347,39 +328,6 @@ ID for the trace file name for uniqueness. Should be used only with -name option
 Filter expression for nstrace. Maximum length of filter is 255 and it can be of following format:
      &lt;expression> [&lt;relop> &lt;expression>]
      &lt;relop> = ( && | || )
-     nstrace supports two types of filter expressions:
-     Classic Expressions:
-     [Note: Classic Expressions are not supported in non-default partitions]
-     &lt;expression> = the expression string in the format:
-     &lt;qualifier> &lt;operator> &lt;qualifier-value>
-     &lt;qualifier> = SOURCEIP.
-     &lt;qualifier-value> = A valid IP address
-     &lt;qualifier> = SOURCEPORT.
-     &lt;qualifier-value> = A valid port number.
-     &lt;qualifier> = DESTIP.
-     &lt;qualifier-value> = A valid IP address.
-     &lt;qualifier> = DESTPORT.
-     &lt;qualifier-value> = A valid port number.
-     &lt;qualifier> = IP.
-     &lt;qualifier-value> = A valid IP address.
-     &lt;qualifier> = PORT.
-     &lt;qualifier-value> = A valid port number.
-     &lt;qualifier> = SVCNAME.
-     &lt;qualifier-value> = The name of a service.
-     &lt;qualifier> = VSVRNAME.
-     &lt;qualifier-value> = The name of a vserver.
-     &lt;qualifier> = CONNID
-     &lt;qualifier-value> = A valid PCB dev number.
-     &lt;qualifier> = VLAN
-     &lt;qualifier-value> = A valid VLAN ID.
-     &lt;qualifier> = INTF
-     &lt;qualifier-value> = A valid interface id in the form of x/y 
-                 (n/x/y in case of cluster interface).
-     &lt;operator> = ( == | eq | != | neq | > | gt
-     | &lt; | lt | >= | ge | &lt;= | le | BETWEEN )
-     eg: start nstrace -filter "SOURCEIP == 10.102.34.201 || (SVCNAME != s1 && SOURCEPORT > 80)"
-     The filter expression should be given in double quotes.
-     Default Expressions:
      &lt;expression> =:
      CONNECTION.&lt;qualifier>.&lt;qualifier-method>.(&lt;qualifier-value>)
      &lt;qualifier> = SRCIP
@@ -462,7 +410,7 @@ Filter expression for nstrace. Maximum length of filter is 255 and it can be of 
         SSL_BRIDGE | SSL_TCP | NNTP | RPCSVR | RPCSVRS |
         RPCCLNT | SVC_DNS | ADNS | SNMP | RTSP | DHCPRA | ANY|
         MONITOR | MONITOR_UDP | MONITOR_PING | SIP_UDP |
-        SVC_MYSQL | SVC_MSSQL | SERVICE_UNKNOWN )
+        SVC_MYSQL | SVC_MSSQL | FIX | SSL_FIX | SERVICE_UNKNOWN )
      example = CONNECTION.SERVICE_TYPE.EQ(ANY)
      &lt;qualifier> = TRAFFIC_DOMAIN_ID
      &lt;qualifier-method> = [ EQ | NE | GT | GE | LT | LE
@@ -502,6 +450,16 @@ Number of 16KB trace buffers
 
 <b>skipRPC</b>
 skip RPC packets
+
+<b>skipLocalSSH</b>
+skip local SSH packets
+
+<b>capsslkeys</b>
+Capture SSL Master keys. Master keys will not be captured on FIPS machine.
+                Warning: The captured keys can be used to decrypt information that may be confidential. The captured key files have to be stored in a secure environment
+
+<b>capdroppkt</b>
+Captures Dropped Packets if set to ENABLED.
 
 <b>inMemoryTrace</b>
 Logs packets in appliance's memory and dumps the trace file on stopping the nstrace operation

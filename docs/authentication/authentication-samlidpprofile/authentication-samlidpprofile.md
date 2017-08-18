@@ -12,7 +12,7 @@ Creates a SAML single IdP profile. This profile is used in verifying incoming au
 
 ##Synopsys
 
-add authentication samlIdPProfile &lt;name> [-samlSPCertName &lt;string>  [-encryptAssertion ( ON | OFF )]] [-samlIdPCertName &lt;string>] [-assertionConsumerServiceURL &lt;URL>] [-sendPassword ( ON | OFF )] [-samlIssuerName &lt;string>] [-rejectUnsignedRequests ( ON | OFF )] [-signatureAlg ( RSA-SHA1 | RSA-SHA256 )] [-digestMethod ( SHA1 | SHA256 )] [-audience &lt;string>] [-NameIDFormat &lt;NameIDFormat>] [-NameIDExpr &lt;string>] [-Attribute1 &lt;string>  -Attribute1Expr &lt;string>  [-Attribute1FriendlyName &lt;string>]  [-Attribute1Format ( URI | Basic )]] [-Attribute2 &lt;string>  -Attribute2Expr &lt;string>  [-Attribute2FriendlyName &lt;string>]  [-Attribute2Format ( URI | Basic )]] [-Attribute3 &lt;string>  -Attribute3Expr &lt;string>  [-Attribute3FriendlyName &lt;string>]  [-Attribute3Format ( URI | Basic )]] [-Attribute4 &lt;string>  -Attribute4Expr &lt;string>  [-Attribute4FriendlyName &lt;string>]  [-Attribute4Format ( URI | Basic )]] [-Attribute5 &lt;string>  -Attribute5Expr &lt;string>  [-Attribute5FriendlyName &lt;string>]  [-Attribute5Format ( URI | Basic )]] [-Attribute6 &lt;string>  -Attribute6Expr &lt;string>  [-Attribute6FriendlyName &lt;string>]  [-Attribute6Format ( URI | Basic )]] [-Attribute7 &lt;string>  -Attribute7Expr &lt;string>  [-Attribute7FriendlyName &lt;string>]  [-Attribute7Format ( URI | Basic )]] [-Attribute8 &lt;string>  -Attribute8Expr &lt;string>  [-Attribute8FriendlyName &lt;string>]  [-Attribute8Format ( URI | Basic )]] [-Attribute9 &lt;string>  -Attribute9Expr &lt;string>  [-Attribute9FriendlyName &lt;string>]  [-Attribute9Format ( URI | Basic )]] [-Attribute10 &lt;string>  -Attribute10Expr &lt;string>  [-Attribute10FriendlyName &lt;string>]  [-Attribute10Format ( URI | Basic )]] [-Attribute11 &lt;string>  -Attribute11Expr &lt;string>  [-Attribute11FriendlyName &lt;string>]  [-Attribute11Format ( URI | Basic )]] [-Attribute12 &lt;string>  -Attribute12Expr &lt;string>  [-Attribute12FriendlyName &lt;string>]  [-Attribute12Format ( URI | Basic )]] [-Attribute13 &lt;string>  -Attribute13Expr &lt;string>  [-Attribute13FriendlyName &lt;string>]  [-Attribute13Format ( URI | Basic )]] [-Attribute14 &lt;string>  -Attribute14Expr &lt;string>  [-Attribute14FriendlyName &lt;string>]  [-Attribute14Format ( URI | Basic )]] [-Attribute15 &lt;string>  -Attribute15Expr &lt;string>  [-Attribute15FriendlyName &lt;string>]  [-Attribute15Format ( URI | Basic )]] [-Attribute16 &lt;string>  -Attribute16Expr &lt;string>  [-Attribute16FriendlyName &lt;string>]  [-Attribute16Format ( URI | Basic )]] [-encryptionAlgorithm &lt;encryptionAlgorithm>]
+add authentication samlIdPProfile &lt;name> [-samlSPCertName &lt;string>  [-encryptAssertion ( ON | OFF )  [-keyTransportAlg ( RSA-V1_5 | RSA_OAEP )]]] [-samlIdPCertName &lt;string>] [-assertionConsumerServiceURL &lt;URL>] [-sendPassword ( ON | OFF )] [-samlIssuerName &lt;string>] [-rejectUnsignedRequests ( ON | OFF )] [-signatureAlg ( RSA-SHA1 | RSA-SHA256 )] [-digestMethod ( SHA1 | SHA256 )] [-audience &lt;string>] [-NameIDFormat &lt;NameIDFormat>] [-NameIDExpr &lt;string>] [-Attribute1 &lt;string>  -Attribute1Expr &lt;string>  [-Attribute1FriendlyName &lt;string>]  [-Attribute1Format ( URI | Basic )]] [-Attribute2 &lt;string>  -Attribute2Expr &lt;string>  [-Attribute2FriendlyName &lt;string>]  [-Attribute2Format ( URI | Basic )]] [-Attribute3 &lt;string>  -Attribute3Expr &lt;string>  [-Attribute3FriendlyName &lt;string>]  [-Attribute3Format ( URI | Basic )]] [-Attribute4 &lt;string>  -Attribute4Expr &lt;string>  [-Attribute4FriendlyName &lt;string>]  [-Attribute4Format ( URI | Basic )]] [-Attribute5 &lt;string>  -Attribute5Expr &lt;string>  [-Attribute5FriendlyName &lt;string>]  [-Attribute5Format ( URI | Basic )]] [-Attribute6 &lt;string>  -Attribute6Expr &lt;string>  [-Attribute6FriendlyName &lt;string>]  [-Attribute6Format ( URI | Basic )]] [-Attribute7 &lt;string>  -Attribute7Expr &lt;string>  [-Attribute7FriendlyName &lt;string>]  [-Attribute7Format ( URI | Basic )]] [-Attribute8 &lt;string>  -Attribute8Expr &lt;string>  [-Attribute8FriendlyName &lt;string>]  [-Attribute8Format ( URI | Basic )]] [-Attribute9 &lt;string>  -Attribute9Expr &lt;string>  [-Attribute9FriendlyName &lt;string>]  [-Attribute9Format ( URI | Basic )]] [-Attribute10 &lt;string>  -Attribute10Expr &lt;string>  [-Attribute10FriendlyName &lt;string>]  [-Attribute10Format ( URI | Basic )]] [-Attribute11 &lt;string>  -Attribute11Expr &lt;string>  [-Attribute11FriendlyName &lt;string>]  [-Attribute11Format ( URI | Basic )]] [-Attribute12 &lt;string>  -Attribute12Expr &lt;string>  [-Attribute12FriendlyName &lt;string>]  [-Attribute12Format ( URI | Basic )]] [-Attribute13 &lt;string>  -Attribute13Expr &lt;string>  [-Attribute13FriendlyName &lt;string>]  [-Attribute13Format ( URI | Basic )]] [-Attribute14 &lt;string>  -Attribute14Expr &lt;string>  [-Attribute14FriendlyName &lt;string>]  [-Attribute14Format ( URI | Basic )]] [-Attribute15 &lt;string>  -Attribute15Expr &lt;string>  [-Attribute15FriendlyName &lt;string>]  [-Attribute15Format ( URI | Basic )]] [-Attribute16 &lt;string>  -Attribute16Expr &lt;string>  [-Attribute16FriendlyName &lt;string>]  [-Attribute16Format ( URI | Basic )]] [-encryptionAlgorithm &lt;encryptionAlgorithm>] [-samlBinding &lt;samlBinding>] [-skewTime &lt;mins>] [-serviceProviderID &lt;string>] [-signAssertion &lt;signAssertion>] [-SPLogoutUrl &lt;string>] [-logoutBinding ( REDIRECT | POST )]
 
 
 ##Arguments
@@ -40,7 +40,7 @@ Default value: OFF
 The name to be used in requests sent from	Netscaler to IdP to uniquely identify Netscaler.
 
 <b>rejectUnsignedRequests</b>
-Option to Reject unsigned SAML Requests.
+Option to Reject unsigned SAML Requests. ON option denies any authentication requests that arrive without signature.
 Possible values: ON, OFF
 Default value: ON
 
@@ -282,6 +282,36 @@ Default value: OFF
 Algorithm to be used to encrypt SAML assertion
 Possible values: DES3, AES128, AES192, AES256
 Default value: AES256
+
+<b>samlBinding</b>
+This element specifies the transport mechanism of saml messages.
+Possible values: REDIRECT, POST, ARTIFACT
+Default value: POST
+
+<b>skewTime</b>
+This option specifies the number of minutes on either side of current time that the assertion would be valid. For example, if skewTime is 10, then assertion would be valid from (current time - 10) min to (current time + 10) min, ie 20min in all.
+Default value: 5
+
+<b>serviceProviderID</b>
+Unique identifier of the Service Provider that sends SAML Request. Netscaler will ensure that the Issuer of the SAML Request matches this URI.
+
+<b>signAssertion</b>
+Option to sign portions of assertion when Netscaler IDP sends one. Based on the user selection, either Assertion or Response or Both or none can be signed
+Possible values: NONE, ASSERTION, RESPONSE, BOTH
+Default value: ASSERTION
+
+<b>keyTransportAlg</b>
+Key transport algorithm to be used in encryption of SAML assertion
+Possible values: RSA-V1_5, RSA_OAEP
+Default value: RSA_OAEP
+
+<b>SPLogoutUrl</b>
+Endpoint on the ServiceProvider (SP) to which logout messages are to be sent
+
+<b>logoutBinding</b>
+This element specifies the transport mechanism of saml logout messages.
+Possible values: REDIRECT, POST
+Default value: POST
 
 
 
@@ -311,7 +341,7 @@ Modifies the specified attributes of a saml IdP profile.
 
 ##Synopsys
 
-set authentication samlIdPProfile &lt;name> [-samlSPCertName &lt;string>] [-samlIdPCertName &lt;string>] [-assertionConsumerServiceURL &lt;URL>] [-sendPassword ( ON | OFF )] [-samlIssuerName &lt;string>] [-rejectUnsignedRequests ( ON | OFF )] [-signatureAlg ( RSA-SHA1 | RSA-SHA256 )] [-digestMethod ( SHA1 | SHA256 )] [-audience &lt;string>] [-NameIDFormat &lt;NameIDFormat>] [-NameIDExpr &lt;string>] [-Attribute1 &lt;string>  -Attribute1Expr &lt;string>  [-Attribute1FriendlyName &lt;string>]  [-Attribute1Format ( URI | Basic )]] [-Attribute2 &lt;string>  -Attribute2Expr &lt;string>  [-Attribute2FriendlyName &lt;string>]  [-Attribute2Format ( URI | Basic )]] [-Attribute3 &lt;string>  -Attribute3Expr &lt;string>  [-Attribute3FriendlyName &lt;string>]  [-Attribute3Format ( URI | Basic )]] [-Attribute4 &lt;string>  -Attribute4Expr &lt;string>  [-Attribute4FriendlyName &lt;string>]  [-Attribute4Format ( URI | Basic )]] [-Attribute5 &lt;string>  -Attribute5Expr &lt;string>  [-Attribute5FriendlyName &lt;string>]  [-Attribute5Format ( URI | Basic )]] [-Attribute6 &lt;string>  -Attribute6Expr &lt;string>  [-Attribute6FriendlyName &lt;string>]  [-Attribute6Format ( URI | Basic )]] [-Attribute7 &lt;string>  -Attribute7Expr &lt;string>  [-Attribute7FriendlyName &lt;string>]  [-Attribute7Format ( URI | Basic )]] [-Attribute8 &lt;string>  -Attribute8Expr &lt;string>  [-Attribute8FriendlyName &lt;string>]  [-Attribute8Format ( URI | Basic )]] [-Attribute9 &lt;string>  -Attribute9Expr &lt;string>  [-Attribute9FriendlyName &lt;string>]  [-Attribute9Format ( URI | Basic )]] [-Attribute10 &lt;string>  -Attribute10Expr &lt;string>  [-Attribute10FriendlyName &lt;string>]  [-Attribute10Format ( URI | Basic )]] [-Attribute11 &lt;string>  -Attribute11Expr &lt;string>  [-Attribute11FriendlyName &lt;string>]  [-Attribute11Format ( URI | Basic )]] [-Attribute12 &lt;string>  -Attribute12Expr &lt;string>  [-Attribute12FriendlyName &lt;string>]  [-Attribute12Format ( URI | Basic )]] [-Attribute13 &lt;string>  -Attribute13Expr &lt;string>  [-Attribute13FriendlyName &lt;string>]  [-Attribute13Format ( URI | Basic )]] [-Attribute14 &lt;string>  -Attribute14Expr &lt;string>  [-Attribute14FriendlyName &lt;string>]  [-Attribute14Format ( URI | Basic )]] [-Attribute15 &lt;string>  -Attribute15Expr &lt;string>  [-Attribute15FriendlyName &lt;string>]  [-Attribute15Format ( URI | Basic )]] [-Attribute16 &lt;string>  -Attribute16Expr &lt;string>  [-Attribute16FriendlyName &lt;string>]  [-Attribute16Format ( URI | Basic )]] [-encryptAssertion ( ON | OFF )] [-encryptionAlgorithm &lt;encryptionAlgorithm>]
+set authentication samlIdPProfile &lt;name> [-samlSPCertName &lt;string>] [-samlIdPCertName &lt;string>] [-assertionConsumerServiceURL &lt;URL>] [-sendPassword ( ON | OFF )] [-samlIssuerName &lt;string>] [-rejectUnsignedRequests ( ON | OFF )] [-signatureAlg ( RSA-SHA1 | RSA-SHA256 )] [-digestMethod ( SHA1 | SHA256 )] [-audience &lt;string>] [-NameIDFormat &lt;NameIDFormat>] [-NameIDExpr &lt;string>] [-Attribute1 &lt;string>  -Attribute1Expr &lt;string>  [-Attribute1FriendlyName &lt;string>]  [-Attribute1Format ( URI | Basic )]] [-Attribute2 &lt;string>  -Attribute2Expr &lt;string>  [-Attribute2FriendlyName &lt;string>]  [-Attribute2Format ( URI | Basic )]] [-Attribute3 &lt;string>  -Attribute3Expr &lt;string>  [-Attribute3FriendlyName &lt;string>]  [-Attribute3Format ( URI | Basic )]] [-Attribute4 &lt;string>  -Attribute4Expr &lt;string>  [-Attribute4FriendlyName &lt;string>]  [-Attribute4Format ( URI | Basic )]] [-Attribute5 &lt;string>  -Attribute5Expr &lt;string>  [-Attribute5FriendlyName &lt;string>]  [-Attribute5Format ( URI | Basic )]] [-Attribute6 &lt;string>  -Attribute6Expr &lt;string>  [-Attribute6FriendlyName &lt;string>]  [-Attribute6Format ( URI | Basic )]] [-Attribute7 &lt;string>  -Attribute7Expr &lt;string>  [-Attribute7FriendlyName &lt;string>]  [-Attribute7Format ( URI | Basic )]] [-Attribute8 &lt;string>  -Attribute8Expr &lt;string>  [-Attribute8FriendlyName &lt;string>]  [-Attribute8Format ( URI | Basic )]] [-Attribute9 &lt;string>  -Attribute9Expr &lt;string>  [-Attribute9FriendlyName &lt;string>]  [-Attribute9Format ( URI | Basic )]] [-Attribute10 &lt;string>  -Attribute10Expr &lt;string>  [-Attribute10FriendlyName &lt;string>]  [-Attribute10Format ( URI | Basic )]] [-Attribute11 &lt;string>  -Attribute11Expr &lt;string>  [-Attribute11FriendlyName &lt;string>]  [-Attribute11Format ( URI | Basic )]] [-Attribute12 &lt;string>  -Attribute12Expr &lt;string>  [-Attribute12FriendlyName &lt;string>]  [-Attribute12Format ( URI | Basic )]] [-Attribute13 &lt;string>  -Attribute13Expr &lt;string>  [-Attribute13FriendlyName &lt;string>]  [-Attribute13Format ( URI | Basic )]] [-Attribute14 &lt;string>  -Attribute14Expr &lt;string>  [-Attribute14FriendlyName &lt;string>]  [-Attribute14Format ( URI | Basic )]] [-Attribute15 &lt;string>  -Attribute15Expr &lt;string>  [-Attribute15FriendlyName &lt;string>]  [-Attribute15Format ( URI | Basic )]] [-Attribute16 &lt;string>  -Attribute16Expr &lt;string>  [-Attribute16FriendlyName &lt;string>]  [-Attribute16Format ( URI | Basic )]] [-encryptAssertion ( ON | OFF )] [-encryptionAlgorithm &lt;encryptionAlgorithm>] [-samlBinding &lt;samlBinding>] [-skewTime &lt;mins>] [-serviceProviderID &lt;string>] [-signAssertion &lt;signAssertion>] [-keyTransportAlg ( RSA-V1_5 | RSA_OAEP )] [-SPLogoutUrl &lt;string>] [-logoutBinding ( REDIRECT | POST )]
 
 
 ##Arguments
@@ -339,7 +369,7 @@ Default value: OFF
 The name to be used in requests sent from	Netscaler to IdP to uniquely identify Netscaler.
 
 <b>rejectUnsignedRequests</b>
-Option to Reject unsigned SAML Requests.
+Option to Reject unsigned SAML Requests. ON option denies any authentication requests that arrive without signature.
 Possible values: ON, OFF
 Default value: ON
 
@@ -582,6 +612,36 @@ Algorithm to be used to encrypt SAML assertion
 Possible values: DES3, AES128, AES192, AES256
 Default value: AES256
 
+<b>samlBinding</b>
+This element specifies the transport mechanism of saml messages.
+Possible values: REDIRECT, POST, ARTIFACT
+Default value: POST
+
+<b>skewTime</b>
+This option specifies the number of minutes on either side of current time that the assertion would be valid. For example, if skewTime is 10, then assertion would be valid from (current time - 10) min to (current time + 10) min, ie 20min in all.
+Default value: 5
+
+<b>serviceProviderID</b>
+Unique identifier of the Service Provider that sends SAML Request. Netscaler will ensure that the Issuer of the SAML Request matches this URI.
+
+<b>signAssertion</b>
+Option to sign portions of assertion when Netscaler IDP sends one. Based on the user selection, either Assertion or Response or Both or none can be signed
+Possible values: NONE, ASSERTION, RESPONSE, BOTH
+Default value: ASSERTION
+
+<b>keyTransportAlg</b>
+Key transport algorithm to be used in encryption of SAML assertion
+Possible values: RSA-V1_5, RSA_OAEP
+Default value: RSA_OAEP
+
+<b>SPLogoutUrl</b>
+Endpoint on the ServiceProvider (SP) to which logout messages are to be sent
+
+<b>logoutBinding</b>
+This element specifies the transport mechanism of saml logout messages.
+Possible values: REDIRECT, POST
+Default value: POST
+
 
 
 ##unset authentication samlIdPProfile
@@ -591,7 +651,7 @@ Use this command to remove authentication samlIdPProfile settings.Refer to the s
 
 ##Synopsys
 
-unset authentication samlIdPProfile &lt;name> [-samlSPCertName] [-samlIdPCertName] [-assertionConsumerServiceURL] [-sendPassword] [-samlIssuerName] [-rejectUnsignedRequests] [-signatureAlg] [-digestMethod] [-audience] [-NameIDFormat] [-NameIDExpr] [-Attribute1] [-Attribute1FriendlyName] [-Attribute1Format] [-Attribute2] [-Attribute2FriendlyName] [-Attribute2Format] [-Attribute3] [-Attribute3FriendlyName] [-Attribute3Format] [-Attribute4] [-Attribute4FriendlyName] [-Attribute4Format] [-Attribute5] [-Attribute5FriendlyName] [-Attribute5Format] [-Attribute6] [-Attribute6FriendlyName] [-Attribute6Format] [-Attribute7] [-Attribute7FriendlyName] [-Attribute7Format] [-Attribute8] [-Attribute8FriendlyName] [-Attribute8Format] [-Attribute9] [-Attribute9FriendlyName] [-Attribute9Format] [-Attribute10] [-Attribute10FriendlyName] [-Attribute10Format] [-Attribute11] [-Attribute11FriendlyName] [-Attribute11Format] [-Attribute12] [-Attribute12FriendlyName] [-Attribute12Format] [-Attribute13] [-Attribute13FriendlyName] [-Attribute13Format] [-Attribute14] [-Attribute14FriendlyName] [-Attribute14Format] [-Attribute15] [-Attribute15FriendlyName] [-Attribute15Format] [-Attribute16] [-Attribute16FriendlyName] [-Attribute16Format] [-encryptAssertion] [-encryptionAlgorithm]
+unset authentication samlIdPProfile &lt;name> [-samlSPCertName] [-samlIdPCertName] [-assertionConsumerServiceURL] [-sendPassword] [-samlIssuerName] [-rejectUnsignedRequests] [-signatureAlg] [-digestMethod] [-audience] [-NameIDFormat] [-NameIDExpr] [-Attribute1] [-Attribute1FriendlyName] [-Attribute1Format] [-Attribute2] [-Attribute2FriendlyName] [-Attribute2Format] [-Attribute3] [-Attribute3FriendlyName] [-Attribute3Format] [-Attribute4] [-Attribute4FriendlyName] [-Attribute4Format] [-Attribute5] [-Attribute5FriendlyName] [-Attribute5Format] [-Attribute6] [-Attribute6FriendlyName] [-Attribute6Format] [-Attribute7] [-Attribute7FriendlyName] [-Attribute7Format] [-Attribute8] [-Attribute8FriendlyName] [-Attribute8Format] [-Attribute9] [-Attribute9FriendlyName] [-Attribute9Format] [-Attribute10] [-Attribute10FriendlyName] [-Attribute10Format] [-Attribute11] [-Attribute11FriendlyName] [-Attribute11Format] [-Attribute12] [-Attribute12FriendlyName] [-Attribute12Format] [-Attribute13] [-Attribute13FriendlyName] [-Attribute13Format] [-Attribute14] [-Attribute14FriendlyName] [-Attribute14Format] [-Attribute15] [-Attribute15FriendlyName] [-Attribute15Format] [-Attribute16] [-Attribute16FriendlyName] [-Attribute16Format] [-encryptAssertion] [-encryptionAlgorithm] [-samlBinding] [-skewTime] [-serviceProviderID] [-signAssertion] [-keyTransportAlg] [-SPLogoutUrl] [-logoutBinding]
 
 
 ##show authentication samlIdPProfile
@@ -631,7 +691,7 @@ Option to send password in assertion.
 The name to be used in requests sent from	Netscaler to IdP to uniquely identify Netscaler.
 
 <b>rejectUnsignedRequests</b>
-Option to Reject unsigned SAML Requests.
+Option to Reject unsigned SAML Requests. ON option denies any authentication requests that arrive without signature.
 
 <b>signatureAlg</b>
 Algorithm to be used to sign/verify SAML transactions
@@ -845,6 +905,27 @@ Option to encrypt assertion when Netscaler IDP sends one.
 
 <b>encryptionAlgorithm</b>
 Algorithm to be used to encrypt SAML assertion
+
+<b>samlBinding</b>
+This element specifies the transport mechanism of saml messages.
+
+<b>skewTime</b>
+This option specifies the number of minutes on either side of current time that the assertion would be valid. For example, if skewTime is 10, then assertion would be valid from (current time - 10) min to (current time + 10) min, ie 20min in all.
+
+<b>serviceProviderID</b>
+Unique identifier of the Service Provider that sends SAML Request. Netscaler will ensure that the Issuer of the SAML Request matches this URI.
+
+<b>signAssertion</b>
+Option to sign portions of assertion when Netscaler IDP sends one. Based on the user selection, either Assertion or Response or Both or none can be signed
+
+<b>keyTransportAlg</b>
+Key transport algorithm to be used in encryption of SAML assertion
+
+<b>SPLogoutUrl</b>
+Endpoint on the ServiceProvider (SP) to which logout messages are to be sent
+
+<b>logoutBinding</b>
+This element specifies the transport mechanism of saml logout messages.
 
 <b>devno</b>
 

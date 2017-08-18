@@ -12,7 +12,7 @@ Modify the global configuration of the LSN.
 
 ##Synopsys
 
-set lsn parameter -sessionSync ( ENABLED | DISABLED )
+set lsn parameter [-sessionSync ( ENABLED | DISABLED )] [-subscrSessionRemoval ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -24,6 +24,11 @@ For a group, when both the global level and the group level LSN session synchron
 Possible values: ENABLED, DISABLED
 Default value: ENABLED
 
+<b>subscrSessionRemoval</b>
+LSN global setting for controlling subscriber aware session removal, when this is enabled, when ever the subscriber info is deleted from subscriber database, sessions corresponding to that subscriber will be removed. if this setting is disabled, subscriber sessions will be timed out as per the idle time out settings.
+Possible values: ENABLED, DISABLED
+Default value: DISABLED
+
 
 
 ##unset lsn parameter
@@ -33,7 +38,7 @@ Use this command to remove lsn parameter settings.Refer to the set lsn parameter
 
 ##Synopsys
 
-unset lsn parameter -sessionSync
+unset lsn parameter [-sessionSync] [-subscrSessionRemoval]
 
 
 ##show lsn parameter
@@ -64,6 +69,9 @@ This command is deprecated, use 'set extendedmemoryparam -memlimit' instead.
 Synchronize all LSN sessions with the secondary node in a high availability (HA) deployment (global synchronization). After a failover, established TCP connections and UDP packet flows are kept active and resumed on the secondary node (new primary).
 The global session synchronization parameter and session synchronization parameters (group level) of all LSN groups are enabled by default.
 For a group, when both the global level and the group level LSN session synchronization parameters are enabled, the primary node synchronizes information of all LSN sessions related to this LSN group with the secondary node.
+
+<b>subscrSessionRemoval</b>
+LSN global setting for controlling subscriber aware session removal, when this is enabled, when ever the subscriber info is deleted from subscriber database, sessions corresponding to that subscriber will be removed. if this setting is disabled, subscriber sessions will be timed out as per the idle time out settings.
 
 
 

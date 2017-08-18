@@ -12,7 +12,7 @@ Adds a static ARP entry to the ARP table of the NetScaler appliance.
 
 ##Synopsys
 
-add arp -IPAddress &lt;ip_addr> [-td &lt;positive_integer>] -mac &lt;mac_addr> (-ifnum &lt;interface_name> | (-vxlan &lt;positive_integer>  -vtep &lt;ip_addr>)) [-vlan &lt;positive_integer>] [-ownerNode &lt;positive_integer>]
+add arp -IPAddress &lt;ip_addr> [-td &lt;positive_integer>] -mac &lt;mac_addr> (-ifnum &lt;interface_name> | -vxlan &lt;positive_integer>) [-vtep &lt;ip_addr>] [-vlan &lt;positive_integer>] [-ownerNode &lt;positive_integer>]
 
 
 ##Arguments
@@ -177,6 +177,9 @@ The tunnel, channel, or physical interface through which the ARP entry is identi
 
 <b>flag</b>
 Flags for the entry.
+
+<b>controlPlane</b>
+This arp entry is populated by a control plane protocol
 
 <b>devno</b>
 

@@ -75,7 +75,7 @@ Default value: DISABLED
 <b>portpreserverange</b>
 If a subscriber initiates a connection from a well-known port (0-1023), allocate a NAT port from the well-known port range (0-1023) for this connection. For example, if a subscriber initiates a connection from port 80, the NetScaler ADC can allocate port 100 as the NAT port for this connection.
 This parameter applies to dynamic NAT without port block allocation. It also applies to Deterministic NAT if the range of ports allocated includes well-known ports.
-When all the well-known ports of all the available NAT IP addresses are used in different subscribers\\? connections (LSN sessions), and a subscriber initiates a connection from a well-known port, the NetScaler ADC drops this connection.
+When all the well-known ports of all the available NAT IP addresses are used in different subscriber's connections (LSN sessions), and a subscriber initiates a connection from a well-known port, the NetScaler ADC drops this connection.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
@@ -181,7 +181,7 @@ Default value: DISABLED
 <b>portpreserverange</b>
 If a subscriber initiates a connection from a well-known port (0-1023), allocate a NAT port from the well-known port range (0-1023) for this connection. For example, if a subscriber initiates a connection from port 80, the NetScaler ADC can allocate port 100 as the NAT port for this connection.
 This parameter applies to dynamic NAT without port block allocation. It also applies to Deterministic NAT if the range of ports allocated includes well-known ports.
-When all the well-known ports of all the available NAT IP addresses are used in different subscribers\\? connections (LSN sessions), and a subscriber initiates a connection from a well-known port, the NetScaler ADC drops this connection.
+When all the well-known ports of all the available NAT IP addresses are used in different subscriber's connections (LSN sessions), and a subscriber initiates a connection from a well-known port, the NetScaler ADC drops this connection.
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
@@ -264,7 +264,7 @@ You must set this parameter for proper functioning of protocols that require the
 <b>portpreserverange</b>
 If a subscriber initiates a connection from a well-known port (0-1023), allocate a NAT port from the well-known port range (0-1023) for this connection. For example, if a subscriber initiates a connection from port 80, the NetScaler ADC can allocate port 100 as the NAT port for this connection.
 This parameter applies to dynamic NAT without port block allocation. It also applies to Deterministic NAT if the range of ports allocated includes well-known ports.
-When all the well-known ports of all the available NAT IP addresses are used in different subscribers\\? connections (LSN sessions), and a subscriber initiates a connection from a well-known port, the NetScaler ADC drops this connection.
+When all the well-known ports of all the available NAT IP addresses are used in different subscriber's connections (LSN sessions), and a subscriber initiates a connection from a well-known port, the NetScaler ADC drops this connection.
 
 <b>syncheck</b>
 Silently drop any non-SYN packets for connections for which there is no LSN-NAT session present on the NetScaler ADC. 

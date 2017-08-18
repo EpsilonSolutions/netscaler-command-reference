@@ -12,7 +12,7 @@ Sets global parameters of IPv4 tunnels on the NetScaler appliance.
 
 ##Synopsys
 
-set ipTunnelParam [-srcIP &lt;ip_addr>] [-dropFrag ( YES | NO )] [-dropFragCpuThreshold &lt;positive_integer>] [-srcIPRoundRobin ( YES | NO )] [-enableStrictRx ( YES | NO )] [-enableStrictTx ( YES | NO )]
+set ipTunnelParam [-srcIP &lt;ip_addr>] [-dropFrag ( YES | NO )] [-dropFragCpuThreshold &lt;positive_integer>] [-srcIPRoundRobin ( YES | NO )] [-enableStrictRx ( YES | NO )] [-enableStrictTx ( YES | NO )] [-mac &lt;mac_addr>]
 
 
 ##Arguments
@@ -45,6 +45,9 @@ Strict PBR check for packets to be sent IPSec protected
 Possible values: YES, NO
 Default value: NO
 
+<b>mac</b>
+The shared MAC used for shared IP between cluster nodes/HA peers
+
 
 
 ##Example
@@ -58,7 +61,7 @@ Use this command to remove  ipTunnelParam settings.Refer to the set  ipTunnelPar
 
 ##Synopsys
 
-unset ipTunnelParam [-srcIP] [-dropFrag] [-dropFragCpuThreshold] [-srcIPRoundRobin] [-enableStrictRx] [-enableStrictTx]
+unset ipTunnelParam [-srcIP] [-dropFrag] [-dropFragCpuThreshold] [-srcIPRoundRobin] [-enableStrictRx] [-enableStrictTx] [-mac]
 
 
 ##show ipTunnelParam
@@ -90,6 +93,9 @@ Strict PBR check for IPSec packets received through tunnel
 
 <b>enableStrictTx</b>
 Strict PBR check for packets to be sent IPSec protected
+
+<b>mac</b>
+The shared MAC used for shared IP between cluster nodes/HA peers
 
 
 

@@ -20,7 +20,7 @@ add cr vserver &lt;name> [-td &lt;positive_integer>] &lt;serviceType> [&lt;IPAdd
 <b>name</b>
 Name for the cache redirection virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Can be changed after the cache redirection virtual server is created.
 The following requirement applies only to the NetScaler CLI:  
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, ?my server? or ?my server?).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my server" or 'my server').
 
 <b>td</b>
 Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
@@ -53,7 +53,6 @@ Mode of operation for the cache redirection virtual server. Available settings f
 * FORWARD - Resolve the hostname of the incoming request, by using a DNS server, and forward requests for non-cacheable content to the resolved origin servers. Cacheable requests are sent to the configured cache servers.
 * REVERSE - Configure reverse proxy caches for specific origin servers. Incoming traffic directed to the reverse proxy can either be served from a cache server or be sent to the origin server with or without modification to the URL.
 Possible values: TRANSPARENT, REVERSE, FORWARD
-Default value: TRANSPARENT
 
 <b>redirect</b>
 Type of cache server to which to redirect HTTP requests. Available settings function as follows:
@@ -185,10 +184,10 @@ Comments associated with this virtual server.
 Expression used to extract the source IP addresses from the requests originating from the cache. Can be either an in-line expression or the name of a named expression.
 
 <b>originUSIP</b>
-Use the client?s IP address as the source IP address in requests sent to the origin server.  
+Use the client's IP address as the source IP address in requests sent to the origin server.  
 Note: You can enable this parameter to implement fully transparent CR deployment.
 Possible values: ON, OFF
-Default value: OFF
+Default value: VAL_NOT_SET
 
 <b>usePortRange</b>
 Use a port number from the port range (set by using the set ns param command, or in the Create Virtual Server (Cache Redirection) dialog box) as the source port in the requests sent to the origin server.
@@ -364,10 +363,10 @@ Comments associated with this virtual server.
 Expression used to extract the source IP addresses from the requests originating from the cache. Can be either an in-line expression or the name of a named expression.
 
 <b>originUSIP</b>
-Use the client?s IP address as the source IP address in requests sent to the origin server.  
+Use the client's IP address as the source IP address in requests sent to the origin server.  
 Note: You can enable this parameter to implement fully transparent CR deployment.
 Possible values: ON, OFF
-Default value: OFF
+Default value: VAL_NOT_SET
 
 <b>usePortRange</b>
 Use a port number from the port range (set by using the set ns param command, or in the Create Virtual Server (Cache Redirection) dialog box) as the source port in the requests sent to the origin server.
@@ -440,10 +439,9 @@ Minimum value: 0
 
 <b>gotoPriorityExpression</b>
 Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE.  Specify one of the following values:
-* NEXT ~V Evaluate the policy with the next higher priority number.
-* END ~V End policy evaluation.
-* USE_INVOCATION_RESULT ~V Applicable if this policy invokes another policy label. If the final goto in the invoked policy label has a value of END, the eval* USE_INVOCATION_RESULT ~V Applicable if this policy invokes another policy label. If the final goto in the invoked policy label has a value of END, the eval
-uation stops. If the final goto is anything other than END, the current policy label performs a NEXT.
+* NEXT - Evaluate the policy with the next higher priority number.
+* END - End policy evaluation.
+* USE_INVOCATION_RESULT - Applicable if this policy invokes another policy label. If the final goto in the invoked policy label has a value of END, the evaluation stops. If the final goto is anything other than END, the current policy label performs a NEXT.
 * A default syntax expression that evaluates to a number.
 If you specify an expression, the number to which it evaluates determines the next policy to evaluate, as follows:
 * If the expression evaluates to a higher numbered priority, the policy with that priority is evaluated next.
@@ -451,8 +449,8 @@ If you specify an expression, the number to which it evaluates determines the ne
 * If the expression evaluates to a priority number that is numerically higher than the highest numbered priority, policy evaluation ends.
 An UNDEF event is triggered if:
 * The expression is invalid.
-* The expression evaluates to a priority number that is numerically lower than the current policy~Rs priority.
-* The expression evaluates to a priority number that is between the current policy~Rs priority number (say, 30) and the highest priority number (say, 100), b
+* The expression evaluates to a priority number that is numerically lower than the current policy's priority.
+* The expression evaluates to a priority number that is between the current policy's priority number (say, 30) and the highest priority number (say, 100), b
 ut does not match any configured priority number (for example, the expression evaluates to the number 85). This example assumes that the priority number incr
 ements by 10 for every successive policy, and therefore a priority number of 85 does not exist in the policy label.
 
@@ -749,7 +747,7 @@ Name of the profile containing HTTP configuration information for cache redirect
 Expression used to extract the source IP addresses from the requests originating from the cache. Can be either an in-line expression or the name of a named expression.
 
 <b>originUSIP</b>
-Use the client?s IP address as the source IP address in requests sent to the origin server.  
+Use the client's IP address as the source IP address in requests sent to the origin server.  
 Note: You can enable this parameter to implement fully transparent CR deployment.
 
 <b>usePortRange</b>
@@ -898,7 +896,7 @@ rename cr vserver &lt;name>@ &lt;newName>@
 Existing name of the cache redirection virtual server.
 
 <b>newName</b>
-New name for the cache redirection virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, ?my name? or ?my name?).
+New name for the cache redirection virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my name" or 'my name').
 
 
 

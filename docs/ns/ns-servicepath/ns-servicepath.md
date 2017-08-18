@@ -18,7 +18,7 @@ add ns servicePath &lt;servicePathName>
 ##Arguments
 
 <b>servicePathName</b>
-Name for the Service path. Must begin with an ASCII alphanumeric or underscore (_) character, and must 
+Name for the Service path. Must begin with an ASCII alphanumeric or underscore (_) character, and must
       contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-)
       characters.
 
@@ -41,7 +41,7 @@ rm ns servicePath &lt;servicePathName>
 ##Arguments
 
 <b>servicePathName</b>
-Name for the Service path. Must begin with an ASCII alphanumeric or underscore (_) character, and must 
+Name for the Service path. Must begin with an ASCII alphanumeric or underscore (_) character, and must
       contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-)
       characters.
 
@@ -64,7 +64,7 @@ bind ns servicePath &lt;servicePathName> -serviceFunction &lt;string> -index &lt
 ##Arguments
 
 <b>servicePathName</b>
-Name for the Service path. Must begin with an ASCII alphanumeric or underscore (_) character, and must 
+Name for the Service path. Must begin with an ASCII alphanumeric or underscore (_) character, and must
       contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-)
       characters.
 
@@ -94,7 +94,7 @@ unbind ns servicePath &lt;servicePathName> -serviceFunction &lt;string>
 ##Arguments
 
 <b>servicePathName</b>
-Name for the Service path. Must begin with an ASCII alphanumeric or underscore (_) character, and must 
+Name for the Service path. Must begin with an ASCII alphanumeric or underscore (_) character, and must
       contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-)
       characters.
 
@@ -120,7 +120,7 @@ show ns servicePath [&lt;servicePathName>]
 ##Arguments
 
 <b>servicePathName</b>
-Name for the Service path. Must begin with an ASCII alphanumeric or underscore (_) character, and must 
+Name for the Service path. Must begin with an ASCII alphanumeric or underscore (_) character, and must
       contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-)
       characters.
 

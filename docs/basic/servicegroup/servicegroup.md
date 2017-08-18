@@ -12,7 +12,7 @@ Creates a service group. You can group similar services into a service group and
 
 ##Synopsys
 
-add serviceGroup &lt;serviceGroupName>@ &lt;serviceType> [-cacheType &lt;cacheType>] [-td &lt;positive_integer>] [-maxClient &lt;positive_integer>] [-maxReq &lt;positive_integer>] [-cacheable ( YES | NO )] [-cip ( ENABLED | DISABLED )  [&lt;cipHeader>]] [-usip ( YES | NO )] [-pathMonitor ( YES | NO )] [-pathMonitorIndv ( YES | NO )] [-useproxyport ( YES | NO )] [-healthMonitor ( YES | NO )] [-sc ( ON | OFF )] [-sp ( ON | OFF )] [-rtspSessionidRemap ( ON | OFF )] [-cltTimeout &lt;secs>] [-svrTimeout &lt;secs>] [-CKA ( YES | NO )] [-TCPB ( YES | NO )] [-CMP ( YES | NO )] [-maxBandwidth &lt;positive_integer>] [-monThreshold &lt;positive_integer>] [-state ( ENABLED | DISABLED )] [-downStateFlush ( ENABLED | DISABLED )] [-tcpProfileName &lt;string>] [-httpProfileName &lt;string>] [-comment &lt;string>] [-appflowLog ( ENABLED | DISABLED )] [-netProfile &lt;string>] [-autoScale &lt;autoScale>  -memberPort &lt;port>]
+add serviceGroup &lt;serviceGroupName>@ &lt;serviceType> [-cacheType &lt;cacheType>] [-td &lt;positive_integer>] [-maxClient &lt;positive_integer>] [-maxReq &lt;positive_integer>] [-cacheable ( YES | NO )] [-cip ( ENABLED | DISABLED )  [&lt;cipHeader>]] [-usip ( YES | NO )] [-pathMonitor ( YES | NO )] [-pathMonitorIndv ( YES | NO )] [-useproxyport ( YES | NO )] [-healthMonitor ( YES | NO )] [-sp ( ON | OFF )] [-rtspSessionidRemap ( ON | OFF )] [-cltTimeout &lt;secs>] [-svrTimeout &lt;secs>] [-CKA ( YES | NO )] [-TCPB ( YES | NO )] [-CMP ( YES | NO )] [-maxBandwidth &lt;positive_integer>] [-monThreshold &lt;positive_integer>] [-state ( ENABLED | DISABLED )] [-downStateFlush ( ENABLED | DISABLED )] [-tcpProfileName &lt;string>] [-httpProfileName &lt;string>] [-comment &lt;string>] [-appflowLog ( ENABLED | DISABLED )] [-netProfile &lt;string>] [-autoScale &lt;autoScale>  -memberPort &lt;port>] [-monConnectionClose ( RESET | FIN )]
 
 
 ##Arguments
@@ -22,7 +22,7 @@ Name of the service group. Must begin with an ASCII alphabetic or underscore (_)
 
 <b>serviceType</b>
 Protocol used to exchange data with the service.
-Possible values: HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, DTLS, NNTP, RPCSVR, DNS, ADNS, SNMP, RTSP, DHCPRA, ANY, SIP_UDP, SIP_TCP, SIP_SSL, DNS_TCP, ADNS_TCP, MYSQL, MSSQL, ORACLE, RADIUS, RADIUSListener, RDP, DIAMETER, SSL_DIAMETER, TFTP, SMPP, PPTP, GRE, SYSLOGTCP, SYSLOGUDP
+Possible values: HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, DTLS, NNTP, RPCSVR, DNS, ADNS, SNMP, RTSP, DHCPRA, ANY, SIP_UDP, SIP_TCP, SIP_SSL, DNS_TCP, ADNS_TCP, MYSQL, MSSQL, ORACLE, RADIUS, RADIUSListener, RDP, DIAMETER, SSL_DIAMETER, TFTP, SMPP, PPTP, GRE, SYSLOGTCP, SYSLOGUDP, FIX, SSL_FIX, USER_TCP, USER_SSL_TCP
 
 <b>cacheType</b>
 Cache type supported by the cache server.
@@ -80,11 +80,6 @@ YES - Send probes to check the health of the service.
 NO - Do not send probes to check the health of the service. With the NO option, the appliance shows the service as UP at all times.
 Possible values: YES, NO
 Default value: YES
-
-<b>sc</b>
-State of the SureConnect feature for the service group.
-Possible values: ON, OFF
-Default value: OFF
 
 <b>sp</b>
 Enable surge protection for the service group.
@@ -161,6 +156,11 @@ Default value: DISABLED
 <b>memberPort</b>
 member port
 
+<b>monConnectionClose</b>
+Close monitoring connections by sending the service a connection termination message with the specified bit set.
+Possible values: RESET, FIN
+Default value: NONE
+
 
 
 ##Example
@@ -195,7 +195,7 @@ Modifies the specified parameters of a service group.
 
 ##Synopsys
 
-set serviceGroup &lt;serviceGroupName>@ [(&lt;serverName>@  &lt;port>  [-weight &lt;positive_integer>]  [-CustomServerID &lt;string>]  [-hashId &lt;positive_integer>]) | -maxClient &lt;positive_integer> | -maxReq &lt;positive_integer> | -cacheable ( YES | NO ) | -cip ( ENABLED | DISABLED ) | &lt;cipHeader> | -usip ( YES | NO ) | -useproxyport ( YES | NO ) | -sc ( ON | OFF ) | -sp ( ON | OFF ) | -rtspSessionidRemap ( ON | OFF ) | -cltTimeout &lt;secs> | -svrTimeout &lt;secs> | -CKA ( YES | NO ) | -TCPB ( YES | NO ) | -CMP ( YES | NO ) | -maxBandwidth &lt;positive_integer> | -monThreshold &lt;positive_integer> | -downStateFlush ( ENABLED | DISABLED )] [-monitorName &lt;string>  -weight &lt;positive_integer>] [-healthMonitor ( YES | NO )] [-pathMonitor ( YES | NO )] [-pathMonitorIndv ( YES | NO )] [-tcpProfileName &lt;string>] [-httpProfileName &lt;string>] [-comment &lt;string>] [-appflowLog ( ENABLED | DISABLED )] [-netProfile &lt;string>]
+set serviceGroup &lt;serviceGroupName>@ [(&lt;serverName>@  &lt;port>  [-weight &lt;positive_integer>]  [-CustomServerID &lt;string>]  [-hashId &lt;positive_integer>]) | -maxClient &lt;positive_integer> | -maxReq &lt;positive_integer> | -cacheable ( YES | NO ) | -cip ( ENABLED | DISABLED ) | &lt;cipHeader> | -usip ( YES | NO ) | -useproxyport ( YES | NO ) | -sp ( ON | OFF ) | -rtspSessionidRemap ( ON | OFF ) | -cltTimeout &lt;secs> | -svrTimeout &lt;secs> | -CKA ( YES | NO ) | -TCPB ( YES | NO ) | -CMP ( YES | NO ) | -maxBandwidth &lt;positive_integer> | -monThreshold &lt;positive_integer> | -downStateFlush ( ENABLED | DISABLED )] [-monitorName &lt;string>  -weight &lt;positive_integer>] [-healthMonitor ( YES | NO )] [-pathMonitor ( YES | NO )] [-pathMonitorIndv ( YES | NO )] [-tcpProfileName &lt;string>] [-httpProfileName &lt;string>] [-comment &lt;string>] [-appflowLog ( ENABLED | DISABLED )] [-netProfile &lt;string>] [-monConnectionClose ( RESET | FIN )]
 
 
 ##Arguments
@@ -272,11 +272,6 @@ Use the proxy port as the source port when initiating connections with the serve
 Note: This parameter is available only when the Use Source IP (USIP) parameter is set to YES.
 Possible values: YES, NO
 
-<b>sc</b>
-State of the SureConnect feature for the service group.
-Possible values: ON, OFF
-Default value: OFF
-
 <b>sp</b>
 Enable surge protection for the service group.
 Possible values: ON, OFF
@@ -339,6 +334,11 @@ Default value: ENABLED
 <b>netProfile</b>
 Network profile for the service group.
 
+<b>monConnectionClose</b>
+Close monitoring connections by sending the service a connection termination message with the specified bit set.
+Possible values: RESET, FIN
+Default value: NONE
+
 
 
 ##Example
@@ -352,7 +352,7 @@ Removes the attributes of the specified service group. Attributes for which a de
 
 ##Synopsys
 
-unset serviceGroup &lt;serviceGroupName>@ [&lt;serverName>@  &lt;port>  [-weight]  [-CustomServerID]  [-hashId]  [-riseApbrStatsMsgCode]] [-maxClient] [-maxReq] [-cacheable] [-cip] [-usip] [-useproxyport] [-sc] [-sp] [-rtspSessionidRemap] [-cltTimeout] [-svrTimeout] [-CKA] [-TCPB] [-CMP] [-maxBandwidth] [-monThreshold] [-tcpProfileName] [-httpProfileName] [-appflowLog] [-netProfile] [-monitorName] [-weight] [-healthMonitor] [-cipHeader] [-pathMonitor] [-pathMonitorIndv] [-downStateFlush] [-comment]
+unset serviceGroup &lt;serviceGroupName>@ [&lt;serverName>@  &lt;port>  [-weight]  [-CustomServerID]  [-hashId]  [-riseApbrStatsMsgCode]] [-maxClient] [-maxReq] [-cacheable] [-cip] [-usip] [-useproxyport] [-sp] [-rtspSessionidRemap] [-cltTimeout] [-svrTimeout] [-CKA] [-TCPB] [-CMP] [-maxBandwidth] [-monThreshold] [-tcpProfileName] [-httpProfileName] [-appflowLog] [-netProfile] [-monitorName] [-weight] [-healthMonitor] [-cipHeader] [-pathMonitor] [-pathMonitorIndv] [-downStateFlush] [-comment] [-monConnectionClose]
 
 
 ##Example
@@ -745,6 +745,9 @@ Indicates if load monitor is passive. A passive load monitor does not remove ser
 
 <b>serviceGroupeffectivestate</b>
 Indicates the effective servicegroup state based on the state of the bound service items.If all services are UP the effective state is UP, if all are DOWN its DOWN,if all are OFS its OFS.If atleast one serviceis UP and rest are either DOWN or OFS, the effective state is PARTIAL-UP.If atleast one bound service is DOWN and rest are OFS the effective state is PARTIAL DOWN.
+
+<b>monConnectionClose</b>
+Close monitoring connections by sending the service a connection termination message with the specified bit set.
 
 <b>devno</b>
 

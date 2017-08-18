@@ -12,7 +12,7 @@ Creates a service on the NetScaler appliance. If the service is domain based, be
 
 ##Synopsys
 
-add service &lt;name>@ (&lt;IP>@ | &lt;serverName>@) &lt;serviceType> &lt;port> [-clearTextPort &lt;port>] [-cacheType &lt;cacheType>] [-maxClient &lt;positive_integer>] [-healthMonitor ( YES | NO )] [-maxReq &lt;positive_integer>] [-cacheable ( YES | NO )] [-cip ( ENABLED | DISABLED )  [&lt;cipHeader>]] [-usip ( YES | NO )] [-pathMonitor ( YES | NO )] [-pathMonitorIndv ( YES | NO )] [-useproxyport ( YES | NO )] [-sc ( ON | OFF )] [-sp ( ON | OFF )] [-rtspSessionidRemap ( ON | OFF )] [-cltTimeout &lt;secs>] [-svrTimeout &lt;secs>] [-CustomServerID &lt;string>] [-CKA ( YES | NO )] [-TCPB ( YES | NO )] [-CMP ( YES | NO )] [-maxBandwidth &lt;positive_integer>] [-accessDown ( YES | NO )] [-monThreshold &lt;positive_integer>] [-state ( ENABLED | DISABLED )] [-downStateFlush ( ENABLED | DISABLED )] [-tcpProfileName &lt;string>] [-httpProfileName &lt;string>] [-hashId &lt;positive_integer>] [-comment &lt;string>] [-appflowLog ( ENABLED | DISABLED )] [-netProfile &lt;string>] [-td &lt;positive_integer>] [-processLocal ( ENABLED | DISABLED )] [-dnsProfileName &lt;string>]
+add service &lt;name>@ (&lt;IP>@ | &lt;serverName>@) &lt;serviceType> &lt;port> [-clearTextPort &lt;port>] [-cacheType &lt;cacheType>] [-maxClient &lt;positive_integer>] [-healthMonitor ( YES | NO )] [-maxReq &lt;positive_integer>] [-cacheable ( YES | NO )] [-cip ( ENABLED | DISABLED )  [&lt;cipHeader>]] [-usip ( YES | NO )] [-pathMonitor ( YES | NO )] [-pathMonitorIndv ( YES | NO )] [-useproxyport ( YES | NO )] [-sp ( ON | OFF )] [-rtspSessionidRemap ( ON | OFF )] [-cltTimeout &lt;secs>] [-svrTimeout &lt;secs>] [-CustomServerID &lt;string>] [-CKA ( YES | NO )] [-TCPB ( YES | NO )] [-CMP ( YES | NO )] [-maxBandwidth &lt;positive_integer>] [-accessDown ( YES | NO )] [-monThreshold &lt;positive_integer>] [-state ( ENABLED | DISABLED )] [-downStateFlush ( ENABLED | DISABLED )] [-tcpProfileName &lt;string>] [-httpProfileName &lt;string>] [-hashId &lt;positive_integer>] [-comment &lt;string>] [-appflowLog ( ENABLED | DISABLED )] [-netProfile &lt;string>] [-td &lt;positive_integer>] [-processLocal ( ENABLED | DISABLED )] [-dnsProfileName &lt;string>] [-monConnectionClose ( RESET | FIN )]
 
 
 ##Arguments
@@ -28,7 +28,7 @@ Name of the server that hosts the service.
 
 <b>serviceType</b>
 Protocol in which data is exchanged with the service.
-Possible values: HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, DTLS, NNTP, RPCSVR, DNS, ADNS, SNMP, RTSP, DHCPRA, ANY, SIP_UDP, SIP_TCP, SIP_SSL, DNS_TCP, ADNS_TCP, MYSQL, MSSQL, ORACLE, RADIUS, RADIUSListener, RDP, DIAMETER, SSL_DIAMETER, TFTP, SMPP, PPTP, GRE, SYSLOGTCP, SYSLOGUDP
+Possible values: HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, DTLS, NNTP, RPCSVR, DNS, ADNS, SNMP, RTSP, DHCPRA, ANY, SIP_UDP, SIP_TCP, SIP_SSL, DNS_TCP, ADNS_TCP, MYSQL, MSSQL, ORACLE, RADIUS, RADIUSListener, RDP, DIAMETER, SSL_DIAMETER, TFTP, SMPP, PPTP, GRE, SYSLOGTCP, SYSLOGUDP, FIX, SSL_FIX, USER_TCP, USER_SSL_TCP
 
 <b>port</b>
 Port number of the service.
@@ -88,11 +88,6 @@ Possible values: YES, NO
 Use the proxy port as the source port when initiating connections with the server. With the NO setting, the client-side connection port is used as the source port for the server-side connection. 
 Note: This parameter is available only when the Use Source IP (USIP) parameter is set to YES.
 Possible values: YES, NO
-
-<b>sc</b>
-State of SureConnect for the service.
-Possible values: ON, OFF
-Default value: OFF
 
 <b>sp</b>
 Enable surge protection for the service.
@@ -186,6 +181,11 @@ Default value: DISABLED
 <b>dnsProfileName</b>
 Name of the DNS profile to be associated with the service. DNS profile properties will applied to the transactions processed by a service. This parameter is valid only for ADNS and ADNS-TCP services.
 
+<b>monConnectionClose</b>
+Close monitoring connections by sending the service a connection termination message with the specified bit set.
+Possible values: RESET, FIN
+Default value: NONE
+
 
 
 ##Example
@@ -220,7 +220,7 @@ Modifies the parameters of an existing service.
 
 ##Synopsys
 
-set service &lt;name>@ [-IPAddress &lt;ip_addr|ipv6_addr|*>@] [-maxClient &lt;positive_integer>] [-maxReq &lt;positive_integer>] [-cacheable ( YES | NO )] [-cip ( ENABLED | DISABLED )  [&lt;cipHeader>]] [-usip ( YES | NO )] [-pathMonitor ( YES | NO )] [-pathMonitorIndv ( YES | NO )] [-useproxyport ( YES | NO )] [-sc ( ON | OFF )] [-sp ( ON | OFF )] [-rtspSessionidRemap ( ON | OFF )] [-healthMonitor ( YES | NO )] [-cltTimeout &lt;secs>] [-svrTimeout &lt;secs>] [-CustomServerID &lt;string>] [-CKA ( YES | NO )] [-TCPB ( YES | NO )] [-CMP ( YES | NO )] [-maxBandwidth &lt;positive_integer>] [-accessDown ( YES | NO )] [-monThreshold &lt;positive_integer>] [-weight &lt;positive_integer>  &lt;monitorName>] [-downStateFlush ( ENABLED | DISABLED )] [-tcpProfileName &lt;string>] [-httpProfileName &lt;string>] [-hashId &lt;positive_integer>] [-comment &lt;string>] [-appflowLog ( ENABLED | DISABLED )] [-netProfile &lt;string>] [-processLocal ( ENABLED | DISABLED )] [-dnsProfileName &lt;string>]
+set service &lt;name>@ [-IPAddress &lt;ip_addr|ipv6_addr|*>@] [-maxClient &lt;positive_integer>] [-maxReq &lt;positive_integer>] [-cacheable ( YES | NO )] [-cip ( ENABLED | DISABLED )  [&lt;cipHeader>]] [-usip ( YES | NO )] [-pathMonitor ( YES | NO )] [-pathMonitorIndv ( YES | NO )] [-useproxyport ( YES | NO )] [-sp ( ON | OFF )] [-rtspSessionidRemap ( ON | OFF )] [-healthMonitor ( YES | NO )] [-cltTimeout &lt;secs>] [-svrTimeout &lt;secs>] [-CustomServerID &lt;string>] [-CKA ( YES | NO )] [-TCPB ( YES | NO )] [-CMP ( YES | NO )] [-maxBandwidth &lt;positive_integer>] [-accessDown ( YES | NO )] [-monThreshold &lt;positive_integer>] [-weight &lt;positive_integer>  &lt;monitorName>] [-downStateFlush ( ENABLED | DISABLED )] [-tcpProfileName &lt;string>] [-httpProfileName &lt;string>] [-hashId &lt;positive_integer>] [-comment &lt;string>] [-appflowLog ( ENABLED | DISABLED )] [-netProfile &lt;string>] [-processLocal ( ENABLED | DISABLED )] [-dnsProfileName &lt;string>] [-monConnectionClose ( RESET | FIN )]
 
 
 ##Arguments
@@ -271,11 +271,6 @@ Possible values: YES, NO
 Use the proxy port as the source port when initiating connections with the server. With the NO setting, the client-side connection port is used as the source port for the server-side connection. 
 Note: This parameter is available only when the Use Source IP (USIP) parameter is set to YES.
 Possible values: YES, NO
-
-<b>sc</b>
-State of SureConnect for the service.
-Possible values: ON, OFF
-Default value: OFF
 
 <b>sp</b>
 Enable surge protection for the service.
@@ -374,6 +369,11 @@ Default value: DISABLED
 <b>dnsProfileName</b>
 Name of the DNS profile to be associated with the service. DNS profile properties will applied to the transactions processed by a service. This parameter is valid only for ADNS and ADNS-TCP services.
 
+<b>monConnectionClose</b>
+Close monitoring connections by sending the service a connection termination message with the specified bit set.
+Possible values: RESET, FIN
+Default value: NONE
+
 
 
 ##Example
@@ -387,7 +387,7 @@ Removes the parameter settings of the specified service. Attributes for which a 
 
 ##Synopsys
 
-unset service &lt;name>@ [-maxClient] [-maxReq] [-cacheable] [-cip] [-usip] [-pathMonitor] [-pathMonitorIndv] [-useproxyport] [-sc] [-sp] [-rtspSessionidRemap] [-CustomServerID] [-CKA] [-TCPB] [-CMP] [-maxBandwidth] [-accessDown] [-monThreshold] [-cltTimeout] [-riseApbrStatsMsgCode] [-svrTimeout] [-tcpProfileName] [-httpProfileName] [-hashId] [-appflowLog] [-netProfile] [-processLocal] [-dnsProfileName] [-cipHeader] [-healthMonitor] [-downStateFlush] [-comment]
+unset service &lt;name>@ [-maxClient] [-maxReq] [-cacheable] [-cip] [-usip] [-pathMonitor] [-pathMonitorIndv] [-useproxyport] [-sp] [-rtspSessionidRemap] [-CustomServerID] [-CKA] [-TCPB] [-CMP] [-maxBandwidth] [-accessDown] [-monThreshold] [-cltTimeout] [-riseApbrStatsMsgCode] [-svrTimeout] [-tcpProfileName] [-httpProfileName] [-hashId] [-appflowLog] [-netProfile] [-processLocal] [-dnsProfileName] [-monConnectionClose] [-cipHeader] [-healthMonitor] [-downStateFlush] [-comment]
 
 
 ##Example
@@ -787,6 +787,9 @@ Oracle server version
 <b>dnsProfileName</b>
 Name of the DNS profile to be associated with the service. DNS profile properties will applied to the transactions processed by a service. This parameter is valid only for ADNS and ADNS-TCP services.
 
+<b>monConnectionClose</b>
+Close monitoring connections by sending the service a connection termination message with the specified bit set.
+
 <b>devno</b>
 
 <b>count</b>
@@ -921,6 +924,15 @@ Load on the service that is calculated from the bound load based monitor.
 
 <b>Current flags on the service (CurtFlags)</b>
 Current flags on the service for internal use in display handlers.
+
+<b>Total transactions for server TTLB (totSvrTTLBTransactions)</b>
+Total transactions where server TTLB is calculated.
+
+<b>Tolerating TTLB Transactions (toleratingTTLBTransactions)</b>
+Tolerable transactions based on APDEX threshold (>T && &lt;4T).
+
+<b>Frustrating TTLB Transactions (frustratingTTLBTransactions)</b>
+Frustrating transactions based on APDEX threshold (>4T).
 
 <b>Service hits (Hits)</b>
 Number of times that the service has been provided.

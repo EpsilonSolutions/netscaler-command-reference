@@ -91,13 +91,16 @@ Displays the regular expression that defines the specified field type and its pr
 
 ##Synopsys
 
-show appfw fieldType [&lt;name>]
+show appfw fieldType [&lt;name>] [-noCharMaps]
 
 
 ##Arguments
 
 <b>name</b>
 Name of the field type.
+
+<b>noCharMaps</b>
+will not show internal field types added as part of FieldFormat learn rules deployment
 
 
 

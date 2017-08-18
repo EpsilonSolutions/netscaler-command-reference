@@ -7,12 +7,12 @@ The following operations can be performed on "sc policy":
 
 ##add sc policy
 
-Creates a new SureConnect policy.
+Creates a new SureConnect policy. NOTE: This command is deprecated.SureConnect feature has been deprecated in favour of AppQoE
 
 
 ##Synopsys
 
-add sc policy &lt;name> [-url &lt;URL> | -rule &lt;expression>] [-delay &lt;usecs>] [-maxConn &lt;positive_integer>] [-action &lt;action>  (&lt;altContentSvcName>  &lt;altContentPath>)]
+
 
 
 ##Arguments
@@ -62,12 +62,12 @@ add sc policy scpol_ns -delay 1000000 -url /delay.asp -action NSadd policy expre
 
 ##rm sc policy
 
-Removes the specified SureConnect policy.
+Removes the specified SureConnect policy. NOTE: This command is deprecated.SureConnect feature has been deprecated in favour of AppQoE
 
 
 ##Synopsys
 
-rm sc policy &lt;name>
+
 
 
 ##Arguments
@@ -83,12 +83,12 @@ rm sc policy scpol_nsrm sc policy scpol_acs
 
 ##set sc policy
 
-Modifies the specified settings of a SureConnect policy.
+Modifies the specified settings of a SureConnect policy. NOTE: This command is deprecated.
 
 
 ##Synopsys
 
-set sc policy &lt;name> [-url &lt;URL> | -rule &lt;expression>] [-delay &lt;usecs>] [-maxConn &lt;positive_integer>] [-action &lt;action>  (&lt;altContentSvcName>  &lt;altContentPath>)]
+
 
 
 ##Arguments
@@ -138,22 +138,22 @@ set sc policy scpol_ns -delay 2000000set sc policy scpol_acs -maxconn 100
 
 ##unset sc policy
 
-Use this command to remove sc policy settings.Refer to the set sc policy command for meanings of the arguments.
+Use this command to remove sc policy settings.Refer to the set sc policy command for meanings of the arguments.NOTE: This command is deprecated.
 
 
 ##Synopsys
 
-unset sc policy &lt;name> [-delay] [-maxConn]
+
 
 
 ##show sc policy
 
-Displays information about the SureConnect policies.
+Displays information about the SureConnect policies. NOTE: This command is deprecated.SureConnect feature has been deprecated in favour of AppQoE
 
 
 ##Synopsys
 
-show sc policy [&lt;name>]
+
 
 
 ##Arguments
@@ -207,12 +207,12 @@ Path to the alternative content service to be used in the ACS action.
 
 ##stat sc policy
 
-Displays statistics about SureConnect policies.
+Displays statistics about SureConnect policies. NOTE: This command is deprecated.SureConnect feature has been deprecated in favour of AppQoE
 
 
 ##Synopsys
 
-stat sc policy [&lt;name>] [-detail] [-fullValues] [-ntimes &lt;positive_integer>] [-logFile &lt;input_filename>] [-clearstats ( basic | full )]
+
 
 
 ##Arguments

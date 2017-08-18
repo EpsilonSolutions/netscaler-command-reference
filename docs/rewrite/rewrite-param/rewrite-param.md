@@ -7,23 +7,28 @@ The following operations can be performed on "rewrite param":
 
 ##set rewrite param
 
-Sets the default rewrite undefined action. If an UNDEF event is triggered during policy evaluation and if no undefAction is specified for the current policy, this value is used.
+Sets the given Rewrite parameter(s).
 
 
 ##Synopsys
 
-set rewrite param -undefAction &lt;string>
+set rewrite param [-undefAction &lt;string>] [-timeout &lt;positive_integer>]
 
 
 ##Arguments
 
 <b>undefAction</b>
-Action to perform if the result of policy evaluation is undefined (UNDEF). An UNDEF event indicates an internal error condition.
+Action to perform if the result of policy evaluation is undefined (UNDEF). An UNDEF event indicates an error condition in evaluating the expression.
 Available settings function as follows:
-* NOOP - Send the request to the protected server instead of responding to it.
-* RESET - Reset the request and notify the user?s browser, so that the user can resend the request.
-* DROP - Drop the request without sending a response to the user.
+* NOREWRITE - Do not modify the message.
+* RESET - Reset the connection and notify the user's browser, so that the user can resend the request.
+* DROP - Drop the message without sending a response to the user.
 Default value: "NOREWRITE"
+
+<b>timeout</b>
+Maximum time in milliseconds to allow for processing all the policies and their selected actions without interruption. If the timeout is reached then the evaluation causes an UNDEF to be raised and no further processing is performed. Note that some rewrites may have already been performed.
+Minimum value: 1
+Maximum value: 5000
 
 
 
@@ -33,12 +38,12 @@ set rewrite param -undefAction RESET
 
 ##unset rewrite param
 
-Resets the global undefAction to NOREWRITE..Refer to the set rewrite param command for meanings of the arguments.
+Resets the given Rewrite parameter(s)..Refer to the set rewrite param command for meanings of the arguments.
 
 
 ##Synopsys
 
-unset rewrite param -undefAction
+unset rewrite param [-undefAction] [-timeout]
 
 
 ##Example
@@ -47,7 +52,7 @@ unset rewrite param -undefAction
 
 ##show rewrite param
 
-Displays the default rewrite undefAction.
+Displays the Rewrite parameters.
 
 
 ##Synopsys
@@ -59,6 +64,9 @@ show rewrite param
 
 <b>undefAction</b>
 Name of the rewrite action.
+
+<b>timeout</b>
+Execution timeout.
 
 
 

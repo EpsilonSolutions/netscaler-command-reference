@@ -33,10 +33,10 @@ The following requirements apply only to the NetScaler CLI:
 * Alternatively, you can use single quotation marks to enclose the rule, in which case you do not have to escape the double quotation marks.
 
 <b>action</b>
-Name of the built-in or user-defined action to perform on the request. Available built-in actions are NOOP, RESET, DROP, CLIENTAUTH, and NOCLIENTAUTH.
+Name of the built-in or user-defined action to perform on the request. Available built-in actions are NOOP, RESET, DROP, CLIENTAUTH and NOCLIENTAUTH.
 
 <b>undefAction</b>
-Name of the action to be performed when the result of rule evaluation is undefined. Possible values for control policies: CLIENTAUTH, NOCLIENTAUTH, NOOP, RESET, DROP. Possible values for data policies: NOOP, RESET or DROP.
+Name of the action to be performed when the result of rule evaluation is undefined. Possible values for control policies: CLIENTAUTH, NOCLIENTAUTH, NOOP, RESET, DROP. Possible values for data policies: NOOP, RESET, DROP.
 
 <b>comment</b>
 Any comments associated with this policy.
@@ -45,7 +45,7 @@ Any comments associated with this policy.
 
 ##Example
 
- 	add ssl action certInsert_act -clientCert ENABLED -certHeader CERT	add ssl policy certInsert_pol -rule 'HTTP.REQ.URL.STARTSWITH("/secure/")' -reqAction certInsert_actThe above example adds an SSL policy to do Client certificate insertion into the HTTP requests for any web-objects under /secure/.
+	add ssl action certInsert_act -clientCert ENABLED -certHeader CERT	add ssl policy certInsert_pol -rule 'HTTP.REQ.URL.STARTSWITH("/secure/")' -reqAction certInsert_actThe above example adds an SSL policy to do Client certificate insertion into the HTTP requests for any web-objects under /secure/.
 
 ##rm ssl policy
 
@@ -94,10 +94,10 @@ The following requirements apply only to the NetScaler CLI:
 * Alternatively, you can use single quotation marks to enclose the rule, in which case you do not have to escape the double quotation marks.
 
 <b>action</b>
-Name of the built-in or user-defined action to perform on the request. Available built-in actions are NOOP, RESET, DROP, CLIENTAUTH, and NOCLIENTAUTH.
+Name of the built-in or user-defined action to perform on the request. Available built-in actions are NOOP, RESET, DROP, CLIENTAUTH and NOCLIENTAUTH.
 
 <b>undefAction</b>
-Name of the action to be performed when the result of rule evaluation is undefined. Possible values for control policies: CLIENTAUTH, NOCLIENTAUTH, NOOP, RESET, DROP. Possible values for data policies: NOOP, RESET or DROP.
+Name of the action to be performed when the result of rule evaluation is undefined. Possible values for control policies: CLIENTAUTH, NOCLIENTAUTH, NOOP, RESET, DROP. Possible values for data policies: NOOP, RESET, DROP.
 
 <b>comment</b>
 Any comments associated with this policy.

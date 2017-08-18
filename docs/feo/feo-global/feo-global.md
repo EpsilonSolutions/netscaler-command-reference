@@ -28,7 +28,7 @@ Maximum value: 2147483647
 <b>type</b>
 Bind point, specifying where to bind the policy. This is relevant for advanced (default-syntax) policies only.
 Possible values: REQ_OVERRIDE, REQ_DEFAULT, RES_OVERRIDE, RES_DEFAULT, NONE
-Default value: NS_REQ_DEFAULT
+Default value: REQ_DEFAULT
 
 <b>gotoPriorityExpression</b>
 Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.

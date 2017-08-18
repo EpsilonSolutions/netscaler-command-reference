@@ -3,7 +3,7 @@
 The following operations can be performed on "system backup":
 
 
-[create](#create-system-backup) | [restore](#restore-system-backup) | [rm](#rm-system-backup) | [show](#show-system-backup)
+[create](#create-system-backup) | [restore](#restore-system-backup) | [add](#add-system-backup) | [rm](#rm-system-backup) | [show](#show-system-backup)
 
 ##create system backup
 
@@ -37,7 +37,27 @@ Restores an appliance by using the backup file (*.tgz) that was created by using
 
 ##Synopsys
 
-restore system backup &lt;fileName>
+restore system backup &lt;fileName> [-skipbackup]
+
+
+##Arguments
+
+<b>fileName</b>
+Name of the backup file(*.tgz) to be restored.
+
+<b>skipbackup</b>
+Use this option to skip taking backup during restore operation
+
+
+
+##add system backup
+
+Adds a backup file (*.tgz) that was created in remote system by using the "create system backup" command.
+
+
+##Synopsys
+
+add system backup &lt;fileName>
 
 
 ##Arguments

@@ -12,7 +12,7 @@ Add a new AppQoE action for triggering
 
 ##Synopsys
 
-add appqoe action &lt;name> [-priority &lt;priority>] [-respondWith ( ACS | NS )  [&lt;CustomFile>]  [-altContentSvcName &lt;string>]  [-altContentPath &lt;string>]  [-maxConn &lt;positive_integer>]  [-delay &lt;usecs>]] [-polqDepth &lt;positive_integer>] [-priqDepth &lt;positive_integer>] [-dosTrigExpression &lt;expression>] [-dosAction ( SimpleResponse | HICResponse )]
+add appqoe action &lt;name> [-priority &lt;priority>] [-respondWith ( ACS | NS )  [&lt;CustomFile>]  [-altContentSvcName &lt;string>]  [-altContentPath &lt;string>]  [-maxConn &lt;positive_integer>]  [-delay &lt;usecs>]] [-polqDepth &lt;positive_integer>] [-priqDepth &lt;positive_integer>] [-dosTrigExpression &lt;expression>] [-dosAction ( SimpleResponse | HICResponse )] [-tcpprofile &lt;string>]
 
 
 ##Arguments
@@ -68,6 +68,9 @@ Optional expression to add second level check to trigger DoS actions. Specifical
 DoS Action to take when vserver will be considered under DoS attack and corresponding rule matches. Mandatory if AppQoE actions are to be used for DoS attack prevention.
 Possible values: SimpleResponse, HICResponse
 
+<b>tcpprofile</b>
+Bind TCP Profile based on L2/L3/L7 parameters.
+
 
 
 ##rm appqoe action
@@ -94,7 +97,7 @@ Set the argument of specified AppQoE action.
 
 ##Synopsys
 
-set appqoe action &lt;name> [-priority &lt;priority>] [-altContentSvcName &lt;string>] [-altContentPath &lt;string>] [-polqDepth &lt;positive_integer>] [-priqDepth &lt;positive_integer>] [-maxConn &lt;positive_integer>] [-delay &lt;usecs>] [-dosTrigExpression &lt;expression>] [-dosAction ( SimpleResponse | HICResponse )]
+set appqoe action &lt;name> [-priority &lt;priority>] [-altContentSvcName &lt;string>] [-altContentPath &lt;string>] [-polqDepth &lt;positive_integer>] [-priqDepth &lt;positive_integer>] [-maxConn &lt;positive_integer>] [-delay &lt;usecs>] [-dosTrigExpression &lt;expression>] [-dosAction ( SimpleResponse | HICResponse )] [-tcpprofile &lt;string>]
 
 
 ##Arguments
@@ -139,6 +142,9 @@ Optional expression to add second level check to trigger DoS actions. Specifical
 DoS Action to take when vserver will be considered under DoS attack and corresponding rule matches. Mandatory if AppQoE actions are to be used for DoS attack prevention.
 Possible values: SimpleResponse, HICResponse
 
+<b>tcpprofile</b>
+Bind TCP Profile based on L2/L3/L7 parameters.
+
 
 
 ##unset appqoe action
@@ -148,7 +154,7 @@ Use this command to remove appqoe action settings.Refer to the set appqoe action
 
 ##Synopsys
 
-unset appqoe action &lt;name> [-priority] [-altContentSvcName] [-altContentPath] [-polqDepth] [-priqDepth] [-maxConn] [-delay] [-dosAction]
+unset appqoe action &lt;name> [-priority] [-altContentSvcName] [-altContentPath] [-polqDepth] [-priqDepth] [-maxConn] [-delay] [-dosAction] [-tcpprofile]
 
 
 ##show appqoe action
@@ -210,6 +216,9 @@ Optional expression to add second level check to trigger DoS actions. Specifical
 
 <b>dosAction</b>
 DoS Action to take when vserver will be considered under DoS attack and corresponding rule matches. Mandatory if AppQoE actions are to be used for DoS attack prevention.
+
+<b>tcpprofile</b>
+Bind TCP Profile based on L2/L3/L7 parameters.
 
 <b>devno</b>
 

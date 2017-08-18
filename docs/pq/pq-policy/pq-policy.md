@@ -7,12 +7,12 @@ The following operations can be performed on "pq policy":
 
 ##add pq policy
 
-Adds a priority queuing policy to the appliance.Note: To use the priority queuing policy on a virtual server, the virtual server must have priority queuing enabled and the priority queuing policy must be bound to the load balancing virtual server. To enable priority queuing on the virtual server and to bind the policy, use the set lb vserver and bind lb vserver commands.
+Adds a priority queuing policy to the appliance.Note: To use the priority queuing policy on a virtual server, the virtual server must have priority queuing enabled and the priority queuing policy must be bound to the load balancing virtual server. To enable priority queuing on the virtual server and to bind the policy, use the set lb vserver and bind lb vserver commands. NOTE: This command is deprecated.Priority Queuing feature has been deprecated in favour of AppQoE
 
 
 ##Synopsys
 
-add pq policy &lt;policyName> -rule &lt;expression> -priority &lt;positive_integer> [-weight &lt;positive_integer>] [-qDepth &lt;positive_integer> | -polqDepth &lt;positive_integer>]
+
 
 
 ##Arguments
@@ -61,12 +61,12 @@ Maximum value: 4294967294
 
 ##rm pq policy
 
-Removes a priority queuing policy from the appliance.
+Removes a priority queuing policy from the appliance. NOTE: This command is deprecated.Priority Queuing feature has been deprecated in favour of AppQoE
 
 
 ##Synopsys
 
-rm pq policy &lt;policyName> ...
+
 
 
 ##Arguments
@@ -78,12 +78,12 @@ Name of the priority queuing policy to be removed.
 
 ##set pq policy
 
-Modifies the attributes of a priority queuing policy.
+Modifies the attributes of a priority queuing policy. NOTE: This command is deprecated.
 
 
 ##Synopsys
 
-set pq policy &lt;policyName> [-weight &lt;positive_integer>] [-qDepth &lt;positive_integer> | -polqDepth &lt;positive_integer>]
+
 
 
 ##Arguments
@@ -119,22 +119,22 @@ Maximum value: 4294967294
 
 ##unset pq policy
 
-Use this command to remove pq policy settings.Refer to the set pq policy command for meanings of the arguments.
+Use this command to remove pq policy settings.Refer to the set pq policy command for meanings of the arguments.NOTE: This command is deprecated.
 
 
 ##Synopsys
 
-unset pq policy &lt;policyName> [-weight] [-qDepth] [-polqDepth]
+
 
 
 ##show pq policy
 
-Displays information about the priority queuing policy.
+Displays information about the priority queuing policy. NOTE: This command is deprecated.Priority Queuing feature has been deprecated in favour of AppQoE
 
 
 ##Synopsys
 
-show pq policy [&lt;policyName>]
+
 
 
 ##Arguments
@@ -174,12 +174,12 @@ Total number of hits.
 
 ##stat pq policy
 
-Displays statistics of the priority queuing policy.
+Displays statistics of the priority queuing policy. NOTE: This command is deprecated.Priority Queuing feature has been deprecated in favour of AppQoE
 
 
 ##Synopsys
 
-stat pq policy [&lt;policyName>] [-detail] [-fullValues] [-ntimes &lt;positive_integer>] [-logFile &lt;input_filename>] [-clearstats ( basic | full )]
+
 
 
 ##Arguments

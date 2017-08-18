@@ -12,13 +12,17 @@ Displays active connections that use the ICA proxy.
 
 ##Synopsys
 
-show vpn icaConnection [-userName &lt;string>]
+show vpn icaConnection [-userName &lt;string>] [-TransProto ( TCP | UDP )]
 
 
 ##Arguments
 
 <b>userName</b>
 User name for which to display connections.
+
+<b>TransProto</b>
+Transport type for the existing Existing ICA conenction.
+Possible values: TCP, UDP
 
 
 
@@ -57,13 +61,17 @@ Terminates the specified ica connections.
 
 ##Synopsys
 
-kill vpn icaConnection [-userName &lt;string>] [-all]
+kill vpn icaConnection [-userName &lt;string>] [-TransProto ( TCP | UDP )] [-all]
 
 
 ##Arguments
 
 <b>userName</b>
 User name for which ica connections needs to be terminated.
+
+<b>TransProto</b>
+Transport Protocol for the Existing ICA conenction.
+Possible values: TCP, UDP
 
 <b>all</b>
 Terminate all active icaconnections.

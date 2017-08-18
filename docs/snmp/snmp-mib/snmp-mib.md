@@ -12,7 +12,7 @@ Configures the SNMP agent of the NetScaler appliance with information that ident
 
 ##Synopsys
 
-set snmp mib [-contact &lt;string>] [-name &lt;string>] [-location &lt;string>] [-customID &lt;string>]
+set snmp mib [-contact &lt;string>] [-name &lt;string>] [-location &lt;string>] [-customID &lt;string>] [-ownerNode &lt;positive_integer>]
 
 
 ##Arguments
@@ -41,6 +41,12 @@ The following requirement applies only to the NetScaler CLI:
 If the ID includes one or more spaces, enclose it in double or single quotation marks (for example, "my ID" or 'my ID').
 Default value: "Default"
 
+<b>ownerNode</b>
+ID of the cluster node for which we are setting the mib. This is a mandatory argument to set snmp mib on CLIP.
+Default value: -1
+Minimum value: 0
+Maximum value: 31
+
 
 
 ##unset snmp mib
@@ -50,7 +56,7 @@ Use this command to remove snmp mib settings.Refer to the set snmp mib command f
 
 ##Synopsys
 
-unset snmp mib [-contact] [-name] [-location] [-customID]
+unset snmp mib [-contact] [-name] [-location] [-customID] [-ownerNode &lt;positive_integer>]
 
 
 ##show snmp mib
@@ -60,7 +66,17 @@ Displays the information that has been configured on the SNMP agent for the purp
 
 ##Synopsys
 
-show snmp mib
+show snmp mib [-ownerNode &lt;positive_integer>]
+
+
+##Arguments
+
+<b>ownerNode</b>
+ID of the cluster node for which we are setting the mib. This is a mandatory argument to set snmp mib on CLIP.
+Default value: -1
+Minimum value: 0
+Maximum value: 31
+
 
 
 ##Outputs
@@ -96,6 +112,18 @@ The OID of the system's management system.
 Custom identification number for the NetScaler appliance. Can consist of 1 to 127 characters that include uppercase and lowercase letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore (_) characters. You should choose a custom identification that helps identify the NetScaler appliance.
 The following requirement applies only to the NetScaler CLI:
 If the ID includes one or more spaces, enclose it in double or single quotation marks (for example, "my ID" or 'my ID').
+
+<b>sysDescCL</b>
+The description of the system from aggregator.
+
+<b>sysUptimeCL</b>
+The UP time of the system in 100th of a second from aggregator.
+
+<b>devno</b>
+
+<b>count</b>
+
+<b>stateflag</b>
 
 
 

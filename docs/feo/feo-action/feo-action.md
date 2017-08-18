@@ -12,7 +12,7 @@ Create a front end optimization action.
 
 ##Synopsys
 
-add feo action &lt;name> [-pageExtendCache] [-imgShrinkToAttrib] [-imgGifToPng] [-imgToWebp] [-imgToJpegXR] [-imgInline] [-cssImgInline] [-jpgOptimize] [-imgLazyLoad] [-cssMinify] [-cssInline] [-cssCombine] [-convertImportToLink] [-jsMinify] [-jsInline] [-htmlMinify] [-cssMoveToHead] [-jsMoveToEND] [-domainSharding &lt;string>  &lt;dnsShards> ...] [-clientSideMeasurements]
+add feo action &lt;name> [-pageExtendCache] [&lt;cacheMaxage>] [-imgShrinkToAttrib] [-imgGifToPng] [-imgToWebp] [-imgToJpegXR] [-imgInline] [-cssImgInline] [-jpgOptimize] [-imgLazyLoad] [-cssMinify] [-cssInline] [-cssCombine] [-convertImportToLink] [-jsMinify] [-jsInline] [-htmlMinify] [-cssMoveToHead] [-jsMoveToEND] [-domainSharding &lt;string>  &lt;dnsShards> ...] [-clientSideMeasurements]
 
 
 ##Arguments
@@ -22,6 +22,12 @@ The name of the front end optimization action.
 
 <b>pageExtendCache</b>
 Extend the time period during which the browser can use the cached resource.
+
+<b>cacheMaxage</b>
+Maxage for cache extension.
+Default value: 30
+Minimum value: 0
+Maximum value: 360
 
 <b>imgShrinkToAttrib</b>
 Shrink image dimensions as per the height and width attributes specified in the &lt;img&gt; tag.
@@ -92,7 +98,7 @@ Modify a front end optimization action.
 
 ##Synopsys
 
-set feo action &lt;name> [-pageExtendCache] [-imgShrinkToAttrib] [-imgGifToPng] [-imgToWebp] [-imgToJpegXR] [-imgInline] [-cssImgInline] [-jpgOptimize] [-imgLazyLoad] [-cssMinify] [-cssInline] [-cssCombine] [-convertImportToLink] [-jsMinify] [-jsInline] [-htmlMinify] [-cssMoveToHead] [-jsMoveToEND] [-domainSharding &lt;string>  &lt;dnsShards> ...] [-clientSideMeasurements]
+set feo action &lt;name> [-pageExtendCache] [&lt;cacheMaxage>] [-imgShrinkToAttrib] [-imgGifToPng] [-imgToWebp] [-imgToJpegXR] [-imgInline] [-cssImgInline] [-jpgOptimize] [-imgLazyLoad] [-cssMinify] [-cssInline] [-cssCombine] [-convertImportToLink] [-jsMinify] [-jsInline] [-htmlMinify] [-cssMoveToHead] [-jsMoveToEND] [-domainSharding &lt;string>  &lt;dnsShards> ...] [-clientSideMeasurements]
 
 
 ##Arguments
@@ -102,6 +108,12 @@ The name of the front end optimization action.
 
 <b>pageExtendCache</b>
 Extend the time period during which the browser can use the cached resource.
+
+<b>cacheMaxage</b>
+Maxage for cache extension.
+Default value: 30
+Minimum value: 0
+Maximum value: 360
 
 <b>imgShrinkToAttrib</b>
 Shrink image dimensions as per the height and width attributes specified in the &lt;img&gt; tag.
@@ -215,6 +227,9 @@ The name of the front end optimization action.
 
 <b>pageExtendCache</b>
 Extend the time period during which the browser can use the cached resource.
+
+<b>cacheMaxage</b>
+Maxage for cache extension.
 
 <b>imgShrinkToAttrib</b>
 Shrink image dimensions as per the height and width attributes specified in the &lt;img> tag.

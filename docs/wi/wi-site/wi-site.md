@@ -67,7 +67,7 @@ Maximum value: 1440
 
 <b>defaultAccessMethod</b>
 Default access method for clients accessing the Web Interface site.
-            Note: Before you configure an access method based on the client IP address, you must enable USIP mode on the Web Interface service to make the client?s IP address available with the Web Interface.
+            Note: Before you configure an access method based on the client IP address, you must enable USIP mode on the Web Interface service to make the client's IP address available with the Web Interface.
             Depending on whether the Web Interface site is configured to use an HTTP or HTTPS virtual server or to use access gateway, you can send clients or access gateway the IP address, or the alternate address, of a XenApp or XenDesktop server. Or, you can send the IP address translated from a mapping entry, which defines mapping of an internal address and port to an external address and port.
             Note: In the NetScaler command line, mapping entries can be created by using the bind wi site command.
 Possible values: Direct, Alternate, Translated, GatewayDirect, GatewayAlternate, GatewayTranslated
@@ -232,7 +232,7 @@ Default value: Explicit
 
 <b>defaultAccessMethod</b>
 Default access method for clients accessing the Web Interface site.
-            Note: Before you configure an access method based on the client IP address, you must enable USIP mode on the Web Interface service to make the client?s IP address available with the Web Interface.
+            Note: Before you configure an access method based on the client IP address, you must enable USIP mode on the Web Interface service to make the client's IP address available with the Web Interface.
             Depending on whether the Web Interface site is configured to use an HTTP or HTTPS virtual server or to use access gateway, you can send clients or access gateway the IP address, or the alternate address, of a XenApp or XenDesktop server. Or, you can send the IP address translated from a mapping entry, which defines mapping of an internal address and port to an external address and port.
             Note: In the NetScaler command line, mapping entries can be created by using the bind wi site command.
 Possible values: Direct, Alternate, Translated, GatewayDirect, GatewayAlternate, GatewayTranslated
@@ -593,7 +593,7 @@ Method for accessing the published XenApp and XenDesktop resources.
 
 <b>defaultAccessMethod</b>
 Default access method for clients accessing the Web Interface site.
-            Note: Before you configure an access method based on the client IP address, you must enable USIP mode on the Web Interface service to make the client?s IP address available with the Web Interface.
+            Note: Before you configure an access method based on the client IP address, you must enable USIP mode on the Web Interface service to make the client's IP address available with the Web Interface.
             Depending on whether the Web Interface site is configured to use an HTTP or HTTPS virtual server or to use access gateway, you can send clients or access gateway the IP address, or the alternate address, of a XenApp or XenDesktop server. Or, you can send the IP address translated from a mapping entry, which defines mapping of an internal address and port to an external address and port.
             Note: In the NetScaler command line, mapping entries can be created by using the bind wi site command.
 

@@ -12,7 +12,7 @@ Show LSN sipalgcall.
 
 ##Synopsys
 
-show lsn sipalgcall [-callid &lt;string>]
+show lsn sipalgcall [&lt;callid>]
 
 
 ##Arguments
@@ -26,6 +26,9 @@ Call ID for the SIP call.
 
 <b>callflags</b>
 Flags for the call entry.
+
+<b>xlatip</b>
+XLAT IP Address if its XLAT session.
 
 <b>callrefcount</b>
 Reference count for the call entry.
@@ -73,7 +76,7 @@ Flush LSN Session.
 
 ##Synopsys
 
-flush lsn sipalgcall [-callid &lt;string>]
+flush lsn sipalgcall &lt;callid>
 
 
 ##Arguments

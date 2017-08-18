@@ -12,7 +12,7 @@ Adds an Appflow policy. The policy specifies the rule based on which the traffic
 
 ##Synopsys
 
-add appflow policy &lt;name> &lt;rule> &lt;action> [-comment &lt;string>]
+add appflow policy &lt;name> &lt;rule> &lt;action> [-undefAction &lt;string>] [-comment &lt;string>]
 
 
 ##Arguments
@@ -33,6 +33,9 @@ The following requirements apply only to the NetScaler CLI:
 
 <b>action</b>
 Name of the action to be associated with this policy.
+
+<b>undefAction</b>
+Name of the appflow action to be associated with this policy when an undef event occurs.
 
 <b>comment</b>
 Any comments about this policy.
@@ -71,7 +74,7 @@ Modifies the rule and/or action for an existing AppFlow policy. The rule for flo
 
 ##Synopsys
 
-set appflow policy &lt;name> [-rule &lt;expression>] [-action &lt;string>] [-comment &lt;string>]
+set appflow policy &lt;name> [-rule &lt;expression>] [-action &lt;string>] [-undefAction &lt;string>] [-comment &lt;string>]
 
 
 ##Arguments
@@ -90,6 +93,9 @@ The following requirements apply only to the NetScaler CLI:
 <b>action</b>
 Name of the action to be associated with this policy.
 
+<b>undefAction</b>
+Name of the appflow action to be associated with this policy when an undef event occurs.
+
 <b>comment</b>
 Any comments about this policy.
 
@@ -106,7 +112,7 @@ Use this command to remove appflow policy settings.Refer to the set appflow poli
 
 ##Synopsys
 
-unset appflow policy &lt;name> -comment
+unset appflow policy &lt;name> [-undefAction] [-comment]
 
 
 ##rename appflow policy
@@ -161,6 +167,9 @@ Expression to be used by AppFlow policy.
 
 <b>action</b>
 AppFlow action associated with the policy.
+
+<b>undefAction</b>
+AppFlow action associated with the policy on undefined evaluation result.
 
 <b>hits</b>
 Number of hits.

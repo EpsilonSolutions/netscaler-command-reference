@@ -12,7 +12,7 @@ set uiinternal data for the entities
 
 ##Synopsys
 
-set uiinternal &lt;entityType> &lt;name> [-template &lt;string>] [-comment &lt;string>] [-rule &lt;string>]
+set uiinternal &lt;entityType> &lt;name> [-template &lt;string>] [-comment &lt;string>] [-rule &lt;string>] [-dnsSecurityTag &lt;positive_integer>]
 
 
 ##Arguments
@@ -33,6 +33,10 @@ The application template associated with entity
 <b>rule</b>
 rules associated with entity
 
+<b>dnsSecurityTag</b>
+DNS Security tag asscociated with the entity
+Minimum value: 0
+
 
 
 ##Example
@@ -46,7 +50,7 @@ unset uiinternal for the entities.Refer to the set  uiinternal command for meani
 
 ##Synopsys
 
-unset uiinternal &lt;entityType> &lt;name> [-template] [-comment] [-rule] [-all]
+unset uiinternal &lt;entityType> &lt;name> [-template] [-comment] [-rule] [-all] [-dnsSecurityTag]
 
 
 ##Example
@@ -87,6 +91,9 @@ The uiinfo associated with the entity
 
 <b>rule</b>
 The rule associated with the entity
+
+<b>dnsSecurityTag</b>
+DNS Security tag asscociated with the entity
 
 <b>devno</b>
 

@@ -12,7 +12,7 @@ Creates a user-defined authentication policy label.
 
 ##Synopsys
 
-add authentication policylabel &lt;labelName> [-comment &lt;string>] -loginSchema &lt;string>
+add authentication policylabel &lt;labelName> [-type ( AAATM_REQ | RBA_REQ )] [-comment &lt;string>] [-loginSchema &lt;string>]
 
 
 ##Arguments
@@ -23,11 +23,16 @@ Must begin with a letter, number, or the underscore character (_), and must cont
 The following requirement applies only to the NetScaler CLI:
 If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication policy label" or 'authentication policy label').
 
+<b>type</b>
+Type of feature (aaatm or rba) against which to match the policies bound to this policy label.
+Possible values: AAATM_REQ, RBA_REQ
+Default value: AAATM_REQ
+
 <b>comment</b>
 Any comments to preserve information about this authentication policy label.
 
 <b>loginSchema</b>
-Login schema associated with authentication policy label.
+Login schema associated with authentication policy label. Login schema defines the UI rendering by providing customization option of the fields. If user intervention is not needed for a given factor such as group extraction, a loginSchema whose authentication schema is "noschema" should be used.
 
 
 
@@ -81,9 +86,9 @@ Maximum value: 2147483647
 
 <b>gotoPriorityExpression</b>
 Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE.  Specify one of the following values:
-*  NEXT ? Evaluate the policy with the next higher priority number.
-*  END ? End policy evaluation.
-*  USE_INVOCATION_RESULT ? Applicable if this policy invokes another policy label. If the final goto in the invoked policy label has a value of END, the evaluation stops. If the final goto is anything other than END, the current policy label performs a NEXT.
+*  NEXT - Evaluate the policy with the next higher priority number.
+*  END - End policy evaluation.
+*  USE_INVOCATION_RESULT - Applicable if this policy invokes another policy label. If the final goto in the invoked policy label has a value of END, the evaluation stops. If the final goto is anything other than END, the current policy label performs a NEXT.
 * A default syntax or classic expression that evaluates to a number.
 If you specify an expression, the number to which it evaluates determines the next policy to evaluate, as follows:
 *  If the expression evaluates to a higher numbered priority, the policy with that priority is evaluated next.
@@ -210,7 +215,10 @@ On success invoke label.
 Any comments to preserve information about this authentication policy label.
 
 <b>loginSchema</b>
-Login schema associated with authentication policy label.
+Login schema associated with authentication policy label. Login schema defines the UI rendering by providing customization option of the fields. If user intervention is not needed for a given factor such as group extraction, a loginSchema whose authentication schema is "noschema" should be used.
+
+<b>type</b>
+Type of feature (aaatm or rba) against which to match the policies bound to this policy label.
 
 <b>devno</b>
 

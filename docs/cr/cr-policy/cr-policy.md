@@ -20,7 +20,7 @@ add cr policy &lt;policyName> -rule &lt;expression> [-action &lt;string>] [-logA
 <b>policyName</b>
 Name for the cache redirection policy. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Cannot be changed after the policy is created.
 The following requirement applies only to the NetScaler CLI: 
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, ?my policy? or ?my policy?).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my policy" or 'my policy').
 
 <b>rule</b>
 Expression, or name of a named expression, against which traffic is evaluated. Written in the classic syntax.

@@ -5,12 +5,12 @@ The following operations can be performed on "pq stats":
 
 ##show pq stats
 
-show pq stats is an alias for stat pq
+show pq stats is an alias for stat pq NOTE: This command is deprecated.Priority Queuing feature has been deprecated in favour of AppQoE
 
 
 ##Synopsys
 
-show pq stats - alias for 'stat pq'
+
 
 
 ##Related Commands

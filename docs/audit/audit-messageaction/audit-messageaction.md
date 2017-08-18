@@ -20,7 +20,7 @@ add audit messageaction &lt;name> &lt;logLevel> &lt;stringBuilderExpr> [-logtoNe
 <b>name</b>
 Name of the audit message action. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after the message action is added.
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, ?my message action? or ?my message action?).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my message action" or 'my message action').
 
 <b>logLevel</b>
 Audit log level, which specifies the severity level of the log message being generated.. 

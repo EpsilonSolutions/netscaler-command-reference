@@ -12,7 +12,7 @@ Adds a Reverse Network Address Translation (RNAT6) rule for IPv6 traffic. When a
 
 ##Synopsys
 
-add rnat6 &lt;name> (&lt;network> | (&lt;acl6name>  [-redirectPort &lt;port>])) [-td &lt;positive_integer>] [-srcippersistency ( ENABLED | DISABLED )]
+add rnat6 &lt;name> (&lt;network> | (&lt;acl6name>  [-redirectPort &lt;port>])) [-td &lt;positive_integer>] [-srcippersistency ( ENABLED | DISABLED )] [-ownerGroup &lt;string>]
 
 
 ##Arguments
@@ -41,6 +41,10 @@ Enable source ip persistency, which enables the NetScaler appliance to use the R
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
+<b>ownerGroup</b>
+The owner node group in a Cluster for this rnat rule.
+Default value: DEFAULT_NG
+
 
 
 ##Example
@@ -54,7 +58,7 @@ Binds specified IPv6 NAT IPs to an RNAT6 rule.
 
 ##Synopsys
 
-bind rnat6 &lt;name> &lt;natIP6>@ ...
+bind rnat6 &lt;name> &lt;natIP6>@ ... [-ownerGroup &lt;string>]
 
 
 ##Arguments
@@ -64,6 +68,10 @@ Name of the RNAT6 rule to which to bind NAT IPs.
 
 <b>natIP6</b>
 One or more IP addresses to be bound to the IP set.
+
+<b>ownerGroup</b>
+The owner node group in a Cluster for this rnat rule.
+Default value: DEFAULT_NG
 
 
 
@@ -78,7 +86,7 @@ Unbinds the associated NAT IPv6 address(es) from an RNAT6 rule.
 
 ##Synopsys
 
-unbind rnat6 &lt;name> &lt;natIP6>@ ...
+unbind rnat6 &lt;name> &lt;natIP6>@ ... [-ownerGroup &lt;string>]
 
 
 ##Arguments
@@ -88,6 +96,10 @@ Name of the RNAT6 rule from which to unbind the associated NAT IP address(es).
 
 <b>natIP6</b>
 IP address, or multiple addresses, to be unbound from the RNAT6rule. (If using the CLI, use spaces to separate multiple addresses.)
+
+<b>ownerGroup</b>
+The owner node group in a Cluster for this rnat rule.
+Default value: DEFAULT_NG
 
 
 
@@ -102,7 +114,7 @@ Modifies the specified parameters of an RNAT6 rule.
 
 ##Synopsys
 
-set rnat6 &lt;name> [-redirectPort &lt;port>] [-srcippersistency ( ENABLED | DISABLED )]
+set rnat6 &lt;name> [-redirectPort &lt;port>] [-srcippersistency ( ENABLED | DISABLED )] [-ownerGroup &lt;string>]
 
 
 ##Arguments
@@ -120,6 +132,10 @@ Enable source ip persistency, which enables the NetScaler appliance to use the R
 Possible values: ENABLED, DISABLED
 Default value: DISABLED
 
+<b>ownerGroup</b>
+The owner node group in a Cluster for this rnat rule.
+Default value: DEFAULT_NG
+
 
 
 ##unset rnat6
@@ -129,7 +145,7 @@ Resets the specified parameters of an RNAT6 rule to their default settings. Refe
 
 ##Synopsys
 
-unset rnat6 &lt;name> [-redirectPort] [-srcippersistency]
+unset rnat6 &lt;name> [-redirectPort] [-srcippersistency] [-ownerGroup &lt;string>]
 
 
 ##clear rnat6
@@ -139,13 +155,17 @@ Removes an RNAT6 rule from the NetScaler appliance.
 
 ##Synopsys
 
-clear rnat6 &lt;name>
+clear rnat6 &lt;name> [-ownerGroup &lt;string>]
 
 
 ##Arguments
 
 <b>name</b>
 Name of the RNAT6 rule to be removed.
+
+<b>ownerGroup</b>
+The owner node group in a Cluster for this rnat rule.
+Default value: DEFAULT_NG
 
 
 
@@ -185,6 +205,9 @@ Redirect Port Value
 
 <b>srcippersistency</b>
 Enable source ip persistency, which enables the NetScaler appliance to use the RNAT6 ips using source ip.
+
+<b>ownerGroup</b>
+The owner node group in a Cluster for this rnat rule.
 
 <b>stateflag</b>
 

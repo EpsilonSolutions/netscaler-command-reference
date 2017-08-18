@@ -12,7 +12,7 @@ Creates a NetScaler Gateway virtual server to allow authenticated users to acces
 
 ##Synopsys
 
-add vpn vserver &lt;name> &lt;serviceType> [&lt;IPAddress>  [-range &lt;positive_integer>]] [&lt;port>] [-state ( ENABLED | DISABLED )] [-authentication ( ON | OFF )] [-doubleHop ( ENABLED | DISABLED )] [-maxAAAUsers &lt;positive_integer>] [-icaOnly ( ON | OFF )] [-icaProxySessionMigration ( ON | OFF )] [-dtls ( ON | OFF )] [-loginOnce ( ON | OFF )] [-deviceCert ( ON | OFF )  [-certkeyNames &lt;string>]] [-downStateFlush ( ENABLED | DISABLED )] [-Listenpolicy &lt;expression>  [-Listenpriority &lt;positive_integer>]] [-tcpProfileName &lt;string>] [-httpProfileName &lt;string>] [-comment &lt;string>] [-appflowLog ( ENABLED | DISABLED )] [-icmpVsrResponse ( PASSIVE | ACTIVE )] [-RHIstate ( PASSIVE | ACTIVE )] [-netProfile &lt;string>] [-cginfraHomePageRedirect ( ENABLED | DISABLED )] [-maxLoginAttempts &lt;positive_integer>  [-failedLoginTimeout &lt;mins>]] [-l2Conn ( ON | OFF )] [-deploymentType &lt;deploymentType>] [-rdpServerProfileName &lt;string>] [-WindowsEPAPluginUpgrade &lt;WindowsEPAPluginUpgrade>] [-LinuxEPAPluginUpgrade &lt;LinuxEPAPluginUpgrade>] [-MacEPAPluginUpgrade &lt;MacEPAPluginUpgrade>] [-userDomains &lt;string>]
+add vpn vserver &lt;name> &lt;serviceType> [&lt;IPAddress>  [-range &lt;positive_integer>]] [&lt;port>] [-state ( ENABLED | DISABLED )] [-authentication ( ON | OFF )] [-doubleHop ( ENABLED | DISABLED )] [-maxAAAUsers &lt;positive_integer>] [-icaOnly ( ON | OFF )] [-icaProxySessionMigration ( ON | OFF )] [-dtls ( ON | OFF )] [-loginOnce ( ON | OFF )] [-deviceCert ( ON | OFF )  [-certkeyNames &lt;string>]] [-downStateFlush ( ENABLED | DISABLED )] [-Listenpolicy &lt;expression>  [-Listenpriority &lt;positive_integer>]] [-tcpProfileName &lt;string>] [-httpProfileName &lt;string>] [-comment &lt;string>] [-appflowLog ( ENABLED | DISABLED )] [-icmpVsrResponse ( PASSIVE | ACTIVE )] [-RHIstate ( PASSIVE | ACTIVE )] [-netProfile &lt;string>] [-cginfraHomePageRedirect ( ENABLED | DISABLED )] [-maxLoginAttempts &lt;positive_integer>  [-failedLoginTimeout &lt;mins>]] [-l2Conn ( ON | OFF )] [-deploymentType &lt;deploymentType>] [-rdpServerProfileName &lt;string>] [-WindowsEPAPluginUpgrade &lt;WindowsEPAPluginUpgrade>] [-LinuxEPAPluginUpgrade &lt;LinuxEPAPluginUpgrade>] [-MacEPAPluginUpgrade &lt;MacEPAPluginUpgrade>] [-logoutOnSmartcardRemoval ( ON | OFF )] [-authnProfile &lt;string>] [-vserverFqdn &lt;string>] [-pcoipVserverProfileName &lt;string>]
 
 
 ##Arguments
@@ -168,8 +168,19 @@ Possible values: Always, Essential, Never
 Option to set plugin upgrade behaviour for Mac
 Possible values: Always, Essential, Never
 
-<b>userDomains</b>
-List of user domains specified as comma seperated value
+<b>logoutOnSmartcardRemoval</b>
+Option to VPN plugin behavior when smartcard or its reader is removed
+Possible values: ON, OFF
+Default value: OFF
+
+<b>authnProfile</b>
+Authentication Profile entity on virtual server. This entity can be used to offload authentication to AAA vserver for multi-factor(nFactor) authentication
+
+<b>vserverFqdn</b>
+Fully qualified domain name for a VPN virtual server. This is used during StoreFront configuration generation.
+
+<b>pcoipVserverProfileName</b>
+Name of the PCoIP vserver profile associated with the vserver.
 
 
 
@@ -205,7 +216,7 @@ Modifies the specified parameters of a NetScaler Gateway virtual server.
 
 ##Synopsys
 
-set vpn vserver &lt;name> [-IPAddress &lt;ip_addr|ipv6_addr|*>] [-authentication ( ON | OFF )] [-doubleHop ( ENABLED | DISABLED )] [-icaOnly ( ON | OFF )] [-icaProxySessionMigration ( ON | OFF )] [-dtls ( ON | OFF )] [-loginOnce ( ON | OFF )] [-deviceCert ( ON | OFF )  [-certkeyNames &lt;string>]] [-maxAAAUsers &lt;positive_integer>] [-downStateFlush ( ENABLED | DISABLED )] [-Listenpolicy &lt;expression>] [-Listenpriority &lt;positive_integer>] [-tcpProfileName &lt;string>] [-httpProfileName &lt;string>] [-comment &lt;string>] [-appflowLog ( ENABLED | DISABLED )] [-icmpVsrResponse ( PASSIVE | ACTIVE )] [-RHIstate ( PASSIVE | ACTIVE )] [-netProfile &lt;string>] [-cginfraHomePageRedirect ( ENABLED | DISABLED )] [-maxLoginAttempts &lt;positive_integer>] [-rdpServerProfileName &lt;string>] [-failedLoginTimeout &lt;mins>] [-l2Conn ( ON | OFF )] [-WindowsEPAPluginUpgrade &lt;WindowsEPAPluginUpgrade>] [-MacEPAPluginUpgrade &lt;MacEPAPluginUpgrade>] [-LinuxEPAPluginUpgrade &lt;LinuxEPAPluginUpgrade>] [-userDomains &lt;string>]
+set vpn vserver &lt;name> [-IPAddress &lt;ip_addr|ipv6_addr|*>] [-authentication ( ON | OFF )] [-doubleHop ( ENABLED | DISABLED )] [-icaOnly ( ON | OFF )] [-icaProxySessionMigration ( ON | OFF )] [-dtls ( ON | OFF )] [-loginOnce ( ON | OFF )] [-deviceCert ( ON | OFF )  [-certkeyNames &lt;string>]] [-maxAAAUsers &lt;positive_integer>] [-downStateFlush ( ENABLED | DISABLED )] [-Listenpolicy &lt;expression>] [-Listenpriority &lt;positive_integer>] [-tcpProfileName &lt;string>] [-httpProfileName &lt;string>] [-comment &lt;string>] [-appflowLog ( ENABLED | DISABLED )] [-icmpVsrResponse ( PASSIVE | ACTIVE )] [-RHIstate ( PASSIVE | ACTIVE )] [-netProfile &lt;string>] [-cginfraHomePageRedirect ( ENABLED | DISABLED )] [-maxLoginAttempts &lt;positive_integer>] [-rdpServerProfileName &lt;string>] [-failedLoginTimeout &lt;mins>] [-l2Conn ( ON | OFF )] [-WindowsEPAPluginUpgrade &lt;WindowsEPAPluginUpgrade>] [-MacEPAPluginUpgrade &lt;MacEPAPluginUpgrade>] [-LinuxEPAPluginUpgrade &lt;LinuxEPAPluginUpgrade>] [-logoutOnSmartcardRemoval ( ON | OFF )] [-authnProfile &lt;string>] [-vserverFqdn &lt;string>] [-pcoipVserverProfileName &lt;string>]
 
 
 ##Arguments
@@ -338,8 +349,19 @@ Possible values: Always, Essential, Never
 Option to set plugin upgrade behaviour for Linux
 Possible values: Always, Essential, Never
 
-<b>userDomains</b>
-List of user domains specified as comma seperated value
+<b>logoutOnSmartcardRemoval</b>
+Option to VPN plugin behavior when smartcard or its reader is removed
+Possible values: ON, OFF
+Default value: OFF
+
+<b>authnProfile</b>
+Authentication Profile entity on virtual server. This entity can be used to offload authentication to AAA vserver for multi-factor(nFactor) authentication
+
+<b>vserverFqdn</b>
+Fully qualified domain name for a VPN virtual server. This is used during StoreFront configuration generation.
+
+<b>pcoipVserverProfileName</b>
+Name of the PCoIP vserver profile associated with the vserver.
 
 
 
@@ -350,7 +372,7 @@ Use this command to remove vpn vserver settings.Refer to the set vpn vserver com
 
 ##Synopsys
 
-unset vpn vserver &lt;name> [-authentication] [-doubleHop] [-icaOnly] [-icaProxySessionMigration] [-dtls] [-loginOnce] [-deviceCert] [-certkeyNames] [-maxAAAUsers] [-downStateFlush] [-Listenpolicy] [-Listenpriority] [-tcpProfileName] [-httpProfileName] [-comment] [-appflowLog] [-icmpVsrResponse] [-RHIstate] [-netProfile] [-cginfraHomePageRedirect] [-maxLoginAttempts] [-rdpServerProfileName] [-l2Conn] [-WindowsEPAPluginUpgrade] [-MacEPAPluginUpgrade] [-LinuxEPAPluginUpgrade] [-userDomains]
+unset vpn vserver &lt;name> [-authentication] [-doubleHop] [-icaOnly] [-icaProxySessionMigration] [-dtls] [-loginOnce] [-deviceCert] [-certkeyNames] [-maxAAAUsers] [-downStateFlush] [-Listenpolicy] [-Listenpriority] [-tcpProfileName] [-httpProfileName] [-comment] [-appflowLog] [-icmpVsrResponse] [-RHIstate] [-netProfile] [-cginfraHomePageRedirect] [-maxLoginAttempts] [-rdpServerProfileName] [-l2Conn] [-WindowsEPAPluginUpgrade] [-MacEPAPluginUpgrade] [-LinuxEPAPluginUpgrade] [-logoutOnSmartcardRemoval] [-authnProfile] [-vserverFqdn] [-pcoipVserverProfileName]
 
 
 ##bind vpn vserver
@@ -372,8 +394,9 @@ Name of the virtual server.
 Name of a policy to bind to the virtual server (for example, the name of an authentication, session, or endpoint analysis policy).
 
 <b>priority</b>
-Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers.
+Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.
 Minimum value: 0
+Maximum value: 2147483647
 
 <b>secondary</b>
 Binds the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only via a primary authentication method but also via a secondary authentication method. User groups are aggregated across both. The user name must be exactly the same for both authentication methods, but they can require different passwords.
@@ -382,11 +405,10 @@ Binds the authentication policy as the secondary policy to use in a two-factor c
 Binds the authentication policy to a tertiary chain which will be used only for group extraction.  The user will not authenticate against this server, and this will only be called if primary and/or secondary authentication has succeeded.
 
 <b>gotoPriorityExpression</b>
-Expression or other value specifying the next policy to evaluate if the current policy evaluates to TRUE.  Specify one of the following values:
+Applicable only to advance vpn session policy. Expression or other value specifying the next policy to evaluate if the current policy evaluates to TRUE.  Specify one of the following values:
 * NEXT - Evaluate the policy with the next higher priority number.
 * END - End policy evaluation.
-* USE_INVOCATION_RESULT - Applicable if this policy invokes another policy label. If the final goto in the invoked policy label has a value of END, the evaluation stops. If the final goto is anything other than END, the current policy label performs a NEXT.
-* A default syntax or classic expression that evaluates to a number.
+* A default syntax or expression that evaluates to a number.
 If you specify an expression, the number to which it evaluates determines the next policy to evaluate, as follows:
 *  If the expression evaluates to a higher numbered priority, the policy with that priority is evaluated next.
 * If the expression evaluates to the priority of the current policy, the policy with the next higher numbered priority is evaluated next.
@@ -436,10 +458,10 @@ App Controller server, in the format 'http(s)://IP/FQDN'
 ShareFile server, in the format 'IP:PORT / FQDN:PORT'
 
 <b>portaltheme</b>
-Portal theme applicable to vpn vserver
+Name of Portal theme to bind to vpn vserver
 
 <b>eula</b>
-Eula applicable to vpn vserver
+Name of EULA to bind to vpn vserver
 
 
 
@@ -503,10 +525,10 @@ App Controller server to be removed, in the format 'http(s)://IP/FQDN'
 ShareFile server to be removed, in the format 'IP:PORT / FQDN:PORT'
 
 <b>portaltheme</b>
-Name of the Theme to be unbound to vpn vserver
+Name of the Portal theme to unbind from vpn vserver
 
 <b>eula</b>
-Name of the Theme to be unbound to vpn vserver
+Name of EULA to unbind from vpn vserver
 
 
 
@@ -687,7 +709,7 @@ The name of the default target cache virtual server, if any, to which requests a
 The name of the backup VPN virtual server for this VPN virtual server.
 
 <b>priority</b>
-The priority, if any, of the VPN virtual server policy.
+Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.
 
 <b>cltTimeout</b>
 The idle time, if any, in seconds after which the client connection is terminated.
@@ -744,6 +766,9 @@ Type of the STA server address(ipv4/v6).
 
 <b>staAuthID</b>
 Authority ID of the STA Server. Authority ID is used to match incoming STA tickets in the SOCKS/CGP protocol with the right STA server.
+
+<b>staState</b>
+State of the STA Server. If Authority ID is set then STA Server is UP else DOWN.
 
 <b>appController</b>
 Configured App Controller server in XenMobile deployment.
@@ -829,6 +854,9 @@ Option to set plugin upgrade behaviour for Linux
 <b>MacEPAPluginUpgrade</b>
 Option to set plugin upgrade behaviour for Mac
 
+<b>logoutOnSmartcardRemoval</b>
+Option to VPN plugin behavior when smartcard or its reader is removed
+
 <b>epaprofile</b>
 Advanced EPA profile to bind
 
@@ -848,16 +876,25 @@ Virtual Server Type, such as Load Balancing, Content Switch, Cache Redirection
 Use Layer 2 parameters (channel number, MAC address, and VLAN ID) in addition to the 4-tuple (&lt;source IP>:&lt;source port>::&lt;destination IP>:&lt;destination port>) that is used to identify a connection. Allows multiple TCP and non-TCP connections with the same 4-tuple to coexist on the NetScaler appliance.
 
 <b>portaltheme</b>
-Theme for gateway portal
+Name of the portal theme bound to VPN vserver
 
 <b>eula</b>
-EULA for VPN vserver
+Name of the EULA bound to VPN vserver
 
 <b>userDomains</b>
 List of user domains specified as comma seperated value
 
 <b>csVserver</b>
 Name of the CS vserver to which the VPN vserver is bound
+
+<b>authnProfile</b>
+Authentication Profile entity on virtual server. This entity can be used to offload authentication to AAA vserver for multi-factor(nFactor) authentication
+
+<b>vserverFqdn</b>
+Fully qualified domain name for a VPN virtual server. This is used during StoreFront configuration generation.
+
+<b>pcoipVserverProfileName</b>
+Name of the PCoIP vserver profile associated with the vserver.
 
 <b>devno</b>
 

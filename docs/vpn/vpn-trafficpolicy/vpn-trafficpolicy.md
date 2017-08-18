@@ -128,6 +128,12 @@ The entity name to which policy is bound
 
 <b>policyType</b>
 
+<b>expressionType</b>
+Type of policy (Classic/Advanced)
+
+<b>hits</b>
+Number of hits.
+
 <b>devno</b>
 
 <b>count</b>

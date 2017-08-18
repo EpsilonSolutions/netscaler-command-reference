@@ -12,7 +12,7 @@ Add an rdp profile.
 
 ##Synopsys
 
-add rdp clientprofile &lt;name> [-rdpUrlOverride ( ENABLE | DISABLE )] [-redirectClipboard ( ENABLE | DISABLE )] [-redirectDrives ( ENABLE | DISABLE )] [-redirectPrinters ( ENABLE | DISABLE )] [-keyboardHook &lt;keyboardHook>] [-audioCaptureMode ( ENABLE | DISABLE )] [-videoPlaybackMode ( ENABLE | DISABLE )] [-multiMonitorSupport ( ENABLE | DISABLE )] [-rdpCookieValidity &lt;positive_integer>] [-addUserNameInRdpFile ( YES | NO )] [-rdpFileName &lt;string>] [-rdpHost &lt;string>] [-rdpCustomParams &lt;string>] [-psk ]
+add rdp clientprofile &lt;name> [-rdpUrlOverride ( ENABLE | DISABLE )] [-redirectClipboard ( ENABLE | DISABLE )] [-redirectDrives ( ENABLE | DISABLE )] [-redirectPrinters ( ENABLE | DISABLE )] [-redirectComPorts ( ENABLE | DISABLE )] [-redirectPnpDevices ( ENABLE | DISABLE )] [-keyboardHook &lt;keyboardHook>] [-audioCaptureMode ( ENABLE | DISABLE )] [-videoPlaybackMode ( ENABLE | DISABLE )] [-multiMonitorSupport ( ENABLE | DISABLE )] [-rdpCookieValidity &lt;positive_integer>] [-addUserNameInRdpFile ( YES | NO )] [-rdpFileName &lt;string>] [-rdpHost &lt;string>] [-rdpListener &lt;string>] [-rdpCustomParams &lt;string>] [-psk ]
 
 
 ##Arguments
@@ -39,6 +39,16 @@ Default value: DISABLE
 This setting corresponds to the selection in the Printers check box on the Local Resources tab under Options in RDC.
 Possible values: ENABLE, DISABLE
 Default value: ENABLE
+
+<b>redirectComPorts</b>
+This setting corresponds to the selections for comports under More on the Local Resources tab under Options in RDC.
+Possible values: ENABLE, DISABLE
+Default value: DISABLE
+
+<b>redirectPnpDevices</b>
+This setting corresponds to the selections for pnpdevices under More on the Local Resources tab under Options in RDC.
+Possible values: ENABLE, DISABLE
+Default value: DISABLE
 
 <b>keyboardHook</b>
 This setting corresponds to the selection in the Keyboard drop-down list on the Local Resources tab under Options in RDC.
@@ -76,6 +86,9 @@ RDP file name to be sent to End User
 
 <b>rdpHost</b>
 Fully-qualified domain name (FQDN) of the RDP Listener.
+
+<b>rdpListener</b>
+Fully-qualified domain name (FQDN) of the RDP Listener with the port in the format FQDN:Port
 
 <b>rdpCustomParams</b>
 Option for RDP custom parameters settings (if any). Custom params needs to be separated by '&'
@@ -94,7 +107,7 @@ Modifies the specified parameters for RDP profile.
 
 ##Synopsys
 
-set rdp clientprofile &lt;name> [-rdpUrlOverride ( ENABLE | DISABLE )] [-redirectClipboard ( ENABLE | DISABLE )] [-redirectDrives ( ENABLE | DISABLE )] [-redirectPrinters ( ENABLE | DISABLE )] [-keyboardHook &lt;keyboardHook>] [-audioCaptureMode ( ENABLE | DISABLE )] [-videoPlaybackMode ( ENABLE | DISABLE )] [-multiMonitorSupport ( ENABLE | DISABLE )] [-rdpCookieValidity &lt;positive_integer>] [-addUserNameInRdpFile ( YES | NO )] [-rdpFileName &lt;string>] [-rdpHost &lt;string>] [-rdpCustomParams &lt;string>] [-psk ]
+set rdp clientprofile &lt;name> [-rdpUrlOverride ( ENABLE | DISABLE )] [-redirectClipboard ( ENABLE | DISABLE )] [-redirectDrives ( ENABLE | DISABLE )] [-redirectPrinters ( ENABLE | DISABLE )] [-redirectComPorts ( ENABLE | DISABLE )] [-redirectPnpDevices ( ENABLE | DISABLE )] [-keyboardHook &lt;keyboardHook>] [-audioCaptureMode ( ENABLE | DISABLE )] [-videoPlaybackMode ( ENABLE | DISABLE )] [-multiMonitorSupport ( ENABLE | DISABLE )] [-rdpCookieValidity &lt;positive_integer>] [-addUserNameInRdpFile ( YES | NO )] [-rdpFileName &lt;string>] [-rdpHost &lt;string>] [-rdpListener &lt;string>] [-rdpCustomParams &lt;string>] [-psk ]
 
 
 ##Arguments
@@ -121,6 +134,16 @@ Default value: DISABLE
 This setting corresponds to the selection in the Printers check box on the Local Resources tab under Options in RDC.
 Possible values: ENABLE, DISABLE
 Default value: ENABLE
+
+<b>redirectComPorts</b>
+This setting corresponds to the selections for comports under More on the Local Resources tab under Options in RDC.
+Possible values: ENABLE, DISABLE
+Default value: DISABLE
+
+<b>redirectPnpDevices</b>
+This setting corresponds to the selections for pnpdevices under More on the Local Resources tab under Options in RDC.
+Possible values: ENABLE, DISABLE
+Default value: DISABLE
 
 <b>keyboardHook</b>
 This setting corresponds to the selection in the Keyboard drop-down list on the Local Resources tab under Options in RDC.
@@ -159,6 +182,9 @@ RDP file name to be sent to End User
 <b>rdpHost</b>
 Fully-qualified domain name (FQDN) of the RDP Listener.
 
+<b>rdpListener</b>
+Fully-qualified domain name (FQDN) of the RDP Listener with the port in the format FQDN:Port
+
 <b>rdpCustomParams</b>
 Option for RDP custom parameters settings (if any). Custom params needs to be separated by '&'
 Default value: 0
@@ -176,7 +202,7 @@ Use this command to remove rdp clientprofile settings.Refer to the set rdp clien
 
 ##Synopsys
 
-unset rdp clientprofile &lt;name> [-rdpUrlOverride] [-redirectClipboard] [-redirectDrives] [-redirectPrinters] [-keyboardHook] [-audioCaptureMode] [-videoPlaybackMode] [-multiMonitorSupport] [-rdpCookieValidity] [-addUserNameInRdpFile] [-rdpFileName] [-rdpHost] [-rdpCustomParams] [-psk]
+unset rdp clientprofile &lt;name> [-rdpUrlOverride] [-redirectClipboard] [-redirectDrives] [-redirectPrinters] [-redirectComPorts] [-redirectPnpDevices] [-keyboardHook] [-audioCaptureMode] [-videoPlaybackMode] [-multiMonitorSupport] [-rdpCookieValidity] [-addUserNameInRdpFile] [-rdpFileName] [-rdpHost] [-rdpListener] [-rdpCustomParams] [-psk]
 
 
 ##show rdp clientprofile
@@ -210,6 +236,12 @@ This setting corresponds to the selections for Drives under More on the Local Re
 <b>redirectPrinters</b>
 This setting corresponds to the selection in the Printers check box on the Local Resources tab under Options in RDC.
 
+<b>redirectComPorts</b>
+This setting corresponds to the selections for comports under More on the Local Resources tab under Options in RDC.
+
+<b>redirectPnpDevices</b>
+This setting corresponds to the selections for pnpdevices under More on the Local Resources tab under Options in RDC.
+
 <b>keyboardHook</b>
 This setting corresponds to the selection in the Keyboard drop-down list on the Local Resources tab under Options in RDC.
 
@@ -233,6 +265,9 @@ RDP file name to be sent to End User
 
 <b>rdpHost</b>
 Fully-qualified domain name (FQDN) of the RDP Listener.
+
+<b>rdpListener</b>
+Fully-qualified domain name (FQDN) of the RDP Listener with the port in the format FQDN:Port
 
 <b>rdpCustomParams</b>
 Option for RDP custom parameters settings (if any). Custom params needs to be separated by '&'

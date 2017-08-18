@@ -12,7 +12,7 @@ Modifies the global application firewall settings. The global settings apply to 
 
 ##Synopsys
 
-set appfw settings [-defaultProfile &lt;string>] [-undefAction &lt;string>] [-sessionTimeout &lt;positive_integer>] [-learnRateLimit &lt;positive_integer>] [-sessionLifetime &lt;positive_integer>] [-sessionCookieName &lt;string>] [-clientIPLoggingHeader &lt;string>] [-importSizeLimit &lt;positive_integer>] [-signatureAutoUpdate ( ON | OFF )] [-signatureUrl &lt;expression>] [-cookiePostEncryptPrefix &lt;string>] [-logMalformedReq ( ON | OFF )] [-GeoLocationLogging ( ON | OFF )] [-CEFLogging ( ON | OFF )] [-entityDecoding ( ON | OFF )] [-useConfigurableSecretKey ( ON | OFF )]
+set appfw settings [-defaultProfile &lt;string>] [-undefAction &lt;string>] [-sessionTimeout &lt;positive_integer>] [-learnRateLimit &lt;positive_integer>] [-sessionLifetime &lt;positive_integer>] [-sessionCookieName &lt;string>] [-clientIPLoggingHeader &lt;string>] [-importSizeLimit &lt;positive_integer>] [-signatureAutoUpdate ( ON | OFF )] [-signatureUrl &lt;expression>] [-cookiePostEncryptPrefix &lt;string>] [-logMalformedReq ( ON | OFF )] [-GeoLocationLogging ( ON | OFF )] [-CEFLogging ( ON | OFF )] [-entityDecoding ( ON | OFF )] [-useConfigurableSecretKey ( ON | OFF )] [-sessionLimit &lt;positive_integer>]
 
 
 ##Arguments
@@ -98,6 +98,12 @@ Use configurable secret key in AppFw operations
 Possible values: ON, OFF
 Default value: OFF
 
+<b>sessionLimit</b>
+Maximum number of sessions that the application firewall allows to be active, regardless of user activity. After the max_limit reaches, No more user session will be created .
+Default value: 100000 
+Minimum value: 0
+Maximum value: 500000
+
 
 
 ##unset appfw settings
@@ -107,7 +113,7 @@ Use this command to remove appfw settings settings.Refer to the set appfw settin
 
 ##Synopsys
 
-unset appfw settings [-defaultProfile] [-undefAction] [-sessionTimeout] [-learnRateLimit] [-sessionLifetime] [-sessionCookieName] [-clientIPLoggingHeader] [-importSizeLimit] [-signatureAutoUpdate] [-signatureUrl] [-cookiePostEncryptPrefix] [-logMalformedReq] [-GeoLocationLogging] [-CEFLogging] [-entityDecoding] [-useConfigurableSecretKey]
+unset appfw settings [-defaultProfile] [-undefAction] [-sessionTimeout] [-learnRateLimit] [-sessionLifetime] [-sessionCookieName] [-clientIPLoggingHeader] [-importSizeLimit] [-signatureAutoUpdate] [-signatureUrl] [-cookiePostEncryptPrefix] [-logMalformedReq] [-GeoLocationLogging] [-CEFLogging] [-entityDecoding] [-useConfigurableSecretKey] [-sessionLimit]
 
 
 ##show appfw settings
@@ -173,6 +179,15 @@ Transform multibyte (double- or half-width) characters to single width character
 
 <b>useConfigurableSecretKey</b>
 Use configurable secret key in AppFw operations
+
+<b>sessionLimit</b>
+Maximum number of sessions that the application firewall allows to be active, regardless of user activity. After the max_limit reaches, No more user session will be created .
+
+<b>appEnforceSessionLimit</b>
+Let application firewall enforce session limits.
+Available settings are as follows:
+* ON  - Application firewall enforces session limits.
+* OFF - DHT framework enforces session limits
 
 
 

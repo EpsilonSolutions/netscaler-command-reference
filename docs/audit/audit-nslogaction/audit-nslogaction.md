@@ -12,7 +12,7 @@ Adds an nslog action. The action contains a reference to an nslog server and spe
 
 ##Synopsys
 
-add audit nslogAction &lt;name> &lt;serverIP> [-serverPort &lt;port>] -logLevel &lt;logLevel> ... [-dateFormat &lt;dateFormat>] [-logFacility &lt;logFacility>] [-tcp ( NONE | ALL )] [-acl ( ENABLED | DISABLED )] [-timeZone ( GMT_TIME | LOCAL_TIME )] [-userDefinedAuditlog ( YES | NO )] [-appflowExport ( ENABLED | DISABLED )] [-lsn ( ENABLED | DISABLED )] [-alg ( ENABLED | DISABLED )]
+add audit nslogAction &lt;name> (&lt;serverIP> | (&lt;serverDomainName>  [-domainResolveRetry &lt;integer>])) [-serverPort &lt;port>] -logLevel &lt;logLevel> ... [-dateFormat &lt;dateFormat>] [-logFacility &lt;logFacility>] [-tcp ( NONE | ALL )] [-acl ( ENABLED | DISABLED )] [-timeZone ( GMT_TIME | LOCAL_TIME )] [-userDefinedAuditlog ( YES | NO )] [-appflowExport ( ENABLED | DISABLED )] [-lsn ( ENABLED | DISABLED )] [-alg ( ENABLED | DISABLED )] [-subscriberLog ( ENABLED | DISABLED )] [-sslInterception ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -20,10 +20,19 @@ add audit nslogAction &lt;name> &lt;serverIP> [-serverPort &lt;port>] -logLevel 
 <b>name</b>
 Name of the nslog action. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after the nslog action is added.
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, ?my nslog action? or ?my nslog action).
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my nslog action" or 'my nslog action').
 
 <b>serverIP</b>
 IP address of the nslog server.
+
+<b>serverDomainName</b>
+Auditserver name as a FQDN. Mutually exclusive with serverIP
+
+<b>domainResolveRetry</b>
+Time, in seconds, for which the NetScaler appliance waits before sending another DNS query to resolve the host name of the audit server if the last query failed.
+Default value: 5
+Minimum value: 5
+Maximum value: 20939
 
 <b>serverPort</b>
 Port on which the nslog server accepts connections.
@@ -68,7 +77,7 @@ Possible values: ENABLED, DISABLED
 Time zone used for date and timestamps in the logs. 
 Available settings function as follows: 
 * GMT_TIME. Coordinated Universal Time.
-* LOCAL_TIME. The server?s timezone setting.
+* LOCAL_TIME. The server's timezone setting.
 Possible values: GMT_TIME, LOCAL_TIME
 
 <b>userDefinedAuditlog</b>
@@ -87,6 +96,14 @@ Possible values: ENABLED, DISABLED
 
 <b>alg</b>
 Log the ALG messages
+Possible values: ENABLED, DISABLED
+
+<b>subscriberLog</b>
+Log subscriber session event information
+Possible values: ENABLED, DISABLED
+
+<b>sslInterception</b>
+Log SSL Interception event information
 Possible values: ENABLED, DISABLED
 
 
@@ -115,7 +132,7 @@ Modifies the specified settings of an existing nslog action.
 
 ##Synopsys
 
-set audit nslogAction &lt;name> [-serverIP &lt;ip_addr|ipv6_addr|*>] [-serverPort &lt;port>] [-logLevel &lt;logLevel> ...] [-dateFormat &lt;dateFormat>] [-logFacility &lt;logFacility>] [-tcp ( NONE | ALL )] [-acl ( ENABLED | DISABLED )] [-timeZone ( GMT_TIME | LOCAL_TIME )] [-userDefinedAuditlog ( YES | NO )] [-appflowExport ( ENABLED | DISABLED )] [-lsn ( ENABLED | DISABLED )] [-alg ( ENABLED | DISABLED )]
+set audit nslogAction &lt;name> [-serverIP &lt;ip_addr|ipv6_addr|*>] [-serverDomainName &lt;string>] [-domainResolveRetry &lt;integer>] [-domainResolveNow] [-serverPort &lt;port>] [-logLevel &lt;logLevel> ...] [-dateFormat &lt;dateFormat>] [-logFacility &lt;logFacility>] [-tcp ( NONE | ALL )] [-acl ( ENABLED | DISABLED )] [-timeZone ( GMT_TIME | LOCAL_TIME )] [-userDefinedAuditlog ( YES | NO )] [-appflowExport ( ENABLED | DISABLED )] [-lsn ( ENABLED | DISABLED )] [-alg ( ENABLED | DISABLED )] [-subscriberLog ( ENABLED | DISABLED )] [-sslInterception ( ENABLED | DISABLED )]
 
 
 ##Arguments
@@ -125,6 +142,18 @@ Name of the nslog action to be modified.
 
 <b>serverIP</b>
 IP address of the nslog server.
+
+<b>serverDomainName</b>
+Auditserver name as a FQDN. Mutually exclusive with serverIP
+
+<b>domainResolveRetry</b>
+Time, in seconds, for which the NetScaler appliance waits before sending another DNS query to resolve the host name of the audit server if the last query failed.
+Default value: 5
+Minimum value: 5
+Maximum value: 20939
+
+<b>domainResolveNow</b>
+Immediately send a DNS query to resolve the server's domain name.
 
 <b>serverPort</b>
 Port on which the nslog server accepts connections.
@@ -169,7 +198,7 @@ Possible values: ENABLED, DISABLED
 Time zone used for date and timestamps in the logs. 
 Available settings function as follows: 
 * GMT_TIME. Coordinated Universal Time.
-* LOCAL_TIME. The server?s timezone setting.
+* LOCAL_TIME. The server's timezone setting.
 Possible values: GMT_TIME, LOCAL_TIME
 
 <b>userDefinedAuditlog</b>
@@ -190,6 +219,14 @@ Possible values: ENABLED, DISABLED
 Log the ALG messages
 Possible values: ENABLED, DISABLED
 
+<b>subscriberLog</b>
+Log subscriber session event information
+Possible values: ENABLED, DISABLED
+
+<b>sslInterception</b>
+Log SSL Interception event information
+Possible values: ENABLED, DISABLED
+
 
 
 ##unset audit nslogAction
@@ -199,7 +236,7 @@ Removes the settings of an existing nslog action. Attributes for which a default
 
 ##Synopsys
 
-unset audit nslogAction &lt;name> [-serverPort] [-logLevel] [-dateFormat] [-logFacility] [-tcp] [-acl] [-timeZone] [-userDefinedAuditlog] [-appflowExport] [-lsn] [-alg]
+unset audit nslogAction &lt;name> [-serverPort] [-logLevel] [-dateFormat] [-logFacility] [-tcp] [-acl] [-timeZone] [-userDefinedAuditlog] [-appflowExport] [-lsn] [-alg] [-subscriberLog] [-sslInterception]
 
 
 ##show audit nslogAction
@@ -223,6 +260,15 @@ Name of the nslog action.
 
 <b>serverIP</b>
 IP address of the nslog server.
+
+<b>serverDomainName</b>
+Auditserver name as a FQDN. Mutually exclusive with serverIP
+
+<b>domainResolveRetry</b>
+Time, in seconds, for which the NetScaler appliance waits before sending another DNS query to resolve the host name of the audit server if the last query failed.
+
+<b>IP</b>
+The resolved IP address of the auditserver
 
 <b>serverPort</b>
 Port on which the nslog server accepts connections.
@@ -262,7 +308,7 @@ Log access control list (ACL) messages.
 Time zone used for date and timestamps in the logs. 
 Available settings function as follows: 
 * GMT_TIME. Coordinated Universal Time.
-* LOCAL_TIME. The server?s timezone setting.
+* LOCAL_TIME. The server's timezone setting.
 
 <b>stateflag</b>
 
@@ -282,6 +328,12 @@ Log the LSN messages
 
 <b>alg</b>
 Log the ALG messages
+
+<b>subscriberLog</b>
+Log subscriber session event information
+
+<b>sslInterception</b>
+Log SSL Interception event information
 
 <b>devno</b>
 

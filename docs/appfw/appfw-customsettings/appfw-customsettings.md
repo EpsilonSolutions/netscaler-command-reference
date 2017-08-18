@@ -133,9 +133,6 @@ Updates the Application Firewall Custom Settings XML configuration to the NetSca
 <b>name</b>
 Indicates name of the custom-settings object to update.
 
-<b>mergeDefault</b>
-Merges signature file with default signature file.
-
 
 
 ##Example

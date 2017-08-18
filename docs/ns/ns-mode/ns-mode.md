@@ -119,5 +119,8 @@ APBR Publishing Mode.
 <b>RISE_RHI</b>
 RHI Publishing Mode.
 
+<b>ULFD</b>
+Unified Logging Framework Mode for adding/removing ULF services
+
 
 

@@ -42,6 +42,7 @@ Prefix used for translating packets from private IPv6 servers to IPv4 packets. T
 
 <b>td</b>
 Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
+Default value: 0
 Minimum value: 0
 Maximum value: 4094
 
@@ -85,6 +86,7 @@ show ipv6 [-td &lt;positive_integer>]
 
 <b>td</b>
 Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.
+Default value: 0
 Minimum value: 0
 Maximum value: 4094
 

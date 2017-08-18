@@ -173,7 +173,7 @@ Existing name of the Content Accelerator action.
 New name for the content accelerator action. 
 Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) hash (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Can be changed after the content accelerator policy is added.
 The following requirement applies only to the NetScaler CLI:
-If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my content accelerator action" or ?my content accelerator action?).!,
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my content accelerator action" or 'my content accelerator action').
 
 
 
